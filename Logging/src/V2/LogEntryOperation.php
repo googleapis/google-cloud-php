@@ -44,9 +44,28 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      */
     private $last = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $id
+     *           Optional. An arbitrary operation identifier. Log entries with the
+     *           same identifier are assumed to be part of the same operation.
+     *     @type string $producer
+     *           Optional. An arbitrary producer identifier. The combination of
+     *           `id` and `producer` must be globally unique.  Examples for `producer`:
+     *           `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
+     *     @type bool $first
+     *           Optional. Set this to True if this is the first log entry in the operation.
+     *     @type bool $last
+     *           Optional. Set this to True if this is the last log entry in the operation.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LogEntry::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

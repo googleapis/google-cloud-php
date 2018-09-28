@@ -34,9 +34,27 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      */
     private $exclusion = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The parent resource in which to create the exclusion:
+     *               "projects/[PROJECT_ID]"
+     *               "organizations/[ORGANIZATION_ID]"
+     *               "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *               "folders/[FOLDER_ID]"
+     *           Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     *     @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
+     *           Required. The new exclusion, whose `name` parameter is an exclusion name
+     *           that is not already used in the parent resource.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

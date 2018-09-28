@@ -104,8 +104,8 @@ class LoggingServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
-    private static $projectNameTemplate;
     private static $logNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -115,6 +115,7 @@ class LoggingServiceV2GapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/logging_service_v2_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/logging_service_v2_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/logging_service_v2_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -126,15 +127,6 @@ class LoggingServiceV2GapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getLogNameTemplate()
     {
         if (self::$logNameTemplate == null) {
@@ -144,32 +136,25 @@ class LoggingServiceV2GapicClient
         return self::$logNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
                 'log' => self::getLogNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -191,11 +176,27 @@ class LoggingServiceV2GapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
-     * - log: projects/{project}/logs/{log}.
+     * - log: projects/{project}/logs/{log}
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -346,13 +347,14 @@ class LoggingServiceV2GapicClient
     }
 
     /**
-     * ## Log entry resources.
-     *
      * Writes log entries to Stackdriver Logging. This API method is the
      * only way to send log entries to Stackdriver Logging. This method
      * is used, directly or indirectly, by the Stackdriver Logging agent
      * (fluentd) and all logging libraries configured to use Stackdriver
      * Logging.
+     * A single request may contain log entries for a maximum of 1000
+     * different resources (projects, organizations, billing accounts or
+     * folders).
      *
      * Sample code:
      * ```
@@ -369,7 +371,8 @@ class LoggingServiceV2GapicClient
      *                            entries in this list does not matter. Values supplied in this method's
      *                            `log_name`, `resource`, and `labels` fields are copied into those log
      *                            entries in this list that do not include values for their corresponding
-     *                            fields. For more information, see the [LogEntry][google.logging.v2.LogEntry] type.
+     *                            fields. For more information, see the
+     *                            [LogEntry][google.logging.v2.LogEntry] type.
      *
      * If the `timestamp` or `insert_id` fields are missing in log entries, then
      * this method supplies the current time or a unique identifier, respectively.
@@ -379,8 +382,9 @@ class LoggingServiceV2GapicClient
      *
      * Log entries with timestamps that are more than the
      * [logs retention period](https://cloud.google.com/logging/quota-policy) in the past or more than
-     * 24 hours in the future might be discarded. Discarding does not return
-     * an error.
+     * 24 hours in the future will not be available when calling `entries.list`.
+     * However, those log entries can still be exported with
+     * [LogSinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
      *
      * To improve throughput and to avoid exceeding the
      * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
@@ -423,6 +427,10 @@ class LoggingServiceV2GapicClient
      *          entry is not written, then the response status is the error associated
      *          with one of the failed entries and the response includes error details
      *          keyed by the entries' zero-based index in the `entries.write` method.
+     *     @type bool $dryRun
+     *          Optional. If true, the request should expect normal response, but the
+     *          entries won't be persisted nor exported. Useful for checking whether the
+     *          logging API endpoints are working properly before sending valuable data.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -451,6 +459,9 @@ class LoggingServiceV2GapicClient
         if (isset($optionalArgs['partialSuccess'])) {
             $request->setPartialSuccess($optionalArgs['partialSuccess']);
         }
+        if (isset($optionalArgs['dryRun'])) {
+            $request->setDryRun($optionalArgs['dryRun']);
+        }
 
         return $this->startCall(
             'WriteLogEntries',
@@ -469,19 +480,22 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *     $resourceNames = [];
-     *     // Iterate through all elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
+     *     $formattedResourceNames = [];
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($formattedResourceNames);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($formattedResourceNames);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $loggingServiceV2Client->close();
@@ -578,19 +592,21 @@ class LoggingServiceV2GapicClient
      * ```
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $loggingServiceV2Client->close();
@@ -648,18 +664,21 @@ class LoggingServiceV2GapicClient
      * $loggingServiceV2Client = new LoggingServiceV2Client();
      * try {
      *     $formattedParent = $loggingServiceV2Client->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $loggingServiceV2Client->close();

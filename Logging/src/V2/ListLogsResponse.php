@@ -32,9 +32,25 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $log_names
+     *           A list of log names. For example,
+     *           `"projects/my-project/syslog"` or
+     *           `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
+     *     @type string $next_page_token
+     *           If there might be more results than those appearing in this response, then
+     *           `nextPageToken` is included.  To get the next set of results, call this
+     *           method again using the value of `nextPageToken` as `pageToken`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

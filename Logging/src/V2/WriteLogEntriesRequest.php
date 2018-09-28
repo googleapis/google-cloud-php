@@ -56,7 +56,8 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * entries in this list does not matter. Values supplied in this method's
      * `log_name`, `resource`, and `labels` fields are copied into those log
      * entries in this list that do not include values for their corresponding
-     * fields. For more information, see the [LogEntry][google.logging.v2.LogEntry] type.
+     * fields. For more information, see the
+     * [LogEntry][google.logging.v2.LogEntry] type.
      * If the `timestamp` or `insert_id` fields are missing in log entries, then
      * this method supplies the current time or a unique identifier, respectively.
      * The supplied values are chosen so that, among the log entries that did not
@@ -64,8 +65,9 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * the entries later in the list. See the `entries.list` method.
      * Log entries with timestamps that are more than the
      * [logs retention period](/logging/quota-policy) in the past or more than
-     * 24 hours in the future might be discarded. Discarding does not return
-     * an error.
+     * 24 hours in the future will not be available when calling `entries.list`.
+     * However, those log entries can still be exported with
+     * [LogSinks](/logging/docs/api/tasks/exporting-logs).
      * To improve throughput and to avoid exceeding the
      * [quota limit](/logging/quota-policy) for calls to `entries.write`,
      * you should try to include several log entries in this list,
@@ -84,10 +86,81 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool partial_success = 5;</code>
      */
     private $partial_success = false;
+    /**
+     * Optional. If true, the request should expect normal response, but the
+     * entries won't be persisted nor exported. Useful for checking whether the
+     * logging API endpoints are working properly before sending valuable data.
+     *
+     * Generated from protobuf field <code>bool dry_run = 6;</code>
+     */
+    private $dry_run = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $log_name
+     *           Optional. A default log resource name that is assigned to all log entries
+     *           in `entries` that do not specify a value for `log_name`:
+     *               "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *               "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *               "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *               "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *           `[LOG_ID]` must be URL-encoded. For example,
+     *           `"projects/my-project-id/logs/syslog"` or
+     *           `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     *           For more information about log names, see
+     *           [LogEntry][google.logging.v2.LogEntry].
+     *     @type \Google\Api\MonitoredResource $resource
+     *           Optional. A default monitored resource object that is assigned to all log
+     *           entries in `entries` that do not specify a value for `resource`. Example:
+     *               { "type": "gce_instance",
+     *                 "labels": {
+     *                   "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
+     *           See [LogEntry][google.logging.v2.LogEntry].
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. Default labels that are added to the `labels` field of all log
+     *           entries in `entries`. If a log entry already has a label with the same key
+     *           as a label in this parameter, then the log entry's label is not changed.
+     *           See [LogEntry][google.logging.v2.LogEntry].
+     *     @type \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *           Required. The log entries to send to Stackdriver Logging. The order of log
+     *           entries in this list does not matter. Values supplied in this method's
+     *           `log_name`, `resource`, and `labels` fields are copied into those log
+     *           entries in this list that do not include values for their corresponding
+     *           fields. For more information, see the
+     *           [LogEntry][google.logging.v2.LogEntry] type.
+     *           If the `timestamp` or `insert_id` fields are missing in log entries, then
+     *           this method supplies the current time or a unique identifier, respectively.
+     *           The supplied values are chosen so that, among the log entries that did not
+     *           supply their own values, the entries earlier in the list will sort before
+     *           the entries later in the list. See the `entries.list` method.
+     *           Log entries with timestamps that are more than the
+     *           [logs retention period](/logging/quota-policy) in the past or more than
+     *           24 hours in the future will not be available when calling `entries.list`.
+     *           However, those log entries can still be exported with
+     *           [LogSinks](/logging/docs/api/tasks/exporting-logs).
+     *           To improve throughput and to avoid exceeding the
+     *           [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     *           you should try to include several log entries in this list,
+     *           rather than calling this method for each individual log entry.
+     *     @type bool $partial_success
+     *           Optional. Whether valid entries should be written even if some other
+     *           entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
+     *           entry is not written, then the response status is the error associated
+     *           with one of the failed entries and the response includes error details
+     *           keyed by the entries' zero-based index in the `entries.write` method.
+     *     @type bool $dry_run
+     *           Optional. If true, the request should expect normal response, but the
+     *           entries won't be persisted nor exported. Useful for checking whether the
+     *           logging API endpoints are working properly before sending valuable data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -209,7 +282,8 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * entries in this list does not matter. Values supplied in this method's
      * `log_name`, `resource`, and `labels` fields are copied into those log
      * entries in this list that do not include values for their corresponding
-     * fields. For more information, see the [LogEntry][google.logging.v2.LogEntry] type.
+     * fields. For more information, see the
+     * [LogEntry][google.logging.v2.LogEntry] type.
      * If the `timestamp` or `insert_id` fields are missing in log entries, then
      * this method supplies the current time or a unique identifier, respectively.
      * The supplied values are chosen so that, among the log entries that did not
@@ -217,8 +291,9 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * the entries later in the list. See the `entries.list` method.
      * Log entries with timestamps that are more than the
      * [logs retention period](/logging/quota-policy) in the past or more than
-     * 24 hours in the future might be discarded. Discarding does not return
-     * an error.
+     * 24 hours in the future will not be available when calling `entries.list`.
+     * However, those log entries can still be exported with
+     * [LogSinks](/logging/docs/api/tasks/exporting-logs).
      * To improve throughput and to avoid exceeding the
      * [quota limit](/logging/quota-policy) for calls to `entries.write`,
      * you should try to include several log entries in this list,
@@ -237,7 +312,8 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * entries in this list does not matter. Values supplied in this method's
      * `log_name`, `resource`, and `labels` fields are copied into those log
      * entries in this list that do not include values for their corresponding
-     * fields. For more information, see the [LogEntry][google.logging.v2.LogEntry] type.
+     * fields. For more information, see the
+     * [LogEntry][google.logging.v2.LogEntry] type.
      * If the `timestamp` or `insert_id` fields are missing in log entries, then
      * this method supplies the current time or a unique identifier, respectively.
      * The supplied values are chosen so that, among the log entries that did not
@@ -245,8 +321,9 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * the entries later in the list. See the `entries.list` method.
      * Log entries with timestamps that are more than the
      * [logs retention period](/logging/quota-policy) in the past or more than
-     * 24 hours in the future might be discarded. Discarding does not return
-     * an error.
+     * 24 hours in the future will not be available when calling `entries.list`.
+     * However, those log entries can still be exported with
+     * [LogSinks](/logging/docs/api/tasks/exporting-logs).
      * To improve throughput and to avoid exceeding the
      * [quota limit](/logging/quota-policy) for calls to `entries.write`,
      * you should try to include several log entries in this list,
@@ -294,6 +371,36 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->partial_success = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the request should expect normal response, but the
+     * entries won't be persisted nor exported. Useful for checking whether the
+     * logging API endpoints are working properly before sending valuable data.
+     *
+     * Generated from protobuf field <code>bool dry_run = 6;</code>
+     * @return bool
+     */
+    public function getDryRun()
+    {
+        return $this->dry_run;
+    }
+
+    /**
+     * Optional. If true, the request should expect normal response, but the
+     * entries won't be persisted nor exported. Useful for checking whether the
+     * logging API endpoints are working properly before sending valuable data.
+     *
+     * Generated from protobuf field <code>bool dry_run = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDryRun($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dry_run = $var;
 
         return $this;
     }

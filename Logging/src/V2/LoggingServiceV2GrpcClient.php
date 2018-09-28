@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -50,13 +50,14 @@ class LoggingServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ## Log entry resources
-     *
      * Writes log entries to Stackdriver Logging. This API method is the
      * only way to send log entries to Stackdriver Logging. This method
      * is used, directly or indirectly, by the Stackdriver Logging agent
      * (fluentd) and all logging libraries configured to use Stackdriver
      * Logging.
+     * A single request may contain log entries for a maximum of 1000
+     * different resources (projects, organizations, billing accounts or
+     * folders)
      * @param \Google\Cloud\Logging\V2\WriteLogEntriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

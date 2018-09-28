@@ -42,7 +42,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * you can exclude less than 100% of the matching log entries.
      * For example, the following filter matches 99% of low-severity log
      * entries from load balancers:
-     *     "resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"
+     * `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
@@ -50,16 +50,44 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
      * exclude any log entries. You can use
-     * [exclusions.patch](/logging/docs/alpha-exclusion/docs/reference/v2/rest/v2/projects.exclusions/patch)
+     * [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
      * to change the value of this field.
      *
      * Generated from protobuf field <code>bool disabled = 4;</code>
      */
     private $disabled = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. A client-assigned identifier, such as
+     *           `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
+     *           can include only letters, digits, underscores, hyphens, and periods.
+     *     @type string $description
+     *           Optional. A description of this exclusion.
+     *     @type string $filter
+     *           Required.
+     *           An [advanced logs filter](/logging/docs/view/advanced_filters)
+     *           that matches the log entries to be excluded. By using the
+     *           [sample function](/logging/docs/view/advanced_filters#sample),
+     *           you can exclude less than 100% of the matching log entries.
+     *           For example, the following filter matches 99% of low-severity log
+     *           entries from load balancers:
+     *           `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
+     *     @type bool $disabled
+     *           Optional. If set to True, then this exclusion is disabled and it does not
+     *           exclude any log entries. You can use
+     *           [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
+     *           to change the value of this field.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -126,7 +154,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * you can exclude less than 100% of the matching log entries.
      * For example, the following filter matches 99% of low-severity log
      * entries from load balancers:
-     *     "resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"
+     * `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @return string
@@ -144,7 +172,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * you can exclude less than 100% of the matching log entries.
      * For example, the following filter matches 99% of low-severity log
      * entries from load balancers:
-     *     "resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"
+     * `"resource.type=http_load_balancer severity<ERROR sample(insertId, 0.99)"`
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @param string $var
@@ -161,7 +189,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
      * exclude any log entries. You can use
-     * [exclusions.patch](/logging/docs/alpha-exclusion/docs/reference/v2/rest/v2/projects.exclusions/patch)
+     * [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
      * to change the value of this field.
      *
      * Generated from protobuf field <code>bool disabled = 4;</code>
@@ -175,7 +203,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
      * exclude any log entries. You can use
-     * [exclusions.patch](/logging/docs/alpha-exclusion/docs/reference/v2/rest/v2/projects.exclusions/patch)
+     * [exclusions.patch](/logging/docs/reference/v2/rest/v2/projects.exclusions/patch)
      * to change the value of this field.
      *
      * Generated from protobuf field <code>bool disabled = 4;</code>

@@ -56,7 +56,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Deprecated. The log entry format to use for this sink's exported log
      * entries.  The v2 format is used by default and cannot be changed.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6 [deprecated = true];</code>
      */
     private $output_version_format = 0;
     /**
@@ -97,19 +97,82 @@ class LogSink extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 10 [deprecated = true];</code>
      */
     private $start_time = null;
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 11 [deprecated = true];</code>
      */
     private $end_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The client-assigned sink identifier, unique within the
+     *           project. Example: `"my-syslog-errors-to-pubsub"`.  Sink identifiers are
+     *           limited to 100 characters and can include only the following characters:
+     *           upper and lower-case alphanumeric characters, underscores, hyphens, and
+     *           periods.
+     *     @type string $destination
+     *           Required. The export destination:
+     *               "storage.googleapis.com/[GCS_BUCKET]"
+     *               "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
+     *               "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
+     *           The sink's `writer_identity`, set when the sink is created, must
+     *           have permission to write to the destination or else the log
+     *           entries are not exported.  For more information, see
+     *           [Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
+     *     @type string $filter
+     *           Optional.
+     *           An [advanced logs filter](/logging/docs/view/advanced_filters).  The only
+     *           exported log entries are those that are in the resource owning the sink and
+     *           that match the filter.  For example:
+     *               logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity>=ERROR
+     *     @type int $output_version_format
+     *           Deprecated. The log entry format to use for this sink's exported log
+     *           entries.  The v2 format is used by default and cannot be changed.
+     *     @type string $writer_identity
+     *           Output only. An IAM identity&mdash;a service account or group&mdash;under
+     *           which Stackdriver Logging writes the exported log entries to the sink's
+     *           destination.  This field is set by
+     *           [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
+     *           and
+     *           [sinks.update](/logging/docs/api/reference/rest/v2/projects.sinks/update),
+     *           based on the setting of `unique_writer_identity` in those methods.
+     *           Until you grant this identity write-access to the destination, log entry
+     *           exports from this sink will fail. For more information,
+     *           see [Granting access for a
+     *           resource](/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource).
+     *           Consult the destination service's documentation to determine the
+     *           appropriate IAM roles to assign to the identity.
+     *     @type bool $include_children
+     *           Optional. This field applies only to sinks owned by organizations and
+     *           folders. If the field is false, the default, only the logs owned by the
+     *           sink's parent resource are available for export. If the field is true, then
+     *           logs from all the projects, folders, and billing accounts contained in the
+     *           sink's parent resource are also available for export. Whether a particular
+     *           log entry from the children is exported depends on the sink's filter
+     *           expression. For example, if this field is true, then the filter
+     *           `resource.type=gce_instance` would export all Compute Engine VM instance
+     *           log entries from all projects in the sink's parent. To only export entries
+     *           from certain child projects, filter on the project part of the log name:
+     *               logName:("projects/test-project1/" OR "projects/test-project2/") AND
+     *               resource.type=gce_instance
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Deprecated. This field is ignored when creating or updating sinks.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           Deprecated. This field is ignored when creating or updating sinks.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -224,7 +287,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Deprecated. The log entry format to use for this sink's exported log
      * entries.  The v2 format is used by default and cannot be changed.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6 [deprecated = true];</code>
      * @return int
      */
     public function getOutputVersionFormat()
@@ -236,7 +299,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * Deprecated. The log entry format to use for this sink's exported log
      * entries.  The v2 format is used by default and cannot be changed.
      *
-     * Generated from protobuf field <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6 [deprecated = true];</code>
      * @param int $var
      * @return $this
      */
@@ -349,7 +412,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 10 [deprecated = true];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -360,7 +423,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 10 [deprecated = true];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -375,7 +438,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 11 [deprecated = true];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -386,7 +449,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field is ignored when creating or updating sinks.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 11;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 11 [deprecated = true];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

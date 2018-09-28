@@ -17,9 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class WriteLogEntriesResponse extends \Google\Protobuf\Internal\Message
 {
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\Logging::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
 }

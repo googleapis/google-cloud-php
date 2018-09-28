@@ -32,9 +32,25 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      */
     private $metric = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $metric_name
+     *           The resource name of the metric to update:
+     *               "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *           The updated metric must be provided in the request and it's
+     *           `name` field must be the same as `[METRIC_ID]` If the metric
+     *           does not exist in `[PROJECT_ID]`, then a new metric is created.
+     *     @type \Google\Cloud\Logging\V2\LogMetric $metric
+     *           The updated metric.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingMetrics::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

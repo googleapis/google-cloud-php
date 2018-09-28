@@ -39,7 +39,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      */
     private $log_name = '';
     /**
-     * Required. The monitored resource associated with this log entry.
+     * Required. The primary monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be
      * associated with the monitored resource designating the particular
      * database that reported the error.
@@ -52,10 +52,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * This time is used to compute the log entry's age and to enforce
      * the logs retention period. If this field is omitted in a new log
      * entry, then Stackdriver Logging assigns it the current time.
+     * Timestamps have nanosecond accuracy, but trailing zeros in the fractional
+     * seconds might be omitted when the timestamp is displayed.
      * Incoming log entries should have timestamps that are no more than
-     * the [logs retention period](/logging/quota-policy) in the past,
-     * and no more than 24 hours in the future.
-     * See the `entries.write` API method for more information.
+     * the [logs retention period](/logging/quotas) in the past,
+     * and no more than 24 hours in the future. Log entries outside those time
+     * boundaries will not be available when calling `entries.list`, but
+     * those log entries can still be exported with
+     * [LogSinks](/logging/docs/api/tasks/exporting-logs).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
@@ -99,6 +103,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * Output only. Additional metadata about the monitored resource.
+     * Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
+     * this field populated.
+     *
+     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 25;</code>
+     */
+    private $metadata = null;
+    /**
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
      *
@@ -115,11 +127,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      */
     private $trace = '';
     /**
-     * Optional. Id of the span within the trace associated with the log entry.
-     * e.g. "0000000000000042"
-     * For Stackdriver trace spans, this is the same format that the Stackdriver
-     * trace API uses.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * Optional. The span ID within the trace associated with the log entry. For
+     * Stackdriver Trace spans, this is the same format that the Stackdriver Trace
+     * API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such
+     * as <code>"000000000000004a"</code>.
      *
      * Generated from protobuf field <code>string span_id = 27;</code>
      */
@@ -133,9 +144,101 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     private $source_location = null;
     protected $payload;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $log_name
+     *           Required. The resource name of the log to which this log entry belongs:
+     *               "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *               "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *               "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *               "folders/[FOLDER_ID]/logs/[LOG_ID]"
+     *            A project number may optionally be used in place of PROJECT_ID. The
+     *            project number is translated to its corresponding PROJECT_ID internally
+     *            and the `log_name` field will contain PROJECT_ID in queries and exports.
+     *           `[LOG_ID]` must be URL-encoded within `log_name`. Example:
+     *           `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     *           `[LOG_ID]` must be less than 512 characters long and can only include the
+     *           following characters: upper and lower case alphanumeric characters,
+     *           forward-slash, underscore, hyphen, and period.
+     *           For backward compatibility, if `log_name` begins with a forward-slash, such
+     *           as `/projects/...`, then the log entry is ingested as usual but the
+     *           forward-slash is removed. Listing the log entry will not show the leading
+     *           slash and filtering for a log name with a leading slash will never return
+     *           any results.
+     *     @type \Google\Api\MonitoredResource $resource
+     *           Required. The primary monitored resource associated with this log entry.
+     *           Example: a log entry that reports a database error would be
+     *           associated with the monitored resource designating the particular
+     *           database that reported the error.
+     *     @type \Google\Protobuf\Any $proto_payload
+     *           The log entry payload, represented as a protocol buffer.  Some
+     *           Google Cloud Platform services use this field for their log
+     *           entry payloads.
+     *     @type string $text_payload
+     *           The log entry payload, represented as a Unicode string (UTF-8).
+     *     @type \Google\Protobuf\Struct $json_payload
+     *           The log entry payload, represented as a structure that is
+     *           expressed as a JSON object.
+     *     @type \Google\Protobuf\Timestamp $timestamp
+     *           Optional. The time the event described by the log entry occurred.
+     *           This time is used to compute the log entry's age and to enforce
+     *           the logs retention period. If this field is omitted in a new log
+     *           entry, then Stackdriver Logging assigns it the current time.
+     *           Timestamps have nanosecond accuracy, but trailing zeros in the fractional
+     *           seconds might be omitted when the timestamp is displayed.
+     *           Incoming log entries should have timestamps that are no more than
+     *           the [logs retention period](/logging/quotas) in the past,
+     *           and no more than 24 hours in the future. Log entries outside those time
+     *           boundaries will not be available when calling `entries.list`, but
+     *           those log entries can still be exported with
+     *           [LogSinks](/logging/docs/api/tasks/exporting-logs).
+     *     @type \Google\Protobuf\Timestamp $receive_timestamp
+     *           Output only. The time the log entry was received by Stackdriver Logging.
+     *     @type int $severity
+     *           Optional. The severity of the log entry. The default value is
+     *           `LogSeverity.DEFAULT`.
+     *     @type string $insert_id
+     *           Optional. A unique identifier for the log entry. If you provide a value,
+     *           then Stackdriver Logging considers other log entries in the same project,
+     *           with the same `timestamp`, and with the same `insert_id` to be duplicates
+     *           which can be removed.  If omitted in new log entries, then Stackdriver
+     *           Logging assigns its own unique identifier. The `insert_id` is also used
+     *           to order log entries that have the same `timestamp` value.
+     *     @type \Google\Cloud\Logging\Type\HttpRequest $http_request
+     *           Optional. Information about the HTTP request associated with this
+     *           log entry, if applicable.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. A set of user-defined (key, value) data that provides additional
+     *           information about the log entry.
+     *     @type \Google\Api\MonitoredResourceMetadata $metadata
+     *           Output only. Additional metadata about the monitored resource.
+     *           Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
+     *           this field populated.
+     *     @type \Google\Cloud\Logging\V2\LogEntryOperation $operation
+     *           Optional. Information about an operation associated with the log entry, if
+     *           applicable.
+     *     @type string $trace
+     *           Optional. Resource name of the trace associated with the log entry, if any.
+     *           If it contains a relative resource name, the name is assumed to be relative
+     *           to `//tracing.googleapis.com`. Example:
+     *           `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
+     *     @type string $span_id
+     *           Optional. The span ID within the trace associated with the log entry. For
+     *           Stackdriver Trace spans, this is the same format that the Stackdriver Trace
+     *           API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such
+     *           as <code>"000000000000004a"</code>.
+     *     @type \Google\Cloud\Logging\V2\LogEntrySourceLocation $source_location
+     *           Optional. Source code location information associated with the log entry,
+     *           if any.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LogEntry::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -199,7 +302,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The monitored resource associated with this log entry.
+     * Required. The primary monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be
      * associated with the monitored resource designating the particular
      * database that reported the error.
@@ -213,7 +316,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The monitored resource associated with this log entry.
+     * Required. The primary monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be
      * associated with the monitored resource designating the particular
      * database that reported the error.
@@ -319,10 +422,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * This time is used to compute the log entry's age and to enforce
      * the logs retention period. If this field is omitted in a new log
      * entry, then Stackdriver Logging assigns it the current time.
+     * Timestamps have nanosecond accuracy, but trailing zeros in the fractional
+     * seconds might be omitted when the timestamp is displayed.
      * Incoming log entries should have timestamps that are no more than
-     * the [logs retention period](/logging/quota-policy) in the past,
-     * and no more than 24 hours in the future.
-     * See the `entries.write` API method for more information.
+     * the [logs retention period](/logging/quotas) in the past,
+     * and no more than 24 hours in the future. Log entries outside those time
+     * boundaries will not be available when calling `entries.list`, but
+     * those log entries can still be exported with
+     * [LogSinks](/logging/docs/api/tasks/exporting-logs).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
      * @return \Google\Protobuf\Timestamp
@@ -337,10 +444,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * This time is used to compute the log entry's age and to enforce
      * the logs retention period. If this field is omitted in a new log
      * entry, then Stackdriver Logging assigns it the current time.
+     * Timestamps have nanosecond accuracy, but trailing zeros in the fractional
+     * seconds might be omitted when the timestamp is displayed.
      * Incoming log entries should have timestamps that are no more than
-     * the [logs retention period](/logging/quota-policy) in the past,
-     * and no more than 24 hours in the future.
-     * See the `entries.write` API method for more information.
+     * the [logs retention period](/logging/quotas) in the past,
+     * and no more than 24 hours in the future. Log entries outside those time
+     * boundaries will not be available when calling `entries.list`, but
+     * those log entries can still be exported with
+     * [LogSinks](/logging/docs/api/tasks/exporting-logs).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -501,6 +612,36 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Additional metadata about the monitored resource.
+     * Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
+     * this field populated.
+     *
+     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 25;</code>
+     * @return \Google\Api\MonitoredResourceMetadata
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * Output only. Additional metadata about the monitored resource.
+     * Only `k8s_container`, `k8s_pod`, and `k8s_node` MonitoredResources have
+     * this field populated.
+     *
+     * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 25;</code>
+     * @param \Google\Api\MonitoredResourceMetadata $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Api\MonitoredResourceMetadata::class);
+        $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
      *
@@ -561,11 +702,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Id of the span within the trace associated with the log entry.
-     * e.g. "0000000000000042"
-     * For Stackdriver trace spans, this is the same format that the Stackdriver
-     * trace API uses.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * Optional. The span ID within the trace associated with the log entry. For
+     * Stackdriver Trace spans, this is the same format that the Stackdriver Trace
+     * API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such
+     * as <code>"000000000000004a"</code>.
      *
      * Generated from protobuf field <code>string span_id = 27;</code>
      * @return string
@@ -576,11 +716,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Id of the span within the trace associated with the log entry.
-     * e.g. "0000000000000042"
-     * For Stackdriver trace spans, this is the same format that the Stackdriver
-     * trace API uses.
-     * The ID is a 16-character hexadecimal encoding of an 8-byte array.
+     * Optional. The span ID within the trace associated with the log entry. For
+     * Stackdriver Trace spans, this is the same format that the Stackdriver Trace
+     * API v2 uses: a 16-character hexadecimal encoding of an 8-byte array, such
+     * as <code>"000000000000004a"</code>.
      *
      * Generated from protobuf field <code>string span_id = 27;</code>
      * @param string $var

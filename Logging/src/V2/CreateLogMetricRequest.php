@@ -31,9 +31,24 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      */
     private $metric = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           The resource name of the project in which to create the metric:
+     *               "projects/[PROJECT_ID]"
+     *           The new metric must be provided in the request.
+     *     @type \Google\Cloud\Logging\V2\LogMetric $metric
+     *           The new logs-based metric, which must not have an identifier that
+     *           already exists.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingMetrics::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

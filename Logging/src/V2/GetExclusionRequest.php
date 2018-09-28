@@ -27,9 +27,24 @@ class GetExclusionRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The resource name of an existing exclusion:
+     *               "projects/[PROJECT_ID]/exclusions/[EXCLUSION_ID]"
+     *               "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
+     *               "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
+     *               "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
+     *           Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

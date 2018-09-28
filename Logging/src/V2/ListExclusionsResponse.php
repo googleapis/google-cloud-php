@@ -30,9 +30,23 @@ class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Logging\V2\LogExclusion[]|\Google\Protobuf\Internal\RepeatedField $exclusions
+     *           A list of exclusions.
+     *     @type string $next_page_token
+     *           If there might be more results than appear in this response, then
+     *           `nextPageToken` is included.  To get the next set of results, call the same
+     *           method again using the value of `nextPageToken` as `pageToken`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Logging\V2\LoggingConfig::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
