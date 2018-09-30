@@ -57,7 +57,7 @@ class LimitFilterTest extends FilterTest
     public function testCellsPerColumn()
     {
         $insertExtraCell = [
-            'rk1' => [
+            'rk3' => [
                 'cf0' => [
                     'cq0' => [
                         'value' => 'value1001',
@@ -69,7 +69,7 @@ class LimitFilterTest extends FilterTest
                     ]
                 ]
             ],
-            'rk2' => [
+            'rk4' => [
                 'cf0' => [
                     'cq0' => [
                         'value' => 'value1001',
@@ -84,7 +84,7 @@ class LimitFilterTest extends FilterTest
         ];
         self::$dataClient->upsert($insertExtraCell);
         $insertExtraCell = [
-            'rk1' => [
+            'rk3' => [
                 'cf0' => [
                     'cq0' => [
                         'value' => 'value1002',
@@ -96,7 +96,7 @@ class LimitFilterTest extends FilterTest
                     ]
                 ]
             ],
-            'rk2' => [
+            'rk4' => [
                 'cf0' => [
                     'cq0' => [
                         'value' => 'value1002',
@@ -110,20 +110,17 @@ class LimitFilterTest extends FilterTest
             ]
         ];
         self::$dataClient->upsert($insertExtraCell);
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf0'))
-            ->addFilter(Filter::qualifier()->regex('cq[01]+'))
-            ->addFilter(Filter::limit()->cellsPerColumn(2));
+        $rowFilter = Filter::limit()->cellsPerColumn(2);
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1', 'rk2'],
+                    'rowKeys' => ['rk3', 'rk4'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
         $expectedRows = [
-            'rk1' => [
+            'rk3' => [
                 'cf0' => [
                     'cq0' => [
                         [
@@ -151,7 +148,7 @@ class LimitFilterTest extends FilterTest
                     ]
                 ]
             ],
-            'rk2' => [
+            'rk4' => [
                 'cf0' => [
                     'cq0' => [
                         [

@@ -28,21 +28,19 @@ class TimestampFilterTest extends FilterTest
 {
     public function testRange()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::qualifier()->rangeWithInFamily('cf1'))
-            ->addFilter(Filter::timestamp()->range()->of(3000, 5000));
+        $rowFilter = Filter::timestamp()->range()->of(3000, 5000);
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq2' => self::$expectedRows['rk1']['cf1']['cq2'],
-                'cq3' => self::$expectedRows['rk1']['cf1']['cq3']
+                'cq2' => self::$expectedRows['rk5']['cf1']['cq2'],
+                'cq3' => self::$expectedRows['rk5']['cf1']['cq3']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);

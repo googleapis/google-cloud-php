@@ -29,28 +29,20 @@ class InterleaveFilterTest extends FilterTest
     public function testInterleave()
     {
         $rowFilter = Filter::interleave()
-            ->addFilter(
-                Filter::chain()
-                    ->addFilter(Filter::family()->exactMatch('cf1'))
-                    ->addFilter(Filter::qualifier()->exactMatch('cq1'))
-            )
-            ->addFilter(
-                Filter::chain()
-                    ->addFilter(Filter::family()->exactMatch('cf1'))
-                    ->addFilter(Filter::qualifier()->exactMatch('cq2'))
-            );
+            ->addFilter(Filter::qualifier()->exactMatch('cq1'))
+            ->addFilter(Filter::qualifier()->exactMatch('cq2'));
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1'],
-                'cq2' => self::$expectedRows['rk1']['cf1']['cq2']
+                'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
+                'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);

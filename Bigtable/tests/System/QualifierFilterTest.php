@@ -28,20 +28,18 @@ class QualifierFilterTest extends FilterTest
 {
     public function testExactMatch()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf1'))
-            ->addFilter(Filter::qualifier()->exactMatch('cq1'));
+        $rowFilter = Filter::qualifier()->exactMatch('cq1');
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1']
+                'cq1' => self::$expectedRows['rk5']['cf1']['cq1']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);
@@ -49,21 +47,19 @@ class QualifierFilterTest extends FilterTest
 
     public function testRegex()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf1'))
-            ->addFilter(Filter::qualifier()->regex('cq[12]+'));
+        $rowFilter = Filter::qualifier()->regex('cq[12]+');
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1'],
-                'cq2' => self::$expectedRows['rk1']['cf1']['cq2']
+                'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
+                'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);
@@ -75,15 +71,15 @@ class QualifierFilterTest extends FilterTest
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk6'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk6' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1'],
-                'cq2' => self::$expectedRows['rk1']['cf1']['cq2']
+                'cq1' => self::$expectedRows['rk6']['cf1']['cq1'],
+                'cq2' => self::$expectedRows['rk6']['cf1']['cq2']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);

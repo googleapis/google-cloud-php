@@ -115,7 +115,7 @@ class DataClientReadRowsTest extends DataClientTest
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => 'rk2'
+                    'rowKeys' => ['rk2']
                 ]
             )->readAll()
         );

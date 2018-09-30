@@ -28,20 +28,18 @@ class ValueFilterTest extends FilterTest
 {
     public function testExactMatch()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf1'))
-            ->addFilter(Filter::value()->exactMatch('value1'));
+        $rowFilter = Filter::value()->exactMatch('value1');
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1']
+                'cq1' => self::$expectedRows['rk5']['cf1']['cq1']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);
@@ -49,21 +47,19 @@ class ValueFilterTest extends FilterTest
 
     public function testRegex()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf1'))
-            ->addFilter(Filter::value()->regex('value[12]+'));
+        $rowFilter = Filter::value()->regex('value[12]+');
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1'],
-                'cq2' => self::$expectedRows['rk1']['cf1']['cq2']
+                'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
+                'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);
@@ -71,21 +67,19 @@ class ValueFilterTest extends FilterTest
 
     public function testRange()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf1'))
-            ->addFilter(Filter::value()->range()->of('value1', 'value3'));
+        $rowFilter = Filter::value()->range()->of('value1', 'value3');
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => 'rk1',
+                    'rowKeys' => ['rk5'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk5' => [
             'cf1' => [
-                'cq1' => self::$expectedRows['rk1']['cf1']['cq1'],
-                'cq2' => self::$expectedRows['rk1']['cf1']['cq2']
+                'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
+                'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
             ]
         ]];
         $this->assertEquals($expectedRows, $rows);
@@ -93,19 +87,16 @@ class ValueFilterTest extends FilterTest
 
     public function testStrip()
     {
-        $rowFilter = Filter::chain()
-            ->addFilter(Filter::family()->exactMatch('cf1'))
-            ->addFilter(Filter::value()->exactMatch('value1'))
-            ->addFilter(Filter::value()->strip());
+        $rowFilter = Filter::value()->strip();
         $rows = iterator_to_array(
             self::$dataClient->readRows(
                 [
-                    'rowKeys' => ['rk1'],
+                    'rowKeys' => ['rk7'],
                     'filter' => $rowFilter
                 ]
             )->readAll()
         );
-        $expectedRows = ['rk1' => [
+        $expectedRows = ['rk7' => [
             'cf1' => [
                 'cq1' => [[
                     'value' => '',
