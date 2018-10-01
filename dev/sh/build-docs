@@ -3,17 +3,11 @@
 set -ev
 
 function buildDocs () {
-  echo "doc dir before generation:"
-  find docs
-
   if [ -z "$TRAVIS_TAG" ]; then
     ./dev/google-cloud docs
   else
     ./dev/google-cloud docs -r
   fi
-
-  echo "doc dir after generation:"
-  find docs
 }
 
 
