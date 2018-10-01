@@ -106,7 +106,8 @@ class RestTest extends TestCase
             ['deleteNotification'],
             ['insertNotification'],
             ['listNotifications'],
-            ['getServiceAccount']
+            ['getServiceAccount'],
+            ['lockRetentionPolicy']
         ];
     }
 

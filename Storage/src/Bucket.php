@@ -805,6 +805,15 @@ class Bucket
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
      *           Please note the KMS key ring must use the same location as the
      *           bucket.
+     *     @type bool $defaultEventBasedHold When `true`, newly created objects
+     *           in this bucket will be retained indefinitely until an event
+     *           occurs, signified by the hold's release.
+     *     @type array $retentionPolicy Defines the retention policy for a
+     *           bucket. In order to lock a retention policy, please see
+     *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
+     *     @type int $retentionPolicy.retentionPeriod Specifies the duration
+     *           that objects need to be retained, in seconds. Retention
+     *           duration must be greater than zero and less than 100 years.
      * }
      * @return array
      */
@@ -1138,6 +1147,69 @@ class Bucket
         }
 
         return $this->iam;
+    }
+
+    /**
+     * Locks a provided retention policy on this bucket. Upon receiving a result,
+     * the local bucket's data will be updated.
+     *
+     * Please note that in order for this call to succeed, the applicable
+     * metageneration value will need to be available. It can either be supplied
+     * explicitly through the `ifMetagenerationMatch` option or detected for you
+     * by ensuring a value is cached locally (by calling
+     * {@see Google\Cloud\Storage\Bucket::reload()} or
+     * {@see Google\Cloud\Storage\Bucket::info()}, for example).
+     *
+     * Example:
+     * ```
+     * // Set a retention policy.
+     * $bucket->update([
+     *     'retentionPolicy' => [
+     *         'retentionPeriod' => 604800 // One week in seconds.
+     *     ]
+     * ]);
+     * // Lock in the policy.
+     * $info = $bucket->lockRetentionPolicy();
+     * $retentionPolicy = $info['retentionPolicy'];
+     *
+     * // View the time from which the policy was enforced and effective. (RFC 3339 format)
+     * echo $retentionPolicy['effectiveTime'] . PHP_EOL;
+     *
+     * // View whether or not the retention policy is locked. This will be
+     * // `true` after a successful call to `lockRetentionPolicy`.
+     * echo $retentionPolicy['isLocked'];
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/bucket-lock Bucket Lock Documentation
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $ifMetagenerationMatch Only locks the retention policy
+     *           if the bucket's metageneration matches this value. If not
+     *           provided the locally cached metageneration value will be used,
+     *           otherwise an exception will be thrown.
+     * }
+     * @throws \BadMethodCallException If no metageneration value is available.
+     * @return array
+     */
+    public function lockRetentionPolicy(array $options = [])
+    {
+        if (!isset($options['ifMetagenerationMatch'])) {
+            if (!isset($this->info['metageneration'])) {
+                throw new \BadMethodCallException(
+                    'No metageneration value was detected. Please either provide ' .
+                    'a value explicitly or ensure metadata is loaded through a ' .
+                    'call such as Bucket::reload().'
+                );
+            }
+
+            $options['ifMetagenerationMatch'] = $this->info['metageneration'];
+        }
+
+        return $this->info = $this->connection->lockRetentionPolicy(
+            $options + $this->identity
+        );
     }
 
     /**

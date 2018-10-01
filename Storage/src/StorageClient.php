@@ -294,6 +294,16 @@ class StorageClient
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
      *           Please note the KMS key ring must use the same location as the
      *           bucket.
+     *     @type bool $defaultEventBasedHold When `true`, newly created objects
+     *           in this bucket will be retained indefinitely until an event
+     *           occurs, signified by the hold's release.
+     *     @type array $retentionPolicy Defines the retention policy for a
+     *           bucket. In order to lock a retention policy, please see
+     *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
+     *     @type int $retentionPolicy.retentionPeriod Specifies the retention
+     *           period for objects in seconds. During the retention period an
+     *           object cannot be overwritten or deleted. Retention period must
+     *           be greater than zero and less than 100 years.
      * }
      * @return Bucket
      * @throws GoogleException When a project ID has not been detected.
