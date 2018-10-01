@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/table\/clusterstate\/replicationstate","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Table\\ClusterState\\ReplicationState","name":"ReplicationState","description":"<p>Table replication states.<\/p>\n<p>Protobuf type <code>google.bigtable.admin.v2.Table.ClusterState.ReplicationState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
