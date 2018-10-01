@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.81.0",
                 "v0.80.0",
                 "v0.79.0",
                 "v0.78.0",
@@ -616,6 +617,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.13.0",
                 "v1.12.9",
                 "v1.12.8",
                 "v1.12.7",
@@ -895,6 +897,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.9.0",
                 "v1.8.0",
                 "v1.7.3",
                 "v1.7.2",
