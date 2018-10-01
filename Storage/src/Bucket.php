@@ -1180,6 +1180,8 @@ class Bucket
      * echo $retentionPolicy['isLocked'];
      * ```
      *
+     * @see https://cloud.google.com/storage/docs/bucket-lock Bucket Lock Documentation
+     *
      * @param array $options [optional] {
      *     Configuration options.
      *
