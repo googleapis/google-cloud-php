@@ -169,7 +169,7 @@ class ConformanceTest extends TestCase
             foreach ($test['fieldPaths'] as $key => $val) {
                 $fields[] = [
                     'path' => new FieldPath($val['field']),
-                    'value' => $this->injectSentinel(json_decode($test['jsonValues'][$key], true))
+                    'value' => $this->injectSentinel($this->decodeJson($test['jsonValues'][$key], true))
                 ];
             }
 
@@ -249,7 +249,11 @@ class ConformanceTest extends TestCase
                         $query = $query->where(
                             $path,
                             $clause['where']['op'],
-                            $this->injectWhere($this->injectSentinel(json_decode($clause['where']['jsonValue'], true)))
+                            $this->injectWhere(
+                                $this->injectSentinel(
+                                    $this->decodeJson($clause['where']['jsonValue'])
+                                )
+                            )
                         );
                         break;
 
@@ -279,7 +283,7 @@ class ConformanceTest extends TestCase
                         $values = [];
                         if (isset($clause[$name]['jsonValues'])) {
                             foreach ($clause[$name]['jsonValues'] as $value) {
-                                $values[] = $this->injectSentinel(json_decode($value, true));
+                                $values[] = $this->injectSentinel($this->decodeJson($value));
                             }
                         }
 
@@ -299,7 +303,7 @@ class ConformanceTest extends TestCase
                                 $ref->reveal(),
                                 $mapper,
                                 [],
-                                json_decode($clause[$name]['docSnapshot']['jsonData'], true),
+                                $this->decodeJson($clause[$name]['docSnapshot']['jsonData']),
                                 true
                             );
                         }
@@ -377,12 +381,16 @@ class ConformanceTest extends TestCase
 
     private function generateFields($data)
     {
-        $fields = json_decode($data, true);
+        $fields = $this->decodeJson($data, false);
         return $this->injectSentinels($fields);
     }
 
-    private function injectSentinels(array $fields)
+    private function injectSentinels($fields)
     {
+        if (!is_array($fields)) {
+            return $fields;
+        }
+
         foreach ($fields as $name => &$value) {
             $value = $this->injectSentinel($value);
         }
@@ -392,7 +400,7 @@ class ConformanceTest extends TestCase
 
     private function injectSentinel($value)
     {
-        if (is_array($value)) {
+        if (is_array($value) && !empty($value)) {
             if (in_array(array_values($value)[0], ['ArrayUnion', 'ArrayRemove'], true)) {
                 $type = lcfirst(array_shift($value));
                 return FieldValue::$type($this->injectSentinels($value));
@@ -409,6 +417,10 @@ class ConformanceTest extends TestCase
             return FieldValue::serverTimestamp();
         }
 
+        if ($value === 'EMPTY_MAP') {
+            return (object) [];
+        }
+
         return $value;
     }
 
@@ -419,6 +431,18 @@ class ConformanceTest extends TestCase
         }
 
         return $value;
+    }
+
+    private function decodeJson($json, $returnEmptyMapAsObject = false)
+    {
+        if ($json === '{}') {
+            return $returnEmptyMapAsObject
+                ? (object) []
+                : [];
+        }
+        $json = str_replace('{}', '"EMPTY_MAP"', $json);
+
+        return json_decode($json, true);
     }
 
     private function setupCases($suite, array $types, array $excludes)
