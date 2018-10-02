@@ -242,8 +242,9 @@ class DataClient
      *           associative array which may contain a start key
      *           (`startKeyClosed` or `startKeyOpen`) and/or an end key
      *           (`endKeyOpen` or `endKeyClosed`).
-     *     @type FilterInterface $filter A filter used to take an input row and produce an alternate view of the row
-     *           based on the specified rules. To learn more please see {@see Google\Cloud\Bigtable\Filter} which
+     *     @type FilterInterface $filter A filter used to take an input row and
+     *           produce an alternate view of the row based on the specified rules.
+     *           To learn more please see {@see Google\Cloud\Bigtable\Filter} which
      *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
      * }
@@ -264,7 +265,7 @@ class DataClient
         if (!is_array($rowKeys)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Expected rowKeys to be of array, instead got \'%s\'.',
+                    'Expected rowKeys to be of type array, instead got \'%s\'.',
                     gettype($rowKeys)
                 )
             );
@@ -278,8 +279,15 @@ class DataClient
                 ]
             );
         }
-
         if ($filter !== null) {
+            if (!$filter instanceof FilterInterface) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Expected filter to be of type FilterInterface, instead got \'%s\'.',
+                        gettype($filter)
+                    )
+                );
+            }
             $options['filter'] = $filter->toProto();
         }
 

@@ -18,7 +18,6 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\Filter;
-
 use Google\Cloud\Bigtable\Filter\Builder\FamilyFilter;
 use Google\Cloud\Bigtable\Filter\Builder\KeyFilter;
 use Google\Cloud\Bigtable\Filter\Builder\LimitFilter;
