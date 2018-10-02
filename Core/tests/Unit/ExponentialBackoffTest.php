@@ -48,7 +48,7 @@ class ExponentialBackoffTest extends TestCase
         $backoff->setDelayFunction($this->delayFunction);
 
         try {
-            $backoff->execute(function () use (&$actualAttempts, $expectedAttempts, $exception) {
+            $backoff->execute(function () use (&$actualAttempts, $exception) {
                 $actualAttempts++;
                 throw $exception;
             });

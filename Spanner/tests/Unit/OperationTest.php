@@ -176,7 +176,7 @@ class OperationTest extends TestCase
             Argument::withEntry('sql', $sql),
             Argument::withEntry('session', self::SESSION),
             Argument::withEntry('params', ['id' => '10']),
-            Argument::that(function ($arg) use ($sql, $params) {
+            Argument::that(function ($arg) {
                 return $arg['paramTypes']['id']['code'] === Database::TYPE_INT64;
             })
         ))->shouldBeCalled()->willReturn($this->executeAndReadResponse());

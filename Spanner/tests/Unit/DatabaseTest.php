@@ -857,7 +857,7 @@ class DatabaseTest extends TestCase
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->streamingRead(Argument::that(function ($arg) use ($table, $opts) {
+        $this->connection->streamingRead(Argument::that(function ($arg) use ($table) {
             if ($arg['table'] !== $table) {
                 return false;
             }
