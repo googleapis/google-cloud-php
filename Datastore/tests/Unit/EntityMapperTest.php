@@ -250,7 +250,7 @@ class EntityMapperTest extends TestCase
         $res = $this->mapper->responseToEntityProperties($data, SampleEntity::class)['properties'];
 
         $this->assertInstanceOf(SampleEntity::class, $res['foo']);
-        $this->assertTrue(is_array($res['foo']['bar']));
+        $this->assertInternalType('array', $res['foo']['bar']);
     }
 
     public function testResponseToPropertiesEntityNestedValueCustomType()

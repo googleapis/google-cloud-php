@@ -157,6 +157,6 @@ class ImageTest extends TestCase
         $this->assertEquals($urls[0], $images[0]->requestObject()['image']['source']['imageUri']);
         $this->assertEquals($urls[1], $images[1]->requestObject()['image']['source']['imageUri']);
         $this->assertEquals($urls[2], $images[2]->requestObject()['image']['source']['imageUri']);
-        $this->assertFalse(isset($images[3]->requestObject()['image']['source']['imageUri']));
+        $this->assertArrayNotHasKey('source', $images[3]->requestObject()['image']);
     }
 }

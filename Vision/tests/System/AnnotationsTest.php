@@ -78,7 +78,7 @@ class AnnotationsTest extends VisionTestCase
 
         // Crop Hints
         $this->assertInstanceOf(CropHint::class, $res->cropHints()[0]);
-        $this->assertTrue(isset($res->cropHints()[0]->boundingPoly()['vertices']));
+        $this->assertArrayHasKey('vertices', $res->cropHints()[0]->boundingPoly());
         $this->assertInternalType('float', $res->cropHints()[0]->confidence());
         $this->assertNotNull($res->cropHints()[0]->importanceFraction());
 

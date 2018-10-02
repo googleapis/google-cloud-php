@@ -161,7 +161,7 @@ class ManageBucketsTest extends StorageTestCase
             return ($binding['role'] === $role);
         });
 
-        $this->assertEquals(1, count($newBinding));
+        $this->assertCount(1, $newBinding);
 
         $permissions = ['storage.buckets.get'];
         $test = $iam->testPermissions($permissions);
@@ -200,6 +200,6 @@ class ManageBucketsTest extends StorageTestCase
 
         $bucket->reload();
 
-        $this->assertFalse(isset($bucket->info()['labels']['foo']));
+        $this->assertArrayNotHasKey('foo', $bucket->info()['labels']);
     }
 }
