@@ -50,7 +50,7 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => 'rk1'])->readAll());
+        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk1']])->readAll());
         $this->assertEquals($readRows, $rows);
     }
 
@@ -70,7 +70,7 @@ class DataClientMutateRowsTest extends DataClientTest
         $rowMutation = new RowMutation('rk2');
         $rowMutation->deleteRow();
         self::$dataClient->mutateRows([$rowMutation]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => 'rk2'])->readAll());
+        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk2']])->readAll());
         $this->assertEquals([], $rows);
     }
 
@@ -96,7 +96,7 @@ class DataClientMutateRowsTest extends DataClientTest
         $rowMutation = new RowMutation('rk3');
         $rowMutation->deleteFromFamily('cf2');
         self::$dataClient->mutateRows([$rowMutation]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => 'rk3'])->readAll());
+        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk3']])->readAll());
         $expectedRows = [
             'rk3' => [
                 'cf1' => [
@@ -131,7 +131,7 @@ class DataClientMutateRowsTest extends DataClientTest
         $rowMutation = new RowMutation('rk4');
         $rowMutation->deleteFromColumn('cf1', 'cq2');
         self::$dataClient->mutateRows([$rowMutation]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => 'rk4'])->readAll());
+        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk4']])->readAll());
         $expectedRows = [
             'rk4' => [
                 'cf1' => [
@@ -188,7 +188,7 @@ class DataClientMutateRowsTest extends DataClientTest
         $rowMutation = new RowMutation('rk5');
         $rowMutation->deleteFromColumn('cf1', 'cq2', ['start' => 21000, 'end' => 40000]);
         self::$dataClient->mutateRows([$rowMutation]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => 'rk5'])->readAll());
+        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk5']])->readAll());
         $expectedRows = [
             'rk5' => [
                 'cf1' => [

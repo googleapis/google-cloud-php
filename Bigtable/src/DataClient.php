@@ -20,6 +20,7 @@ namespace Google\Cloud\Bigtable;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -241,6 +242,10 @@ class DataClient
      *           associative array which may contain a start key
      *           (`startKeyClosed` or `startKeyOpen`) and/or an end key
      *           (`endKeyOpen` or `endKeyClosed`).
+     *     @type FilterInterface $filter A filter used to take an input row and
+     *           produce an alternate view of the row based on the specified rules.
+     *           To learn more please see {@see Google\Cloud\Bigtable\Filter} which
+     *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
      * }
      * @return ChunkFormatter
@@ -249,6 +254,7 @@ class DataClient
     {
         $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
+        $filter = $this->pluck('filter', $options, false) ?: null;
 
         array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
@@ -256,7 +262,14 @@ class DataClient
                 $range
             );
         });
-
+        if (!is_array($rowKeys)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Expected rowKeys to be of type array, instead got \'%s\'.',
+                    gettype($rowKeys)
+                )
+            );
+        }
         if ($ranges || $rowKeys) {
             $options['rows'] = $this->serializer->decodeMessage(
                 new RowSet,
@@ -265,6 +278,18 @@ class DataClient
                     'rowRanges' => $ranges
                 ]
             );
+        }
+        if ($filter !== null) {
+            if (!$filter instanceof FilterInterface) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Expected filter to be of type \'%s\', instead got \'%s\'.',
+                        FilterInterface::class,
+                        gettype($filter)
+                    )
+                );
+            }
+            $options['filter'] = $filter->toProto();
         }
 
         $serverStream = $this->bigtableClient->readRows(

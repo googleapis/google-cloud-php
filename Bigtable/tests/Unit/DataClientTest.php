@@ -28,6 +28,7 @@ use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\Filter;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
@@ -517,6 +518,33 @@ class DataClientTest extends TestCase
         ];
         $iterator = $this->dataClient->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    public function testReadRowsWithFilter()
+    {
+        $rowFilter = Filter::pass();
+        $expectedArgs = $this->options + [
+            'filter' => $rowFilter->toProto()
+        ];
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $args = [
+            'filter' => $rowFilter
+        ];
+        $iterator = $this->dataClient->readRows($args);
+        $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage FilterInterface
+     */
+    public function testReadRowsFilterShouldThrow()
+    {
+        $this->dataClient->readRows(['filter' => new \stdClass()]);
     }
 
     private function getMutateRowsResponse(array $status)

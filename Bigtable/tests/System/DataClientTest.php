@@ -122,8 +122,16 @@ class DataClientTest extends TestCase
         $table = new Table();
         $columnFamily = new ColumnFamily();
         $table->setColumnFamilies([
+            'cf0' => $columnFamily,
             'cf1' => $columnFamily,
-            'cf2' => $columnFamily
+            'cf2' => $columnFamily,
+            'cf3' => $columnFamily,
+            'cf4' => $columnFamily,
+            'cf5' => $columnFamily,
+            'cf6' => $columnFamily,
+            'cf7' => $columnFamily,
+            'cf8' => $columnFamily,
+            'cf9' => $columnFamily
         ]);
         self::$tableAdminClient->createTable(
             $formattedParent,
