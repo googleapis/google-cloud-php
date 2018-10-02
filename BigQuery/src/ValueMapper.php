@@ -89,7 +89,7 @@ class ValueMapper
 
         switch ($schema['type']) {
             case self::TYPE_BOOLEAN:
-                return $value === 'true' ? true : false;
+                return $value === 'true';
             case self::TYPE_INTEGER:
                 return $this->returnInt64AsObject
                     ? new Int64($value)
