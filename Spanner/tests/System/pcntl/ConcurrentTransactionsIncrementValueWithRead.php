@@ -24,7 +24,7 @@ $callable = function (Database $db, KeySet $keyset, array $columns, $tableName) 
         $iterations++;
         $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
 
-        $row['number'] = $row['number']+1;
+        $row['number'] +=1;
 
         $transaction->update($tableName, $row);
         $transaction->commit();

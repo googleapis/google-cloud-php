@@ -292,7 +292,7 @@ class DatastoreClientTest extends TestCase
             'projectId' => self::PROJECT
         ]);
 
-        $method = $method . 'Batch';
+        $method .= 'Batch';
 
         $entity = $this->client->entity($key, ['name' => 'John']);
         $res = $this->client->$method([$entity], ['allowOverwrite' => true]);
@@ -359,7 +359,7 @@ class DatastoreClientTest extends TestCase
             'projectId' => self::PROJECT
         ]);
 
-        $method = $method . 'Batch';
+        $method .= 'Batch';
         $entity = $this->client->entity($key, ['name' => 'John']);
         $this->client->$method([$entity]);
     }

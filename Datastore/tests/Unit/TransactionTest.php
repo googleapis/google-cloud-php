@@ -239,7 +239,7 @@ class TransactionTest extends TestCase
             'projectId' => self::PROJECT
         ]);
 
-        $method = $method . 'Batch';
+        $method .= 'Batch';
 
         $this->transaction->$method([$this->entity], ['allowOverwrite' => true]);
         $res = $this->transaction->commit();
@@ -309,7 +309,7 @@ class TransactionTest extends TestCase
             'projectId' => self::PROJECT
         ]);
 
-        $method = $method . 'Batch';
+        $method .= 'Batch';
         $entity = new Entity($key, ['name' => 'John']);
         $this->transaction->$method([$entity]);
         $res = $this->transaction->commit();

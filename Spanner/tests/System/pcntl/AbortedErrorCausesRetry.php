@@ -27,7 +27,7 @@ if ($childPID1 = pcntl_fork()) {
             usleep(3 * $delay);
         }
 
-        $row['number'] = $row['number'] + 1;
+        $row['number'] += 1;
         $t->update($tableName, $row);
         $t->commit();
     });
@@ -42,7 +42,7 @@ if ($childPID1 = pcntl_fork()) {
             'parameters' => ['id' => (int) $id]
         ])->rows()->current();
 
-        $row['number'] = $row['number'] + 1;
+        $row['number'] += 1;
         $t->update($tableName, $row);
         $t->commit();
     });
