@@ -25,11 +25,11 @@ $app->get('/', function () {
     return 'Silex version ' . Silex\Application::VERSION;
 });
 
-$app->get('/hello/{name}', function ($name) use ($app) {
+$app->get('/hello/{name}', function ($name) {
     return 'Hello, ' . $name;
 });
 
-$app->get('/debuggee', function () use ($app, $agent) {
+$app->get('/debuggee', function () use ($app) {
     $storage = new Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage();
     list($debuggeeId, $breakpoints) = $storage->load();
     return $app->json([
