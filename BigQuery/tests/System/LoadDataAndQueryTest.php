@@ -76,7 +76,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualRow = $rows[0];
 
         $this->assertTrue($insertResponse->isSuccessful());
-        $this->assertEquals(self::$expectedRows, count($rows));
+        $this->assertCount(self::$expectedRows, $rows);
 
         $expectedRow = $this->row;
         $expectedBytes = $expectedRow['Spells'][0]['Icon'];

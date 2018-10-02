@@ -119,7 +119,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $this->assertCount(1, $stackframes[0]->locals());
             $variable = $stackframes[0]->locals()[0];
             $this->assertEquals(500, strlen($variable->info()['value']));
             return true;
@@ -145,7 +145,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $this->assertCount(1, $stackframes[0]->locals());
             $variable = $stackframes[0]->locals()[0];
             $this->assertEquals(1000, strlen($variable->info()['value']));
             return true;
@@ -173,7 +173,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(245, count($stackframes[0]->locals()));
+            $this->assertCount(245, $stackframes[0]->locals());
             return true;
         };
         $agent = $this->setupAgent($itemMatcher, []);
@@ -200,7 +200,7 @@ class AgentTest extends TestCase
             // Each entry takes 6 + 3 + 10 bytes = 19 bytes
             // We stop after 900 bytes (1000 - 100 buffer)
             // 19 bytes * 48 = 912 bytes
-            $this->assertEquals(48, count($stackframes[0]->locals()));
+            $this->assertCount(48, $stackframes[0]->locals());
             return true;
         };
         $agent = $this->setupAgent($itemMatcher, [
@@ -249,7 +249,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $this->assertCount(1, $stackframes[0]->locals());
 
             $data = $stackframes[0]->locals()[0]->info();
             $depth = 5;
@@ -299,7 +299,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $this->assertCount(1, $stackframes[0]->locals());
 
             $data = $stackframes[0]->locals()[0]->info();
             $depth = 3;
@@ -351,7 +351,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $this->assertCount(1, $stackframes[0]->locals());
             $variable = $stackframes[0]->locals()[0];
             $this->assertCount(1000, $variable->info()['members']);
             return true;
@@ -377,7 +377,7 @@ class AgentTest extends TestCase
             $this->assertInstanceOf(Breakpoint::class, $item[1]);
             $stackframes = $item[1]->stackFrames();
             $this->assertCount(1, $stackframes);
-            $this->assertEquals(1, count($stackframes[0]->locals()));
+            $this->assertCount(1, $stackframes[0]->locals());
             $variable = $stackframes[0]->locals()[0];
             $this->assertCount(5, $variable->info()['members']);
             return true;

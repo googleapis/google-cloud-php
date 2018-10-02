@@ -46,13 +46,13 @@ class ManageNotificationsTest extends StorageTestCase
         }
 
         $notifications = iterator_to_array(self::$bucket->notifications());
-        $this->assertEquals(count($created), count($notifications));
+        $this->assertCount(count($created), $notifications);
 
         foreach ($created as $cNotification) {
             $cNotification->delete();
         }
 
         $notifications = iterator_to_array(self::$bucket->notifications());
-        $this->assertEquals(0, count($notifications));
+        $this->assertCount(0, $notifications);
     }
 }

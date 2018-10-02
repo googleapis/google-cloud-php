@@ -281,7 +281,7 @@ class VariableTableTest extends TestCase
         $this->assertTrue($exceptionThrown);
         $variables = $variableTable->variables();
         $this->assertNotEmpty($variables);
-        $this->assertTrue(count($variableTable->variables()) < 1000);
+        $this->assertLessThan(1000, count($variableTable->variables()));
 
         $bufferFullReference = $variableTable->bufferFullVariable();
         $index = $bufferFullReference->info()['varTableIndex'];

@@ -60,7 +60,7 @@ class VisionHelpersTraitTest extends TestCase
             // Test that imageContext key is correctly stripped
             $this->assertArrayNotHasKey('imageContext', $optionalArgs);
 
-            $this->assertSame(1, count($requests));
+            $this->assertCount(1, $requests);
             $request = $requests[0];
             $this->assertEquals($image, $request->getImage());
             // Use iterator_to_array to convert protobuf Repeated Field object to array for comparison
@@ -80,7 +80,7 @@ class VisionHelpersTraitTest extends TestCase
             ['imageContext' => $imageContext]
         ]);
 
-        $this->assertEquals(AnnotateImageResponse::class, get_class($response));
+        $this->assertInstanceOf(AnnotateImageResponse::class, $response);
     }
 
     /**
