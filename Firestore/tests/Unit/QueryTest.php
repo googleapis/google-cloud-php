@@ -148,9 +148,7 @@ class QueryTest extends TestCase
         ];
 
         $this->runAndAssert(function (Query $q) use ($paths) {
-            $res = $q->select($paths);
-
-            return $res;
+            return $q->select($paths);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -192,9 +190,7 @@ class QueryTest extends TestCase
     public function testSelectName()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->select([]);
-
-            return $res;
+            return $q->select([]);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -411,9 +407,7 @@ class QueryTest extends TestCase
         $limit = 50;
 
         $this->runAndAssert(function (Query $q) use ($limit) {
-            $res = $q->limit($limit);
-
-            return $res;
+            return $q->limit($limit);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -428,9 +422,7 @@ class QueryTest extends TestCase
         $offset = 50;
 
         $this->runAndAssert(function (Query $q) use ($offset) {
-            $res = $q->offset($offset);
-
-            return $res;
+            return $q->offset($offset);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -443,9 +435,7 @@ class QueryTest extends TestCase
     public function testStartAt()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->orderBy('name', Query::DIR_DESCENDING)->startAt(['john']);
-
-            return $res;
+            return $q->orderBy('name', Query::DIR_DESCENDING)->startAt(['john']);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -473,9 +463,7 @@ class QueryTest extends TestCase
     public function testStartAfter()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->orderBy('name', Query::DIR_DESCENDING)->startAfter(['john']);
-
-            return $res;
+            return $q->orderBy('name', Query::DIR_DESCENDING)->startAfter(['john']);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -503,9 +491,7 @@ class QueryTest extends TestCase
     public function testEndBefore()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->orderBy('name', Query::DIR_DESCENDING)->endBefore(['john']);
-
-            return $res;
+            return $q->orderBy('name', Query::DIR_DESCENDING)->endBefore(['john']);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -533,9 +519,7 @@ class QueryTest extends TestCase
     public function testEndAt()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->orderBy('name', Query::DIR_DESCENDING)->endAt(['john']);
-
-            return $res;
+            return $q->orderBy('name', Query::DIR_DESCENDING)->endAt(['john']);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -563,9 +547,7 @@ class QueryTest extends TestCase
     public function testBuildPositionWithDocumentId()
     {
         $this->runAndAssert(function (Query $q) {
-            $res = $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
-
-            return $res;
+            return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [
@@ -600,9 +582,7 @@ class QueryTest extends TestCase
         $ref->parent()->willReturn($c->reveal());
 
         $this->runAndAssert(function (Query $q) use ($ref) {
-            $res = $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt([$ref->reveal()]);
-
-            return $res;
+            return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt([$ref->reveal()]);
         }, [
             'parent' => self::PARENT,
             'structuredQuery' => [

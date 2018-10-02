@@ -119,9 +119,7 @@ class QueryTest extends FirestoreTestCase
 
     private function insertDoc(array $fields)
     {
-        $doc = $this->query->add($fields);
-
-        return $doc;
+        return $this->query->add($fields);
     }
 
     private function getQueryRow($query)
