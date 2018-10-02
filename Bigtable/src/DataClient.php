@@ -283,7 +283,8 @@ class DataClient
             if (!$filter instanceof FilterInterface) {
                 throw new \InvalidArgumentException(
                     sprintf(
-                        'Expected filter to be of type FilterInterface, instead got \'%s\'.',
+                        'Expected filter to be of type \'%s\', instead got \'%s\'.',
+                        FilterInterface::class,
                         gettype($filter)
                     )
                 );

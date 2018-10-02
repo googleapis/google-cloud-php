@@ -54,11 +54,11 @@ class QualifierFilterTest extends TestCase
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    public function testRangeWithInFamily()
+    public function testRangeWithinFamily()
     {
         $this->assertInstanceOf(
             QualifierRangeFilter::class,
-            $this->qualifierFilter->rangeWithInFamily('cf1')
+            $this->qualifierFilter->rangeWithinFamily('cf1')
         );
     }
 }

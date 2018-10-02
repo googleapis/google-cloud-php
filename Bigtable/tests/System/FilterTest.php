@@ -106,7 +106,7 @@ class FilterTest extends DataClientTest
                         'cf1' => $expectedRows['rk1']['cf1']
                     ]
                 ],
-                'testCondtionThen failed'
+                'testConditionThen failed'
             ],
             [
                 [
@@ -116,7 +116,7 @@ class FilterTest extends DataClientTest
                 [
                     'rk1' => $expectedRows['rk1']
                 ],
-                'testCondtionOtherwise failed'
+                'testConditionOtherwise failed'
             ],
             [
                 [
@@ -158,7 +158,7 @@ class FilterTest extends DataClientTest
                         ]
                     ]
                 ],
-                'testinterleave failed'
+                'testInterleave failed'
             ],
             [
                 [
@@ -312,7 +312,7 @@ class FilterTest extends DataClientTest
             [
                 [
                     'rowKeys' => ['rk6'],
-                    'filter' => Filter::qualifier()->rangeWithInFamily('cf1')->of('cq1', 'cq3')
+                    'filter' => Filter::qualifier()->rangeWithinFamily('cf1')->of('cq1', 'cq3')
                 ],
                 [
                     'rk6' => [
@@ -322,7 +322,7 @@ class FilterTest extends DataClientTest
                         ]
                     ]
                 ],
-                'testQualifierRangeWithInFamily failed'
+                'testQualifierRangeWithinFamily failed'
             ],
             [
                 [
@@ -441,7 +441,7 @@ class FilterTest extends DataClientTest
                 ]
             )->readAll()
         );
-        $this->assertTrue(count($rows) > 0);
+        $this->assertGreaterThan(0, count($rows));
     }
 
     public function testLabel()

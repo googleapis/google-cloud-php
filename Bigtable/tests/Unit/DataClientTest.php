@@ -540,7 +540,7 @@ class DataClientTest extends TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Expected filter to be of type FilterInterface, instead got 'object'.
+     * @expectedExceptionMessage FilterInterface
      */
     public function testReadRowsFilterShouldThrow()
     {
