@@ -25,7 +25,7 @@ $callable = function (Database $db, $tableName, $id) use ($tmpFile) {
             ]
         ])->rows()->current();
 
-        $row['number'] = $row['number']+1;
+        $row['number'] +=1;
 
         $transaction->update($tableName, $row);
         $transaction->commit();

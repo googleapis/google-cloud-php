@@ -523,7 +523,7 @@ class Key implements JsonSerializable
     {
         $el = [];
         foreach ($this->path as $element) {
-            $element = $element + [
+            $element += [
                 'id' => null,
                 'name' => null
             ];

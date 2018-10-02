@@ -43,7 +43,7 @@ function updateIterationTracker($tmpFile, $iterations)
     if (flock($fp, LOCK_EX)) {
         fseek($fp, 0);
         $val = (int) fread($fp, 900);
-        $val = $val + $iterations;
+        $val += $iterations;
 
         fseek($fp, 0);
         fwrite($fp, $val);

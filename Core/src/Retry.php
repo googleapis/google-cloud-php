@@ -87,7 +87,7 @@ class Retry
 
                 if ($retryAttempt < $this->retries) {
                     $delay = $delayFunction($exception);
-                    $delay = $delay + [
+                    $delay += [
                         'seconds' => 0,
                         'nanos' => 0
                     ];
