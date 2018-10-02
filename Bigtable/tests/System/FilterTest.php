@@ -27,19 +27,18 @@ use Google\Cloud\Bigtable\Tests\System\DataClientTest;
  */
 class FilterTest extends DataClientTest
 {
-    protected static $insertRows = [];
-    protected static $expectedRows = [];
     protected static $rowMutations = [];
+
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
         self::$dataClient->mutateRows(self::$rowMutations);
     }
 
-    private static function createExpectedRows()
+    private static function createExpectedRows($insertRows)
     {
-        self::$expectedRows = self::$insertRows;
-        foreach (self::$expectedRows as &$row) {
+        $expectedRows = $insertRows;
+        foreach ($expectedRows as &$row) {
             foreach ($row as &$family) {
                 foreach ($family as &$qualifier) {
                     $qualifier['labels'] = '';
@@ -47,6 +46,7 @@ class FilterTest extends DataClientTest
                 }
             }
         }
+        return $expectedRows;
     }
 
     /**
@@ -64,11 +64,12 @@ class FilterTest extends DataClientTest
     {
         $text = file_get_contents(__DIR__ . '/data/data.json');
         $data = explode(PHP_EOL, $text);
+        $insertRows = [];
         foreach ($data as $row) {
             $row = json_decode($row, true);
             foreach ($row as $rowKey => $family) {
                 $rowMutation = new RowMutation($rowKey);
-                self::$insertRows[$rowKey] = $family;
+                $insertRows[$rowKey] = $family;
                 foreach ($family as $familyName => $qualifier) {
                     foreach ($qualifier as $qualifierName => $value) {
                         $rowMutation->upsert($familyName, $qualifierName, $value['value'], $value['timeStamp']);
@@ -77,8 +78,8 @@ class FilterTest extends DataClientTest
                 self::$rowMutations[] = $rowMutation;
             }
         }
-        self::createExpectedRows();
-        $returnData = [
+        $expectedRows = self::createExpectedRows($insertRows);
+        return [
             [
                 [
                     'rowKeys' => ['rk1'],
@@ -89,7 +90,7 @@ class FilterTest extends DataClientTest
                 [
                     'rk1' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk1']['cf1']['cq1']
+                            'cq1' => $expectedRows['rk1']['cf1']['cq1']
                         ]
                     ]
                 ],
@@ -102,7 +103,7 @@ class FilterTest extends DataClientTest
                 ],
                 [
                     'rk1' => [
-                        'cf1' => self::$expectedRows['rk1']['cf1']
+                        'cf1' => $expectedRows['rk1']['cf1']
                     ]
                 ],
                 'testCondtionThen failed'
@@ -113,7 +114,7 @@ class FilterTest extends DataClientTest
                         ->otherwise(Filter::key()->exactMatch('rk1'))
                 ],
                 [
-                    'rk1' => self::$expectedRows['rk1']
+                    'rk1' => $expectedRows['rk1']
                 ],
                 'testCondtionOtherwise failed'
             ],
@@ -124,7 +125,7 @@ class FilterTest extends DataClientTest
                 ],
                 [
                     'rk1' => [
-                        'cf1' => self::$expectedRows['rk1']['cf1']
+                        'cf1' => $expectedRows['rk1']['cf1']
                     ]
                 ],
                 'testFamilyExactMatch failed'
@@ -136,8 +137,8 @@ class FilterTest extends DataClientTest
                 ],
                 [
                     'rk1' => [
-                        'cf1' => self::$expectedRows['rk1']['cf1'],
-                        'cf2' => self::$expectedRows['rk1']['cf2'],
+                        'cf1' => $expectedRows['rk1']['cf1'],
+                        'cf2' => $expectedRows['rk1']['cf2'],
                     ]
                 ],
                 'testFamilyRegex failed'
@@ -152,8 +153,8 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
-                            'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
+                            'cq1' => $expectedRows['rk5']['cf1']['cq1'],
+                            'cq2' => $expectedRows['rk5']['cf1']['cq2']
                         ]
                     ]
                 ],
@@ -164,7 +165,7 @@ class FilterTest extends DataClientTest
                     'filter' => Filter::key()->exactMatch('rk1')
                 ],
                 [
-                    'rk1' => self::$expectedRows['rk1']
+                    'rk1' => $expectedRows['rk1']
                 ],
                 'testKeyExactMatch failed'
             ],
@@ -173,8 +174,8 @@ class FilterTest extends DataClientTest
                     'filter' => Filter::key()->regex('rk[12]+')
                 ],
                 [
-                    'rk1' => self::$expectedRows['rk1'],
-                    'rk2' => self::$expectedRows['rk2']
+                    'rk1' => $expectedRows['rk1'],
+                    'rk2' => $expectedRows['rk2']
                 ],
                 'testKeyRegex failed'
             ],
@@ -186,14 +187,14 @@ class FilterTest extends DataClientTest
                 [
                     'rk1' => [
                         'cf0' => [
-                            'cq0' => self::$expectedRows['rk1']['cf0']['cq0'],
-                            'cq1' => self::$expectedRows['rk1']['cf0']['cq1']
+                            'cq0' => $expectedRows['rk1']['cf0']['cq0'],
+                            'cq1' => $expectedRows['rk1']['cf0']['cq1']
                         ]
                     ],
                     'rk2' => [
                         'cf0' => [
-                            'cq0' => self::$expectedRows['rk2']['cf0']['cq0'],
-                            'cq1' => self::$expectedRows['rk2']['cf0']['cq1']
+                            'cq0' => $expectedRows['rk2']['cf0']['cq0'],
+                            'cq1' => $expectedRows['rk2']['cf0']['cq1']
                         ]
                     ]
                 ],
@@ -271,10 +272,10 @@ class FilterTest extends DataClientTest
                 ],
                 [
                     'rk1' => [
-                        'cf9' => self::$expectedRows['rk1']['cf9']
+                        'cf9' => $expectedRows['rk1']['cf9']
                     ],
                     'rk2' => [
-                        'cf9' => self::$expectedRows['rk2']['cf9']
+                        'cf9' => $expectedRows['rk2']['cf9']
                     ]
                 ],
                 'testOffsetCellsPerRow failed'
@@ -287,7 +288,7 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk5']['cf1']['cq1']
+                            'cq1' => $expectedRows['rk5']['cf1']['cq1']
                         ]
                     ]
                 ],
@@ -301,8 +302,8 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
-                            'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
+                            'cq1' => $expectedRows['rk5']['cf1']['cq1'],
+                            'cq2' => $expectedRows['rk5']['cf1']['cq2']
                         ]
                     ]
                 ],
@@ -316,8 +317,8 @@ class FilterTest extends DataClientTest
                 [
                     'rk6' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk6']['cf1']['cq1'],
-                            'cq2' => self::$expectedRows['rk6']['cf1']['cq2']
+                            'cq1' => $expectedRows['rk6']['cf1']['cq1'],
+                            'cq2' => $expectedRows['rk6']['cf1']['cq2']
                         ]
                     ]
                 ],
@@ -329,7 +330,7 @@ class FilterTest extends DataClientTest
                     'filter' => Filter::pass()
                 ],
                 [
-                    'rk1' => self::$expectedRows['rk1']
+                    'rk1' => $expectedRows['rk1']
                 ],
                 'testPass failed'
             ],
@@ -346,7 +347,7 @@ class FilterTest extends DataClientTest
                     'filter' => Filter::sink()
                 ],
                 [
-                    'rk1' => self::$expectedRows['rk1']
+                    'rk1' => $expectedRows['rk1']
                 ],
                 'testSink failed'
             ],
@@ -358,8 +359,8 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq2' => self::$expectedRows['rk5']['cf1']['cq2'],
-                            'cq3' => self::$expectedRows['rk5']['cf1']['cq3']
+                            'cq2' => $expectedRows['rk5']['cf1']['cq2'],
+                            'cq3' => $expectedRows['rk5']['cf1']['cq3']
                         ]
                     ]
                 ],
@@ -373,7 +374,7 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk5']['cf1']['cq1']
+                            'cq1' => $expectedRows['rk5']['cf1']['cq1']
                         ]
                     ]
                 ],
@@ -387,8 +388,8 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
-                            'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
+                            'cq1' => $expectedRows['rk5']['cf1']['cq1'],
+                            'cq2' => $expectedRows['rk5']['cf1']['cq2']
                         ]
                     ]
                 ],
@@ -402,8 +403,8 @@ class FilterTest extends DataClientTest
                 [
                     'rk5' => [
                         'cf1' => [
-                            'cq1' => self::$expectedRows['rk5']['cf1']['cq1'],
-                            'cq2' => self::$expectedRows['rk5']['cf1']['cq2']
+                            'cq1' => $expectedRows['rk5']['cf1']['cq1'],
+                            'cq2' => $expectedRows['rk5']['cf1']['cq2']
                         ]
                     ]
                 ],
@@ -428,7 +429,6 @@ class FilterTest extends DataClientTest
                 'testValueStrip failed'
             ],
         ];
-        return $returnData;
     }
 
     public function testSample()
@@ -447,18 +447,5 @@ class FilterTest extends DataClientTest
     public function testLabel()
     {
         //TODO Implement label test
-    }
-
-    private static function applyLabelToExpectedRows($label)
-    {
-        $expectedRows = self::$expectedRows;
-        foreach ($expectedRows as &$row) {
-            foreach ($row as &$family) {
-                foreach ($family as &$qualifier) {
-                    $qualifier['labels'] = $label;
-                    $qualifier = [$qualifier];
-                }
-            }
-        }
     }
 }
