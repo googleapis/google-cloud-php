@@ -21,8 +21,11 @@ use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\DataUtil;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+use Google\Cloud\Bigtable\Filter;
+use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as MutateRowsRequest_Entry;
@@ -378,6 +381,42 @@ class DataClientTest extends SnippetTestCase
             print_r($expectedRowKeys, true),
             $res->output()
         );
+    }
+
+    public function testCheckAndMutateRow()
+    {
+        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, 'rk1', ['trueMutations' => $mutations->toProto()])
+            ->shouldBeCalled()
+            ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
+        $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow');
+        $snippet->addUse(Mutations::class);
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('result');
+        $this->assertTrue($res->returnVal());
+    }
+
+    public function testCheckAndMutateRowWithFilter()
+    {
+        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+        $predicateFilter = Filter::qualifier()->exactMatch('cq');
+        $this->bigtableClient
+            ->checkAndMutateRow(
+                self::TABLE_NAME,
+                'rk1',
+                [
+                    'predicateFilter' => $predicateFilter->toProto(),
+                    'trueMutations' => $mutations->toProto()
+                ]
+            )
+            ->shouldBeCalled()
+            ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
+        $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow', 1);
+        $snippet->addUse(Mutations::class);
+        $snippet->addUse(Filter::class);
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('result');
+        $this->assertTrue($res->returnVal());
     }
 
     private function setUpReadRowsResponse()

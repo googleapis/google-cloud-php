@@ -22,10 +22,13 @@ use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\Filter;
+use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
@@ -35,7 +38,6 @@ use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
-use Google\Cloud\Bigtable\Filter;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
@@ -77,12 +79,12 @@ class DataClientTest extends TestCase
         $this->dataClient = new DataClient(self::INSTANCE_ID, self::TABLE_ID, $clientOptions);
         $rowMutation = new RowMutation('rk1');
         $rowMutation->upsert('cf1', 'cq1', 'value1', self::TIMESTAMP);
-        $this->entries[] = $rowMutation->getEntry();
+        $this->entries[] = $rowMutation->toProto();
         $this->rowMutations[] = $rowMutation;
 
         $rowMutation = new RowMutation('rk2');
         $rowMutation->upsert('cf2', 'cq2', 'value2', self::TIMESTAMP);
-        $this->entries[] = $rowMutation->getEntry();
+        $this->entries[] = $rowMutation->toProto();
         $this->rowMutations[] = $rowMutation;
     }
 
@@ -670,6 +672,98 @@ class DataClientTest extends TestCase
             ]
         ];
         $this->assertEquals($expectedRowKeys, $rowKeys);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage CheckAndMuateRow must have either trueMutations or falseMutations.
+     */
+    public function testCheckAndMutateRowShouldThrowWhenNoTrueOrFalseMutations()
+    {
+        $this->dataClient->checkAndMutateRow('rk1');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage FilterInterface
+     */
+    public function testCheckAndMutateRowShouldThrowWhenPredicateFilterIsNotFilter()
+    {
+        $this->dataClient->checkAndMutateRow('rk1', ['predicateFilter' => new \stdClass()]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Mutations
+     */
+    public function testCheckAndMutateRowShouldThrowWhenTrueMutationsNotMutations()
+    {
+        $this->dataClient->checkAndMutateRow('rk1', ['trueMutations' => new \stdClass()]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Mutations
+     */
+    public function testCheckAndMutateRowShouldThrowWhenFalseMutationsNotMutations()
+    {
+        $this->dataClient->checkAndMutateRow('rk1', ['falseMutations' => new \stdClass()]);
+    }
+
+    public function testCheckAndMutateRowWithTrueMutations()
+    {
+        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+        $expectedArgs = $this->options + [
+            'trueMutations' => $mutations->toProto()
+        ];
+        $rowKey = 'rk1';
+        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, $rowKey, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                (new CheckAndMutateRowResponse)->setPredicateMatched(true)
+            );
+        $result = $this->dataClient->checkAndMutateRow($rowKey, ['trueMutations' => $mutations]);
+        $this->assertTrue($result);
+    }
+
+    public function testCheckAndMutateRowWithFalseMutations()
+    {
+        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+        $expectedArgs = $this->options + [
+            'falseMutations' => $mutations->toProto()
+        ];
+        $rowKey = 'rk1';
+        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, $rowKey, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                (new CheckAndMutateRowResponse)->setPredicateMatched(false)
+            );
+        $result = $this->dataClient->checkAndMutateRow($rowKey, ['falseMutations' => $mutations]);
+        $this->assertFalse($result);
+    }
+
+    public function testCheckAndMutateRowWithPredicateFilter()
+    {
+        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+        $predicateFilter = Filter::family()->exactMatch('cf1');
+        $expectedArgs = $this->options + [
+            'predicateFilter' => $predicateFilter->toProto(),
+            'trueMutations' => $mutations->toProto()
+        ];
+        $rowKey = 'rk1';
+        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, $rowKey, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                (new CheckAndMutateRowResponse)->setPredicateMatched(false)
+            );
+        $result = $this->dataClient->checkAndMutateRow(
+            $rowKey,
+            [
+                'predicateFilter' => $predicateFilter,
+                'trueMutations' => $mutations
+            ]
+        );
+        $this->assertFalse($result);
     }
 
     private function getMutateRowsResponse(array $status)

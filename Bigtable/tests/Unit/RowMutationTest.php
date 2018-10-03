@@ -59,7 +59,7 @@ class RowMutationTest extends TestCase
             1534183334215000
         );
 
-        $entry = $this->rowMutation->getEntry();
+        $entry = $this->rowMutation->toProto();
         $mutationSetCell = new SetCell;
         $mutationSetCell->setFamilyName(self::COLUMN_FAMILY)
             ->setColumnQualifier(self::COLUMN_QUALIFIER)
@@ -75,7 +75,7 @@ class RowMutationTest extends TestCase
     public function testDeleteFromFamily()
     {
         $return = $this->rowMutation->deleteFromFamily(self::COLUMN_FAMILY);
-        $entry = $this->rowMutation->getEntry();
+        $entry = $this->rowMutation->toProto();
         $deleteFromFamily = new DeleteFromFamily;
         $deleteFromFamily->setFamilyName(self::COLUMN_FAMILY);
         $mutation = new Mutation;
@@ -88,7 +88,7 @@ class RowMutationTest extends TestCase
     public function testDeleteFromColumn()
     {
         $return = $this->rowMutation->deleteFromColumn(self::COLUMN_FAMILY, self::COLUMN_QUALIFIER);
-        $entry = $this->rowMutation->getEntry();
+        $entry = $this->rowMutation->toProto();
         $deleteFromColumn = new DeleteFromColumn;
         $deleteFromColumn->setFamilyName(self::COLUMN_FAMILY)->setColumnQualifier(self::COLUMN_QUALIFIER);
         $mutation = new Mutation;
@@ -105,7 +105,7 @@ class RowMutationTest extends TestCase
             self::COLUMN_QUALIFIER,
             ['start' => 1, 'end' => 5]
         );
-        $entry = $this->rowMutation->getEntry();
+        $entry = $this->rowMutation->toProto();
         $deleteFromColumn = new DeleteFromColumn;
         $deleteFromColumn->setFamilyName(self::COLUMN_FAMILY)
             ->setColumnQualifier(self::COLUMN_QUALIFIER);
@@ -123,7 +123,7 @@ class RowMutationTest extends TestCase
     public function testDeleteRow()
     {
         $return = $this->rowMutation->deleteRow();
-        $entry = $this->rowMutation->getEntry();
+        $entry = $this->rowMutation->toProto();
         $mutation = new Mutation;
         $mutation->setDeleteFromRow(new DeleteFromRow);
         $mutateRowsRequestEntry = $this->getMutateRowsRequestEntry($mutation);
