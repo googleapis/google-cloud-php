@@ -40,6 +40,8 @@ class PubSubClientTest extends TestCase
 {
     use GrpcTestTrait;
 
+    const TOPIC = 'projects/project/topics/topic-a';
+
     private $connection;
 
     private $client;
@@ -113,7 +115,7 @@ class PubSubClientTest extends TestCase
     {
         $topicResult = [
             [
-                'name' => 'projects/project/topics/topic-a'
+                'name' => self::TOPIC
             ], [
                 'name' => 'projects/project/topics/topic-b'
             ], [
@@ -145,7 +147,7 @@ class PubSubClientTest extends TestCase
     {
         $topicResult = [
             [
-                'name' => 'projects/project/topics/topic-a'
+                'name' => self::TOPIC
             ], [
                 'name' => 'projects/project/topics/topic-b'
             ], [
@@ -210,7 +212,10 @@ class PubSubClientTest extends TestCase
     {
         $this->connection->getSubscription(Argument::any())
             ->shouldBeCalledTimes(1)
-            ->willReturn(['foo' => 'bar']);
+            ->willReturn([
+                'foo' => 'bar',
+                'topic' => self::TOPIC
+            ]);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
@@ -228,13 +233,13 @@ class PubSubClientTest extends TestCase
         $subscriptionResult = [
             [
                 'name' => 'projects/project/subscriptions/subscription-a',
-                'topic' => 'projects/project/topics/topic-a'
+                'topic' => self::TOPIC
             ], [
                 'name' => 'projects/project/subscriptions/subscription-b',
-                'topic' => 'projects/project/topics/topic-a'
+                'topic' => self::TOPIC
             ], [
                 'name' => 'projects/project/subscriptions/subscription-c',
-                'topic' => 'projects/project/topics/topic-a'
+                'topic' => self::TOPIC
             ]
         ];
 
@@ -263,13 +268,13 @@ class PubSubClientTest extends TestCase
         $subscriptionResult = [
             [
                 'name' => 'projects/project/subscriptions/subscription-a',
-                'topic' => 'projects/project/topics/topic-a'
+                'topic' => self::TOPIC
             ], [
                 'name' => 'projects/project/subscriptions/subscription-b',
-                'topic' => 'projects/project/topics/topic-a'
+                'topic' => self::TOPIC
             ], [
                 'name' => 'projects/project/subscriptions/subscription-c',
-                'topic' => 'projects/project/topics/topic-a'
+                'topic' => self::TOPIC
             ]
         ];
 

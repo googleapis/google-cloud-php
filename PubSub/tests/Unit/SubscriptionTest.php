@@ -26,17 +26,19 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
+use Google\Cloud\PubSub\Topic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
  * @group pubsub
+ * @group pubsub-subscription
  */
 class SubscriptionTest extends TestCase
 {
+    const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-id';
+    const TOPIC = 'projects/project-id/topics/topic-id';
     const PROJECT = 'project-id';
-    const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
-    const TOPIC = 'projects/project-id/topics/topic-name';
 
     private $subscription;
     private $connection;
@@ -46,11 +48,72 @@ class SubscriptionTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [
             $this->connection->reveal(),
-            'project-id',
-            'subscription-name',
-            'topic-name',
+            self::PROJECT,
+            'subscription-id',
+            'topic-id',
             true
-        ], ['connection', 'info']);
+        ], ['connection', 'info', 'topic']);
+    }
+
+    /**
+     * @dataProvider subscriptionTopic
+     */
+    public function testConstructWithTopic($subscription)
+    {
+        $this->assertInstanceOf(Topic::class, $subscription->topic());
+        $this->assertEquals(self::TOPIC, $subscription->topic()->name());
+    }
+
+    public function subscriptionTopic()
+    {
+        $this->setUp();
+
+        $withTopic = TestHelpers::stub(Subscription::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            'subscription-id',
+            TestHelpers::stub(Topic::class, [
+                $this->connection->reveal(),
+                self::PROJECT,
+                'topic-id',
+                false
+            ]),
+            false
+        ]);
+
+        $withTopicName = TestHelpers::stub(Subscription::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            'subscription-id',
+            self::TOPIC,
+            false
+        ]);
+
+        $withTopicId = TestHelpers::stub(Subscription::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            'subscription-id',
+            'topic-id',
+            false
+        ]);
+
+        $withInfo = TestHelpers::stub(Subscription::class, [
+            $this->connection->reveal(),
+            self::PROJECT,
+            'subscription-id',
+            null,
+            false,
+            [
+                'topic' => self::TOPIC
+            ]
+        ]);
+
+        return [
+            [$withTopic],
+            [$withTopicName],
+            [$withTopicId],
+            [$withInfo]
+        ];
     }
 
     public function testName()
@@ -83,8 +146,8 @@ class SubscriptionTest extends TestCase
     {
         $subscription = new Subscription(
             $this->connection->reveal(),
-            'project-id',
-            'subscription-name',
+            self::PROJECT,
+            'subscription-id',
             null,
             true
         );
@@ -177,10 +240,16 @@ class SubscriptionTest extends TestCase
 
         $this->connection->getSubscription()->shouldNotBeCalled();
 
-        $this->subscription->___setProperty('info', $sub);
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $subscription = new Subscription(
+            $this->connection->reveal(),
+            self::PROJECT,
+            'subscription-id',
+            'topic-id',
+            true,
+            $sub
+        );
 
-        $res = $this->subscription->info();
+        $res = $subscription->info();
         $this->assertEquals($res, $sub);
     }
 
@@ -199,6 +268,28 @@ class SubscriptionTest extends TestCase
 
         $res = $this->subscription->reload([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
+    }
+
+    public function testTopic()
+    {
+        $this->assertInstanceOf(Topic::class, $this->subscription->topic());
+    }
+
+    public function testTopicReload()
+    {
+        $sub = [
+            'subscription' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ];
+
+        $this->connection->getSubscription(Argument::withEntry('subscription', self::SUBSCRIPTION))
+            ->willReturn($sub)
+            ->shouldBeCalledTimes(1);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->___setProperty('topic', null);
+
+        $this->assertInstanceOf(Topic::class, $this->subscription->topic());
     }
 
     public function testPull()

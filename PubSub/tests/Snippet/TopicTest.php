@@ -34,6 +34,7 @@ use Prophecy\Argument;
 class TopicTest extends SnippetTestCase
 {
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
+    const DELETED = 'projects/my-awesome-project/topics/_deleted-topic_';
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
 
     private $connection;
@@ -49,7 +50,7 @@ class TopicTest extends SnippetTestCase
             'my-awesome-project',
             self::TOPIC,
             false
-        ]);
+        ], ['connection', 'name']);
     }
 
     public function testClass()
@@ -122,6 +123,17 @@ class TopicTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('Topic exists', $res->output());
+    }
+
+    public function testIsDeleted()
+    {
+        $snippet = $this->snippetFromMethod(Topic::class, 'isDeleted');
+        $snippet->addLocal('topic', $this->topic);
+
+        $this->topic->___setProperty('name', self::DELETED);
+
+        $res = $snippet->invoke('deleted');
+        $this->assertTrue($res->returnVal());
     }
 
     public function testInfo()
