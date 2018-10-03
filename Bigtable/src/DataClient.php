@@ -443,13 +443,13 @@ class DataClient
      *
      * Example:
      * ```
-     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
      * $result = $dataClient->checkAndMutateRow('rk1', ['trueMutations' => $mutations]);
      * ```
      *
      * //With predicate filter
      * ```
-     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
+     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
      * $predicateFilter = Filter::qualifier()->exactMatch('cq');
      * $options = ['predicateFilter' => $predicateFilter, 'trueMutations' => $mutations];
      * $result = $dataClient->checkAndMutateRow('rk1', $options);
