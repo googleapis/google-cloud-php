@@ -465,7 +465,7 @@ class DataClient
      *           that filter can be {@see Google\Cloud\Bigtable\Filter::chain()} or
      *           {@see Google\Cloud\Bigtable\Filter::interleave()} which can wrap multiple other
      *           filters.
-     *           WARNING: {@see Google\Cloud\Bigtable\Filter::condition()}} is not supported.
+     *           WARNING: {@see Google\Cloud\Bigtable\Filter::condition()} is not supported.
      *     @type Mutations $trueMutations Mutations to be atomically applied when condition
      *           yields at least one cell when applied to the row.
      *     @type Mutations $falseMutations Mutations to be atomically applied when condition
