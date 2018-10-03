@@ -115,7 +115,7 @@ class ReadRowsTest extends TestCase
                 $responses,
                 $rows,
                 $errorCount,
-                $test['name'] . " failed"
+                $test['name'] . ' failed'
             ];
         }
         return $testsData;
