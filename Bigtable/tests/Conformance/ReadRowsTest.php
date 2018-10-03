@@ -40,7 +40,7 @@ class ReadRowsTest extends TestCase
     /**
      * @dataProvider rowsProvider
      */
-    public function testReadRows($readRowsResponses, $expectedRows, $expectedErrorCount)
+    public function testReadRows($readRowsResponses, $expectedRows, $expectedErrorCount, $message)
     {
         $this->serverStream->readAll()->shouldBeCalled()->willReturn(
             $this->arrayAsGenerator($readRowsResponses)
@@ -57,8 +57,8 @@ class ReadRowsTest extends TestCase
         } catch (BigtableDataOperationException $e) {
             $errorCount = 1;
         }
-        $this->assertEquals($expectedRows, $rows);
-        $this->assertEquals($expectedErrorCount, $errorCount);
+        $this->assertEquals($expectedRows, $rows, $message);
+        $this->assertEquals($expectedErrorCount, $errorCount, $message);
     }
 
     public function rowsProvider()
@@ -114,7 +114,8 @@ class ReadRowsTest extends TestCase
             $testsData[] = [
                 $responses,
                 $rows,
-                $errorCount
+                $errorCount,
+                $test['name'] . ' failed'
             ];
         }
         return $testsData;
