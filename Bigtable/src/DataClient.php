@@ -443,12 +443,17 @@ class DataClient
      *
      * Example:
      * ```
+     * use Google\Cloud\Bigtable\Mutations;
+     *
      * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
      * $result = $dataClient->checkAndMutateRow('rk1', ['trueMutations' => $mutations]);
      * ```
      *
      * //With predicate filter
      * ```
+     * use Google\Cloud\Bigtable\Filter;
+     * use Google\Cloud\Bigtable\Mutations;
+     *
      * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
      * $predicateFilter = Filter::qualifier()->exactMatch('cq');
      * $options = ['predicateFilter' => $predicateFilter, 'trueMutations' => $mutations];

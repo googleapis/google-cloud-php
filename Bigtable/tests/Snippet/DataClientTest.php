@@ -390,7 +390,6 @@ class DataClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
         $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow');
-        $snippet->addUse(Mutations::class);
         $snippet->addLocal('dataClient', $this->dataClient);
         $res = $snippet->invoke('result');
         $this->assertTrue($res->returnVal());
@@ -412,8 +411,6 @@ class DataClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
         $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow', 1);
-        $snippet->addUse(Mutations::class);
-        $snippet->addUse(Filter::class);
         $snippet->addLocal('dataClient', $this->dataClient);
         $res = $snippet->invoke('result');
         $this->assertTrue($res->returnVal());
