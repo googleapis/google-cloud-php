@@ -22,10 +22,17 @@ use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\Column;
+use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
+use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\Filter;
@@ -545,6 +552,37 @@ class DataClientTest extends TestCase
     public function testReadRowsFilterShouldThrow()
     {
         $this->dataClient->readRows(['filter' => new \stdClass()]);
+    }
+
+    /**
+     * @expectedException TypeError
+     * @expectedExceptionMessage ReadModifyWriteRowRules
+     */
+    public function testReadModifyWriteRowNoRules()
+    {
+        $this->dataClient->readModifyWriteRow('rk1', null);
+    }
+
+    public function testReadModifyWriteRowAppend()
+    {
+        $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
+            ->setRow(
+                (new Row)
+                    ->setName()
+                    ->setFamilies(
+                        [
+                            (new Column)
+                                ->setQualifier()
+                                ->setCells(
+                                    [
+                                        (new Cell)
+                                            ->setValue()
+                                            ->setTimstampMicros()
+                                    ]
+                                )
+                        ]
+                    )
+            );
     }
 
     private function getMutateRowsResponse(array $status)

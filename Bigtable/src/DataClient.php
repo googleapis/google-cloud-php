@@ -21,7 +21,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ArrayTrait;
@@ -321,5 +323,42 @@ class DataClient
         )
             ->readAll()
             ->current();
+    }
+
+    public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
+    {
+        $readModifyWriteRowResponse = $this->bigtableClient->readModifyWriteRow(
+            $this->tableName,
+            $rowKey,
+            $rules->toProto(),
+            $options + $this->options
+        );
+        return $this->convertToArray($readModifyWriteRowResponse->getRow());
+    }
+
+    private function convertToArray(Row $row)
+    {
+        if ($row === null) {
+            return [];
+        }
+        $families = [];
+        foreach ($row->getFamilies() as $family) {
+            $qualifiers = [];
+            foreach ($family->getColumns() as $column) {
+                $values = [];
+                foreach ($column->getCells() as $cell) {
+                    $values[] = [
+                        'value' => $cell->getValue(),
+                        'timeStamp' => $cell->getTimestampMicros(),
+                        'labels' => ($cell->getLabels()->getIterator()->valid())
+                            ? implode(iterator_to_array($cell->getLabels()->getIterator()))
+                            : ''
+                    ];
+                }
+                $qualifiers[$column->getQualifier()] = $values;
+            }
+            $families[$family->getName()] = $qualifiers;
+        }
+        return $families;
     }
 }
