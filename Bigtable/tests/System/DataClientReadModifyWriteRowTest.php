@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Bigtable\Tests\System;
 
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
+use Google\Cloud\Bigtable\DataUtil;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+use Google\Cloud\Bigtable\Tests\System\DataClientTest;
 
 /**
  * @group bigtable
@@ -41,7 +42,7 @@ class DataClientReadModifyWriteRowTest extends DataClientTest
             'rk2' => [
                 'cf1' => [
                     'cq2' => [
-                        'value' => implode(unpack("C*", pack("J", 2))),
+                        'value' => DataUtil::intToByteString(2),
                         'timeStamp' => 5000
                     ]
                 ]
@@ -69,7 +70,7 @@ class DataClientReadModifyWriteRowTest extends DataClientTest
             'rk2',
             $rules
         );
-        $intval = intval($row['cf1']['cq2'][0]['value']);
+        $intval = DataUtil::byteStringToInt($row['cf1']['cq2'][0]['value']);
         $this->assertEquals(5, $intval);
     }
 }

@@ -19,14 +19,20 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\Column;
+use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as MutateRowsResponse_Entry;
 use Google\Cloud\Bigtable\V2\Mutation;
 use Google\Cloud\Bigtable\V2\Mutation\SetCell;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk as ReadRowsResponse_CellChunk;
+use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -35,6 +41,7 @@ use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
+use Prophecy\Argument;
 
 /**
  * @group bigtable
@@ -224,6 +231,128 @@ class DataClientTest extends SnippetTestCase
             print_r($expectedRow, true),
             $res->output()
         );
+    }
+
+    public function testReadModifyWriteRowAppend()
+    {
+        $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
+            ->setRow(
+                (new Row)
+                    ->setFamilies(
+                        [
+                            (new Family)
+                                ->setName('cf1')
+                                ->setColumns(
+                                    [
+                                        (new Column)
+                                            ->setQualifier('cq1')
+                                            ->setCells(
+                                                [
+                                                    (new Cell)
+                                                        ->setValue('value1')
+                                                        ->setTimestampMicros(5000)
+                                                ]
+                                            )
+                                    ]
+                                )
+                        ]
+                    )
+            );
+        $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
+            ->append('cf1', 'cq1', 'value12');
+        $this->bigtableClient
+            ->readModifyWriteRow(
+                self::TABLE_NAME,
+                'rk1',
+                $readModifyWriteRowRules->toProto(),
+                []
+            )
+            ->shouldBeCalled()
+            ->willReturn(
+                $readModifyWriteRowResponse
+            );
+            $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow');
+            $snippet->addLocal('dataClient', $this->dataClient);
+            $res = $snippet->invoke('row');
+            $expectedRow = [
+                'cf1' => [
+                    'cq1' => [[
+                        'value' => 'value1',
+                        'timeStamp' => 5000,
+                        'labels' => ''
+                    ]]
+                ]
+            ];
+            $this->assertEquals(
+                print_r($expectedRow, true),
+                $res->output()
+            );
+    }
+
+    public function testReadModifyWriteRowIncrement()
+    {
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator($this->mutateRowsResponses)
+            );
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, Argument::any(), [])
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
+            ->setRow(
+                (new Row)
+                    ->setFamilies(
+                        [
+                            (new Family)
+                                ->setName('cf1')
+                                ->setColumns(
+                                    [
+                                        (new Column)
+                                            ->setQualifier('cq1')
+                                            ->setCells(
+                                                [
+                                                    (new Cell)
+                                                        ->setValue(5)
+                                                        ->setTimestampMicros(5000)
+                                                ]
+                                            )
+                                    ]
+                                )
+                        ]
+                    )
+            );
+        $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
+            ->increment('cf1', 'cq1', 3);
+        $this->bigtableClient
+            ->readModifyWriteRow(
+                self::TABLE_NAME,
+                'rk1',
+                $readModifyWriteRowRules->toProto(),
+                []
+            )
+            ->shouldBeCalled()
+            ->willReturn(
+                $readModifyWriteRowResponse
+            );
+            $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow', 1);
+            $snippet->addLocal('dataClient', $this->dataClient);
+            $res = $snippet->invoke('row');
+            $expectedRow = [
+                'cf1' => [
+                    'cq1' => [[
+                        'value' => 5,
+                        'timeStamp' => 5000,
+                        'labels' => ''
+                    ]]
+                ]
+            ];
+            $this->assertEquals(
+                print_r($expectedRow, true),
+                $res->output()
+            );
     }
 
     private function setUpReadRowsResponse()

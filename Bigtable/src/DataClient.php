@@ -325,6 +325,42 @@ class DataClient
             ->current();
     }
 
+    /**
+     * Atomically reads and applies the rule to the row.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+     *
+     * $rules = (new ReadModifyWriteRowRules)->append('cf1', 'cq1', 'value12');
+     * $row = $dataClient->readModifyWriteRow('rk1', $rules);
+     *
+     * print_r($row);
+     * ```
+     *
+     * //Increments value
+     * ```
+     * use Google\Cloud\Bigtable\DataUtil;
+     * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+     * use Google\Cloud\Bigtable\RowMutation;
+     *
+     * $rowMutation = new RowMutation('rk1');
+     * $rowMutation->upsert('cf1','cq1',DataUtil::intToByteString(2),5000);
+     *
+     * $dataClient->mutateRows([$rowMutation]);
+     *
+     * $rules = (new ReadModifyWriteRowRules)->increment('cf1', 'cq1', 3);
+     * $row = $dataClient->readModifyWriteRow('rk1', $rules);
+     *
+     * print_r($row);
+     * ```
+     *
+     * @param string $rowKey The row key to read.
+     * @param ReadModifyWriteRowRules $rules Rules to apply on row.
+     * @param array $options [optional] Configuration options.
+     * @return array Returns array containing all column family keyed by family name.
+     * @throws ApiException if the remote call fails or operation fails
+     */
     public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
     {
         $readModifyWriteRowResponse = $this->bigtableClient->readModifyWriteRow(
