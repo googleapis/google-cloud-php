@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
-use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -32,7 +33,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
-use Google\ApiCore\ValidationException;
 use Google\Cloud\Spanner\V1\TypeCode;
 
 /**
@@ -657,6 +657,8 @@ class Database
      *
      * Example:
      * ```
+     * use Google\Cloud\Spanner\Timestamp;
+     *
      * $transaction = $database->runTransaction(function (Transaction $t) use ($username, $password) {
      *     $rows = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
      *         'parameters' => [
@@ -670,6 +672,7 @@ class Database
      *         // Do something here to grant the user access.
      *         // Maybe set a cookie?
      *
+     *         $user['lastLoginTime'] = new Timestamp(new \DateTime);
      *         $user['loginCount'] = $user['loginCount'] + 1;
      *         $t->update('Users', $user);
      *
@@ -1344,10 +1347,13 @@ class Database
      */
     public function execute($sql, array $options = [])
     {
-        $session = $this->selectSession(
-            SessionPoolInterface::CONTEXT_READ,
-            $this->pluck('sessionOptions', $options, false) ?: []
-        );
+        $session = $this->pluck('session', $options, false);
+        if (!$session) {
+            $session = $this->selectSession(
+                SessionPoolInterface::CONTEXT_READ,
+                $this->pluck('sessionOptions', $options, false) ?: []
+            );
+        }
 
         list($transactionOptions, $context) = $this->transactionSelector($options);
         $options['transaction'] = $transactionOptions;
@@ -1355,6 +1361,136 @@ class Database
 
         try {
             return $this->operation->execute($session, $sql, $options);
+        } finally {
+            $session->setExpiration();
+        }
+    }
+
+    /**
+     * Execute a partitioned DML update.
+     *
+     * Returns the lower bound of rows modified by the DML statement.
+     *
+     * **PLEASE NOTE** Most use cases for DML are better served by using
+     * {@see Google\Cloud\Spanner\Transaction::executeUpdate()}. Please read and
+     * understand the documentation for partitioned DML before implementing it
+     * in your application.
+     *
+     * Data Manipulation Language (DML) allows you to execute statements which
+     * modify the state of the database (i.e. inserting, updating or deleting
+     * rows).
+     *
+     * To execute a SELECT statement, use
+     * {@see Google\Cloud\Spanner\Database::execute()}.
+     *
+     * The method will block until the update is complete. Running a DML
+     * statement with this method does not offer exactly once semantics, and
+     * therefore the DML statement should be idempotent. The DML statement must
+     * be fully-partitionable. Specifically, the statement must be expressible
+     * as the union of many statements which each access only a single row of
+     * the table. Partitioned DML partitions the key space and runs the DML
+     * statement over each partition in parallel using separate, internal
+     * transactions that commit independently.
+     *
+     * Partitioned DML is good fit for large, database-wide, operations that are
+     * idempotent. Partitioned DML enables large-scale changes without running
+     * into transaction size limits or accidentally locking the entire table in
+     * one large transaction. Smaller scoped statements, such as an OLTP
+     * workload, should prefer using
+     * {@see Google\Cloud\Spanner\Transaction::executeUpdate()}.
+     *
+     * * The DML statement must be fully-partitionable. Specifically, the
+     *   statement must be expressible as the union of many statements which
+     *   each access only a single row of the table.
+     * * The statement is not applied atomically to all rows of the table.
+     *   Rather, the statement is applied atomically to partitions of the table,
+     *   in independent internal transactions. Secondary index rows are updated
+     *   atomically with the base table rows.
+     * * Partitioned DML does not guarantee exactly-once execution semantics
+     *   against a partition. The statement will be applied at least once to
+     *   each partition. It is strongly recommended that the DML statement
+     *   should be idempotent to avoid unexpected results. For instance, it is
+     *   potentially dangerous to run a statement such as
+     *   `UPDATE table SET column = column + 1` as it could be run multiple
+     *   times against some rows.
+     * * The partitions are committed automatically - there is no support for
+     *   Commit or Rollback. If the call returns an error, or if the client
+     *   issuing the DML statement dies, it is possible that some rows had the
+     *   statement executed on them successfully. It is also possible that the
+     *   statement was never executed against other rows.
+     * * If any error is encountered during the execution of the partitioned
+     *   DML operation (for instance, a UNIQUE INDEX violation, division by
+     *   zero, or a value that cannot be stored due to schema constraints), then
+     *   the operation is stopped at that point and an error is returned. It is
+     *   possible that at this point, some partitions have been committed (or
+     *   even committed multiple times), and other partitions have not been run
+     *   at all.
+     *
+     * Given the above, Partitioned DML is good fit for large, database-wide,
+     * operations that are idempotent, such as deleting old rows from a very
+     * large table.
+     *
+     * Please refer to the TransactionOptions documentation referenced below in
+     * order to fully understand the semantics and intended use case for
+     * partitioned DML updates.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Spanner\Date;
+     *
+     * $deactivatedUserCount = $database->executePartitionedUpdate(
+     *     'UPDATE Users u SET u.activeSubscription = false, u.subscriptionEndDate = @date ' .
+     *     'WHERE TIMESTAMP_DIFF(CURRENT_TIMESTAMP(), u.lastBillDate, DAY) > 365',
+     *     [
+     *         'parameters' => [
+     *             'date' => new Date(new \DateTime)
+     *         ]
+     *     ]
+     * );
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions TransactionOptions
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string $statement The DML statement to execute.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type array $parameters A key/value array of Query Parameters, where
+     *           the key is represented in the statement prefixed by a `@`
+     *           symbol.
+     *     @type array $types A key/value array of Query Parameter types.
+     *           Generally, Google Cloud PHP can infer types. Explicit type
+     *           declarations are required in the case of struct parameters,
+     *           or when a null value exists as a parameter.
+     *           Accepted values for primitive types are defined as constants on
+     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+     *           `Database::TYPE_BYTES`. If the value is an array, use
+     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           parameter types. Likewise, for structs, use
+     *           {@see Google\Cloud\Spanner\StructType}.
+     * }
+     * @return int The number of rows modified.
+     */
+    public function executePartitionedUpdate($statement, array $options = [])
+    {
+        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+
+        $transaction = $this->operation->transaction($session, [
+            'transactionOptions' => [
+                'partitionedDml' => []
+            ]
+        ]);
+
+        try {
+            return $this->operation->executeUpdate($session, $transaction, $statement, [
+                'statsItem' => 'rowCountLowerBound'
+            ] + $options);
         } finally {
             $session->setExpiration();
         }

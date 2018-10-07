@@ -451,6 +451,32 @@ class WriteTest extends SpannerTestCase
         $this->assertEquals($ts->formatAsString(), $res->formatAsString());
     }
 
+    public function testSetFieldToNull()
+    {
+        $id = $this->randId();
+        $str = base64_encode(random_bytes(rand(100, 9999)));
+        $row = self::$database->insert(self::TABLE_NAME, [
+            'id' => $id,
+            'stringField' => $str
+        ]);
+
+        self::$database->update(self::TABLE_NAME, [
+            'id' => $id,
+            'stringField' => null
+        ]);
+
+        $res = self::$database->execute(
+            'SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id',
+            [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]
+        );
+
+        $this->assertNull($res->rows()->current()['stringField']);
+    }
+
     /**
      * @group spanner-timestampprecision
      * @dataProvider timestamps
@@ -556,29 +582,265 @@ class WriteTest extends SpannerTestCase
         ];
     }
 
-    public function testSetFieldToNull()
+    /**
+     * @group spanner-write-dml
+     */
+    public function testExecuteUpdate()
     {
         $id = $this->randId();
-        $str = base64_encode(random_bytes(rand(100, 9999)));
-        $row = self::$database->insert(self::TABLE_NAME, [
-            'id' => $id,
-            'stringField' => $str
-        ]);
+        $randStr = base64_encode(random_bytes(500));
 
-        self::$database->update(self::TABLE_NAME, [
-            'id' => $id,
-            'stringField' => null
-        ]);
+        $db = self::$database;
+        $db->runTransaction(function ($t) use ($id, $randStr) {
+                $count = $t->executeUpdate(
+                    'INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)',
+                    [
+                        'parameters' => [
+                            'id' => $id,
+                            'string' => $randStr
+                        ]
+                    ]
+                );
 
-        $res = self::$database->execute(
-            'SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id',
-            [
+                $this->assertEquals(1, $count);
+
+            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
+                ]
+            ])->rows()->current();
+
+            $this->assertEquals($randStr, $row['stringField']);
+
+            $t->commit();
+        });
+    }
+
+    /**
+     * @group spanner-write-dml
+     */
+    public function testExecuteSqlDml()
+    {
+        $id = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $db->runTransaction(function ($t) use ($id, $randStr) {
+            $res = $t->execute('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr
+                ]
+            ]);
+
+            iterator_to_array($res);
+
+            $this->assertEquals(1, $res->stats()['rowCountExact']);
+
+            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ])->rows()->current();
+
+            $this->assertEquals($randStr, $row['stringField']);
+
+            $t->commit();
+        });
+    }
+
+    /**
+     * @group spanner-write-dml
+     */
+    public function testExecuteUpdateTransaction()
+    {
+        $id = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $db->runTransaction(function ($t) use ($id, $randStr) {
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr
+                ]
+            ]);
+
+            $this->assertEquals(1, $count);
+
+            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ])->rows()->current();
+
+            $this->assertEquals($randStr, $row['stringField']);
+
+            $t->commit();
+        });
+
+        $row = $db->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current();
+
+        $this->assertEquals($randStr, $row['stringField']);
+    }
+
+    /**
+     * @group spanner-write-dml
+     */
+    public function testExecuteUpdateTransactionRollback()
+    {
+        $id = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $db->runTransaction(function ($t) use ($id, $randStr) {
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr
+                ]
+            ]);
+
+            $this->assertEquals(1, $count);
+
+            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ])->rows()->current();
+
+            $this->assertEquals($randStr, $row['stringField']);
+
+            $t->rollback();
+        });
+
+        $row = $db->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current();
+
+        $this->assertNull($row);
+    }
+
+    /**
+     * @group spanner-write-dml
+     */
+    public function testExecuteUpdateTransactionMixed()
+    {
+        $id = $this->randId();
+        $id2 = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $db->runTransaction(function ($t) use ($id, $id2, $randStr) {
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr
+                ]
+            ]);
+
+            $this->assertEquals(1, $count);
+
+            $t->insert(self::TABLE_NAME, [
+                'id' => $id2,
+                'stringField' => $randStr
+            ]);
+
+            $t->commit();
+        });
+
+        $rows = iterator_to_array($db->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id OR id = @id2', [
+            'parameters' => [
+                'id' => $id,
+                'id2' => $id2
+            ]
+        ]));
+
+        $this->assertCount(2, $rows);
+    }
+
+    /**
+     * @group spanner-write-dml
+     */
+    public function testExecuteUpdateMultipleStatements()
+    {
+        $id = $this->randId();
+        $id2 = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+        $randStr2 = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $db->runTransaction(function ($t) use ($id, $id2, $randStr, $randStr2) {
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr
+                ]
+            ]);
+
+            $this->assertEquals(1, $count);
+
+            $count = $t->executeUpdate('UPDATE ' . self::TABLE_NAME .' SET stringField = @string WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr2
+                ]
+            ]);
+
+            $this->assertEquals(1, $count);
+
+            $t->commit();
+        });
+
+        $row = iterator_to_array($db->execute('SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id,
+                'id2' => $id2
+            ]
+        ]))[0];
+
+        $this->assertEquals($randStr2, $row['stringField']);
+    }
+
+    /**
+     * @group spanner-write-dml
+     * @group spanner-write-pdml
+     */
+    public function testPdml()
+    {
+        $id = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+        $randStr2 = base64_encode(random_bytes(500));
+        $db = self::$database;
+
+        $db->insert(self::TABLE_NAME, [
+            'id' => $id,
+            'stringField' => $randStr
+        ]);
+
+        $count = $db->executePartitionedUpdate(
+            'UPDATE '. self::TABLE_NAME .' SET stringField = @string WHERE id = @id',
+            [
+                'parameters' => [
+                    'id' => $id,
+                    'string' => $randStr2
                 ]
             ]
         );
 
-        $this->assertNull($res->rows()->current()['stringField']);
+        $this->assertEquals(1, $count);
+
+        $row = $db->execute('SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current();
+        $this->assertEquals($randStr2, $row['stringField']);
     }
 }

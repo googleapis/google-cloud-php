@@ -23,7 +23,6 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -36,6 +35,8 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
@@ -50,7 +51,8 @@ use Prophecy\Argument;
 class DatabaseTest extends TestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -154,7 +156,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testExists()
     {
@@ -166,29 +168,6 @@ class DatabaseTest extends TestCase
         $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->database->exists());
-    }
-
-    /**
-     * @group spanneradmin
-     */
-    public function testCreate()
-    {
-        $statement = 'foo';
-        $this->connection->createDatabase([
-            'instance' => $this->instance->reveal()->name(),
-            'createStatement' => sprintf('CREATE DATABASE `%s`', self::DATABASE),
-            'extraStatements' => [$statement]
-        ])->willReturn([
-            'name' => 'my-operation'
-        ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->database->create([
-            'statements' => [$statement]
-        ]);
-
-        $this->assertInstanceOf(LongRunningOperation::class, $res);
     }
 
     /**
@@ -206,7 +185,32 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
+     */
+    public function testCreate()
+    {
+        $this->connection->createDatabase(Argument::allOf(
+            Argument::withEntry('createStatement', 'CREATE DATABASE `my-database`'),
+            Argument::withEntry('extraStatements', [
+                'CREATE TABLE bar'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $op = $this->database->create([
+            'statements' => [
+                'CREATE TABLE bar'
+            ]
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    /**
+     * @group spanner-admin
      */
     public function testUpdateDdl()
     {
@@ -226,7 +230,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testUpdateDdlBatch()
     {
@@ -244,7 +248,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testUpdateWithSingleStatement()
     {
@@ -261,7 +265,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testDrop()
     {
@@ -277,7 +281,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testDropDeleteSession()
     {
@@ -331,7 +335,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testDdlNoResult()
     {
@@ -345,7 +349,7 @@ class DatabaseTest extends TestCase
     }
 
     /**
-     * @group spanneradmin
+     * @group spanner-admin
      */
     public function testIam()
     {
@@ -823,9 +827,8 @@ class DatabaseTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql) {
-            return $arg['sql'] === $sql;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
+            ->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -850,6 +853,29 @@ class DatabaseTest extends TestCase
 
         $res = $this->database->execute($sql);
         $rows = iterator_to_array($res->rows());
+    }
+
+    public function testExecutePartitionedUpdate()
+    {
+        $sql = 'UPDATE foo SET bar = @bar';
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('transactionOptions', [
+                'partitionedDml' => []
+            ]),
+            Argument::withEntry('singleUse', false)
+        ))->shouldBeCalled()->willReturn([
+            'id' => self::TRANSACTION
+        ]);
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transactionId', self::TRANSACTION)
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+        $res = $this->database->executePartitionedUpdate($sql);
+
+        $this->assertEquals(1, $res);
     }
 
     public function testRead()
@@ -960,27 +986,6 @@ class DatabaseTest extends TestCase
 
     // *******
     // Helpers
-
-    private function resultGenerator()
-    {
-        yield [
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'ID',
-                            'type' => [
-                                'code' => Database::TYPE_INT64
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'values' => [
-                '10'
-            ]
-        ];
-    }
 
     private function commitResponse()
     {

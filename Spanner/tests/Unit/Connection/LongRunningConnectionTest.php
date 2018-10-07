@@ -24,7 +24,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
- * @group spanneradmin
+ * @group spanner-admin
  */
 class LongRunningConnectionTest extends TestCase
 {

@@ -37,6 +37,7 @@ use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
@@ -153,11 +154,17 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : new SpannerClient($grpcConfig);
-        $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
-        $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
+        $this->instanceAdminClient = isset($config['gapicSpannerInstanceAdminClient'])
+            ? $config['gapicSpannerInstanceAdminClient']
+            : new InstanceAdminClient($grpcConfig);
+        $this->databaseAdminClient = isset($config['gapicSpannerDatabaseAdminClient'])
+            ? $config['gapicSpannerDatabaseAdminClient']
+            : new DatabaseAdminClient($grpcConfig);
+
         $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
         $this->longRunningGrpcClients = [
             $this->instanceAdminClient,
@@ -497,6 +504,7 @@ class Grpc implements ConnectionInterface
         $args['transaction'] = $this->createTransactionSelector($args);
 
         $database = $this->pluck('database', $args);
+
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
@@ -539,9 +547,12 @@ class Grpc implements ConnectionInterface
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);
-        } else {
+        } elseif (isset($transactionOptions['readWrite'])) {
             $readWrite = new ReadWrite();
             $options->setReadWrite($readWrite);
+        } elseif (isset($transactionOptions['partitionedDml'])) {
+            $pdml = new PartitionedDml();
+            $options->setPartitionedDml($pdml);
         }
 
         $database = $this->pluck('database', $args);

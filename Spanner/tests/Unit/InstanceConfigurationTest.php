@@ -27,7 +27,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
- * @group spanneradmin
+ * @group spanner-admin
  * @group spanner
  */
 class InstanceConfigurationTest extends TestCase

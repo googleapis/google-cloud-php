@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\Batch;
 
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -28,6 +27,7 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -38,7 +38,7 @@ use Prophecy\Argument;
  */
 class BatchClientTest extends TestCase
 {
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
     use TimeTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';

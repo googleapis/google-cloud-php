@@ -15,18 +15,15 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core\Testing;
+namespace Google\Cloud\Spanner\Tests;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Operation;
 
 /**
  * Refresh Spanner operation class
- *
- * @experimental
- * @internal
  */
-trait SpannerOperationRefreshTrait
+trait OperationRefreshTrait
 {
     /**
      * Refresh the operation property of a given stubbed class.

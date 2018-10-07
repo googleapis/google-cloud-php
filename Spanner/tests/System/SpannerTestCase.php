@@ -18,8 +18,9 @@
 namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Spanner;
+use Google\Cloud\Spanner\SpannerClient;
 
 /**
  * @group spanner
@@ -86,9 +87,27 @@ class SpannerTestCase extends SystemTestCase
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        self::$client = new SpannerClient([
+
+        $clientConfig = [
             'keyFilePath' => $keyFilePath
-        ]);
+        ];
+
+        $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
+        if ($serviceAddress) {
+            $gapicConfig = [
+                'serviceAddress' => $serviceAddress
+            ];
+
+            $clientConfig['gapicSpannerClient'] = new Spanner\V1\SpannerClient($gapicConfig);
+            $clientConfig['gapicSpannerDatabaseAdminClient'] =
+                new Spanner\Admin\Database\V1\DatabaseAdminClient($gapicConfig);
+            $clientConfig['gapicSpannerInstanceAdminClient'] =
+                new Spanner\Admin\Instance\V1\InstanceAdminClient($gapicConfig);
+
+            echo "Using Service Address: ". $serviceAddress . PHP_EOL;
+        }
+
+        self::$client = new SpannerClient($clientConfig);
 
         return self::$client;
     }
@@ -97,8 +116,6 @@ class SpannerTestCase extends SystemTestCase
     {
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
-        return (new SpannerClient([
-            'keyFilePath' => $keyFilePath
-        ]))->connect(self::INSTANCE_NAME, $dbName);
+        return self::$client->connect(self::INSTANCE_NAME, $dbName);
     }
 }

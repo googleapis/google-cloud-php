@@ -23,7 +23,6 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\SpannerOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -36,6 +35,8 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Prophecy\Argument;
@@ -47,7 +48,8 @@ use Prophecy\Argument;
 class DatabaseTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use SpannerOperationRefreshTrait;
+    use OperationRefreshTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
@@ -326,20 +328,12 @@ class DatabaseTest extends SnippetTestCase
 
         $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'values' => [0]
+            ->willReturn($this->yieldRows([
+                [
+                    'name' => 'loginCount',
+                    'type' => Database::TYPE_INT64,
+                    'value' => 0
+                ]
             ]));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
@@ -369,13 +363,7 @@ class DatabaseTest extends SnippetTestCase
 
         $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => []
-                    ]
-                ]
-            ]));
+            ->willReturn($this->resultGeneratorData([]));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -576,28 +564,115 @@ class DatabaseTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    public function testExecuteBeginSnapshot()
+    public function testExecute()
     {
         $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+    }
+
+    public function testExecuteWithParameterType()
+    {
+        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
+            if (!isset($arg['params'])) {
+                return false;
+            }
+
+            if (!isset($arg['paramTypes'])) {
+                return false;
+            }
+
+            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) {
+                return false;
+            }
+
+            return true;
+        }))->shouldBeCalled()->willReturn($this->resultGeneratorData([
+            'metadata' => [
+                'rowType' => [
+                    'fields' => [
+                        [
+                            'name' => 'timestamp',
+                            'type' => [
+                                'code' => Database::TYPE_TIMESTAMP
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'values' => [null]
+        ]));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 1);
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('timestamp');
+        $this->assertNull($res->returnVal());
+    }
+
+    public function testExecuteWithEmptyArray()
+    {
+        $this->connection->executeStreamingSql(Argument::that(function ($arg) {
+            if (!isset($arg['params'])) {
+                return false;
+            }
+
+            if (!isset($arg['paramTypes'])) {
+                return false;
+            }
+
+            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) {
+                return false;
+            }
+
+            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) {
+                return false;
+            }
+
+            return true;
+        }))->shouldBeCalled()->willReturn($this->resultGeneratorData([
+            'metadata' => [
+                'rowType' => [
+                    'fields' => [
+                        [
+                            'name' => 'numbers',
+                            'type' => [
+                                'code' => Database::TYPE_ARRAY,
+                                'arrayElementType' => [
                                     'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
-                    ],
-                    'transaction' => [
-                        'id' => self::TRANSACTION
                     ]
-                ],
-                'values' => [0]
-            ]));
+                ]
+            ],
+            'values' => [[]]
+        ]));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 2);
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('emptyArray');
+        $this->assertEmpty($res->returnVal());
+    }
+
+    public function testExecuteBeginSnapshot()
+    {
+        $this->connection->executeStreamingSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -613,24 +688,7 @@ class DatabaseTest extends SnippetTestCase
     {
         $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ],
-                    'transaction' => [
-                        'id' => self::TRANSACTION
-                    ]
-                ],
-                'values' => [0]
-            ]));
+            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -642,28 +700,47 @@ class DatabaseTest extends SnippetTestCase
         $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
     }
 
+    public function testExecutePartitionedUpdate()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION
+            ]);
+
+        $this->connection->executeStreamingSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'executePartitionedUpdate');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('deactivatedUserCount');
+        $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testRead()
+    {
+        $this->connection->streamingRead(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Database::class, 'read');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+    }
+
     public function testReadWithSnapshot()
     {
         $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ],
-                    'transaction' => [
-                        'id' => self::TRANSACTION
-                    ]
-                ],
-                'values' => [0]
-            ]));
+            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -679,24 +756,7 @@ class DatabaseTest extends SnippetTestCase
     {
         $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => Database::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ],
-                    'transaction' => [
-                        'id' => self::TRANSACTION
-                    ]
-                ],
-                'values' => [0]
-            ]));
+            ->willReturn($this->resultGenerator(false, self::TRANSACTION));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
@@ -766,10 +826,5 @@ class DatabaseTest extends SnippetTestCase
         $res = $snippet->invoke('operations');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
-    }
-
-    private function resultGenerator(array $data)
-    {
-        yield $data;
     }
 }

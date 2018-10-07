@@ -35,8 +35,8 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\ValueMapper;
@@ -222,7 +222,7 @@ class GrpcTest extends TestCase
 
         $readWriteTransactionArgs = ['readWrite' => []];
         $readWriteTransactionOptions = new TransactionOptions;
-        $rw = new TransactionOptions_ReadWrite();
+        $rw = new ReadWrite();
         $readWriteTransactionOptions->setReadWrite($rw);
 
         $ts = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
@@ -237,7 +237,7 @@ class GrpcTest extends TestCase
         $roObjArgs['readOnly']['minReadTimestamp'] = $this->formatTimestampForApi($ts);
         $roObjArgs['readOnly']['readTimestamp'] = $this->formatTimestampForApi($ts);
         $readOnlyTransactionOptions = new TransactionOptions;
-        $ro = $serializer->decodeMessage(new TransactionOptions_ReadOnly(), $roObjArgs['readOnly']);
+        $ro = $serializer->decodeMessage(new ReadOnly(), $roObjArgs['readOnly']);
 
         $readOnlyTransactionOptions->setReadOnly($ro);
 
