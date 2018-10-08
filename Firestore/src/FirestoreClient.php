@@ -55,7 +55,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '0.15.2';
+    const VERSION = '0.15.3';
 
     const DEFAULT_DATABASE = '(default)';
 
