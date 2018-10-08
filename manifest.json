@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.82.0",
                 "v0.81.0",
                 "v0.80.0",
                 "v0.79.0",
@@ -132,6 +133,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.4.5",
                 "v1.4.4",
                 "v1.4.3",
                 "v1.4.2",
@@ -246,6 +248,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.23.7",
                 "v1.23.6",
                 "v1.23.5",
                 "v1.23.4",
@@ -336,6 +339,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.5.10",
                 "v1.5.9",
                 "v1.5.8",
                 "v1.5.7",
@@ -368,6 +372,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.14.2",
                 "v0.14.1",
                 "v0.14.0",
                 "v0.13.0",
@@ -495,6 +500,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v0.15.3",
                 "v0.15.2",
                 "v0.15.1",
                 "v0.15.0",
@@ -803,6 +809,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.11.0",
                 "v1.10.1",
                 "v1.10.0",
                 "v1.9.0",
@@ -897,6 +904,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.9.1",
                 "v1.9.0",
                 "v1.8.0",
                 "v1.7.3",
@@ -1059,6 +1067,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v0.17.2",
                 "v0.17.1",
                 "v0.17.0",
                 "v0.16.0",
