@@ -403,4 +403,40 @@ class DataClient
         }
         return $families;
     }
+
+    /**
+     * Returns a sample of row keys in the table. The returned row keys will
+     * delimit contiguous sections of the table of approximately equal size,
+     * which can be used to break up the data for distributed tasks like
+     * mapreduces.
+     *
+     * Example:
+     * ```
+     * $rowKeyStream = $dataClient->sampleRowKeys();
+     * $rowKeys = iterator_to_array($rowKeyStream);
+     *
+     * print_r($rowKeys);
+     * ```
+     *
+     * @param array $options [optional] Configuration options.
+     * @return \Generator
+     * @throws ApiException if the remote call fails or operation fails
+     */
+    public function sampleRowKeys(array $options = [])
+    {
+        $stream = $this->bigtableClient->sampleRowKeys(
+            $this->tableName,
+            $options + $this->options
+        );
+
+        $callable = (function () use ($stream) {
+            foreach ($stream->readAll() as $response) {
+                yield [
+                    'rowKey' => $response->getRowKey(),
+                    'offset' => $response->getOffsetBytes()
+                ];
+            };
+        });
+        return $callable();
+    }
 }
