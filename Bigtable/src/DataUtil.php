@@ -22,7 +22,7 @@ namespace Google\Cloud\Bigtable;
  */
 class DataUtil
 {
-    private static $isLittleEndian = false;
+    private static $isLittleEndian;
 
     public static function init()
     {
@@ -31,6 +31,9 @@ class DataUtil
 
     public static function isSystemLittleEndian()
     {
+        if (self::$isLittleEndian === null) {
+            self::init();
+        }
         return self::$isLittleEndian;
     }
 
@@ -70,5 +73,3 @@ class DataUtil
         return intval($bytes);
     }
 }
-
-DataUtil::init();
