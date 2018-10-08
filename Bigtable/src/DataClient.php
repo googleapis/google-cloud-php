@@ -372,7 +372,7 @@ class DataClient
                 sprintf(
                     'Expected rules to be of type \'%s\', instead got \'%s\'.',
                     ReadModifyWriteRowRules::class,
-                    gettype($filter)
+                    gettype($rules)
                 )
             );
         }
