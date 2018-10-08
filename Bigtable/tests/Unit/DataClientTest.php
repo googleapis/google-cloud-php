@@ -658,7 +658,7 @@ class DataClientTest extends TestCase
                 $this->serverStream->reveal()
             );
         $rowKeyStream = $this->dataClient->sampleRowKeys();
-        $rowKeys = iterator_to_array($rowKeyStream());
+        $rowKeys = iterator_to_array($rowKeyStream);
         $expectedRowKeys = [
             [
                 'rowKey' => 'rk1',

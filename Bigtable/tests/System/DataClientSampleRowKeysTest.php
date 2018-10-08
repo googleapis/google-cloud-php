@@ -76,7 +76,7 @@ class DataClientSampleRowKeysTest extends DataClientTest
     public function testSampleRowKeys()
     {
         $rowKeysStream = self::$dataClient->sampleRowKeys();
-        $rowKeys = iterator_to_array($rowKeysStream());
+        $rowKeys = iterator_to_array($rowKeysStream);
         $expectedRowKeys = [
             [
                 'rowKey' => '',
