@@ -554,7 +554,7 @@ class DataClientTest extends TestCase
     }
 
     /**
-     * @expectedException TypeError
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage ReadModifyWriteRowRules
      */
     public function testReadModifyWriteRowNoRules()

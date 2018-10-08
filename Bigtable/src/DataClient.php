@@ -365,8 +365,17 @@ class DataClient
      * @return array Returns array containing all column family keyed by family name.
      * @throws ApiException if the remote call fails or operation fails
      */
-    public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
+    public function readModifyWriteRow($rowKey, $rules, array $options = [])
     {
+        if (!$rules instanceof ReadModifyWriteRowRules) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Expected rules to be of type \'%s\', instead got \'%s\'.',
+                    ReadModifyWriteRowRules::class,
+                    gettype($filter)
+                )
+            );
+        }
         $readModifyWriteRowResponse = $this->bigtableClient->readModifyWriteRow(
             $this->tableName,
             $rowKey,
