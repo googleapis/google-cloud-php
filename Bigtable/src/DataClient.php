@@ -326,7 +326,11 @@ class DataClient
     }
 
     /**
-     * Atomically reads and applies the rule to the row.
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
      *
      * Example:
      * ```
