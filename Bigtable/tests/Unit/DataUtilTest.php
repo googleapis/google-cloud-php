@@ -37,7 +37,8 @@ class DataUtilTest extends TestCase
 
     public function testIntToByteString()
     {
-        $this->assertEquals("00000002", DataUtil::intToByteString(2));
+        $expected = hex2bin("0000000000000002");
+        $this->assertEquals($expected, DataUtil::intToByteString(2));
     }
 
     public function testByteStringToInt()

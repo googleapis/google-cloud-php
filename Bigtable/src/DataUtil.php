@@ -22,21 +22,6 @@ namespace Google\Cloud\Bigtable;
  */
 class DataUtil
 {
-    private static $isLittleEndian;
-
-    public static function init()
-    {
-        self::$isLittleEndian = (pack("Q", 2) === pack("P", 2));
-    }
-
-    public static function isSystemLittleEndian()
-    {
-        if (self::$isLittleEndian === null) {
-            self::init();
-        }
-        return self::$isLittleEndian;
-    }
-
     /**
      * Utility method to convert integer value in to 64 bit signed BigEndian
      * representation.
@@ -55,11 +40,9 @@ class DataUtil
                 )
             );
         }
-        $bytes = implode(unpack("C*", pack("q", $intValue)));
-        if (self::isSystemLittleEndian()) {
-            return strrev($bytes);
-        }
-        return $bytes;
+        $hex = base_convert($intValue, 10, 16);
+        $hex = str_pad($hex, 16, '0', STR_PAD_LEFT);
+        return hex2bin($hex);
     }
 
     /**
@@ -70,6 +53,7 @@ class DataUtil
      */
     public static function byteStringToInt($bytes)
     {
-        return intval($bytes);
+        $hex = bin2hex($bytes);
+        return hexdec($hex);
     }
 }
