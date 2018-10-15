@@ -62,6 +62,9 @@ class DataClientReadModifyWriteRowTest extends DataClientTest
         $this->assertEquals('value1value12', $row['cf1']['cq1'][0]['value']);
     }
 
+    /**
+     * @requires PHP 5.6.0
+     */
     public function testIncrement()
     {
         $rules = (new ReadModifyWriteRowRules)

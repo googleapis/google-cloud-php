@@ -19,20 +19,42 @@ namespace Google\Cloud\Bigtable;
 
 /**
  * This class contains utility to convert integer to byte string and backward.
+ * This utility class is only supported on 64 bit machine with PHP version > 5.5.
  */
 class DataUtil
 {
+    private static $isLittleEndian;
+    private static $isSupported;
+
+    public static function isSystemLittleEndian()
+    {
+        if (self::$isLittleEndian === null) {
+            self::$isLittleEndian = (pack("P", 2) === pack("Q", 2));
+        }
+        return self::$isLittleEndian;
+    }
+
+    public static function isSupported()
+    {
+        if (self::$isSupported === null) {
+            self::$isSupported = PHP_VERSION_ID > 50500 && PHP_INT_SIZE >= 8;
+        }
+        return self::$isSupported;
+    }
+
     /**
-     * Utility method to convert integer value in to 64 bit signed BigEndian
-     * representation.
+     * Utility method to convert an integer to a 64-bit big-endian signed integer byte string.
      *
-     * @param string|int $intValue Integer value to convert to.
-     * @return string Returns string of bytes representing 64 bit big signed BigEndian.
-     * @throws \InvalidArgumentException If value is not numberic.
+     * @param int $intValue Integer value to convert to.
+     * @return string Returns a string of bytes representing a 64-bit big-endian signed integer.
+     * @throws \InvalidArgumentException If value is not an integer.
      */
     public static function intToByteString($intValue)
     {
-        if (!is_numeric($intValue)) {
+        if (!self::isSupported()) {
+            throw new \ErrorException('This utility is only supported on 64 bit machine with PHP version > 5.5.');
+        }
+        if (!is_int($intValue)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     'Expected argument to be of type int, instead got \'%s\'.',
@@ -40,20 +62,24 @@ class DataUtil
                 )
             );
         }
-        $hex = base_convert($intValue, 10, 16);
-        $hex = str_pad($hex, 16, '0', STR_PAD_LEFT);
-        return hex2bin($hex);
+        $bytes = pack("J", $intValue);
+        return $bytes;
     }
 
     /**
-     * Convertes string bytes of 64 bit signed BigEndian to int.
+     * Converts a 64-bit big-endian signed integer represented as a byte string to an integer.
      *
-     * @param string|array $bytes String of bytes to convert.
+     * @param string $bytes String of bytes to convert.
      * @return int Integer value of the string bytes.
      */
     public static function byteStringToInt($bytes)
     {
-        $hex = bin2hex($bytes);
-        return hexdec($hex);
+        if (!self::isSupported()) {
+            throw new \ErrorException('This utility is only supported on 64 bit machine with PHP version > 5.5.');
+        }
+        if (self::isSystemLittleEndian()) {
+            $bytes = strrev($bytes);
+        }
+        return unpack("q", $bytes)[1];
     }
 }

@@ -336,7 +336,8 @@ class DataClient
      * ```
      * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
      *
-     * $rules = (new ReadModifyWriteRowRules)->append('cf1', 'cq1', 'value12');
+     * $rules = (new ReadModifyWriteRowRules)
+     *     ->append('cf1', 'cq1', 'value12');
      * $row = $dataClient->readModifyWriteRow('rk1', $rules);
      *
      * print_r($row);
@@ -349,11 +350,12 @@ class DataClient
      * use Google\Cloud\Bigtable\RowMutation;
      *
      * $rowMutation = new RowMutation('rk1');
-     * $rowMutation->upsert('cf1','cq1',DataUtil::intToByteString(2),5000);
+     * $rowMutation->upsert('cf1', 'cq1', DataUtil::intToByteString(2));
      *
      * $dataClient->mutateRows([$rowMutation]);
      *
-     * $rules = (new ReadModifyWriteRowRules)->increment('cf1', 'cq1', 3);
+     * $rules = (new ReadModifyWriteRowRules)
+     *     ->increment('cf1', 'cq1', 3);
      * $row = $dataClient->readModifyWriteRow('rk1', $rules);
      *
      * print_r($row);
@@ -365,17 +367,8 @@ class DataClient
      * @return array Returns array containing all column family keyed by family name.
      * @throws ApiException if the remote call fails or operation fails
      */
-    public function readModifyWriteRow($rowKey, $rules, array $options = [])
+    public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
     {
-        if (!$rules instanceof ReadModifyWriteRowRules) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'Expected rules to be of type \'%s\', instead got \'%s\'.',
-                    ReadModifyWriteRowRules::class,
-                    gettype($rules)
-                )
-            );
-        }
         $readModifyWriteRowResponse = $this->bigtableClient->readModifyWriteRow(
             $this->tableName,
             $rowKey,

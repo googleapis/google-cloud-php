@@ -23,6 +23,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group bigtable
  * @group bigtabledata
+ * @requires PHP 5.6.0
  */
 class DataUtilTest extends TestCase
 {
@@ -43,7 +44,7 @@ class DataUtilTest extends TestCase
 
     public function testByteStringToInt()
     {
-        $value = DataUtil::byteStringToInt(DataUtil::intToByteString(2));
-        $this->assertEquals(2, $value);
+        $value = DataUtil::byteStringToInt(DataUtil::intToByteString(-52));
+        $this->assertEquals(-52, $value);
     }
 }

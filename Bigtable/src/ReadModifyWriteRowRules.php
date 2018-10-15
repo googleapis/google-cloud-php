@@ -20,25 +20,17 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 
 /**
- * Represents collection of ReadModifyWriteRule to perform operation on Bigtable table.
- * This is used in readModifyWriteRow operation on row in Bigtable table.
+ * Represents a collection of read/modify/write rules specifying how the specified row's contents
+ * are to be transformed into writes. Entries are applied in order, meaning that earlier rules will
+ * affect the results of later ones. This is intended to be used in combination with
+ * {@see Google\Cloud\Bigtable\DataClient::readModifyWriteRow()}.
  */
 class ReadModifyWriteRowRules
 {
     /**
-     * @var array
-     */
-    private $options;
-
-    /**
-     * @var array ReadModifyWriteRule
+     * @var ReadModifyWriteRule[]
      */
     private $rules = [];
-
-    public function __construct(array $options = [])
-    {
-        $this->options = $options;
-    }
 
     /**
      * Appends the value to the existing value of the cell. If targeted cell is unset,
@@ -82,7 +74,9 @@ class ReadModifyWriteRowRules
     /**
      * Returns proto representation of ReadModifyWriteRule.
      *
-     * @return array ReadModifyWriteRule Returns array of ReadModifyWriteRule rules.
+     * @internal
+     * @access private
+     * @return ReadModifyWriteRule[] Returns array of ReadModifyWriteRule rules.
      */
     public function toProto()
     {

@@ -238,25 +238,19 @@ class DataClientTest extends SnippetTestCase
         $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
             ->setRow(
                 (new Row)
-                    ->setFamilies(
-                        [
-                            (new Family)
-                                ->setName('cf1')
-                                ->setColumns(
-                                    [
-                                        (new Column)
-                                            ->setQualifier('cq1')
-                                            ->setCells(
-                                                [
-                                                    (new Cell)
-                                                        ->setValue('value1')
-                                                        ->setTimestampMicros(5000)
-                                                ]
-                                            )
-                                    ]
-                                )
-                        ]
-                    )
+                    ->setFamilies([
+                        (new Family)
+                            ->setName('cf1')
+                            ->setColumns([
+                                (new Column)
+                                    ->setQualifier('cq1')
+                                    ->setCells([
+                                        (new Cell)
+                                            ->setValue('value1')
+                                            ->setTimestampMicros(5000)
+                                    ])
+                            ])
+                    ])
             );
         $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
             ->append('cf1', 'cq1', 'value12');
@@ -289,6 +283,9 @@ class DataClientTest extends SnippetTestCase
             );
     }
 
+    /**
+     * @requires PHP 5.6.0
+     */
     public function testReadModifyWriteRowIncrement()
     {
         $this->serverStream->readAll()
@@ -304,25 +301,19 @@ class DataClientTest extends SnippetTestCase
         $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
             ->setRow(
                 (new Row)
-                    ->setFamilies(
-                        [
-                            (new Family)
-                                ->setName('cf1')
-                                ->setColumns(
-                                    [
-                                        (new Column)
-                                            ->setQualifier('cq1')
-                                            ->setCells(
-                                                [
-                                                    (new Cell)
-                                                        ->setValue(5)
-                                                        ->setTimestampMicros(5000)
-                                                ]
-                                            )
-                                    ]
-                                )
-                        ]
-                    )
+                    ->setFamilies([
+                        (new Family)
+                            ->setName('cf1')
+                            ->setColumns([
+                                (new Column)
+                                    ->setQualifier('cq1')
+                                    ->setCells([
+                                        (new Cell)
+                                            ->setValue(5)
+                                            ->setTimestampMicros(5000)
+                                    ])
+                            ])
+                    ])
             );
         $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
             ->increment('cf1', 'cq1', 3);

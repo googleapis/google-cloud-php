@@ -544,48 +544,24 @@ class DataClientTest extends TestCase
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage FilterInterface
-     */
-    public function testReadRowsFilterShouldThrow()
-    {
-        $this->dataClient->readRows(['filter' => new \stdClass()]);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage ReadModifyWriteRowRules
-     */
-    public function testReadModifyWriteRowNoRules()
-    {
-        $this->dataClient->readModifyWriteRow('rk1', null);
-    }
-
     public function testReadModifyWriteRowAppend()
     {
         $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
             ->setRow(
                 (new Row)
-                    ->setFamilies(
-                        [
-                            (new Family)
-                                ->setName('cf1')
-                                ->setColumns(
-                                    [
-                                        (new Column)
-                                            ->setQualifier('cq1')
-                                            ->setCells(
-                                                [
-                                                    (new Cell)
-                                                        ->setValue('value1')
-                                                        ->setTimestampMicros(5000)
-                                                ]
-                                            )
-                                    ]
-                                )
-                        ]
-                    )
+                    ->setFamilies([
+                        (new Family)
+                            ->setName('cf1')
+                            ->setColumns([
+                                (new Column)
+                                    ->setQualifier('cq1')
+                                    ->setCells([
+                                        (new Cell)
+                                            ->setValue('value1')
+                                            ->setTimestampMicros(5000)
+                                    ])
+                            ])
+                    ])
             );
         $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
             ->append('cf1', 'cq1', 'v1');
@@ -613,30 +589,27 @@ class DataClientTest extends TestCase
         $this->assertEquals($expectedRow, $row);
     }
 
+    /**
+     * @requires PHP 5.6.0
+     */
     public function testReadModifyWriteRowIncrement()
     {
         $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
             ->setRow(
                 (new Row)
-                    ->setFamilies(
-                        [
-                            (new Family)
-                                ->setName('cf1')
-                                ->setColumns(
-                                    [
-                                        (new Column)
-                                            ->setQualifier('cq1')
-                                            ->setCells(
-                                                [
-                                                    (new Cell)
-                                                        ->setValue(10)
-                                                        ->setTimestampMicros(5000)
-                                                ]
-                                            )
-                                    ]
-                                )
-                        ]
-                    )
+                    ->setFamilies([
+                        (new Family)
+                            ->setName('cf1')
+                            ->setColumns([
+                                (new Column)
+                                    ->setQualifier('cq1')
+                                    ->setCells([
+                                        (new Cell)
+                                            ->setValue(10)
+                                            ->setTimestampMicros(5000)
+                                    ])
+                            ])
+                    ])
             );
         $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
             ->increment('cf1', 'cq1', 5);
