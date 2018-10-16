@@ -283,11 +283,15 @@ class DataClientTest extends SnippetTestCase
             );
     }
 
-    /**
-     * @requires PHP 5.6.0
-     */
     public function testReadModifyWriteRowIncrement()
     {
+        $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow', 1);
+
+        if (phpversion() < '5.6.0') {
+            $this->markTestSkipped('This test only runs on PHP 5.6 or above.');
+            return;
+        }
+
         $this->serverStream->readAll()
             ->shouldBeCalled()
             ->willReturn(
@@ -328,7 +332,6 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $readModifyWriteRowResponse
             );
-            $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow', 1);
             $snippet->addLocal('dataClient', $this->dataClient);
             $res = $snippet->invoke('row');
             $expectedRow = [
