@@ -43,6 +43,16 @@ return [
                     'resourcesGetMethod' => 'getJobTriggers',
                 ],
             ],
+            'ListStoredInfoTypes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getStoredInfoTypes',
+                ],
+            ],
         ],
     ],
 ];

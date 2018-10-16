@@ -41,6 +41,7 @@ use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
 use Google\Cloud\Dlp\V2\CreateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateJobTriggerRequest;
+use Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\DeidentifyConfig;
 use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
@@ -49,12 +50,14 @@ use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
+use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
+use Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\InspectConfig;
 use Google\Cloud\Dlp\V2\InspectContentRequest;
 use Google\Cloud\Dlp\V2\InspectContentResponse;
@@ -71,15 +74,20 @@ use Google\Cloud\Dlp\V2\ListInspectTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListInspectTemplatesResponse;
 use Google\Cloud\Dlp\V2\ListJobTriggersRequest;
 use Google\Cloud\Dlp\V2\ListJobTriggersResponse;
+use Google\Cloud\Dlp\V2\ListStoredInfoTypesRequest;
+use Google\Cloud\Dlp\V2\ListStoredInfoTypesResponse;
 use Google\Cloud\Dlp\V2\RedactImageRequest;
 use Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig;
 use Google\Cloud\Dlp\V2\RedactImageResponse;
 use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 use Google\Cloud\Dlp\V2\RiskAnalysisJobConfig;
+use Google\Cloud\Dlp\V2\StoredInfoType;
+use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateJobTriggerRequest;
+use Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -152,6 +160,8 @@ class DlpServiceGapicClient
     private static $projectJobTriggerNameTemplate;
     private static $projectNameTemplate;
     private static $dlpJobNameTemplate;
+    private static $organizationStoredInfoTypeNameTemplate;
+    private static $projectStoredInfoTypeNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -245,6 +255,24 @@ class DlpServiceGapicClient
         return self::$dlpJobNameTemplate;
     }
 
+    private static function getOrganizationStoredInfoTypeNameTemplate()
+    {
+        if (self::$organizationStoredInfoTypeNameTemplate == null) {
+            self::$organizationStoredInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/storedInfoTypes/{stored_info_type}');
+        }
+
+        return self::$organizationStoredInfoTypeNameTemplate;
+    }
+
+    private static function getProjectStoredInfoTypeNameTemplate()
+    {
+        if (self::$projectStoredInfoTypeNameTemplate == null) {
+            self::$projectStoredInfoTypeNameTemplate = new PathTemplate('projects/{project}/storedInfoTypes/{stored_info_type}');
+        }
+
+        return self::$projectStoredInfoTypeNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -257,6 +285,8 @@ class DlpServiceGapicClient
                 'projectJobTrigger' => self::getProjectJobTriggerNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'dlpJob' => self::getDlpJobNameTemplate(),
+                'organizationStoredInfoType' => self::getOrganizationStoredInfoTypeNameTemplate(),
+                'projectStoredInfoType' => self::getProjectStoredInfoTypeNameTemplate(),
             ];
         }
 
@@ -404,6 +434,42 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_stored_info_type resource.
+     *
+     * @param string $organization
+     * @param string $storedInfoType
+     *
+     * @return string The formatted organization_stored_info_type resource.
+     * @experimental
+     */
+    public static function organizationStoredInfoTypeName($organization, $storedInfoType)
+    {
+        return self::getOrganizationStoredInfoTypeNameTemplate()->render([
+            'organization' => $organization,
+            'stored_info_type' => $storedInfoType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_stored_info_type resource.
+     *
+     * @param string $project
+     * @param string $storedInfoType
+     *
+     * @return string The formatted project_stored_info_type resource.
+     * @experimental
+     */
+    public static function projectStoredInfoTypeName($project, $storedInfoType)
+    {
+        return self::getProjectStoredInfoTypeNameTemplate()->render([
+            'project' => $project,
+            'stored_info_type' => $storedInfoType,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -414,7 +480,9 @@ class DlpServiceGapicClient
      * - projectInspectTemplate: projects/{project}/inspectTemplates/{inspect_template}
      * - projectJobTrigger: projects/{project}/jobTriggers/{job_trigger}
      * - project: projects/{project}
-     * - dlpJob: projects/{project}/dlpJobs/{dlp_job}.
+     * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
+     * - organizationStoredInfoType: organizations/{organization}/storedInfoTypes/{stored_info_type}
+     * - projectStoredInfoType: projects/{project}/storedInfoTypes/{stored_info_type}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -1620,6 +1688,20 @@ class DlpServiceGapicClient
      *     @type int $type
      *          The type of job. Defaults to `DlpJobType.INSPECT`
      *          For allowed values, use constants defined on {@see \Google\Cloud\Dlp\V2\DlpJobType}
+     *     @type string $orderBy
+     *          Optional comma separated list of fields to order by,
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
+     *
+     *          Example: `name asc, end_time asc, create_time desc`
+     *
+     *          Supported fields are:
+     *
+     *          - `create_time`: corresponds to time the job was created.
+     *          - `end_time`: corresponds to time the job ended.
+     *          - `name`: corresponds to job's name.
+     *          - `state`: corresponds to `state`
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1647,6 +1729,9 @@ class DlpServiceGapicClient
         }
         if (isset($optionalArgs['type'])) {
             $request->setType($optionalArgs['type']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         return $this->getPagedListResponse(
@@ -2080,6 +2165,311 @@ class DlpServiceGapicClient
         return $this->startCall(
             'CreateJobTrigger',
             JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a pre-built stored infoType to be used for inspection.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->organizationName('[ORGANIZATION]');
+     *     $response = $dlpServiceClient->createStoredInfoType($formattedParent);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     *                             organizations/my-org-id.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type StoredInfoTypeConfig $config
+     *          Configuration of the storedInfoType to create.
+     *     @type string $storedInfoTypeId
+     *          The storedInfoType ID can contain uppercase and lowercase letters,
+     *          numbers, and hyphens; that is, it must match the regular
+     *          expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *          characters. Can be empty to allow the system to generate one.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\StoredInfoType
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createStoredInfoType($parent, array $optionalArgs = [])
+    {
+        $request = new CreateStoredInfoTypeRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['config'])) {
+            $request->setConfig($optionalArgs['config']);
+        }
+        if (isset($optionalArgs['storedInfoTypeId'])) {
+            $request->setStoredInfoTypeId($optionalArgs['storedInfoTypeId']);
+        }
+
+        return $this->startCall(
+            'CreateStoredInfoType',
+            StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates the stored infoType by creating a new version. The existing version
+     * will continue to be used until the new version is ready.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->organizationStoredInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
+     *     $response = $dlpServiceClient->updateStoredInfoType($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of organization and storedInfoType to be updated, for
+     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     *                             projects/project-id/storedInfoTypes/432452342.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type StoredInfoTypeConfig $config
+     *          Updated configuration for the storedInfoType. If not provided, a new
+     *          version of the storedInfoType will be created with the existing
+     *          configuration.
+     *     @type FieldMask $updateMask
+     *          Mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\StoredInfoType
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateStoredInfoType($name, array $optionalArgs = [])
+    {
+        $request = new UpdateStoredInfoTypeRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['config'])) {
+            $request->setConfig($optionalArgs['config']);
+        }
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        return $this->startCall(
+            'UpdateStoredInfoType',
+            StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a stored infoType.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->organizationStoredInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
+     *     $response = $dlpServiceClient->getStoredInfoType($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the organization and storedInfoType to be read, for
+     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     *                             projects/project-id/storedInfoTypes/432452342.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\StoredInfoType
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getStoredInfoType($name, array $optionalArgs = [])
+    {
+        $request = new GetStoredInfoTypeRequest();
+        $request->setName($name);
+
+        return $this->startCall(
+            'GetStoredInfoType',
+            StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists stored infoTypes.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->organizationName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listStoredInfoTypes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listStoredInfoTypes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     *                             organizations/my-org-id.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $orderBy
+     *          Optional comma separated list of fields to order by,
+     *          followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *          default sorting order is ascending, redundant space characters are
+     *          insignificant.
+     *
+     *          Example: `name asc, display_name, create_time desc`
+     *
+     *          Supported fields are:
+     *
+     *          - `create_time`: corresponds to time the most recent version of the
+     *          resource was created.
+     *          - `state`: corresponds to the state of the resource.
+     *          - `name`: corresponds to resource name.
+     *          - `display_name`: corresponds to info type's display name.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listStoredInfoTypes($parent, array $optionalArgs = [])
+    {
+        $request = new ListStoredInfoTypesRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        return $this->getPagedListResponse(
+            'ListStoredInfoTypes',
+            $optionalArgs,
+            ListStoredInfoTypesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Deletes a stored infoType.
+     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
+     * learn more.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->organizationStoredInfoTypeName('[ORGANIZATION]', '[STORED_INFO_TYPE]');
+     *     $dlpServiceClient->deleteStoredInfoType($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the organization and storedInfoType to be deleted, for
+     *                             example `organizations/433245324/storedInfoTypes/432452342` or
+     *                             projects/project-id/storedInfoTypes/432452342.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteStoredInfoType($name, array $optionalArgs = [])
+    {
+        $request = new DeleteStoredInfoTypeRequest();
+        $request->setName($name);
+
+        return $this->startCall(
+            'DeleteStoredInfoType',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();

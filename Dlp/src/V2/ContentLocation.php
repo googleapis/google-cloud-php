@@ -17,9 +17,13 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Name of the container where the finding is located.
-     * The top level name is the source file name or table name. Nested names
-     * could be absent if the embedded object has no string identifier
-     * (for an example an image contained within a document).
+     * The top level name is the source file name or table name. Names of some
+     * common storage containers are formatted as follows:
+     * * BigQuery tables:  `<project_id>:<dataset_id>.<table_id>`
+     * * Cloud Storage files: `gs://<bucket>/<path>`
+     * * Datastore namespace: <namespace>
+     * Nested names could be absent if the embedded object has no string
+     * identifier (for an example an image contained within a document).
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      */
@@ -50,9 +54,13 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $container_name
      *           Name of the container where the finding is located.
-     *           The top level name is the source file name or table name. Nested names
-     *           could be absent if the embedded object has no string identifier
-     *           (for an example an image contained within a document).
+     *           The top level name is the source file name or table name. Names of some
+     *           common storage containers are formatted as follows:
+     *           * BigQuery tables:  `<project_id>:<dataset_id>.<table_id>`
+     *           * Cloud Storage files: `gs://<bucket>/<path>`
+     *           * Datastore namespace: <namespace>
+     *           Nested names could be absent if the embedded object has no string
+     *           identifier (for an example an image contained within a document).
      *     @type \Google\Cloud\Dlp\V2\RecordLocation $record_location
      *           Location within a row or record of a database table.
      *     @type \Google\Cloud\Dlp\V2\ImageLocation $image_location
@@ -76,9 +84,13 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of the container where the finding is located.
-     * The top level name is the source file name or table name. Nested names
-     * could be absent if the embedded object has no string identifier
-     * (for an example an image contained within a document).
+     * The top level name is the source file name or table name. Names of some
+     * common storage containers are formatted as follows:
+     * * BigQuery tables:  `<project_id>:<dataset_id>.<table_id>`
+     * * Cloud Storage files: `gs://<bucket>/<path>`
+     * * Datastore namespace: <namespace>
+     * Nested names could be absent if the embedded object has no string
+     * identifier (for an example an image contained within a document).
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      * @return string
@@ -90,9 +102,13 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
 
     /**
      * Name of the container where the finding is located.
-     * The top level name is the source file name or table name. Nested names
-     * could be absent if the embedded object has no string identifier
-     * (for an example an image contained within a document).
+     * The top level name is the source file name or table name. Names of some
+     * common storage containers are formatted as follows:
+     * * BigQuery tables:  `<project_id>:<dataset_id>.<table_id>`
+     * * Cloud Storage files: `gs://<bucket>/<path>`
+     * * Datastore namespace: <namespace>
+     * Nested names could be absent if the embedded object has no string
+     * identifier (for an example an image contained within a document).
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      * @param string $var

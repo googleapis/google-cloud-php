@@ -17,11 +17,19 @@ class FileSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Cloud Storage url of the file(s) to scan, in the format
-     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
+     * one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
     private $url = '';
+    /**
+     * The regex-filtered set of files to scan. Exactly one of `url` or
+     * `regex_file_set` must be set.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageRegexFileSet regex_file_set = 2;</code>
+     */
+    private $regex_file_set = null;
 
     /**
      * Constructor.
@@ -31,7 +39,11 @@ class FileSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $url
      *           The Cloud Storage url of the file(s) to scan, in the format
-     *           `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     *           `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
+     *           one of `url` or `regex_file_set` must be set.
+     *     @type \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet $regex_file_set
+     *           The regex-filtered set of files to scan. Exactly one of `url` or
+     *           `regex_file_set` must be set.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +53,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage url of the file(s) to scan, in the format
-     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
+     * one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @return string
@@ -53,7 +66,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage url of the file(s) to scan, in the format
-     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
+     * one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var
@@ -63,6 +77,34 @@ class FileSet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->url = $var;
+
+        return $this;
+    }
+
+    /**
+     * The regex-filtered set of files to scan. Exactly one of `url` or
+     * `regex_file_set` must be set.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageRegexFileSet regex_file_set = 2;</code>
+     * @return \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet
+     */
+    public function getRegexFileSet()
+    {
+        return $this->regex_file_set;
+    }
+
+    /**
+     * The regex-filtered set of files to scan. Exactly one of `url` or
+     * `regex_file_set` must be set.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageRegexFileSet regex_file_set = 2;</code>
+     * @param \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet $var
+     * @return $this
+     */
+    public function setRegexFileSet($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet::class);
+        $this->regex_file_set = $var;
 
         return $this;
     }

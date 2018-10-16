@@ -62,6 +62,21 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 5;</code>
      */
     private $type = 0;
+    /**
+     * Optional comma separated list of fields to order by,
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.
+     * Example: `name asc, end_time asc, create_time desc`
+     * Supported fields are:
+     * - `create_time`: corresponds to time the job was created.
+     * - `end_time`: corresponds to time the job ended.
+     * - `name`: corresponds to job's name.
+     * - `state`: corresponds to `state`
+     *
+     * Generated from protobuf field <code>string order_by = 6;</code>
+     */
+    private $order_by = '';
 
     /**
      * Constructor.
@@ -96,6 +111,17 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           The standard list page token.
      *     @type int $type
      *           The type of job. Defaults to `DlpJobType.INSPECT`
+     *     @type string $order_by
+     *           Optional comma separated list of fields to order by,
+     *           followed by `asc` or `desc` postfix. This list is case-insensitive,
+     *           default sorting order is ascending, redundant space characters are
+     *           insignificant.
+     *           Example: `name asc, end_time asc, create_time desc`
+     *           Supported fields are:
+     *           - `create_time`: corresponds to time the job was created.
+     *           - `end_time`: corresponds to time the job ended.
+     *           - `name`: corresponds to job's name.
+     *           - `state`: corresponds to `state`
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +289,50 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DlpJobType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional comma separated list of fields to order by,
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.
+     * Example: `name asc, end_time asc, create_time desc`
+     * Supported fields are:
+     * - `create_time`: corresponds to time the job was created.
+     * - `end_time`: corresponds to time the job ended.
+     * - `name`: corresponds to job's name.
+     * - `state`: corresponds to `state`
+     *
+     * Generated from protobuf field <code>string order_by = 6;</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional comma separated list of fields to order by,
+     * followed by `asc` or `desc` postfix. This list is case-insensitive,
+     * default sorting order is ascending, redundant space characters are
+     * insignificant.
+     * Example: `name asc, end_time asc, create_time desc`
+     * Supported fields are:
+     * - `create_time`: corresponds to time the job was created.
+     * - `end_time`: corresponds to time the job ended.
+     * - `name`: corresponds to job's name.
+     * - `state`: corresponds to `state`
+     *
+     * Generated from protobuf field <code>string order_by = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }
