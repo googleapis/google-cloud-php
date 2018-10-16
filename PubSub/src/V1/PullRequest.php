@@ -26,9 +26,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * If this field set to true, the system will respond immediately even if
      * it there are no messages available to return in the `Pull` response.
      * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages. The
-     * client may cancel the request if it does not wish to wait any longer for
-     * the response.
+     * least one message is available, rather than returning no messages.
      *
      * Generated from protobuf field <code>bool return_immediately = 2;</code>
      */
@@ -54,9 +52,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      *           If this field set to true, the system will respond immediately even if
      *           it there are no messages available to return in the `Pull` response.
      *           Otherwise, the system may wait (for a bounded amount of time) until at
-     *           least one message is available, rather than returning no messages. The
-     *           client may cancel the request if it does not wish to wait any longer for
-     *           the response.
+     *           least one message is available, rather than returning no messages.
      *     @type int $max_messages
      *           The maximum number of messages returned for this request. The Pub/Sub
      *           system may return fewer than the number specified.
@@ -99,9 +95,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * If this field set to true, the system will respond immediately even if
      * it there are no messages available to return in the `Pull` response.
      * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages. The
-     * client may cancel the request if it does not wish to wait any longer for
-     * the response.
+     * least one message is available, rather than returning no messages.
      *
      * Generated from protobuf field <code>bool return_immediately = 2;</code>
      * @return bool
@@ -115,9 +109,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * If this field set to true, the system will respond immediately even if
      * it there are no messages available to return in the `Pull` response.
      * Otherwise, the system may wait (for a bounded amount of time) until at
-     * least one message is available, rather than returning no messages. The
-     * client may cancel the request if it does not wish to wait any longer for
-     * the response.
+     * least one message is available, rather than returning no messages.
      *
      * Generated from protobuf field <code>bool return_immediately = 2;</code>
      * @param bool $var

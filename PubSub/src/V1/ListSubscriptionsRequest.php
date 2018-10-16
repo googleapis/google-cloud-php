@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the cloud project that subscriptions belong to.
-     * Format is `projects/{project}`.
+     * The name of the project in which to list subscriptions.
+     * Format is `projects/{project-id}`.
      *
      * Generated from protobuf field <code>string project = 1;</code>
      */
@@ -44,8 +44,8 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project
-     *           The name of the cloud project that subscriptions belong to.
-     *           Format is `projects/{project}`.
+     *           The name of the project in which to list subscriptions.
+     *           Format is `projects/{project-id}`.
      *     @type int $page_size
      *           Maximum number of subscriptions to return.
      *     @type string $page_token
@@ -60,8 +60,8 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cloud project that subscriptions belong to.
-     * Format is `projects/{project}`.
+     * The name of the project in which to list subscriptions.
+     * Format is `projects/{project-id}`.
      *
      * Generated from protobuf field <code>string project = 1;</code>
      * @return string
@@ -72,8 +72,8 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cloud project that subscriptions belong to.
-     * Format is `projects/{project}`.
+     * The name of the project in which to list subscriptions.
+     * Format is `projects/{project-id}`.
      *
      * Generated from protobuf field <code>string project = 1;</code>
      * @param string $var

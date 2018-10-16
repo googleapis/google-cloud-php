@@ -322,7 +322,7 @@ class PublisherGapicClient
      *                             Optional.
      *
      *     @type array $labels
-     *          User labels.
+     *          See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
      *     @type MessageStoragePolicy $messageStoragePolicy
      *          Policy constraining how messages published to the topic may be stored. It
      *          is determined when the topic is created based on the policy configured at
@@ -414,8 +414,7 @@ class PublisherGapicClient
 
     /**
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
-     * does not exist. The message payload must not be empty; it must contain
-     *  either a non-empty data field, or at least one attribute.
+     * does not exist.
      *
      * Sample code:
      * ```
@@ -537,8 +536,8 @@ class PublisherGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that topics belong to.
-     *                             Format is `projects/{project}`.
+     * @param string $project      The name of the project in which to list topics.
+     *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *

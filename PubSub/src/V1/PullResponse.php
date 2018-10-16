@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class PullResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Received Pub/Sub messages. The Pub/Sub system will return zero messages if
-     * there are no more available in the backlog. The Pub/Sub system may return
-     * fewer than the `maxMessages` requested even if there are more messages
-     * available in the backlog.
+     * Received Pub/Sub messages. The list will be empty if there are no more
+     * messages available in the backlog. For JSON, the response can be entirely
+     * empty. The Pub/Sub system may return fewer than the `maxMessages` requested
+     * even if there are more messages available in the backlog.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      */
@@ -32,10 +32,10 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $received_messages
-     *           Received Pub/Sub messages. The Pub/Sub system will return zero messages if
-     *           there are no more available in the backlog. The Pub/Sub system may return
-     *           fewer than the `maxMessages` requested even if there are more messages
-     *           available in the backlog.
+     *           Received Pub/Sub messages. The list will be empty if there are no more
+     *           messages available in the backlog. For JSON, the response can be entirely
+     *           empty. The Pub/Sub system may return fewer than the `maxMessages` requested
+     *           even if there are more messages available in the backlog.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,10 +44,10 @@ class PullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Received Pub/Sub messages. The Pub/Sub system will return zero messages if
-     * there are no more available in the backlog. The Pub/Sub system may return
-     * fewer than the `maxMessages` requested even if there are more messages
-     * available in the backlog.
+     * Received Pub/Sub messages. The list will be empty if there are no more
+     * messages available in the backlog. For JSON, the response can be entirely
+     * empty. The Pub/Sub system may return fewer than the `maxMessages` requested
+     * even if there are more messages available in the backlog.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,10 +58,10 @@ class PullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Received Pub/Sub messages. The Pub/Sub system will return zero messages if
-     * there are no more available in the backlog. The Pub/Sub system may return
-     * fewer than the `maxMessages` requested even if there are more messages
-     * available in the backlog.
+     * Received Pub/Sub messages. The list will be empty if there are no more
+     * messages available in the backlog. For JSON, the response can be entirely
+     * empty. The Pub/Sub system may return fewer than the `maxMessages` requested
+     * even if there are more messages available in the backlog.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      * @param \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $var

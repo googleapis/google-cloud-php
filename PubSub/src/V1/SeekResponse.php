@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Response for the `Seek` method (this response is empty).
+ *
  * Generated from protobuf message <code>google.pubsub.v1.SeekResponse</code>
  */
 class SeekResponse extends \Google\Protobuf\Internal\Message

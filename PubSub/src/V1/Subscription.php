@@ -92,11 +92,25 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $message_retention_duration = null;
     /**
-     * User labels.
+     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      */
     private $labels;
+    /**
+     * A policy that specifies the conditions for this subscription's expiration.
+     * A subscription is considered active as long as any connected subscriber is
+     * successfully consuming messages from the subscription or is issuing
+     * operations on the subscription. If `expiration_policy` is not set, a
+     * *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     * value for `expiration_policy.ttl` is 1 day.
+     * <b>BETA:</b> This feature is part of a beta release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
+     */
+    private $expiration_policy = null;
 
     /**
      * Constructor.
@@ -157,7 +171,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           changed in backward-incompatible ways and is not recommended for production
      *           use. It is not subject to any SLA or deprecation policy.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           User labels.
+     *           See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     *     @type \Google\Cloud\PubSub\V1\ExpirationPolicy $expiration_policy
+     *           A policy that specifies the conditions for this subscription's expiration.
+     *           A subscription is considered active as long as any connected subscriber is
+     *           successfully consuming messages from the subscription or is issuing
+     *           operations on the subscription. If `expiration_policy` is not set, a
+     *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     *           value for `expiration_policy.ttl` is 1 day.
+     *           <b>BETA:</b> This feature is part of a beta release. This API might be
+     *           changed in backward-incompatible ways and is not recommended for production
+     *           use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -402,7 +426,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User labels.
+     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -413,7 +437,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User labels.
+     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -423,6 +447,48 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A policy that specifies the conditions for this subscription's expiration.
+     * A subscription is considered active as long as any connected subscriber is
+     * successfully consuming messages from the subscription or is issuing
+     * operations on the subscription. If `expiration_policy` is not set, a
+     * *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     * value for `expiration_policy.ttl` is 1 day.
+     * <b>BETA:</b> This feature is part of a beta release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
+     * @return \Google\Cloud\PubSub\V1\ExpirationPolicy
+     */
+    public function getExpirationPolicy()
+    {
+        return $this->expiration_policy;
+    }
+
+    /**
+     * A policy that specifies the conditions for this subscription's expiration.
+     * A subscription is considered active as long as any connected subscriber is
+     * successfully consuming messages from the subscription or is issuing
+     * operations on the subscription. If `expiration_policy` is not set, a
+     * *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     * value for `expiration_policy.ttl` is 1 day.
+     * <b>BETA:</b> This feature is part of a beta release. This API might be
+     * changed in backward-incompatible ways and is not recommended for production
+     * use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
+     * @param \Google\Cloud\PubSub\V1\ExpirationPolicy $var
+     * @return $this
+     */
+    public function setExpirationPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\ExpirationPolicy::class);
+        $this->expiration_policy = $var;
 
         return $this;
     }
