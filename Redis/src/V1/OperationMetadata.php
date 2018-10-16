@@ -46,7 +46,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $status_detail = '';
     /**
-     * Specifies if cancellation was requested for the operaiton.
+     * Specifies if cancellation was requested for the operation.
      *
      * Generated from protobuf field <code>bool cancel_requested = 6;</code>
      */
@@ -75,7 +75,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $status_detail
      *           Operation status details.
      *     @type bool $cancel_requested
-     *           Specifies if cancellation was requested for the operaiton.
+     *           Specifies if cancellation was requested for the operation.
      *     @type string $api_version
      *           API version.
      * }
@@ -216,7 +216,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies if cancellation was requested for the operaiton.
+     * Specifies if cancellation was requested for the operation.
      *
      * Generated from protobuf field <code>bool cancel_requested = 6;</code>
      * @return bool
@@ -227,7 +227,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies if cancellation was requested for the operaiton.
+     * Specifies if cancellation was requested for the operation.
      *
      * Generated from protobuf field <code>bool cancel_requested = 6;</code>
      * @param bool $var
