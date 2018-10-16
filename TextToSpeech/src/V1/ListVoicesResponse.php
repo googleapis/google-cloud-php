@@ -22,9 +22,19 @@ class ListVoicesResponse extends \Google\Protobuf\Internal\Message
      */
     private $voices;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\TextToSpeech\V1\Voice[]|\Google\Protobuf\Internal\RepeatedField $voices
+     *           The list of voices.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Texttospeech\V1\CloudTts::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

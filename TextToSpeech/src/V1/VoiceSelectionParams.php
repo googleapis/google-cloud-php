@@ -49,9 +49,38 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      */
     private $ssml_gender = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $language_code
+     *           The language (and optionally also the region) of the voice expressed as a
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g.
+     *           "en-US". Required. This should not include a script tag (e.g. use
+     *           "cmn-cn" rather than "cmn-Hant-cn"), because the script will be inferred
+     *           from the input provided in the SynthesisInput.  The TTS service
+     *           will use this parameter to help choose an appropriate voice.  Note that
+     *           the TTS service may choose a voice with a slightly different language code
+     *           than the one selected; it may substitute a different region
+     *           (e.g. using en-US rather than en-CA if there isn't a Canadian voice
+     *           available), or even a different language, e.g. using "nb" (Norwegian
+     *           Bokmal) instead of "no" (Norwegian)".
+     *     @type string $name
+     *           The name of the voice. Optional; if not set, the service will choose a
+     *           voice based on the other parameters such as language_code and gender.
+     *     @type int $ssml_gender
+     *           The preferred gender of the voice. Optional; if not set, the service will
+     *           choose a voice based on the other parameters such as language_code and
+     *           name. Note that this is only a preference, not requirement; if a
+     *           voice of the appropriate gender is not available, the synthesizer should
+     *           substitute a voice with a different gender rather than failing the request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Texttospeech\V1\CloudTts::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

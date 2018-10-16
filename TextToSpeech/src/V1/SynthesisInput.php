@@ -20,9 +20,24 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
 {
     protected $input_source;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $text
+     *           The raw text to be synthesized.
+     *     @type string $ssml
+     *           The SSML document to be synthesized. The SSML document must be valid
+     *           and well-formed. Otherwise the RPC will fail and return
+     *           [google.rpc.Code.INVALID_ARGUMENT][]. For more information, see
+     *           [SSML](/speech/text-to-speech/docs/ssml).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Texttospeech\V1\CloudTts::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

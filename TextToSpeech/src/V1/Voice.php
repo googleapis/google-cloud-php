@@ -42,9 +42,27 @@ class Voice extends \Google\Protobuf\Internal\Message
      */
     private $natural_sample_rate_hertz = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *           The languages that this voice supports, expressed as
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags (e.g.
+     *           "en-US", "es-419", "cmn-tw").
+     *     @type string $name
+     *           The name of this voice.  Each distinct voice has a unique name.
+     *     @type int $ssml_gender
+     *           The gender of this voice.
+     *     @type int $natural_sample_rate_hertz
+     *           The natural sample rate (in hertz) for this voice.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Texttospeech\V1\CloudTts::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -34,9 +34,23 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     private $audio_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\TextToSpeech\V1\SynthesisInput $input
+     *           Required. The Synthesizer requires either plain text or SSML as input.
+     *     @type \Google\Cloud\TextToSpeech\V1\VoiceSelectionParams $voice
+     *           Required. The desired voice of the synthesized audio.
+     *     @type \Google\Cloud\TextToSpeech\V1\AudioConfig $audio_config
+     *           Required. The configuration of the synthesized audio.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Texttospeech\V1\CloudTts::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
