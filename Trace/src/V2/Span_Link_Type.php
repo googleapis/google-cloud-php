@@ -12,5 +12,5 @@ if (false) {
     class Span_Link_Type {}
 }
 class_exists(Span\Link\Type::class);
-@trigger_error('Google\Cloud\Trace\V2\Span_Link_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Trace\V2\Span\Link\Type instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Trace\V2\Span_Link_Type is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\Link\Type instead', E_USER_DEPRECATED);
 
