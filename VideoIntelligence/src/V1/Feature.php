@@ -7,7 +7,7 @@ namespace Google\Cloud\VideoIntelligence\V1;
 /**
  * Video annotation feature.
  *
- * Protobuf enum <code>Google\Cloud\Videointelligence\V1\Feature</code>
+ * Protobuf type <code>google.cloud.videointelligence.v1.Feature</code>
  */
 class Feature
 {

@@ -24,9 +24,19 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $frames;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *           All video frames where explicit content was detected.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

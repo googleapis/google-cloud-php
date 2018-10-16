@@ -70,9 +70,47 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      */
     private $location_id = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $input_uri
+     *           Input video location. Currently, only
+     *           [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *           supported, which must be specified in the following format:
+     *           `gs://bucket-id/object-id` (other URI formats return
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *           [Request URIs](/storage/docs/reference-uris).
+     *           A video URI may include wildcards in `object-id`, and thus identify
+     *           multiple videos. Supported wildcards: '*' to match 0 or more characters;
+     *           '?' to match 1 character. If unset, the input video should be embedded
+     *           in the request as `input_content`. If set, `input_content` should be unset.
+     *     @type string $input_content
+     *           The video data bytes.
+     *           If unset, the input video(s) should be specified via `input_uri`.
+     *           If set, `input_uri` should be unset.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $features
+     *           Requested video annotation features.
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoContext $video_context
+     *           Additional video context and/or feature-specific parameters.
+     *     @type string $output_uri
+     *           Optional location where the output (in JSON format) should be stored.
+     *           Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
+     *           URIs are supported, which must be specified in the following format:
+     *           `gs://bucket-id/object-id` (other URI formats return
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *           [Request URIs](/storage/docs/reference-uris).
+     *     @type string $location_id
+     *           Optional cloud region where annotation should take place. Supported cloud
+     *           regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
+     *           is specified, a region will be determined based on video file location.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

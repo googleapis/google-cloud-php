@@ -40,9 +40,29 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $label_detection_mode
+     *           What labels should be detected with LABEL_DETECTION, in addition to
+     *           video-level labels or segment-level labels.
+     *           If unspecified, defaults to `SHOT_MODE`.
+     *     @type bool $stationary_camera
+     *           Whether the video has been shot from a stationary (i.e. non-moving) camera.
+     *           When set to true, might improve detection accuracy for moving objects.
+     *           Should be used with `SHOT_AND_FRAME_MODE` enabled.
+     *     @type string $model
+     *           Model to use for label detection.
+     *           Supported values: "builtin/stable" (the default if unset) and
+     *           "builtin/latest".
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -28,9 +28,21 @@ class LabelSegment extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
+     *           Video segment where a label was detected.
+     *     @type float $confidence
+     *           Confidence that the label is accurate. Range: [0, 1].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

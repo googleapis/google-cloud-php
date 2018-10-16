@@ -30,9 +30,23 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      */
     private $end_time_offset = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Duration $start_time_offset
+     *           Time-offset, relative to the beginning of the video,
+     *           corresponding to the start of the segment (inclusive).
+     *     @type \Google\Protobuf\Duration $end_time_offset
+     *           Time-offset, relative to the beginning of the video,
+     *           corresponding to the end of the segment (inclusive).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

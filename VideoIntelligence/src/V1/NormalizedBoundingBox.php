@@ -42,9 +42,25 @@ class NormalizedBoundingBox extends \Google\Protobuf\Internal\Message
      */
     private $bottom = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type float $left
+     *           Left X coordinate.
+     *     @type float $top
+     *           Top Y coordinate.
+     *     @type float $right
+     *           Right X coordinate.
+     *     @type float $bottom
+     *           Bottom Y coordinate.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

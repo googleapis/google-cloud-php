@@ -29,9 +29,22 @@ class LabelFrame extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Duration $time_offset
+     *           Time-offset, relative to the beginning of the video, corresponding to the
+     *           video frame for this location.
+     *     @type float $confidence
+     *           Confidence that the label is accurate. Range: [0, 1].
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

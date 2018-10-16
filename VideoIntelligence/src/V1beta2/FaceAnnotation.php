@@ -34,9 +34,23 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $frames;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $thumbnail
+     *           Thumbnail of a representative face view (in JPEG format).
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\FaceSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *           All video segments where a face was detected.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\FaceFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *           All video frames where a face was detected.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

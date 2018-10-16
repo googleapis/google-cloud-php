@@ -7,7 +7,7 @@ namespace Google\Cloud\VideoIntelligence\V1;
 /**
  * Label detection mode.
  *
- * Protobuf enum <code>Google\Cloud\Videointelligence\V1\LabelDetectionMode</code>
+ * Protobuf type <code>google.cloud.videointelligence.v1.LabelDetectionMode</code>
  */
 class LabelDetectionMode
 {

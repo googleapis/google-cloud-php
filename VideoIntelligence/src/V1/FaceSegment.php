@@ -22,9 +22,19 @@ class FaceSegment extends \Google\Protobuf\Internal\Message
      */
     private $segment = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
+     *           Video segment where a face was detected.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
