@@ -8,7 +8,7 @@ namespace Google\Cloud\TextToSpeech\V1;
  * Configuration to set up audio encoder. The encoding determines the output
  * audio format that we'd like.
  *
- * Protobuf enum <code>Google\Cloud\Texttospeech\V1\AudioEncoding</code>
+ * Protobuf type <code>google.cloud.texttospeech.v1.AudioEncoding</code>
  */
 class AudioEncoding
 {

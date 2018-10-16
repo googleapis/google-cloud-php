@@ -8,7 +8,7 @@ namespace Google\Cloud\TextToSpeech\V1;
  * Gender of the voice as described in
  * [SSML voice element](https://www.w3.org/TR/speech-synthesis11/#edef_voice).
  *
- * Protobuf enum <code>Google\Cloud\Texttospeech\V1\SsmlVoiceGender</code>
+ * Protobuf type <code>google.cloud.texttospeech.v1.SsmlVoiceGender</code>
  */
 class SsmlVoiceGender
 {

@@ -50,7 +50,6 @@ use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
  * ```
  * $textToSpeechClient = new TextToSpeechClient();
  * try {
- *
  *     $response = $textToSpeechClient->listVoices();
  * } finally {
  *     $textToSpeechClient->close();
@@ -97,6 +96,7 @@ class TextToSpeechGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/text_to_speech_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/text_to_speech_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/text_to_speech_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -174,7 +174,6 @@ class TextToSpeechGapicClient
      * ```
      * $textToSpeechClient = new TextToSpeechClient();
      * try {
-     *
      *     $response = $textToSpeechClient->listVoices();
      * } finally {
      *     $textToSpeechClient->close();
