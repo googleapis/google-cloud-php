@@ -323,9 +323,9 @@ class AssetServiceGapicClient
     }
 
     /**
-     * Exports assets with time and resource types to a given Google Cloud Storage
+     * Exports assets with time and resource types to a given Cloud Storage
      * location. The output format is newline-delimited JSON.
-     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing users
+     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing you
      * to keep track of the export.
      *
      * Sample code:
@@ -368,9 +368,9 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The relative name of the root asset. Can only be an organization
-     *                                   number (such as "organizations/123"), or a project id (such as
-     *                                   "projects/my-project-id") or a project number (such as "projects/12345").
+     * @param string       $parent       Required. The relative name of the root asset. This can only be an organization
+     *                                   number (such as "organizations/123"), a project ID (such as
+     *                                   "projects/my-project-id"), or a project number (such as "projects/12345").
      * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
      *                                   to. All results will be in newline delimited JSON format.
      * @param array        $optionalArgs {
@@ -383,7 +383,7 @@ class AssetServiceGapicClient
      *          volatile window during which running the same query may get different
      *          results.
      *     @type string[] $assetTypes
-     *          A list of asset types of which to take a snapshot for. Example:
+     *          A list of asset types of which to take a snapshot for. For example:
      *          "google.compute.disk". If specified, only matching assets will be returned.
      *     @type int $contentType
      *          Asset content type. If not specified, no content but the asset name will be
@@ -425,11 +425,11 @@ class AssetServiceGapicClient
     }
 
     /**
-     * Batch gets assets update history that overlaps a time window.
+     * Batch gets the update history of assets that overlap a time window.
      * For RESOURCE content, this API outputs history with asset in both
      * non-delete or deleted status.
-     * For IAM_POLICY content, this API only outputs history when asset and its
-     * attached IAM POLICY both exist. So there may be gaps in the output history.
+     * For IAM_POLICY content, this API outputs history when the asset and its
+     * attached IAM POLICY both exist. This can create gaps in the output history.
      *
      * Sample code:
      * ```
@@ -445,8 +445,8 @@ class AssetServiceGapicClient
      * ```
      *
      * @param string     $parent         Required. The relative name of the root asset. It can only be an
-     *                                   organization number (such as "organizations/123"), or a project id (such as
-     *                                   "projects/my-project-id")"or a project number (such as "projects/12345").
+     *                                   organization number (such as "organizations/123"), a project ID (such as
+     *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
      * @param int        $contentType    Required. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
      * @param TimeWindow $readTimeWindow Required. The time window for the asset history. The start time is
@@ -456,10 +456,10 @@ class AssetServiceGapicClient
      *                                   Optional.
      *
      *     @type string[] $assetNames
-     *          A list of the full names of the assets. See:
-     *          https://cloud.google.com/apis/design/resource_names#full_resource_name
-     *          Example:
-     *          "//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1".
+     *          A list of the full names of the assets. For example:
+     *          `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     *          See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     *          for more info.
      *
      *          The request becomes a no-op if the asset name list is empty, and the max
      *          size of the asset name list is 100 in one request.

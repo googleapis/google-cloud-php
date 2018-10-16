@@ -28,7 +28,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{parent=organizations/*}:batchGetAssetHistory',
+                        'uriTemplate' => '/v1beta1/{parent=organizations/*}:batchGetAssetsHistory',
                     ],
                 ],
                 'placeholders' => [

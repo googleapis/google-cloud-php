@@ -9,17 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Cloud Storage (GCS) location.
+ * A Cloud Storage location.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1beta1.GcsDestination</code>
  */
 class GcsDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The path of the GCS objects. It's the same path that is used by gsutil, for
-     * example: "gs://bucket_name/object_path". See:
-     * https://cloud.google.com/storage/docs/viewing-editing-metadata for more
-     * information.
+     * The path of the Cloud Storage objects. It's the same path that is used by
+     *  gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * for more information.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
@@ -32,10 +31,9 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The path of the GCS objects. It's the same path that is used by gsutil, for
-     *           example: "gs://bucket_name/object_path". See:
-     *           https://cloud.google.com/storage/docs/viewing-editing-metadata for more
-     *           information.
+     *           The path of the Cloud Storage objects. It's the same path that is used by
+     *            gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     *           for more information.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,10 +42,9 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of the GCS objects. It's the same path that is used by gsutil, for
-     * example: "gs://bucket_name/object_path". See:
-     * https://cloud.google.com/storage/docs/viewing-editing-metadata for more
-     * information.
+     * The path of the Cloud Storage objects. It's the same path that is used by
+     *  gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * for more information.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -58,10 +55,9 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of the GCS objects. It's the same path that is used by gsutil, for
-     * example: "gs://bucket_name/object_path". See:
-     * https://cloud.google.com/storage/docs/viewing-editing-metadata for more
-     * information.
+     * The path of the Cloud Storage objects. It's the same path that is used by
+     *  gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * for more information.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var

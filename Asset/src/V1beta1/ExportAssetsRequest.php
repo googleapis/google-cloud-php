@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative name of the root asset. Can only be an organization
-     * number (such as "organizations/123"), or a project id (such as
-     * "projects/my-project-id") or a project number (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an organization
+     * number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -34,7 +34,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_time = null;
     /**
-     * A list of asset types of which to take a snapshot for. Example:
+     * A list of asset types of which to take a snapshot for. For example:
      * "google.compute.disk". If specified, only matching assets will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -62,9 +62,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative name of the root asset. Can only be an organization
-     *           number (such as "organizations/123"), or a project id (such as
-     *           "projects/my-project-id") or a project number (such as "projects/12345").
+     *           Required. The relative name of the root asset. This can only be an organization
+     *           number (such as "organizations/123"), a project ID (such as
+     *           "projects/my-project-id"), or a project number (such as "projects/12345").
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp in
      *           the past or of the current time. If not specified, the current time will be
@@ -72,7 +72,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           volatile window during which running the same query may get different
      *           results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           A list of asset types of which to take a snapshot for. Example:
+     *           A list of asset types of which to take a snapshot for. For example:
      *           "google.compute.disk". If specified, only matching assets will be returned.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name will be
@@ -88,9 +88,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. Can only be an organization
-     * number (such as "organizations/123"), or a project id (such as
-     * "projects/my-project-id") or a project number (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an organization
+     * number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -101,9 +101,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. Can only be an organization
-     * number (such as "organizations/123"), or a project id (such as
-     * "projects/my-project-id") or a project number (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an organization
+     * number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), or a project number (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -152,7 +152,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types of which to take a snapshot for. Example:
+     * A list of asset types of which to take a snapshot for. For example:
      * "google.compute.disk". If specified, only matching assets will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
@@ -164,7 +164,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types of which to take a snapshot for. Example:
+     * A list of asset types of which to take a snapshot for. For example:
      * "google.compute.disk". If specified, only matching assets will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
