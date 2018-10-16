@@ -17,9 +17,23 @@ class AttributeValue extends \Google\Protobuf\Internal\Message
 {
     protected $value;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Trace\V2\TruncatableString $string_value
+     *           A string up to 256 bytes long.
+     *     @type int|string $int_value
+     *           A 64-bit signed integer.
+     *     @type bool $bool_value
+     *           A Boolean value represented by `true` or `false`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

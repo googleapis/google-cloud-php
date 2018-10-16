@@ -30,9 +30,23 @@ class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
      */
     private $spans;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the project where the spans belong. The format is
+     *           `projects/[PROJECT_ID]`.
+     *     @type \Google\Cloud\Trace\V2\Span[]|\Google\Protobuf\Internal\RepeatedField $spans
+     *           A list of new spans. The span names must not match existing
+     *           spans, or the results are undefined.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Tracing::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

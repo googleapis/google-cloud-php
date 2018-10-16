@@ -34,9 +34,27 @@ class TruncatableString extends \Google\Protobuf\Internal\Message
      */
     private $truncated_byte_count = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $value
+     *           The shortened string. For example, if the original string is 500
+     *           bytes long and the limit of the string is 128 bytes, then
+     *           `value` contains the first 128 bytes of the 500-byte string.
+     *           Truncation always happens on a UTF8 character boundary. If there
+     *           are multi-byte characters in the string, then the length of the
+     *           shortened string might be less than the size limit.
+     *     @type int $truncated_byte_count
+     *           The number of bytes removed from the original string. If this
+     *           value is 0, then the string was not shortened.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

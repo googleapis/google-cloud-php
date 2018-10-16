@@ -121,9 +121,65 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     private $child_span_count = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           The resource name of the span in the following format:
+     *               projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]
+     *           [TRACE_ID] is a unique identifier for a trace within a project;
+     *           it is a 32-character hexadecimal encoding of a 16-byte array.
+     *           [SPAN_ID] is a unique identifier for a span within a trace; it
+     *           is a 16-character hexadecimal encoding of an 8-byte array.
+     *     @type string $span_id
+     *           The [SPAN_ID] portion of the span's resource name.
+     *     @type string $parent_span_id
+     *           The [SPAN_ID] of this span's parent span. If this is a root span,
+     *           then this field must be empty.
+     *     @type \Google\Cloud\Trace\V2\TruncatableString $display_name
+     *           A description of the span's operation (up to 128 bytes).
+     *           Stackdriver Trace displays the description in the
+     *           {% dynamic print site_values.console_name %}.
+     *           For example, the display name can be a qualified method name or a file name
+     *           and a line number where the operation is called. A best practice is to use
+     *           the same display name within an application and at the same call point.
+     *           This makes it easier to correlate spans in different traces.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           The start time of the span. On the client side, this is the time kept by
+     *           the local machine where the span execution starts. On the server side, this
+     *           is the time when the server's application handler starts running.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           The end time of the span. On the client side, this is the time kept by
+     *           the local machine where the span execution ends. On the server side, this
+     *           is the time when the server application handler stops running.
+     *     @type \Google\Cloud\Trace\V2\Span\Attributes $attributes
+     *           A set of attributes on the span. You can have up to 32 attributes per
+     *           span.
+     *     @type \Google\Cloud\Trace\V2\StackTrace $stack_trace
+     *           Stack trace captured at the start of the span.
+     *     @type \Google\Cloud\Trace\V2\Span\TimeEvents $time_events
+     *           A set of time events. You can have up to 32 annotations and 128 message
+     *           events per span.
+     *     @type \Google\Cloud\Trace\V2\Span\Links $links
+     *           Links associated with the span. You can have up to 128 links per Span.
+     *     @type \Google\Rpc\Status $status
+     *           An optional final status for this span.
+     *     @type \Google\Protobuf\BoolValue $same_process_as_parent_span
+     *           (Optional) Set this parameter to indicate whether this span is in
+     *           the same process as its parent. If you do not set this parameter,
+     *           Stackdriver Trace is unable to take advantage of this helpful
+     *           information.
+     *     @type \Google\Protobuf\Int32Value $child_span_count
+     *           An optional number of child spans that were generated while this span
+     *           was active. If set, allows implementation to detect missing child spans.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -319,7 +375,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 7;</code>
-     * @return \Google\Cloud\Trace\V2\Span_Attributes
+     * @return \Google\Cloud\Trace\V2\Span\Attributes
      */
     public function getAttributes()
     {
@@ -331,7 +387,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 7;</code>
-     * @param \Google\Cloud\Trace\V2\Span_Attributes $var
+     * @param \Google\Cloud\Trace\V2\Span\Attributes $var
      * @return $this
      */
     public function setAttributes($var)
@@ -373,7 +429,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * events per span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvents time_events = 9;</code>
-     * @return \Google\Cloud\Trace\V2\Span_TimeEvents
+     * @return \Google\Cloud\Trace\V2\Span\TimeEvents
      */
     public function getTimeEvents()
     {
@@ -385,7 +441,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * events per span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvents time_events = 9;</code>
-     * @param \Google\Cloud\Trace\V2\Span_TimeEvents $var
+     * @param \Google\Cloud\Trace\V2\Span\TimeEvents $var
      * @return $this
      */
     public function setTimeEvents($var)
@@ -400,7 +456,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Links associated with the span. You can have up to 128 links per Span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
-     * @return \Google\Cloud\Trace\V2\Span_Links
+     * @return \Google\Cloud\Trace\V2\Span\Links
      */
     public function getLinks()
     {
@@ -411,7 +467,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Links associated with the span. You can have up to 128 links per Span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
-     * @param \Google\Cloud\Trace\V2\Span_Links $var
+     * @param \Google\Cloud\Trace\V2\Span\Links $var
      * @return $this
      */
     public function setLinks($var)
