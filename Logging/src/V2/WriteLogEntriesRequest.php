@@ -22,11 +22,13 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     * `[LOG_ID]` must be URL-encoded. For example,
-     * `"projects/my-project-id/logs/syslog"` or
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * For more information about log names, see
-     * [LogEntry][google.logging.v2.LogEntry].
+     * `[LOG_ID]` must be URL-encoded. For example:
+     *     "projects/my-project-id/logs/syslog"
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
+     * The permission <code>logging.logEntries.create</code> is needed on each
+     * project, organization, billing account, or folder that is receiving
+     * new log entries, whether the resource is specified in
+     * <code>logName</code> or in an individual log entry.
      *
      * Generated from protobuf field <code>string log_name = 1;</code>
      */
@@ -52,7 +54,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. The log entries to send to Stackdriver Logging. The order of log
+     * Required. The log entries to send to Logging. The order of log
      * entries in this list does not matter. Values supplied in this method's
      * `log_name`, `resource`, and `labels` fields are copied into those log
      * entries in this list that do not include values for their corresponding
@@ -108,11 +110,13 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *               "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *               "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     *           `[LOG_ID]` must be URL-encoded. For example,
-     *           `"projects/my-project-id/logs/syslog"` or
-     *           `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
-     *           For more information about log names, see
-     *           [LogEntry][google.logging.v2.LogEntry].
+     *           `[LOG_ID]` must be URL-encoded. For example:
+     *               "projects/my-project-id/logs/syslog"
+     *               "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
+     *           The permission <code>logging.logEntries.create</code> is needed on each
+     *           project, organization, billing account, or folder that is receiving
+     *           new log entries, whether the resource is specified in
+     *           <code>logName</code> or in an individual log entry.
      *     @type \Google\Api\MonitoredResource $resource
      *           Optional. A default monitored resource object that is assigned to all log
      *           entries in `entries` that do not specify a value for `resource`. Example:
@@ -126,7 +130,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           as a label in this parameter, then the log entry's label is not changed.
      *           See [LogEntry][google.logging.v2.LogEntry].
      *     @type \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
-     *           Required. The log entries to send to Stackdriver Logging. The order of log
+     *           Required. The log entries to send to Logging. The order of log
      *           entries in this list does not matter. Values supplied in this method's
      *           `log_name`, `resource`, and `labels` fields are copied into those log
      *           entries in this list that do not include values for their corresponding
@@ -170,11 +174,13 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     * `[LOG_ID]` must be URL-encoded. For example,
-     * `"projects/my-project-id/logs/syslog"` or
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * For more information about log names, see
-     * [LogEntry][google.logging.v2.LogEntry].
+     * `[LOG_ID]` must be URL-encoded. For example:
+     *     "projects/my-project-id/logs/syslog"
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
+     * The permission <code>logging.logEntries.create</code> is needed on each
+     * project, organization, billing account, or folder that is receiving
+     * new log entries, whether the resource is specified in
+     * <code>logName</code> or in an individual log entry.
      *
      * Generated from protobuf field <code>string log_name = 1;</code>
      * @return string
@@ -191,11 +197,13 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
      *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
-     * `[LOG_ID]` must be URL-encoded. For example,
-     * `"projects/my-project-id/logs/syslog"` or
-     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * For more information about log names, see
-     * [LogEntry][google.logging.v2.LogEntry].
+     * `[LOG_ID]` must be URL-encoded. For example:
+     *     "projects/my-project-id/logs/syslog"
+     *     "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"
+     * The permission <code>logging.logEntries.create</code> is needed on each
+     * project, organization, billing account, or folder that is receiving
+     * new log entries, whether the resource is specified in
+     * <code>logName</code> or in an individual log entry.
      *
      * Generated from protobuf field <code>string log_name = 1;</code>
      * @param string $var
@@ -278,7 +286,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The log entries to send to Stackdriver Logging. The order of log
+     * Required. The log entries to send to Logging. The order of log
      * entries in this list does not matter. Values supplied in this method's
      * `log_name`, `resource`, and `labels` fields are copied into those log
      * entries in this list that do not include values for their corresponding
@@ -308,7 +316,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The log entries to send to Stackdriver Logging. The order of log
+     * Required. The log entries to send to Logging. The order of log
      * entries in this list does not matter. Values supplied in this method's
      * `log_name`, `resource`, and `labels` fields are copied into those log
      * entries in this list that do not include values for their corresponding

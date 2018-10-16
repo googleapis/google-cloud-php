@@ -5,20 +5,20 @@
 namespace Google\Cloud\Logging\V2\LogMetric;
 
 /**
- * Stackdriver Logging API version.
+ * Logging API version.
  *
  * Protobuf type <code>google.logging.v2.LogMetric.ApiVersion</code>
  */
 class ApiVersion
 {
     /**
-     * Stackdriver Logging API v2.
+     * Logging API v2.
      *
      * Generated from protobuf enum <code>V2 = 0;</code>
      */
     const V2 = 0;
     /**
-     * Stackdriver Logging API v1.
+     * Logging API v1.
      *
      * Generated from protobuf enum <code>V1 = 1;</code>
      */
