@@ -347,6 +347,95 @@ return [
                     ],
                 ],
             ],
+            'CreateStoredInfoType' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateStoredInfoType' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetStoredInfoType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListStoredInfoTypes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteStoredInfoType' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];
