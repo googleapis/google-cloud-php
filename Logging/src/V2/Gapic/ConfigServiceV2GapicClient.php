@@ -52,8 +52,8 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: Service for configuring sinks used to export log entries outside of
- * Stackdriver Logging.
+ * Service Description: Service for configuring sinks used to export log entries out of
+ * Logging.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -504,7 +504,7 @@ class ConfigServiceV2GapicClient
      *          Optional. Determines the kind of IAM identity returned as `writer_identity`
      *          in the new sink.  If this value is omitted or set to false, and if the
      *          sink's parent is a project, then the value returned as `writer_identity` is
-     *          the same group or service account used by Stackdriver Logging before the
+     *          the same group or service account used by Logging before the
      *          addition of writer identities to this API. The sink's destination must be
      *          in the same project as the sink itself.
      *
@@ -598,7 +598,7 @@ class ConfigServiceV2GapicClient
      *          empty updateMask will be an error.
      *
      *          For a detailed `FieldMask` definition, see
-     *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *          https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      *
      *          Example: `updateMask=filter`.
      *     @type RetrySettings|array $retrySettings

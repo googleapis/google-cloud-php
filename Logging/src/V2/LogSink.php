@@ -61,7 +61,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
     private $output_version_format = 0;
     /**
      * Output only. An IAM identity&mdash;a service account or group&mdash;under
-     * which Stackdriver Logging writes the exported log entries to the sink's
+     * which Logging writes the exported log entries to the sink's
      * destination.  This field is set by
      * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
      * and
@@ -139,7 +139,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *           entries.  The v2 format is used by default and cannot be changed.
      *     @type string $writer_identity
      *           Output only. An IAM identity&mdash;a service account or group&mdash;under
-     *           which Stackdriver Logging writes the exported log entries to the sink's
+     *           which Logging writes the exported log entries to the sink's
      *           destination.  This field is set by
      *           [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
      *           and
@@ -313,7 +313,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. An IAM identity&mdash;a service account or group&mdash;under
-     * which Stackdriver Logging writes the exported log entries to the sink's
+     * which Logging writes the exported log entries to the sink's
      * destination.  This field is set by
      * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
      * and
@@ -336,7 +336,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. An IAM identity&mdash;a service account or group&mdash;under
-     * which Stackdriver Logging writes the exported log entries to the sink's
+     * which Logging writes the exported log entries to the sink's
      * destination.  This field is set by
      * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
      * and

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//
 namespace Google\Cloud\Logging\V2;
 
 /**
- * Service for configuring sinks used to export log entries outside of
- * Stackdriver Logging.
+ * Service for configuring sinks used to export log entries out of
+ * Logging.
  */
 class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
 

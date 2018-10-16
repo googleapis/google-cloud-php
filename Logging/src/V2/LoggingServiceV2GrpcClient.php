@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\Logging\V2;
 
@@ -50,11 +51,10 @@ class LoggingServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Writes log entries to Stackdriver Logging. This API method is the
-     * only way to send log entries to Stackdriver Logging. This method
-     * is used, directly or indirectly, by the Stackdriver Logging agent
-     * (fluentd) and all logging libraries configured to use Stackdriver
-     * Logging.
+     * Writes log entries to Logging. This API method is the
+     * only way to send log entries to Logging. This method
+     * is used, directly or indirectly, by the Logging agent
+     * (fluentd) and all logging libraries configured to use Logging.
      * A single request may contain log entries for a maximum of 1000
      * different resources (projects, organizations, billing accounts or
      * folders)
@@ -72,7 +72,7 @@ class LoggingServiceV2GrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lists log entries.  Use this method to retrieve log entries from
-     * Stackdriver Logging.  For ways to export log entries, see
+     * Logging.  For ways to export log entries, see
      * [Exporting Logs](/logging/docs/export).
      * @param \Google\Cloud\Logging\V2\ListLogEntriesRequest $argument input argument
      * @param array $metadata metadata
@@ -87,8 +87,7 @@ class LoggingServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the descriptors for monitored resource types used by Stackdriver
-     * Logging.
+     * Lists the descriptors for monitored resource types used by Logging.
      * @param \Google\Cloud\Logging\V2\ListMonitoredResourceDescriptorsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

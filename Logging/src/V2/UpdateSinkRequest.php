@@ -60,7 +60,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * At some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.
      * For a detailed `FieldMask` definition, see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      * Example: `updateMask=filter`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
@@ -106,7 +106,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *           At some point in the future, behavior will be removed and specifying an
      *           empty updateMask will be an error.
      *           For a detailed `FieldMask` definition, see
-     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      *           Example: `updateMask=filter`.
      * }
      */
@@ -237,7 +237,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * At some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.
      * For a detailed `FieldMask` definition, see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      * Example: `updateMask=filter`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
@@ -258,7 +258,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * At some point in the future, behavior will be removed and specifying an
      * empty updateMask will be an error.
      * For a detailed `FieldMask` definition, see
-     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      * Example: `updateMask=filter`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
