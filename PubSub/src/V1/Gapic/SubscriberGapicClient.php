@@ -374,7 +374,7 @@ class SubscriberGapicClient
 
     /**
      * Creates a subscription to a given topic. See the
-     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
@@ -454,7 +454,7 @@ class SubscriberGapicClient
      *          changed in backward-incompatible ways and is not recommended for production
      *          use. It is not subject to any SLA or deprecation policy.
      *     @type array $labels
-     *          See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *     @type ExpirationPolicy $expirationPolicy
      *          A policy that specifies the conditions for this subscription's expiration.
      *          A subscription is considered active as long as any connected subscriber is
@@ -1134,7 +1134,7 @@ class SubscriberGapicClient
      *                             If the name is not provided in the request, the server will assign a random
      *                             name for this snapshot on the same project as the subscription.
      *                             Note that for REST API requests, you must specify a name.  See the
-     *                             <a href="/pubsub/docs/admin#resource_names">resource name rules</a>.
+     *                             <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">resource name rules</a>.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param string $subscription The subscription whose backlog the snapshot retains.
      *                             Specifically, the created snapshot is guaranteed to retain:
@@ -1149,7 +1149,7 @@ class SubscriberGapicClient
      *                             Optional.
      *
      *     @type array $labels
-     *          See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

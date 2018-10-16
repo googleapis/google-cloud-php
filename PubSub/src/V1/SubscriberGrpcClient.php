@@ -37,7 +37,7 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a subscription to a given topic. See the
-     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *

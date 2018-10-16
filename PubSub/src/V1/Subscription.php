@@ -92,7 +92,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $message_retention_duration = null;
     /**
-     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      */
@@ -171,7 +171,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           changed in backward-incompatible ways and is not recommended for production
      *           use. It is not subject to any SLA or deprecation policy.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *     @type \Google\Cloud\PubSub\V1\ExpirationPolicy $expiration_policy
      *           A policy that specifies the conditions for this subscription's expiration.
      *           A subscription is considered active as long as any connected subscriber is
@@ -426,7 +426,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -437,7 +437,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

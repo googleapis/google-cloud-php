@@ -27,7 +27,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      */
@@ -58,7 +58,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           signs (`%`). It must be between 3 and 255 characters in length, and it
      *           must not start with `"goog"`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *     @type \Google\Cloud\PubSub\V1\MessageStoragePolicy $message_storage_policy
      *           Policy constraining how messages published to the topic may be stored. It
      *           is determined when the topic is created based on the policy configured at
@@ -110,7 +110,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -121,7 +121,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
