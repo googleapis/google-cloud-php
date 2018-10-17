@@ -4,92 +4,13 @@
 
 namespace Google\Cloud\Trace\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Text annotation with a set of attributes.
- *
- * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation</code>
- */
-class Span_TimeEvent_Annotation extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * A user-supplied message describing the event. The maximum length for
-     * the description is 256 bytes.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString description = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Trace\V2\Span\TimeEvent\Annotation instead.
+     * @deprecated
      */
-    private $description = null;
-    /**
-     * A set of attributes on the annotation. You can have up to 4 attributes
-     * per Annotation.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 2;</code>
-     */
-    private $attributes = null;
-
-    public function __construct() {
-        \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * A user-supplied message describing the event. The maximum length for
-     * the description is 256 bytes.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString description = 1;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * A user-supplied message describing the event. The maximum length for
-     * the description is 256 bytes.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString description = 1;</code>
-     * @param \Google\Cloud\Trace\V2\TruncatableString $var
-     * @return $this
-     */
-    public function setDescription($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\TruncatableString::class);
-        $this->description = $var;
-
-        return $this;
-    }
-
-    /**
-     * A set of attributes on the annotation. You can have up to 4 attributes
-     * per Annotation.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 2;</code>
-     * @return \Google\Cloud\Trace\V2\Span_Attributes
-     */
-    public function getAttributes()
-    {
-        return $this->attributes;
-    }
-
-    /**
-     * A set of attributes on the annotation. You can have up to 4 attributes
-     * per Annotation.
-     *
-     * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 2;</code>
-     * @param \Google\Cloud\Trace\V2\Span_Attributes $var
-     * @return $this
-     */
-    public function setAttributes($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Trace\V2\Span_Attributes::class);
-        $this->attributes = $var;
-
-        return $this;
-    }
-
+    class Span_TimeEvent_Annotation {}
 }
+class_exists(Span\TimeEvent\Annotation::class);
+@trigger_error('Google\Cloud\Trace\V2\Span_TimeEvent_Annotation is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\TimeEvent\Annotation instead', E_USER_DEPRECATED);
 

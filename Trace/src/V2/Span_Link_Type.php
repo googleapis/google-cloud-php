@@ -4,31 +4,13 @@
 
 namespace Google\Cloud\Trace\V2;
 
-/**
- * The relationship of the current span relative to the linked span: child,
- * parent, or unspecified.
- *
- * Protobuf enum <code>Google\Devtools\Cloudtrace\V2\Span\Link\Type</code>
- */
-class Span_Link_Type
-{
+if (false) {
     /**
-     * The relationship of the two spans is unknown.
-     *
-     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Trace\V2\Span\Link\Type instead.
+     * @deprecated
      */
-    const TYPE_UNSPECIFIED = 0;
-    /**
-     * The linked span is a child of the current span.
-     *
-     * Generated from protobuf enum <code>CHILD_LINKED_SPAN = 1;</code>
-     */
-    const CHILD_LINKED_SPAN = 1;
-    /**
-     * The linked span is a parent of the current span.
-     *
-     * Generated from protobuf enum <code>PARENT_LINKED_SPAN = 2;</code>
-     */
-    const PARENT_LINKED_SPAN = 2;
+    class Span_Link_Type {}
 }
+class_exists(Span\Link\Type::class);
+@trigger_error('Google\Cloud\Trace\V2\Span_Link_Type is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\Link\Type instead', E_USER_DEPRECATED);
 

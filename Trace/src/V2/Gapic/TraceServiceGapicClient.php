@@ -36,9 +36,9 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Trace\V2\BatchWriteSpansRequest;
 use Google\Cloud\Trace\V2\Span;
-use Google\Cloud\Trace\V2\Span_Attributes;
-use Google\Cloud\Trace\V2\Span_Links;
-use Google\Cloud\Trace\V2\Span_TimeEvents;
+use Google\Cloud\Trace\V2\Span\Attributes;
+use Google\Cloud\Trace\V2\Span\Links;
+use Google\Cloud\Trace\V2\Span\TimeEvents;
 use Google\Cloud\Trace\V2\StackTrace;
 use Google\Cloud\Trace\V2\TruncatableString;
 use Google\Protobuf\BoolValue;
@@ -117,6 +117,7 @@ class TraceServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/trace_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/trace_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/trace_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -388,15 +389,15 @@ class TraceServiceGapicClient
      *     @type string $parentSpanId
      *          The [SPAN_ID] of this span's parent span. If this is a root span,
      *          then this field must be empty.
-     *     @type Span_Attributes $attributes
+     *     @type Attributes $attributes
      *          A set of attributes on the span. You can have up to 32 attributes per
      *          span.
      *     @type StackTrace $stackTrace
      *          Stack trace captured at the start of the span.
-     *     @type Span_TimeEvents $timeEvents
+     *     @type TimeEvents $timeEvents
      *          A set of time events. You can have up to 32 annotations and 128 message
      *          events per span.
-     *     @type Span_Links $links
+     *     @type Links $links
      *          Links associated with the span. You can have up to 128 links per Span.
      *     @type Status $status
      *          An optional final status for this span.

@@ -34,16 +34,34 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      */
     private $stack_trace_hash_id = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Trace\V2\StackTrace\StackFrames $stack_frames
+     *           Stack frames in this stack trace. A maximum of 128 frames are allowed.
+     *     @type int|string $stack_trace_hash_id
+     *           The hash ID is used to conserve network bandwidth for duplicate
+     *           stack traces within a single trace.
+     *           Often multiple spans will have identical stack traces.
+     *           The first occurrence of a stack trace should contain both the
+     *           `stackFrame` content and a value in `stackTraceHashId`.
+     *           Subsequent spans within the same request can refer
+     *           to that stack trace by only setting `stackTraceHashId`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
      * Stack frames in this stack trace. A maximum of 128 frames are allowed.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.StackTrace.StackFrames stack_frames = 1;</code>
-     * @return \Google\Cloud\Trace\V2\StackTrace_StackFrames
+     * @return \Google\Cloud\Trace\V2\StackTrace\StackFrames
      */
     public function getStackFrames()
     {
@@ -54,7 +72,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      * Stack frames in this stack trace. A maximum of 128 frames are allowed.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.StackTrace.StackFrames stack_frames = 1;</code>
-     * @param \Google\Cloud\Trace\V2\StackTrace_StackFrames $var
+     * @param \Google\Cloud\Trace\V2\StackTrace\StackFrames $var
      * @return $this
      */
     public function setStackFrames($var)

@@ -30,9 +30,23 @@ class Module extends \Google\Protobuf\Internal\Message
      */
     private $build_id = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Trace\V2\TruncatableString $module
+     *           For example: main binary, kernel modules, and dynamic libraries
+     *           such as libc.so, sharedlib.so (up to 256 bytes).
+     *     @type \Google\Cloud\Trace\V2\TruncatableString $build_id
+     *           A unique identifier for the module, usually a hash of its
+     *           contents (up to 128 bytes).
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Cloudtrace\V2\Trace::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

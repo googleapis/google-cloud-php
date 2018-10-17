@@ -4,30 +4,13 @@
 
 namespace Google\Cloud\Trace\V2;
 
-/**
- * Indicates whether the message was sent or received.
- *
- * Protobuf enum <code>Google\Devtools\Cloudtrace\V2\Span\TimeEvent\MessageEvent\Type</code>
- */
-class Span_TimeEvent_MessageEvent_Type
-{
+if (false) {
     /**
-     * Unknown event type.
-     *
-     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent\Type instead.
+     * @deprecated
      */
-    const TYPE_UNSPECIFIED = 0;
-    /**
-     * Indicates a sent message.
-     *
-     * Generated from protobuf enum <code>SENT = 1;</code>
-     */
-    const SENT = 1;
-    /**
-     * Indicates a received message.
-     *
-     * Generated from protobuf enum <code>RECEIVED = 2;</code>
-     */
-    const RECEIVED = 2;
+    class Span_TimeEvent_MessageEvent_Type {}
 }
+class_exists(Span\TimeEvent\MessageEvent\Type::class);
+@trigger_error('Google\Cloud\Trace\V2\Span_TimeEvent_MessageEvent_Type is deprecated and will be removed in a future release. Use Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent\Type instead', E_USER_DEPRECATED);
 
