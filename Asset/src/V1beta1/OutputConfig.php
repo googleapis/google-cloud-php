@@ -24,7 +24,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1beta1\GcsDestination $gcs_destination
-     *           Destination on Google Cloud Storage (GCS).
+     *           Destination on Cloud Storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +33,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on Google Cloud Storage (GCS).
+     * Destination on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.GcsDestination gcs_destination = 1;</code>
      * @return \Google\Cloud\Asset\V1beta1\GcsDestination
@@ -44,7 +44,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on Google Cloud Storage (GCS).
+     * Destination on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1beta1.GcsDestination gcs_destination = 1;</code>
      * @param \Google\Cloud\Asset\V1beta1\GcsDestination $var
