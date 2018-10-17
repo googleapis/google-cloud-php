@@ -39,9 +39,28 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType $entity_type
+     *           Required. The entity type to update.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     *     @type string $language_code
+     *           Optional. The language of entity synonyms defined in `entity_type`. If not
+     *           specified, the agent's default language is used.
+     *           [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent, before they can be used.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. The mask to control which fields get updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

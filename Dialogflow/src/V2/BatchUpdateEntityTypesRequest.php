@@ -40,9 +40,35 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
     protected $entity_type_batch;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the agent to update or create entity types in.
+     *           Format: `projects/<Project ID>/agent`.
+     *     @type string $entity_type_batch_uri
+     *           The URI to a Google Cloud Storage file containing entity types to update
+     *           or create. The file format can either be a serialized proto (of
+     *           EntityBatch type) or a JSON object. Note: The URI must start with
+     *           "gs://".
+     *     @type \Google\Cloud\Dialogflow\V2\EntityTypeBatch $entity_type_batch_inline
+     *           The collection of entity type to update or create.
+     *     @type string $language_code
+     *           Optional. The language of entity synonyms defined in `entity_types`. If not
+     *           specified, the agent's default language is used.
+     *           [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent, before they can be used.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. The mask to control which fields get updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

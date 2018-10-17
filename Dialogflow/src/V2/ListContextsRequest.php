@@ -36,9 +36,25 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The session to list all contexts from.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *     @type int $page_size
+     *           Optional. The maximum number of items to return in a single page. By
+     *           default 100 and at most 1000.
+     *     @type string $page_token
+     *           Optional. The next_page_token value returned from a previous list request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

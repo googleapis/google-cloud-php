@@ -109,6 +109,7 @@ class SessionsGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/sessions_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/sessions_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/sessions_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -343,19 +344,22 @@ class SessionsGapicClient
      *     $request = new StreamingDetectIntentRequest();
      *     $request->setSession($session);
      *     $request->setQueryInput($queryInput);
-     *     $requests = [$request];
-     *
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
+     *     $requests = [$request];
      *     $stream = $sessionsClient->streamingDetectIntent();
      *     $stream->writeAll($requests);
      *     foreach ($stream->closeWriteAndReadAll() as $element) {
      *         // doSomethingWith($element);
      *     }
      *
-     *     // OR write requests individually, making read() calls if
+     *
+     *     // Alternatively:
+     *
+     *     // Write requests individually, making read() calls if
      *     // required. Call closeWrite() once writes are complete, and read the
      *     // remaining responses from the server.
+     *     $requests = [$request];
      *     $stream = $sessionsClient->streamingDetectIntent();
      *     foreach ($requests as $request) {
      *         $stream->write($request);

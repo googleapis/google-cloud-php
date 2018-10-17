@@ -23,9 +23,20 @@ class DeleteContextRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the context to delete. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

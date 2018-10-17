@@ -22,9 +22,19 @@ class BatchUpdateEntityTypesResponse extends \Google\Protobuf\Internal\Message
      */
     private $entity_types;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType[]|\Google\Protobuf\Internal\RepeatedField $entity_types
+     *           The collection of updated or created entity types.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

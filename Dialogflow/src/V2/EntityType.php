@@ -52,9 +52,31 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     private $entities;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required for all methods except `create` (`create` populates the name
+     *           automatically.
+     *           The unique identifier of the entity type. Format:
+     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     @type string $display_name
+     *           Required. The name of the entity.
+     *     @type int $kind
+     *           Required. Indicates the kind of entity type.
+     *     @type int $auto_expansion_mode
+     *           Optional. Indicates whether the entity type can be automatically
+     *           expanded.
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
+     *           Optional. The collection of entities associated with the entity type.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -184,12 +206,12 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Optional. The collection of entities associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
-     * @param \Google\Cloud\Dialogflow\V2\EntityType_Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntities($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType_Entity::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType\Entity::class);
         $this->entities = $arr;
 
         return $this;

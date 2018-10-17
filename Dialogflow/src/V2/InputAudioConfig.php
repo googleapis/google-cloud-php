@@ -49,9 +49,34 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $phrase_hints;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $audio_encoding
+     *           Required. Audio encoding of the audio content to process.
+     *     @type int $sample_rate_hertz
+     *           Required. Sample rate (in Hertz) of the audio content sent in the query.
+     *           Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
+     *           details.
+     *     @type string $language_code
+     *           Required. The language of the supplied audio. Dialogflow does not do
+     *           translations. See [Language
+     *           Support](https://dialogflow.com/docs/languages) for a list of the
+     *           currently supported language codes. Note that queries in the same session
+     *           do not necessarily need to specify the same language.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_hints
+     *           Optional. The collection of phrase hints which are used to boost accuracy
+     *           of speech recognition.
+     *           Refer to [Cloud Speech API documentation](/speech/docs/basics#phrase-hints)
+     *           for more details.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
