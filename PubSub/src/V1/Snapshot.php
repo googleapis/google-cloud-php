@@ -46,7 +46,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * User labels.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      */
@@ -74,7 +74,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           exists -- will expire in 4 days. The service will refuse to create a
      *           snapshot that would expire in less than 1 hour after creation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           User labels.
+     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,7 +179,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User labels.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -190,7 +190,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User labels.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

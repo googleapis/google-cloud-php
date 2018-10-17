@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2017 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\PubSub\V1;
 
@@ -35,7 +36,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates the given topic with the given name. See the
-     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -65,8 +66,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
-     * does not exist. The message payload must not be empty; it must contain
-     *  either a non-empty data field, or at least one attribute.
+     * does not exist.
      * @param \Google\Cloud\PubSub\V1\PublishRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -44,6 +44,7 @@ use Google\Cloud\PubSub\V1\AcknowledgeRequest;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
+use Google\Cloud\PubSub\V1\ExpirationPolicy;
 use Google\Cloud\PubSub\V1\GetSubscriptionRequest;
 use Google\Cloud\PubSub\V1\ListSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
@@ -373,7 +374,7 @@ class SubscriberGapicClient
 
     /**
      * Creates a subscription to a given topic. See the
-     * <a href="/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
@@ -453,7 +454,17 @@ class SubscriberGapicClient
      *          changed in backward-incompatible ways and is not recommended for production
      *          use. It is not subject to any SLA or deprecation policy.
      *     @type array $labels
-     *          User labels.
+     *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     *     @type ExpirationPolicy $expirationPolicy
+     *          A policy that specifies the conditions for this subscription's expiration.
+     *          A subscription is considered active as long as any connected subscriber is
+     *          successfully consuming messages from the subscription or is issuing
+     *          operations on the subscription. If `expiration_policy` is not set, a
+     *          *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     *          value for `expiration_policy.ttl` is 1 day.
+     *          <b>BETA:</b> This feature is part of a beta release. This API might be
+     *          changed in backward-incompatible ways and is not recommended for production
+     *          use. It is not subject to any SLA or deprecation policy.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -485,6 +496,9 @@ class SubscriberGapicClient
         }
         if (isset($optionalArgs['labels'])) {
             $request->setLabels($optionalArgs['labels']);
+        }
+        if (isset($optionalArgs['expirationPolicy'])) {
+            $request->setExpirationPolicy($optionalArgs['expirationPolicy']);
         }
 
         return $this->startCall(
@@ -621,8 +635,8 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that subscriptions belong to.
-     *                             Format is `projects/{project}`.
+     * @param string $project      The name of the project in which to list subscriptions.
+     *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -823,8 +837,7 @@ class SubscriberGapicClient
     }
 
     /**
-     * Pulls messages from the server. Returns an empty list if there are no
-     * messages available in the backlog. The server may return `UNAVAILABLE` if
+     * Pulls messages from the server. The server may return `UNAVAILABLE` if
      * there are too many concurrent pull requests pending for the given
      * subscription.
      *
@@ -851,9 +864,7 @@ class SubscriberGapicClient
      *          If this field set to true, the system will respond immediately even if
      *          it there are no messages available to return in the `Pull` response.
      *          Otherwise, the system may wait (for a bounded amount of time) until at
-     *          least one message is available, rather than returning no messages. The
-     *          client may cancel the request if it does not wish to wait any longer for
-     *          the response.
+     *          least one message is available, rather than returning no messages.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1045,8 +1056,8 @@ class SubscriberGapicClient
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that snapshots belong to.
-     *                             Format is `projects/{project}`.
+     * @param string $project      The name of the project in which to list snapshots.
+     *                             Format is `projects/{project-id}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1094,7 +1105,7 @@ class SubscriberGapicClient
      * Creates a snapshot from the requested subscription.<br><br>
      * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
      * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
+     * use. It is not subject to any SLA or deprecation policy.<br><br>
      * If the snapshot already exists, returns `ALREADY_EXISTS`.
      * If the requested subscription doesn't exist, returns `NOT_FOUND`.
      * If the backlog in the subscription is too old -- and the resulting snapshot
@@ -1122,7 +1133,8 @@ class SubscriberGapicClient
      * @param string $name         Optional user-provided name for this snapshot.
      *                             If the name is not provided in the request, the server will assign a random
      *                             name for this snapshot on the same project as the subscription.
-     *                             Note that for REST API requests, you must specify a name.
+     *                             Note that for REST API requests, you must specify a name.  See the
+     *                             <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">resource name rules</a>.
      *                             Format is `projects/{project}/snapshots/{snap}`.
      * @param string $subscription The subscription whose backlog the snapshot retains.
      *                             Specifically, the created snapshot is guaranteed to retain:
@@ -1137,7 +1149,7 @@ class SubscriberGapicClient
      *                             Optional.
      *
      *     @type array $labels
-     *          User labels.
+     *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

@@ -53,7 +53,14 @@ for client in ['Publisher', 'Subscriber']:
         f'**/V1/{client}GrpcClient.php',
         r'Copyright \d{4}',
         'Copyright 2017')
+
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# fix the link to the official doc
+s.replace(
+    'src/**/*.php',
+    r'<a href="/pubsub/docs/',
+    '<a href="https://cloud.google.com/pubsub/docs/')
