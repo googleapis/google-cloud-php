@@ -30,9 +30,23 @@ class SearchAgentsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\Agent[]|\Google\Protobuf\Internal\RepeatedField $agents
+     *           The list of agents. There will be a maximum number of items returned based
+     *           on the page_size field in the request.
+     *     @type string $next_page_token
+     *           Token to retrieve the next page of results, or empty if there are no
+     *           more results in the list.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Agent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

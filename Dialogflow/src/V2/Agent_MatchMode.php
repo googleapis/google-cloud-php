@@ -4,32 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-/**
- * Match mode determines how intents are detected from user queries.
- *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\Agent\MatchMode</code>
- */
-class Agent_MatchMode
-{
+if (false) {
     /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>MATCH_MODE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Agent\MatchMode instead.
+     * @deprecated
      */
-    const MATCH_MODE_UNSPECIFIED = 0;
-    /**
-     * Best for agents with a small number of examples in intents and/or wide
-     * use of templates syntax and composite entities.
-     *
-     * Generated from protobuf enum <code>MATCH_MODE_HYBRID = 1;</code>
-     */
-    const MATCH_MODE_HYBRID = 1;
-    /**
-     * Can be used for agents with a large number of examples in intents,
-     * especially the ones using &#64;sys.any or very large developer entities.
-     *
-     * Generated from protobuf enum <code>MATCH_MODE_ML_ONLY = 2;</code>
-     */
-    const MATCH_MODE_ML_ONLY = 2;
+    class Agent_MatchMode {}
 }
+class_exists(Agent\MatchMode::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Agent_MatchMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Agent\MatchMode instead', E_USER_DEPRECATED);
 

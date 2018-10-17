@@ -4,55 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The suggestion chip message that the user can tap to quickly post a reply
- * to the conversation.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.Suggestion</code>
- */
-class Intent_Message_Suggestion extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Required. The text shown the in the suggestion chip.
-     *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion instead.
+     * @deprecated
      */
-    private $title = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Required. The text shown the in the suggestion chip.
-     *
-     * Generated from protobuf field <code>string title = 1;</code>
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Required. The text shown the in the suggestion chip.
-     *
-     * Generated from protobuf field <code>string title = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setTitle($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->title = $var;
-
-        return $this;
-    }
-
+    class Intent_Message_Suggestion {}
 }
+class_exists(Intent\Message\Suggestion::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Suggestion is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion instead', E_USER_DEPRECATED);
 

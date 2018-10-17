@@ -128,9 +128,73 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     private $diagnostic_info = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $query_text
+     *           The original conversational query text:
+     *           - If natural language text was provided as input, `query_text` contains
+     *             a copy of the input.
+     *           - If natural language speech audio was provided as input, `query_text`
+     *             contains the speech recognition result. If speech recognizer produced
+     *             multiple alternatives, a particular one is picked.
+     *           - If an event was provided as input, `query_text` is not set.
+     *     @type string $language_code
+     *           The language that was triggered during intent detection.
+     *           See [Language Support](https://dialogflow.com/docs/reference/language)
+     *           for a list of the currently supported language codes.
+     *     @type float $speech_recognition_confidence
+     *           The Speech recognition confidence between 0.0 and 1.0. A higher number
+     *           indicates an estimated greater likelihood that the recognized words are
+     *           correct. The default of 0.0 is a sentinel value indicating that confidence
+     *           was not set.
+     *           You should not rely on this field as it isn't guaranteed to be accurate, or
+     *           even set. In particular this field isn't set in Webhook calls and for
+     *           StreamingDetectIntent since the streaming endpoint has separate confidence
+     *           estimates per portion of the audio in StreamingRecognitionResult.
+     *     @type string $action
+     *           The action name from the matched intent.
+     *     @type \Google\Protobuf\Struct $parameters
+     *           The collection of extracted parameters.
+     *     @type bool $all_required_params_present
+     *           This field is set to:
+     *           - `false` if the matched intent has required parameters and not all of
+     *              the required parameter values have been collected.
+     *           - `true` if all required parameter values have been collected, or if the
+     *              matched intent doesn't contain any required parameters.
+     *     @type string $fulfillment_text
+     *           The text to be pronounced to the user or shown on the screen.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
+     *           The collection of rich messages to present to the user.
+     *     @type string $webhook_source
+     *           If the query was fulfilled by a webhook call, this field is set to the
+     *           value of the `source` field returned in the webhook response.
+     *     @type \Google\Protobuf\Struct $webhook_payload
+     *           If the query was fulfilled by a webhook call, this field is set to the
+     *           value of the `payload` field returned in the webhook response.
+     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *           The collection of output contexts. If applicable,
+     *           `output_contexts.parameters` contains entries with name
+     *           `<parameter name>.original` containing the original parameter values
+     *           before the query.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent $intent
+     *           The intent that matched the conversational query. Some, not
+     *           all fields are filled in this message, including but not limited to:
+     *           `name`, `display_name` and `webhook_state`.
+     *     @type float $intent_detection_confidence
+     *           The intent detection confidence. Values range from 0.0
+     *           (completely uncertain) to 1.0 (completely certain).
+     *     @type \Google\Protobuf\Struct $diagnostic_info
+     *           The free-form diagnostic info. For example, this field
+     *           could contain webhook call latency.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -368,12 +432,12 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * The collection of rich messages to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 7;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentMessages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Message::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\Message::class);
         $this->fulfillment_messages = $arr;
 
         return $this;

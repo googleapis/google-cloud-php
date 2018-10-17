@@ -137,6 +137,7 @@ class AgentsGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/agents_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/agents_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/agents_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -377,18 +378,21 @@ class AgentsGapicClient
      * $agentsClient = new AgentsClient();
      * try {
      *     $formattedParent = $agentsClient->projectName('[PROJECT]');
-     *     // Iterate through all elements
-     *     $pagedResponse = $agentsClient->searchAgents($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR iterate over pages of elements
+     *     // Iterate over pages of elements
      *     $pagedResponse = $agentsClient->searchAgents($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
      *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $agentsClient->searchAgents($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
      *     }
      * } finally {
      *     $agentsClient->close();
@@ -454,13 +458,16 @@ class AgentsGapicClient
      *     $operationResponse = $agentsClient->trainAgent($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *         // operation succeeded and returns no value
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $agentsClient->trainAgent($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -524,14 +531,17 @@ class AgentsGapicClient
      *     $operationResponse = $agentsClient->exportAgent($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $agentsClient->exportAgent($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -607,13 +617,16 @@ class AgentsGapicClient
      *     $operationResponse = $agentsClient->importAgent($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *         // operation succeeded and returns no value
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $agentsClient->importAgent($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
@@ -704,13 +717,16 @@ class AgentsGapicClient
      *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *         // operation succeeded and returns no value
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $agentsClient->restoreAgent($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work

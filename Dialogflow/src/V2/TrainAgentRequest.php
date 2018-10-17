@@ -23,9 +23,20 @@ class TrainAgentRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The project that the agent to train is associated with.
+     *           Format: `projects/<Project ID>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Agent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,32 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-/**
- * Represents different types of training phrases.
- *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Type</code>
- */
-class Intent_TrainingPhrase_Type
-{
+if (false) {
     /**
-     * Not specified. This value should never be used.
-     *
-     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Type instead.
+     * @deprecated
      */
-    const TYPE_UNSPECIFIED = 0;
-    /**
-     * Examples do not contain &#64;-prefixed entity type names, but example parts
-     * can be annotated with entity types.
-     *
-     * Generated from protobuf enum <code>EXAMPLE = 1;</code>
-     */
-    const EXAMPLE = 1;
-    /**
-     * Templates are not annotated with entity types, but they can contain
-     * &#64;-prefixed entity type names as substrings.
-     *
-     * Generated from protobuf enum <code>TEMPLATE = 2;</code>
-     */
-    const TEMPLATE = 2;
+    class Intent_TrainingPhrase_Type {}
 }
+class_exists(Intent\TrainingPhrase\Type::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase_Type is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Type instead', E_USER_DEPRECATED);
 

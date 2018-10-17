@@ -30,9 +30,23 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      */
     private $entity_type_names;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the agent to delete all entities types for. Format:
+     *           `projects/<Project ID>/agent`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entity_type_names
+     *           Required. The names entity types to delete. All names must point to the
+     *           same agent as `parent`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

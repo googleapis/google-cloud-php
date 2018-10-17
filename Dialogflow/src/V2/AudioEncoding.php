@@ -9,7 +9,7 @@ namespace Google\Cloud\Dialogflow\V2;
  * Refer to the [Cloud Speech API documentation](/speech/docs/basics) for more
  * details.
  *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\AudioEncoding</code>
+ * Protobuf type <code>google.cloud.dialogflow.v2.AudioEncoding</code>
  */
 class AudioEncoding
 {

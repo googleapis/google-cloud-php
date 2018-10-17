@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The card for presenting a carousel of options to select from.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.CarouselSelect</code>
- */
-class Intent_Message_CarouselSelect extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Required. Carousel items.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect instead.
+     * @deprecated
      */
-    private $items;
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Required. Carousel items.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * Required. Carousel items.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect_Item[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setItems($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect_Item::class);
-        $this->items = $arr;
-
-        return $this;
-    }
-
+    class Intent_Message_CarouselSelect {}
 }
+class_exists(Intent\Message\CarouselSelect::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_CarouselSelect is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect instead', E_USER_DEPRECATED);
 

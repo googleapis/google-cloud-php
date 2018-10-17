@@ -45,9 +45,30 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $intent_view = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The agent to create a intent for.
+     *           Format: `projects/<Project ID>/agent`.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent $intent
+     *           Required. The intent to create.
+     *     @type string $language_code
+     *           Optional. The language of training phrases, parameters and rich messages
+     *           defined in `intent`. If not specified, the agent's default language is
+     *           used. [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent, before they can be used.
+     *     @type int $intent_view
+     *           Optional. The resource view to apply to the returned intent.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

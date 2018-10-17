@@ -42,9 +42,27 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      */
     private $entities;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The unique identifier of this session entity type. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *           Display Name>`.
+     *     @type int $entity_override_mode
+     *           Required. Indicates whether the additional data should override or
+     *           supplement the developer entity type definition.
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
+     *           Required. The collection of entities associated with this session entity
+     *           type.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\SessionEntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -122,12 +140,12 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3;</code>
-     * @param \Google\Cloud\Dialogflow\V2\EntityType_Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntities($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType_Entity::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType\Entity::class);
         $this->entities = $arr;
 
         return $this;

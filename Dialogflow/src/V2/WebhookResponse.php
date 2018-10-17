@@ -77,9 +77,54 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      */
     private $followup_event_input = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $fulfillment_text
+     *           Optional. The text to be shown on the screen. This value is passed directly
+     *           to `QueryResult.fulfillment_text`.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
+     *           Optional. The collection of rich messages to present to the user. This
+     *           value is passed directly to `QueryResult.fulfillment_messages`.
+     *     @type string $source
+     *           Optional. This value is passed directly to `QueryResult.webhook_source`.
+     *     @type \Google\Protobuf\Struct $payload
+     *           Optional. This value is passed directly to `QueryResult.webhook_payload`.
+     *           See the related `fulfillment_messages[i].payload field`, which may be used
+     *           as an alternative to this field.
+     *           This field can be used for Actions on Google responses.
+     *           It should have a structure similar to the JSON message shown here. For more
+     *           information, see
+     *           [Actions on Google Webhook
+     *           Format](https://developers.google.com/actions/dialogflow/webhook)
+     *           <pre>{
+     *             "google": {
+     *               "expectUserResponse": true,
+     *               "richResponse": {
+     *                 "items": [
+     *                   {
+     *                     "simpleResponse": {
+     *                       "textToSpeech": "this is a simple response"
+     *                     }
+     *                   }
+     *                 ]
+     *               }
+     *             }
+     *           }</pre>
+     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *           Optional. The collection of output contexts. This value is passed directly
+     *           to `QueryResult.output_contexts`.
+     *     @type \Google\Cloud\Dialogflow\V2\EventInput $followup_event_input
+     *           Optional. Makes the platform immediately invoke another `DetectIntent` call
+     *           internally with the specified event as input.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Webhook::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -127,12 +172,12 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * value is passed directly to `QueryResult.fulfillment_messages`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 2;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentMessages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Message::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\Message::class);
         $this->fulfillment_messages = $arr;
 
         return $this;

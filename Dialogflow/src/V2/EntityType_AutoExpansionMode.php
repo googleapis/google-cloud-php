@@ -4,27 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-/**
- * Represents different entity type expansion modes. Automated expansion
- * allows an agent to recognize values that have not been explicitly listed in
- * the entity (for example, new kinds of shopping list items).
- *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\EntityType\AutoExpansionMode</code>
- */
-class EntityType_AutoExpansionMode
-{
+if (false) {
     /**
-     * Auto expansion disabled for the entity.
-     *
-     * Generated from protobuf enum <code>AUTO_EXPANSION_MODE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\EntityType\AutoExpansionMode instead.
+     * @deprecated
      */
-    const AUTO_EXPANSION_MODE_UNSPECIFIED = 0;
-    /**
-     * Allows an agent to recognize values that have not been explicitly
-     * listed in the entity.
-     *
-     * Generated from protobuf enum <code>AUTO_EXPANSION_MODE_DEFAULT = 1;</code>
-     */
-    const AUTO_EXPANSION_MODE_DEFAULT = 1;
+    class EntityType_AutoExpansionMode {}
 }
+class_exists(EntityType\AutoExpansionMode::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_AutoExpansionMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\EntityType\AutoExpansionMode instead', E_USER_DEPRECATED);
 

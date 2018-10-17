@@ -4,33 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-/**
- * Represents kinds of entities.
- *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\EntityType\Kind</code>
- */
-class EntityType_Kind
-{
+if (false) {
     /**
-     * Not specified. This value should be never used.
-     *
-     * Generated from protobuf enum <code>KIND_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\EntityType\Kind instead.
+     * @deprecated
      */
-    const KIND_UNSPECIFIED = 0;
-    /**
-     * Map entity types allow mapping of a group of synonyms to a canonical
-     * value.
-     *
-     * Generated from protobuf enum <code>KIND_MAP = 1;</code>
-     */
-    const KIND_MAP = 1;
-    /**
-     * List entity types contain a set of entries that do not map to canonical
-     * values. However, list entity types can contain references to other entity
-     * types (with or without aliases).
-     *
-     * Generated from protobuf enum <code>KIND_LIST = 2;</code>
-     */
-    const KIND_LIST = 2;
+    class EntityType_Kind {}
 }
+class_exists(EntityType\Kind::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_Kind is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\EntityType\Kind instead', E_USER_DEPRECATED);
 

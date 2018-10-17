@@ -9,7 +9,7 @@ namespace Google\Cloud\Dialogflow\V2;
  * An intent can be a sizable object. Therefore, we provide a resource view that
  * does not return training phrases in the response by default.
  *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\IntentView</code>
+ * Protobuf type <code>google.cloud.dialogflow.v2.IntentView</code>
  */
 class IntentView
 {

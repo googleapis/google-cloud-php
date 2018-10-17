@@ -40,9 +40,29 @@ class Context extends \Google\Protobuf\Internal\Message
      */
     private $parameters = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The unique identifier of the context. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     *     @type int $lifespan_count
+     *           Optional. The number of conversational query requests after which the
+     *           context expires. If set to `0` (the default) the context expires
+     *           immediately. Contexts expire automatically after 10 minutes even if there
+     *           are no matching queries.
+     *     @type \Google\Protobuf\Struct $parameters
+     *           Optional. The collection of parameters associated with this context.
+     *           Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for
+     *           syntax.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

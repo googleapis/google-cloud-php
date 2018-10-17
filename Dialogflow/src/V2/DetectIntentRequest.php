@@ -50,9 +50,35 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $input_audio = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           Required. The name of the session this query is sent to. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
+     *           caller to choose an appropriate session ID. It can be a random number or
+     *           some type of user identifier (preferably hashed). The length of the session
+     *           ID must not exceed 36 bytes.
+     *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
+     *           Optional. The parameters of this query.
+     *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
+     *           Required. The input specification. It can be set to:
+     *           1.  an audio config
+     *               which instructs the speech recognizer how to process the speech audio,
+     *           2.  a conversational query in the form of text, or
+     *           3.  an event that specifies which intent to trigger.
+     *     @type string $input_audio
+     *           Optional. The natural language speech audio to be processed. This field
+     *           should be populated iff `query_input` is set to an input audio config.
+     *           A single request can contain up to 1 minute of speech audio data.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

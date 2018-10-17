@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The text response message.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.Text</code>
- */
-class Intent_Message_Text extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Optional. The collection of the agent's responses.
-     *
-     * Generated from protobuf field <code>repeated string text = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\Text instead.
+     * @deprecated
      */
-    private $text;
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Optional. The collection of the agent's responses.
-     *
-     * Generated from protobuf field <code>repeated string text = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
-
-    /**
-     * Optional. The collection of the agent's responses.
-     *
-     * Generated from protobuf field <code>repeated string text = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setText($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->text = $arr;
-
-        return $this;
-    }
-
+    class Intent_Message_Text {}
 }
+class_exists(Intent\Message\Text::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Text is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Text instead', E_USER_DEPRECATED);
 

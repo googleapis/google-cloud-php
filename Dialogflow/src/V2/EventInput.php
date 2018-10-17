@@ -41,9 +41,26 @@ class EventInput extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The unique identifier of the event.
+     *     @type \Google\Protobuf\Struct $parameters
+     *           Optional. The collection of parameters associated with the event.
+     *     @type string $language_code
+     *           Required. The language of this query. See [Language
+     *           Support](https://dialogflow.com/docs/languages) for a list of the
+     *           currently supported language codes. Note that queries in the same session
+     *           do not necessarily need to specify the same language.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
