@@ -52,3 +52,9 @@ s.replace(
     'tests/**/V2/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# Change the wording for the deprecation warning.
+s.replace(
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')

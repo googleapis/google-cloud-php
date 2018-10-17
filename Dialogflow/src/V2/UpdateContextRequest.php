@@ -28,9 +28,21 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\Context $context
+     *           Required. The context to update.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. The mask to control which fields get updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

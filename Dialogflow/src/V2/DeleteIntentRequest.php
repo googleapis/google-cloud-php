@@ -23,9 +23,20 @@ class DeleteIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the intent to delete.
+     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

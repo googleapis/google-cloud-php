@@ -45,9 +45,30 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the entity type to update the entities in. Format:
+     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
+     *           Required. The collection of new entities to replace the existing entities.
+     *     @type string $language_code
+     *           Optional. The language of entity synonyms defined in `entities`. If not
+     *           specified, the agent's default language is used.
+     *           [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent, before they can be used.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. The mask to control which fields get updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -93,12 +114,12 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The collection of new entities to replace the existing entities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
-     * @param \Google\Cloud\Dialogflow\V2\EntityType_Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntities($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType_Entity::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType\Entity::class);
         $this->entities = $arr;
 
         return $this;

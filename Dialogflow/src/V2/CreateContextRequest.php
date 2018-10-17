@@ -29,9 +29,22 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      */
     private $context = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The session to create a context for.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\Context $context
+     *           Required. The context to create.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -151,9 +151,78 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $followup_intent_info;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required for all methods except `create` (`create` populates the name
+     *           automatically.
+     *           The unique identifier of this intent.
+     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     @type string $display_name
+     *           Required. The name of this intent.
+     *     @type int $webhook_state
+     *           Required. Indicates whether webhooks are enabled for the intent.
+     *     @type int $priority
+     *           Optional. The priority of this intent. Higher numbers represent higher
+     *           priorities. Zero or negative numbers mean that the intent is disabled.
+     *     @type bool $is_fallback
+     *           Optional. Indicates whether this is a fallback intent.
+     *     @type bool $ml_disabled
+     *           Optional. Indicates whether Machine Learning is disabled for the intent.
+     *           Note: If `ml_diabled` setting is set to true, then this intent is not
+     *           taken into account during inference in `ML ONLY` match mode. Also,
+     *           auto-markup in the UI is turned off.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_context_names
+     *           Optional. The list of context names required for this intent to be
+     *           triggered.
+     *           Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $events
+     *           Optional. The collection of event names that trigger the intent.
+     *           If the collection of input contexts is not empty, all of the contexts must
+     *           be present in the active user session for an event to trigger this intent.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[]|\Google\Protobuf\Internal\RepeatedField $training_phrases
+     *           Optional. The collection of examples/templates that the agent is
+     *           trained on.
+     *     @type string $action
+     *           Optional. The name of the action associated with the intent.
+     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *           Optional. The collection of contexts that are activated when the intent
+     *           is matched. Context messages in this collection should not set the
+     *           parameters field. Setting the `lifespan_count` to 0 will reset the context
+     *           when the intent is matched.
+     *           Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
+     *     @type bool $reset_contexts
+     *           Optional. Indicates whether to delete all contexts in the current
+     *           session when this intent is matched.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *           Optional. The collection of parameters associated with the intent.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $messages
+     *           Optional. The collection of rich messages corresponding to the
+     *           `Response` field in the Dialogflow console.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $default_response_platforms
+     *           Optional. The list of platforms for which the first response will be
+     *           taken from among the messages assigned to the DEFAULT_PLATFORM.
+     *     @type string $root_followup_intent_name
+     *           The unique identifier of the root intent in the chain of followup intents.
+     *           It identifies the correct followup intents chain for this intent.
+     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     @type string $parent_followup_intent_name
+     *           The unique identifier of the parent intent in the chain of followup
+     *           intents.
+     *           It identifies the parent followup intent.
+     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $followup_intent_info
+     *           Optional. Collection of information about all followup intents that have
+     *           name of this intent as a root_name.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -403,12 +472,12 @@ class Intent extends \Google\Protobuf\Internal\Message
      * trained on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrainingPhrases($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase::class);
         $this->training_phrases = $arr;
 
         return $this;
@@ -517,12 +586,12 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of parameters associated with the intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Parameter::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\Parameter::class);
         $this->parameters = $arr;
 
         return $this;
@@ -545,12 +614,12 @@ class Intent extends \Google\Protobuf\Internal\Message
      * `Response` field in the Dialogflow console.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMessages($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Message::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\Message::class);
         $this->messages = $arr;
 
         return $this;
@@ -578,7 +647,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     public function setDefaultResponsePlatforms($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dialogflow\V2\Intent_Message_Platform::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dialogflow\V2\Intent\Message\Platform::class);
         $this->default_response_platforms = $arr;
 
         return $this;
@@ -663,12 +732,12 @@ class Intent extends \Google\Protobuf\Internal\Message
      * name of this intent as a root_name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFollowupIntentInfo($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_FollowupIntentInfo::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo::class);
         $this->followup_intent_info = $arr;
 
         return $this;

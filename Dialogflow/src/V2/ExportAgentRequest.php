@@ -31,9 +31,24 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      */
     private $agent_uri = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The project that the agent to export is associated with.
+     *           Format: `projects/<Project ID>`.
+     *     @type string $agent_uri
+     *           Optional. The Google Cloud Storage URI to export the agent to.
+     *           Note: The URI must start with
+     *           "gs://". If left unspecified, the serialized agent is returned inline.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Agent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

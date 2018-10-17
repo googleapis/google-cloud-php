@@ -52,9 +52,33 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The agent to list all intents from.
+     *           Format: `projects/<Project ID>/agent`.
+     *     @type string $language_code
+     *           Optional. The language to list training phrases, parameters and rich
+     *           messages for. If not specified, the agent's default language is used.
+     *           [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent before they can be used.
+     *     @type int $intent_view
+     *           Optional. The resource view to apply to the returned intent.
+     *     @type int $page_size
+     *           Optional. The maximum number of items to return in a single page. By
+     *           default 100 and at most 1000.
+     *     @type string $page_token
+     *           Optional. The next_page_token value returned from a previous list request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

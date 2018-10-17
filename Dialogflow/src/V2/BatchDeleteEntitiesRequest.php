@@ -41,9 +41,30 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the entity type to delete entries for. Format:
+     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entity_values
+     *           Required. The canonical `values` of the entities to delete. Note that
+     *           these are not fully-qualified names, i.e. they don't start with
+     *           `projects/<Project ID>`.
+     *     @type string $language_code
+     *           Optional. The language of entity synonyms defined in `entities`. If not
+     *           specified, the agent's default language is used.
+     *           [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent, before they can be used.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

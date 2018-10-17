@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-/**
- * Type of the response message.
- *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\StreamingRecognitionResult\MessageType</code>
- */
-class StreamingRecognitionResult_MessageType
-{
+if (false) {
     /**
-     * Not specified. Should never be used.
-     *
-     * Generated from protobuf enum <code>MESSAGE_TYPE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\StreamingRecognitionResult\MessageType instead.
+     * @deprecated
      */
-    const MESSAGE_TYPE_UNSPECIFIED = 0;
-    /**
-     * Message contains a (possibly partial) transcript.
-     *
-     * Generated from protobuf enum <code>TRANSCRIPT = 1;</code>
-     */
-    const TRANSCRIPT = 1;
-    /**
-     * Event indicates that the server has detected the end of the user's speech
-     * utterance and expects no additional speech. Therefore, the server will
-     * not process additional audio (although it may subsequently return
-     * additional results). The client should stop sending additional audio
-     * data, half-close the gRPC connection, and wait for any additional results
-     * until the server closes the gRPC connection. This message is only sent if
-     * `single_utterance` was set to `true`, and is not used otherwise.
-     *
-     * Generated from protobuf enum <code>END_OF_SINGLE_UTTERANCE = 2;</code>
-     */
-    const END_OF_SINGLE_UTTERANCE = 2;
+    class StreamingRecognitionResult_MessageType {}
 }
+class_exists(StreamingRecognitionResult\MessageType::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\StreamingRecognitionResult_MessageType is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\StreamingRecognitionResult\MessageType instead', E_USER_DEPRECATED);
 

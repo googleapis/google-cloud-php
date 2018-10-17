@@ -45,9 +45,30 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      */
     private $original_detect_intent_request = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           The unique identifier of detectIntent request session.
+     *           Can be used to identify end-user inside webhook implementation.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *     @type string $response_id
+     *           The unique identifier of the response. Contains the same value as
+     *           `[Streaming]DetectIntentResponse.response_id`.
+     *     @type \Google\Cloud\Dialogflow\V2\QueryResult $query_result
+     *           The result of the conversational query or event processing. Contains the
+     *           same value as `[Streaming]DetectIntentResponse.query_result`.
+     *     @type \Google\Cloud\Dialogflow\V2\OriginalDetectIntentRequest $original_detect_intent_request
+     *           Optional. The contents of the original request that was passed to
+     *           `[Streaming]DetectIntent` call.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Webhook::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

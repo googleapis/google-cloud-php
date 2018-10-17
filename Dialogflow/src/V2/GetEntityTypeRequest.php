@@ -33,9 +33,26 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the entity type.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
+     *     @type string $language_code
+     *           Optional. The language to retrieve entity synonyms for. If not specified,
+     *           the agent's default language is used.
+     *           [More than a dozen
+     *           languages](https://dialogflow.com/docs/reference/language) are supported.
+     *           Note: languages must be enabled in the agent, before they can be used.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\EntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

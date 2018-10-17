@@ -30,9 +30,23 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType $session_entity_type
+     *           Required. The entity type to update. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *           Display Name>`.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. The mask to control which fields get updated.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\SessionEntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -4,92 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Represents a single followup intent in the chain.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.FollowupIntentInfo</code>
- */
-class Intent_FollowupIntentInfo extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * The unique identifier of the followup intent.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *
-     * Generated from protobuf field <code>string followup_intent_name = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo instead.
+     * @deprecated
      */
-    private $followup_intent_name = '';
-    /**
-     * The unique identifier of the followup intent parent.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *
-     * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>
-     */
-    private $parent_followup_intent_name = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * The unique identifier of the followup intent.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *
-     * Generated from protobuf field <code>string followup_intent_name = 1;</code>
-     * @return string
-     */
-    public function getFollowupIntentName()
-    {
-        return $this->followup_intent_name;
-    }
-
-    /**
-     * The unique identifier of the followup intent.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *
-     * Generated from protobuf field <code>string followup_intent_name = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setFollowupIntentName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->followup_intent_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * The unique identifier of the followup intent parent.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *
-     * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>
-     * @return string
-     */
-    public function getParentFollowupIntentName()
-    {
-        return $this->parent_followup_intent_name;
-    }
-
-    /**
-     * The unique identifier of the followup intent parent.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *
-     * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setParentFollowupIntentName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->parent_followup_intent_name = $var;
-
-        return $this;
-    }
-
+    class Intent_FollowupIntentInfo {}
 }
+class_exists(Intent\FollowupIntentInfo::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_FollowupIntentInfo is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo instead', E_USER_DEPRECATED);
 

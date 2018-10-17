@@ -60,9 +60,37 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     private $payload = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $time_zone
+     *           Optional. The time zone of this conversational query from the
+     *           [time zone database](https://www.iana.org/time-zones), e.g.,
+     *           America/New_York, Europe/Paris. If not provided, the time zone specified in
+     *           agent settings is used.
+     *     @type \Google\Type\LatLng $geo_location
+     *           Optional. The geo location of this conversational query.
+     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $contexts
+     *           Optional. The collection of contexts to be activated before this query is
+     *           executed.
+     *     @type bool $reset_contexts
+     *           Optional. Specifies whether to delete all contexts in the current session
+     *           before the new ones are activated.
+     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $session_entity_types
+     *           Optional. The collection of session entity types to replace or extend
+     *           developer entities with for this query only. The entity synonyms apply
+     *           to all languages.
+     *     @type \Google\Protobuf\Struct $payload
+     *           Optional. This field can be used to pass custom data into the webhook
+     *           associated with the agent. Arbitrary JSON objects are supported.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

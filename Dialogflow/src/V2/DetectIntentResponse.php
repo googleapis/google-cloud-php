@@ -36,9 +36,25 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     private $webhook_status = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $response_id
+     *           The unique identifier of the response. It can be used to
+     *           locate a response in the training example set or for reporting issues.
+     *     @type \Google\Cloud\Dialogflow\V2\QueryResult $query_result
+     *           The results of the conversational query or event processing.
+     *     @type \Google\Rpc\Status $webhook_status
+     *           Specifies the status of the webhook request. `webhook_status`
+     *           is never populated in webhook requests.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

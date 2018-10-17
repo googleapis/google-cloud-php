@@ -24,9 +24,21 @@ class DeleteSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *           Required. The name of the entity type to delete. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
+     *           Display Name>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\SessionEntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
