@@ -42,9 +42,27 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $input_uri
+     *           Video file location in
+     *           [Google Cloud Storage](https://cloud.google.com/storage/).
+     *     @type int $progress_percent
+     *           Approximate percentage processed thus far.
+     *           Guaranteed to be 100 when fully processed.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Time when the request was received.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Time of the most recent update.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

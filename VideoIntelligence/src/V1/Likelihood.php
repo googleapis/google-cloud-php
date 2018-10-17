@@ -7,7 +7,7 @@ namespace Google\Cloud\VideoIntelligence\V1;
 /**
  * Bucketized representation of likelihood.
  *
- * Protobuf enum <code>Google\Cloud\Videointelligence\V1\Likelihood</code>
+ * Protobuf type <code>google.cloud.videointelligence.v1.Likelihood</code>
  */
 class Likelihood
 {

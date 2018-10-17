@@ -29,9 +29,22 @@ class ExplicitContentFrame extends \Google\Protobuf\Internal\Message
      */
     private $pornography_likelihood = 0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Protobuf\Duration $time_offset
+     *           Time-offset, relative to the beginning of the video, corresponding to the
+     *           video frame for this location.
+     *     @type int $pornography_likelihood
+     *           Likelihood of the pornography content..
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

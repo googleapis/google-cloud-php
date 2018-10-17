@@ -48,9 +48,29 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     private $face_detection_config = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *           Video segments to annotate. The segments may overlap and are not required
+     *           to be contiguous or span the whole video. If unspecified, each video
+     *           is treated as a single segment.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelDetectionConfig $label_detection_config
+     *           Config for LABEL_DETECTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\ShotChangeDetectionConfig $shot_change_detection_config
+     *           Config for SHOT_CHANGE_DETECTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\ExplicitContentDetectionConfig $explicit_content_detection_config
+     *           Config for EXPLICIT_CONTENT_DETECTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\FaceDetectionConfig $face_detection_config
+     *           Config for FACE_DETECTION.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

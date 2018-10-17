@@ -24,9 +24,19 @@ class AnnotateVideoResponse extends \Google\Protobuf\Internal\Message
      */
     private $annotation_results;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\VideoAnnotationResults[]|\Google\Protobuf\Internal\RepeatedField $annotation_results
+     *           Annotation results for all videos specified in `AnnotateVideoRequest`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

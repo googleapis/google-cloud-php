@@ -31,9 +31,24 @@ class FaceFrame extends \Google\Protobuf\Internal\Message
      */
     private $time_offset = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\NormalizedBoundingBox[]|\Google\Protobuf\Internal\RepeatedField $normalized_bounding_boxes
+     *           Normalized Bounding boxes in a frame.
+     *           There can be more than one boxes if the same face is detected in multiple
+     *           locations within the current frame.
+     *     @type \Google\Protobuf\Duration $time_offset
+     *           Time-offset, relative to the beginning of the video,
+     *           corresponding to the video frame for this location.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

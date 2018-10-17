@@ -30,9 +30,23 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
      */
     private $include_bounding_boxes = false;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $model
+     *           Model to use for face detection.
+     *           Supported values: "builtin/stable" (the default if unset) and
+     *           "builtin/latest".
+     *     @type bool $include_bounding_boxes
+     *           Whether bounding boxes be included in the face annotation output.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

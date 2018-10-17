@@ -69,9 +69,38 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     private $error = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $input_uri
+     *           Video file location in
+     *           [Google Cloud Storage](https://cloud.google.com/storage/).
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $segment_label_annotations
+     *           Label annotations on video level or user specified segment level.
+     *           There is exactly one element for each unique label.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $shot_label_annotations
+     *           Label annotations on shot level.
+     *           There is exactly one element for each unique label.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $frame_label_annotations
+     *           Label annotations on frame level.
+     *           There is exactly one element for each unique label.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\FaceAnnotation[]|\Google\Protobuf\Internal\RepeatedField $face_annotations
+     *           Face annotations. There is exactly one element for each unique face.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $shot_annotations
+     *           Shot annotations. Each shot is represented as a video segment.
+     *     @type \Google\Cloud\VideoIntelligence\V1beta2\ExplicitContentAnnotation $explicit_annotation
+     *           Explicit content annotation.
+     *     @type \Google\Rpc\Status $error
+     *           If set, indicates an error. Note that for a single `AnnotateVideoRequest`
+     *           some videos may succeed and some may fail.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

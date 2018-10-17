@@ -24,9 +24,19 @@ class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
      */
     private $annotation_progress;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoAnnotationProgress[]|\Google\Protobuf\Internal\RepeatedField $annotation_progress
+     *           Progress metadata for all videos specified in `AnnotateVideoRequest`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

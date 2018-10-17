@@ -36,9 +36,25 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $entity_id
+     *           Opaque entity ID. Some IDs may be available in
+     *           [Google Knowledge Graph Search
+     *           API](https://developers.google.com/knowledge-graph/).
+     *     @type string $description
+     *           Textual description, e.g. `Fixed-gear bicycle`.
+     *     @type string $language_code
+     *           Language code for `description` in BCP-47 format.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

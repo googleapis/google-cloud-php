@@ -57,14 +57,17 @@ use Google\LongRunning\Operation;
  *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
- *       $result = $operationResponse->getResult();
- *       // doSomethingWith($result)
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
  *     } else {
- *       $error = $operationResponse->getError();
- *       // handleError($error)
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
  *     }
  *
- *     // OR start the operation, keep the operation name, and resume later
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
  *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
@@ -127,6 +130,7 @@ class VideoIntelligenceServiceGapicClient
             'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/video_intelligence_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/video_intelligence_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/video_intelligence_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
@@ -248,14 +252,17 @@ class VideoIntelligenceServiceGapicClient
      *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *       $result = $operationResponse->getResult();
-     *       // doSomethingWith($result)
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
-     *       $error = $operationResponse->getError();
-     *       // handleError($error)
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
      *     }
      *
-     *     // OR start the operation, keep the operation name, and resume later
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
      *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work

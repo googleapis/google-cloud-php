@@ -43,9 +43,28 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $frames;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\VideoIntelligence\V1\Entity $entity
+     *           Detected entity.
+     *     @type \Google\Cloud\VideoIntelligence\V1\Entity[]|\Google\Protobuf\Internal\RepeatedField $category_entities
+     *           Common categories for the detected entity.
+     *           E.g. when the label is `Terrier` the category is likely `dog`. And in some
+     *           cases there might be more than one categories e.g. `Terrier` could also be
+     *           a `pet`.
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *           All video segments where a label was detected.
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *           All video frames where a label was detected.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

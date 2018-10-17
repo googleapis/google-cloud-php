@@ -24,9 +24,21 @@ class ExplicitContentDetectionConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $model
+     *           Model to use for explicit content detection.
+     *           Supported values: "builtin/stable" (the default if unset) and
+     *           "builtin/latest".
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1Beta2\VideoIntelligence::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
