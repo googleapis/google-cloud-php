@@ -12,5 +12,5 @@ if (false) {
     class EntityType_Kind {}
 }
 class_exists(EntityType\Kind::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_Kind is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\EntityType\Kind instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_Kind is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\EntityType\Kind instead', E_USER_DEPRECATED);
 

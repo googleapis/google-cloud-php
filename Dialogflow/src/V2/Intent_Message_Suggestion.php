@@ -12,5 +12,5 @@ if (false) {
     class Intent_Message_Suggestion {}
 }
 class_exists(Intent\Message\Suggestion::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Suggestion is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Suggestion is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion instead', E_USER_DEPRECATED);
 

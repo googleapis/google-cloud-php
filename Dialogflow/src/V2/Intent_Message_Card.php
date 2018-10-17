@@ -12,5 +12,5 @@ if (false) {
     class Intent_Message_Card {}
 }
 class_exists(Intent\Message\Card::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Card is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Card instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Card is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Card instead', E_USER_DEPRECATED);
 

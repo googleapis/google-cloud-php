@@ -12,5 +12,5 @@ if (false) {
     class EntityType_AutoExpansionMode {}
 }
 class_exists(EntityType\AutoExpansionMode::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_AutoExpansionMode is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\EntityType\AutoExpansionMode instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\EntityType_AutoExpansionMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\EntityType\AutoExpansionMode instead', E_USER_DEPRECATED);
 

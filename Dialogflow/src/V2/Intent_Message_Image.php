@@ -12,5 +12,5 @@ if (false) {
     class Intent_Message_Image {}
 }
 class_exists(Intent\Message\Image::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Image is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Image instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Image is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Image instead', E_USER_DEPRECATED);
 

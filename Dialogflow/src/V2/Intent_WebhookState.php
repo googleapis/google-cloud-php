@@ -12,5 +12,5 @@ if (false) {
     class Intent_WebhookState {}
 }
 class_exists(Intent\WebhookState::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_WebhookState is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\Intent\WebhookState instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_WebhookState is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\WebhookState instead', E_USER_DEPRECATED);
 

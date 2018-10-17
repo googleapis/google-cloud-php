@@ -12,5 +12,5 @@ if (false) {
     class SessionEntityType_EntityOverrideMode {}
 }
 class_exists(SessionEntityType\EntityOverrideMode::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\SessionEntityType_EntityOverrideMode is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\SessionEntityType_EntityOverrideMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode instead', E_USER_DEPRECATED);
 

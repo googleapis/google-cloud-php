@@ -12,5 +12,5 @@ if (false) {
     class Intent_TrainingPhrase {}
 }
 class_exists(Intent\TrainingPhrase::class);
-@trigger_error('Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase is deprecated and will be removed in the next major release. Use Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_TrainingPhrase is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase instead', E_USER_DEPRECATED);
 
