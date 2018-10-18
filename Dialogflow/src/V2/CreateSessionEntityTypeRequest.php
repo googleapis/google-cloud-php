@@ -29,9 +29,22 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     private $session_entity_type = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The session to create a session entity type for.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType $session_entity_type
+     *           Required. The session entity type to create.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\SessionEntityType::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

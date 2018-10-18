@@ -31,9 +31,23 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $payload = null;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $source
+     *           The source of this request, e.g., `google`, `facebook`, `slack`. It is set
+     *           by Dialogflow-owned servers.
+     *     @type \Google\Protobuf\Struct $payload
+     *           Optional. This field is set to the value of `QueryParameters.payload` field
+     *           passed in the request.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Webhook::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

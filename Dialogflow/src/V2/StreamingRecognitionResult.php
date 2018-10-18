@@ -69,9 +69,35 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $confidence = 0.0;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $message_type
+     *           Type of the result message.
+     *     @type string $transcript
+     *           Transcript text representing the words that the user spoke.
+     *           Populated if and only if `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`.
+     *     @type bool $is_final
+     *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *           If `false`, the `StreamingRecognitionResult` represents an
+     *           interim result that may change. If `true`, the recognizer will not return
+     *           any further hypotheses about this piece of the audio. May only be populated
+     *           for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`.
+     *     @type float $confidence
+     *           The Speech confidence between 0.0 and 1.0 for the current portion of audio.
+     *           A higher number indicates an estimated greater likelihood that the
+     *           recognized words are correct. The default of 0.0 is a sentinel value
+     *           indicating that confidence was not set.
+     *           This field is typically only provided if `is_final` is true and you should
+     *           not rely on it being accurate or even set.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

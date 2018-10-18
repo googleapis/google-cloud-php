@@ -17,9 +17,33 @@ class ExportAgentResponse extends \Google\Protobuf\Internal\Message
 {
     protected $agent;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $agent_uri
+     *           The URI to a file containing the exported agent. This field is populated
+     *           only if `agent_uri` is specified in `ExportAgentRequest`.
+     *     @type string $agent_content
+     *           The exported agent.
+     *           Example for how to export an agent to a zip file via a command line:
+     *           curl \
+     *             'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:export'\
+     *             -X POST \
+     *             -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+     *             -H 'Accept: application/json' \
+     *             -H 'Content-Type: application/json' \
+     *             --compressed \
+     *             --data-binary '{}' \
+     *           | grep agentContent | sed -e 's/.*"agentContent": "\([^"]*\)".*&#47;\1/' \
+     *           | base64 --decode > <agent zip file>
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Agent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

@@ -71,9 +71,45 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $input_audio = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $session
+     *           Required. The name of the session the query is sent to.
+     *           Format of the session name:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
+     *           caller to choose an appropriate <Session ID>. It can be a random number or
+     *           some type of user identifier (preferably hashed). The length of the session
+     *           ID must not exceed 36 characters.
+     *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
+     *           Optional. The parameters of this query.
+     *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
+     *           Required. The input specification. It can be set to:
+     *           1.  an audio config which instructs the speech recognizer how to process
+     *               the speech audio,
+     *           2.  a conversational query in the form of text, or
+     *           3.  an event that specifies which intent to trigger.
+     *     @type bool $single_utterance
+     *           Optional. If `false` (default), recognition does not cease until the
+     *           client closes the stream.
+     *           If `true`, the recognizer will detect a single spoken utterance in input
+     *           audio. Recognition ceases when it detects the audio's voice has
+     *           stopped or paused. In this case, once a detected intent is received, the
+     *           client should close the stream and start a new request with a new stream as
+     *           needed.
+     *           This setting is ignored when `query_input` is a piece of text or an event.
+     *     @type string $input_audio
+     *           Optional. The input audio content to be recognized. Must be sent if
+     *           `query_input` was set to a streaming input audio config. The complete audio
+     *           over all streaming messages must not exceed 1 minute.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

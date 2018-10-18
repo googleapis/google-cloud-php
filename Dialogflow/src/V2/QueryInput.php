@@ -21,9 +21,23 @@ class QueryInput extends \Google\Protobuf\Internal\Message
 {
     protected $input;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\InputAudioConfig $audio_config
+     *           Instructs the speech recognizer how to process the speech audio.
+     *     @type \Google\Cloud\Dialogflow\V2\TextInput $text
+     *           The natural language text to be processed.
+     *     @type \Google\Cloud\Dialogflow\V2\EventInput $event
+     *           The event to be processed.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

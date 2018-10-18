@@ -4,36 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-/**
- * The types of modifications for a session entity type.
- *
- * Protobuf enum <code>Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode</code>
- */
-class SessionEntityType_EntityOverrideMode
-{
+if (false) {
     /**
-     * Not specified. This value should be never used.
-     *
-     * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode instead.
+     * @deprecated
      */
-    const ENTITY_OVERRIDE_MODE_UNSPECIFIED = 0;
-    /**
-     * The collection of session entities overrides the collection of entities
-     * in the corresponding developer entity type.
-     *
-     * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_OVERRIDE = 1;</code>
-     */
-    const ENTITY_OVERRIDE_MODE_OVERRIDE = 1;
-    /**
-     * The collection of session entities extends the collection of entities in
-     * the corresponding developer entity type.
-     * Calls to `ListSessionEntityTypes`, `GetSessionEntityType`,
-     * `CreateSessionEntityType` and `UpdateSessionEntityType` return the full
-     * collection of entities from the developer entity type in the agent's
-     * default language and the session entity type.
-     *
-     * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_SUPPLEMENT = 2;</code>
-     */
-    const ENTITY_OVERRIDE_MODE_SUPPLEMENT = 2;
+    class SessionEntityType_EntityOverrideMode {}
 }
+class_exists(SessionEntityType\EntityOverrideMode::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\SessionEntityType_EntityOverrideMode is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode instead', E_USER_DEPRECATED);
 

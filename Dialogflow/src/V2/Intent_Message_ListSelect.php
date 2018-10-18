@@ -4,86 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The card for presenting a list of options to select from.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.ListSelect</code>
- */
-class Intent_Message_ListSelect extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Optional. The overall title of the list.
-     *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect instead.
+     * @deprecated
      */
-    private $title = '';
-    /**
-     * Required. List items.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2;</code>
-     */
-    private $items;
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Optional. The overall title of the list.
-     *
-     * Generated from protobuf field <code>string title = 1;</code>
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * Optional. The overall title of the list.
-     *
-     * Generated from protobuf field <code>string title = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setTitle($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->title = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. List items.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * Required. List items.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect_Item[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setItems($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect_Item::class);
-        $this->items = $arr;
-
-        return $this;
-    }
-
+    class Intent_Message_ListSelect {}
 }
+class_exists(Intent\Message\ListSelect::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_ListSelect is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect instead', E_USER_DEPRECATED);
 

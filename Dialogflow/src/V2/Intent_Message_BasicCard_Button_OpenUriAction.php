@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * Opens the given URI.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button.OpenUriAction</code>
- */
-class Intent_Message_BasicCard_Button_OpenUriAction extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Required. The HTTP or HTTPS scheme URI.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button\OpenUriAction instead.
+     * @deprecated
      */
-    private $uri = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Required. The HTTP or HTTPS scheme URI.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
-     * @return string
-     */
-    public function getUri()
-    {
-        return $this->uri;
-    }
-
-    /**
-     * Required. The HTTP or HTTPS scheme URI.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setUri($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->uri = $var;
-
-        return $this;
-    }
-
+    class Intent_Message_BasicCard_Button_OpenUriAction {}
 }
+class_exists(Intent\Message\BasicCard\Button\OpenUriAction::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_BasicCard_Button_OpenUriAction is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button\OpenUriAction instead', E_USER_DEPRECATED);
 

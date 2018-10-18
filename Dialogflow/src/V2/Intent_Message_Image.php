@@ -4,89 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The image response message.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.Image</code>
- */
-class Intent_Message_Image extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Optional. The public URI to an image file.
-     *
-     * Generated from protobuf field <code>string image_uri = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\Image instead.
+     * @deprecated
      */
-    private $image_uri = '';
-    /**
-     * Optional. A text description of the image to be used for accessibility,
-     * e.g., screen readers.
-     *
-     * Generated from protobuf field <code>string accessibility_text = 2;</code>
-     */
-    private $accessibility_text = '';
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Optional. The public URI to an image file.
-     *
-     * Generated from protobuf field <code>string image_uri = 1;</code>
-     * @return string
-     */
-    public function getImageUri()
-    {
-        return $this->image_uri;
-    }
-
-    /**
-     * Optional. The public URI to an image file.
-     *
-     * Generated from protobuf field <code>string image_uri = 1;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setImageUri($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->image_uri = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. A text description of the image to be used for accessibility,
-     * e.g., screen readers.
-     *
-     * Generated from protobuf field <code>string accessibility_text = 2;</code>
-     * @return string
-     */
-    public function getAccessibilityText()
-    {
-        return $this->accessibility_text;
-    }
-
-    /**
-     * Optional. A text description of the image to be used for accessibility,
-     * e.g., screen readers.
-     *
-     * Generated from protobuf field <code>string accessibility_text = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setAccessibilityText($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->accessibility_text = $var;
-
-        return $this;
-    }
-
+    class Intent_Message_Image {}
 }
+class_exists(Intent\Message\Image::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Image is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Image instead', E_USER_DEPRECATED);
 

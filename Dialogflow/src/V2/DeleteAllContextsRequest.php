@@ -23,9 +23,20 @@ class DeleteAllContextsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the session to delete all contexts from. Format:
+     *           `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

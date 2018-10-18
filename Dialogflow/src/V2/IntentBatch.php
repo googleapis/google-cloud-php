@@ -22,9 +22,19 @@ class IntentBatch extends \Google\Protobuf\Internal\Message
      */
     private $intents;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $intents
+     *           A collection of intents.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**

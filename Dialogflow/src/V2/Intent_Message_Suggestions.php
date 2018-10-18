@@ -4,54 +4,13 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
-use Google\Protobuf\Internal\GPBUtil;
-
-/**
- * The collection of suggestions.
- *
- * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.Suggestions</code>
- */
-class Intent_Message_Suggestions extends \Google\Protobuf\Internal\Message
-{
+if (false) {
     /**
-     * Required. The list of suggested replies.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1;</code>
+     * This class is deprecated. Use Google\Cloud\Dialogflow\V2\Intent\Message\Suggestions instead.
+     * @deprecated
      */
-    private $suggestions;
-
-    public function __construct() {
-        \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
-    }
-
-    /**
-     * Required. The list of suggested replies.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getSuggestions()
-    {
-        return $this->suggestions;
-    }
-
-    /**
-     * Required. The list of suggested replies.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent_Message_Suggestion[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setSuggestions($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Intent_Message_Suggestion::class);
-        $this->suggestions = $arr;
-
-        return $this;
-    }
-
+    class Intent_Message_Suggestions {}
 }
+class_exists(Intent\Message\Suggestions::class);
+@trigger_error('Google\Cloud\Dialogflow\V2\Intent_Message_Suggestions is deprecated and will be removed in a future release. Use Google\Cloud\Dialogflow\V2\Intent\Message\Suggestions instead', E_USER_DEPRECATED);
 

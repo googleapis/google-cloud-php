@@ -30,9 +30,23 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $intents;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $parent
+     *           Required. The name of the agent to delete all entities types for. Format:
+     *           `projects/<Project ID>/agent`.
+     *     @type \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $intents
+     *           Required. The collection of intents to delete. Only intent `name` must be
+     *           filled in.
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
