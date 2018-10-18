@@ -369,7 +369,7 @@ class DataClientTest extends SnippetTestCase
             );
         $snippet = $this->snippetFromMethod(DataClient::class, 'sampleRowKeys');
         $snippet->addLocal('dataClient', $this->dataClient);
-        $res = $snippet->invoke('rowKeys');
+        $res = $snippet->invoke('rowKeyStream');
         $expectedRowKeys = [
             'rowKey' => 'rk1',
             'offset' => 1
