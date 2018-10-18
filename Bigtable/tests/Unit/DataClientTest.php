@@ -34,6 +34,7 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Cloud\Bigtable\Filter;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
@@ -635,6 +636,40 @@ class DataClientTest extends TestCase
             ]
         ];
         $this->assertEquals($expectedRow, $row);
+    }
+
+    public function testSampleRowKeys()
+    {
+        $sampleRowKeyResponses[] = (new SampleRowKeysResponse)
+            ->setRowKey('rk1')
+            ->setOffsetBytes(1);
+        $sampleRowKeyResponses[] = (new SampleRowKeysResponse)
+            ->setRowKey('rk2')
+            ->setOffsetBytes(2);
+
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator($sampleRowKeyResponses)
+            );
+        $this->bigtableClient->sampleRowKeys(self::TABLE_NAME, $this->options)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $rowKeyStream = $this->dataClient->sampleRowKeys();
+        $rowKeys = iterator_to_array($rowKeyStream);
+        $expectedRowKeys = [
+            [
+                'rowKey' => 'rk1',
+                'offset' => 1
+            ],
+            [
+                'rowKey' => 'rk2',
+                'offset' => 2
+            ]
+        ];
+        $this->assertEquals($expectedRowKeys, $rowKeys);
     }
 
     private function getMutateRowsResponse(array $status)

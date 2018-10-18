@@ -36,6 +36,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk as ReadRowsResponse_Cell
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Protobuf\StringValue;
@@ -348,6 +349,35 @@ class DataClientTest extends SnippetTestCase
                 print_r($expectedRow, true),
                 $res->output()
             );
+    }
+
+    public function testSampleRowKeys()
+    {
+        $sampleRowKeyResponses[] = (new SampleRowKeysResponse)
+            ->setRowKey('rk1')
+            ->setOffsetBytes(1);
+
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator($sampleRowKeyResponses)
+            );
+        $this->bigtableClient->sampleRowKeys(self::TABLE_NAME, [])
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $snippet = $this->snippetFromMethod(DataClient::class, 'sampleRowKeys');
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('rowKeyStream');
+        $expectedRowKeys = [
+            'rowKey' => 'rk1',
+            'offset' => 1
+        ];
+        $this->assertEquals(
+            print_r($expectedRowKeys, true),
+            $res->output()
+        );
     }
 
     private function setUpReadRowsResponse()
