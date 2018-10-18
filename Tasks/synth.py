@@ -26,7 +26,7 @@ common = gcp.CommonTemplates()
 # tasks has two product names, and a poorly named artman yaml
 v2beta2_library = gapic._generate_code(
     'tasks', 'v2beta2', 'php',
-    config_path='artman_cloudtasks.yaml',
+    config_path='artman_cloudtasks_v2beta2.yaml',
     artman_output_name='google-cloud-tasks-v2beta2')
 
 
@@ -35,12 +35,24 @@ s.copy(v2beta2_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata
 s.copy(v2beta2_library / f'proto/src/Google/Cloud/Tasks', f'src')
 s.copy(v2beta2_library / f'tests')
 
+v2beta3_library = gapic._generate_code(
+    'tasks', 'v2beta3', 'php',
+    config_path='artman_cloudtasks_v2beta3.yaml',
+    artman_output_name='google-cloud-tasks-v2beta3')
+
+s.copy(v2beta3_library / f'src/')
+s.copy(v2beta3_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata')
+s.copy(v2beta3_library / f'proto/src/Google/Cloud/Tasks', f'src')
+s.copy(v2beta3_library / f'tests')
+
+
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141
 s.replace(
-    'src/V2beta2/Gapic/CloudTasksGapicClient.php',
+    'src/V2beta*/Gapic/CloudTasksGapicClient.php',
     r'Task_View',
     'Task\View')
+
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',

@@ -763,15 +763,9 @@ $ composer require google/cloud-oslogin
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\Tasks\V2beta2\CloudTasksClient;
-use Google\Cloud\Tasks\V2beta2\LeaseDuration;
-use Google\Cloud\Tasks\V2beta2\PullMessage;
-use Google\Cloud\Tasks\V2beta2\PullTarget;
-use Google\Cloud\Tasks\V2beta2\Queue;
-use Google\Cloud\Tasks\V2beta2\Task;
-use Google\Cloud\Tasks\V2beta2\Task_View;
-use Google\Protobuf\Duration;
-
+use Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue;
+use Google\Cloud\Tasks\V2beta3\CloudTasksClient;
+use Google\Cloud\Tasks\V2beta3\Queue;
 $client = new CloudTasksClient();
 
 $project = 'example-project';
@@ -779,47 +773,34 @@ $location = 'us-central1';
 $queue = uniqid('example-queue-');
 $queueName = $client::queueName($project, $location, $queue);
 
-// Create a pull queue
+// Create an App Engine queue
 $locationName = $client::locationName($project, $location);
-$queue = new Queue();
+$queue = new Queue([
+    'name' => $queueName,
+    'app_engine_http_queue' => new AppEngineHttpQueue()
+]);
 $queue->setName($queueName);
-$queue->setPullTarget(new PullTarget());
 $client->createQueue($locationName, $queue);
 
 echo "$queueName created." . PHP_EOL;
 
-// After the creation, wait at least a minute
-echo 'Waiting for the queue to settle...' . PHP_EOL;
-sleep(60);
-
-// Create a task
-$pullMessage = new PullMessage();
-$payload = 'a message for the consumer: ' . uniqid();
-$pullMessage->setPayload($payload);
-$task = new Task();
-$task->setPullMessage($pullMessage);
-$client->createTask($queueName, $task);
-
-// Lease a task
-$leaseDuration = new Duration();
-$leaseDuration->setSeconds(600);
-$resp = $client->leaseTasks(
-    $queueName,
-    $leaseDuration,
-    [
-        'maxTasks' => 1,
-        'responseView' => Task_View::FULL
-    ]
-);
-$task = $resp->getTasks()[0];
-assert($task->getPullMessage()->getPayload() === $payload);
-
-// Acknowledge the task
-$client->acknowledgeTask($task->getName(), $task->getScheduleTime());
+// List queues
+echo 'Listing the queues' . PHP_EOL;
+$resp = $client->listQueues($locationName);
+foreach ($resp->iterateAllElements() as $q) {
+    echo $q->getName() . PHP_EOL;
+}
 
 // Delete the queue
 $client->deleteQueue($queueName);
 ```
+
+#### Removal of pull queue
+
+The past version (V2beta2) supported pull queues, but we removed the
+pull queue support from V2beta3. For more details, read
+[our documentation](https://cloud.google.com/tasks/docs/alpha-to-beta#pull)
+about the removal.
 
 #### google/cloud-tasks
 
