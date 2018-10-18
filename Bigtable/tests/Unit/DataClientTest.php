@@ -22,10 +22,16 @@ use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\RowMutation;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\Column;
+use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
+use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\Filter;
@@ -538,13 +544,97 @@ class DataClientTest extends TestCase
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage FilterInterface
-     */
-    public function testReadRowsFilterShouldThrow()
+    public function testReadModifyWriteRowAppend()
     {
-        $this->dataClient->readRows(['filter' => new \stdClass()]);
+        $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
+            ->setRow(
+                (new Row)
+                    ->setFamilies([
+                        (new Family)
+                            ->setName('cf1')
+                            ->setColumns([
+                                (new Column)
+                                    ->setQualifier('cq1')
+                                    ->setCells([
+                                        (new Cell)
+                                            ->setValue('value1')
+                                            ->setTimestampMicros(5000)
+                                    ])
+                            ])
+                    ])
+            );
+        $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
+            ->append('cf1', 'cq1', 'v1');
+        $this->bigtableClient
+            ->readModifyWriteRow(
+                self::TABLE_NAME,
+                'rk1',
+                $readModifyWriteRowRules->toProto(),
+                $this->options
+            )
+            ->shouldBeCalled()
+            ->willReturn(
+                $readModifyWriteRowResponse
+            );
+        $row = $this->dataClient->readModifyWriteRow('rk1', $readModifyWriteRowRules);
+        $expectedRow = [
+            'cf1' => [
+                'cq1' => [[
+                    'value' => 'value1',
+                    'timeStamp' => 5000,
+                    'labels' => ''
+                ]]
+            ]
+        ];
+        $this->assertEquals($expectedRow, $row);
+    }
+
+    /**
+     * @requires PHP 5.6.0
+     */
+    public function testReadModifyWriteRowIncrement()
+    {
+        $readModifyWriteRowResponse = (new ReadModifyWriteRowResponse)
+            ->setRow(
+                (new Row)
+                    ->setFamilies([
+                        (new Family)
+                            ->setName('cf1')
+                            ->setColumns([
+                                (new Column)
+                                    ->setQualifier('cq1')
+                                    ->setCells([
+                                        (new Cell)
+                                            ->setValue(10)
+                                            ->setTimestampMicros(5000)
+                                    ])
+                            ])
+                    ])
+            );
+        $readModifyWriteRowRules = (new ReadModifyWriteRowRules)
+            ->increment('cf1', 'cq1', 5);
+        $this->bigtableClient
+            ->readModifyWriteRow(
+                self::TABLE_NAME,
+                'rk1',
+                $readModifyWriteRowRules->toProto(),
+                $this->options
+            )
+            ->shouldBeCalled()
+            ->willReturn(
+                $readModifyWriteRowResponse
+            );
+        $row = $this->dataClient->readModifyWriteRow('rk1', $readModifyWriteRowRules);
+        $expectedRow = [
+            'cf1' => [
+                'cq1' => [[
+                    'value' => 10,
+                    'timeStamp' => 5000,
+                    'labels' => ''
+                ]]
+            ]
+        ];
+        $this->assertEquals($expectedRow, $row);
     }
 
     private function getMutateRowsResponse(array $status)

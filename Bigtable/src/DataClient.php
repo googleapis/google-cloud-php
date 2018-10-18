@@ -21,7 +21,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ArrayTrait;
@@ -321,5 +323,84 @@ class DataClient
         )
             ->readAll()
             ->current();
+    }
+
+    /**
+     * Modifies a row atomically on the server. The method reads the latest
+     * existing timestamp and value from the specified columns and writes a new
+     * entry based on pre-defined read/modify/write rules. The new value for the
+     * timestamp is the greater of the existing timestamp or the current server
+     * time. The method returns the new contents of all modified cells.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+     *
+     * $rules = (new ReadModifyWriteRowRules)
+     *     ->append('cf1', 'cq1', 'value12');
+     * $row = $dataClient->readModifyWriteRow('rk1', $rules);
+     *
+     * print_r($row);
+     * ```
+     *
+     * ```
+     * // Increments value
+     * use Google\Cloud\Bigtable\DataUtil;
+     * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+     * use Google\Cloud\Bigtable\RowMutation;
+     *
+     * $rowMutation = new RowMutation('rk1');
+     * $rowMutation->upsert('cf1', 'cq1', DataUtil::intToByteString(2));
+     *
+     * $dataClient->mutateRows([$rowMutation]);
+     *
+     * $rules = (new ReadModifyWriteRowRules)
+     *     ->increment('cf1', 'cq1', 3);
+     * $row = $dataClient->readModifyWriteRow('rk1', $rules);
+     *
+     * print_r($row);
+     * ```
+     *
+     * @param string $rowKey The row key to read.
+     * @param ReadModifyWriteRowRules $rules Rules to apply on row.
+     * @param array $options [optional] Configuration options.
+     * @return array Returns array containing all column family keyed by family name.
+     * @throws ApiException if the remote call fails or operation fails
+     */
+    public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
+    {
+        $readModifyWriteRowResponse = $this->bigtableClient->readModifyWriteRow(
+            $this->tableName,
+            $rowKey,
+            $rules->toProto(),
+            $options + $this->options
+        );
+        return $this->convertToArray($readModifyWriteRowResponse->getRow());
+    }
+
+    private function convertToArray(Row $row)
+    {
+        if ($row === null) {
+            return [];
+        }
+        $families = [];
+        foreach ($row->getFamilies() as $family) {
+            $qualifiers = [];
+            foreach ($family->getColumns() as $column) {
+                $values = [];
+                foreach ($column->getCells() as $cell) {
+                    $values[] = [
+                        'value' => $cell->getValue(),
+                        'timeStamp' => $cell->getTimestampMicros(),
+                        'labels' => ($cell->getLabels()->getIterator()->valid())
+                            ? implode(iterator_to_array($cell->getLabels()->getIterator()))
+                            : ''
+                    ];
+                }
+                $qualifiers[$column->getQualifier()] = $values;
+            }
+            $families[$family->getName()] = $qualifiers;
+        }
+        return $families;
     }
 }
