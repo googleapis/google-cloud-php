@@ -43,6 +43,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue;
 use Google\Cloud\Tasks\V2beta3\CloudTasksClient;
 use Google\Cloud\Tasks\V2beta3\Queue;
+
 $client = new CloudTasksClient();
 
 $project = 'example-project';
