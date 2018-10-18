@@ -356,9 +356,6 @@ class DataClientTest extends SnippetTestCase
         $sampleRowKeyResponses[] = (new SampleRowKeysResponse)
             ->setRowKey('rk1')
             ->setOffsetBytes(1);
-        $sampleRowKeyResponses[] = (new SampleRowKeysResponse)
-            ->setRowKey('rk2')
-            ->setOffsetBytes(2);
 
         $this->serverStream->readAll()
             ->shouldBeCalled()
@@ -374,14 +371,8 @@ class DataClientTest extends SnippetTestCase
         $snippet->addLocal('dataClient', $this->dataClient);
         $res = $snippet->invoke('rowKeys');
         $expectedRowKeys = [
-            [
-                'rowKey' => 'rk1',
-                'offset' => 1
-            ],
-            [
-                'rowKey' => 'rk2',
-                'offset' => 2
-            ]
+            'rowKey' => 'rk1',
+            'offset' => 1
         ];
         $this->assertEquals(
             print_r($expectedRowKeys, true),

@@ -413,13 +413,13 @@ class DataClient
      * Example:
      * ```
      * $rowKeyStream = $dataClient->sampleRowKeys();
-     * $rowKeys = iterator_to_array($rowKeyStream);
-     *
-     * print_r($rowKeys);
+     * foreach ($rowKeyStream as $rowKey) {
+     *     print_r($rowKey) . PHP_EOL;
+     * }
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return \Generator
+     * @return \Generator<array> A list of associative arrays, each with the keys `rowKey` and `offset`.
      * @throws ApiException if the remote call fails or operation fails
      */
     public function sampleRowKeys(array $options = [])
@@ -429,14 +429,11 @@ class DataClient
             $options + $this->options
         );
 
-        $callable = (function () use ($stream) {
-            foreach ($stream->readAll() as $response) {
-                yield [
-                    'rowKey' => $response->getRowKey(),
-                    'offset' => $response->getOffsetBytes()
-                ];
-            };
-        });
-        return $callable();
+        foreach ($stream->readAll() as $response) {
+            yield [
+                'rowKey' => $response->getRowKey(),
+                'offset' => $response->getOffsetBytes()
+            ];
+        }
     }
 }
