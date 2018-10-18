@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
+use Google\Cloud\Bigtable\DataUtil;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
@@ -287,7 +288,7 @@ class DataClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow', 1);
 
-        if (phpversion() < '5.6.0') {
+        if (!DataUtil::isSupported()) {
             $this->markTestSkipped('This test only runs on PHP 5.6 or above.');
             return;
         }

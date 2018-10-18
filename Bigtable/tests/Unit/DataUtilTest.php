@@ -31,7 +31,7 @@ class DataUtilTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Expected argument to be of type int, instead got
      */
-    public function testIntToByteStringWithString()
+    public function testIntToByteStringThrowsExceptionWithoutInteger()
     {
         DataUtil::intToByteString('abc');
     }

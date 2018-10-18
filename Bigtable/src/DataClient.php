@@ -343,8 +343,8 @@ class DataClient
      * print_r($row);
      * ```
      *
-     * //Increments value
      * ```
+     * // Increments value
      * use Google\Cloud\Bigtable\DataUtil;
      * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
      * use Google\Cloud\Bigtable\RowMutation;

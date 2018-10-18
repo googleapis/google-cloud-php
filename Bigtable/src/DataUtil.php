@@ -26,6 +26,11 @@ class DataUtil
     private static $isLittleEndian;
     private static $isSupported;
 
+    /**
+     * Check if system is little-endian.
+     *
+     * @return bool
+     */
     public static function isSystemLittleEndian()
     {
         if (self::$isLittleEndian === null) {
@@ -34,10 +39,17 @@ class DataUtil
         return self::$isLittleEndian;
     }
 
+    /**
+     * Check if {@see Google\Cloud\Bigtable\DataUtil::intToByteString()} and
+     * {@see Google\Cloud\Bigtable\DataUtil::byteStringToInt()} supported on
+     * the current platform.
+     *
+     * @return bool
+     */
     public static function isSupported()
     {
         if (self::$isSupported === null) {
-            self::$isSupported = PHP_VERSION_ID > 50500;
+            self::$isSupported = PHP_VERSION_ID >= 50600;
         }
         return self::$isSupported;
     }
@@ -48,11 +60,12 @@ class DataUtil
      * @param int $intValue Integer value to convert to.
      * @return string Returns a string of bytes representing a 64-bit big-endian signed integer.
      * @throws \InvalidArgumentException If value is not an integer.
+     * @throws \RuntimeException If called on PHP version <= 5.5.
      */
     public static function intToByteString($intValue)
     {
         if (!self::isSupported()) {
-            throw new \ErrorException('This utility is only supported on 64 bit machine with PHP version > 5.5.');
+            throw new \RuntimeException('This utility is only supported on 64 bit machines with PHP version > 5.5.');
         }
         if (!is_int($intValue)) {
             throw new \InvalidArgumentException(
@@ -71,11 +84,12 @@ class DataUtil
      *
      * @param string $bytes String of bytes to convert.
      * @return int Integer value of the string bytes.
+     * @throws \RuntimeException If called on PHP version <= 5.5.
      */
     public static function byteStringToInt($bytes)
     {
         if (!self::isSupported()) {
-            throw new \ErrorException('This utility is only supported on 64 bit machine with PHP version > 5.5.');
+            throw new \RuntimeException('This utility is only supported on 64 bit machines with PHP version > 5.5.');
         }
         if (self::isSystemLittleEndian()) {
             $bytes = strrev($bytes);

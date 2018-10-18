@@ -58,7 +58,7 @@ class ReadModifyWriteRowRules
      *
      * @param string $familyName Family name of the row.
      * @param string $qualifier Column qualifier of the row.
-     * @param int $amount Amount to add to value of Column qualifier.
+     * @param int $amount Amount to add to value of column qualifier.
      *
      * @return ReadModifyWriteRowRules returns current ReadModifyWriteRowRules object.
      */
