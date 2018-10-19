@@ -95,7 +95,7 @@ System test credentials should be provided via environment variable:
 
 ```sh
 $ export GOOGLE_CLOUD_PHP_TESTS_KEY_PATH='/path/to/keyfile.json'
-$ export GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH='/path/to/keyfile.json'
+$ export GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH='/path/to/keyfile.json'
 ```
 
 Please note that because Datastore and Firestore cannot be active in the same project, a separate environment variable is required to execute Firestore system tests:
