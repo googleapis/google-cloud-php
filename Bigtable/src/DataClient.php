@@ -476,7 +476,7 @@ class DataClient
      *           filter's condition yields at least one cell when applied to the row. Please note
      *           either `trueMutations` or `falseMutations` must be provided.
      *     @type Mutations $falseMutations Mutations to be atomically applied when the predicate
-     *           filter's condition does not yields any cells when applied to the row. Please note
+     *           filter's condition does not yield any cells when applied to the row. Please note
      *           either `trueMutations` or `falseMutations` must be provided.
      * }
      *
