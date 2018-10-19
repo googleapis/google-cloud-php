@@ -200,6 +200,6 @@ class ManageBucketsTest extends StorageTestCase
 
         $bucket->reload();
 
-        $this->assertArrayNotHasKey('foo', $bucket->info()['labels']);
+        $this->assertFalse(isset($bucket->info()['labels']['foo']));
     }
 }
