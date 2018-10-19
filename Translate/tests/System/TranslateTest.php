@@ -24,7 +24,7 @@ class TranslateTest extends TranslateTestCase
 {
     const INPUT_LANGUAGE = 'es';
     const INPUT_STRING = '¿hola, como estas?';
-    const OUTPUT_STRING = 'Hello how are you?';
+    const OUTPUT_STRING = 'Hi how are you?';
 
     public function testTranslate()
     {
@@ -147,7 +147,13 @@ class TranslateTest extends TranslateTestCase
         $res = $client->detectLanguage(self::INPUT_STRING);
         $this->assertEquals(self::INPUT_LANGUAGE, $res['languageCode']);
         $this->assertEquals(self::INPUT_STRING, $res['input']);
-        $this->assertInternalType('double', $res['confidence']);
+        $this->assertThat(
+            $res['confidence'],
+            $this->logicalOr(
+                $this->isType('int'),
+                $this->isType('double')
+            )
+        );
     }
 
     public function testDetectLanguageUndefined()
@@ -166,7 +172,13 @@ class TranslateTest extends TranslateTestCase
         $res = $client->detectLanguageBatch([self::INPUT_STRING]);
         $this->assertEquals(self::INPUT_LANGUAGE, $res[0]['languageCode']);
         $this->assertEquals(self::INPUT_STRING, $res[0]['input']);
-        $this->assertInternalType('double', $res[0]['confidence']);
+        $this->assertThat(
+            $res[0]['confidence'],
+            $this->logicalOr(
+                $this->isType('int'),
+                $this->isType('double')
+            )
+        );
     }
 
     public function testDetectLanguageBatchUndefined()
