@@ -21,8 +21,11 @@ use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\DataUtil;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+use Google\Cloud\Bigtable\Filter;
+use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as MutateRowsRequest_Entry;
@@ -378,6 +381,33 @@ class DataClientTest extends SnippetTestCase
             print_r($expectedRowKeys, true),
             $res->output()
         );
+    }
+
+    public function testCheckAndMutateRow()
+    {
+        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, 'rk1', Argument::any())
+            ->shouldBeCalled()
+            ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
+        $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow');
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('result');
+        $this->assertTrue($res->returnVal());
+    }
+
+    public function testCheckAndMutateRowWithFilter()
+    {
+        $this->bigtableClient
+            ->checkAndMutateRow(
+                self::TABLE_NAME,
+                'rk1',
+                Argument::any()
+            )
+            ->shouldBeCalled()
+            ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
+        $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow', 1);
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $res = $snippet->invoke('result');
+        $this->assertTrue($res->returnVal());
     }
 
     private function setUpReadRowsResponse()
