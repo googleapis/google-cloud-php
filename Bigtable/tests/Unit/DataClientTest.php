@@ -676,7 +676,7 @@ class DataClientTest extends TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage CheckAndMuateRow must have either trueMutations or falseMutations.
+     * @expectedExceptionMessage checkAndMutateRow must have either trueMutations or falseMutations.
      */
     public function testCheckAndMutateRowShouldThrowWhenNoTrueOrFalseMutations()
     {

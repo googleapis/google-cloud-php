@@ -71,7 +71,7 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
         $this->assertEquals($expectedRow, $row);
     }
 
-    public function testCheckAndMutateRowWithEmptyFilterTrue()
+    public function testCheckAndMutateRowWithFilterYieldingCell()
     {
         $predicateFilter = Filter::family()->exactMatch('cf1');
         $mutations = (new Mutations)->upsert('cf1', 'cq1', 'value11', 6000);
@@ -103,7 +103,7 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
         $this->assertEquals($expectedRow, $row);
     }
 
-    public function testCheckAndMutateRowWithEmptyFilterFalse()
+    public function testCheckAndMutateRowWithFilterNotYieldingCell()
     {
         $predicateFilter = Filter::qualifier()->exactMatch('cq10');
         $trueMutations = (new Mutations)->upsert('cf1', 'cq1', 'value12', 6000);

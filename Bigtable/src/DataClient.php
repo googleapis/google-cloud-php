@@ -439,13 +439,13 @@ class DataClient
     }
 
     /**
-     * Mutates row atomically based on output of the filter.
+     * Mutates the specified row atomically based on output of the filter.
      *
      * Example:
      * ```
      * use Google\Cloud\Bigtable\Mutations;
      *
-     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
+     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
      * $result = $dataClient->checkAndMutateRow('rk1', ['trueMutations' => $mutations]);
      * ```
      *
@@ -454,7 +454,7 @@ class DataClient
      * use Google\Cloud\Bigtable\Filter;
      * use Google\Cloud\Bigtable\Mutations;
      *
-     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
+     * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
      * $predicateFilter = Filter::qualifier()->exactMatch('cq');
      * $options = ['predicateFilter' => $predicateFilter, 'trueMutations' => $mutations];
      * $result = $dataClient->checkAndMutateRow('rk1', $options);
@@ -463,67 +463,46 @@ class DataClient
      * @param string $rowKey The row key to mutate row conditionally.
      * @param array $options [optional] {
      *     Configuration options.
+     *
      *     @type FilterInterface $predicateFilter The filter to be applied to the specified
      *           row. Depending on whether or not any results are yielded, either the
      *           trueMutations or falseMutations will be executed. If unset, checks that the
-     *           row contains any values at all. Only single condition can be set. However
+     *           row contains any values at all. Only a single condition can be set, however
      *           that filter can be {@see Google\Cloud\Bigtable\Filter::chain()} or
      *           {@see Google\Cloud\Bigtable\Filter::interleave()} which can wrap multiple other
      *           filters.
      *           WARNING: {@see Google\Cloud\Bigtable\Filter::condition()} is not supported.
      *     @type Mutations $trueMutations Mutations to be atomically applied when condition
-     *           yields at least one cell when applied to the row.
-     *     @type Mutations $falseMutations Mutations to be atomically applied when condition
-     *           does not yields any cells when applied to the row.
+     *           yields at least one cell when applied to the row. Please note either `trueMutations`
+     *           or `falseMutations` must be provided.
+     *     @type Mutations $falseMutations Mutations to be atomically applied when the predicate
+     *           filter's condition does not yields any cells when applied to the row.
      * }
      *
-     * @return boolean Returns true if predicate filter yielded any output, false otherwise.
+     * @return bool Returns true if predicate filter yielded any output, false otherwise.
      * @throws ApiException if the remote call fails or operation fails
+     * @throws \InvalidArgumentException if neither of $trueMutations or $falseMutations is set.
+     *         if $predicateFilter is not instance of {@see Google\Cloud\Bigtable\Filter\FilterInterface}.
+     *         if $trueMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
+     *         if $falseMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
      */
     public function checkAndMutateRow($rowKey, array $options = [])
     {
-        $predicateFilter = $this->pluck('predicateFilter', $options, false) ?: null;
-        $trueMutations = $this->pluck('trueMutations', $options, false) ?: null;
-        $falseMutations = $this->pluck('falseMutations', $options, false) ?: null;
+        $hasSetMutations = false;
 
-        if ($predicateFilter !== null) {
-            if (!$predicateFilter instanceof FilterInterface) {
-                throw new \InvalidArgumentException(
-                    sprintf(
-                        'Expected filter to be of type \'%s\', instead got \'%s\'.',
-                        FilterInterface::class,
-                        gettype($predicateFilter)
-                    )
-                );
-            }
-            $options['predicateFilter'] = $predicateFilter->toProto();
+        if (isset($options['predicateFilter'])) {
+            $this->convertToProto($options, 'predicateFilter', FilterInterface::class);
         }
-        if ($trueMutations !== null) {
-            if (!$trueMutations instanceof Mutations) {
-                throw new \InvalidArgumentException(
-                    sprintf(
-                        'Expected trueMutations to be of type \'%s\', instead got \'%s\'.',
-                        Mutations::class,
-                        gettype($trueMutations)
-                    )
-                );
-            }
-            $options['trueMutations'] = $trueMutations->toProto();
+        if (isset($options['trueMutations'])) {
+            $this->convertToProto($options, 'trueMutations', Mutations::class);
+            $hasSetMutations = true;
         }
-        if ($falseMutations !== null) {
-            if (!$falseMutations instanceof Mutations) {
-                throw new \InvalidArgumentException(
-                    sprintf(
-                        'Expected falseMutations to be of type \'%s\', instead got \'%s\'.',
-                        Mutations::class,
-                        gettype($falseMutations)
-                    )
-                );
-            }
-            $options['falseMutations'] = $falseMutations->toProto();
+        if (isset($options['falseMutations'])) {
+            $this->convertToProto($options, 'falseMutations', Mutations::class);
+            $hasSetMutations = true;
         }
-        if (!isset($options['trueMutations']) && !isset($options['falseMutations'])) {
-            throw new \InvalidArgumentException('CheckAndMuateRow must have either trueMutations or falseMutations.');
+        if (!$hasSetMutations) {
+            throw new \InvalidArgumentException('checkAndMutateRow must have either trueMutations or falseMutations.');
         }
 
         return $this->bigtableClient
@@ -533,5 +512,21 @@ class DataClient
                 $options + $this->options
             )
             ->getPredicateMatched();
+    }
+
+    private function convertToProto(array &$options, $key, $expectedType)
+    {
+        if (!$options[$key] instanceof $expectedType) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Expected %s to be of type \'%s\', instead got \'%s\'.',
+                    $key,
+                    $expectedType,
+                    gettype($options[$key])
+                )
+            );
+        }
+
+        $options[$key] = $options[$key]->toProto();
     }
 }

@@ -31,27 +31,14 @@ use Google\Cloud\Bigtable\V2\TimestampRange;
 class Mutations
 {
     /**
-     * @var array Mutation
-     */
-    private $mutations = [];
-
-    /**
-     * @var array
-     */
-    private $options;
-
-    public function __construct(array $options = [])
-    {
-        $this->options = $options;
-    }
-
-    /**
      * Creates Insert/Update mutation for a row.
      *
      * @param string $family Family name of the row.
      * @param string $qualifier Column qualifier of the row.
-     * @param string $value Value of the Column qualifier.
-     * @param int $timeStamp optional timestamp value.
+     * @param string $value Value of the column qualifier.
+     * @param string|int $timeStamp [optional] A timestamp value, in microseconds.
+     *        Use the value `-1` to utilize the current Bigtable server time.
+     *        **Defaults to** the current local system time.
      *
      * @return Mutations returns current Mutations object.
      */
@@ -64,7 +51,7 @@ class Mutations
         if ($timeStamp === null) {
             $mutationSetCell->setTimestampMicros(
                 // gives milli second
-                round(microtime(true) * 1000)
+                round($this->microtime() * 1000)
                 // multiply by 1000 to get micro
                 * 1000
             );
@@ -96,8 +83,11 @@ class Mutations
      *
      * @param string $family Family name of the row.
      * @param string $qualifier Column qualifier of the row.
-     * @param array $timeRange optional array of time range to delete from column,
-     *        keyed by `start` and `end` representing time range window.
+     * @param array $timeRange [optional] Array of values value, in microseconds to
+     *        delete from column, keyed by `start` and `end` representing time range
+     *        window.
+     *        `start` **Defaults to** 0
+     *        `end`   **Defaults to** infinity
      * @return Mutations returns current Mutations object.
      */
     public function deleteFromColumn($family, $qualifier, array $timeRange = [])
@@ -106,11 +96,14 @@ class Mutations
             ->setFamilyName($family)
             ->setColumnQualifier($qualifier);
         if (!empty($timeRange)) {
-            $deleteFromColumn->setTimeRange(
-                (new TimestampRange)
-                    ->setStartTimestampMicros($timeRange['start'])
-                    ->setEndTimestampMicros($timeRange['end'])
-            );
+            $timestampRange = new TimestampRange;
+            if (isset($timeRange['start'])) {
+                $timestampRange->setStartTimestampMicros($timeRange['start']);
+            }
+            if (isset($timeRange['end'])) {
+                $timestampRange->setEndTimestampMicros($timeRange['end']);
+            }
+            $deleteFromColumn->setTimeRange($timestampRange);
         }
         $this->mutations[] = (new Mutation)->setDeleteFromColumn($deleteFromColumn);
         return $this;
@@ -128,8 +121,21 @@ class Mutations
     }
 
     /**
+     * Returns current unix timestamp with microseconds. This method exists for
+     * testing purposes.
+     *
+     * @return float
+     */
+    protected function microtime()
+    {
+        return microtime(true);
+    }
+
+    /**
      * Returns protobuf representation of Mutations.
      *
+     * @internal
+     * @access private
      * @return array returns array of protobuf representation of Mutations.
      */
     public function toProto()

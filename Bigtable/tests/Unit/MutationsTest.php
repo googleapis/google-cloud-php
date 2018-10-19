@@ -35,12 +35,33 @@ class MutationsTest extends TestCase
     const COLUMN_FAMILY = 'cf1';
     const COLUMN_QUALIFIER = 'cq1';
     const VALUE = 'value1';
+    const TIMESTAMP_VALUE = 315532800.000000;
 
     private $mutations;
 
     public function setUp()
     {
-        $this->mutations = new Mutations;
+        $this->mutations = new MutationsStub;
+    }
+
+    public function testUpsert()
+    {
+        $return = $this->mutations->upsert(
+            self::COLUMN_FAMILY,
+            self::COLUMN_QUALIFIER,
+            self::VALUE
+        );
+        $proto = $this->mutations->toProto();
+        $expectedProto[] = (new Mutation)
+            ->setSetCell(
+                (new SetCell)
+                    ->setFamilyName(self::COLUMN_FAMILY)
+                    ->setColumnQualifier(self::COLUMN_QUALIFIER)
+                    ->setValue(self::VALUE)
+                    ->setTimestampMicros(315532800000000)
+            );
+        $this->assertEquals($this->mutations, $return);
+        $this->assertEquals($expectedProto, $proto);
     }
 
     public function testUpsertWithTimeRange()
@@ -122,3 +143,13 @@ class MutationsTest extends TestCase
         $this->assertEquals($expectedProto, $proto);
     }
 }
+
+//@codingStandardsIgnoreStart
+class MutationsStub extends Mutations
+{
+    protected function microtime()
+    {
+        return MutationsTest::TIMESTAMP_VALUE;
+    }
+}
+//@codingStandardsIgnoreEnd
