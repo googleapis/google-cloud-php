@@ -449,8 +449,8 @@ class DataClient
      * $result = $dataClient->checkAndMutateRow('rk1', ['trueMutations' => $mutations]);
      * ```
      *
-     * //With predicate filter
      * ```
+     * // With predicate filter
      * use Google\Cloud\Bigtable\Filter;
      * use Google\Cloud\Bigtable\Mutations;
      *
