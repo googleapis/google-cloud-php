@@ -65,7 +65,9 @@ class Retry
                 $a = unserialize($line);
                 $idNum = key($a);
                 $job = $this->runner->getJobFromIdNum($idNum);
-                $job->flush($a[$idNum]);
+                if (! $job->callFunc($a[$idNum])) {
+                    $this->handleFailure($idNum, $a[$idNum]);
+                }
             }
             @fclose($fp);
             @unlink($tmpFile);
