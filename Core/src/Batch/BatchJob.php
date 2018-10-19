@@ -173,7 +173,7 @@ class BatchJob implements JobInterface
     /**
      * Finish any pending activity for this job.
      *
-     * @private
+     * @access private
      * @internal
      *
      * @param array $items
