@@ -385,8 +385,7 @@ class DataClientTest extends SnippetTestCase
 
     public function testCheckAndMutateRow()
     {
-        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
-        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, 'rk1', ['trueMutations' => $mutations->toProto()])
+        $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, 'rk1', Argument::any())
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
         $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow');
@@ -397,16 +396,11 @@ class DataClientTest extends SnippetTestCase
 
     public function testCheckAndMutateRowWithFilter()
     {
-        $mutations = (new Mutations)->upsert('family', 'qualifier', 'value', 1000);
-        $predicateFilter = Filter::qualifier()->exactMatch('cq');
         $this->bigtableClient
             ->checkAndMutateRow(
                 self::TABLE_NAME,
                 'rk1',
-                [
-                    'predicateFilter' => $predicateFilter->toProto(),
-                    'trueMutations' => $mutations->toProto()
-                ]
+                Argument::any()
             )
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
