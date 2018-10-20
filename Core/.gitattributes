@@ -1,3 +1,4 @@
 /*.xml.dist export-ignore
 /tests export-ignore
+/src/Testing export-ignore
 /.github export-ignore
