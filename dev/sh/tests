@@ -6,10 +6,11 @@ function unit () {
   echo "Running Unit Test Suite"
 
   if [ "${TRAVIS}" == "true" ]; then
-    # TODO: re-enable code coverage once issues with xdebug and empty
-    # coverage reports are resolved.
-    # $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
-    $(dirname $0)/../../vendor/bin/phpunit
+    $(dirname $0)/../../vendor/bin/phpunit --coverage-clover=build/clover.xml
+
+    if [[ $IS_HHVM != "true" ]]; then
+      bash <(curl -s https://codecov.io/bash) -f build/clover.xml;
+    fi
   else
     $(dirname $0)/../../vendor/bin/phpunit
   fi
