@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Container\Tests\System\V1;
+namespace Google\Cloud\Redis\Tests\System\V1;
 
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\Redis\V1\CloudRedisClient;
