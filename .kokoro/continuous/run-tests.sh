@@ -27,6 +27,9 @@ if [ ! -z "${GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH}" ]; then
     export GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH="${KOKORO_KEYSTORE_DIR}/${GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH}"
 fi
 
+# non-secret env vars
+export ASSET_TEST_BUCKET="php_asset_test_bucket"
+
 echo "Running PHPCS Code Style Checker"
 dev/sh/style
 
