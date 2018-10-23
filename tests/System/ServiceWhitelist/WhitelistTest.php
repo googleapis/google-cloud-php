@@ -34,6 +34,7 @@ class WhitelistTest extends SystemTestCase
 
     public function setUp()
     {
+        $this->markTestSkipped('Temporarily removed from the system test suite.');
         if (!getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH')) {
             $this->markTestSkipped('Missing whitelist keyfile path for whitelist system tests.');
         }
