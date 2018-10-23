@@ -283,8 +283,12 @@ class ConformanceTest extends TestCase
                         $values = [];
                         if (isset($clause[$name]['jsonValues'])) {
                             foreach ($clause[$name]['jsonValues'] as $value) {
-                                $values[] = $this->injectSentinel($this->decodeJson($value));
+                                $values[] = $this->injectSentinel($this->decodeJson($value, true));
                             }
+                        }
+
+                        if ($values === []) {
+                            $values = null;
                         }
 
                         if (isset($clause[$name]['docSnapshot'])) {
