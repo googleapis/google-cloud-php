@@ -24,7 +24,6 @@ use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\DataClient;
-use Google\Cloud\Bigtable\RowMutation;
 use Exception;
 use PHPUnit\Framework\TestCase;
 

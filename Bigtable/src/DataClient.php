@@ -24,6 +24,7 @@ use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -129,24 +130,36 @@ class DataClient
      * Example:
      * ```
      * use Google\Cloud\Bigtable\DataClient;
-     * use Google\Cloud\Bigtable\RowMutation;
+     * use Google\Cloud\Bigtable\Mutations;
      *
-     * $rowMutation = new RowMutation('r1');
-     * $rowMutation->upsert('cf1','cq1','value1',1534183334215000);
+     * $mutations = (new Mutations)
+     *     ->upsert('cf1','cq1','value1',1534183334215000);
      *
-     * $dataClient->mutateRows([$rowMutation]);
+     * $dataClient->mutateRows(['r1' => $mutations]);
      * ```
-     * @param array $rowMutations array of RowMutation object.
+     * @param array $rowMutations Associative array of rowKey as key and value as
+     *        {@see Google\Cloud\Bigtable\Mutations}.
      * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
+     * @throws InvalidArgumentException if rowMutations is a list instead of associative array index by rowkey.
      */
     public function mutateRows(array $rowMutations, array $options = [])
     {
-        $entries = [];
-        foreach ($rowMutations as $rowMutation) {
-            $entries[] = $rowMutation->toProto();
+        if (!$this->isAssoc($rowMutations)) {
+            throw new \InvalidArgumentException(
+                'Expected rowMutations to be of type associative array, instead got list.'
+            );
         }
+        $entries = [];
+        foreach ($rowMutations as $rowKey => $mutations) {
+            $entries[] = $this->toEntry($rowKey, $mutations);
+        }
+        $this->mutateRowsWithEntries($entries, $options);
+    }
+
+    private function mutateRowsWithEntries(array $entries, array $options = [])
+    {
         $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $options + $this->options);
         $rowMutationsFailedResponse = [];
         $failureCode = Code::OK;
@@ -158,8 +171,7 @@ class DataClient
                     $failureCode = $mutateRowsResponseEntry->getStatus()->getCode();
                     $message = $mutateRowsResponseEntry->getStatus()->getMessage();
                     $rowMutationsFailedResponse[] = [
-                        'rowKey' => $rowMutations[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
-                        'rowMutationIndex' => $mutateRowsResponseEntry->getIndex(),
+                        'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
                         'statusCode' => $failureCode,
                         'message' => $message
                     ];
@@ -187,26 +199,33 @@ class DataClient
      */
     public function upsert(array $rows, array $options = [])
     {
-        $rowMutations = [];
+        $entries = [];
         foreach ($rows as $rowKey => $families) {
-            $rowMutation = new RowMutation($rowKey);
+            $mutations = new Mutations;
             foreach ($families as $family => $qualifiers) {
                 foreach ($qualifiers as $qualifier => $value) {
                     if (isset($value['timeStamp'])) {
-                        $rowMutation->upsert(
+                        $mutations->upsert(
                             $family,
                             $qualifier,
                             $value['value'],
                             $value['timeStamp']
                         );
                     } else {
-                        $rowMutation->upsert($family, $qualifier, $value['value']);
+                        $mutations->upsert($family, $qualifier, $value['value']);
                     }
                 }
             }
-            $rowMutations[] = $rowMutation;
+            $entries[] = $this->toEntry($rowKey, $mutations);
         }
-        $this->mutateRows($rowMutations, $options);
+        $this->mutateRowsWithEntries($entries, $options);
+    }
+
+    private function toEntry($rowKey, Mutations $mutations)
+    {
+        return (new Entry)
+            ->setRowKey($rowKey)
+            ->setMutations($mutations->toProto());
     }
 
     /**
@@ -348,12 +367,12 @@ class DataClient
      * // Increments value
      * use Google\Cloud\Bigtable\DataUtil;
      * use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-     * use Google\Cloud\Bigtable\RowMutation;
+     * use Google\Cloud\Bigtable\Mutations;
      *
-     * $rowMutation = new RowMutation('rk1');
-     * $rowMutation->upsert('cf1', 'cq1', DataUtil::intToByteString(2));
+     * $mutations = (new Mutations)
+     *     ->upsert('cf1', 'cq1', DataUtil::intToByteString(2));
      *
-     * $dataClient->mutateRows([$rowMutation]);
+     * $dataClient->mutateRows(['rk1' => $mutations]);
      *
      * $rules = (new ReadModifyWriteRowRules)
      *     ->increment('cf1', 'cq1', 3);

@@ -18,7 +18,6 @@
 namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Tests\System\DataClientTest;
-use Google\Cloud\Bigtable\RowMutation;
 
 /**
  * @group bigtable

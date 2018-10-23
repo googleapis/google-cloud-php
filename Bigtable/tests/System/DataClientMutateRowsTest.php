@@ -18,7 +18,7 @@
 namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Tests\System\DataClientTest;
-use Google\Cloud\Bigtable\RowMutation;
+use Google\Cloud\Bigtable\Mutations;
 
 /**
  * @group bigtable
@@ -67,9 +67,8 @@ class DataClientMutateRowsTest extends DataClientTest
             ]
         ];
         self::$dataClient->upsert($insertRows);
-        $rowMutation = new RowMutation('rk2');
-        $rowMutation->deleteRow();
-        self::$dataClient->mutateRows([$rowMutation]);
+        $mutations = (new Mutations)->deleteRow();
+        self::$dataClient->mutateRows(['rk2' => $mutations]);
         $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk2']])->readAll());
         $this->assertEquals([], $rows);
     }
@@ -93,9 +92,8 @@ class DataClientMutateRowsTest extends DataClientTest
             ]
         ];
         self::$dataClient->upsert($insertRows);
-        $rowMutation = new RowMutation('rk3');
-        $rowMutation->deleteFromFamily('cf2');
-        self::$dataClient->mutateRows([$rowMutation]);
+        $mutations = (new Mutations)->deleteFromFamily('cf2');
+        self::$dataClient->mutateRows(['rk3' => $mutations]);
         $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk3']])->readAll());
         $expectedRows = [
             'rk3' => [
@@ -128,9 +126,8 @@ class DataClientMutateRowsTest extends DataClientTest
             ]
         ];
         self::$dataClient->upsert($insertRows);
-        $rowMutation = new RowMutation('rk4');
-        $rowMutation->deleteFromColumn('cf1', 'cq2');
-        self::$dataClient->mutateRows([$rowMutation]);
+        $mutations = (new Mutations)->deleteFromColumn('cf1', 'cq2');
+        self::$dataClient->mutateRows(['rk4' => $mutations]);
         $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk4']])->readAll());
         $expectedRows = [
             'rk4' => [
@@ -185,9 +182,8 @@ class DataClientMutateRowsTest extends DataClientTest
             ]
         ];
         self::$dataClient->upsert($insertRows);
-        $rowMutation = new RowMutation('rk5');
-        $rowMutation->deleteFromColumn('cf1', 'cq2', ['start' => 21000, 'end' => 40000]);
-        self::$dataClient->mutateRows([$rowMutation]);
+        $mutations = (new Mutations)->deleteFromColumn('cf1', 'cq2', ['start' => 21000, 'end' => 40000]);
+        self::$dataClient->mutateRows(['rk5' => $mutations]);
         $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk5']])->readAll());
         $expectedRows = [
             'rk5' => [

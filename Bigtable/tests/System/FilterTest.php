@@ -18,7 +18,7 @@
 namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Filter;
-use Google\Cloud\Bigtable\RowMutation;
+use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\Tests\System\DataClientTest;
 
 /**
@@ -68,14 +68,19 @@ class FilterTest extends DataClientTest
         foreach ($data as $row) {
             $row = json_decode($row, true);
             foreach ($row as $rowKey => $family) {
-                $rowMutation = new RowMutation($rowKey);
+                $mutations = null;
+                if (isset(self::$rowMutations[$rowKey])) {
+                    $mutations = self::$rowMutations[$rowKey];
+                } else {
+                    $mutations = new Mutations;
+                }
                 $insertRows[$rowKey] = $family;
                 foreach ($family as $familyName => $qualifier) {
                     foreach ($qualifier as $qualifierName => $value) {
-                        $rowMutation->upsert($familyName, $qualifierName, $value['value'], $value['timeStamp']);
+                        $mutations->upsert($familyName, $qualifierName, $value['value'], $value['timeStamp']);
                     }
                 }
-                self::$rowMutations[] = $rowMutation;
+                self::$rowMutations[$rowKey] = $mutations;
             }
         }
         $expectedRows = self::createExpectedRows($insertRows);
