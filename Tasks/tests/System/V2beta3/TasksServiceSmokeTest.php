@@ -66,12 +66,12 @@ class TasksServiceSmokeTest extends SystemTestCase
         $this->createQueue($client, $locationName, $queue);
 
         $resp = $client->listQueues($locationName);
+        $found = false;
         foreach ($resp->iterateAllElements() as $q) {
-            // ignore the default queue
-            if (substr($q->getName(), -7) === 'default') {
-                continue;
+            if ($queueName === $q->getName()) {
+                $found = true;
             }
-            $this->assertEquals($queueName, $q->getName());
         }
+        $this->assertTrue($found, "Queue $queueName should be found in the listQueues respons");
     }
 }
