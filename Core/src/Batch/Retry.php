@@ -65,7 +65,7 @@ class Retry
                 $a = unserialize($line);
                 $idNum = key($a);
                 $job = $this->runner->getJobFromIdNum($idNum);
-                if (! $job->run($a[$idNum])) {
+                if (! $job->callFunc($a[$idNum])) {
                     $this->handleFailure($idNum, $a[$idNum]);
                 }
             }

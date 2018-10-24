@@ -67,7 +67,7 @@ class RetryTest extends TestCase
 
     public function testRetryAll()
     {
-        $this->job->run(array('apple', 'orange'))
+        $this->job->callFunc(array('apple', 'orange'))
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
         $this->runner->getJobFromIdNum(1)
@@ -82,7 +82,7 @@ class RetryTest extends TestCase
 
     public function testRetryAllWithSingleFailure()
     {
-        $this->job->run(array('apple', 'orange'))
+        $this->job->callFunc(array('apple', 'orange'))
             ->willReturn(false, true)
             ->shouldBeCalledTimes(2);
         $this->runner->getJobFromIdNum(1)

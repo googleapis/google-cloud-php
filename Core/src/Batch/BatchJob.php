@@ -163,11 +163,25 @@ class BatchJob implements JobInterface
      */
     public function flush(array $items = [])
     {
-        if (!call_user_func_array($this->func, [$items])) {
+        if (! $this->callFunc($items)) {
             $this->handleFailure($this->id, $items);
             return false;
         }
         return true;
+    }
+
+    /**
+     * Finish any pending activity for this job.
+     *
+     * @access private
+     * @internal
+     *
+     * @param array $items
+     * @return bool
+     */
+    public function callFunc(array $items = [])
+    {
+        return call_user_func_array($this->func, [$items]);
     }
 
     /**

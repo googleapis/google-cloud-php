@@ -36,9 +36,9 @@ class AssetServiceSmokeTest extends SystemTestCase
         if ($projectId === false) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
-        $bucket = getenv('BUCKET');
+        $bucket = getenv('ASSET_TEST_BUCKET');
         if ($bucket === false) {
-            $this->fail('Environment variable BUCKET must be set for smoke test');
+            $this->fail('Environment variable ASSET_TEST_BUCKET must be set for smoke test');
         }
         $client = new AssetServiceClient();
         $objectPath = "gs://$bucket/cai-system-test";

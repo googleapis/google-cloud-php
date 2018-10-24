@@ -118,7 +118,7 @@ class UploadObjectsTest extends StorageTestCase
     {
         $this->totalStoredBytes += $storedBytes;
 
-        $this->assertGreaterThan($this->totalStoredBytes, $this->testFileSize);
+        $this->assertGreaterThanOrEqual($this->totalStoredBytes, $this->testFileSize);
 
         if ($this->testFileSize == $this->totalStoredBytes) {
             $this->assertEquals(filesize(__DIR__ . '/data/5mb.txt'), $this->totalStoredBytes);
