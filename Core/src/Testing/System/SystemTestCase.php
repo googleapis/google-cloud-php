@@ -100,14 +100,12 @@ class SystemTestCase extends TestCase
             return $client->createBucket($bucketName, $options);
         });
 
-        self::$deletionQueue->add(function () use ($backoff, $bucket) {
-            $backoff->execute(function () use ($bucket) {
-                foreach ($bucket->objects() as $object) {
-                    $object->delete();
-                }
+        self::$deletionQueue->add(function () use ($bucket) {
+            foreach ($bucket->objects() as $object) {
+                $object->delete();
+            }
 
-                $bucket->delete();
-            });
+            $bucket->delete();
         });
 
         return $bucket;
@@ -168,14 +166,12 @@ class SystemTestCase extends TestCase
             return $client->createTopic($topicName, $options);
         });
 
-        self::$deletionQueue->add(function () use ($backoff, $topic) {
-            $backoff->execute(function () use ($topic) {
-                foreach ($topic->subscriptions() as $subscription) {
-                    $subscription->delete();
-                }
+        self::$deletionQueue->add(function () use ($topic) {
+            foreach ($topic->subscriptions() as $subscription) {
+                $subscription->delete();
+            }
 
-                $topic->delete();
-            });
+            $topic->delete();
         });
 
         return $topic;

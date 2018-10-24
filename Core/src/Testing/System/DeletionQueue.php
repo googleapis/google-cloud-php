@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Testing\System;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ExponentialBackoff;
 
@@ -100,6 +101,10 @@ class DeletionQueue
                     try {
                         call_user_func($item);
                     } catch (NotFoundException $e) {
+                    } catch (ApiException $apiException) {
+                        if ($apiException->getStatus() !== 'NOT_FOUND') {
+                            throw $apiException;
+                        }
                     }
                 });
             }

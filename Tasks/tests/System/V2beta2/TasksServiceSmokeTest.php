@@ -40,10 +40,8 @@ class TasksServiceSmokeTest extends SystemTestCase
         $backoff->execute(function () use ($client, $locationName, $queue) {
             $client->createQueue($locationName, $queue);
         });
-        self::$deletionQueue->add(function () use ($backoff, $client, $queue) {
-            $backoff->execute(function () use ($client, $queue) {
-                $client->deleteQueue($queue->getName());
-            });
+        self::$deletionQueue->add(function () use ($client, $queue) {
+            $client->deleteQueue($queue->getName());
         });
         sleep(120);
     }
