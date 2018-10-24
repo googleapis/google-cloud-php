@@ -23,7 +23,7 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-echo "Running Docment Generator"
+echo "Running Doc Generator"
 
 php -d 'memory_limit=-1' dev/google-cloud doc
 
