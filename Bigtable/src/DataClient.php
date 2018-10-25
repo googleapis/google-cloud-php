@@ -142,7 +142,7 @@ class DataClient
      * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
-     * @throws InvalidArgumentException if rowMutations is a list instead of associative array index by rowkey.
+     * @throws InvalidArgumentException if rowMutations is a list instead of associative array indexed by rowkey.
      */
     public function mutateRows(array $rowMutations, array $options = [])
     {
