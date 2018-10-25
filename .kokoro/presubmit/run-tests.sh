@@ -10,7 +10,7 @@ SHORT_JOB_NAME=${KOKORO_JOB_NAME##*/}
 LATEST_PHP="php72"
 
 if [ "${SHORT_JOB_NAME}" == "${LATEST_PHP}" ]; then
-    pecl instal xdebug
+    pecl install xdebug
     echo "zend_extension=xdebug.so" > ${PHP_DIR}/lib/conf.d/xdebug.ini
 fi
 
