@@ -77,6 +77,8 @@ class DocGenerator
      */
     public function generate($basePath, $pretty)
     {
+        // Simulate failure
+        exit(1);
         $fileReflectorRegister = new ReflectorRegister();
 
         $rootPath = $this->executionPath;
