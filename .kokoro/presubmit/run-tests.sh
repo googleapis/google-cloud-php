@@ -27,7 +27,7 @@ echo "Running Unit Test Suite"
 vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} --coverage-clover=clover.xml
 
 if [ "${SHORT_JOB_NAME}" == "${LATEST_PHP}" ]; then
-    ${KOKORO_GFILE_DIR}/codecov.sh
+    bash ${KOKORO_GFILE_DIR}/codecov.sh
 fi
 
 echo "Running Snippet Test Suite"
