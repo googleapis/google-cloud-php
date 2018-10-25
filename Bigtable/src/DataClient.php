@@ -441,7 +441,7 @@ class DataClient
      *           either `trueMutations` or `falseMutations` must be provided.
      * }
      *
-     * @return bool Returns true If predicate filter yielded any output, false otherwise.
+     * @return bool Returns true if predicate filter yielded any output, false otherwise.
      * @throws ApiException If the remote call fails or operation fails
      * @throws \InvalidArgumentException If neither of $trueMutations or $falseMutations is set.
      *         If $predicateFilter is not instance of {@see Google\Cloud\Bigtable\Filter\FilterInterface}.
