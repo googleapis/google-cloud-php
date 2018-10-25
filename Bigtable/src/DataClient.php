@@ -133,7 +133,7 @@ class DataClient
      * use Google\Cloud\Bigtable\Mutations;
      *
      * $mutations = (new Mutations)
-     *     ->upsert('cf1','cq1','value1',1534183334215000);
+     *     ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
      *
      * $dataClient->mutateRows(['r1' => $mutations]);
      * ```
@@ -141,8 +141,8 @@ class DataClient
      *        {@see Google\Cloud\Bigtable\Mutations}.
      * @param array $options [optional] Configuration options.
      * @return void
-     * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
-     * @throws InvalidArgumentException if rowMutations is a list instead of associative array indexed by rowkey.
+     * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
+     * @throws InvalidArgumentException If rowMutations is a list instead of associative array indexed by rowkey.
      */
     public function mutateRows(array $rowMutations, array $options = [])
     {
@@ -158,31 +158,6 @@ class DataClient
         $this->mutateRowsWithEntries($entries, $options);
     }
 
-    private function mutateRowsWithEntries(array $entries, array $options = [])
-    {
-        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $options + $this->options);
-        $rowMutationsFailedResponse = [];
-        $failureCode = Code::OK;
-        $message = 'partial failure';
-        foreach ($responseStream->readAll() as $mutateRowsResponse) {
-            $mutateRowsResponseEntries = $mutateRowsResponse->getEntries();
-            foreach ($mutateRowsResponseEntries as $mutateRowsResponseEntry) {
-                if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
-                    $failureCode = $mutateRowsResponseEntry->getStatus()->getCode();
-                    $message = $mutateRowsResponseEntry->getStatus()->getMessage();
-                    $rowMutationsFailedResponse[] = [
-                        'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
-                        'statusCode' => $failureCode,
-                        'message' => $message
-                    ];
-                }
-            }
-        }
-        if (!empty($rowMutationsFailedResponse)) {
-            throw new BigtableDataOperationException($message, $failureCode, $rowMutationsFailedResponse);
-        }
-    }
-
     /**
      * Insert/update rows in a table.
      *
@@ -195,7 +170,7 @@ class DataClient
      * @param array[] $rows array of row.
      * @param array $options [optional] Configuration options.
      * @return void
-     * @throws ApiException|BigtableDataOperationException if the remote call fails or operation fails
+     * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
      */
     public function upsert(array $rows, array $options = [])
     {
@@ -219,13 +194,6 @@ class DataClient
             $entries[] = $this->toEntry($rowKey, $mutations);
         }
         $this->mutateRowsWithEntries($entries, $options);
-    }
-
-    private function toEntry($rowKey, Mutations $mutations)
-    {
-        return (new Entry)
-            ->setRowKey($rowKey)
-            ->setMutations($mutations->toProto());
     }
 
     /**
@@ -385,7 +353,7 @@ class DataClient
      * @param ReadModifyWriteRowRules $rules Rules to apply on row.
      * @param array $options [optional] Configuration options.
      * @return array Returns array containing all column family keyed by family name.
-     * @throws ApiException if the remote call fails or operation fails
+     * @throws ApiException If the remote call fails or operation fails
      */
     public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
     {
@@ -396,32 +364,6 @@ class DataClient
             $options + $this->options
         );
         return $this->convertToArray($readModifyWriteRowResponse->getRow());
-    }
-
-    private function convertToArray(Row $row)
-    {
-        if ($row === null) {
-            return [];
-        }
-        $families = [];
-        foreach ($row->getFamilies() as $family) {
-            $qualifiers = [];
-            foreach ($family->getColumns() as $column) {
-                $values = [];
-                foreach ($column->getCells() as $cell) {
-                    $values[] = [
-                        'value' => $cell->getValue(),
-                        'timeStamp' => $cell->getTimestampMicros(),
-                        'labels' => ($cell->getLabels()->getIterator()->valid())
-                            ? implode(iterator_to_array($cell->getLabels()->getIterator()))
-                            : ''
-                    ];
-                }
-                $qualifiers[$column->getQualifier()] = $values;
-            }
-            $families[$family->getName()] = $qualifiers;
-        }
-        return $families;
     }
 
     /**
@@ -440,7 +382,7 @@ class DataClient
      *
      * @param array $options [optional] Configuration options.
      * @return \Generator<array> A list of associative arrays, each with the keys `rowKey` and `offset`.
-     * @throws ApiException if the remote call fails or operation fails
+     * @throws ApiException If the remote call fails or operation fails
      */
     public function sampleRowKeys(array $options = [])
     {
@@ -499,12 +441,12 @@ class DataClient
      *           either `trueMutations` or `falseMutations` must be provided.
      * }
      *
-     * @return bool Returns true if predicate filter yielded any output, false otherwise.
-     * @throws ApiException if the remote call fails or operation fails
-     * @throws \InvalidArgumentException if neither of $trueMutations or $falseMutations is set.
-     *         if $predicateFilter is not instance of {@see Google\Cloud\Bigtable\Filter\FilterInterface}.
-     *         if $trueMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
-     *         if $falseMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
+     * @return bool Returns true If predicate filter yielded any output, false otherwise.
+     * @throws ApiException If the remote call fails or operation fails
+     * @throws \InvalidArgumentException If neither of $trueMutations or $falseMutations is set.
+     *         If $predicateFilter is not instance of {@see Google\Cloud\Bigtable\Filter\FilterInterface}.
+     *         If $trueMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
+     *         If $falseMutations is set and is not instance of {@see Google\Cloud\Bigtable\Mutations}.
      */
     public function checkAndMutateRow($rowKey, array $options = [])
     {
@@ -532,6 +474,64 @@ class DataClient
                 $options + $this->options
             )
             ->getPredicateMatched();
+    }
+
+    private function mutateRowsWithEntries(array $entries, array $options = [])
+    {
+        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $options + $this->options);
+        $rowMutationsFailedResponse = [];
+        $failureCode = Code::OK;
+        $message = 'partial failure';
+        foreach ($responseStream->readAll() as $mutateRowsResponse) {
+            $mutateRowsResponseEntries = $mutateRowsResponse->getEntries();
+            foreach ($mutateRowsResponseEntries as $mutateRowsResponseEntry) {
+                if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
+                    $failureCode = $mutateRowsResponseEntry->getStatus()->getCode();
+                    $message = $mutateRowsResponseEntry->getStatus()->getMessage();
+                    $rowMutationsFailedResponse[] = [
+                        'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
+                        'statusCode' => $failureCode,
+                        'message' => $message
+                    ];
+                }
+            }
+        }
+        if (!empty($rowMutationsFailedResponse)) {
+            throw new BigtableDataOperationException($message, $failureCode, $rowMutationsFailedResponse);
+        }
+    }
+
+    private function toEntry($rowKey, Mutations $mutations)
+    {
+        return (new Entry)
+            ->setRowKey($rowKey)
+            ->setMutations($mutations->toProto());
+    }
+
+    private function convertToArray(Row $row)
+    {
+        if ($row === null) {
+            return [];
+        }
+        $families = [];
+        foreach ($row->getFamilies() as $family) {
+            $qualifiers = [];
+            foreach ($family->getColumns() as $column) {
+                $values = [];
+                foreach ($column->getCells() as $cell) {
+                    $values[] = [
+                        'value' => $cell->getValue(),
+                        'timeStamp' => $cell->getTimestampMicros(),
+                        'labels' => ($cell->getLabels()->getIterator()->valid())
+                            ? implode(iterator_to_array($cell->getLabels()->getIterator()))
+                            : ''
+                    ];
+                }
+                $qualifiers[$column->getQualifier()] = $values;
+            }
+            $families[$family->getName()] = $qualifiers;
+        }
+        return $families;
     }
 
     private function convertToProto(array &$options, $key, $expectedType)
