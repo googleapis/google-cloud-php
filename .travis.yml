@@ -2,45 +2,6 @@ language: php
 
 jobs:
   include:
-    - php: 7.2
-      install:
-        - pecl install grpc || echo 'Failed to install grpc'
-        - pecl install protobuf || echo 'Failed to install protobuf'
-        - pecl install stackdriver_debugger-alpha || echo 'Failed to install stackdriver_debugger'
-        - composer self-update
-        - travis_retry composer install
-        - ./dev/google-cloud credentials
-
-    - php: 7.1
-      install:
-        - pecl install grpc || echo 'Failed to install grpc'
-        - pecl install stackdriver_debugger-alpha || echo 'Failed to install stackdriver_debugger'
-        - composer self-update
-        - travis_retry composer install
-        - ./dev/google-cloud credentials
-
-    - php: 7.0
-      install:
-        - pecl install grpc || echo 'Failed to install grpc'
-        - pecl install stackdriver_debugger-alpha || echo 'Failed to install stackdriver_debugger'
-        - composer self-update
-        - travis_retry composer install
-        - ./dev/google-cloud credentials
-
-    - php: 5.6.25
-      install:
-        - pecl install grpc || echo 'Failed to install grpc'
-        - composer self-update
-        - travis_retry composer install
-        - ./dev/google-cloud credentials
-
-    - php: 5.5.38
-      install:
-        - pecl install grpc || echo 'Failed to install grpc'
-        - composer self-update
-        - travis_retry composer install
-        - ./dev/google-cloud credentials
-
     - php: hhvm-3.24
       fast_finish: true
       install:
@@ -48,13 +9,6 @@ jobs:
         - travis_retry composer install
         - ./dev/google-cloud credentials
         - composer --no-interaction --dev remove google/protobuf google/gax google/proto-client
-
-    - stage: "Build Docs"
-      php: 7.2
-      install:
-      - travis_retry composer install
-      script:
-      - ./dev/sh/build-docs
 
     - stage: "Push Docs"
       php: 7.2
@@ -83,8 +37,6 @@ jobs:
 
 stages:
   - test
-  - name: "Build Docs"
-    if: (type = pull_request OR branch != master) AND NOT (tag IS present)
   - name: "Push Docs"
     if: ((type != pull_request) AND (branch = master)) OR (tag IS present)
   - name: "Split Components"
