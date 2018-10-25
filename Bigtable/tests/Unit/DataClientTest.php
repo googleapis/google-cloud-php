@@ -31,8 +31,9 @@ use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as RequestEntry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
-use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry;
+use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as ResponseEntry;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
@@ -77,21 +78,34 @@ class DataClientTest extends TestCase
             'projectId' => self::PROJECT_ID
         ];
         $this->dataClient = new DataClient(self::INSTANCE_ID, self::TABLE_ID, $clientOptions);
-        $rowMutation = new RowMutation('rk1');
-        $rowMutation->upsert('cf1', 'cq1', 'value1', self::TIMESTAMP);
-        $this->entries[] = $rowMutation->toProto();
-        $this->rowMutations[] = $rowMutation;
+        $mutations = (new Mutations)
+            ->upsert('cf1', 'cq1', 'value1', self::TIMESTAMP);
+        $this->entries[] = (new RequestEntry)
+            ->setRowKey('rk1')
+            ->setMutations($mutations->toProto());
+        $this->rowMutations['rk1'] = $mutations;
 
-        $rowMutation = new RowMutation('rk2');
-        $rowMutation->upsert('cf2', 'cq2', 'value2', self::TIMESTAMP);
-        $this->entries[] = $rowMutation->toProto();
-        $this->rowMutations[] = $rowMutation;
+        $mutations = (new Mutations)
+            ->upsert('cf2', 'cq2', 'value2', self::TIMESTAMP);
+        $this->entries[] = (new RequestEntry)
+            ->setRowkey('rk2')
+            ->setMutations($mutations->toProto());
+        $this->rowMutations['rk2'] = $mutations;
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Expected rowMutations to be of type associative array, instead got list.
+     */
+    public function testMutateRowsThrowsExceptionWhenRowMutationsIsList()
+    {
+        $this->dataClient->mutateRows([1,2,3,4]);
     }
 
     public function testMutateRows()
     {
         $statuses = [];
-        for ($i=0; $i<count($this->rowMutations); $i++) {
+        for ($i=0; $i<count($this->entries); $i++) {
             $status = new Status;
             $status->setCode(Code::OK);
             $statuses[] = $status;
@@ -157,7 +171,6 @@ class DataClientTest extends TestCase
             $metadata = [
                 [
                     'rowKey' => 'rk1',
-                    'rowMutationIndex' => 0,
                     'statusCode' => Code::INVALID_ARGUMENT,
                     'message' => 'Invalid argument'
                 ]
@@ -209,7 +222,7 @@ class DataClientTest extends TestCase
     public function testUpsert()
     {
         $statuses = [];
-        for ($i=0; $i<count($this->rowMutations); $i++) {
+        for ($i=0; $i<count($this->entries); $i++) {
             $status = new Status;
             $status->setCode(Code::OK);
             $statuses[] = $status;
@@ -772,7 +785,7 @@ class DataClientTest extends TestCase
         $entryIndex = 0;
         foreach ($status as $value) {
             $mutateRowsResponse = new MutateRowsResponse;
-            $mutateRowsResponseEntry = new Entry;
+            $mutateRowsResponseEntry = new ResponseEntry;
             $mutateRowsResponseEntry->setStatus($value);
             $mutateRowsResponseEntry->setIndex($entryIndex++);
             $mutateRowsResponse->setEntries([$mutateRowsResponseEntry]);
