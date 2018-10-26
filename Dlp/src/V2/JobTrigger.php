@@ -46,7 +46,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     private $triggers;
     /**
      * A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automaticaly being paused.
+     * errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
      * this list will be cleared. Output only field.
      *
@@ -100,7 +100,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *           a single Schedule trigger and must have at least one object.
      *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
      *           A stream of errors encountered when the trigger was activated. Repeated
-     *           errors may result in the JobTrigger automaticaly being paused.
+     *           errors may result in the JobTrigger automatically being paused.
      *           Will return the last 100 errors. Whenever the JobTrigger is modified
      *           this list will be cleared. Output only field.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -254,7 +254,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
 
     /**
      * A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automaticaly being paused.
+     * errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
      * this list will be cleared. Output only field.
      *
@@ -268,7 +268,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
 
     /**
      * A stream of errors encountered when the trigger was activated. Repeated
-     * errors may result in the JobTrigger automaticaly being paused.
+     * errors may result in the JobTrigger automatically being paused.
      * Will return the last 100 errors. Whenever the JobTrigger is modified
      * this list will be cleared. Output only field.
      *

@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Message for a date time object.
+ * e.g. 2018-01-01, 5th August.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DateTime</code>
  */
