@@ -7,11 +7,11 @@ pushd github/google-cloud-php
 composer --no-interaction --no-ansi --no-progress update
 
 SHORT_JOB_NAME=${KOKORO_JOB_NAME##*/}
-LATEST_PHP="php72"
 
-if [ "${SHORT_JOB_NAME}" == "${LATEST_PHP}" ]; then
+if [ "${SHORT_JOB_NAME}" == "php72" ]; then
     pecl install xdebug
     echo "zend_extension=xdebug.so" > ${PHP_DIR}/lib/conf.d/xdebug.ini
+    RUN_CODECOV="true"
 fi
 
 mkdir -p ${SHORT_JOB_NAME}/unit
@@ -24,13 +24,15 @@ echo "Running PHPCS Code Style Checker"
 dev/sh/style
 
 echo "Running Unit Test Suite"
+
 vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} --coverage-clover=clover.xml
 
-if [ "${SHORT_JOB_NAME}" == "${LATEST_PHP}" ]; then
+if [ "${RUN_CODECOV}" == "true" ]; then
     bash ${KOKORO_GFILE_DIR}/codecov.sh
 fi
 
 echo "Running Snippet Test Suite"
+
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
