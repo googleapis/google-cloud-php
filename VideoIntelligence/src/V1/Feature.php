@@ -41,5 +41,11 @@ class Feature
      * Generated from protobuf enum <code>FACE_DETECTION = 4;</code>
      */
     const FACE_DETECTION = 4;
+    /**
+     * Speech transcription.
+     *
+     * Generated from protobuf enum <code>SPEECH_TRANSCRIPTION = 6;</code>
+     */
+    const SPEECH_TRANSCRIPTION = 6;
 }
 

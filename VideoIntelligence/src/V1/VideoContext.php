@@ -17,8 +17,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video
-     * is treated as a single segment.
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 1;</code>
      */
@@ -47,6 +47,12 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.FaceDetectionConfig face_detection_config = 5;</code>
      */
     private $face_detection_config = null;
+    /**
+     * Config for SPEECH_TRANSCRIPTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
+     */
+    private $speech_transcription_config = null;
 
     /**
      * Constructor.
@@ -56,8 +62,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
      *           Video segments to annotate. The segments may overlap and are not required
-     *           to be contiguous or span the whole video. If unspecified, each video
-     *           is treated as a single segment.
+     *           to be contiguous or span the whole video. If unspecified, each video is
+     *           treated as a single segment.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelDetectionConfig $label_detection_config
      *           Config for LABEL_DETECTION.
      *     @type \Google\Cloud\VideoIntelligence\V1\ShotChangeDetectionConfig $shot_change_detection_config
@@ -66,6 +72,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *           Config for EXPLICIT_CONTENT_DETECTION.
      *     @type \Google\Cloud\VideoIntelligence\V1\FaceDetectionConfig $face_detection_config
      *           Config for FACE_DETECTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig $speech_transcription_config
+     *           Config for SPEECH_TRANSCRIPTION.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,8 +83,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
 
     /**
      * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video
-     * is treated as a single segment.
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,8 +96,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
 
     /**
      * Video segments to annotate. The segments may overlap and are not required
-     * to be contiguous or span the whole video. If unspecified, each video
-     * is treated as a single segment.
+     * to be contiguous or span the whole video. If unspecified, each video is
+     * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 1;</code>
      * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -203,6 +211,32 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\FaceDetectionConfig::class);
         $this->face_detection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Config for SPEECH_TRANSCRIPTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
+     * @return \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig
+     */
+    public function getSpeechTranscriptionConfig()
+    {
+        return $this->speech_transcription_config;
+    }
+
+    /**
+     * Config for SPEECH_TRANSCRIPTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig $var
+     * @return $this
+     */
+    public function setSpeechTranscriptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig::class);
+        $this->speech_transcription_config = $var;
 
         return $this;
     }
