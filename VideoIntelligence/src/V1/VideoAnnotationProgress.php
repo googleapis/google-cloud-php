@@ -23,8 +23,8 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      */
     private $input_uri = '';
     /**
-     * Approximate percentage processed thus far.
-     * Guaranteed to be 100 when fully processed.
+     * Approximate percentage processed thus far. Guaranteed to be
+     * 100 when fully processed.
      *
      * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      */
@@ -52,8 +52,8 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      *           Video file location in
      *           [Google Cloud Storage](https://cloud.google.com/storage/).
      *     @type int $progress_percent
-     *           Approximate percentage processed thus far.
-     *           Guaranteed to be 100 when fully processed.
+     *           Approximate percentage processed thus far. Guaranteed to be
+     *           100 when fully processed.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Time when the request was received.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -94,8 +94,8 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Approximate percentage processed thus far.
-     * Guaranteed to be 100 when fully processed.
+     * Approximate percentage processed thus far. Guaranteed to be
+     * 100 when fully processed.
      *
      * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      * @return int
@@ -106,8 +106,8 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Approximate percentage processed thus far.
-     * Guaranteed to be 100 when fully processed.
+     * Approximate percentage processed thus far. Guaranteed to be
+     * 100 when fully processed.
      *
      * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      * @param int $var
