@@ -21,8 +21,9 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * from the `Finding` object. If appending to an existing table, any columns
      * from the predefined schema that are missing will be added. No columns in
      * the existing table will be deleted.
-     * If unspecified, then all available columns will be used for a new table,
-     * and no changes will be made to an existing table.
+     * If unspecified, then all available columns will be used for a new table or
+     * an (existing) table with no schema, and no changes will be made to an
+     * existing table that has a schema.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      */
@@ -54,8 +55,9 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      *           from the `Finding` object. If appending to an existing table, any columns
      *           from the predefined schema that are missing will be added. No columns in
      *           the existing table will be deleted.
-     *           If unspecified, then all available columns will be used for a new table,
-     *           and no changes will be made to an existing table.
+     *           If unspecified, then all available columns will be used for a new table or
+     *           an (existing) table with no schema, and no changes will be made to an
+     *           existing table that has a schema.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,8 +119,9 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * from the `Finding` object. If appending to an existing table, any columns
      * from the predefined schema that are missing will be added. No columns in
      * the existing table will be deleted.
-     * If unspecified, then all available columns will be used for a new table,
-     * and no changes will be made to an existing table.
+     * If unspecified, then all available columns will be used for a new table or
+     * an (existing) table with no schema, and no changes will be made to an
+     * existing table that has a schema.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      * @return int
@@ -134,8 +137,9 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * from the `Finding` object. If appending to an existing table, any columns
      * from the predefined schema that are missing will be added. No columns in
      * the existing table will be deleted.
-     * If unspecified, then all available columns will be used for a new table,
-     * and no changes will be made to an existing table.
+     * If unspecified, then all available columns will be used for a new table or
+     * an (existing) table with no schema, and no changes will be made to an
+     * existing table that has a schema.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig.OutputSchema output_schema = 3;</code>
      * @param int $var

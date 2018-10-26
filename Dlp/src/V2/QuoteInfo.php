@@ -24,6 +24,7 @@ class QuoteInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\DateTime $date_time
+     *           The date time indicated by the quote.
      * }
      */
     public function __construct($data = NULL) {
@@ -32,6 +33,8 @@ class QuoteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The date time indicated by the quote.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime date_time = 2;</code>
      * @return \Google\Cloud\Dlp\V2\DateTime
      */
@@ -41,6 +44,8 @@ class QuoteInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The date time indicated by the quote.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime date_time = 2;</code>
      * @param \Google\Cloud\Dlp\V2\DateTime $var
      * @return $this

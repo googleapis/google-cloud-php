@@ -51,6 +51,13 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryOptions.SampleMethod sample_method = 4;</code>
      */
     private $sample_method = 0;
+    /**
+     * References to fields excluded from scanning. This allows you to skip
+     * inspection of entire columns which you know have no findings.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
+     */
+    private $excluded_fields;
 
     /**
      * Constructor.
@@ -75,6 +82,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *           rows_limit_percent can be specified. Cannot be used in conjunction with
      *           TimespanConfig.
      *     @type int $sample_method
+     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $excluded_fields
+     *           References to fields excluded from scanning. This allows you to skip
+     *           inspection of entire columns which you know have no findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -220,6 +230,34 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\BigQueryOptions_SampleMethod::class);
         $this->sample_method = $var;
+
+        return $this;
+    }
+
+    /**
+     * References to fields excluded from scanning. This allows you to skip
+     * inspection of entire columns which you know have no findings.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExcludedFields()
+    {
+        return $this->excluded_fields;
+    }
+
+    /**
+     * References to fields excluded from scanning. This allows you to skip
+     * inspection of entire columns which you know have no findings.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExcludedFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\FieldId::class);
+        $this->excluded_fields = $arr;
 
         return $this;
     }

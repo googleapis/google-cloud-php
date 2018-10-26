@@ -42,7 +42,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     /**
      * List of file type groups to include in the scan.
      * If empty, all files are scanned and available data format processors
-     * are applied.
+     * are applied. In addition, the binary content of the selected files
+     * is always scanned as well.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      */
@@ -80,7 +81,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $file_types
      *           List of file type groups to include in the scan.
      *           If empty, all files are scanned and available data format processors
-     *           are applied.
+     *           are applied. In addition, the binary content of the selected files
+     *           is always scanned as well.
      *     @type int $sample_method
      *     @type int $files_limit_percent
      *           Limits the number of files to scan to this percentage of the input FileSet.
@@ -184,7 +186,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     /**
      * List of file type groups to include in the scan.
      * If empty, all files are scanned and available data format processors
-     * are applied.
+     * are applied. In addition, the binary content of the selected files
+     * is always scanned as well.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -197,7 +200,8 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
     /**
      * List of file type groups to include in the scan.
      * If empty, all files are scanned and available data format processors
-     * are applied.
+     * are applied. In addition, the binary content of the selected files
+     * is always scanned as well.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
