@@ -117,11 +117,13 @@ class ValueMapper
     {
         switch ($type) {
             case 'booleanValue':
-            case 'nullValue':
             case 'stringValue':
             case 'doubleValue':
                 return $value;
                 break;
+
+            case 'nullValue':
+                return null;
 
             case 'bytesValue':
                 return new Blob($value);

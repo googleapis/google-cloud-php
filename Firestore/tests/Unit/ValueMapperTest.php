@@ -72,7 +72,7 @@ class ValueMapperTest extends TestCase
                     $this->assertEquals('foobar', $val);
                 }
             ], [
-                ['nullValue' => null],
+                ['nullValue' => NullValue::NULL_VALUE],
                 function ($val) {
                     $this->assertNull($val);
                 }
