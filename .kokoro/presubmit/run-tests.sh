@@ -12,6 +12,7 @@ if [ "${SHORT_JOB_NAME}" == "php72" ]; then
     pecl install xdebug
     echo "zend_extension=xdebug.so" > ${PHP_DIR}/lib/conf.d/xdebug.ini
     RUN_CODECOV="true"
+    OPT_CLOVER="--coverage-clover=clover.xml"
 fi
 
 mkdir -p ${SHORT_JOB_NAME}/unit
@@ -25,7 +26,7 @@ dev/sh/style
 
 echo "Running Unit Test Suite"
 
-vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} --coverage-clover=clover.xml
+vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} ${OPT_CLOVER}
 
 if [ "${RUN_CODECOV}" == "true" ]; then
     bash ${KOKORO_GFILE_DIR}/codecov.sh
