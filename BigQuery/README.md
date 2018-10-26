@@ -53,8 +53,10 @@ $loadJobConfig = $table->load(
 $job = $table->runJob($loadJobConfig);
 
 // Run a query and inspect the results.
-$queryJobConfig = 'SELECT * FROM [my_project:my_dataset.my_table]';
-$queryResults = $bigQuery->runQuery($queryConfig);
+$queryJobConfig = $bigQuery->query(
+    'SELECT * FROM `my_project.my_dataset.my_table`'
+);
+$queryResults = $bigQuery->runQuery($queryJobConfig);
 
 foreach ($queryResults as $row) {
     print_r($row);
