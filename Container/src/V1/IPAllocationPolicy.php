@@ -39,19 +39,19 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use cluster_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string cluster_ipv4_cidr = 4;</code>
+     * Generated from protobuf field <code>string cluster_ipv4_cidr = 4 [deprecated = true];</code>
      */
     private $cluster_ipv4_cidr = '';
     /**
      * This field is deprecated, use node_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string node_ipv4_cidr = 5;</code>
+     * Generated from protobuf field <code>string node_ipv4_cidr = 5 [deprecated = true];</code>
      */
     private $node_ipv4_cidr = '';
     /**
      * This field is deprecated, use services_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string services_ipv4_cidr = 6;</code>
+     * Generated from protobuf field <code>string services_ipv4_cidr = 6 [deprecated = true];</code>
      */
     private $services_ipv4_cidr = '';
     /**
@@ -288,7 +288,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use cluster_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string cluster_ipv4_cidr = 4;</code>
+     * Generated from protobuf field <code>string cluster_ipv4_cidr = 4 [deprecated = true];</code>
      * @return string
      */
     public function getClusterIpv4Cidr()
@@ -299,7 +299,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use cluster_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string cluster_ipv4_cidr = 4;</code>
+     * Generated from protobuf field <code>string cluster_ipv4_cidr = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -314,7 +314,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use node_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string node_ipv4_cidr = 5;</code>
+     * Generated from protobuf field <code>string node_ipv4_cidr = 5 [deprecated = true];</code>
      * @return string
      */
     public function getNodeIpv4Cidr()
@@ -325,7 +325,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use node_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string node_ipv4_cidr = 5;</code>
+     * Generated from protobuf field <code>string node_ipv4_cidr = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -340,7 +340,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use services_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string services_ipv4_cidr = 6;</code>
+     * Generated from protobuf field <code>string services_ipv4_cidr = 6 [deprecated = true];</code>
      * @return string
      */
     public function getServicesIpv4Cidr()
@@ -351,7 +351,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * This field is deprecated, use services_ipv4_cidr_block.
      *
-     * Generated from protobuf field <code>string services_ipv4_cidr = 6;</code>
+     * Generated from protobuf field <code>string services_ipv4_cidr = 6 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
