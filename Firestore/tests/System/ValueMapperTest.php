@@ -28,14 +28,18 @@ use Google\Cloud\Core\Timestamp;
 class ValueMapperTest extends FirestoreTestCase
 {
     private static $document;
+    private static $isSetup = false;
 
-    const FIELD = 'value';
+    const FIELD = 'testedField';
 
     public static function setUpBeforeClass()
     {
         parent::setupBeforeClass();
 
-        self::$document = self::$collection->add([]);
+        if (!self::$isSetup) {
+            self::$document = self::$collection->add([]);
+            self::$isSetup = true;
+        }
     }
 
     /**
@@ -59,6 +63,8 @@ class ValueMapperTest extends FirestoreTestCase
 
     public function values()
     {
+        self::setupBeforeClass();
+
         return [
             [null],
             [true],
