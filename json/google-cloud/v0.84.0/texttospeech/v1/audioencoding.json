@@ -1,0 +1,1 @@
+{"id":"texttospeech\/v1\/audioencoding","type":"","title":"Google\\Cloud\\TextToSpeech\\V1\\AudioEncoding","name":"AudioEncoding","description":"<p>Configuration to set up audio encoder. The encoding determines the output\naudio format that we'd like.<\/p>\n<p>Protobuf type <code>google.cloud.texttospeech.v1.AudioEncoding<\/code><\/p>","examples":[],"resources":[],"methods":[]}
