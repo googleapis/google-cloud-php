@@ -54,6 +54,26 @@ class DataClientMutateRowsTest extends DataClientTest
         $this->assertEquals($readRows, $rows);
     }
 
+    public function testBasicWriteAndReadDataOperationUsingMutateRow()
+    {
+        $mutations = (new Mutations)
+            ->upsert('cf1', 'cq1', 'value1', 5000);
+        self::$dataClient->mutateRow('rk10', $mutations);
+        $readRows = [
+            'rk10' => [
+                'cf1' => [
+                    'cq1' => [[
+                        'value' => 'value1',
+                        'timeStamp' => 5000,
+                        'labels' => ''
+                    ]]
+                ]
+            ]
+        ];
+        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk10']])->readAll());
+        $this->assertEquals($readRows, $rows);
+    }
+
     public function testDeleteRow()
     {
         $insertRows = [

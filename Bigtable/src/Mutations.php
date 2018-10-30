@@ -31,6 +31,11 @@ use Google\Cloud\Bigtable\V2\TimestampRange;
 class Mutations
 {
     /**
+     * @var Mutation[]
+     */
+    private $mutations = [];
+
+    /**
      * Creates Insert/Update mutation for a row.
      *
      * @param string $family Family name of the row.

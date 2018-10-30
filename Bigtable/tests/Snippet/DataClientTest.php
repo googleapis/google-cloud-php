@@ -28,6 +28,7 @@ use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
+use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as MutateRowsRequest_Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as MutateRowsResponse_Entry;
@@ -123,6 +124,20 @@ class DataClientTest extends SnippetTestCase
                 $this->serverStream->reveal()
             );
         $snippet = $this->snippetFromMethod(DataClient::class, 'mutateRows');
+        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet->invoke();
+    }
+
+    public function testMutateRow()
+    {
+        $mutations = (new Mutations)
+            ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
+        $this->bigtableClient->mutateRow(self::TABLE_NAME, 'r1', $mutations->toProto(), [])
+            ->shouldBeCalled()
+            ->willReturn(
+                new MutateRowResponse
+            );
+        $snippet = $this->snippetFromMethod(DataClient::class, 'mutateRow');
         $snippet->addLocal('dataClient', $this->dataClient);
         $snippet->invoke();
     }

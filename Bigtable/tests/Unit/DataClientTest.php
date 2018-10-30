@@ -31,6 +31,7 @@ use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
 use Google\Cloud\Bigtable\V2\Column;
 use Google\Cloud\Bigtable\V2\Family;
+use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as RequestEntry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as ResponseEntry;
@@ -293,6 +294,18 @@ class DataClientTest extends TestCase
             ]
         ];
         $this->dataClient->upsert($rows, $options);
+    }
+
+    public function testMutateRow()
+    {
+        $mutations = (new Mutations)
+            ->upsert('cf1', 'cq1', 'value1');
+        $this->bigtableClient->mutateRow(self::TABLE_NAME, 'r1', $mutations->toProto(), $this->options)
+            ->shouldBeCalled()
+            ->willReturn(
+                new MutateRowResponse
+            );
+        $this->dataClient->mutateRow('r1', $mutations);
     }
 
     public function testReadRowsNoArg()
