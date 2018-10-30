@@ -141,7 +141,7 @@ class DataClient
      *        {@see Google\Cloud\Bigtable\Mutations}.
      * @param array $options [optional] Configuration options.
      * @return void
-     * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
+     * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails.
      * @throws InvalidArgumentException If rowMutations is a list instead of associative array indexed by rowkey.
      */
     public function mutateRows(array $rowMutations, array $options = [])
@@ -156,6 +156,37 @@ class DataClient
             $entries[] = $this->toEntry($rowKey, $mutations);
         }
         $this->mutateRowsWithEntries($entries, $options);
+    }
+
+    /**
+     * Mutates a row atomically. Cells already present in the row are left
+     * unchanged unless explicitly changed by `mutations`.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Bigtable\DataClient;
+     * use Google\Cloud\Bigtable\Mutations;
+     *
+     * $mutations = (new Mutations)
+     *     ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
+     *
+     * $dataClient->mutateRow('r1', $mutations);
+     * ```
+     *
+     * @param string $rowKey The row key of the row to mutate.
+     * @param Mutations $mutations Mutations to apply on row.
+     * @param array $options [optional] Configuration options.
+     * @return void
+     * @throws ApiException If the remote call fails.
+     */
+    public function mutateRow($rowKey, Mutations $mutations, array $options = [])
+    {
+        $this->bigtableClient->mutateRow(
+            $this->tableName,
+            $rowKey,
+            $mutations->toProto(),
+            $options + $this->options
+        );
     }
 
     /**
