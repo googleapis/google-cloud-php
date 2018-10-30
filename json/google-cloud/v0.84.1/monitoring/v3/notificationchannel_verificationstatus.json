@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/notificationchannel_verificationstatus","type":"","title":"Google\\Cloud\\Monitoring\\V3\\NotificationChannel_VerificationStatus","name":"NotificationChannel_VerificationStatus","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\NotificationChannel\\VerificationStatus instead.<\/p>","examples":[],"resources":[],"methods":[]}
