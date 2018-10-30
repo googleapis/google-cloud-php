@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.84.1",
                 "v0.84.0",
                 "v0.83.0",
                 "v0.82.0",
@@ -509,6 +510,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v0.15.5",
                 "v0.15.4",
                 "v0.15.3",
                 "v0.15.2",
