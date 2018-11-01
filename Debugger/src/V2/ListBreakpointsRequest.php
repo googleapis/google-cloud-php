@@ -45,7 +45,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * This field is deprecated. The following fields are always stripped out of
      * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      *
-     * Generated from protobuf field <code>bool strip_results = 5;</code>
+     * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
      */
     private $strip_results = false;
     /**
@@ -213,7 +213,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * This field is deprecated. The following fields are always stripped out of
      * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      *
-     * Generated from protobuf field <code>bool strip_results = 5;</code>
+     * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
      * @return bool
      */
     public function getStripResults()
@@ -225,7 +225,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * This field is deprecated. The following fields are always stripped out of
      * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      *
-     * Generated from protobuf field <code>bool strip_results = 5;</code>
+     * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
      * @param bool $var
      * @return $this
      */

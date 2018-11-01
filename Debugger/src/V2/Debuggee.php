@@ -33,10 +33,10 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * Uniquifier to further distiguish the application.
+     * Uniquifier to further distinguish the application.
      * It is possible that different applications might have identical values in
      * the debuggee message, thus, incorrectly identified as a single application
-     * by the Controller service. This field adds salt to further distiguish the
+     * by the Controller service. This field adds salt to further distinguish the
      * application. Agents should consider seeding this field with value that
      * identifies the code, binary, configuration and environment.
      *
@@ -91,9 +91,8 @@ class Debuggee extends \Google\Protobuf\Internal\Message
     /**
      * References to the locations and revisions of the source code used in the
      * deployed application.
-     * NOTE: this field is experimental and can be ignored.
      *
-     * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
      */
     private $ext_source_contexts;
     /**
@@ -116,10 +115,10 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *           Project the debuggee is associated with.
      *           Use project number or id when registering a Google Cloud Platform project.
      *     @type string $uniquifier
-     *           Uniquifier to further distiguish the application.
+     *           Uniquifier to further distinguish the application.
      *           It is possible that different applications might have identical values in
      *           the debuggee message, thus, incorrectly identified as a single application
-     *           by the Controller service. This field adds salt to further distiguish the
+     *           by the Controller service. This field adds salt to further distinguish the
      *           application. Agents should consider seeding this field with value that
      *           identifies the code, binary, configuration and environment.
      *     @type string $description
@@ -146,7 +145,6 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DevTools\Source\V1\ExtendedSourceContext[]|\Google\Protobuf\Internal\RepeatedField $ext_source_contexts
      *           References to the locations and revisions of the source code used in the
      *           deployed application.
-     *           NOTE: this field is experimental and can be ignored.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           A set of custom debuggee properties, populated by the agent, to be
      *           displayed to the user.
@@ -212,10 +210,10 @@ class Debuggee extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uniquifier to further distiguish the application.
+     * Uniquifier to further distinguish the application.
      * It is possible that different applications might have identical values in
      * the debuggee message, thus, incorrectly identified as a single application
-     * by the Controller service. This field adds salt to further distiguish the
+     * by the Controller service. This field adds salt to further distinguish the
      * application. Agents should consider seeding this field with value that
      * identifies the code, binary, configuration and environment.
      *
@@ -228,10 +226,10 @@ class Debuggee extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Uniquifier to further distiguish the application.
+     * Uniquifier to further distinguish the application.
      * It is possible that different applications might have identical values in
      * the debuggee message, thus, incorrectly identified as a single application
-     * by the Controller service. This field adds salt to further distiguish the
+     * by the Controller service. This field adds salt to further distinguish the
      * application. Agents should consider seeding this field with value that
      * identifies the code, binary, configuration and environment.
      *
@@ -424,9 +422,8 @@ class Debuggee extends \Google\Protobuf\Internal\Message
     /**
      * References to the locations and revisions of the source code used in the
      * deployed application.
-     * NOTE: this field is experimental and can be ignored.
      *
-     * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExtSourceContexts()
@@ -437,9 +434,8 @@ class Debuggee extends \Google\Protobuf\Internal\Message
     /**
      * References to the locations and revisions of the source code used in the
      * deployed application.
-     * NOTE: this field is experimental and can be ignored.
      *
-     * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
      * @param \Google\Cloud\DevTools\Source\V1\ExtendedSourceContext[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

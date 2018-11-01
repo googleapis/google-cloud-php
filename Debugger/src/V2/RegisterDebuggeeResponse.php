@@ -17,7 +17,7 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Debuggee resource.
-     * The field `id` is guranteed to be set (in addition to the echoed fields).
+     * The field `id` is guaranteed to be set (in addition to the echoed fields).
      * If the field `is_disabled` is set to `true`, the agent should disable
      * itself by removing all breakpoints and detaching from the application.
      * It should however continue to poll `RegisterDebuggee` until reenabled.
@@ -34,7 +34,7 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Debugger\V2\Debuggee $debuggee
      *           Debuggee resource.
-     *           The field `id` is guranteed to be set (in addition to the echoed fields).
+     *           The field `id` is guaranteed to be set (in addition to the echoed fields).
      *           If the field `is_disabled` is set to `true`, the agent should disable
      *           itself by removing all breakpoints and detaching from the application.
      *           It should however continue to poll `RegisterDebuggee` until reenabled.
@@ -47,7 +47,7 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Debuggee resource.
-     * The field `id` is guranteed to be set (in addition to the echoed fields).
+     * The field `id` is guaranteed to be set (in addition to the echoed fields).
      * If the field `is_disabled` is set to `true`, the agent should disable
      * itself by removing all breakpoints and detaching from the application.
      * It should however continue to poll `RegisterDebuggee` until reenabled.
@@ -62,7 +62,7 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Debuggee resource.
-     * The field `id` is guranteed to be set (in addition to the echoed fields).
+     * The field `id` is guaranteed to be set (in addition to the echoed fields).
      * If the field `is_disabled` is set to `true`, the agent should disable
      * itself by removing all breakpoints and detaching from the application.
      * It should however continue to poll `RegisterDebuggee` until reenabled.
