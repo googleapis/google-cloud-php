@@ -27,6 +27,14 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 line = 2;</code>
      */
     private $line = 0;
+    /**
+     * Column within a line. The first column in a line as the value `1`.
+     * Agents that do not support setting breakpoints on specific columns ignore
+     * this field.
+     *
+     * Generated from protobuf field <code>int32 column = 3;</code>
+     */
+    private $column = 0;
 
     /**
      * Constructor.
@@ -38,6 +46,10 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      *           Path to the source file within the source context of the target binary.
      *     @type int $line
      *           Line inside the file. The first line in the file has the value `1`.
+     *     @type int $column
+     *           Column within a line. The first column in a line as the value `1`.
+     *           Agents that do not support setting breakpoints on specific columns ignore
+     *           this field.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +105,36 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->line = $var;
+
+        return $this;
+    }
+
+    /**
+     * Column within a line. The first column in a line as the value `1`.
+     * Agents that do not support setting breakpoints on specific columns ignore
+     * this field.
+     *
+     * Generated from protobuf field <code>int32 column = 3;</code>
+     * @return int
+     */
+    public function getColumn()
+    {
+        return $this->column;
+    }
+
+    /**
+     * Column within a line. The first column in a line as the value `1`.
+     * Agents that do not support setting breakpoints on specific columns ignore
+     * this field.
+     *
+     * Generated from protobuf field <code>int32 column = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setColumn($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->column = $var;
 
         return $this;
     }

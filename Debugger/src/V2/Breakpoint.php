@@ -111,7 +111,8 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
-     * The stack at breakpoint time.
+     * The stack at breakpoint time, where stack_frames[0] represents the most
+     * recently entered function.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.StackFrame stack_frames = 7;</code>
      */
@@ -206,7 +207,8 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      *           *   `Invalid line number` referring to location
      *           *   `Field f not found in class C` referring to condition
      *     @type \Google\Cloud\Debugger\V2\StackFrame[]|\Google\Protobuf\Internal\RepeatedField $stack_frames
-     *           The stack at breakpoint time.
+     *           The stack at breakpoint time, where stack_frames[0] represents the most
+     *           recently entered function.
      *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $evaluated_expressions
      *           Values of evaluated expressions at breakpoint time.
      *           The evaluated expressions appear in exactly the same order they
@@ -596,7 +598,8 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stack at breakpoint time.
+     * The stack at breakpoint time, where stack_frames[0] represents the most
+     * recently entered function.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.StackFrame stack_frames = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -607,7 +610,8 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stack at breakpoint time.
+     * The stack at breakpoint time, where stack_frames[0] represents the most
+     * recently entered function.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.StackFrame stack_frames = 7;</code>
      * @param \Google\Cloud\Debugger\V2\StackFrame[]|\Google\Protobuf\Internal\RepeatedField $var
