@@ -49,7 +49,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * this field represents the confidence that there is a tower in the query
      * image. Range [0, 1].
      *
-     * Generated from protobuf field <code>float confidence = 5;</code>
+     * Generated from protobuf field <code>float confidence = 5 [deprecated = true];</code>
      */
     private $confidence = 0.0;
     /**
@@ -252,7 +252,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * this field represents the confidence that there is a tower in the query
      * image. Range [0, 1].
      *
-     * Generated from protobuf field <code>float confidence = 5;</code>
+     * Generated from protobuf field <code>float confidence = 5 [deprecated = true];</code>
      * @return float
      */
     public function getConfidence()
@@ -267,7 +267,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * this field represents the confidence that there is a tower in the query
      * image. Range [0, 1].
      *
-     * Generated from protobuf field <code>float confidence = 5;</code>
+     * Generated from protobuf field <code>float confidence = 5 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */

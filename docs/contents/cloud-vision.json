@@ -47,6 +47,9 @@
         "nav": [{
             "title": "ImageAnnotatorClient",
             "type": "vision/v1/imageannotatorclient"
+        }, {
+            "title": "ProductSearchClient",
+            "type": "vision/v1/productsearchclient"
         }]
     }]
 }

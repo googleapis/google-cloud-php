@@ -86,6 +86,12 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      */
     private $web_detection = null;
     /**
+     * If present, product search has completed successfully.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchResults product_search_results = 14;</code>
+     */
+    private $product_search_results = null;
+    /**
      * If set, represents the error message for the operation.
      * Note that filled-in image annotations are guaranteed to be
      * correct, even when `error` is set.
@@ -133,6 +139,8 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      *           If present, crop hints have completed successfully.
      *     @type \Google\Cloud\Vision\V1\WebDetection $web_detection
      *           If present, web detection has completed successfully.
+     *     @type \Google\Cloud\Vision\V1\ProductSearchResults $product_search_results
+     *           If present, product search has completed successfully.
      *     @type \Google\Rpc\Status $error
      *           If set, represents the error message for the operation.
      *           Note that filled-in image annotations are guaranteed to be
@@ -437,6 +445,32 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\WebDetection::class);
         $this->web_detection = $var;
+
+        return $this;
+    }
+
+    /**
+     * If present, product search has completed successfully.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchResults product_search_results = 14;</code>
+     * @return \Google\Cloud\Vision\V1\ProductSearchResults
+     */
+    public function getProductSearchResults()
+    {
+        return $this->product_search_results;
+    }
+
+    /**
+     * If present, product search has completed successfully.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchResults product_search_results = 14;</code>
+     * @param \Google\Cloud\Vision\V1\ProductSearchResults $var
+     * @return $this
+     */
+    public function setProductSearchResults($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\ProductSearchResults::class);
+        $this->product_search_results = $var;
 
         return $this;
     }

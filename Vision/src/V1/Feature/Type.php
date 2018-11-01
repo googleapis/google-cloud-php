@@ -83,6 +83,12 @@ class Type
      */
     const WEB_DETECTION = 10;
     /**
+     * Run Product Search.
+     *
+     * Generated from protobuf enum <code>PRODUCT_SEARCH = 12;</code>
+     */
+    const PRODUCT_SEARCH = 12;
+    /**
      * Run localizer for object detection.
      *
      * Generated from protobuf enum <code>OBJECT_LOCALIZATION = 19;</code>

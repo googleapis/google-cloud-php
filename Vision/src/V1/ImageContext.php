@@ -41,6 +41,12 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     private $crop_hints_params = null;
     /**
+     * Parameters for product search.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+     */
+    private $product_search_params = null;
+    /**
      * Parameters for web detection.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
@@ -66,6 +72,8 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      *           [supported languages](/vision/docs/languages).
      *     @type \Google\Cloud\Vision\V1\CropHintsParams $crop_hints_params
      *           Parameters for crop hints annotation request.
+     *     @type \Google\Cloud\Vision\V1\ProductSearchParams $product_search_params
+     *           Parameters for product search.
      *     @type \Google\Cloud\Vision\V1\WebDetectionParams $web_detection_params
      *           Parameters for web detection.
      * }
@@ -163,6 +171,32 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\CropHintsParams::class);
         $this->crop_hints_params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for product search.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+     * @return \Google\Cloud\Vision\V1\ProductSearchParams
+     */
+    public function getProductSearchParams()
+    {
+        return $this->product_search_params;
+    }
+
+    /**
+     * Parameters for product search.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+     * @param \Google\Cloud\Vision\V1\ProductSearchParams $var
+     * @return $this
+     */
+    public function setProductSearchParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\ProductSearchParams::class);
+        $this->product_search_params = $var;
 
         return $this;
     }

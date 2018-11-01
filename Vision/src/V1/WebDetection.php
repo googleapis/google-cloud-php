@@ -49,7 +49,8 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      */
     private $visually_similar_images;
     /**
-     * Best guess text labels for the request image.
+     * The service's best guess as to the topic of the request image.
+     * Inferred from similar images on the open web.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
      */
@@ -75,7 +76,8 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Vision\V1\WebDetection\WebImage[]|\Google\Protobuf\Internal\RepeatedField $visually_similar_images
      *           The visually similar image results.
      *     @type \Google\Cloud\Vision\V1\WebDetection\WebLabel[]|\Google\Protobuf\Internal\RepeatedField $best_guess_labels
-     *           Best guess text labels for the request image.
+     *           The service's best guess as to the topic of the request image.
+     *           Inferred from similar images on the open web.
      * }
      */
     public function __construct($data = NULL) {
@@ -220,7 +222,8 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Best guess text labels for the request image.
+     * The service's best guess as to the topic of the request image.
+     * Inferred from similar images on the open web.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -231,7 +234,8 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Best guess text labels for the request image.
+     * The service's best guess as to the topic of the request image.
+     * Inferred from similar images on the open web.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebLabel best_guess_labels = 8;</code>
      * @param \Google\Cloud\Vision\V1\WebDetection\WebLabel[]|\Google\Protobuf\Internal\RepeatedField $var
