@@ -32,6 +32,7 @@ class ClusterManagerClientTest extends TestCase
     protected static $grpcClient;
     protected static $restClient;
     protected static $projectId;
+    protected static $locationName;
     private static $hasSetUp = false;
 
     public function clientProvider()
@@ -63,8 +64,9 @@ class ClusterManagerClientTest extends TestCase
             'transport' => 'grpc'
         ]);
 
-
         self::$projectId = $keyFileData['project_id'];
+
+        self::$locationName = ClusterManagerClient::locationName(self::$projectId, self::ZONE);
 
         self::$hasSetUp = true;
     }
@@ -72,9 +74,9 @@ class ClusterManagerClientTest extends TestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testListOperations(ClusterManagerClient $client)
+    public function testListOperationsWithParent(ClusterManagerClient $client)
     {
-        $response = $client->listOperations(self::$projectId, self::ZONE);
+        $response = $client->listOperations(self::$locationName);
 
         $this->assertInstanceOf(ListOperationsResponse::class, $response);
     }
