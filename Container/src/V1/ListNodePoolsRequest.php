@@ -16,26 +16,36 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * The name of the cluster.
+     * Deprecated. The name of the cluster.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      */
     private $cluster_id = '';
+    /**
+     * The parent (project, location, cluster id) where the node pools will be
+     * listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string parent = 5;</code>
+     */
+    private $parent = '';
 
     /**
      * Constructor.
@@ -44,14 +54,20 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
-     *           The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
+     *           This field has been deprecated and replaced by the parent field.
      *     @type string $cluster_id
-     *           The name of the cluster.
+     *           Deprecated. The name of the cluster.
+     *           This field has been deprecated and replaced by the parent field.
+     *     @type string $parent
+     *           The parent (project, location, cluster id) where the node pools will be
+     *           listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,10 +76,11 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -72,10 +89,11 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -88,11 +106,12 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -101,11 +120,12 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -118,9 +138,10 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster.
+     * Deprecated. The name of the cluster.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getClusterId()
@@ -129,9 +150,10 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster.
+     * Deprecated. The name of the cluster.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -139,6 +161,34 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The parent (project, location, cluster id) where the node pools will be
+     * listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string parent = 5;</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * The parent (project, location, cluster id) where the node pools will be
+     * listed. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string parent = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Container Engine service configuration.
+ * Kubernetes Engine service configuration.
  *
  * Generated from protobuf message <code>google.container.v1.ServerConfig</code>
  */
