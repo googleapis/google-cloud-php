@@ -16,36 +16,46 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      */
     private $cluster_id = '';
     /**
-     * The name of the node pool to upgrade.
+     * Deprecated. The name of the node pool to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4;</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      */
     private $node_pool_id = '';
     /**
      * The Kubernetes version to change the nodes to (typically an
-     * upgrade). Use `-` to upgrade to the latest version supported by
-     * the server.
+     * upgrade).
+     * Users may specify either explicit versions offered by Kubernetes Engine or
+     * version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the Kubernetes master version
      *
      * Generated from protobuf field <code>string node_version = 5;</code>
      */
@@ -56,6 +66,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string image_type = 6;</code>
      */
     private $image_type = '';
+    /**
+     * The name (project, location, cluster, node pool) of the node pool to
+     * update. Specified in the format
+     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 8;</code>
+     */
+    private $name = '';
 
     /**
      * Constructor.
@@ -64,22 +82,36 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           The name of the cluster to upgrade.
+     *           Deprecated. The name of the cluster to upgrade.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $node_pool_id
-     *           The name of the node pool to upgrade.
+     *           Deprecated. The name of the node pool to upgrade.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $node_version
      *           The Kubernetes version to change the nodes to (typically an
-     *           upgrade). Use `-` to upgrade to the latest version supported by
-     *           the server.
+     *           upgrade).
+     *           Users may specify either explicit versions offered by Kubernetes Engine or
+     *           version aliases, which have the following behavior:
+     *           - "latest": picks the highest valid Kubernetes version
+     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     *           - "-": picks the Kubernetes master version
      *     @type string $image_type
      *           The desired image type for the node pool.
+     *     @type string $name
+     *           The name (project, location, cluster, node pool) of the node pool to
+     *           update. Specified in the format
+     *           'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,10 +120,11 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -100,10 +133,11 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -116,11 +150,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -129,11 +164,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -146,9 +182,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getClusterId()
@@ -157,9 +194,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -172,9 +210,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the node pool to upgrade.
+     * Deprecated. The name of the node pool to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4;</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @return string
      */
     public function getNodePoolId()
@@ -183,9 +222,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the node pool to upgrade.
+     * Deprecated. The name of the node pool to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4;</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -199,8 +239,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The Kubernetes version to change the nodes to (typically an
-     * upgrade). Use `-` to upgrade to the latest version supported by
-     * the server.
+     * upgrade).
+     * Users may specify either explicit versions offered by Kubernetes Engine or
+     * version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the Kubernetes master version
      *
      * Generated from protobuf field <code>string node_version = 5;</code>
      * @return string
@@ -212,8 +258,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The Kubernetes version to change the nodes to (typically an
-     * upgrade). Use `-` to upgrade to the latest version supported by
-     * the server.
+     * upgrade).
+     * Users may specify either explicit versions offered by Kubernetes Engine or
+     * version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the Kubernetes master version
      *
      * Generated from protobuf field <code>string node_version = 5;</code>
      * @param string $var
@@ -249,6 +301,36 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->image_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name (project, location, cluster, node pool) of the node pool to
+     * update. Specified in the format
+     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 8;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name (project, location, cluster, node pool) of the node pool to
+     * update. Specified in the format
+     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

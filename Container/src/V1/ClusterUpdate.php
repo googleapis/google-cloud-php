@@ -19,8 +19,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Kubernetes version to change the nodes to (typically an
-     * upgrade). Use `-` to upgrade to the latest version supported by
-     * the server.
+     * upgrade).
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the Kubernetes master version
      *
      * Generated from protobuf field <code>string desired_node_version = 4;</code>
      */
@@ -77,16 +83,20 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_locations;
     /**
-     * Master authorized networks is a Beta feature.
      * The desired configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
      */
     private $desired_master_authorized_networks_config = null;
     /**
-     * The Kubernetes version to change the master to. The only valid value is the
-     * latest supported version. Use "-" to have the server automatically select
-     * the latest version.
+     * The Kubernetes version to change the master to.
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the default Kubernetes version
      *
      * Generated from protobuf field <code>string desired_master_version = 100;</code>
      */
@@ -100,8 +110,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *
      *     @type string $desired_node_version
      *           The Kubernetes version to change the nodes to (typically an
-     *           upgrade). Use `-` to upgrade to the latest version supported by
-     *           the server.
+     *           upgrade).
+     *           Users may specify either explicit versions offered by
+     *           Kubernetes Engine or version aliases, which have the following behavior:
+     *           - "latest": picks the highest valid Kubernetes version
+     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     *           - "-": picks the Kubernetes master version
      *     @type string $desired_monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
@@ -130,12 +146,16 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           whether locations are being added or removed.
      *           This list must always include the cluster's primary zone.
      *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $desired_master_authorized_networks_config
-     *           Master authorized networks is a Beta feature.
      *           The desired configuration options for master authorized networks feature.
      *     @type string $desired_master_version
-     *           The Kubernetes version to change the master to. The only valid value is the
-     *           latest supported version. Use "-" to have the server automatically select
-     *           the latest version.
+     *           The Kubernetes version to change the master to.
+     *           Users may specify either explicit versions offered by
+     *           Kubernetes Engine or version aliases, which have the following behavior:
+     *           - "latest": picks the highest valid Kubernetes version
+     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     *           - "-": picks the default Kubernetes version
      * }
      */
     public function __construct($data = NULL) {
@@ -145,8 +165,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The Kubernetes version to change the nodes to (typically an
-     * upgrade). Use `-` to upgrade to the latest version supported by
-     * the server.
+     * upgrade).
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the Kubernetes master version
      *
      * Generated from protobuf field <code>string desired_node_version = 4;</code>
      * @return string
@@ -158,8 +184,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The Kubernetes version to change the nodes to (typically an
-     * upgrade). Use `-` to upgrade to the latest version supported by
-     * the server.
+     * upgrade).
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the Kubernetes master version
      *
      * Generated from protobuf field <code>string desired_node_version = 4;</code>
      * @param string $var
@@ -360,7 +392,6 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Master authorized networks is a Beta feature.
      * The desired configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
@@ -372,7 +403,6 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Master authorized networks is a Beta feature.
      * The desired configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
@@ -388,9 +418,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes version to change the master to. The only valid value is the
-     * latest supported version. Use "-" to have the server automatically select
-     * the latest version.
+     * The Kubernetes version to change the master to.
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the default Kubernetes version
      *
      * Generated from protobuf field <code>string desired_master_version = 100;</code>
      * @return string
@@ -401,9 +436,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes version to change the master to. The only valid value is the
-     * latest supported version. Use "-" to have the server automatically select
-     * the latest version.
+     * The Kubernetes version to change the master to.
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "-": picks the default Kubernetes version
      *
      * Generated from protobuf field <code>string desired_master_version = 100;</code>
      * @param string $var

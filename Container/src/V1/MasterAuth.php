@@ -35,8 +35,9 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      */
     private $password = '';
     /**
-     * Configuration for client certificate authentication on the cluster.  If no
-     * configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      *
      * Generated from protobuf field <code>.google.container.v1.ClientCertificateConfig client_certificate_config = 3;</code>
      */
@@ -79,8 +80,9 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      *           strong password.  If a password is provided for cluster creation, username
      *           must be non-empty.
      *     @type \Google\Cloud\Container\V1\ClientCertificateConfig $client_certificate_config
-     *           Configuration for client certificate authentication on the cluster.  If no
-     *           configuration is specified, a client certificate is issued.
+     *           Configuration for client certificate authentication on the cluster. For
+     *           clusters before v1.12, if no configuration is specified, a client
+     *           certificate is issued.
      *     @type string $cluster_ca_certificate
      *           [Output only] Base64-encoded public certificate that is the root of
      *           trust for the cluster.
@@ -160,8 +162,9 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for client certificate authentication on the cluster.  If no
-     * configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      *
      * Generated from protobuf field <code>.google.container.v1.ClientCertificateConfig client_certificate_config = 3;</code>
      * @return \Google\Cloud\Container\V1\ClientCertificateConfig
@@ -172,8 +175,9 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for client certificate authentication on the cluster.  If no
-     * configuration is specified, a client certificate is issued.
+     * Configuration for client certificate authentication on the cluster. For
+     * clusters before v1.12, if no configuration is specified, a client
+     * certificate is issued.
      *
      * Generated from protobuf field <code>.google.container.v1.ClientCertificateConfig client_certificate_config = 3;</code>
      * @param \Google\Cloud\Container\V1\ClientCertificateConfig $var

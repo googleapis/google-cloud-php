@@ -16,26 +16,36 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetOperationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * The server-assigned `name` of the operation.
+     * Deprecated. The server-assigned `name` of the operation.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string operation_id = 3;</code>
+     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true];</code>
      */
     private $operation_id = '';
+    /**
+     * The name (project, location, operation id) of the operation to get.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     */
+    private $name = '';
 
     /**
      * Constructor.
@@ -44,14 +54,20 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $operation_id
-     *           The server-assigned `name` of the operation.
+     *           Deprecated. The server-assigned `name` of the operation.
+     *           This field has been deprecated and replaced by the name field.
+     *     @type string $name
+     *           The name (project, location, operation id) of the operation to get.
+     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,10 +76,11 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -72,10 +89,11 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -88,11 +106,12 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -101,11 +120,12 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -118,9 +138,10 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server-assigned `name` of the operation.
+     * Deprecated. The server-assigned `name` of the operation.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string operation_id = 3;</code>
+     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getOperationId()
@@ -129,9 +150,10 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server-assigned `name` of the operation.
+     * Deprecated. The server-assigned `name` of the operation.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string operation_id = 3;</code>
+     * Generated from protobuf field <code>string operation_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -139,6 +161,34 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->operation_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name (project, location, operation id) of the operation to get.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name (project, location, operation id) of the operation to get.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;operations/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }
