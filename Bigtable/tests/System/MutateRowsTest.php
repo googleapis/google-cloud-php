@@ -57,7 +57,7 @@ class MutateRowsTest extends BigtableTestCase
     {
         $mutations = (new Mutations)
             ->upsert('cf1', 'cq1', 'value1', 5000);
-        self::$dataClient->mutateRow('rk10', $mutations);
+        self::$table->mutateRow('rk10', $mutations);
         $readRows = [
             'rk10' => [
                 'cf1' => [
@@ -69,7 +69,7 @@ class MutateRowsTest extends BigtableTestCase
                 ]
             ]
         ];
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk10']])->readAll());
+        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk10']])->readAll());
         $this->assertEquals($readRows, $rows);
     }
 
