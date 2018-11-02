@@ -7,12 +7,35 @@
         "type": "bigtable/readme"
     }, {
         "title": "BigtableClient",
-        "type": "bigtable/v2/bigtableclient"
+        "type": "bigtable/bigtableclient"
     }, {
-        "title": "BigtableInstanceAdminClient",
-        "type": "bigtable/admin/v2/bigtableinstanceadminclient"
+        "title": "Filter",
+        "type": "bigtable/filter"
     }, {
-        "title": "BigtableTableAdminClient",
-        "type": "bigtable/admin/v2/bigtabletableadminclient"
+        "title": "Mutations",
+        "type": "bigtable/mutations"
+    }, {
+        "title": "ReadModifyWriteRowRules",
+        "type": "bigtable/readmodifywriterowrules"
+    }, {
+        "title": "Table",
+        "type": "bigtable/table"
+    }, {
+        "title": "v2",
+        "type": "bigtable/v2/readme",
+        "patterns": [
+            "bigtable/v2/\\w{1,}",
+            "bigtable/admin/v2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "BigtableClient",
+            "type": "bigtable/v2/bigtableclient"
+        }, {
+            "title": "BigtableInstanceAdminClient",
+            "type": "bigtable/admin/v2/bigtableinstanceadminclient"
+        }, {
+            "title": "BigtableTableAdminClient",
+            "type": "bigtable/admin/v2/bigtabletableadminclient"
+        }]
     }]
 }

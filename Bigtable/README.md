@@ -41,18 +41,14 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\BigtableClient;
 
-$bigtableClient = new BigtableClient();
-$formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+$bigtable = new BigtableClient();
+$table = $bigtable->table('my-instance', 'my-table');
+$rows = $table->readRows();
 
-try {
-    $stream = $bigtableClient->readRows($formattedTableName);
-    foreach ($stream->readAll() as $element) {
-        // doSomethingWith($element);
-    }
-} finally {
-    $bigtableClient->close();
+foreach ($rows as $row) {
+    print_r($row) . PHP_EOL;
 }
 ```
 
