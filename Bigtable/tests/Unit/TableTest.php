@@ -302,7 +302,7 @@ class TableTest extends TestCase
             ->willReturn(
                 new MutateRowResponse
             );
-        $this->dataClient->mutateRow('r1', $mutations);
+        $this->table->mutateRow('r1', $mutations);
     }
 
     public function testReadRowsNoArg()

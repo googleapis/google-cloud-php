@@ -123,7 +123,7 @@ class BigtableClient
      * @param string $instanceId The instance ID.
      * @param string $tableId The table ID.
      * @param array $options [optional] {
-     *     Configuration options. 
+     *     Configuration options.
      *
      *     @type string $appProfileId This value specifies routing for
      *           replication. **Defaults to** the "default" application profile.

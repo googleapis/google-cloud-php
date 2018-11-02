@@ -133,13 +133,12 @@ class Table
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\DataClient;
      * use Google\Cloud\Bigtable\Mutations;
      *
      * $mutations = (new Mutations)
      *     ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
      *
-     * $dataClient->mutateRow('r1', $mutations);
+     * $table->mutateRow('r1', $mutations);
      * ```
      *
      * @param string $rowKey The row key of the row to mutate.
@@ -150,7 +149,7 @@ class Table
      */
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
-        $this->bigtableClient->mutateRow(
+        $this->gapicClient->mutateRow(
             $this->tableName,
             $rowKey,
             $mutations->toProto(),
