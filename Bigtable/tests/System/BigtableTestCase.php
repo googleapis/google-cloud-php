@@ -58,8 +58,10 @@ class BigtableTestCase extends TestCase
         self::$projectId = $keyFileData['project_id'];
         self::$instanceId = uniqid(self::INSTANCE_ID_PREFIX);
         self::$clusterId = uniqid(self::CLUSTER_ID_PREFIX);
-        self::$table = (new BigtableClient)
-            ->table(self::$instanceId, self::TABLE_ID);
+        self::$table = (new BigtableClient([
+            'projectId' => 'my-project',
+            'credentials' => $keyFilePath
+        ]))->table(self::$instanceId, self::TABLE_ID);
         self::createInstance();
         self::createTable();
     }
