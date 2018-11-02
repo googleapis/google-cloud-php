@@ -135,7 +135,7 @@ class TableTest extends SnippetTestCase
                 new MutateRowResponse
             );
         $snippet = $this->snippetFromMethod(Table::class, 'mutateRow');
-        $snippet->addLocal('table', $this->dataClient);
+        $snippet->addLocal('table', $this->table);
         $snippet->invoke();
     }
 

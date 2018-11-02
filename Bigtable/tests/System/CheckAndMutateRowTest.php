@@ -19,7 +19,6 @@ namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
 
 /**
  * @group bigtable
