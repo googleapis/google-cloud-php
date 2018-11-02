@@ -31,6 +31,10 @@ class BigtableClientTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(BigtableClient::class);
+        $snippet->replace(
+            '$bigtable = new BigtableClient();',
+            '$bigtable = new BigtableClient(["projectId" => "my-project"]);'
+        );
         $res = $snippet->invoke('bigtable');
 
         $this->assertInstanceOf(BigtableClient::class, $res->returnVal());

@@ -60,6 +60,10 @@ class FilterTest extends SnippetTestCase
             ->willReturn([$expectedRows]);
 
         $snippet = $this->snippetFromClass(Filter::class);
+        $snippet->replace(
+            '$bigtable = new BigtableClient();',
+            '$bigtable = new BigtableClient(["projectId" => "my-project"]);'
+        );
         $snippet->replace('$table = $bigtable->table(\'my-instance\', \'my-table\');', '');
         $snippet->addLocal('table', $table->reveal());
         $res = $snippet->invoke('rows');

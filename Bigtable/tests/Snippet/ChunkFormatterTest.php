@@ -52,6 +52,10 @@ class ChunkFormatterTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(ChunkFormatter::class);
+        $snippet->replace(
+            '$bigtable = new BigtableClient();',
+            '$bigtable = new BigtableClient(["projectId" => "my-project"]);'
+        );
         $snippet->replace('$table = $bigtable->table(\'my-instance\', \'my-table\');', '');
         $this->bigtableClient->readRows(self::TABLE_NAME, [])
             ->shouldBeCalled()
