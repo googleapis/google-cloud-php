@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
-use Google\Cloud\Bigtable\DataClient;
+use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\Filter;
+use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\Filter\ChainFilter;
 use Google\Cloud\Bigtable\Filter\ConditionFilter;
 use Google\Cloud\Bigtable\Filter\InterleaveFilter;
@@ -50,17 +51,17 @@ class FilterTest extends SnippetTestCase
                 ]]
             ]
         ];
-        $dataClient = $this->prophesize(DataClient::class);
+        $table = $this->prophesize(Table::class);
         $filter = Filter::chain()
             ->addFilter(Filter::qualifier()->regex('prefix.*'))
             ->addFilter(Filter::limit()->cellsPerRow(10));
-        $dataClient->readRows(['filter' => $filter])
+        $table->readRows(['filter' => $filter])
             ->shouldBeCalled()
             ->willReturn([$expectedRows]);
 
         $snippet = $this->snippetFromClass(Filter::class);
-        $snippet->replace('$dataClient = new DataClient(\'my-instance\', \'my-table\');', '');
-        $snippet->addLocal('dataClient', $dataClient->reveal());
+        $snippet->replace('$table = $bigtable->table(\'my-instance\', \'my-table\');', '');
+        $snippet->addLocal('table', $table->reveal());
         $res = $snippet->invoke('rows');
         $this->assertEquals(
             print_r($expectedRows, true),

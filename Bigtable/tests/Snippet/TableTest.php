@@ -18,11 +18,11 @@
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\DataUtil;
-use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
+use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
@@ -53,15 +53,12 @@ use Prophecy\Argument;
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientTest extends SnippetTestCase
+class TableTest extends SnippetTestCase
 {
-    const PROJECT_ID = 'my-project';
-    const INSTANCE_ID = 'my-instance';
-    const TABLE_ID = 'my-table';
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;
-    private $dataClient;
+    private $table;
     private $mutateRowsResponses = [];
     private $serverStream;
     private $entries = [];
@@ -90,25 +87,25 @@ class DataClientTest extends SnippetTestCase
         $mutateRowsResponseEntry->setStatus($status);
         $mutateRowsResponse->setEntries([$mutateRowsResponseEntry]);
         $this->mutateRowsResponses[] = $mutateRowsResponse;
-        $this->dataClient = TestHelpers::stub(
-            DataClient::class,
+        $this->table = TestHelpers::stub(
+            Table::class,
             [
-                self::INSTANCE_ID,
-                self::TABLE_ID,
-                [
-                    'bigtableClient' => $this->bigtableClient->reveal(),
-                    'projectId' => self::PROJECT_ID
-                ]
+                $this->bigtableClient->reveal(),
+                self::TABLE_NAME
             ]
         );
     }
 
     public function testClass()
     {
-        $snippet = $this->snippetFromClass(DataClient::class);
-        $res = $snippet->invoke('dataClient');
+        $snippet = $this->snippetFromClass(Table::class);
+        $snippet->replace(
+            '$bigtable = new BigtableClient();',
+            '$bigtable = new BigtableClient(["projectId" => "my-project"]);'
+        );
+        $res = $snippet->invoke('table');
 
-        $this->assertInstanceOf(DataClient::class, $res->returnVal());
+        $this->assertInstanceOf(Table::class, $res->returnVal());
     }
 
     public function testMutateRows()
@@ -123,8 +120,8 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $snippet = $this->snippetFromMethod(DataClient::class, 'mutateRows');
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'mutateRows');
+        $snippet->addLocal('table', $this->table);
         $snippet->invoke();
     }
 
@@ -154,8 +151,8 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $snippet = $this->snippetFromMethod(DataClient::class, 'upsert');
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'upsert');
+        $snippet->addLocal('table', $this->table);
         $snippet->invoke();
     }
 
@@ -171,8 +168,8 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $snippet = $this->snippetFromMethod(DataClient::class, 'readRows');
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'readRows');
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('rows');
         $expectedRows = [
             'cf1' => [
@@ -205,8 +202,8 @@ class DataClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($this->serverStream->reveal());
 
-        $snippet = $this->snippetFromMethod(DataClient::class, 'readRows', 1);
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'readRows', 1);
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('rows');
         $expectedRows = [
             'cf1' => [
@@ -235,8 +232,8 @@ class DataClientTest extends SnippetTestCase
         $this->bigtableClient->readRows(self::TABLE_NAME, ['rows' => $rowSet])
             ->shouldBeCalled()
             ->willReturn($this->serverStream->reveal());
-        $snippet = $this->snippetFromMethod(DataClient::class, 'readRow');
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'readRow');
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('row');
         $expectedRow = [
             'cf1' => [
@@ -285,8 +282,8 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $readModifyWriteRowResponse
             );
-            $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow');
-            $snippet->addLocal('dataClient', $this->dataClient);
+            $snippet = $this->snippetFromMethod(Table::class, 'readModifyWriteRow');
+            $snippet->addLocal('table', $this->table);
             $res = $snippet->invoke('row');
             $expectedRow = [
                 'cf1' => [
@@ -305,7 +302,7 @@ class DataClientTest extends SnippetTestCase
 
     public function testReadModifyWriteRowIncrement()
     {
-        $snippet = $this->snippetFromMethod(DataClient::class, 'readModifyWriteRow', 1);
+        $snippet = $this->snippetFromMethod(Table::class, 'readModifyWriteRow', 1);
 
         if (!DataUtil::isSupported()) {
             $this->markTestSkipped('This test only runs on PHP 5.6 or above.');
@@ -352,7 +349,7 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $readModifyWriteRowResponse
             );
-            $snippet->addLocal('dataClient', $this->dataClient);
+            $snippet->addLocal('table', $this->table);
             $res = $snippet->invoke('row');
             $expectedRow = [
                 'cf1' => [
@@ -385,8 +382,8 @@ class DataClientTest extends SnippetTestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $snippet = $this->snippetFromMethod(DataClient::class, 'sampleRowKeys');
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'sampleRowKeys');
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('rowKeyStream');
         $expectedRowKeys = [
             'rowKey' => 'rk1',
@@ -403,8 +400,8 @@ class DataClientTest extends SnippetTestCase
         $this->bigtableClient->checkAndMutateRow(self::TABLE_NAME, 'rk1', Argument::any())
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
-        $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow');
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'checkAndMutateRow');
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('result');
         $this->assertTrue($res->returnVal());
     }
@@ -419,8 +416,8 @@ class DataClientTest extends SnippetTestCase
             )
             ->shouldBeCalled()
             ->willReturn((new CheckAndMutateRowResponse)->setPredicateMatched(true));
-        $snippet = $this->snippetFromMethod(DataClient::class, 'checkAndMutateRow', 1);
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet = $this->snippetFromMethod(Table::class, 'checkAndMutateRow', 1);
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('result');
         $this->assertTrue($res->returnVal());
     }
