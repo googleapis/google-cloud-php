@@ -37,7 +37,7 @@ s.move(v1_library / 'proto/src/Google/Cloud/Container', 'src/')
 s.move(v1_library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(v1_library / 'proto/src/GPBMetadata/Google/Cloud/Container', 'metadata/')
+s.move(v1_library / 'proto/src/GPBMetadata/Google/Container', 'metadata/')
 
 # fix year
 s.replace(
