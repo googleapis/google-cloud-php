@@ -34,8 +34,8 @@ use Google\Cloud\Bigtable\V2\RowFilter;
 /**
  * This class houses static factory methods which can be used to create a
  * hierarchy of filters for use with
- * {@see Google\Cloud\Bigtable\DataClient::checkAndMutateRow()} or
- * {@see Google\Cloud\Bigtable\DataClient::readRows()}.
+ * {@see Google\Cloud\Bigtable\Table::checkAndMutateRow()} or
+ * {@see Google\Cloud\Bigtable\Table::readRows()}.
  *
  * Filters are used to take an input row and produce an alternate view of the
  * row based on the specified rules. For example, a filter might trim down a row
@@ -68,15 +68,16 @@ use Google\Cloud\Bigtable\V2\RowFilter;
  *
  * Example:
  * ```
- * use Google\Cloud\Bigtable\DataClient;
+ * use Google\Cloud\Bigtable\BigtableClient;
  * use Google\Cloud\Bigtable\Filter;
  *
- * $dataClient = new DataClient('my-instance', 'my-table');
+ * $bigtable = new BigtableClient();
+ * $table = $bigtable->table('my-instance', 'my-table');
  * $rowFilter = Filter::chain()
  *     ->addFilter(Filter::qualifier()->regex('prefix.*'))
  *     ->addFilter(Filter::limit()->cellsPerRow(10));
  *
- * $rows = $dataClient->readRows([
+ * $rows = $table->readRows([
  *     'filter' => $rowFilter
  * ]);
  *

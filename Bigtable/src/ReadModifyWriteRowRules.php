@@ -20,10 +20,11 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 
 /**
- * This is a builder class which builds read/modify/write rules specifying how the specified rows contents
- * are to be transformed into writes. Entries are applied in order, meaning that earlier rules will
- * affect the results of later ones. This is intended to be used in combination with
- * {@see Google\Cloud\Bigtable\DataClient::readModifyWriteRow()}.
+ * This is a builder class which builds read/modify/write rules specifying how
+ * the specified rows contents are to be transformed into writes. Entries are
+ * applied in order, meaning that earlier rules will affect the results of later
+ * ones. This is intended to be used in combination with
+ * {@see Google\Cloud\Bigtable\Table::readModifyWriteRow()}.
  */
 class ReadModifyWriteRowRules
 {
