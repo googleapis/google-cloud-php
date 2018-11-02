@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Bigtable;
 
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
