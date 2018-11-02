@@ -19,13 +19,12 @@ namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
 
 /**
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientCheckAndMutateRowTest extends DataClientTest
+class CheckAndMutateRowTest extends BigtableTestCase
 {
     public static function setUpBeforeClass()
     {
@@ -40,18 +39,18 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
                 ]
             ],
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
     }
 
     public function testCheckAndMutateRowWithEmptyFilter()
     {
         $mutations = (new Mutations)->upsert('cf1', 'cq1', 'value11', 6000);
-        $result = self::$dataClient->checkAndMutateRow(
+        $result = self::$table->checkAndMutateRow(
             'rk1',
             ['trueMutations' => $mutations]
         );
         $this->assertTrue($result);
-        $row = self::$dataClient->readRow('rk1');
+        $row = self::$table->readRow('rk1');
         $expectedRow = [
             'cf1' => [
                 'cq1' => [
@@ -75,7 +74,7 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
     {
         $predicateFilter = Filter::family()->exactMatch('cf1');
         $mutations = (new Mutations)->upsert('cf1', 'cq1', 'value11', 6000);
-        $result = self::$dataClient->checkAndMutateRow(
+        $result = self::$table->checkAndMutateRow(
             'rk1',
             [
                 'predicateFilter' => $predicateFilter,
@@ -83,7 +82,7 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
             ]
         );
         $this->assertTrue($result);
-        $row = self::$dataClient->readRow('rk1');
+        $row = self::$table->readRow('rk1');
         $expectedRow = [
             'cf1' => [
                 'cq1' => [
@@ -108,7 +107,7 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
         $predicateFilter = Filter::qualifier()->exactMatch('cq10');
         $trueMutations = (new Mutations)->upsert('cf1', 'cq1', 'value12', 6000);
         $falseMutations = (new Mutations)->upsert('cf1', 'cq1', 'value11', 6000);
-        $result = self::$dataClient->checkAndMutateRow(
+        $result = self::$table->checkAndMutateRow(
             'rk1',
             [
                 'predicateFilter' => $predicateFilter,
@@ -117,7 +116,7 @@ class DataClientCheckAndMutateRowTest extends DataClientTest
             ]
         );
         $this->assertFalse($result);
-        $row = self::$dataClient->readRow('rk1');
+        $row = self::$table->readRow('rk1');
         $expectedRow = [
             'cf1' => [
                 'cq1' => [

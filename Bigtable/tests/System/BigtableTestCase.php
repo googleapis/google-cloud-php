@@ -23,7 +23,7 @@ use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Table;
-use Google\Cloud\Bigtable\DataClient;
+use Google\Cloud\Bigtable\BigtableClient;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -31,7 +31,7 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientTest extends TestCase
+class BigtableTestCase extends TestCase
 {
     const INSTANCE_ID_PREFIX = 'php-sys-instance-';
     const CLUSTER_ID_PREFIX = 'php-sys-cluster-';
@@ -40,7 +40,7 @@ class DataClientTest extends TestCase
 
     protected static $instanceAdminClient;
     protected static $tableAdminClient;
-    protected static $dataClient;
+    protected static $table;
     protected static $projectId;
     protected static $instanceId;
     protected static $clusterId;
@@ -49,22 +49,19 @@ class DataClientTest extends TestCase
     {
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$instanceAdminClient = new InstanceAdminClient([
-            'keyFilePath' => $keyFilePath
+            'credentials' => $keyFilePath
         ]);
         self::$tableAdminClient = new TableAdminClient([
-            'keyFilePath' => $keyFilePath
+            'credentials' => $keyFilePath
         ]);
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
         self::$projectId = $keyFileData['project_id'];
         self::$instanceId = uniqid(self::INSTANCE_ID_PREFIX);
         self::$clusterId = uniqid(self::CLUSTER_ID_PREFIX);
-        self::$dataClient = new DataClient(
-            self::$instanceId,
-            self::TABLE_ID,
-            [
-                'keyFilePath' => $keyFilePath
-            ]
-        );
+        self::$table = (new BigtableClient([
+            'projectId' => self::$projectId,
+            'credentials' => $keyFilePath
+        ]))->table(self::$instanceId, self::TABLE_ID);
         self::createInstance();
         self::createTable();
     }

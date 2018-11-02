@@ -23,46 +23,34 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Rpc\Code;
 
 /**
- * Represents a DataOperation Client to perform data operation on Bigtable table.
- * This is used to perform insert,update, delete operation on table in Bigtable.
+ * A table instance can be used to read rows and to perform insert, update, and
+ * delete operations.
  *
  * Example:
  * ```
- * use Google\Cloud\Bigtable\DataClient;
+ * use Google\Cloud\Bigtable\BigtableClient;
  *
- * $dataClient = new DataClient('my-instance', 'my-table');
+ * $bigtable = new BigtableClient();
+ * $table = $bigtable->table('my-instance', 'my-table');
  * ```
- *
  */
-class DataClient
+class Table
 {
     use ArrayTrait;
-    use ClientTrait;
 
     /**
-     * @var string
+     * @var GapicClient
      */
-    private $instanceId;
-
-    /**
-     * @var string
-     */
-    private $tableId;
-
-    /**
-     * @var TableClient
-     */
-    private $bigtableClient;
+    private $gapicClient;
 
     /**
      * @var array
@@ -75,53 +63,33 @@ class DataClient
     private $tableName;
 
     /**
-     * Create a Bigtable data client.
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
+     * Create a table instance.
      *
-     * @param string $instanceId The instance id.
-     * @param string $tableId The table id on which operation to be performed.
-     * @param array $config [optional] {
-     *     Configuration Options.
+     * @param GapicClient $gapicClient The GAPIC client used to make requests.
+     * @param string $tableName The full table name. Must match the following
+     *        pattern: projects/{project}/instances/{instance}/tables/{table}.
+     * @param array $options [optional] {
+     *     Configuration options.
      *
-     *      @type string $appProfileId The appProfileId to be used.
-     *      @type array $headers The headers to be passed to request.
-     *      @type TableClient $bigtableClient The GAPIC Bigtable client to use.
-     *            If not provided it will create one.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type string $appProfileId This value specifies routing for
+     *           replication. **Defaults to** the "default" application profile.
+     *     @type array $headers Headers to be passed with each request.
      * }
      */
-    public function __construct($instanceId, $tableId, array $config = [])
-    {
+    public function __construct(
+        GapicClient $gapicClient,
+        $tableName,
+        array $options = []
+    ) {
+        $this->gapicClient = $gapicClient;
+        $this->tableName = $tableName;
+        $this->options = $options;
         $this->serializer = new Serializer();
-        $this->instanceId = $instanceId;
-        $this->tableId = $tableId;
-        $this->options = [];
-        if (isset($config['appProfileId'])) {
-            $this->options['appProfileId'] = $config['appProfileId'];
-        }
-        if (isset($config['headers'])) {
-            $this->options['headers'] = $config['headers'];
-        }
-        $config = $this->configureAuthentication($config);
-        if (isset($config['bigtableClient'])) {
-            $this->bigtableClient = $config['bigtableClient'];
-        } else {
-            // Temp workaround for large messages.
-            $config['transportConfig'] = [
-                'grpc' => [
-                    'stubOpts' => [
-                        'grpc.max_send_message_length' => -1,
-                        'grpc.max_receive_message_length' => -1
-                    ]
-                ]
-            ];
-            $this->bigtableClient = new TableClient($config);
-        }
-        $this->tableName = TableClient::tableName($this->projectId, $instanceId, $tableId);
     }
 
     /**
@@ -129,20 +97,21 @@ class DataClient
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\DataClient;
      * use Google\Cloud\Bigtable\Mutations;
      *
      * $mutations = (new Mutations)
      *     ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
      *
-     * $dataClient->mutateRows(['r1' => $mutations]);
+     * $table->mutateRows(['r1' => $mutations]);
      * ```
-     * @param array $rowMutations Associative array of rowKey as key and value as
-     *        {@see Google\Cloud\Bigtable\Mutations}.
+     *
+     * @param array $rowMutations An associative array with the key being the
+     *        row key and the value being the
+     *        {@see Google\Cloud\Bigtable\Mutations} to perform.
      * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails.
-     * @throws InvalidArgumentException If rowMutations is a list instead of associative array indexed by rowkey.
+     * @throws InvalidArgumentException If rowMutations is a list instead of associative array indexed by row key.
      */
     public function mutateRows(array $rowMutations, array $options = [])
     {
@@ -164,13 +133,12 @@ class DataClient
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\DataClient;
      * use Google\Cloud\Bigtable\Mutations;
      *
      * $mutations = (new Mutations)
      *     ->upsert('cf1', 'cq1', 'value1', 1534183334215000);
      *
-     * $dataClient->mutateRow('r1', $mutations);
+     * $table->mutateRow('r1', $mutations);
      * ```
      *
      * @param string $rowKey The row key of the row to mutate.
@@ -181,7 +149,7 @@ class DataClient
      */
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
-        $this->bigtableClient->mutateRow(
+        $this->gapicClient->mutateRow(
             $this->tableName,
             $rowKey,
             $mutations->toProto(),
@@ -194,11 +162,19 @@ class DataClient
      *
      * Example:
      * ```
-     * use Google\Cloud\Bigtable\DataClient;
-     *
-     * $dataClient->upsert(['r1' => ['cf1' => ['cq1' => ['value'=>'value1', 'timeStamp' => 1534183334215000]]]]);
+     * $table->upsert([
+     *     'r1' => [
+     *         'cf1' => [
+     *             'cq1' => [
+     *                 'value'=>'value1',
+     *                 'timeStamp' => 1534183334215000
+     *              ]
+     *         ]
+     *     ]
+     *]);
      * ```
-     * @param array[] $rows array of row.
+     *
+     * @param array[] $rows An array of rows.
      * @param array $options [optional] Configuration options.
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
@@ -232,16 +208,16 @@ class DataClient
      *
      * Example:
      * ```
-     * $rows = $dataClient->readRows();
+     * $rows = $table->readRows();
      *
      * foreach ($rows as $row) {
      *     print_r($row) . PHP_EOL;
      * }
      * ```
      *
-     * // Specify a set of row ranges.
      * ```
-     * $rows = $dataClient->readRows([
+     * // Specify a set of row ranges.
+     * $rows = $table->readRows([
      *     'rowRanges' => [
      *         [
      *             'startKeyOpen' => 'jefferson',
@@ -313,7 +289,7 @@ class DataClient
             $options['filter'] = $filter->toProto();
         }
 
-        $serverStream = $this->bigtableClient->readRows(
+        $serverStream = $this->gapicClient->readRows(
             $this->tableName,
             $options + $this->options
         );
@@ -325,7 +301,7 @@ class DataClient
      *
      * Example:
      * ```
-     * $row = $dataClient->readRow('jefferson');
+     * $row = $table->readRow('jefferson');
      *
      * print_r($row);
      * ```
@@ -357,7 +333,7 @@ class DataClient
      *
      * $rules = (new ReadModifyWriteRowRules)
      *     ->append('cf1', 'cq1', 'value12');
-     * $row = $dataClient->readModifyWriteRow('rk1', $rules);
+     * $row = $table->readModifyWriteRow('rk1', $rules);
      *
      * print_r($row);
      * ```
@@ -371,11 +347,11 @@ class DataClient
      * $mutations = (new Mutations)
      *     ->upsert('cf1', 'cq1', DataUtil::intToByteString(2));
      *
-     * $dataClient->mutateRows(['rk1' => $mutations]);
+     * $table->mutateRows(['rk1' => $mutations]);
      *
      * $rules = (new ReadModifyWriteRowRules)
      *     ->increment('cf1', 'cq1', 3);
-     * $row = $dataClient->readModifyWriteRow('rk1', $rules);
+     * $row = $table->readModifyWriteRow('rk1', $rules);
      *
      * print_r($row);
      * ```
@@ -388,7 +364,7 @@ class DataClient
      */
     public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
     {
-        $readModifyWriteRowResponse = $this->bigtableClient->readModifyWriteRow(
+        $readModifyWriteRowResponse = $this->gapicClient->readModifyWriteRow(
             $this->tableName,
             $rowKey,
             $rules->toProto(),
@@ -405,7 +381,7 @@ class DataClient
      *
      * Example:
      * ```
-     * $rowKeyStream = $dataClient->sampleRowKeys();
+     * $rowKeyStream = $table->sampleRowKeys();
      * foreach ($rowKeyStream as $rowKey) {
      *     print_r($rowKey) . PHP_EOL;
      * }
@@ -417,7 +393,7 @@ class DataClient
      */
     public function sampleRowKeys(array $options = [])
     {
-        $stream = $this->bigtableClient->sampleRowKeys(
+        $stream = $this->gapicClient->sampleRowKeys(
             $this->tableName,
             $options + $this->options
         );
@@ -438,7 +414,7 @@ class DataClient
      * use Google\Cloud\Bigtable\Mutations;
      *
      * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
-     * $result = $dataClient->checkAndMutateRow('rk1', ['trueMutations' => $mutations]);
+     * $result = $table->checkAndMutateRow('rk1', ['trueMutations' => $mutations]);
      * ```
      *
      * ```
@@ -449,7 +425,7 @@ class DataClient
      * $mutations = (new Mutations)->upsert('family', 'qualifier', 'value');
      * $predicateFilter = Filter::qualifier()->exactMatch('cq');
      * $options = ['predicateFilter' => $predicateFilter, 'trueMutations' => $mutations];
-     * $result = $dataClient->checkAndMutateRow('rk1', $options);
+     * $result = $table->checkAndMutateRow('rk1', $options);
      * ```
      *
      * @param string $rowKey The row key to mutate row conditionally.
@@ -498,7 +474,7 @@ class DataClient
             throw new \InvalidArgumentException('checkAndMutateRow must have either trueMutations or falseMutations.');
         }
 
-        return $this->bigtableClient
+        return $this->gapicClient
             ->checkAndMutateRow(
                 $this->tableName,
                 $rowKey,
@@ -509,7 +485,7 @@ class DataClient
 
     private function mutateRowsWithEntries(array $entries, array $options = [])
     {
-        $responseStream = $this->bigtableClient->mutateRows($this->tableName, $entries, $options + $this->options);
+        $responseStream = $this->gapicClient->mutateRows($this->tableName, $entries, $options + $this->options);
         $rowMutationsFailedResponse = [];
         $failureCode = Code::OK;
         $message = 'partial failure';

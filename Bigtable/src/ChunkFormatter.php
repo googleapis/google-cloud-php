@@ -28,10 +28,11 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
  *
  * Example:
  * ```
- * use Google\Cloud\Bigtable\DataClient;
+ * use Google\Cloud\Bigtable\BigtableClient;
  *
- * $dataClient = new DataClient('my-instance', 'my-table');
- * $formatter = $dataClient->readRows();
+ * $bigtable = new BigtableClient();
+ * $table = $bigtable->table('my-instance', 'my-table');
+ * $formatter = $table->readRows();
  * ```
  */
 class ChunkFormatter implements \IteratorAggregate

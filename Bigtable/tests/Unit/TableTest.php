@@ -20,12 +20,12 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
-use Google\Cloud\Bigtable\DataClient;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\RowMutation;
+use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
@@ -48,11 +48,8 @@ use PHPUnit\Framework\TestCase;
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientTest extends TestCase
+class TableTest extends TestCase
 {
-    const PROJECT_ID = 'my-project';
-    const INSTANCE_ID = 'my-instance';
-    const TABLE_ID = 'my-table';
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';
@@ -60,7 +57,7 @@ class DataClientTest extends TestCase
     const TIMESTAMP = 1534183334215000;
 
     private $bigtableClient;
-    private $dataClient;
+    private $table;
     private $rowMutations = [];
     private $entries = [];
     private $options;
@@ -74,11 +71,11 @@ class DataClientTest extends TestCase
             'appProfileId' => self::APP_PROFILE,
             'headers' => [self::HEADER => self::HEADER_VALUE]
         ];
-        $clientOptions = $this->options + [
-            'bigtableClient' => $this->bigtableClient->reveal(),
-            'projectId' => self::PROJECT_ID
-        ];
-        $this->dataClient = new DataClient(self::INSTANCE_ID, self::TABLE_ID, $clientOptions);
+        $this->table = new Table(
+            $this->bigtableClient->reveal(),
+            self::TABLE_NAME,
+            $this->options
+        );
         $mutations = (new Mutations)
             ->upsert('cf1', 'cq1', 'value1', self::TIMESTAMP);
         $this->entries[] = (new RequestEntry)
@@ -100,7 +97,7 @@ class DataClientTest extends TestCase
      */
     public function testMutateRowsThrowsExceptionWhenRowMutationsIsList()
     {
-        $this->dataClient->mutateRows([1,2,3,4]);
+        $this->table->mutateRows([1,2,3,4]);
     }
 
     public function testMutateRows()
@@ -122,7 +119,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $this->dataClient->mutateRows($this->rowMutations);
+        $this->table->mutateRows($this->rowMutations);
     }
 
     public function testMutateRowsOptionalConfiguration()
@@ -140,7 +137,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $this->dataClient->mutateRows($this->rowMutations, $options);
+        $this->table->mutateRows($this->rowMutations, $options);
     }
 
     public function testMutateRowsFailure()
@@ -166,7 +163,7 @@ class DataClientTest extends TestCase
                 $this->serverStream->reveal()
             );
         try {
-            $this->dataClient->mutateRows($this->rowMutations);
+            $this->table->mutateRows($this->rowMutations);
             $this->fail('Expected exception is not thrown');
         } catch (BigtableDataOperationException $e) {
             $metadata = [
@@ -197,7 +194,7 @@ class DataClientTest extends TestCase
             ->willThrow(
                 $apiException
             );
-        $this->dataClient->mutateRows($this->rowMutations);
+        $this->table->mutateRows($this->rowMutations);
     }
 
     /**
@@ -217,7 +214,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $this->dataClient->mutateRows($this->rowMutations);
+        $this->table->mutateRows($this->rowMutations);
     }
 
     public function testUpsert()
@@ -257,7 +254,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $this->dataClient->upsert($rows);
+        $this->table->upsert($rows);
     }
 
     public function testUpsertOptionalConfiguration()
@@ -293,7 +290,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $this->dataClient->upsert($rows, $options);
+        $this->table->upsert($rows, $options);
     }
 
     public function testMutateRow()
@@ -305,7 +302,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 new MutateRowResponse
             );
-        $this->dataClient->mutateRow('r1', $mutations);
+        $this->table->mutateRow('r1', $mutations);
     }
 
     public function testReadRowsNoArg()
@@ -317,7 +314,7 @@ class DataClientTest extends TestCase
                 $this->serverStream->reveal()
             );
         $args = [];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -338,7 +335,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $row = $this->dataClient->readRow('rk1');
+        $row = $this->table->readRow('rk1');
         $this->assertNull($row);
     }
 
@@ -357,7 +354,7 @@ class DataClientTest extends TestCase
         $args = [
             'rowKeys' => ['rk1', 'rk2']
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -378,7 +375,7 @@ class DataClientTest extends TestCase
             'rowKeys' => ['rk1', 'rk2'],
             'rowsLimit' => 10
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -405,7 +402,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -432,7 +429,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -459,7 +456,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -486,7 +483,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -522,7 +519,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -551,7 +548,7 @@ class DataClientTest extends TestCase
                 ]
             ]
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -569,7 +566,7 @@ class DataClientTest extends TestCase
         $args = [
             'filter' => $rowFilter
         ];
-        $iterator = $this->dataClient->readRows($args);
+        $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
     }
 
@@ -605,7 +602,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $readModifyWriteRowResponse
             );
-        $row = $this->dataClient->readModifyWriteRow('rk1', $readModifyWriteRowRules);
+        $row = $this->table->readModifyWriteRow('rk1', $readModifyWriteRowRules);
         $expectedRow = [
             'cf1' => [
                 'cq1' => [[
@@ -653,7 +650,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $readModifyWriteRowResponse
             );
-        $row = $this->dataClient->readModifyWriteRow('rk1', $readModifyWriteRowRules);
+        $row = $this->table->readModifyWriteRow('rk1', $readModifyWriteRowRules);
         $expectedRow = [
             'cf1' => [
                 'cq1' => [[
@@ -685,7 +682,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $rowKeyStream = $this->dataClient->sampleRowKeys();
+        $rowKeyStream = $this->table->sampleRowKeys();
         $rowKeys = iterator_to_array($rowKeyStream);
         $expectedRowKeys = [
             [
@@ -706,7 +703,7 @@ class DataClientTest extends TestCase
      */
     public function testCheckAndMutateRowShouldThrowWhenNoTrueOrFalseMutations()
     {
-        $this->dataClient->checkAndMutateRow('rk1');
+        $this->table->checkAndMutateRow('rk1');
     }
 
     /**
@@ -715,7 +712,7 @@ class DataClientTest extends TestCase
      */
     public function testCheckAndMutateRowShouldThrowWhenPredicateFilterIsNotFilter()
     {
-        $this->dataClient->checkAndMutateRow('rk1', ['predicateFilter' => new \stdClass()]);
+        $this->table->checkAndMutateRow('rk1', ['predicateFilter' => new \stdClass()]);
     }
 
     /**
@@ -724,7 +721,7 @@ class DataClientTest extends TestCase
      */
     public function testCheckAndMutateRowShouldThrowWhenTrueMutationsNotMutations()
     {
-        $this->dataClient->checkAndMutateRow('rk1', ['trueMutations' => new \stdClass()]);
+        $this->table->checkAndMutateRow('rk1', ['trueMutations' => new \stdClass()]);
     }
 
     /**
@@ -733,7 +730,7 @@ class DataClientTest extends TestCase
      */
     public function testCheckAndMutateRowShouldThrowWhenFalseMutationsNotMutations()
     {
-        $this->dataClient->checkAndMutateRow('rk1', ['falseMutations' => new \stdClass()]);
+        $this->table->checkAndMutateRow('rk1', ['falseMutations' => new \stdClass()]);
     }
 
     public function testCheckAndMutateRowWithTrueMutations()
@@ -748,7 +745,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 (new CheckAndMutateRowResponse)->setPredicateMatched(true)
             );
-        $result = $this->dataClient->checkAndMutateRow($rowKey, ['trueMutations' => $mutations]);
+        $result = $this->table->checkAndMutateRow($rowKey, ['trueMutations' => $mutations]);
         $this->assertTrue($result);
     }
 
@@ -764,7 +761,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 (new CheckAndMutateRowResponse)->setPredicateMatched(false)
             );
-        $result = $this->dataClient->checkAndMutateRow($rowKey, ['falseMutations' => $mutations]);
+        $result = $this->table->checkAndMutateRow($rowKey, ['falseMutations' => $mutations]);
         $this->assertFalse($result);
     }
 
@@ -782,7 +779,7 @@ class DataClientTest extends TestCase
             ->willReturn(
                 (new CheckAndMutateRowResponse)->setPredicateMatched(false)
             );
-        $result = $this->dataClient->checkAndMutateRow(
+        $result = $this->table->checkAndMutateRow(
             $rowKey,
             [
                 'predicateFilter' => $predicateFilter,

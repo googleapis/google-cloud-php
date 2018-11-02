@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Snippet;
 
 use \Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
-use Google\Cloud\Bigtable\DataClient;
+use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -30,28 +30,21 @@ use Google\Cloud\Core\Testing\TestHelpers;
  */
 class ChunkFormatterTest extends SnippetTestCase
 {
-    const PROJECT_ID = 'my-project';
-    const INSTANCE_ID = 'my-instance';
-    const TABLE_ID = 'my-table';
     const TABLE_NAME = 'projects/my-project/instances/my-instance/tables/my-table';
 
     private $bigtableClient;
-    private $dataClient;
+    private $table;
     private $serverStream;
 
     public function setUp()
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
-        $this->dataClient = TestHelpers::stub(
-            DataClient::class,
+        $this->table = TestHelpers::stub(
+            Table::class,
             [
-                self::INSTANCE_ID,
-                self::TABLE_ID,
-                [
-                    'bigtableClient' => $this->bigtableClient->reveal(),
-                    'projectId' => self::PROJECT_ID
-                ]
+                $this->bigtableClient->reveal(),
+                self::TABLE_NAME
             ]
         );
     }
@@ -59,13 +52,17 @@ class ChunkFormatterTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(ChunkFormatter::class);
-        $snippet->replace('$dataClient = new DataClient(\'my-instance\', \'my-table\');', '');
+        $snippet->replace(
+            '$bigtable = new BigtableClient();',
+            '$bigtable = new BigtableClient(["projectId" => "my-project"]);'
+        );
+        $snippet->replace('$table = $bigtable->table(\'my-instance\', \'my-table\');', '');
         $this->bigtableClient->readRows(self::TABLE_NAME, [])
             ->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $snippet->addLocal('dataClient', $this->dataClient);
+        $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('formatter');
         $this->assertInstanceOf(ChunkFormatter::class, $res->returnVal());
     }
