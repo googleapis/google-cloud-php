@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Bigtable\Tests\System;
 
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
 use Google\Cloud\Bigtable\Mutations;
 
 /**
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientMutateRowsTest extends DataClientTest
+class MutateRowsTest extends BigtableTestCase
 {
     public function testBasicWriteAndReadDataOperation()
     {
@@ -38,7 +37,7 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $readRows = [
             'rk1' => [
                 'cf1' => [
@@ -50,7 +49,7 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk1']])->readAll());
+        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk1']])->readAll());
         $this->assertEquals($readRows, $rows);
     }
 
@@ -86,10 +85,10 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteRow();
-        self::$dataClient->mutateRows(['rk2' => $mutations]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk2']])->readAll());
+        self::$table->mutateRows(['rk2' => $mutations]);
+        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk2']])->readAll());
         $this->assertEquals([], $rows);
     }
 
@@ -111,10 +110,10 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteFromFamily('cf2');
-        self::$dataClient->mutateRows(['rk3' => $mutations]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk3']])->readAll());
+        self::$table->mutateRows(['rk3' => $mutations]);
+        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk3']])->readAll());
         $expectedRows = [
             'rk3' => [
                 'cf1' => [
@@ -145,10 +144,10 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteFromColumn('cf1', 'cq2');
-        self::$dataClient->mutateRows(['rk4' => $mutations]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk4']])->readAll());
+        self::$table->mutateRows(['rk4' => $mutations]);
+        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk4']])->readAll());
         $expectedRows = [
             'rk4' => [
                 'cf1' => [
@@ -179,7 +178,7 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $insertRows = [
             'rk5' => [
                 'cf1' => [
@@ -190,7 +189,7 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $insertRows = [
             'rk5' => [
                 'cf1' => [
@@ -201,10 +200,10 @@ class DataClientMutateRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
         $mutations = (new Mutations)->deleteFromColumn('cf1', 'cq2', ['start' => 21000, 'end' => 40000]);
-        self::$dataClient->mutateRows(['rk5' => $mutations]);
-        $rows = iterator_to_array(self::$dataClient->readRows(['rowKeys' => ['rk5']])->readAll());
+        self::$table->mutateRows(['rk5' => $mutations]);
+        $rows = iterator_to_array(self::$table->readRows(['rowKeys' => ['rk5']])->readAll());
         $expectedRows = [
             'rk5' => [
                 'cf1' => [

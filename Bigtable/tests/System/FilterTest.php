@@ -19,20 +19,19 @@ namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
 
 /**
  * @group bigtable
  * @group bigtabledata
  */
-class FilterTest extends DataClientTest
+class FilterTest extends BigtableTestCase
 {
     protected static $rowMutations = [];
 
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        self::$dataClient->mutateRows(self::$rowMutations);
+        self::$table->mutateRows(self::$rowMutations);
     }
 
     private static function createExpectedRows($insertRows)
@@ -55,7 +54,7 @@ class FilterTest extends DataClientTest
     public function testFilter($args, $expectedRows, $message)
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows($args)->readAll()
+            self::$table->readRows($args)->readAll()
         );
         $this->assertEquals($expectedRows, $rows, $message);
     }
@@ -437,7 +436,7 @@ class FilterTest extends DataClientTest
     {
         $rowFilter = Filter::key()->sample(.50);
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'filter' => $rowFilter
                 ]

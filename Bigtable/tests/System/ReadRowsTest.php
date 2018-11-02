@@ -17,13 +17,11 @@
 
 namespace Google\Cloud\Bigtable\Tests\System;
 
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
-
 /**
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientReadRowsTest extends DataClientTest
+class ReadRowsTest extends BigtableTestCase
 {
     public static function setUpBeforeClass()
     {
@@ -70,13 +68,13 @@ class DataClientReadRowsTest extends DataClientTest
                 ]
             ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
     }
 
     public function testReadRowsRowsLimit()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowsLimit' => 2
                 ]
@@ -112,7 +110,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsSingleKey()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowKeys' => ['rk2']
                 ]
@@ -137,7 +135,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsMultipleRows()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowKeys' => ['rk2', 'rk3']
                 ]
@@ -173,7 +171,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesStartOpen()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -213,7 +211,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesStartClosed()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -253,7 +251,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesEndOpen()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -293,7 +291,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesEndClosed()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -322,7 +320,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesStartOpenEndClosed()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -352,7 +350,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesStartClosedEndClosed()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -393,7 +391,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesStartOpenEndOpen()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -423,7 +421,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsRowRangesStartClosedEndOpen()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [
@@ -464,7 +462,7 @@ class DataClientReadRowsTest extends DataClientTest
     public function testReadRowsMultipleRanges()
     {
         $rows = iterator_to_array(
-            self::$dataClient->readRows(
+            self::$table->readRows(
                 [
                     'rowRanges' => [
                          [

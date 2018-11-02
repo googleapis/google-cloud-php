@@ -17,15 +17,11 @@
 
 namespace Google\Cloud\Bigtable\Tests\System;
 
-use Google\Cloud\Bigtable\DataUtil;
-use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-use Google\Cloud\Bigtable\Tests\System\DataClientTest;
-
 /**
  * @group bigtable
  * @group bigtabledata
  */
-class DataClientReadModifyWriteRowTest extends DataClientTest
+class SampleRowKeysTest extends BigtableTestCase
 {
     public static function setUpBeforeClass()
     {
@@ -42,38 +38,49 @@ class DataClientReadModifyWriteRowTest extends DataClientTest
             'rk2' => [
                 'cf1' => [
                     'cq2' => [
-                        'value' => DataUtil::intToByteString(2),
+                        'value' => 'value2',
                         'timeStamp' => 5000
                     ]
                 ]
             ],
+            'rk3' => [
+                'cf1' => [
+                    'cq3' => [
+                        'value' => 'value3',
+                        'timeStamp' => 5000
+                    ]
+                ]
+            ],
+            'rk4' => [
+                'cf1' => [
+                    'cq4' => [
+                        'value' => 'value4',
+                        'timeStamp' => 5000
+                    ]
+                ]
+            ],
+            'rk5' => [
+                'cf1' => [
+                    'cq5' => [
+                        'value' => 'value5',
+                        'timeStamp' => 5000
+                    ]
+                ]
+            ]
         ];
-        self::$dataClient->upsert($insertRows);
+        self::$table->upsert($insertRows);
     }
 
-    public function testAppend()
+    public function testSampleRowKeys()
     {
-        $rules = (new ReadModifyWriteRowRules)
-            ->append('cf1', 'cq1', 'value12');
-        $row = self::$dataClient->readModifyWriteRow(
-            'rk1',
-            $rules
-        );
-        $this->assertEquals('value1value12', $row['cf1']['cq1'][0]['value']);
-    }
-
-    /**
-     * @requires PHP 5.6.0
-     */
-    public function testIncrement()
-    {
-        $rules = (new ReadModifyWriteRowRules)
-            ->increment('cf1', 'cq2', 3);
-        $row = self::$dataClient->readModifyWriteRow(
-            'rk2',
-            $rules
-        );
-        $intval = DataUtil::byteStringToInt($row['cf1']['cq2'][0]['value']);
-        $this->assertEquals(5, $intval);
+        $rowKeysStream = self::$table->sampleRowKeys();
+        $rowKeys = iterator_to_array($rowKeysStream);
+        $expectedRowKeys = [
+            [
+                'rowKey' => '',
+                'offset' => 805306368
+            ]
+        ];
+        $this->assertEquals($expectedRowKeys, $rowKeys);
     }
 }
