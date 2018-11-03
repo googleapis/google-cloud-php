@@ -5,552 +5,666 @@ return [
         'google.container.v1.ClusterManager' => [
             'ListClusters' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters',
                 'placeholders' => [
-                    'parent' => [
+                    'project_id' => [
                         'getters' => [
-                            'getParent',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
             ],
             'GetCluster' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'CreateCluster' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'parent' => [
+                    'project_id' => [
                         'getters' => [
-                            'getParent',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
             ],
             'UpdateCluster' => [
                 'method' => 'put',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'put',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'UpdateNodePool' => [
-                'method' => 'put',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/update',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'put',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/update',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'SetNodePoolAutoscaling' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setAutoscaling',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/autoscaling',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/autoscaling',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'SetLoggingService' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setLogging',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/logging',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/logging',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetMonitoringService' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setMonitoring',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/monitoring',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/monitoring',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetAddonsConfig' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setAddons',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/addons',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/addons',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetLocations' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setLocations',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/locations',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/locations',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'UpdateMaster' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:updateMaster',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/master',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/master',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetMasterAuth' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setMasterAuth',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMasterAuth',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMasterAuth',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'DeleteCluster' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'ListOperations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/operations',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/operations',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/operations',
                 'placeholders' => [
-                    'parent' => [
+                    'project_id' => [
                         'getters' => [
-                            'getParent',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
             ],
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/operations/{operation_id}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/operations/{operation_id}',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'operation_id' => [
+                        'getters' => [
+                            'getOperationId',
                         ],
                     ],
                 ],
             ],
             'CancelOperation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/operations/{operation_id}:cancel',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/operations/{operation_id}:cancel',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'operation_id' => [
+                        'getters' => [
+                            'getOperationId',
                         ],
                     ],
                 ],
             ],
             'GetServerConfig' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/serverConfig',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/serverconfig',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/serverconfig',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
             ],
             'ListNodePools' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/nodePools',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools',
                 'placeholders' => [
-                    'parent' => [
+                    'project_id' => [
                         'getters' => [
-                            'getParent',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'GetNodePool' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'CreateNodePool' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/nodePools',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'parent' => [
+                    'project_id' => [
                         'getters' => [
-                            'getParent',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'DeleteNodePool' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'RollbackNodePoolUpgrade' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}:rollback',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}:rollback',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}:rollback',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'SetNodePoolManagement' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setManagement',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setManagement',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setManagement',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'SetLabels' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setResourceLabels',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/resourceLabels',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/resourceLabels',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetLegacyAbac' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setLegacyAbac',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/legacyAbac',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/legacyAbac',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'StartIPRotation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:startIpRotation',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:startIpRotation',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:startIpRotation',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'CompleteIPRotation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:completeIpRotation',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:completeIpRotation',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:completeIpRotation',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetNodePoolSize' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setSize',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setSize',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setSize',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
+                        ],
+                    ],
+                    'node_pool_id' => [
+                        'getters' => [
+                            'getNodePoolId',
                         ],
                     ],
                 ],
             ],
             'SetNetworkPolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setNetworkPolicy',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setNetworkPolicy',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setNetworkPolicy',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],
             ],
             'SetMaintenancePolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:setMaintenancePolicy',
+                'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMaintenancePolicy',
                 'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMaintenancePolicy',
-                        'body' => '*',
-                    ],
-                ],
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                    'cluster_id' => [
+                        'getters' => [
+                            'getClusterId',
                         ],
                     ],
                 ],

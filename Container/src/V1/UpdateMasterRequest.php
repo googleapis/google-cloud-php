@@ -16,49 +16,34 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to upgrade.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to upgrade.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      */
     private $cluster_id = '';
     /**
-     * The Kubernetes version to change the master to.
-     * Users may specify either explicit versions offered by Kubernetes Engine or
-     * version aliases, which have the following behavior:
-     * - "latest": picks the highest valid Kubernetes version
-     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
-     * - "-": picks the default Kubernetes version
+     * The Kubernetes version to change the master to. The only valid value is the
+     * latest supported version. Use "-" to have the server automatically select
+     * the latest version.
      *
      * Generated from protobuf field <code>string master_version = 4;</code>
      */
     private $master_version = '';
-    /**
-     * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 7;</code>
-     */
-    private $name = '';
 
     /**
      * Constructor.
@@ -67,29 +52,18 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to upgrade.
-     *           This field has been deprecated and replaced by the name field.
+     *           The name of the cluster to upgrade.
      *     @type string $master_version
-     *           The Kubernetes version to change the master to.
-     *           Users may specify either explicit versions offered by Kubernetes Engine or
-     *           version aliases, which have the following behavior:
-     *           - "latest": picks the highest valid Kubernetes version
-     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
-     *           - "-": picks the default Kubernetes version
-     *     @type string $name
-     *           The name (project, location, cluster) of the cluster to update.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           The Kubernetes version to change the master to. The only valid value is the
+     *           latest supported version. Use "-" to have the server automatically select
+     *           the latest version.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,11 +72,10 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @return string
      */
     public function getProjectId()
@@ -111,11 +84,10 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -128,12 +100,11 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
      */
     public function getZone()
@@ -142,12 +113,11 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -160,10 +130,9 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to upgrade.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @return string
      */
     public function getClusterId()
@@ -172,10 +141,9 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to upgrade.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -188,14 +156,9 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes version to change the master to.
-     * Users may specify either explicit versions offered by Kubernetes Engine or
-     * version aliases, which have the following behavior:
-     * - "latest": picks the highest valid Kubernetes version
-     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
-     * - "-": picks the default Kubernetes version
+     * The Kubernetes version to change the master to. The only valid value is the
+     * latest supported version. Use "-" to have the server automatically select
+     * the latest version.
      *
      * Generated from protobuf field <code>string master_version = 4;</code>
      * @return string
@@ -206,14 +169,9 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes version to change the master to.
-     * Users may specify either explicit versions offered by Kubernetes Engine or
-     * version aliases, which have the following behavior:
-     * - "latest": picks the highest valid Kubernetes version
-     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
-     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
-     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
-     * - "-": picks the default Kubernetes version
+     * The Kubernetes version to change the master to. The only valid value is the
+     * latest supported version. Use "-" to have the server automatically select
+     * the latest version.
      *
      * Generated from protobuf field <code>string master_version = 4;</code>
      * @param string $var
@@ -223,34 +181,6 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->master_version = $var;
-
-        return $this;
-    }
-
-    /**
-     * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 7;</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 7;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
 
         return $this;
     }
