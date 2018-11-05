@@ -23,7 +23,6 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
@@ -40,7 +39,6 @@ use Google\Cloud\Core\ClientTrait;
 class BigtableClient
 {
     use ArrayTrait;
-    use ClientTrait;
 
     const VERSION = '0.5.3';
 
@@ -48,6 +46,11 @@ class BigtableClient
      * @var GapicClient
      */
     private $gapicClient;
+
+    /**
+     * @var string
+     */
+    private $projectId;
 
     /**
      * Create a Bigtable client.
