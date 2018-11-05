@@ -19,7 +19,7 @@
             "id": "cloud-bigtable",
             "target": "googleapis/google-cloud-php-bigtable.git",
             "path": "Bigtable",
-            "entry": null
+            "entry": "src/BigtableClient.php"
         }
     },
     "autoload": {
