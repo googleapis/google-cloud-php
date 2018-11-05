@@ -23,10 +23,16 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group bigtable
  * @group bigtabledata
- * @requires PHP 5.6.0
  */
 class DataUtilTest extends TestCase
 {
+    public function setUp()
+    {
+        if (!DataUtil::isSupported()) {
+            $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
+        }
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Expected argument to be of type int, instead got
@@ -38,20 +44,12 @@ class DataUtilTest extends TestCase
 
     public function testIntToByteString()
     {
-        if (!DataUtil::isSupported()) {
-            $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
-        }
-
         $expected = hex2bin("0000000000000002");
         $this->assertEquals($expected, DataUtil::intToByteString(2));
     }
 
     public function testByteStringToInt()
     {
-        if (!DataUtil::isSupported()) {
-            $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
-        }
-
         $value = DataUtil::byteStringToInt(DataUtil::intToByteString(-52));
         $this->assertEquals(-52, $value);
     }
