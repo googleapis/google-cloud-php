@@ -38,12 +38,20 @@ class DataUtilTest extends TestCase
 
     public function testIntToByteString()
     {
+        if (!DataUtil::isSupported()) {
+            $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
+        }
+
         $expected = hex2bin("0000000000000002");
         $this->assertEquals($expected, DataUtil::intToByteString(2));
     }
 
     public function testByteStringToInt()
     {
+        if (!DataUtil::isSupported()) {
+            $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
+        }
+
         $value = DataUtil::byteStringToInt(DataUtil::intToByteString(-52));
         $this->assertEquals(-52, $value);
     }
