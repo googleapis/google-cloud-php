@@ -36,6 +36,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 The handwritten client offered by this package differs from the others in `google-cloud-php` in that it more directly wraps our generated clients.
 This means some of the idioms and configuration options you are used to may differ slightly. The most notable differences are outlined below:
 
+- A key file is now provided through the `credentials` configuration option as opposed to either `keyFile` or `keyFilePath`.
 - There is now more granular control over retry logic. Please see [the `bigtable_client_config.json` file](https://github.com/googleapis/google-cloud-php/blob/master/Bigtable/src/V2/resources/bigtable_client_config.json)
   for an example of the configuration which can be passed into the client at construction time.
 - Exceptions triggered at the network level utilize the base class `Google\ApiCore\ApiException` as opposed to `Google\Cloud\Core\ServiceException`.
