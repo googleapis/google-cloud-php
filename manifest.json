@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.85.0",
                 "v0.84.1",
                 "v0.84.0",
                 "v0.83.0",
@@ -198,6 +199,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v0.8.0",
                 "v0.7.1",
                 "v0.7.0",
                 "v0.6.1",
@@ -227,6 +229,7 @@
             "name": "google/cloud-container",
             "defaultService": "container/readme",
             "versions": [
+                "v0.6.3",
                 "v0.6.2",
                 "v0.6.1",
                 "v0.6.0",
@@ -379,6 +382,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.15.0",
                 "v0.14.2",
                 "v0.14.1",
                 "v0.14.0",
