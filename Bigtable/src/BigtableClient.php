@@ -22,7 +22,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
-use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ArrayTrait;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
@@ -38,7 +38,7 @@ use Google\Cloud\Core\ClientTrait;
  */
 class BigtableClient
 {
-    use ClientTrait;
+    use ArrayTrait;
 
     const VERSION = '0.5.3';
 
@@ -46,6 +46,11 @@ class BigtableClient
      * @var GapicClient
      */
     private $gapicClient;
+
+    /**
+     * @var string
+     */
+    private $projectId;
 
     /**
      * Create a Bigtable client.
@@ -93,23 +98,26 @@ class BigtableClient
      *               'grpc' => [...],
      *               'rest' => [...]
      *           ];
-     *           See {@see Google\ApiCore\Transport\GrpcTransport} and
-     *           {@see Google\ApiCore\Transport\RestTransport} for
-     *           the supported options.
+     *           See the `build` method on {@see Google\ApiCore\Transport\GrpcTransport}
+     *           and {@see Google\ApiCore\Transport\RestTransport} for the
+     *           supported options.
      * }
      * @throws ValidationException
      */
     public function __construct(array $config = [])
     {
         if (!isset($config['transportConfig']['grpc']['stubOpts'])) {
-            // Workaround for large messages.
-            $config['transportConfig']['grpc']['stubOpts'] = [
-                'grpc.max_send_message_length' => -1,
-                'grpc.max_receive_message_length' => -1
-            ];
+            $config['transportConfig']['grpc']['stubOpts'] = [];
         }
 
-        $this->projectId = $this->detectProjectId($config);
+        // Workaround for large messages.
+        $config['transportConfig']['grpc']['stubOpts'] += [
+            'grpc.max_send_message_length' => -1,
+            'grpc.max_receive_message_length' => -1
+        ];
+
+        $this->projectId = $this->pluck('projectId', $config, false)
+            ?: $this->detectProjectId();
         $this->gapicClient = new GapicClient($config);
     }
 
@@ -139,6 +147,29 @@ class BigtableClient
             $this->gapicClient,
             GapicClient::tableName($this->projectId, $instanceId, $tableId),
             $options
+        );
+    }
+
+    /**
+     * Attempts to detect the project ID.
+     *
+     * @todo Add better support for detecting the project ID (check keyFile/GCE metadata server).
+     * @return string
+     * @throws ValidationException If a project ID cannot be detected.
+     */
+    private function detectProjectId()
+    {
+        if (getenv('GOOGLE_CLOUD_PROJECT')) {
+            return getenv('GOOGLE_CLOUD_PROJECT');
+        }
+
+        if (getenv('GCLOUD_PROJECT')) {
+            return getenv('GCLOUD_PROJECT');
+        }
+
+        throw new ValidationException(
+            'No project ID was provided, ' .
+            'and we were unable to detect a default project ID.'
         );
     }
 }
