@@ -31,6 +31,17 @@ $ composer require google/cloud
 This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits offered by gRPC (such as streaming methods)
 please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
+### Notable Client Differences
+
+The handwritten client offered by this package differs from the others in `google-cloud-php` in that it more directly wraps our generated clients.
+This means some of the idioms and configuration options you are used to may differ slightly. The most notable differences are outlined below:
+
+- There is now more granular control over retry logic. Please see [the `bigtable_client_config.json` file](https://github.com/googleapis/google-cloud-php/blob/master/Bigtable/src/V2/resources/bigtable_client_config.json)
+  for an example of the configuration which can be passed into the client at construction time.
+- Exceptions triggered at the network level utilize the base class `Google\ApiCore\ApiException` as opposed to `Google\Cloud\Core\ServiceException`.
+- The `authHttpHandler` and `httpHandler` client configuration options are now provided through `$credentialsConfig['authHttpHandler']`
+  and `$transportConfig['httpHandler']`, respectively. Additionally, please note the `httpHandler` should now return an implementation of [Guzzle's `PromiseInterface`](https://github.com/guzzle/promises/blob/master/src/PromiseInterface.php).
+
 ### Authentication
 
 Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
