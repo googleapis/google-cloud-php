@@ -48,6 +48,9 @@ This means some of the idioms and configuration options you are used to may diff
 Please see our [Authentication guide](https://github.com/GoogleCloudPlatform/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
+When going through the authentication guide, please take note that the handwritten client for this package will more closely follow the conventions
+outlined for the generated clients.
+
 ### Sample
 
 ```php
