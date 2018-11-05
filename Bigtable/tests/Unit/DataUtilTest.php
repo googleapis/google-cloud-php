@@ -23,10 +23,16 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group bigtable
  * @group bigtabledata
- * @requires PHP 5.6.0
  */
 class DataUtilTest extends TestCase
 {
+    public function setUp()
+    {
+        if (!DataUtil::isSupported()) {
+            $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
+        }
+    }
+
     /**
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Expected argument to be of type int, instead got

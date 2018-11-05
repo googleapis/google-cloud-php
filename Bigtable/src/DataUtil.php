@@ -49,7 +49,7 @@ class DataUtil
     public static function isSupported()
     {
         if (self::$isSupported === null) {
-            self::$isSupported = PHP_VERSION_ID >= 50600;
+            self::$isSupported = PHP_VERSION_ID >= 50600 && PHP_INT_SIZE > 4;
         }
         return self::$isSupported;
     }
