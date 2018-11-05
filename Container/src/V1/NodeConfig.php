@@ -61,18 +61,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
      * in length. These are reflected as part of a URL in the metadata server.
      * Additionally, to avoid ambiguity, keys must not conflict with any other
-     * metadata keys for the project or be one of the reserved keys:
-     *  "cluster-location"
-     *  "cluster-name"
-     *  "cluster-uid"
-     *  "configure-sh"
-     *  "enable-os-login"
-     *  "gci-update-strategy"
-     *  "gci-ensure-gke-docker"
-     *  "instance-template"
-     *  "kube-env"
-     *  "startup-script"
-     *  "user-data"
+     * metadata keys for the project or be one of the four reserved keys:
+     * "instance-template", "kube-env", "startup-script", and "user-data"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -137,20 +127,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
-     * If unspecified, the default disk type is 'pd-standard'
-     *
-     * Generated from protobuf field <code>string disk_type = 12;</code>
-     */
-    private $disk_type = '';
-    /**
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are the
      * friendly names of CPU platforms, such as
      * <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
      * <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
-     * information, read [how to specify min CPU
-     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *
      * Generated from protobuf field <code>string min_cpu_platform = 13;</code>
      */
@@ -192,18 +174,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
      *           in length. These are reflected as part of a URL in the metadata server.
      *           Additionally, to avoid ambiguity, keys must not conflict with any other
-     *           metadata keys for the project or be one of the reserved keys:
-     *            "cluster-location"
-     *            "cluster-name"
-     *            "cluster-uid"
-     *            "configure-sh"
-     *            "enable-os-login"
-     *            "gci-update-strategy"
-     *            "gci-ensure-gke-docker"
-     *            "instance-template"
-     *            "kube-env"
-     *            "startup-script"
-     *            "user-data"
+     *           metadata keys for the project or be one of the four reserved keys:
+     *           "instance-template", "kube-env", "startup-script", and "user-data"
      *           Values are free-form strings, and only have meaning as interpreted by
      *           the image running in the instance. The only restriction placed on them is
      *           that each value's size must be less than or equal to 32 KB.
@@ -239,17 +211,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           A list of hardware accelerators to be attached to each node.
      *           See https://cloud.google.com/compute/docs/gpus for more information about
      *           support for GPUs.
-     *     @type string $disk_type
-     *           Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
-     *           If unspecified, the default disk type is 'pd-standard'
      *     @type string $min_cpu_platform
      *           Minimum CPU platform to be used by this instance. The instance may be
      *           scheduled on the specified or newer CPU platform. Applicable values are the
      *           friendly names of CPU platforms, such as
      *           <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
      *           <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
-     *           information, read [how to specify min CPU
-     *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     *           information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      * }
      */
     public function __construct($data = NULL) {
@@ -400,18 +368,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
      * in length. These are reflected as part of a URL in the metadata server.
      * Additionally, to avoid ambiguity, keys must not conflict with any other
-     * metadata keys for the project or be one of the reserved keys:
-     *  "cluster-location"
-     *  "cluster-name"
-     *  "cluster-uid"
-     *  "configure-sh"
-     *  "enable-os-login"
-     *  "gci-update-strategy"
-     *  "gci-ensure-gke-docker"
-     *  "instance-template"
-     *  "kube-env"
-     *  "startup-script"
-     *  "user-data"
+     * metadata keys for the project or be one of the four reserved keys:
+     * "instance-template", "kube-env", "startup-script", and "user-data"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -430,18 +388,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
      * in length. These are reflected as part of a URL in the metadata server.
      * Additionally, to avoid ambiguity, keys must not conflict with any other
-     * metadata keys for the project or be one of the reserved keys:
-     *  "cluster-location"
-     *  "cluster-name"
-     *  "cluster-uid"
-     *  "configure-sh"
-     *  "enable-os-login"
-     *  "gci-update-strategy"
-     *  "gci-ensure-gke-docker"
-     *  "instance-template"
-     *  "kube-env"
-     *  "startup-script"
-     *  "user-data"
+     * metadata keys for the project or be one of the four reserved keys:
+     * "instance-template", "kube-env", "startup-script", and "user-data"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -654,41 +602,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
-     * If unspecified, the default disk type is 'pd-standard'
-     *
-     * Generated from protobuf field <code>string disk_type = 12;</code>
-     * @return string
-     */
-    public function getDiskType()
-    {
-        return $this->disk_type;
-    }
-
-    /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
-     * If unspecified, the default disk type is 'pd-standard'
-     *
-     * Generated from protobuf field <code>string disk_type = 12;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDiskType($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->disk_type = $var;
-
-        return $this;
-    }
-
-    /**
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are the
      * friendly names of CPU platforms, such as
      * <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
      * <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
-     * information, read [how to specify min CPU
-     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *
      * Generated from protobuf field <code>string min_cpu_platform = 13;</code>
      * @return string
@@ -704,8 +623,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * friendly names of CPU platforms, such as
      * <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
      * <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
-     * information, read [how to specify min CPU
-     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *
      * Generated from protobuf field <code>string min_cpu_platform = 13;</code>
      * @param string $var

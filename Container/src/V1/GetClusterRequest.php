@@ -16,36 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to retrieve.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to retrieve.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      */
     private $cluster_id = '';
-    /**
-     * The name (project, location, cluster) of the cluster to retrieve.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 5;</code>
-     */
-    private $name = '';
 
     /**
      * Constructor.
@@ -54,20 +44,14 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to retrieve.
-     *           This field has been deprecated and replaced by the name field.
-     *     @type string $name
-     *           The name (project, location, cluster) of the cluster to retrieve.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *           The name of the cluster to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,11 +60,10 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @return string
      */
     public function getProjectId()
@@ -89,11 +72,10 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -106,12 +88,11 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
      */
     public function getZone()
@@ -120,12 +101,11 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -138,10 +118,9 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to retrieve.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to retrieve.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @return string
      */
     public function getClusterId()
@@ -150,10 +129,9 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to retrieve.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to retrieve.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -161,34 +139,6 @@ class GetClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * The name (project, location, cluster) of the cluster to retrieve.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 5;</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The name (project, location, cluster) of the cluster to retrieve.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 5;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
 
         return $this;
     }
