@@ -43,6 +43,7 @@ class ReleaseBuilder extends GoogleCloudCommand
     const TARGET_REGEX = '/([a-zA-Z0-9-_]{1,})\/([a-zA-Z0-9-_]{1,})\.git/';
 
     const GITHUB_RELEASES_ENDPOINT = 'https://api.github.com/repos/%s/%s/releases/tags/%s';
+    const GITHUB_PULL_ENDPOINT = 'https://api.github.com/repos/%s/%s/pulls/%s';
     const GITHUB_COMPARE_ENDPOINT = 'https://api.github.com/repos/%s/%s/compare/%s...master';
 
     CONST LEVEL_PATCH = 0;
@@ -672,16 +673,39 @@ class ReleaseBuilder extends GoogleCloudCommand
             $description = explode("\n", $message)[0];
             $matches = [];
             preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches);
+            $message = trim($matches[1]);
+            $prNumber = isset($matches[2]) ? $matches[2] : null;
+
+            if (strpos($message, '[CHANGE ME]') === 0 && $prNumber) {
+                $message = $this->getMessageFromPullRequest($org, $repo, $prNumber);
+            }
+
             $commits[] = [
                 'url' => $commit['url'],
                 'htmlUrl' => $commit['html_url'],
-                'message' => trim($matches[1]),
-                'reference' => $matches[2],
+                'message' => $message,
+                'reference' => $prNumber,
                 'hash' => $commit['sha']
             ];
         }
 
         return $commits;
+    }
+
+    private function getMessageFromPullRequest($org, $repo, $prNumber)
+    {
+        $url = sprintf(
+            self::GITHUB_PULL_ENDPOINT,
+            $org,
+            $repo,
+            $prNumber
+        );
+
+        $res = json_decode($this->http->get($url, [
+            'auth' => [null, $this->token]
+        ])->getBody(), true);
+
+        return $res['title'];
     }
 
     /**
