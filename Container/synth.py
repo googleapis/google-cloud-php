@@ -26,7 +26,7 @@ common = gcp.CommonTemplates()
 v1_library = gapic.php_library(
     service='container',
     version='v1',
-    config_path='/google/container/artman_container.yaml',
+    config_path='/google/container/artman_container_v1.yaml',
     artman_output_name='google-cloud-container-v1')
 
 # copy all src including partial veneer classes
