@@ -31,8 +31,7 @@ class GAEStandardMetadataProvider extends GAEMetadataProvider
                 $server['GOOGLE_CLOUD_PROJECT'],
                 $traceId
             );
-        } else {
-            return $traceId;
         }
+        return $traceId;
     }
 }
