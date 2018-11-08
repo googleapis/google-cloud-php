@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,10 +16,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//
 namespace Google\Cloud\Container\V1;
 
 /**
- * Google Container Engine Cluster Manager v1
+ * Google Kubernetes Engine Cluster Manager v1
  */
 class ClusterManagerGrpcClient extends \Grpc\BaseStub {
 
@@ -102,7 +103,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the version and/or image type of a specific node pool.
+     * Updates the version and/or image type for a specific node pool.
      * @param \Google\Cloud\Container\V1\UpdateNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -116,7 +117,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the autoscaling settings of a specific node pool.
+     * Sets the autoscaling settings for a specific node pool.
      * @param \Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -130,7 +131,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the logging service of a specific cluster.
+     * Sets the logging service for a specific cluster.
      * @param \Google\Cloud\Container\V1\SetLoggingServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -144,7 +145,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the monitoring service of a specific cluster.
+     * Sets the monitoring service for a specific cluster.
      * @param \Google\Cloud\Container\V1\SetMonitoringServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -158,7 +159,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the addons of a specific cluster.
+     * Sets the addons for a specific cluster.
      * @param \Google\Cloud\Container\V1\SetAddonsConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -172,7 +173,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the locations of a specific cluster.
+     * Sets the locations for a specific cluster.
      * @param \Google\Cloud\Container\V1\SetLocationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -186,7 +187,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the master of a specific cluster.
+     * Updates the master for a specific cluster.
      * @param \Google\Cloud\Container\V1\UpdateMasterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -201,7 +202,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Used to set master auth materials. Currently supports :-
-     * Changing the admin password of a specific cluster.
+     * Changing the admin password for a specific cluster.
      * This can be either via password generation or explicitly set the password.
      * @param \Google\Cloud\Container\V1\SetMasterAuthRequest $argument input argument
      * @param array $metadata metadata
@@ -280,7 +281,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns configuration info about the Container Engine service.
+     * Returns configuration info about the Kubernetes Engine service.
      * @param \Google\Cloud\Container\V1\GetServerConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -435,7 +436,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the size of a specific node pool.
+     * Sets the size for a specific node pool.
      * @param \Google\Cloud\Container\V1\SetNodePoolSizeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
