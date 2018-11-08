@@ -28,7 +28,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * A human-friendly name for the uptime check configuration. The display name
-     * should be unique within a Stackdriver Account in order to make it easier
+     * should be unique within a Stackdriver Workspace in order to make it easier
      * to identify; however, uniqueness is not enforced. Required.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -62,6 +62,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     private $content_matchers;
     /**
      * The list of regions from which the check will be run.
+     * Some regions contain one location, and others contain more than one.
      * If this field is specified, enough regions to include a minimum of
      * 3 locations must be provided, or an error message is returned.
      * Not specifying this field will result in uptime checks running from all
@@ -71,14 +72,17 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     private $selected_regions;
     /**
-     * Denotes whether this is a check that egresses from InternalCheckers.
+     * If this is true, then checks are made only from the 'internal_checkers'.
+     * If it is false, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is true,
+     * or to provide 'internal_checkers' when is_internal is false.
      *
      * Generated from protobuf field <code>bool is_internal = 15;</code>
      */
     private $is_internal = false;
     /**
      * The internal checkers that this check will egress from. If `is_internal` is
-     * true and this list is empty, the check will egress from all
+     * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
@@ -101,7 +105,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           response.
      *     @type string $display_name
      *           A human-friendly name for the uptime check configuration. The display name
-     *           should be unique within a Stackdriver Account in order to make it easier
+     *           should be unique within a Stackdriver Workspace in order to make it easier
      *           to identify; however, uniqueness is not enforced. Required.
      *     @type \Google\Api\MonitoredResource $monitored_resource
      *           The [monitored
@@ -135,15 +139,19 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           specified if a content match is required.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $selected_regions
      *           The list of regions from which the check will be run.
+     *           Some regions contain one location, and others contain more than one.
      *           If this field is specified, enough regions to include a minimum of
      *           3 locations must be provided, or an error message is returned.
      *           Not specifying this field will result in uptime checks running from all
      *           regions.
      *     @type bool $is_internal
-     *           Denotes whether this is a check that egresses from InternalCheckers.
+     *           If this is true, then checks are made only from the 'internal_checkers'.
+     *           If it is false, then checks are made only from the 'selected_regions'.
+     *           It is an error to provide 'selected_regions' when is_internal is true,
+     *           or to provide 'internal_checkers' when is_internal is false.
      *     @type \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $internal_checkers
      *           The internal checkers that this check will egress from. If `is_internal` is
-     *           true and this list is empty, the check will egress from all
+     *           true and this list is empty, the check will egress from all the
      *           InternalCheckers configured for the project that owns this CheckConfig.
      * }
      */
@@ -188,7 +196,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A human-friendly name for the uptime check configuration. The display name
-     * should be unique within a Stackdriver Account in order to make it easier
+     * should be unique within a Stackdriver Workspace in order to make it easier
      * to identify; however, uniqueness is not enforced. Required.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -201,7 +209,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A human-friendly name for the uptime check configuration. The display name
-     * should be unique within a Stackdriver Account in order to make it easier
+     * should be unique within a Stackdriver Workspace in order to make it easier
      * to identify; however, uniqueness is not enforced. Required.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -432,6 +440,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of regions from which the check will be run.
+     * Some regions contain one location, and others contain more than one.
      * If this field is specified, enough regions to include a minimum of
      * 3 locations must be provided, or an error message is returned.
      * Not specifying this field will result in uptime checks running from all
@@ -447,6 +456,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of regions from which the check will be run.
+     * Some regions contain one location, and others contain more than one.
      * If this field is specified, enough regions to include a minimum of
      * 3 locations must be provided, or an error message is returned.
      * Not specifying this field will result in uptime checks running from all
@@ -465,7 +475,10 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes whether this is a check that egresses from InternalCheckers.
+     * If this is true, then checks are made only from the 'internal_checkers'.
+     * If it is false, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is true,
+     * or to provide 'internal_checkers' when is_internal is false.
      *
      * Generated from protobuf field <code>bool is_internal = 15;</code>
      * @return bool
@@ -476,7 +489,10 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes whether this is a check that egresses from InternalCheckers.
+     * If this is true, then checks are made only from the 'internal_checkers'.
+     * If it is false, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is true,
+     * or to provide 'internal_checkers' when is_internal is false.
      *
      * Generated from protobuf field <code>bool is_internal = 15;</code>
      * @param bool $var
@@ -492,7 +508,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The internal checkers that this check will egress from. If `is_internal` is
-     * true and this list is empty, the check will egress from all
+     * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
@@ -505,7 +521,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The internal checkers that this check will egress from. If `is_internal` is
-     * true and this list is empty, the check will egress from all
+     * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
