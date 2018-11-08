@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Container Engine cluster.
+ * A Google Kubernetes Engine cluster.
  *
  * Generated from protobuf message <code>google.container.v1.Cluster</code>
  */
@@ -175,7 +175,6 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $ip_allocation_policy = null;
     /**
-     * Master authorized networks is a Beta feature.
      * The configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
@@ -188,6 +187,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_policy = null;
     /**
+     * Configuration for cluster networking.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
+     */
+    private $network_config = null;
+    /**
+     * Configuration for private cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
+     */
+    private $private_cluster_config = null;
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -197,8 +208,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 101;</code>
+     * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      */
     private $zone = '';
     /**
@@ -216,6 +228,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * found in validMasterVersions returned by getServerConfig.  The version can
      * be upgraded over time; such upgrades are reflected in
      * currentMasterVersion and currentNodeVersion.
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "","-": picks the default Kubernetes version
      *
      * Generated from protobuf field <code>string initial_cluster_version = 103;</code>
      */
@@ -227,11 +246,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $current_master_version = '';
     /**
-     * [Output only] The current version of the node software components.
-     * If they are currently at multiple versions because they're in the process
-     * of being upgraded, this reflects the minimum version of all nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they're in the process of being
+     * upgraded, this reflects the minimum version of all nodes.
      *
-     * Generated from protobuf field <code>string current_node_version = 105;</code>
+     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
      */
     private $current_node_version = '';
     /**
@@ -275,7 +296,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. Use node_pools.instance_group_urls.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 111;</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
      */
     private $instance_group_urls;
     /**
@@ -291,6 +312,15 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string expire_time = 113;</code>
      */
     private $expire_time = '';
+    /**
+     * [Output only] The name of the Google Compute Engine
+     * [zone](/compute/docs/regions-zones/regions-zones#available) or
+     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * the cluster resides.
+     *
+     * Generated from protobuf field <code>string location = 114;</code>
+     */
+    private $location = '';
 
     /**
      * Constructor.
@@ -382,16 +412,20 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\IPAllocationPolicy $ip_allocation_policy
      *           Configuration for cluster IP allocation.
      *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $master_authorized_networks_config
-     *           Master authorized networks is a Beta feature.
      *           The configuration options for master authorized networks feature.
      *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
      *           Configure the maintenance policy for this cluster.
+     *     @type \Google\Cloud\Container\V1\NetworkConfig $network_config
+     *           Configuration for cluster networking.
+     *     @type \Google\Cloud\Container\V1\PrivateClusterConfig $private_cluster_config
+     *           Configuration for private cluster.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $zone
      *           [Output only] The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
+     *           This field is deprecated, use location instead.
      *     @type string $endpoint
      *           [Output only] The IP address of this cluster's master endpoint.
      *           The endpoint can be accessed from the internet at
@@ -403,12 +437,21 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           found in validMasterVersions returned by getServerConfig.  The version can
      *           be upgraded over time; such upgrades are reflected in
      *           currentMasterVersion and currentNodeVersion.
+     *           Users may specify either explicit versions offered by
+     *           Kubernetes Engine or version aliases, which have the following behavior:
+     *           - "latest": picks the highest valid Kubernetes version
+     *           - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     *           - "","-": picks the default Kubernetes version
      *     @type string $current_master_version
      *           [Output only] The current software version of the master endpoint.
      *     @type string $current_node_version
-     *           [Output only] The current version of the node software components.
-     *           If they are currently at multiple versions because they're in the process
-     *           of being upgraded, this reflects the minimum version of all nodes.
+     *           [Output only] Deprecated, use
+     *           [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     *           instead. The current version of the node software components. If they are
+     *           currently at multiple versions because they're in the process of being
+     *           upgraded, this reflects the minimum version of all nodes.
      *     @type string $create_time
      *           [Output only] The time the cluster was created, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
@@ -434,6 +477,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $expire_time
      *           [Output only] The time the cluster will be automatically
      *           deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type string $location
+     *           [Output only] The name of the Google Compute Engine
+     *           [zone](/compute/docs/regions-zones/regions-zones#available) or
+     *           [region](/compute/docs/regions-zones/regions-zones#available) in which
+     *           the cluster resides.
      * }
      */
     public function __construct($data = NULL) {
@@ -1026,7 +1074,6 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Master authorized networks is a Beta feature.
      * The configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
@@ -1038,7 +1085,6 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Master authorized networks is a Beta feature.
      * The configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
@@ -1080,6 +1126,58 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for cluster networking.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
+     * @return \Google\Cloud\Container\V1\NetworkConfig
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    /**
+     * Configuration for cluster networking.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
+     * @param \Google\Cloud\Container\V1\NetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkConfig::class);
+        $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for private cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
+     * @return \Google\Cloud\Container\V1\PrivateClusterConfig
+     */
+    public function getPrivateClusterConfig()
+    {
+        return $this->private_cluster_config;
+    }
+
+    /**
+     * Configuration for private cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
+     * @param \Google\Cloud\Container\V1\PrivateClusterConfig $var
+     * @return $this
+     */
+    public function setPrivateClusterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivateClusterConfig::class);
+        $this->private_cluster_config = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -1109,8 +1207,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 101;</code>
+     * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -1122,8 +1221,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * [Output only] The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 101;</code>
+     * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -1174,6 +1274,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * found in validMasterVersions returned by getServerConfig.  The version can
      * be upgraded over time; such upgrades are reflected in
      * currentMasterVersion and currentNodeVersion.
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "","-": picks the default Kubernetes version
      *
      * Generated from protobuf field <code>string initial_cluster_version = 103;</code>
      * @return string
@@ -1188,6 +1295,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * found in validMasterVersions returned by getServerConfig.  The version can
      * be upgraded over time; such upgrades are reflected in
      * currentMasterVersion and currentNodeVersion.
+     * Users may specify either explicit versions offered by
+     * Kubernetes Engine or version aliases, which have the following behavior:
+     * - "latest": picks the highest valid Kubernetes version
+     * - "1.X": picks the highest valid patch+gke.N patch in the 1.X version
+     * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
+     * - "1.X.Y-gke.N": picks an explicit Kubernetes version
+     * - "","-": picks the default Kubernetes version
      *
      * Generated from protobuf field <code>string initial_cluster_version = 103;</code>
      * @param string $var
@@ -1228,11 +1342,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The current version of the node software components.
-     * If they are currently at multiple versions because they're in the process
-     * of being upgraded, this reflects the minimum version of all nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they're in the process of being
+     * upgraded, this reflects the minimum version of all nodes.
      *
-     * Generated from protobuf field <code>string current_node_version = 105;</code>
+     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
      * @return string
      */
     public function getCurrentNodeVersion()
@@ -1241,11 +1357,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The current version of the node software components.
-     * If they are currently at multiple versions because they're in the process
-     * of being upgraded, this reflects the minimum version of all nodes.
+     * [Output only] Deprecated, use
+     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * instead. The current version of the node software components. If they are
+     * currently at multiple versions because they're in the process of being
+     * upgraded, this reflects the minimum version of all nodes.
      *
-     * Generated from protobuf field <code>string current_node_version = 105;</code>
+     * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -1406,7 +1524,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. Use node_pools.instance_group_urls.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 111;</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInstanceGroupUrls()
@@ -1417,7 +1535,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. Use node_pools.instance_group_urls.
      *
-     * Generated from protobuf field <code>repeated string instance_group_urls = 111;</code>
+     * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -1479,6 +1597,38 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->expire_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] The name of the Google Compute Engine
+     * [zone](/compute/docs/regions-zones/regions-zones#available) or
+     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * the cluster resides.
+     *
+     * Generated from protobuf field <code>string location = 114;</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * [Output only] The name of the Google Compute Engine
+     * [zone](/compute/docs/regions-zones/regions-zones#available) or
+     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * the cluster resides.
+     *
+     * Generated from protobuf field <code>string location = 114;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }
