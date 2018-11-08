@@ -16,27 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      */
     private $cluster_id = '';
     /**
@@ -45,13 +42,6 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicy network_policy = 4;</code>
      */
     private $network_policy = null;
-    /**
-     * The name (project, location, cluster id) of the cluster to set networking
-     * policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 6;</code>
-     */
-    private $name = '';
 
     /**
      * Constructor.
@@ -60,22 +50,16 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           The Google Developers Console [project ID or project
      *           number](https://developers.google.com/console/help/new/#projectnumber).
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster.
-     *           This field has been deprecated and replaced by the name field.
+     *           The name of the cluster.
      *     @type \Google\Cloud\Container\V1\NetworkPolicy $network_policy
      *           Configuration options for the NetworkPolicy feature.
-     *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set networking
-     *           policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,11 +68,10 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @return string
      */
     public function getProjectId()
@@ -97,11 +80,10 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://developers.google.com/console/help/new/#projectnumber).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -114,12 +96,11 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
      */
     public function getZone()
@@ -128,12 +109,11 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -146,10 +126,9 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @return string
      */
     public function getClusterId()
@@ -158,10 +137,9 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -195,34 +173,6 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkPolicy::class);
         $this->network_policy = $var;
-
-        return $this;
-    }
-
-    /**
-     * The name (project, location, cluster id) of the cluster to set networking
-     * policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 6;</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The name (project, location, cluster id) of the cluster to set networking
-     * policy. Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
 
         return $this;
     }

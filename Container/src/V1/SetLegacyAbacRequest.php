@@ -17,27 +17,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to update.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to update.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      */
     private $cluster_id = '';
     /**
@@ -46,13 +43,6 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enabled = 4;</code>
      */
     private $enabled = false;
-    /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 6;</code>
-     */
-    private $name = '';
 
     /**
      * Constructor.
@@ -61,22 +51,16 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to update.
-     *           This field has been deprecated and replaced by the name field.
+     *           The name of the cluster to update.
      *     @type bool $enabled
      *           Whether ABAC authorization will be enabled in the cluster.
-     *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set legacy abac.
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,11 +69,10 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @return string
      */
     public function getProjectId()
@@ -98,11 +81,10 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -115,12 +97,11 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
      */
     public function getZone()
@@ -129,12 +110,11 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -147,10 +127,9 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to update.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to update.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @return string
      */
     public function getClusterId()
@@ -159,10 +138,9 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to update.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the cluster to update.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -196,34 +174,6 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enabled = $var;
-
-        return $this;
-    }
-
-    /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 6;</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
 
         return $this;
     }
