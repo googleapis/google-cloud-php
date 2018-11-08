@@ -35,7 +35,14 @@ class GAEStandardMetadataProviderTest extends TestCase
     /**
      * @dataProvider testData
      */
-    public function test($envs, $monitoredResource, $projectId, $serviceId, $versionId, $labels)
+    public function testGAEStandardMetadataProvider(
+        $envs,
+        $monitoredResource,
+        $projectId,
+        $serviceId,
+        $versionId,
+        $labels
+    )
     {
         $metadataProvider = new GAEStandardMetadataProvider($envs);
         $this->assertEquals($monitoredResource, $metadataProvider->monitoredResource());
@@ -44,6 +51,7 @@ class GAEStandardMetadataProviderTest extends TestCase
         $this->assertEquals($versionId, $metadataProvider->versionId());
         $this->assertEquals($labels, $metadataProvider->labels());
     }
+
     public function testData()
     {
         return [
