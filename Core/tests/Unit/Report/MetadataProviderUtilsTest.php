@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Report;
 
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
+use Google\Cloud\Core\Report\GAEStandardMetadataProvider;
 use Google\Cloud\Core\Report\MetadataProviderUtils;
 use PHPUnit\Framework\TestCase;
 
@@ -28,12 +29,18 @@ use PHPUnit\Framework\TestCase;
 class MetadataProviderUtilsTest extends TestCase
 {
     private $envs = ['GAE_SERVICE' => 'my-service'];
+    private $std_envs = ['GAE_SERVICE' => 'my-service', 'GAE_ENV' => 'standard'];
 
     public function testAutoSelect()
     {
         $metadataProvider = MetadataProviderUtils::autoSelect($this->envs);
         $this->assertInstanceOf(
             GAEFlexMetadataProvider::class,
+            $metadataProvider
+        );
+        $metadataProvider = MetadataProviderUtils::autoSelect($this->std_envs);
+        $this->assertInstanceOf(
+            GAEStandardMetadataProvider::class,
             $metadataProvider
         );
         $metadataProvider = MetadataProviderUtils::autoSelect([]);
