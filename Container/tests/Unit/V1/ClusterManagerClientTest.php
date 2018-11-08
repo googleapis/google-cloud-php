@@ -184,7 +184,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $servicesIpv4Cidr = 'servicesIpv4Cidr1966438125';
         $currentNodeCount = 178977560;
         $expireTime = 'expireTime-96179731';
-        $location = 'location1901043637';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -208,7 +207,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setServicesIpv4Cidr($servicesIpv4Cidr);
         $expectedResponse->setCurrentNodeCount($currentNodeCount);
         $expectedResponse->setExpireTime($expireTime);
-        $expectedResponse->setLocation($location);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -295,7 +293,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -305,7 +302,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -394,7 +390,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -404,7 +399,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -498,7 +492,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -508,7 +501,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -612,7 +604,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -622,7 +613,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -721,7 +711,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -731,7 +720,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -825,7 +813,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -835,7 +822,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -929,7 +915,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -939,7 +924,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -1033,7 +1017,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -1043,7 +1026,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -1137,7 +1119,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -1147,7 +1128,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -1241,7 +1221,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -1251,7 +1230,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -1350,7 +1328,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -1360,7 +1337,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -1525,7 +1501,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -1535,7 +1510,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -1961,7 +1935,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -1971,7 +1944,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2065,7 +2037,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2075,7 +2046,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2169,7 +2139,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2179,7 +2148,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2273,7 +2241,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2283,7 +2250,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2382,7 +2348,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2392,7 +2357,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2491,7 +2455,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2501,7 +2464,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2595,7 +2557,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2605,7 +2566,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2694,7 +2654,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2704,7 +2663,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2793,7 +2751,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2803,7 +2760,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -2902,7 +2858,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -2912,7 +2867,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
@@ -3006,7 +2960,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $statusMessage = 'statusMessage-239442758';
         $selfLink = 'selfLink-1691268851';
         $targetLink = 'targetLink-2084812312';
-        $location = 'location1901043637';
         $startTime = 'startTime-1573145462';
         $endTime = 'endTime1725551537';
         $expectedResponse = new Operation();
@@ -3016,7 +2969,6 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setLocation($location);
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);

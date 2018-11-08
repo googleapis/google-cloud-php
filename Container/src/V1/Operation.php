@@ -26,9 +26,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the operation
      * is taking place.
-     * This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      */
     private $zone = '';
     /**
@@ -68,15 +67,6 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $target_link = '';
     /**
-     * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
-     *
-     * Generated from protobuf field <code>string location = 9;</code>
-     */
-    private $location = '';
-    /**
      * [Output only] The time the operation started, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
@@ -103,7 +93,6 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the operation
      *           is taking place.
-     *           This field is deprecated, use location instead.
      *     @type int $operation_type
      *           The operation type.
      *     @type int $status
@@ -116,11 +105,6 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           Server-defined URL for the resource.
      *     @type string $target_link
      *           Server-defined URL for the target of the operation.
-     *     @type string $location
-     *           [Output only] The name of the Google Compute Engine
-     *           [zone](/compute/docs/regions-zones/regions-zones#available) or
-     *           [region](/compute/docs/regions-zones/regions-zones#available) in which
-     *           the cluster resides.
      *     @type string $start_time
      *           [Output only] The time the operation started, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
@@ -164,9 +148,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the operation
      * is taking place.
-     * This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
      */
     public function getZone()
@@ -178,9 +161,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      * The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the operation
      * is taking place.
-     * This field is deprecated, use location instead.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -344,38 +326,6 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->target_link = $var;
-
-        return $this;
-    }
-
-    /**
-     * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
-     *
-     * Generated from protobuf field <code>string location = 9;</code>
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
-     *
-     * Generated from protobuf field <code>string location = 9;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setLocation($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->location = $var;
 
         return $this;
     }

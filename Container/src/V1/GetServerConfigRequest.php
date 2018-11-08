@@ -9,35 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Gets the current Kubernetes Engine service configuration.
+ * Gets the current Container Engine service configuration.
  *
  * Generated from protobuf message <code>google.container.v1.GetServerConfigRequest</code>
  */
 class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) to return operations for.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the Google Compute Engine [zone](/compute/docs/zones#available)
+     * to return operations for.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      */
     private $zone = '';
-    /**
-     * The name (project and location) of the server config to get
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 4;</code>
-     */
-    private $name = '';
 
     /**
      * Constructor.
@@ -46,16 +37,11 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
-     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) to return operations for.
-     *           This field has been deprecated and replaced by the name field.
-     *     @type string $name
-     *           The name (project and location) of the server config to get
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     *           The name of the Google Compute Engine [zone](/compute/docs/zones#available)
+     *           to return operations for.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,11 +50,10 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @return string
      */
     public function getProjectId()
@@ -77,11 +62,10 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
-     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -94,11 +78,10 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) to return operations for.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the Google Compute Engine [zone](/compute/docs/zones#available)
+     * to return operations for.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
      */
     public function getZone()
@@ -107,11 +90,10 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) to return operations for.
-     * This field has been deprecated and replaced by the name field.
+     * The name of the Google Compute Engine [zone](/compute/docs/zones#available)
+     * to return operations for.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -119,34 +101,6 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
-
-        return $this;
-    }
-
-    /**
-     * The name (project and location) of the server config to get
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 4;</code>
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The name (project and location) of the server config to get
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
-     *
-     * Generated from protobuf field <code>string name = 4;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->name = $var;
 
         return $this;
     }
