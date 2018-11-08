@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Contains audio data in the encoding specified in the `RecognitionConfig`.
  * Either `content` or `uri` must be supplied. Supplying both or neither
  * returns [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. See
- * [audio limits](https://cloud.google.com/speech/limits#content).
+ * [content limits](/speech-to-text/quotas#content).
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.RecognitionAudio</code>
  */
@@ -32,7 +32,8 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
      *           pure binary representation, whereas JSON representations use base64.
      *     @type string $uri
      *           URI that points to a file that contains audio data bytes as specified in
-     *           `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
+     *           `RecognitionConfig`. The file must not be compressed (for example, gzip).
+     *           Currently, only Google Cloud Storage URIs are
      *           supported, which must be specified in the following format:
      *           `gs://bucket_name/object_name` (other URI formats return
      *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
@@ -76,7 +77,8 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
 
     /**
      * URI that points to a file that contains audio data bytes as specified in
-     * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
+     * `RecognitionConfig`. The file must not be compressed (for example, gzip).
+     * Currently, only Google Cloud Storage URIs are
      * supported, which must be specified in the following format:
      * `gs://bucket_name/object_name` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
@@ -92,7 +94,8 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
 
     /**
      * URI that points to a file that contains audio data bytes as specified in
-     * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
+     * `RecognitionConfig`. The file must not be compressed (for example, gzip).
+     * Currently, only Google Cloud Storage URIs are
      * supported, which must be specified in the following format:
      * `gs://bucket_name/object_name` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
