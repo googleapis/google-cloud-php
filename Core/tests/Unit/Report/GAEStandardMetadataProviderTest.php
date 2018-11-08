@@ -42,8 +42,7 @@ class GAEStandardMetadataProviderTest extends TestCase
         $serviceId,
         $versionId,
         $labels
-    )
-    {
+    ) {
         $metadataProvider = new GAEStandardMetadataProvider($envs);
         $this->assertEquals($monitoredResource, $metadataProvider->monitoredResource());
         $this->assertEquals($projectId, $metadataProvider->projectId());
