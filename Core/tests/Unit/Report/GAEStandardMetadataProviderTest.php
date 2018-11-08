@@ -32,56 +32,85 @@ class GAEStandardMetadataProviderTest extends TestCase
         'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
     ];
 
-    public function testWithEnvs()
+    /**
+     * @dataProvider testData
+     */
+    public function test($envs, $monitoredResource, $projectId, $serviceId, $versionId, $labels)
     {
-        $metadataProvider = new GAEStandardMetadataProvider($this->envs);
-        $this->assertEquals(
-            [
-                'type' => 'gae_app',
-                'labels' => [
-                    'project_id' => 'my-project',
-                    'version_id' => 'my-version',
-                    'module_id' => 'my-service'
-                ]
-            ],
-            $metadataProvider->monitoredResource()
-        );
-        $this->assertEquals('my-project', $metadataProvider->projectId());
-        $this->assertEquals('my-service', $metadataProvider->serviceId());
-        $this->assertEquals('my-version', $metadataProvider->versionId());
-        $this->assertEquals(
-            [
-                'appengine.googleapis.com/trace_id' =>
-                sprintf(
-                    'projects/%s/traces/%s',
-                    'my-project',
-                    'my-traceId'
-                )
-            ],
-            $metadataProvider->labels()
-        );
+        $metadataProvider = new GAEStandardMetadataProvider($envs);
+        $this->assertEquals($monitoredResource, $metadataProvider->monitoredResource());
+        $this->assertEquals($projectId, $metadataProvider->projectId());
+        $this->assertEquals($serviceId, $metadataProvider->serviceId());
+        $this->assertEquals($versionId, $metadataProvider->versionId());
+        $this->assertEquals($labels, $metadataProvider->labels());
     }
-
-    public function testWithOutEnvs()
+    public function testData()
     {
-        $metadataProvider = new GAEStandardMetadataProvider([]);
-        $this->assertEquals(
+        return [
             [
-                'type' => 'gae_app',
-                'labels' => [
-                    'project_id' => 'unknown-projectid',
-                    'version_id' => 'unknown-version',
-                    'module_id' => 'unknown-service'
-                ]
+                [
+                    'GAE_SERVICE' => 'my-service',
+                    'GAE_VERSION' => 'my-version',
+                    'GOOGLE_CLOUD_PROJECT' => 'my-project',
+                    'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
+                ],
+                [
+                    'type' => 'gae_app',
+                    'labels' => [
+                        'project_id' => 'my-project',
+                        'version_id' => 'my-version',
+                        'module_id' => 'my-service'
+                    ]
+                ],
+                'my-project',
+                'my-service',
+                'my-version',
+                [
+                    'appengine.googleapis.com/trace_id' =>
+                    sprintf(
+                        'projects/%s/traces/%s',
+                        'my-project',
+                        'my-traceId'
+                    )
+                ],
             ],
-            $metadataProvider->monitoredResource()
-        );
-        $this->assertEquals(
-            'unknown-projectid',
-            $metadataProvider->projectId()
-        );
-        $this->assertEquals('unknown-service', $metadataProvider->serviceId());
-        $this->assertEquals('unknown-version', $metadataProvider->versionId());
-        $this->assertEquals([], $metadataProvider->labels());
+            [
+                [
+                    'GAE_SERVICE' => 'my-service',
+                    'GAE_VERSION' => 'my-version',
+                    'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
+                ],
+                [
+                    'type' => 'gae_app',
+                    'labels' => [
+                        'project_id' => 'unknown-projectid',
+                        'version_id' => 'my-version',
+                        'module_id' => 'my-service'
+                    ]
+                ],
+                'unknown-projectid',
+                'my-service',
+                'my-version',
+                [
+                    'appengine.googleapis.com/trace_id' =>
+                        'my-traceId'
+                ],
+            ],
+            [
+                [],
+                [
+                    'type' => 'gae_app',
+                    'labels' => [
+                        'project_id' => 'unknown-projectid',
+                        'version_id' => 'unknown-version',
+                        'module_id' => 'unknown-service'
+                    ]
+                ],
+                'unknown-projectid',
+                'unknown-service',
+                'unknown-version',
+                [],
+            ],
+        ];
     }
 }
