@@ -33,7 +33,7 @@ Contributions to this library are always welcome and highly encouraged.
 
 See the [CONTRIBUTING][] documentation for more information on how to get started.
 
-[CONTRIBUTING]: https://github.com/googleapis/gax-php/blob/master/CONTRIBUTING.md
+[CONTRIBUTING]: https://github.com/googleapis/gax-php/blob/master/.github/CONTRIBUTING.md
 
 
 Versioning
