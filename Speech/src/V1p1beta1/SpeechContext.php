@@ -22,7 +22,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
-     * [usage limits](https://cloud.google.com/speech/limits#content).
+     * [usage limits](/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      */
@@ -40,7 +40,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      *           to improve the accuracy for specific words and phrases, for example, if
      *           specific commands are typically spoken by the user. This can also be used
      *           to add additional words to the vocabulary of the recognizer. See
-     *           [usage limits](https://cloud.google.com/speech/limits#content).
+     *           [usage limits](/speech-to-text/quotas#content).
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
-     * [usage limits](https://cloud.google.com/speech/limits#content).
+     * [usage limits](/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,7 +70,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
-     * [usage limits](https://cloud.google.com/speech/limits#content).
+     * [usage limits](/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

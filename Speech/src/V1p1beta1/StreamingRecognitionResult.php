@@ -46,6 +46,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $stability = 0.0;
     /**
+     * Output only. Time offset of the end of this result relative to the
+     * beginning of the audio.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
+     */
+    private $result_end_time = null;
+    /**
      * For multi-channel audio, this is the channel number corresponding to the
      * recognized result for the audio from that channel.
      * For audio_channel_count = N, its output values can range from '1' to 'N'.
@@ -86,6 +93,9 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *           (completely unstable) to 1.0 (completely stable).
      *           This field is only provided for interim results (`is_final=false`).
      *           The default of 0.0 is a sentinel value indicating `stability` was not set.
+     *     @type \Google\Protobuf\Duration $result_end_time
+     *           Output only. Time offset of the end of this result relative to the
+     *           beginning of the audio.
      *     @type int $channel_tag
      *           For multi-channel audio, this is the channel number corresponding to the
      *           recognized result for the audio from that channel.
@@ -198,6 +208,34 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->stability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Time offset of the end of this result relative to the
+     * beginning of the audio.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getResultEndTime()
+    {
+        return $this->result_end_time;
+    }
+
+    /**
+     * Output only. Time offset of the end of this result relative to the
+     * beginning of the audio.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setResultEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->result_end_time = $var;
 
         return $this;
     }
