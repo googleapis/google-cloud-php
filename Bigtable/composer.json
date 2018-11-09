@@ -7,9 +7,10 @@
         "google/gax": "^0.37"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8|^5.0",
+        "erusev/parsedown": "^1.6",
         "google/cloud-core": "^1.23",
-        "phpdocumentor/reflection": "^3.0"
+        "phpdocumentor/reflection": "^3.0",
+        "phpunit/phpunit": "^4.8|^5.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."

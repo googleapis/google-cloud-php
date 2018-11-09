@@ -44,4 +44,8 @@ echo "Running System Test Suite"
 vendor/bin/phpunit -c phpunit-system.xml.dist --verbose --log-junit \
                    ${SYSTEM_LOG_FILENAME}
 
+echo "Running package integration Test"
+
+dev/google-cloud integration -u
+
 popd
