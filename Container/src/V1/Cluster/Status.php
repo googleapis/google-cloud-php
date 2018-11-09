@@ -51,6 +51,13 @@ class Status
      * Generated from protobuf enum <code>ERROR = 5;</code>
      */
     const ERROR = 5;
+    /**
+     * The DEGRADED state indicates the cluster requires user action to restore
+     * full functionality. Details can be found in the `statusMessage` field.
+     *
+     * Generated from protobuf enum <code>DEGRADED = 6;</code>
+     */
+    const DEGRADED = 6;
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

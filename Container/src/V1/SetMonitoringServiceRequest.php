@@ -16,24 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      */
     private $cluster_id = '';
     /**
@@ -45,6 +48,13 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string monitoring_service = 4;</code>
      */
     private $monitoring_service = '';
+    /**
+     * The name (project, location, cluster) of the cluster to set monitoring.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 6;</code>
+     */
+    private $name = '';
 
     /**
      * Constructor.
@@ -53,19 +63,25 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           The name of the cluster to upgrade.
+     *           Deprecated. The name of the cluster to upgrade.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
      *           * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      *           * "none" - no metrics will be exported from the cluster
+     *     @type string $name
+     *           The name (project, location, cluster) of the cluster to set monitoring.
+     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,10 +90,11 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -86,10 +103,11 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -102,11 +120,12 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -115,11 +134,12 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -132,9 +152,10 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getClusterId()
@@ -143,9 +164,10 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster to upgrade.
+     * Deprecated. The name of the cluster to upgrade.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -185,6 +207,34 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->monitoring_service = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name (project, location, cluster) of the cluster to set monitoring.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 6;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name (project, location, cluster) of the cluster to set monitoring.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

@@ -43,6 +43,14 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.MaintenancePolicy maintenance_policy = 4;</code>
      */
     private $maintenance_policy = null;
+    /**
+     * The name (project, location, cluster id) of the cluster to set maintenance
+     * policy.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     */
+    private $name = '';
 
     /**
      * Constructor.
@@ -62,6 +70,10 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
      *           The maintenance policy to be set for the cluster. An empty field
      *           clears the existing maintenance policy.
+     *     @type string $name
+     *           The name (project, location, cluster id) of the cluster to set maintenance
+     *           policy.
+     *           Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,6 +189,36 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MaintenancePolicy::class);
         $this->maintenance_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name (project, location, cluster id) of the cluster to set maintenance
+     * policy.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name (project, location, cluster id) of the cluster to set maintenance
+     * policy.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }
