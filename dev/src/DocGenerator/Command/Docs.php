@@ -48,8 +48,7 @@ class Docs extends GoogleCloudCommand
         'tests/Snippet',
         'tests/System',
         'tests/Conformance',
-        'tests/Perf',
-        'tests/conformance-fixtures'
+        'tests/Perf'
     ];
 
     protected function configure()

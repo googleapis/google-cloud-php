@@ -35,9 +35,6 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Firestore\\Tests\\": "tests"
-        },
-        "classmap": [
-            "tests/conformance-fixtures"
-        ]
+        }
     }
 }
