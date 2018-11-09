@@ -16,20 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListClustersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides, or "-" for all zones.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
+    /**
+     * The parent (project and location) where the clusters will be listed.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Location "-" matches all zones and all regions.
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     */
+    private $parent = '';
 
     /**
      * Constructor.
@@ -38,12 +48,18 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
+     *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
-     *           The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides, or "-" for all zones.
+     *           This field has been deprecated and replaced by the parent field.
+     *     @type string $parent
+     *           The parent (project and location) where the clusters will be listed.
+     *           Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     *           Location "-" matches all zones and all regions.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,10 +68,11 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -64,10 +81,11 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -80,11 +98,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides, or "-" for all zones.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -93,11 +112,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides, or "-" for all zones.
+     * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -105,6 +125,36 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * The parent (project and location) where the clusters will be listed.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Location "-" matches all zones and all regions.
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * The parent (project and location) where the clusters will be listed.
+     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * Location "-" matches all zones and all regions.
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }
