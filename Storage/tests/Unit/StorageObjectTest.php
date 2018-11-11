@@ -1024,6 +1024,41 @@ class StorageObjectTest extends TestCase
         ]);
     }
 
+    /**
+     * @group storage-signed-url
+     */
+    public function testSignedUrlCname()
+    {
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, self::BUCKET);
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
+
+        $seconds = $ts->get()->format('U');
+
+        $url = $object->signedUrl($ts, [
+            'keyFile' => $this->kf,
+            'cname'   => 'https://cdn.example.com',
+        ]);
+
+        $input = implode("\n", [
+            'GET',
+            '',
+            '',
+            $seconds,
+            '/bucket/object.txt'
+        ]);
+
+        $parts = explode('?', $url);
+        $hostPath = $parts[0];
+        $query = $parts[1];
+        $pieces = explode('&', $query);
+
+        $signature = $this->getSignatureFromSplitUrl($pieces);
+
+        $this->assertTrue($object->___signatureIsCorrect($signature));
+        $this->assertEquals($object->input, $input);
+        $this->assertEquals('https://cdn.example.com/object.txt', $hostPath);
+    }
+
     public function testRequesterPays()
     {
         $this->connection->getObject(Argument::withEntry('userProject', 'foo'))

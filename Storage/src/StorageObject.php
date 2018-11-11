@@ -874,6 +874,12 @@ class StorageObject
         }
 
         $options['cname'] = trim($options['cname'], '/');
+
+        // If a custom cname is used, then the resource is simply the objectName
+        if ($options['cname'] !== self::DEFAULT_DOWNLOAD_URL) {
+            $resource = '/' . $objectName;
+        }
+
         return $options['cname'] . $resource . '?' . implode('&', $query);
     }
 
