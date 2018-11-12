@@ -24,6 +24,8 @@ use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\ImageContext;
+use Google\Cloud\Vision\V1\ProductSearchParams;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 
@@ -110,7 +112,6 @@ class ImageAnnotatorClientTest extends SnippetTestCase
             "path/to/image.jpg",
             "php://temp"
         );
-
 
         $this->transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
             ->shouldBeCalledTimes(1)

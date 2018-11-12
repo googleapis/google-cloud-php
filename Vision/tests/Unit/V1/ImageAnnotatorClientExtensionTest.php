@@ -29,6 +29,7 @@ use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
+use Google\Cloud\Vision\V1\ProductSearchParams;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
@@ -142,6 +143,56 @@ class ImageAnnotatorClientExtensionTest extends TestCase
         $this->assertInstanceOf(AnnotateImageResponse::class, $res);
     }
 
+    public function testProductSearch()
+    {
+        $image = $this->createImageObject('foobar');
+        $productSetName = 'projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID';
+        $expectedFeature = new Feature();
+        $expectedFeature->setType(Feature_Type::PRODUCT_SEARCH);
+        $expectedFeatures = [$expectedFeature];
+        $expectedProductSearchParams = new ProductSearchParams();
+        $expectedProductSearchParams->setProductSet($productSetName);
+        $expectedImageContext = new ImageContext();
+        $expectedImageContext->setProductSearchParams($expectedProductSearchParams);
+        $expectedRequest = new AnnotateImageRequest();
+        $expectedRequest->setImage($this->createImageObject($image));
+        $expectedRequest->setFeatures($expectedFeatures);
+        $expectedRequest->setImageContext($expectedImageContext);
+        $expectedRequests = [$expectedRequest];
+
+        $expectedMessage = new BatchAnnotateImagesRequest();
+        $expectedMessage->setRequests($expectedRequests);
+
+        $expectedAnnotationResponses = [new AnnotateImageResponse()];
+        $expectedResponse = new BatchAnnotateImagesResponse();
+        $expectedResponse->setResponses($expectedAnnotationResponses);
+        $this->transport->startUnaryCall(
+                Argument::allOf(
+                    Argument::type(Call::class),
+                    Argument::which('getMethod', 'google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages'),
+                    Argument::that(function($arg) use ($expectedMessage) {
+                        if ($arg->getMessage()->serializeToString() === $expectedMessage->serializeToString()) {
+                            return true;
+                        }
+                        return false;
+                    })
+                ),
+                Argument::type('array')
+            )
+            ->shouldBeCalledTimes(1)
+            ->willReturn(
+                new FulfilledPromise(
+                    $expectedResponse
+                )
+            );
+        $productSearchParams = new ProductSearchParams();
+        $productSearchParams->setProductSet($productSetName);
+
+        $res = $this->client->productSearch($image, $productSearchParams);
+
+        $this->assertInstanceOf(AnnotateImageResponse::class, $res);
+    }
+
     /**
      * @dataProvider detectionMethodDataProvider
      */
@@ -199,8 +250,7 @@ class ImageAnnotatorClientExtensionTest extends TestCase
             ['imagePropertiesDetection', Feature_Type::IMAGE_PROPERTIES],
             ['cropHintsDetection', Feature_Type::CROP_HINTS],
             ['webDetection', Feature_Type::WEB_DETECTION],
-            ['objectLocalization', Feature_Type::OBJECT_LOCALIZATION],
-            ['productSearch', Feature_Type::PRODUCT_SEARCH],
+            ['objectLocalization', Feature_Type::OBJECT_LOCALIZATION]
         ];
         $data = [];
         foreach ($items as $item) {
