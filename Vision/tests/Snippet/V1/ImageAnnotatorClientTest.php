@@ -24,8 +24,6 @@ use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
-use Google\Cloud\Vision\V1\ImageContext;
-use Google\Cloud\Vision\V1\ProductSearchParams;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
 
