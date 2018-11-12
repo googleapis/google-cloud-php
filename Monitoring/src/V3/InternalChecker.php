@@ -9,51 +9,44 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An internal checker allows uptime checks to run on private/internal GCP
- * resources.
+ * Nimbus InternalCheckers.
  *
  * Generated from protobuf message <code>google.monitoring.v3.InternalChecker</code>
  */
 class InternalChecker extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A unique resource name for this InternalChecker. The format is:
-     *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * PROJECT_ID is the stackdriver workspace project for the
-     * uptime check config associated with the internal checker.
+     * The GCP project ID. Not necessarily the same as the project_id for the
+     * config.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      */
-    private $name = '';
+    private $project_id = '';
     /**
-     * The checker's human-readable name. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced.
+     * The internal network to perform this uptime check on.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
-     */
-    private $display_name = '';
-    /**
-     * The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
-     * internal resource lives (ex: "default").
-     *
-     * Generated from protobuf field <code>string network = 3;</code>
+     * Generated from protobuf field <code>string network = 2;</code>
      */
     private $network = '';
     /**
      * The GCP zone the uptime check should egress from. Only respected for
      * internal uptime checks, where internal_network is specified.
      *
-     * Generated from protobuf field <code>string gcp_zone = 4;</code>
+     * Generated from protobuf field <code>string gcp_zone = 3;</code>
      */
     private $gcp_zone = '';
     /**
-     * The GCP project_id where the internal checker lives. Not necessary
-     * the same as the workspace project.
+     * The checker ID.
      *
-     * Generated from protobuf field <code>string peer_project_id = 6;</code>
+     * Generated from protobuf field <code>string checker_id = 4;</code>
      */
-    private $peer_project_id = '';
+    private $checker_id = '';
+    /**
+     * The checker's human-readable name.
+     *
+     * Generated from protobuf field <code>string display_name = 5;</code>
+     */
+    private $display_name = '';
 
     /**
      * Constructor.
@@ -61,24 +54,18 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $name
-     *           A unique resource name for this InternalChecker. The format is:
-     *             `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     *           PROJECT_ID is the stackdriver workspace project for the
-     *           uptime check config associated with the internal checker.
-     *     @type string $display_name
-     *           The checker's human-readable name. The display name
-     *           should be unique within a Stackdriver Workspace in order to make it easier
-     *           to identify; however, uniqueness is not enforced.
+     *     @type string $project_id
+     *           The GCP project ID. Not necessarily the same as the project_id for the
+     *           config.
      *     @type string $network
-     *           The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
-     *           internal resource lives (ex: "default").
+     *           The internal network to perform this uptime check on.
      *     @type string $gcp_zone
      *           The GCP zone the uptime check should egress from. Only respected for
      *           internal uptime checks, where internal_network is specified.
-     *     @type string $peer_project_id
-     *           The GCP project_id where the internal checker lives. Not necessary
-     *           the same as the workspace project.
+     *     @type string $checker_id
+     *           The checker ID.
+     *     @type string $display_name
+     *           The checker's human-readable name.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,72 +74,37 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique resource name for this InternalChecker. The format is:
-     *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * PROJECT_ID is the stackdriver workspace project for the
-     * uptime check config associated with the internal checker.
+     * The GCP project ID. Not necessarily the same as the project_id for the
+     * config.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @return string
      */
-    public function getName()
+    public function getProjectId()
     {
-        return $this->name;
+        return $this->project_id;
     }
 
     /**
-     * A unique resource name for this InternalChecker. The format is:
-     *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * PROJECT_ID is the stackdriver workspace project for the
-     * uptime check config associated with the internal checker.
+     * The GCP project ID. Not necessarily the same as the project_id for the
+     * config.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setName($var)
+    public function setProjectId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->name = $var;
+        $this->project_id = $var;
 
         return $this;
     }
 
     /**
-     * The checker's human-readable name. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced.
+     * The internal network to perform this uptime check on.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
-     * @return string
-     */
-    public function getDisplayName()
-    {
-        return $this->display_name;
-    }
-
-    /**
-     * The checker's human-readable name. The display name
-     * should be unique within a Stackdriver Workspace in order to make it easier
-     * to identify; however, uniqueness is not enforced.
-     *
-     * Generated from protobuf field <code>string display_name = 2;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDisplayName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->display_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
-     * internal resource lives (ex: "default").
-     *
-     * Generated from protobuf field <code>string network = 3;</code>
+     * Generated from protobuf field <code>string network = 2;</code>
      * @return string
      */
     public function getNetwork()
@@ -161,10 +113,9 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
-     * internal resource lives (ex: "default").
+     * The internal network to perform this uptime check on.
      *
-     * Generated from protobuf field <code>string network = 3;</code>
+     * Generated from protobuf field <code>string network = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -180,7 +131,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      * The GCP zone the uptime check should egress from. Only respected for
      * internal uptime checks, where internal_network is specified.
      *
-     * Generated from protobuf field <code>string gcp_zone = 4;</code>
+     * Generated from protobuf field <code>string gcp_zone = 3;</code>
      * @return string
      */
     public function getGcpZone()
@@ -192,7 +143,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      * The GCP zone the uptime check should egress from. Only respected for
      * internal uptime checks, where internal_network is specified.
      *
-     * Generated from protobuf field <code>string gcp_zone = 4;</code>
+     * Generated from protobuf field <code>string gcp_zone = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -205,29 +156,53 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP project_id where the internal checker lives. Not necessary
-     * the same as the workspace project.
+     * The checker ID.
      *
-     * Generated from protobuf field <code>string peer_project_id = 6;</code>
+     * Generated from protobuf field <code>string checker_id = 4;</code>
      * @return string
      */
-    public function getPeerProjectId()
+    public function getCheckerId()
     {
-        return $this->peer_project_id;
+        return $this->checker_id;
     }
 
     /**
-     * The GCP project_id where the internal checker lives. Not necessary
-     * the same as the workspace project.
+     * The checker ID.
      *
-     * Generated from protobuf field <code>string peer_project_id = 6;</code>
+     * Generated from protobuf field <code>string checker_id = 4;</code>
      * @param string $var
      * @return $this
      */
-    public function setPeerProjectId($var)
+    public function setCheckerId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->peer_project_id = $var;
+        $this->checker_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The checker's human-readable name.
+     *
+     * Generated from protobuf field <code>string display_name = 5;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * The checker's human-readable name.
+     *
+     * Generated from protobuf field <code>string display_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
