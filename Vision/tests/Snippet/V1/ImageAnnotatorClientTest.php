@@ -111,7 +111,6 @@ class ImageAnnotatorClientTest extends SnippetTestCase
             "php://temp"
         );
 
-
         $this->transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
             ->shouldBeCalledTimes(1)
             ->willReturn($this->getPromisedResponse());
