@@ -3,23 +3,6 @@
 return [
     'interfaces' => [
         'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations}',
@@ -37,13 +20,13 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}:cancel',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -61,6 +44,23 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}:cancel',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
                     ],
                 ],
                 'placeholders' => [
@@ -121,6 +121,18 @@ return [
             'ExecuteSql' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeSql',
+                'body' => '*',
+                'placeholders' => [
+                    'session' => [
+                        'getters' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteBatchDml' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeBatchDml',
                 'body' => '*',
                 'placeholders' => [
                     'session' => [

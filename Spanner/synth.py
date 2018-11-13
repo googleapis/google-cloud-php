@@ -111,3 +111,8 @@ s.replace(
     'src/V1/Gapic/SpannerGapicClient.php',
     r'ExecuteSqlRequest_QueryMode',
     'ExecuteSqlRequest\\QueryMode')
+
+s.replace(
+    'src/V1/Gapic/SpannerGapicClient.php',
+    r'ExecuteBatchDmlRequest_Statement',
+    'ExecuteBatchDmlRequest\\Statement')

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
@@ -136,11 +137,11 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the access control policy on a database resource. Replaces any
-     * existing policy.
+     * Sets the access control policy on a database resource.
+     * Replaces any existing policy.
      *
-     * Authorization requires `spanner.databases.setIamPolicy` permission on
-     * [resource][google.iam.v1.SetIamPolicyRequest.resource].
+     * Authorization requires `spanner.databases.setIamPolicy`
+     * permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -154,8 +155,9 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the access control policy for a database resource. Returns an empty
-     * policy if a database exists but does not have a policy set.
+     * Gets the access control policy for a database resource.
+     * Returns an empty policy if a database exists but does
+     * not have a policy set.
      *
      * Authorization requires `spanner.databases.getIamPolicy` permission on
      * [resource][google.iam.v1.GetIamPolicyRequest.resource].
@@ -174,10 +176,10 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     /**
      * Returns permissions that the caller has on the specified database resource.
      *
-     * Attempting this RPC on a non-existent Cloud Spanner database will result in
-     * a NOT_FOUND error if the user has `spanner.databases.list` permission on
-     * the containing Cloud Spanner instance. Otherwise returns an empty set of
-     * permissions.
+     * Attempting this RPC on a non-existent Cloud Spanner database will
+     * result in a NOT_FOUND error if the user has
+     * `spanner.databases.list` permission on the containing Cloud
+     * Spanner instance. Otherwise returns an empty set of permissions.
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -187,6 +189,97 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions',
         $argument,
         ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\CreateBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateBackup(\Google\Spanner\Admin\Database\V1\CreateBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/CreateBackup',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\GetBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetBackup(\Google\Spanner\Admin\Database\V1\GetBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetBackup',
+        $argument,
+        ['\Google\Spanner\Admin\Database\V1\Backup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\UpdateBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UpdateBackup(\Google\Spanner\Admin\Database\V1\UpdateBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateBackup',
+        $argument,
+        ['\Google\Spanner\Admin\Database\V1\Backup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\DeleteBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DeleteBackup(\Google\Spanner\Admin\Database\V1\DeleteBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/DeleteBackup',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\ListBackupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListBackups(\Google\Spanner\Admin\Database\V1\ListBackupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/ListBackups',
+        $argument,
+        ['\Google\Spanner\Admin\Database\V1\ListBackupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\CreateDatabaseFromBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateDatabaseFromBackup(\Google\Spanner\Admin\Database\V1\CreateDatabaseFromBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabaseFromBackup',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Google\Spanner\Admin\Database\V1\ListCreateDatabaseFromBackupMetadataRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListCreateDatabaseFromBackupMetadata(\Google\Spanner\Admin\Database\V1\ListCreateDatabaseFromBackupMetadataRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/ListCreateDatabaseFromBackupMetadata',
+        $argument,
+        ['\Google\Spanner\Admin\Database\V1\ListCreateDatabaseFromBackupMetadataResponse', 'decode'],
         $metadata, $options);
     }
 
