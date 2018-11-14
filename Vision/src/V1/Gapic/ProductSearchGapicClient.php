@@ -137,9 +137,9 @@ class ProductSearchGapicClient
         'https://www.googleapis.com/auth/cloud-vision',
     ];
     private static $locationNameTemplate;
-    private static $productNameTemplate;
     private static $productSetNameTemplate;
-    private static $imageNameTemplate;
+    private static $productNameTemplate;
+    private static $referenceImageNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -172,15 +172,6 @@ class ProductSearchGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getProductNameTemplate()
-    {
-        if (self::$productNameTemplate == null) {
-            self::$productNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}');
-        }
-
-        return self::$productNameTemplate;
-    }
-
     private static function getProductSetNameTemplate()
     {
         if (self::$productSetNameTemplate == null) {
@@ -190,13 +181,22 @@ class ProductSearchGapicClient
         return self::$productSetNameTemplate;
     }
 
-    private static function getImageNameTemplate()
+    private static function getProductNameTemplate()
     {
-        if (self::$imageNameTemplate == null) {
-            self::$imageNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}/referenceImages/{image}');
+        if (self::$productNameTemplate == null) {
+            self::$productNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}');
         }
 
-        return self::$imageNameTemplate;
+        return self::$productNameTemplate;
+    }
+
+    private static function getReferenceImageNameTemplate()
+    {
+        if (self::$referenceImageNameTemplate == null) {
+            self::$referenceImageNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}');
+        }
+
+        return self::$referenceImageNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -204,9 +204,9 @@ class ProductSearchGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
-                'product' => self::getProductNameTemplate(),
                 'productSet' => self::getProductSetNameTemplate(),
-                'image' => self::getImageNameTemplate(),
+                'product' => self::getProductNameTemplate(),
+                'referenceImage' => self::getReferenceImageNameTemplate(),
             ];
         }
 
@@ -233,26 +233,6 @@ class ProductSearchGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a product resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $product
-     *
-     * @return string The formatted product resource.
-     * @experimental
-     */
-    public static function productName($project, $location, $product)
-    {
-        return self::getProductNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'product' => $product,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a product_set resource.
      *
      * @param string $project
@@ -273,23 +253,43 @@ class ProductSearchGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a image resource.
+     * a product resource.
      *
      * @param string $project
      * @param string $location
      * @param string $product
-     * @param string $image
      *
-     * @return string The formatted image resource.
+     * @return string The formatted product resource.
      * @experimental
      */
-    public static function imageName($project, $location, $product, $image)
+    public static function productName($project, $location, $product)
     {
-        return self::getImageNameTemplate()->render([
+        return self::getProductNameTemplate()->render([
             'project' => $project,
             'location' => $location,
             'product' => $product,
-            'image' => $image,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a reference_image resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $product
+     * @param string $referenceImage
+     *
+     * @return string The formatted reference_image resource.
+     * @experimental
+     */
+    public static function referenceImageName($project, $location, $product, $referenceImage)
+    {
+        return self::getReferenceImageNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'product' => $product,
+            'reference_image' => $referenceImage,
         ]);
     }
 
@@ -298,9 +298,9 @@ class ProductSearchGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
-     * - product: projects/{project}/locations/{location}/products/{product}
      * - productSet: projects/{project}/locations/{location}/productSets/{product_set}
-     * - image: projects/{project}/locations/{location}/products/{product}/referenceImages/{image}.
+     * - product: projects/{project}/locations/{location}/products/{product}
+     * - referenceImage: projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -837,7 +837,7 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->imageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[IMAGE]');
+     *     $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
      *     $response = $productSearchClient->getReferenceImage($formattedName);
      * } finally {
      *     $productSearchClient->close();
@@ -894,7 +894,7 @@ class ProductSearchGapicClient
      * ```
      * $productSearchClient = new ProductSearchClient();
      * try {
-     *     $formattedName = $productSearchClient->imageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[IMAGE]');
+     *     $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
      *     $productSearchClient->deleteReferenceImage($formattedName);
      * } finally {
      *     $productSearchClient->close();
