@@ -29,14 +29,14 @@ return [
                             'getProjectId',
                         ],
                     ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
                     'job_id' => [
                         'getters' => [
                             'getJobId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
                         ],
                     ],
                 ],
@@ -67,14 +67,14 @@ return [
                             'getProjectId',
                         ],
                     ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
                     'job_id' => [
                         'getters' => [
                             'getJobId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
                         ],
                     ],
                 ],
@@ -89,14 +89,14 @@ return [
                             'getProjectId',
                         ],
                     ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
                     'job_id' => [
                         'getters' => [
                             'getJobId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
                         ],
                     ],
                 ],
@@ -110,14 +110,14 @@ return [
                             'getProjectId',
                         ],
                     ],
-                    'region' => [
-                        'getters' => [
-                            'getRegion',
-                        ],
-                    ],
                     'job_id' => [
                         'getters' => [
                             'getJobId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
                         ],
                     ],
                 ],

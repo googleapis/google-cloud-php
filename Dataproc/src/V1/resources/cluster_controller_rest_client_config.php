@@ -25,6 +25,11 @@ return [
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
                 'body' => 'cluster',
                 'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
@@ -33,11 +38,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'cluster_name' => [
-                        'getters' => [
-                            'getClusterName',
                         ],
                     ],
                 ],
@@ -46,6 +46,11 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
                 'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
@@ -54,11 +59,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'cluster_name' => [
-                        'getters' => [
-                            'getClusterName',
                         ],
                     ],
                 ],
@@ -67,6 +67,11 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',
                 'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
@@ -75,11 +80,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'cluster_name' => [
-                        'getters' => [
-                            'getClusterName',
                         ],
                     ],
                 ],
@@ -105,6 +105,11 @@ return [
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}:diagnose',
                 'body' => '*',
                 'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
@@ -113,11 +118,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'cluster_name' => [
-                        'getters' => [
-                            'getClusterName',
                         ],
                     ],
                 ],
