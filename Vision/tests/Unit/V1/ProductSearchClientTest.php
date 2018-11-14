@@ -563,7 +563,7 @@ class ProductSearchClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->imageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[IMAGE]');
+        $formattedName = $client->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
 
         $response = $client->getReferenceImage($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -603,7 +603,7 @@ class ProductSearchClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->imageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[IMAGE]');
+        $formattedName = $client->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
 
         try {
             $client->getReferenceImage($formattedName);
@@ -634,7 +634,7 @@ class ProductSearchClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->imageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[IMAGE]');
+        $formattedName = $client->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
 
         $client->deleteReferenceImage($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -673,7 +673,7 @@ class ProductSearchClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->imageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[IMAGE]');
+        $formattedName = $client->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
 
         try {
             $client->deleteReferenceImage($formattedName);
