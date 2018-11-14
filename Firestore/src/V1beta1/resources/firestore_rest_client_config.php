@@ -18,14 +18,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents/*/**}/{collection_id}',
                 'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
                     'collection_id' => [
                         'getters' => [
                             'getCollectionId',
+                        ],
+                    ],
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -35,14 +35,14 @@ return [
                 'uriTemplate' => '/v1beta1/{parent=projects/*/databases/*/documents/**}/{collection_id}',
                 'body' => 'document',
                 'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
                     'collection_id' => [
                         'getters' => [
                             'getCollectionId',
+                        ],
+                    ],
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
