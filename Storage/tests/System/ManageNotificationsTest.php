@@ -40,6 +40,7 @@ class ManageNotificationsTest extends StorageTestCase
         $topic->iam()->setPolicy($policy);
 
         for ($i = 0; $i < 2; $i++) {
+            sleep(1);
             $created[] = self::$bucket->createNotification($topic, [
                 'object_name_prefix' => uniqid('OBJ_PREFIX')
             ]);
@@ -49,6 +50,7 @@ class ManageNotificationsTest extends StorageTestCase
         $this->assertCount(count($created), $notifications);
 
         foreach ($created as $cNotification) {
+            sleep(1);
             $cNotification->delete();
         }
 
