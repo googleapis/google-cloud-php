@@ -75,6 +75,15 @@ class Grpc implements ConnectionInterface
         ]);
         //@codeCoverageIgnoreEnd
 
+        $config['serializer'] = $this->serializer;
+        $this->setRequestWrapper(new GrpcRequestWrapper($config));
+        $grpcConfig = $this->getGaxConfig(
+            ManualDatastoreClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
+
         $config += ['emulatorHost' => null];
         $baseUri = self::BASE_URI;
         if ((bool) $config['emulatorHost']) {
@@ -87,15 +96,6 @@ class Grpc implements ConnectionInterface
             ];
             //@codeCoverageIgnoreEnd
         }
-
-        $config['serializer'] = $this->serializer;
-        $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = $this->getGaxConfig(
-            ManualDatastoreClient::VERSION,
-            isset($config['authHttpHandler'])
-                ? $config['authHttpHandler']
-                : null
-        );
 
         $this->datastoreClient = isset($config['gapicDatastoreClient'])
             ? $config['gapicDatastoreClient']
