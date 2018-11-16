@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\GeoPoint;
 
 /**
  * @group datastore
@@ -27,13 +28,16 @@ use Google\Cloud\Datastore\GeoPoint;
  */
 class SaveAndModifyTest extends DatastoreTestCase
 {
-    public function testEntityLifeCycle()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testEntityLifeCycle(DatastoreClient $client)
     {
-        $key = self::$client->key('Person', 'Alton');
+        $key = $client->key('Person', rand(0, 99999));
         $data = [
             'description' => 'A great chef.',
             'birthDate' => new \DateTimeImmutable(),
-            'birthPlace' => self::$client->geoPoint(37.4220, -122.0841),
+            'birthPlace' => $client->geoPoint(37.4220, -122.0841),
             'favoriteFloat' => (float) 5.25,
             'favoriteInt' => (int) 5,
             'favoriteDishes' => [
@@ -45,7 +49,7 @@ class SaveAndModifyTest extends DatastoreTestCase
                 'location' => 'at home'
             ],
             'nothingSpecial' => null,
-            'blob' => self::$client->blob('blob!')
+            'blob' => $client->blob('blob!')
         ];
         $upsertData = [
             'labels' => [
@@ -57,11 +61,11 @@ class SaveAndModifyTest extends DatastoreTestCase
                 'location' => 'yet another location'
             ]
         ];
-        $entity = self::$client->entity($key, $data);
+        $entity = $client->entity($key, $data);
 
-        self::$client->insert($entity);
+        $client->insert($entity);
         self::$localDeletionQueue->add($key);
-        $entity = self::$client->lookup($key);
+        $entity = $client->lookup($key);
 
         $blobValue = (string) $data['blob'];
         $actualData = $entity->get();
@@ -72,37 +76,43 @@ class SaveAndModifyTest extends DatastoreTestCase
         $this->assertEquals($data, $actualData);
         $this->assertEquals($blobValue, $actualBlobValue);
 
-        $entity = self::$client->entity($key, $upsertData);
-        self::$client->upsert($entity);
-        $entity = self::$client->lookup($key);
+        $entity = $client->entity($key, $upsertData);
+        $client->upsert($entity);
+        $entity = $client->lookup($key);
 
         $this->assertEquals($upsertData, $entity->get());
 
-        $entity = self::$client->entity($key, $updateData);
-        self::$client->update($entity, [
+        $entity = $client->entity($key, $updateData);
+        $client->update($entity, [
             'allowOverwrite' => true
         ]);
-        $entity = self::$client->lookup($key);
+        $entity = $client->lookup($key);
 
         $this->assertEquals($updateData, $entity->get());
     }
 
-    public function testInsertWithKindAndArrayAccess()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testInsertWithKindAndArrayAccess(DatastoreClient $client)
     {
         $entityDataKey = 'test';
         $entityDataValue = 'hello';
-        $entity = self::$client->entity('Person');
+        $entity = $client->entity('Person');
         $entity[$entityDataKey] = $entityDataValue;
 
-        self::$client->insert($entity);
+        $client->insert($entity);
         $key = $entity->key();
         self::$localDeletionQueue->add($key);
-        $entity = self::$client->lookup($key);
+        $entity = $client->lookup($key);
 
         $this->assertEquals([$entityDataKey => $entityDataValue], $entity->get());
     }
 
-    public function testInsertInt64AsObject()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testInsertInt64AsObject(DatastoreClient $client)
     {
         $entityDataKey = 'int64';
         $intValue = '9223372036854775807';
@@ -119,25 +129,31 @@ class SaveAndModifyTest extends DatastoreTestCase
         $this->assertEquals($intValue, (string) $entity[$entityDataKey]);
     }
 
-    public function testExcludeEmbeddedEntityPropertyFromIndexes()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testExcludeEmbeddedEntityPropertyFromIndexes(DatastoreClient $client)
     {
-        $entity = self::$client->entity('Person', [
+        $entity = $client->entity('Person', [
             'foo' => [
                 'hello' => 'world',
                 Entity::EXCLUDE_FROM_INDEXES => ['hello']
             ]
         ]);
-        self::$client->insert($entity);
+        $client->insert($entity);
 
         $key = $entity->key();
         self::$localDeletionQueue->add($key);
-        $e = self::$client->lookup($key);
+        $e = $client->lookup($key);
         $this->assertEquals(['hello'], $e['foo'][Entity::EXCLUDE_FROM_INDEXES]);
     }
 
-    public function testEmptyArraySemantics()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testEmptyArraySemantics(DatastoreClient $client)
     {
-        $entity = self::$client->entity('Person', [
+        $entity = $client->entity('Person', [
             'listVal' => [],
             'entityVal' => (object) [],
             'n' => [
@@ -145,37 +161,48 @@ class SaveAndModifyTest extends DatastoreTestCase
                 []
             ]
         ]);
-        self::$client->insert($entity);
+        $client->insert($entity);
 
         $key = $entity->key();
         self::$localDeletionQueue->add($key);
 
-        $e = self::$client->lookup($key);
+        $e = $client->lookup($key);
         $this->assertEquals([], $e['listVal']);
         $this->assertEquals([], $e['entityVal']);
         $this->assertEquals([], $e['n'][1]);
     }
 
-    public function testEmptyGeoPoint()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testEmptyGeoPoint(DatastoreClient $client)
     {
-        $entity = self::$client->entity('GeoPoint', [
+        $entity = $client->entity('GeoPoint', [
             'geo' => new GeoPoint(null, null, true)
         ]);
-        self::$client->insert($entity);
+        $client->insert($entity);
 
         $key = $entity->key();
         self::$localDeletionQueue->add($key);
 
-        $e = self::$client->lookup($key);
+        $e = $client->lookup($key);
         $this->assertInstanceOf(GeoPoint::class, $e['geo']);
-        $this->assertNull($e['geo']->latitude());
-        $this->assertNull($e['geo']->longitude());
+        $this->assertTrue(
+            $e['geo']->latitude() === null || $e['geo']->latitude() === 0.0
+        );
+        $this->assertTrue(
+            $e['geo']->longitude() === null || $e['geo']->longitude() === 0.0
+        );
 
-        self::$client->upsert($e);
+        $client->upsert($e);
 
-        $e = self::$client->lookup($key);
+        $e = $client->lookup($key);
         $this->assertInstanceOf(GeoPoint::class, $e['geo']);
-        $this->assertNull($e['geo']->latitude());
-        $this->assertNull($e['geo']->longitude());
+        $this->assertTrue(
+            $e['geo']->latitude() === null || $e['geo']->latitude() === 0.0
+        );
+        $this->assertTrue(
+            $e['geo']->longitude() === null || $e['geo']->longitude() === 0.0
+        );
     }
 }

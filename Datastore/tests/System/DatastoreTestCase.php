@@ -31,7 +31,8 @@ class DatastoreTestCase extends TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
 
-    protected static $client;
+    protected static $restClient;
+    protected static $grpcClient;
     protected static $returnInt64AsObjectClient;
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
@@ -49,7 +50,12 @@ class DatastoreTestCase extends TestCase
             'namespaceId' => uniqid(self::TESTING_PREFIX)
         ];
 
-        self::$client = new DatastoreClient($config);
+        self::$restClient = new DatastoreClient($config + [
+            'transport' => 'rest'
+        ]);
+        self::$grpcClient = new DatastoreClient($config + [
+            'transport' => 'grpc'
+        ]);
         self::$returnInt64AsObjectClient = new DatastoreClient($config + [
             'returnInt64AsObject' => true
         ]);
@@ -63,12 +69,22 @@ class DatastoreTestCase extends TestCase
         }
 
         $backoff = new ExponentialBackoff(8);
-        $transaction = self::$client->transaction();
+        $transaction = self::$restClient->transaction();
 
         self::$localDeletionQueue->process(function ($items) use ($backoff, $transaction) {
             $backoff->execute(function () use ($items, $transaction) {
                 $transaction->deleteBatch($items);
             });
         });
+    }
+
+    public function clientProvider()
+    {
+        self::setupBeforeClass();
+
+        return [
+            [self::$restClient],
+            [self::$grpcClient]
+        ];
     }
 }

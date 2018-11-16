@@ -307,6 +307,27 @@ class EntityMapperTest extends TestCase
         $this->mapper->responseToEntityProperties($data, static::class);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testResponseToPropertiesEntityValueInvalidMappingType()
+    {
+        $data = [
+            'invalid' => [
+                'entityValue' => [
+                    'properties' => [
+                        'bar' => [
+                            'stringValue' => 'baz'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->mapper->responseToEntityProperties($data, SampleEntity::class);
+    }
+
+
     public function testResponseToPropertiesArrayValue()
     {
         $arr = [
@@ -583,15 +604,23 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('hello world', (string)$res);
     }
 
-    public function testConvertValueBlobNotEncoded()
+    /**
+     * @dataProvider unencoded
+     */
+    public function testConvertValueBlobNotEncoded($val)
     {
-        $type = 'blobValue';
-        $val = 'hello world';
-
-        $res = $this->mapper->convertValue($type, $val);
+        $res = $this->mapper->convertValue('blobValue', $val);
         $this->assertInstanceOf(Blob::class, $res);
 
-        $this->assertEquals('hello world', (string)$res);
+        $this->assertEquals($val, (string)$res);
+    }
+
+    public function unencoded()
+    {
+        return [
+            ['hello world'],
+            ['==']
+        ];
     }
 
     /**

@@ -19,9 +19,12 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\Connection\Grpc;
+use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
@@ -41,6 +44,7 @@ use Prophecy\Argument;
 class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
+    use GrpcTestTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
@@ -56,6 +60,28 @@ class DatastoreClientTest extends TestCase
         ], [
             'operation'
         ]);
+    }
+
+    public function testGrpcConnection()
+    {
+        $this->checkAndSkipGrpcTests();
+
+        $client = TestHelpers::stub(DatastoreClient::class, [[
+            'transport' => 'grpc'
+        ]]);
+
+        $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
+    }
+
+    public function testRestConnection()
+    {
+        $this->checkAndSkipGrpcTests();
+
+        $client = TestHelpers::stub(DatastoreClient::class, [[
+            'transport' => 'rest'
+        ]]);
+
+        $this->assertInstanceOf(Rest::class, $client->___getProperty('connection'));
     }
 
     public function testKeyIncomplete()
@@ -370,6 +396,29 @@ class DatastoreClientTest extends TestCase
         return array_filter($res, function ($case) {
             return $case[0] !== 'update';
         });
+    }
+
+    /**
+     * @expectedException \DomainException
+     */
+    public function testSingleMutationConflict()
+    {
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'mutationResults' => [
+                    [
+                        'conflictDetected' => true
+                    ]
+                ]
+            ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $entity = $this->client->entity($this->client->key('test', 'test'), ['name' => 'John']);
+        $this->client->insert($entity);
     }
 
     public function testDelete()

@@ -18,10 +18,11 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\GeoPoint as CoreGeoPoint;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Core\Int64;
 
 /**
  * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
@@ -441,6 +442,7 @@ class EntityMapper
                 break;
 
             case $value instanceof GeoPoint:
+            case $value instanceof CoreGeoPoint:
                 return [
                     'geoPointValue' => $value->point()
                 ];

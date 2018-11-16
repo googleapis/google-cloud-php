@@ -17,24 +17,29 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Datastore\DatastoreClient;
+
 /**
  * @group datastore
  * @group datastore-transaction
  */
 class RunTransactionTest extends DatastoreTestCase
 {
-    public function testRunTransactions()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testRunTransactions(DatastoreClient $client)
     {
         $kind = 'Person';
-        $key1 = self::$client->key($kind, 'Frank');
-        $key2 = self::$client->key($kind, 'Greg');
+        $key1 = $client->key($kind, rand(1, 999999));
+        $key2 = $client->key($kind, rand(1, 999999));
         $key2->ancestorKey($key1);
         $data = ['lastName' => 'Smith'];
         $newLastName = 'NotSmith';
-        $entity1 = self::$client->entity($key1, $data);
-        $entity2 = self::$client->entity($key2, $data);
+        $entity1 = $client->entity($key1, $data);
+        $entity2 = $client->entity($key2, $data);
 
-        $transaction = self::$client->transaction();
+        $transaction = $client->transaction();
         $transaction->insert($entity1);
         $transaction->upsert($entity2);
         $transaction->commit();
@@ -43,8 +48,8 @@ class RunTransactionTest extends DatastoreTestCase
         self::$localDeletionQueue->add($key2);
 
         // transaction with query
-        $transaction2 = self::$client->transaction();
-        $query = self::$client->query()
+        $transaction2 = $client->transaction();
+        $query = $client->query()
             ->kind($kind)
             ->hasAncestor($key1);
         $results = iterator_to_array($transaction2->runQuery($query));
@@ -55,7 +60,7 @@ class RunTransactionTest extends DatastoreTestCase
         $this->assertCount(2, $results);
 
         // transaction with lookup
-        $transaction3 = self::$client->transaction();
+        $transaction3 = $client->transaction();
         $result = $transaction3->lookup($key2);
         $transaction3->rollback();
 
