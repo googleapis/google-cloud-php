@@ -150,6 +150,7 @@
             "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "TextToSpeech/metadata",
             "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "VideoIntelligence/metadata",
             "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
+            "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "Debugger/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouderrorreporting\\": "ErrorReporting/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudtrace\\": "Trace/metadata",

@@ -1,0 +1,92 @@
+<?php
+
+return [
+    'interfaces' => [
+        'google.datastore.v1.Datastore' => [
+            'Lookup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:lookup',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:runQuery',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'BeginTransaction' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:beginTransaction',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'Commit' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:commit',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'Rollback' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:rollback',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'AllocateIds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:allocateIds',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'ReserveIds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:reserveIds',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
