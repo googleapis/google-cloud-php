@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 
 /**

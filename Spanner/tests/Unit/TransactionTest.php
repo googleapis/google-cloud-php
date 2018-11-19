@@ -19,19 +19,16 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -220,7 +217,7 @@ class TransactionTest extends TestCase
         $this->assertEquals(1, $res);
     }
 
-    public function testExecuteUpdateSeqno()
+    public function testDmlSeqno()
     {
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::withEntry('seqno', 1))
@@ -236,6 +233,140 @@ class TransactionTest extends TestCase
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
         $this->transaction->executeUpdate($sql);
+
+        $this->connection->executeBatchDml(Argument::withEntry('seqno', 3))
+            ->shouldBeCalled()
+            ->willReturn([
+                'resultSets' => []
+            ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $this->transaction->executeUpdateBatch([
+            ['sql' => 'SELECT 1']
+        ]);
+    }
+
+    public function testExecuteUpdateBatch()
+    {
+        $this->connection->executeBatchDml(Argument::allOf(
+            Argument::withEntry('statements', [
+                [
+                    'sql' => 'SELECT 1',
+                    'params' => [],
+                    'paramTypes' => []
+                ], [
+                    'sql' => 'SELECT @foo',
+                    'params' => [
+                        'foo' => 'bar'
+                    ],
+                    'paramTypes' => [
+                        'foo' => [
+                            'code' => Database::TYPE_STRING
+                        ]
+                    ]
+                ], [
+                    'sql' => 'SELECT @foo',
+                    'params' => [
+                        'foo' => null
+                    ],
+                    'paramTypes' => [
+                        'foo' => [
+                            'code' => Database::TYPE_STRING
+                        ]
+                    ]
+                ]
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'resultSets' => [
+                [
+                    'stats' => [
+                        'rowCountExact' => 1
+                    ]
+                ], [
+                    'stats' => [
+                        'rowCountExact' => 2
+                    ]
+                ], [
+                    'stats' => [
+                        'rowCountExact' => 3
+                    ]
+                ]
+            ]
+        ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $res = $this->transaction->executeUpdateBatch($this->bdmlStatements());
+
+        $this->assertInstanceOf(BatchDmlResult::class, $res);
+        $this->assertNull($res->error());
+        $this->assertNull($res->errorStatement());
+        $this->assertEquals([1,2,3], $res->rowCounts());
+    }
+
+    public function testExecuteUpdateBatchError()
+    {
+        $err = [
+            'code' => 3,
+            'message' => 'whatev',
+            'details' => []
+        ];
+
+        $this->connection->executeBatchDml(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'resultSets' => [
+                    [
+                        'stats' => [
+                            'rowCountExact' => 1
+                        ]
+                    ], [
+                        'stats' => [
+                            'rowCountExact' => 2
+                        ]
+                    ]
+                ],
+                'status' => $err
+            ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+        $statements = $this->bdmlStatements();
+        $res = $this->transaction->executeUpdateBatch($statements);
+
+        $this->assertEquals([1,2], $res->rowCounts());
+        $this->assertEquals($err, $res->error());
+        $this->assertEquals($statements[2], $res->errorStatement());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testExecuteUpdateBatchInvalidStatement()
+    {
+        $this->transaction->executeUpdateBatch([
+            ['foo' => 'bar']
+        ]);
+    }
+
+    private function bdmlStatements()
+    {
+        return [
+            [
+                'sql' => 'SELECT 1',
+            ], [
+                'sql' => 'SELECT @foo',
+                'parameters' => [
+                    'foo' => 'bar'
+                ]
+            ], [
+                'sql' => 'SELECT @foo',
+                'parameters' => [
+                    'foo' => null
+                ],
+                'types' => [
+                    'foo' => Database::TYPE_STRING
+                ]
+            ]
+        ];
     }
 
     /**

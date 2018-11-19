@@ -24,7 +24,6 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 
 /**
@@ -229,6 +228,82 @@ class Operation
             : 'rowCountExact';
 
         return $stats[$statsItem];
+    }
+
+    /**
+     * Execute multiple DML statements.
+     *
+     * This method allows many statements to be run with lower latency than
+     * submitting them sequentially with
+     * {@see Google\Cloud\Spanner\Operation::executeUpdate()}.
+     *
+     * Statements are executed in order, sequentially. Execution will stop at
+     * the first failed statement; the remaining statements will not be run.
+     *
+     * Please note that in the case of failure of any provided statement, this
+     * method will NOT throw an exception. Rather, check the `successful` key
+     * in the returned array. If `successful` is false, some statements may have
+     * been applied; you must inspect the `results` key in the returned array to
+     * find the first failed statement. Error details are returned inline with
+     * the first failed statement. Subsequent statements after an error will
+     * never be applied.
+     *
+     * @param Session $session The session in which the update operation should
+     *        be executed.
+     * @param Transaction $transaction The transaction in which the operation
+     *        should be executed.
+     * @param array[] $statements A list of DML statements to run. Each statement
+     *        must contain a `sql` key, where the value is a DML string. If the
+     *        DML contains placeholders, values are provided as a key/value array
+     *        in key `parameters`. If parameter types are required, they must be
+     *        provided in key `paramTypes`. Generally, Google Cloud PHP can
+     *        infer types. Explicit type declarations are required in the case
+     *        of struct parameters, or when a null value exists as a parameter.
+     *        Accepted values for primitive types are defined as constants on
+     *        {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+     *        `Database::TYPE_BYTES`. If the value is an array, use
+     *        {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *        parameter types. Likewise, for structs, use
+     *        {@see Google\Cloud\Spanner\StructType}.
+     * @param array $options Configuration options.
+     * @return BatchDmlResult
+     */
+    public function executeUpdateBatch(
+        Session $session,
+        Transaction $transaction,
+        array $statements,
+        array $options = []
+    ) {
+        $stmts = [];
+        foreach ($statements as $statement) {
+            if (!isset($statement['sql'])) {
+                throw new \InvalidArgumentException('Each statement must contain a SQL key.');
+            }
+
+            $parameters = $this->pluck('parameters', $statement, false) ?: [];
+            $types = $this->pluck('types', $statement, false) ?: [];
+            $stmts[] = [
+                'sql' => $statement['sql']
+            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        }
+
+        $res = $this->connection->executeBatchDml([
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transaction->id(),
+            'statements' => $stmts
+        ] + $options);
+
+        $errorStatement = null;
+        if (count($res['resultSets']) < count($statements)) {
+            $errIndex = count($res['resultSets']);
+            $errorStatement = $statements[$errIndex];
+        }
+
+        return new BatchDmlResult($res, $errorStatement);
     }
 
     /**

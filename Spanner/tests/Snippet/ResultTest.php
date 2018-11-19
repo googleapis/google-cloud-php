@@ -19,13 +19,10 @@ namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 

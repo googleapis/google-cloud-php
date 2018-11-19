@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;
 

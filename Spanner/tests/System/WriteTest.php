@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Rpc\Code;
 
 /**
  * @group spanner
@@ -842,5 +843,262 @@ class WriteTest extends SpannerTestCase
             ]
         ])->rows()->current();
         $this->assertEquals($randStr2, $row['stringField']);
+    }
+
+    /**
+     * Run batchUpdate with a single statement. Verify that the result list size
+     * is one, and the entry in the list contains the correct row count.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchSingleStatement()
+    {
+        $id = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) use ($id, $randStr) {
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)',
+                    'parameters' => [
+                        'id' => $id,
+                        'string' => $randStr
+                    ]
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertCount(1, $res->rowCounts());
+        $this->assertEquals(1, $res->rowCounts()[0]);
+    }
+
+    /**
+     * Run batchUpdate with no statement, expect an error to be returned, with
+     * an empty result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchNoStatements()
+    {
+        $this->markTestSkipped('waiting for guidance.');
+
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $res = $t->executeUpdateBatch([]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertCount(0, $res->rowCounts());
+        $this->assertFalse($res->error() === null);
+    }
+
+    /**
+     * Run batchUpdate with multiple statements that depend on each other (for
+     * example, self incrementing a integer column). Verify the correct row
+     * counts are returned in the result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchDependentStatements()
+    {
+        $id = $this->randId();
+
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO ' . self::TABLE_NAME .' (id, intField) VALUES (@id, @int)',
+                    'parameters' => [
+                        'id' => $id,
+                        'int' => 0
+                    ]
+                ], [
+                    'sql' => 'UPDATE ' . self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id
+                    ]
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1, 1], $res->rowCounts());
+    }
+
+    /**
+     * Run executeUpdate first, and batchUpdate next, within the same
+     * transaction, and make the statements passed into batchUpdate depend on
+     * the statement run in executeUpdate. Verify that the correct row counts
+     * are returned in the result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchSingleUpdateThenBatchUpdate()
+    {
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+
+            $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, intField) VALUES (@id, @int)', [
+                'parameters' => [
+                    'id' => $id,
+                    'int' => 0
+                ]
+            ]);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id
+                    ]
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
+    /**
+     * Run batchUpdate first, and executeUpdate next, within the same
+     * transaction, and make the statements passed into executeUpdate depend on
+     * the statement run in batchUpdate. Verify that the correct row counts
+     * are returned in the result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchThenSingleUpdate()
+    {
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO ' . self::TABLE_NAME .' (id, intField) VALUES (@id, @int)',
+                    'parameters' => [
+                        'id' => $id,
+                        'int' => 0
+                    ]
+                ]
+            ]);
+
+            $res = $t->executeUpdate('UPDATE ' . self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id,
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals(1, $res);
+    }
+
+    /**
+     * Run batchUpdate with an error (e.g. a syntax error) in the i’th statement
+     * (the index here starts from 1). Verify:
+     * - The returned size of the result list equals i - 1;
+     * - Each row count in the list matches the expected update count for
+     *   statement  [1, i - 1].
+     * - The returned status in the response matches the expected error.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchError()
+    {
+        $db = self::$database;
+
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO '. self::TABLE_NAME .' (id, intField) VALUES (@id, @int)',
+                    'parameters' => [
+                        'id' => $id,
+                        'int' => 0
+                    ]
+                ], [
+                    'sql' => 'UPDATE '. self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id
+                    ]
+                ], [
+                    'sql' => 'UPDATE '. self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id'
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1, 1], $res->rowCounts());
+        $this->assertEquals(Code::INVALID_ARGUMENT, $res->error()['code']);
+    }
+
+    /**
+     * Run batchUpdate with two different errors in the i’th statement and
+     * i+1’th statement. Verify:
+     * - The returned size of the result list equals i - 1;
+     * - Each row count in the array matches the expected update count for
+     *   statement [1, i - 1].
+     * The returned status in the response matches the expected error of
+     *   statement i.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchMultipleErrors()
+    {
+        $db = self::$database;
+
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO '. self::TABLE_NAME .' (id, intField) VALUES (@id, @int)',
+                    'parameters' => [
+                        'id' => $id,
+                        'int' => 0
+                    ]
+                ], [
+                    'sql' => 'UPDATE '. self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id
+                    ]
+                ], [
+                    'sql' => 'UPDATE '. self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id'
+                ], [
+                    'sql' => 'UPDATE '. self::TABLE_NAME .' SET intField = intField+1 WHERE id = @id'
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1, 1], $res->rowCounts());
+        $this->assertEquals(Code::INVALID_ARGUMENT, $res->error()['code']);
     }
 }

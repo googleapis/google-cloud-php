@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;

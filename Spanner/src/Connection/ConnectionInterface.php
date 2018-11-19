@@ -147,6 +147,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function executeBatchDml(array $args);
+
+    /**
+     * @param array $args
+     */
     public function beginTransaction(array $args);
 
     /**

@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
@@ -529,6 +530,27 @@ class Grpc implements ConnectionInterface
             $this->pluck('table', $args),
             $this->pluck('columns', $args),
             $keySet,
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function executeBatchDml(array $args)
+    {
+        $database = $this->pluck('database', $args);
+        $args['transaction'] = $this->createTransactionSelector($args);
+
+        $statements = [];
+        foreach ($this->pluck('statements', $args) as $statement) {
+            $statement = $this->formatSqlParams($statement);
+            $statements[] = $this->serializer->decodeMessage(new Statement, $statement);
+        }
+
+        return $this->send([$this->spannerClient, 'executeBatchDml'], [
+            $this->pluck('session', $args),
+            $statements,
             $this->addResourcePrefixHeader($args, $database)
         ]);
     }

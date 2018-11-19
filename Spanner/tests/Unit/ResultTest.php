@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;

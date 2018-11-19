@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\ValueMapper;
 use Prophecy\Argument;
 
 /**
@@ -115,6 +114,50 @@ class TransactionTest extends SnippetTestCase
         $res = $snippet->invoke('modifiedRowCount');
 
         $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testExecuteUpdateBatch()
+    {
+        $this->connection->executeBatchDml(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'resultSets' => [
+                    [
+                        'stats' => [
+                            'rowCountExact' => 1
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdateBatch');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke();
+
+        $this->assertEquals('Updated 1 row(s)', $res->output());
+    }
+
+    public function testExecuteUpdateBatchError()
+    {
+        $this->connection->executeBatchDml(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'resultSets' => [],
+                'status' => [
+                    'code' => 3,
+                    'message' => 'foo'
+                ]
+            ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdateBatch');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke();
+
+        $this->assertEquals('An error occurred: foo', $res->output());
     }
 
     public function testRead()
