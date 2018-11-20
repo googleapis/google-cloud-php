@@ -23,41 +23,46 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      *
      * Generated from protobuf field <code>repeated uint64 device_num_ids = 2;</code>
      */
     private $device_num_ids;
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`.
+     * If empty, this field is ignored. Maximum IDs: 10,000
      *
      * Generated from protobuf field <code>repeated string device_ids = 3;</code>
      */
     private $device_ids;
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
+     * fields `id` and `num_id` are always returned, along with any
      * other fields specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
      */
     private $field_mask = null;
     /**
+     * Options related to gateways.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayListOptions gateway_list_options = 6;</code>
+     */
+    private $gateway_list_options = null;
+    /**
      * The maximum number of devices to return in the response. If this value
      * is zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      *
      * Generated from protobuf field <code>int32 page_size = 100;</code>
      */
     private $page_size = 0;
     /**
      * The value returned by the last `ListDevicesResponse`; indicates
-     * that this is a continuation of a prior `ListDevices` call, and
-     * that the system should return the next page of data.
+     * that this is a continuation of a prior `ListDevices` call and
+     * the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 101;</code>
      */
@@ -73,25 +78,26 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *           The device registry path. Required. For example,
      *           `projects/my-project/locations/us-central1/registries/my-registry`.
      *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $device_num_ids
-     *           A list of device numerical ids. If empty, it will ignore this field. This
-     *           field cannot hold more than 10,000 entries.
+     *           A list of device numeric IDs. If empty, this field is ignored. Maximum
+     *           IDs: 10,000.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $device_ids
-     *           A list of device string identifiers. If empty, it will ignore this field.
-     *           For example, `['device0', 'device12']`. This field cannot hold more than
-     *           10,000 entries.
+     *           A list of device string IDs. For example, `['device0', 'device12']`.
+     *           If empty, this field is ignored. Maximum IDs: 10,000
      *     @type \Google\Protobuf\FieldMask $field_mask
      *           The fields of the `Device` resource to be returned in the response. The
-     *           fields `id`, and `num_id` are always returned by default, along with any
+     *           fields `id` and `num_id` are always returned, along with any
      *           other fields specified.
+     *     @type \Google\Cloud\Iot\V1\GatewayListOptions $gateway_list_options
+     *           Options related to gateways.
      *     @type int $page_size
      *           The maximum number of devices to return in the response. If this value
      *           is zero, the service will select a default size. A call may return fewer
-     *           objects than requested, but if there is a non-empty `page_token`, it
-     *           indicates that more entries are available.
+     *           objects than requested. A non-empty `next_page_token` in the response
+     *           indicates that more data is available.
      *     @type string $page_token
      *           The value returned by the last `ListDevicesResponse`; indicates
-     *           that this is a continuation of a prior `ListDevices` call, and
-     *           that the system should return the next page of data.
+     *           that this is a continuation of a prior `ListDevices` call and
+     *           the system should return the next page of data.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,8 +134,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      *
      * Generated from protobuf field <code>repeated uint64 device_num_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -140,8 +146,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of device numerical ids. If empty, it will ignore this field. This
-     * field cannot hold more than 10,000 entries.
+     * A list of device numeric IDs. If empty, this field is ignored. Maximum
+     * IDs: 10,000.
      *
      * Generated from protobuf field <code>repeated uint64 device_num_ids = 2;</code>
      * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -156,9 +162,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`.
+     * If empty, this field is ignored. Maximum IDs: 10,000
      *
      * Generated from protobuf field <code>repeated string device_ids = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -169,9 +174,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of device string identifiers. If empty, it will ignore this field.
-     * For example, `['device0', 'device12']`. This field cannot hold more than
-     * 10,000 entries.
+     * A list of device string IDs. For example, `['device0', 'device12']`.
+     * If empty, this field is ignored. Maximum IDs: 10,000
      *
      * Generated from protobuf field <code>repeated string device_ids = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -187,7 +191,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
+     * fields `id` and `num_id` are always returned, along with any
      * other fields specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
@@ -200,7 +204,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The fields of the `Device` resource to be returned in the response. The
-     * fields `id`, and `num_id` are always returned by default, along with any
+     * fields `id` and `num_id` are always returned, along with any
      * other fields specified.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
@@ -216,10 +220,36 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Options related to gateways.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayListOptions gateway_list_options = 6;</code>
+     * @return \Google\Cloud\Iot\V1\GatewayListOptions
+     */
+    public function getGatewayListOptions()
+    {
+        return $this->gateway_list_options;
+    }
+
+    /**
+     * Options related to gateways.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayListOptions gateway_list_options = 6;</code>
+     * @param \Google\Cloud\Iot\V1\GatewayListOptions $var
+     * @return $this
+     */
+    public function setGatewayListOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Iot\V1\GatewayListOptions::class);
+        $this->gateway_list_options = $var;
+
+        return $this;
+    }
+
+    /**
      * The maximum number of devices to return in the response. If this value
      * is zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      *
      * Generated from protobuf field <code>int32 page_size = 100;</code>
      * @return int
@@ -232,8 +262,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of devices to return in the response. If this value
      * is zero, the service will select a default size. A call may return fewer
-     * objects than requested, but if there is a non-empty `page_token`, it
-     * indicates that more entries are available.
+     * objects than requested. A non-empty `next_page_token` in the response
+     * indicates that more data is available.
      *
      * Generated from protobuf field <code>int32 page_size = 100;</code>
      * @param int $var
@@ -249,8 +279,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The value returned by the last `ListDevicesResponse`; indicates
-     * that this is a continuation of a prior `ListDevices` call, and
-     * that the system should return the next page of data.
+     * that this is a continuation of a prior `ListDevices` call and
+     * the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 101;</code>
      * @return string
@@ -262,8 +292,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The value returned by the last `ListDevicesResponse`; indicates
-     * that this is a continuation of a prior `ListDevices` call, and
-     * that the system should return the next page of data.
+     * that this is a continuation of a prior `ListDevices` call and
+     * the system should return the next page of data.
      *
      * Generated from protobuf field <code>string page_token = 101;</code>
      * @param string $var

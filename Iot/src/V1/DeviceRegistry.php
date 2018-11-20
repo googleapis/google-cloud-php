@@ -66,6 +66,14 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      */
     private $http_config = null;
     /**
+     * **Beta Feature**
+     * The default logging verbosity for activity from devices in this registry.
+     * The verbosity level can be overridden by Device.log_level.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 11;</code>
+     */
+    private $log_level = 0;
+    /**
      * The credentials used to verify the device credentials. No more than 10
      * credentials can be bound to a single registry at a time. The verification
      * process occurs at the time of device creation or update. If this field is
@@ -113,6 +121,10 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      *           The MQTT configuration for this device registry.
      *     @type \Google\Cloud\Iot\V1\HttpConfig $http_config
      *           The DeviceService (HTTP) configuration for this device registry.
+     *     @type int $log_level
+     *           **Beta Feature**
+     *           The default logging verbosity for activity from devices in this registry.
+     *           The verbosity level can be overridden by Device.log_level.
      *     @type \Google\Cloud\Iot\V1\RegistryCredential[]|\Google\Protobuf\Internal\RepeatedField $credentials
      *           The credentials used to verify the device credentials. No more than 10
      *           credentials can be bound to a single registry at a time. The verification
@@ -311,6 +323,36 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Iot\V1\HttpConfig::class);
         $this->http_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * **Beta Feature**
+     * The default logging verbosity for activity from devices in this registry.
+     * The verbosity level can be overridden by Device.log_level.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 11;</code>
+     * @return int
+     */
+    public function getLogLevel()
+    {
+        return $this->log_level;
+    }
+
+    /**
+     * **Beta Feature**
+     * The default logging verbosity for activity from devices in this registry.
+     * The verbosity level can be overridden by Device.log_level.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLogLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Iot\V1\LogLevel::class);
+        $this->log_level = $var;
 
         return $this;
     }

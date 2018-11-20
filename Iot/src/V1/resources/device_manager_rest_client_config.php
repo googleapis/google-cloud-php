@@ -113,12 +113,6 @@ return [
             'DeleteDevice' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -133,7 +127,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/groups/*}/devices',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*/groups/*}/devices',
                     ],
                 ],
                 'placeholders' => [
@@ -250,6 +244,63 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SendCommandToDevice' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/devices/*}:sendCommandToDevice',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/registries/*/groups/*/devices/*}:sendCommandToDevice',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'BindDeviceToGateway' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*}:bindDeviceToGateway',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*/groups/*}:bindDeviceToGateway',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UnbindDeviceFromGateway' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*}:unbindDeviceFromGateway',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/registries/*/groups/*}:unbindDeviceFromGateway',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
