@@ -672,9 +672,12 @@ class ReleaseBuilder extends GoogleCloudCommand
 
             $description = explode("\n", $message)[0];
             $matches = [];
-            preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches);
-            $message = trim($matches[1]);
-            $prNumber = isset($matches[2]) ? $matches[2] : null;
+            if (preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches) === 1) {
+                $message = trim($matches[1]);
+                $prNumber = isset($matches[2]) ? $matches[2] : null;
+            } else {
+                $prNumber = $this->askForPrNumber($message);
+            }
 
             if (strpos($message, '[CHANGE ME]') === 0 && $prNumber) {
                 $message = $this->getMessageFromPullRequest($org, $repo, $prNumber);
@@ -690,6 +693,17 @@ class ReleaseBuilder extends GoogleCloudCommand
         }
 
         return $commits;
+    }
+
+    private function askForPrNumber($message)
+    {
+        return trim($this->ask(sprintf(
+            'The commit message did not contain a Pull Request reference. ' .
+            'Please enter the pull request reference now. ' .
+            'A pull request reference is the ID number of the PR, i.e. 1337. ' .
+            'The commit message is "%s"',
+            $message
+        )));
     }
 
     private function getMessageFromPullRequest($org, $repo, $prNumber)
