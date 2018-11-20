@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//
 namespace Google\Cloud\Iot\V1;
 
 /**
- * Internet of things (IoT) service. Allows to manipulate device registry
- * instances and the registration of devices (Things) to the cloud.
+ * Internet of Things (IoT) service. Securely connect and manage IoT devices.
  */
 class DeviceManagerGrpcClient extends \Grpc\BaseStub {
 
@@ -263,6 +263,60 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.iot.v1.DeviceManager/TestIamPermissions',
         $argument,
         ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Sends a command to the specified device. In order for a device to be able
+     * to receive commands, it must:
+     * 1) be connected to Cloud IoT Core using the MQTT protocol, and
+     * 2) be subscribed to the group of MQTT topics specified by
+     *    /devices/{device-id}/commands/#. This subscription will receive commands
+     *    at the top-level topic /devices/{device-id}/commands as well as commands
+     *    for subfolders, like /devices/{device-id}/commands/subfolder.
+     *    Note that subscribing to specific subfolders is not supported.
+     * If the command could not be delivered to the device, this method will
+     * return an error; in particular, if the device is not subscribed, this
+     * method will return FAILED_PRECONDITION. Otherwise, this method will
+     * return OK. If the subscription is QoS 1, at least once delivery will be
+     * guaranteed; for QoS 0, no acknowledgment will be expected from the device.
+     * @param \Google\Cloud\Iot\V1\SendCommandToDeviceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function SendCommandToDevice(\Google\Cloud\Iot\V1\SendCommandToDeviceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iot.v1.DeviceManager/SendCommandToDevice',
+        $argument,
+        ['\Google\Cloud\Iot\V1\SendCommandToDeviceResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Associates the device with the gateway.
+     * @param \Google\Cloud\Iot\V1\BindDeviceToGatewayRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BindDeviceToGateway(\Google\Cloud\Iot\V1\BindDeviceToGatewayRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway',
+        $argument,
+        ['\Google\Cloud\Iot\V1\BindDeviceToGatewayResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes the association between the device and the gateway.
+     * @param \Google\Cloud\Iot\V1\UnbindDeviceFromGatewayRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UnbindDeviceFromGateway(\Google\Cloud\Iot\V1\UnbindDeviceFromGatewayRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iot.v1.DeviceManager/UnbindDeviceFromGateway',
+        $argument,
+        ['\Google\Cloud\Iot\V1\UnbindDeviceFromGatewayResponse', 'decode'],
         $metadata, $options);
     }
 

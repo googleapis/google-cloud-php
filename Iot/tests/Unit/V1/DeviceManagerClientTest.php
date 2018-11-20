@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Iot\V1\BindDeviceToGatewayResponse;
 use Google\Cloud\Iot\V1\Device;
 use Google\Cloud\Iot\V1\DeviceConfig;
 use Google\Cloud\Iot\V1\DeviceRegistry;
@@ -36,6 +37,8 @@ use Google\Cloud\Iot\V1\ListDeviceConfigVersionsResponse;
 use Google\Cloud\Iot\V1\ListDeviceRegistriesResponse;
 use Google\Cloud\Iot\V1\ListDeviceStatesResponse;
 use Google\Cloud\Iot\V1\ListDevicesResponse;
+use Google\Cloud\Iot\V1\SendCommandToDeviceResponse;
+use Google\Cloud\Iot\V1\UnbindDeviceFromGatewayResponse;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -1291,6 +1294,244 @@ class DeviceManagerClientTest extends GeneratedTest
 
         try {
             $client->testIamPermissions($formattedResource, $permissions);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function sendCommandToDeviceTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new SendCommandToDeviceResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $binaryData = '40';
+
+        $response = $client->sendCommandToDevice($formattedName, $binaryData);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.iot.v1.DeviceManager/SendCommandToDevice', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getBinaryData();
+
+        $this->assertProtobufEquals($binaryData, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function sendCommandToDeviceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $binaryData = '40';
+
+        try {
+            $client->sendCommandToDevice($formattedName, $binaryData);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function bindDeviceToGatewayTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new BindDeviceToGatewayResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $gatewayId = 'gatewayId955798774';
+        $deviceId = 'deviceId25209764';
+
+        $response = $client->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.iot.v1.DeviceManager/BindDeviceToGateway', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGatewayId();
+
+        $this->assertProtobufEquals($gatewayId, $actualValue);
+        $actualValue = $actualRequestObject->getDeviceId();
+
+        $this->assertProtobufEquals($deviceId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function bindDeviceToGatewayExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $gatewayId = 'gatewayId955798774';
+        $deviceId = 'deviceId25209764';
+
+        try {
+            $client->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function unbindDeviceFromGatewayTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new UnbindDeviceFromGatewayResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $gatewayId = 'gatewayId955798774';
+        $deviceId = 'deviceId25209764';
+
+        $response = $client->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.iot.v1.DeviceManager/UnbindDeviceFromGateway', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getGatewayId();
+
+        $this->assertProtobufEquals($gatewayId, $actualValue);
+        $actualValue = $actualRequestObject->getDeviceId();
+
+        $this->assertProtobufEquals($deviceId, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function unbindDeviceFromGatewayExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $gatewayId = 'gatewayId955798774';
+        $deviceId = 'deviceId25209764';
+
+        try {
+            $client->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

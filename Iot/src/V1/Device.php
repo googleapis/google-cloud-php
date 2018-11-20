@@ -135,6 +135,14 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     private $state = null;
     /**
+     * **Beta Feature**
+     * The logging verbosity for device activity. If unspecified,
+     * DeviceRegistry.log_level will be used.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 21;</code>
+     */
+    private $log_level = 0;
+    /**
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
      * information for the device.
@@ -148,6 +156,12 @@ class Device extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> metadata = 17;</code>
      */
     private $metadata;
+    /**
+     * Gateway-related configuration and state.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayConfig gateway_config = 24;</code>
+     */
+    private $gateway_config = null;
 
     /**
      * Constructor.
@@ -218,6 +232,10 @@ class Device extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iot\V1\DeviceState $state
      *           [Output only] The state most recently received from the device. If no state
      *           has been reported, this field is not present.
+     *     @type int $log_level
+     *           **Beta Feature**
+     *           The logging verbosity for device activity. If unspecified,
+     *           DeviceRegistry.log_level will be used.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The metadata key-value pairs assigned to the device. This metadata is not
      *           interpreted or indexed by Cloud IoT Core. It can be used to add contextual
@@ -228,6 +246,8 @@ class Device extends \Google\Protobuf\Internal\Message
      *           KB in size.
      *           The total size of all keys and values must be less than 256 KB, and the
      *           maximum number of key-value pairs is 500.
+     *     @type \Google\Cloud\Iot\V1\GatewayConfig $gateway_config
+     *           Gateway-related configuration and state.
      * }
      */
     public function __construct($data = NULL) {
@@ -670,6 +690,36 @@ class Device extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * **Beta Feature**
+     * The logging verbosity for device activity. If unspecified,
+     * DeviceRegistry.log_level will be used.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 21;</code>
+     * @return int
+     */
+    public function getLogLevel()
+    {
+        return $this->log_level;
+    }
+
+    /**
+     * **Beta Feature**
+     * The logging verbosity for device activity. If unspecified,
+     * DeviceRegistry.log_level will be used.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.LogLevel log_level = 21;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLogLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Iot\V1\LogLevel::class);
+        $this->log_level = $var;
+
+        return $this;
+    }
+
+    /**
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add contextual
      * information for the device.
@@ -707,6 +757,32 @@ class Device extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Gateway-related configuration and state.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayConfig gateway_config = 24;</code>
+     * @return \Google\Cloud\Iot\V1\GatewayConfig
+     */
+    public function getGatewayConfig()
+    {
+        return $this->gateway_config;
+    }
+
+    /**
+     * Gateway-related configuration and state.
+     *
+     * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayConfig gateway_config = 24;</code>
+     * @param \Google\Cloud\Iot\V1\GatewayConfig $var
+     * @return $this
+     */
+    public function setGatewayConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Iot\V1\GatewayConfig::class);
+        $this->gateway_config = $var;
 
         return $this;
     }

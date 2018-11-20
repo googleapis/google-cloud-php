@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The new values for the device registry. The `id` and `num_id` fields must
+     * The new values for the device. The `id` and `num_id` fields must
      * be empty, and the field `name` must specify the name path. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
@@ -41,7 +41,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Iot\V1\Device $device
-     *           The new values for the device registry. The `id` and `num_id` fields must
+     *           The new values for the device. The `id` and `num_id` fields must
      *           be empty, and the field `name` must specify the name path. For example,
      *           `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
@@ -58,7 +58,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new values for the device registry. The `id` and `num_id` fields must
+     * The new values for the device. The `id` and `num_id` fields must
      * be empty, and the field `name` must specify the name path. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
@@ -72,7 +72,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new values for the device registry. The `id` and `num_id` fields must
+     * The new values for the device. The `id` and `num_id` fields must
      * be empty, and the field `name` must specify the name path. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
