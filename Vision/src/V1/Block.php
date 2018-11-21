@@ -36,7 +36,7 @@ class Block extends \Google\Protobuf\Internal\Message
      *         2----3
      *         |    |
      *         1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
@@ -83,7 +83,7 @@ class Block extends \Google\Protobuf\Internal\Message
      *                   2----3
      *                   |    |
      *                   1----0
-     *             and the vertice order will still be (0, 1, 2, 3).
+     *             and the vertex order will still be (0, 1, 2, 3).
      *     @type \Google\Cloud\Vision\V1\Paragraph[]|\Google\Protobuf\Internal\RepeatedField $paragraphs
      *           List of paragraphs in this block (if this blocks is of type text).
      *     @type int $block_type
@@ -138,7 +138,7 @@ class Block extends \Google\Protobuf\Internal\Message
      *         2----3
      *         |    |
      *         1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
@@ -163,7 +163,7 @@ class Block extends \Google\Protobuf\Internal\Message
      *         2----3
      *         |    |
      *         1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var

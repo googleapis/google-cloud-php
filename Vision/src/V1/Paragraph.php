@@ -36,7 +36,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *      2----3
      *      |    |
      *      1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
@@ -77,7 +77,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *                2----3
      *                |    |
      *                1----0
-     *             and the vertice order will still be (0, 1, 2, 3).
+     *             and the vertex order will still be (0, 1, 2, 3).
      *     @type \Google\Cloud\Vision\V1\Word[]|\Google\Protobuf\Internal\RepeatedField $words
      *           List of words in this paragraph.
      *     @type float $confidence
@@ -130,7 +130,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *      2----3
      *      |    |
      *      1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
@@ -155,7 +155,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *      2----3
      *      |    |
      *      1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var
