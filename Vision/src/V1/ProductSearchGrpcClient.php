@@ -124,8 +124,8 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Permanently deletes a ProductSet. All Products and ReferenceImages in the
-     * ProductSet will be deleted.
+     * Permanently deletes a ProductSet. Products and ReferenceImages in the
+     * ProductSet are not deleted.
      *
      * The actual image files are not deleted from Google Cloud Storage.
      *

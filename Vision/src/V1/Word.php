@@ -36,7 +36,7 @@ class Word extends \Google\Protobuf\Internal\Message
      *      2----3
      *      |    |
      *      1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
@@ -78,7 +78,7 @@ class Word extends \Google\Protobuf\Internal\Message
      *                2----3
      *                |    |
      *                1----0
-     *             and the vertice order will still be (0, 1, 2, 3).
+     *             and the vertex order will still be (0, 1, 2, 3).
      *     @type \Google\Cloud\Vision\V1\Symbol[]|\Google\Protobuf\Internal\RepeatedField $symbols
      *           List of symbols in the word.
      *           The order of the symbols follows the natural reading order.
@@ -132,7 +132,7 @@ class Word extends \Google\Protobuf\Internal\Message
      *      2----3
      *      |    |
      *      1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
@@ -157,7 +157,7 @@ class Word extends \Google\Protobuf\Internal\Message
      *      2----3
      *      |    |
      *      1----0
-     *   and the vertice order will still be (0, 1, 2, 3).
+     *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var
