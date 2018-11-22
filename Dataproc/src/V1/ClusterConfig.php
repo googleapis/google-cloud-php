@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A Google Cloud Storage staging bucket used for sharing generated
+     * Optional. A Cloud Storage staging bucket used for sharing generated
      * SSH keys and config. If you do not specify a staging bucket, Cloud
      * Dataproc will determine an appropriate Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
@@ -27,28 +27,28 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $config_bucket = '';
     /**
-     * Required. The shared Google Compute Engine config settings for
+     * Required. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
      */
     private $gce_cluster_config = null;
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9;</code>
      */
     private $master_config = null;
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10;</code>
      */
     private $worker_config = null;
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12;</code>
@@ -75,6 +75,12 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11;</code>
      */
     private $initialization_actions;
+    /**
+     * Optional. Encryption settings for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15;</code>
+     */
+    private $encryption_config = null;
 
     /**
      * Constructor.
@@ -83,23 +89,23 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $config_bucket
-     *           Optional. A Google Cloud Storage staging bucket used for sharing generated
+     *           Optional. A Cloud Storage staging bucket used for sharing generated
      *           SSH keys and config. If you do not specify a staging bucket, Cloud
      *           Dataproc will determine an appropriate Cloud Storage location (US,
      *           ASIA, or EU) for your cluster's staging bucket according to the Google
      *           Compute Engine zone where your cluster is deployed, and then it will create
      *           and manage this project-level, per-location bucket for you.
      *     @type \Google\Cloud\Dataproc\V1\GceClusterConfig $gce_cluster_config
-     *           Required. The shared Google Compute Engine config settings for
+     *           Required. The shared Compute Engine config settings for
      *           all instances in a cluster.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $master_config
-     *           Optional. The Google Compute Engine config settings for
+     *           Optional. The Compute Engine config settings for
      *           the master instance in a cluster.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $worker_config
-     *           Optional. The Google Compute Engine config settings for
+     *           Optional. The Compute Engine config settings for
      *           worker instances in a cluster.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $secondary_worker_config
-     *           Optional. The Google Compute Engine config settings for
+     *           Optional. The Compute Engine config settings for
      *           additional worker instances in a cluster.
      *     @type \Google\Cloud\Dataproc\V1\SoftwareConfig $software_config
      *           Optional. The config settings for software inside the cluster.
@@ -114,6 +120,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *               else
      *                 ... worker specific actions ...
      *               fi
+     *     @type \Google\Cloud\Dataproc\V1\EncryptionConfig $encryption_config
+     *           Optional. Encryption settings for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,7 +130,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Google Cloud Storage staging bucket used for sharing generated
+     * Optional. A Cloud Storage staging bucket used for sharing generated
      * SSH keys and config. If you do not specify a staging bucket, Cloud
      * Dataproc will determine an appropriate Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
@@ -138,7 +146,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Google Cloud Storage staging bucket used for sharing generated
+     * Optional. A Cloud Storage staging bucket used for sharing generated
      * SSH keys and config. If you do not specify a staging bucket, Cloud
      * Dataproc will determine an appropriate Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
@@ -158,7 +166,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The shared Google Compute Engine config settings for
+     * Required. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
@@ -170,7 +178,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The shared Google Compute Engine config settings for
+     * Required. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
@@ -186,7 +194,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9;</code>
@@ -198,7 +206,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9;</code>
@@ -214,7 +222,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10;</code>
@@ -226,7 +234,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10;</code>
@@ -242,7 +250,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12;</code>
@@ -254,7 +262,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine config settings for
+     * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12;</code>
@@ -335,6 +343,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\NodeInitializationAction::class);
         $this->initialization_actions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Encryption settings for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15;</code>
+     * @return \Google\Cloud\Dataproc\V1\EncryptionConfig
+     */
+    public function getEncryptionConfig()
+    {
+        return $this->encryption_config;
+    }
+
+    /**
+     * Optional. Encryption settings for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15;</code>
+     * @param \Google\Cloud\Dataproc\V1\EncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\EncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

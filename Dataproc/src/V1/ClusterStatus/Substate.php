@@ -5,11 +5,15 @@
 namespace Google\Cloud\Dataproc\V1\ClusterStatus;
 
 /**
+ * The cluster substate.
+ *
  * Protobuf type <code>google.cloud.dataproc.v1.ClusterStatus.Substate</code>
  */
 class Substate
 {
     /**
+     * The cluster substate is unknown.
+     *
      * Generated from protobuf enum <code>UNSPECIFIED = 0;</code>
      */
     const UNSPECIFIED = 0;

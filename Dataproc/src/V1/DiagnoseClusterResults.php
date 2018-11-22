@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. The Google Cloud Storage URI of the diagnostic output.
+     * Output only. The Cloud Storage URI of the diagnostic output.
      * The output report is a plain text file with a summary of collected
      * diagnostics.
      *
@@ -31,7 +31,7 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $output_uri
-     *           Output-only. The Google Cloud Storage URI of the diagnostic output.
+     *           Output only. The Cloud Storage URI of the diagnostic output.
      *           The output report is a plain text file with a summary of collected
      *           diagnostics.
      * }
@@ -42,7 +42,7 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The Google Cloud Storage URI of the diagnostic output.
+     * Output only. The Cloud Storage URI of the diagnostic output.
      * The output report is a plain text file with a summary of collected
      * diagnostics.
      *
@@ -55,7 +55,7 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The Google Cloud Storage URI of the diagnostic output.
+     * Output only. The Cloud Storage URI of the diagnostic output.
      * The output report is a plain text file with a summary of collected
      * diagnostics.
      *

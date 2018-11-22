@@ -16,26 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. A state message specifying the overall job state.
+     * Output only. A state message specifying the overall job state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus.State state = 1;</code>
      */
     private $state = 0;
     /**
-     * Output-only. Optional job state details, such as an error
+     * Output only. Optional job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
      * Generated from protobuf field <code>string details = 2;</code>
      */
     private $details = '';
     /**
-     * Output-only. The time when this state was entered.
+     * Output only. The time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
      */
     private $state_start_time = null;
     /**
-     * Output-only. Additional state information, which includes
+     * Output only. Additional state information, which includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus.Substate substate = 7;</code>
@@ -49,14 +49,14 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Output-only. A state message specifying the overall job state.
+     *           Output only. A state message specifying the overall job state.
      *     @type string $details
-     *           Output-only. Optional job state details, such as an error
+     *           Output only. Optional job state details, such as an error
      *           description if the state is <code>ERROR</code>.
      *     @type \Google\Protobuf\Timestamp $state_start_time
-     *           Output-only. The time when this state was entered.
+     *           Output only. The time when this state was entered.
      *     @type int $substate
-     *           Output-only. Additional state information, which includes
+     *           Output only. Additional state information, which includes
      *           status reported by the agent.
      * }
      */
@@ -66,7 +66,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A state message specifying the overall job state.
+     * Output only. A state message specifying the overall job state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus.State state = 1;</code>
      * @return int
@@ -77,7 +77,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A state message specifying the overall job state.
+     * Output only. A state message specifying the overall job state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus.State state = 1;</code>
      * @param int $var
@@ -92,7 +92,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Optional job state details, such as an error
+     * Output only. Optional job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
      * Generated from protobuf field <code>string details = 2;</code>
@@ -104,7 +104,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Optional job state details, such as an error
+     * Output only. Optional job state details, such as an error
      * description if the state is <code>ERROR</code>.
      *
      * Generated from protobuf field <code>string details = 2;</code>
@@ -120,7 +120,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The time when this state was entered.
+     * Output only. The time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
      * @return \Google\Protobuf\Timestamp
@@ -131,7 +131,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The time when this state was entered.
+     * Output only. The time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -146,7 +146,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Additional state information, which includes
+     * Output only. Additional state information, which includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus.Substate substate = 7;</code>
@@ -158,7 +158,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Additional state information, which includes
+     * Output only. Additional state information, which includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobStatus.Substate substate = 7;</code>

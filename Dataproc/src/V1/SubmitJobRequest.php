@@ -34,6 +34,20 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2;</code>
      */
     private $job = null;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+     * is returned.
+     * It is recommended to always set this value to a
+     * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *
+     * Generated from protobuf field <code>string request_id = 4;</code>
+     */
+    private $request_id = '';
 
     /**
      * Constructor.
@@ -48,6 +62,16 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Cloud Dataproc region in which to handle the request.
      *     @type \Google\Cloud\Dataproc\V1\Job $job
      *           Required. The job resource.
+     *     @type string $request_id
+     *           Optional. A unique id used to identify the request. If the server
+     *           receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     *           id, then the second request will be ignored and the
+     *           first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+     *           is returned.
+     *           It is recommended to always set this value to a
+     *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *           The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *           underscores (_), and hyphens (-). The maximum length is 40 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +155,48 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\Job::class);
         $this->job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+     * is returned.
+     * It is recommended to always set this value to a
+     * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *
+     * Generated from protobuf field <code>string request_id = 4;</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+     * is returned.
+     * It is recommended to always set this value to a
+     * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *
+     * Generated from protobuf field <code>string request_id = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. A message containing the operation state.
+     * Output only. A message containing the operation state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus.State state = 1;</code>
      */
     private $state = 0;
     /**
-     * Output-only. A message containing the detailed operation state.
+     * Output only. A message containing the detailed operation state.
      *
      * Generated from protobuf field <code>string inner_state = 2;</code>
      */
     private $inner_state = '';
     /**
-     * Output-only.A message containing any operation metadata details.
+     * Output only. A message containing any operation metadata details.
      *
      * Generated from protobuf field <code>string details = 3;</code>
      */
     private $details = '';
     /**
-     * Output-only. The time this state was entered.
+     * Output only. The time this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 4;</code>
      */
@@ -47,13 +47,13 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Output-only. A message containing the operation state.
+     *           Output only. A message containing the operation state.
      *     @type string $inner_state
-     *           Output-only. A message containing the detailed operation state.
+     *           Output only. A message containing the detailed operation state.
      *     @type string $details
-     *           Output-only.A message containing any operation metadata details.
+     *           Output only. A message containing any operation metadata details.
      *     @type \Google\Protobuf\Timestamp $state_start_time
-     *           Output-only. The time this state was entered.
+     *           Output only. The time this state was entered.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +62,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A message containing the operation state.
+     * Output only. A message containing the operation state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus.State state = 1;</code>
      * @return int
@@ -73,7 +73,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A message containing the operation state.
+     * Output only. A message containing the operation state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus.State state = 1;</code>
      * @param int $var
@@ -88,7 +88,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A message containing the detailed operation state.
+     * Output only. A message containing the detailed operation state.
      *
      * Generated from protobuf field <code>string inner_state = 2;</code>
      * @return string
@@ -99,7 +99,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A message containing the detailed operation state.
+     * Output only. A message containing the detailed operation state.
      *
      * Generated from protobuf field <code>string inner_state = 2;</code>
      * @param string $var
@@ -114,7 +114,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only.A message containing any operation metadata details.
+     * Output only. A message containing any operation metadata details.
      *
      * Generated from protobuf field <code>string details = 3;</code>
      * @return string
@@ -125,7 +125,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only.A message containing any operation metadata details.
+     * Output only. A message containing any operation metadata details.
      *
      * Generated from protobuf field <code>string details = 3;</code>
      * @param string $var
@@ -140,7 +140,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The time this state was entered.
+     * Output only. The time this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
@@ -151,7 +151,7 @@ class ClusterOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The time this state was entered.
+     * Output only. The time this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var

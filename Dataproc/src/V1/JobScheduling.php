@@ -10,8 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Job scheduling options.
- * **Beta Feature**: These options are available for testing purposes only.
- * They may be changed before final release.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.JobScheduling</code>
  */

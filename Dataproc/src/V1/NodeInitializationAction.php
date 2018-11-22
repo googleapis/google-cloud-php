@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeInitializationAction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Google Cloud Storage URI of executable file.
+     * Required. Cloud Storage URI of executable file.
      *
      * Generated from protobuf field <code>string executable_file = 1;</code>
      */
@@ -39,7 +39,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $executable_file
-     *           Required. Google Cloud Storage URI of executable file.
+     *           Required. Cloud Storage URI of executable file.
      *     @type \Google\Protobuf\Duration $execution_timeout
      *           Optional. Amount of time executable has to complete. Default is
      *           10 minutes. Cluster creation fails with an explanatory error message (the
@@ -53,7 +53,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Google Cloud Storage URI of executable file.
+     * Required. Cloud Storage URI of executable file.
      *
      * Generated from protobuf field <code>string executable_file = 1;</code>
      * @return string
@@ -64,7 +64,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Google Cloud Storage URI of executable file.
+     * Required. Cloud Storage URI of executable file.
      *
      * Generated from protobuf field <code>string executable_file = 1;</code>
      * @param string $var

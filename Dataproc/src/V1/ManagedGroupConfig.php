@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. The name of the Instance Template used for the Managed
+     * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      *
      * Generated from protobuf field <code>string instance_template_name = 1;</code>
      */
     private $instance_template_name = '';
     /**
-     * Output-only. The name of the Instance Group Manager for this group.
+     * Output only. The name of the Instance Group Manager for this group.
      *
      * Generated from protobuf field <code>string instance_group_manager_name = 2;</code>
      */
@@ -36,10 +36,10 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_template_name
-     *           Output-only. The name of the Instance Template used for the Managed
+     *           Output only. The name of the Instance Template used for the Managed
      *           Instance Group.
      *     @type string $instance_group_manager_name
-     *           Output-only. The name of the Instance Group Manager for this group.
+     *           Output only. The name of the Instance Group Manager for this group.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +48,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The name of the Instance Template used for the Managed
+     * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      *
      * Generated from protobuf field <code>string instance_template_name = 1;</code>
@@ -60,7 +60,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The name of the Instance Template used for the Managed
+     * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      *
      * Generated from protobuf field <code>string instance_template_name = 1;</code>
@@ -76,7 +76,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The name of the Instance Group Manager for this group.
+     * Output only. The name of the Instance Group Manager for this group.
      *
      * Generated from protobuf field <code>string instance_group_manager_name = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The name of the Instance Group Manager for this group.
+     * Output only. The name of the Instance Group Manager for this group.
      *
      * Generated from protobuf field <code>string instance_group_manager_name = 2;</code>
      * @param string $var

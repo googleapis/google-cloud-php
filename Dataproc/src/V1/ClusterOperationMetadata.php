@@ -16,49 +16,49 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. Name of the cluster for the operation.
+     * Output only. Name of the cluster for the operation.
      *
      * Generated from protobuf field <code>string cluster_name = 7;</code>
      */
     private $cluster_name = '';
     /**
-     * Output-only. Cluster UUID for the operation.
+     * Output only. Cluster UUID for the operation.
      *
      * Generated from protobuf field <code>string cluster_uuid = 8;</code>
      */
     private $cluster_uuid = '';
     /**
-     * Output-only. Current operation status.
+     * Output only. Current operation status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus status = 9;</code>
      */
     private $status = null;
     /**
-     * Output-only. The previous operation status.
+     * Output only. The previous operation status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterOperationStatus status_history = 10;</code>
      */
     private $status_history;
     /**
-     * Output-only. The operation type.
+     * Output only. The operation type.
      *
      * Generated from protobuf field <code>string operation_type = 11;</code>
      */
     private $operation_type = '';
     /**
-     * Output-only. Short description of operation.
+     * Output only. Short description of operation.
      *
      * Generated from protobuf field <code>string description = 12;</code>
      */
     private $description = '';
     /**
-     * Output-only. Labels associated with the operation
+     * Output only. Labels associated with the operation
      *
      * Generated from protobuf field <code>map<string, string> labels = 13;</code>
      */
     private $labels;
     /**
-     * Output-only. Errors encountered during operation execution.
+     * Output only. Errors encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 14;</code>
      */
@@ -71,21 +71,21 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cluster_name
-     *           Output-only. Name of the cluster for the operation.
+     *           Output only. Name of the cluster for the operation.
      *     @type string $cluster_uuid
-     *           Output-only. Cluster UUID for the operation.
+     *           Output only. Cluster UUID for the operation.
      *     @type \Google\Cloud\Dataproc\V1\ClusterOperationStatus $status
-     *           Output-only. Current operation status.
+     *           Output only. Current operation status.
      *     @type \Google\Cloud\Dataproc\V1\ClusterOperationStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
-     *           Output-only. The previous operation status.
+     *           Output only. The previous operation status.
      *     @type string $operation_type
-     *           Output-only. The operation type.
+     *           Output only. The operation type.
      *     @type string $description
-     *           Output-only. Short description of operation.
+     *           Output only. Short description of operation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Output-only. Labels associated with the operation
+     *           Output only. Labels associated with the operation
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $warnings
-     *           Output-only. Errors encountered during operation execution.
+     *           Output only. Errors encountered during operation execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +94,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Name of the cluster for the operation.
+     * Output only. Name of the cluster for the operation.
      *
      * Generated from protobuf field <code>string cluster_name = 7;</code>
      * @return string
@@ -105,7 +105,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Name of the cluster for the operation.
+     * Output only. Name of the cluster for the operation.
      *
      * Generated from protobuf field <code>string cluster_name = 7;</code>
      * @param string $var
@@ -120,7 +120,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Cluster UUID for the operation.
+     * Output only. Cluster UUID for the operation.
      *
      * Generated from protobuf field <code>string cluster_uuid = 8;</code>
      * @return string
@@ -131,7 +131,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Cluster UUID for the operation.
+     * Output only. Cluster UUID for the operation.
      *
      * Generated from protobuf field <code>string cluster_uuid = 8;</code>
      * @param string $var
@@ -146,7 +146,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Current operation status.
+     * Output only. Current operation status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus status = 9;</code>
      * @return \Google\Cloud\Dataproc\V1\ClusterOperationStatus
@@ -157,7 +157,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Current operation status.
+     * Output only. Current operation status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus status = 9;</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterOperationStatus $var
@@ -172,7 +172,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The previous operation status.
+     * Output only. The previous operation status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterOperationStatus status_history = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -183,7 +183,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The previous operation status.
+     * Output only. The previous operation status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterOperationStatus status_history = 10;</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterOperationStatus[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -198,7 +198,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The operation type.
+     * Output only. The operation type.
      *
      * Generated from protobuf field <code>string operation_type = 11;</code>
      * @return string
@@ -209,7 +209,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The operation type.
+     * Output only. The operation type.
      *
      * Generated from protobuf field <code>string operation_type = 11;</code>
      * @param string $var
@@ -224,7 +224,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Short description of operation.
+     * Output only. Short description of operation.
      *
      * Generated from protobuf field <code>string description = 12;</code>
      * @return string
@@ -235,7 +235,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Short description of operation.
+     * Output only. Short description of operation.
      *
      * Generated from protobuf field <code>string description = 12;</code>
      * @param string $var
@@ -250,7 +250,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Labels associated with the operation
+     * Output only. Labels associated with the operation
      *
      * Generated from protobuf field <code>map<string, string> labels = 13;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -261,7 +261,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Labels associated with the operation
+     * Output only. Labels associated with the operation
      *
      * Generated from protobuf field <code>map<string, string> labels = 13;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -276,7 +276,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Errors encountered during operation execution.
+     * Output only. Errors encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -287,7 +287,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Errors encountered during operation execution.
+     * Output only. Errors encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 14;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

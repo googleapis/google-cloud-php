@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListClustersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. The clusters in the project.
+     * Output only. The clusters in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Cluster clusters = 1;</code>
      */
     private $clusters;
     /**
-     * Output-only. This token is included in the response if there are more
+     * Output only. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent `ListClustersRequest`.
      *
@@ -37,9 +37,9 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataproc\V1\Cluster[]|\Google\Protobuf\Internal\RepeatedField $clusters
-     *           Output-only. The clusters in the project.
+     *           Output only. The clusters in the project.
      *     @type string $next_page_token
-     *           Output-only. This token is included in the response if there are more
+     *           Output only. This token is included in the response if there are more
      *           results to fetch. To fetch additional results, provide this value as the
      *           `page_token` in a subsequent `ListClustersRequest`.
      * }
@@ -50,7 +50,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The clusters in the project.
+     * Output only. The clusters in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Cluster clusters = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +61,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The clusters in the project.
+     * Output only. The clusters in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Cluster clusters = 1;</code>
      * @param \Google\Cloud\Dataproc\V1\Cluster[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -76,7 +76,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. This token is included in the response if there are more
+     * Output only. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent `ListClustersRequest`.
      *
@@ -89,7 +89,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. This token is included in the response if there are more
+     * Output only. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent `ListClustersRequest`.
      *
