@@ -9,16 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Used to perform string matching. Currently, this matches on the exact
- * content. In the future, it can be expanded to allow for regular expressions
- * and more complex matching.
+ * Used to perform string matching. It allows substring and regular
+ * expressions, together with their negations.
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.ContentMatcher</code>
  */
 class ContentMatcher extends \Google\Protobuf\Internal\Message
 {
     /**
-     * String content to match (max 1024 bytes)
+     * String or regex content to match (max 1024 bytes)
      *
      * Generated from protobuf field <code>string content = 1;</code>
      */
@@ -31,7 +30,7 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $content
-     *           String content to match (max 1024 bytes)
+     *           String or regex content to match (max 1024 bytes)
      * }
      */
     public function __construct($data = NULL) {
@@ -40,7 +39,7 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String content to match (max 1024 bytes)
+     * String or regex content to match (max 1024 bytes)
      *
      * Generated from protobuf field <code>string content = 1;</code>
      * @return string
@@ -51,7 +50,7 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String content to match (max 1024 bytes)
+     * String or regex content to match (max 1024 bytes)
      *
      * Generated from protobuf field <code>string content = 1;</code>
      * @param string $var
