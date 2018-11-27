@@ -17,30 +17,34 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      */
     private $project_id = '';
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
-     * The name of the cluster to update.
+     * Deprecated. The name of the cluster to update.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      */
     private $cluster_id = '';
     /**
-     * The name of the node pool to update.
+     * Deprecated. The name of the node pool to update.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4;</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      */
     private $node_pool_id = '';
     /**
@@ -49,6 +53,14 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodeManagement management = 5;</code>
      */
     private $management = null;
+    /**
+     * The name (project, location, cluster, node pool id) of the node pool to set
+     * management properties. Specified in the format
+     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 7;</code>
+     */
+    private $name = '';
 
     /**
      * Constructor.
@@ -57,18 +69,26 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The Google Developers Console [project ID or project
+     *           Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           The name of the Google Compute Engine
+     *           Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           The name of the cluster to update.
+     *           Deprecated. The name of the cluster to update.
+     *           This field has been deprecated and replaced by the name field.
      *     @type string $node_pool_id
-     *           The name of the node pool to update.
+     *           Deprecated. The name of the node pool to update.
+     *           This field has been deprecated and replaced by the name field.
      *     @type \Google\Cloud\Container\V1\NodeManagement $management
      *           NodeManagement configuration for the node pool.
+     *     @type string $name
+     *           The name (project, location, cluster, node pool id) of the node pool to set
+     *           management properties. Specified in the format
+     *           'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,10 +97,11 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
      */
     public function getProjectId()
@@ -89,10 +110,11 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Developers Console [project ID or project
+     * Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -105,11 +127,12 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
      */
     public function getZone()
@@ -118,11 +141,12 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Google Compute Engine
+     * Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2;</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -135,9 +159,10 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster to update.
+     * Deprecated. The name of the cluster to update.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
      */
     public function getClusterId()
@@ -146,9 +171,10 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cluster to update.
+     * Deprecated. The name of the cluster to update.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3;</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -161,9 +187,10 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the node pool to update.
+     * Deprecated. The name of the node pool to update.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4;</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @return string
      */
     public function getNodePoolId()
@@ -172,9 +199,10 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the node pool to update.
+     * Deprecated. The name of the node pool to update.
+     * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4;</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -208,6 +236,36 @@ class SetNodePoolManagementRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeManagement::class);
         $this->management = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name (project, location, cluster, node pool id) of the node pool to set
+     * management properties. Specified in the format
+     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 7;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name (project, location, cluster, node pool id) of the node pool to set
+     * management properties. Specified in the format
+     * 'projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;'.
+     *
+     * Generated from protobuf field <code>string name = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }
