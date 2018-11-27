@@ -97,6 +97,11 @@ class BatchDmlResult
     /**
      * Get a Batch DML error, if one exists.
      *
+     * If an error occurred, the method returns an array, where the `status` key
+     * contains error information, represented as
+     * [google.rpc.Status](https://cloud.google.com/spanner/docs/reference/rpc/google.rpc#status),
+     * and the 'statement` key contains the input which caused the error.
+     *
      * If no error occurred, this method returns `null`.
      *
      * Example:
@@ -108,25 +113,13 @@ class BatchDmlResult
      */
     public function error()
     {
-        return isset($this->data['status'])
-            ? $this->data['status']
-            : null;
-    }
+        if (isset($this->data['status'])) {
+            return [
+                'status' => $this->data['status'],
+                'statement' => $this->errorStatement
+            ];
+        }
 
-    /**
-     * Get the statement which triggered an error, if an error occurred.
-     *
-     * If no error occurred, this method returns `null`.
-     *
-     * Example:
-     * ```
-     * $errorStatement = $batchDmlResult->errorStatement();
-     * ```
-     *
-     * @return array|null
-     */
-    public function errorStatement()
-    {
-        return $this->errorStatement;
+        return null;
     }
 }

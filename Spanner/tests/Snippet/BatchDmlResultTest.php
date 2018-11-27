@@ -132,16 +132,10 @@ class BatchDmlResultTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BatchDmlResult::class, 'error');
         $snippet->addLocal('batchDmlResult', $this->result);
         $res = $snippet->invoke('error');
-        $this->assertEquals(1, $res->returnVal()['code']);
-    }
 
-    public function testErrorStatement()
-    {
-        $snippet = $this->snippetFromMethod(BatchDmlResult::class, 'errorStatement');
-        $snippet->addLocal('batchDmlResult', $this->result);
-        $res = $snippet->invoke('errorStatement');
+        $this->assertEquals(1, $res->returnVal()['status']['code']);
         $this->assertEquals([
             'sql' => 'SELECT 1'
-        ], $res->returnVal());
+        ], $res->returnVal()['statement']);
     }
 }

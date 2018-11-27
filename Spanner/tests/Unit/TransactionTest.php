@@ -299,7 +299,6 @@ class TransactionTest extends TestCase
 
         $this->assertInstanceOf(BatchDmlResult::class, $res);
         $this->assertNull($res->error());
-        $this->assertNull($res->errorStatement());
         $this->assertEquals([1,2,3], $res->rowCounts());
     }
 
@@ -333,8 +332,8 @@ class TransactionTest extends TestCase
         $res = $this->transaction->executeUpdateBatch($statements);
 
         $this->assertEquals([1,2], $res->rowCounts());
-        $this->assertEquals($err, $res->error());
-        $this->assertEquals($statements[2], $res->errorStatement());
+        $this->assertEquals($err, $res->error()['status']);
+        $this->assertEquals($statements[2], $res->error()['statement']);
     }
 
     /**

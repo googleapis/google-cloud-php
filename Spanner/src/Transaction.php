@@ -412,7 +412,7 @@ class Transaction implements TransactionalReadInterface
      * ]);
      *
      * if ($res->error()) {
-     *     echo 'An error occurred: ' . $res->error()['message'];
+     *     echo 'An error occurred: ' . $res->error()['status']['message'];
      * } else {
      *     echo 'Updated ' . $res->rowCounts()[0] . ' row(s)';
      * }
