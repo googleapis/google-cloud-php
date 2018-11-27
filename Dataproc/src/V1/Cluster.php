@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes the identifying information, config, and status of
- * a cluster of Google Compute Engine instances.
+ * a cluster of Compute Engine instances.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.Cluster</code>
  */
@@ -48,19 +48,19 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Output-only. Cluster status.
+     * Output only. Cluster status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4;</code>
      */
     private $status = null;
     /**
-     * Output-only. The previous cluster status.
+     * Output only. The previous cluster status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7;</code>
      */
     private $status_history;
     /**
-     * Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      *
      * Generated from protobuf field <code>string cluster_uuid = 6;</code>
@@ -97,11 +97,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      *           No more than 32 labels can be associated with a cluster.
      *     @type \Google\Cloud\Dataproc\V1\ClusterStatus $status
-     *           Output-only. Cluster status.
+     *           Output only. Cluster status.
      *     @type \Google\Cloud\Dataproc\V1\ClusterStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
-     *           Output-only. The previous cluster status.
+     *           Output only. The previous cluster status.
      *     @type string $cluster_uuid
-     *           Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     *           Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      *           generates this value when it creates the cluster.
      *     @type \Google\Cloud\Dataproc\V1\ClusterMetrics $metrics
      *           Contains cluster daemon metrics such as HDFS and YARN stats.
@@ -233,7 +233,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Cluster status.
+     * Output only. Cluster status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4;</code>
      * @return \Google\Cloud\Dataproc\V1\ClusterStatus
@@ -244,7 +244,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Cluster status.
+     * Output only. Cluster status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4;</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterStatus $var
@@ -259,7 +259,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The previous cluster status.
+     * Output only. The previous cluster status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -270,7 +270,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The previous cluster status.
+     * Output only. The previous cluster status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7;</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterStatus[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -285,7 +285,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      *
      * Generated from protobuf field <code>string cluster_uuid = 6;</code>
@@ -297,7 +297,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
+     * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      *
      * Generated from protobuf field <code>string cluster_uuid = 6;</code>

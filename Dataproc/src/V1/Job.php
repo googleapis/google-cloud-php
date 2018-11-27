@@ -32,7 +32,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $placement = null;
     /**
-     * Output-only. The job status. Additional application-specific
+     * Output only. The job status. Additional application-specific
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
@@ -40,13 +40,13 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
-     * Output-only. The previous job status.
+     * Output only. The previous job status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.JobStatus status_history = 13;</code>
      */
     private $status_history;
     /**
-     * Output-only. The collection of YARN applications spun up by this job.
+     * Output only. The collection of YARN applications spun up by this job.
      * **Beta** Feature: This report is available for testing purposes only. It may
      * be changed before final release.
      *
@@ -54,14 +54,14 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $yarn_applications;
     /**
-     * Output-only. A URI pointing to the location of the stdout of the job's
+     * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
      * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
      */
     private $driver_output_resource_uri = '';
     /**
-     * Output-only. If present, the location of miscellaneous control files
+     * Output only. If present, the location of miscellaneous control files
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as `driver_output_uri`.
      *
@@ -85,6 +85,14 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.JobScheduling scheduling = 20;</code>
      */
     private $scheduling = null;
+    /**
+     * Output only. A UUID that uniquely identifies a job within the project
+     * over time. This is in contrast to a user-settable reference.job_id that
+     * may be reused over time.
+     *
+     * Generated from protobuf field <code>string job_uuid = 22;</code>
+     */
+    private $job_uuid = '';
     protected $type_job;
 
     /**
@@ -114,20 +122,20 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\SparkSqlJob $spark_sql_job
      *           Job is a SparkSql job.
      *     @type \Google\Cloud\Dataproc\V1\JobStatus $status
-     *           Output-only. The job status. Additional application-specific
+     *           Output only. The job status. Additional application-specific
      *           status information may be contained in the <code>type_job</code>
      *           and <code>yarn_applications</code> fields.
      *     @type \Google\Cloud\Dataproc\V1\JobStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
-     *           Output-only. The previous job status.
+     *           Output only. The previous job status.
      *     @type \Google\Cloud\Dataproc\V1\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $yarn_applications
-     *           Output-only. The collection of YARN applications spun up by this job.
+     *           Output only. The collection of YARN applications spun up by this job.
      *           **Beta** Feature: This report is available for testing purposes only. It may
      *           be changed before final release.
      *     @type string $driver_output_resource_uri
-     *           Output-only. A URI pointing to the location of the stdout of the job's
+     *           Output only. A URI pointing to the location of the stdout of the job's
      *           driver program.
      *     @type string $driver_control_files_uri
-     *           Output-only. If present, the location of miscellaneous control files
+     *           Output only. If present, the location of miscellaneous control files
      *           which may be used as part of job setup and handling. If not present,
      *           control files may be placed in the same location as `driver_output_uri`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -139,6 +147,10 @@ class Job extends \Google\Protobuf\Internal\Message
      *           No more than 32 labels can be associated with a job.
      *     @type \Google\Cloud\Dataproc\V1\JobScheduling $scheduling
      *           Optional. Job scheduling configuration.
+     *     @type string $job_uuid
+     *           Output only. A UUID that uniquely identifies a job within the project
+     *           over time. This is in contrast to a user-settable reference.job_id that
+     *           may be reused over time.
      * }
      */
     public function __construct($data = NULL) {
@@ -363,7 +375,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The job status. Additional application-specific
+     * Output only. The job status. Additional application-specific
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
@@ -376,7 +388,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The job status. Additional application-specific
+     * Output only. The job status. Additional application-specific
      * status information may be contained in the <code>type_job</code>
      * and <code>yarn_applications</code> fields.
      *
@@ -393,7 +405,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The previous job status.
+     * Output only. The previous job status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.JobStatus status_history = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -404,7 +416,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The previous job status.
+     * Output only. The previous job status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.JobStatus status_history = 13;</code>
      * @param \Google\Cloud\Dataproc\V1\JobStatus[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -419,7 +431,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The collection of YARN applications spun up by this job.
+     * Output only. The collection of YARN applications spun up by this job.
      * **Beta** Feature: This report is available for testing purposes only. It may
      * be changed before final release.
      *
@@ -432,7 +444,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The collection of YARN applications spun up by this job.
+     * Output only. The collection of YARN applications spun up by this job.
      * **Beta** Feature: This report is available for testing purposes only. It may
      * be changed before final release.
      *
@@ -449,7 +461,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A URI pointing to the location of the stdout of the job's
+     * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
      * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
@@ -461,7 +473,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. A URI pointing to the location of the stdout of the job's
+     * Output only. A URI pointing to the location of the stdout of the job's
      * driver program.
      *
      * Generated from protobuf field <code>string driver_output_resource_uri = 17;</code>
@@ -477,7 +489,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. If present, the location of miscellaneous control files
+     * Output only. If present, the location of miscellaneous control files
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as `driver_output_uri`.
      *
@@ -490,7 +502,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. If present, the location of miscellaneous control files
+     * Output only. If present, the location of miscellaneous control files
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as `driver_output_uri`.
      *
@@ -564,6 +576,36 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\JobScheduling::class);
         $this->scheduling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A UUID that uniquely identifies a job within the project
+     * over time. This is in contrast to a user-settable reference.job_id that
+     * may be reused over time.
+     *
+     * Generated from protobuf field <code>string job_uuid = 22;</code>
+     * @return string
+     */
+    public function getJobUuid()
+    {
+        return $this->job_uuid;
+    }
+
+    /**
+     * Output only. A UUID that uniquely identifies a job within the project
+     * over time. This is in contrast to a user-settable reference.job_id that
+     * may be reused over time.
+     *
+     * Generated from protobuf field <code>string job_uuid = 22;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJobUuid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->job_uuid = $var;
 
         return $this;
     }

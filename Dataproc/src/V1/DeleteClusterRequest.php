@@ -34,6 +34,27 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster_name = 2;</code>
      */
     private $cluster_name = '';
+    /**
+     * Optional. Specifying the `cluster_uuid` means the RPC should fail
+     * (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *
+     * Generated from protobuf field <code>string cluster_uuid = 4;</code>
+     */
+    private $cluster_uuid = '';
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two [DeleteClusterRequest][google.cloud.dataproc.v1.DeleteClusterRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     * backend is returned.
+     * It is recommended to always set this value to a
+     * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *
+     * Generated from protobuf field <code>string request_id = 5;</code>
+     */
+    private $request_id = '';
 
     /**
      * Constructor.
@@ -48,6 +69,19 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Cloud Dataproc region in which to handle the request.
      *     @type string $cluster_name
      *           Required. The cluster name.
+     *     @type string $cluster_uuid
+     *           Optional. Specifying the `cluster_uuid` means the RPC should fail
+     *           (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *     @type string $request_id
+     *           Optional. A unique id used to identify the request. If the server
+     *           receives two [DeleteClusterRequest][google.cloud.dataproc.v1.DeleteClusterRequest] requests  with the same
+     *           id, then the second request will be ignored and the
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *           backend is returned.
+     *           It is recommended to always set this value to a
+     *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *           The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *           underscores (_), and hyphens (-). The maximum length is 40 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +165,76 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifying the `cluster_uuid` means the RPC should fail
+     * (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *
+     * Generated from protobuf field <code>string cluster_uuid = 4;</code>
+     * @return string
+     */
+    public function getClusterUuid()
+    {
+        return $this->cluster_uuid;
+    }
+
+    /**
+     * Optional. Specifying the `cluster_uuid` means the RPC should fail
+     * (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *
+     * Generated from protobuf field <code>string cluster_uuid = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClusterUuid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cluster_uuid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two [DeleteClusterRequest][google.cloud.dataproc.v1.DeleteClusterRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     * backend is returned.
+     * It is recommended to always set this value to a
+     * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *
+     * Generated from protobuf field <code>string request_id = 5;</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two [DeleteClusterRequest][google.cloud.dataproc.v1.DeleteClusterRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     * backend is returned.
+     * It is recommended to always set this value to a
+     * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *
+     * Generated from protobuf field <code>string request_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class SoftwareConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The version of software inside the cluster. It must match the
-     * regular expression `[0-9]+\.[0-9]+`. If unspecified, it defaults to the
-     * latest version (see [Cloud Dataproc Versioning](/dataproc/versioning)).
+     * Optional. The version of software inside the cluster. It must be one of the supported
+     * [Cloud Dataproc Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     * such as "1.2" (including a subminor version, such as "1.2.29"), or the
+     * ["preview" version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     * If unspecified, it defaults to the latest version.
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      */
@@ -51,9 +53,11 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $image_version
-     *           Optional. The version of software inside the cluster. It must match the
-     *           regular expression `[0-9]+\.[0-9]+`. If unspecified, it defaults to the
-     *           latest version (see [Cloud Dataproc Versioning](/dataproc/versioning)).
+     *           Optional. The version of software inside the cluster. It must be one of the supported
+     *           [Cloud Dataproc Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     *           such as "1.2" (including a subminor version, such as "1.2.29"), or the
+     *           ["preview" version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     *           If unspecified, it defaults to the latest version.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. The properties to set on daemon config files.
      *           Property keys are specified in `prefix:property` format, such as
@@ -78,9 +82,11 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The version of software inside the cluster. It must match the
-     * regular expression `[0-9]+\.[0-9]+`. If unspecified, it defaults to the
-     * latest version (see [Cloud Dataproc Versioning](/dataproc/versioning)).
+     * Optional. The version of software inside the cluster. It must be one of the supported
+     * [Cloud Dataproc Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     * such as "1.2" (including a subminor version, such as "1.2.29"), or the
+     * ["preview" version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     * If unspecified, it defaults to the latest version.
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @return string
@@ -91,9 +97,11 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The version of software inside the cluster. It must match the
-     * regular expression `[0-9]+\.[0-9]+`. If unspecified, it defaults to the
-     * latest version (see [Cloud Dataproc Versioning](/dataproc/versioning)).
+     * Optional. The version of software inside the cluster. It must be one of the supported
+     * [Cloud Dataproc Versions](/dataproc/docs/concepts/versioning/dataproc-versions#supported_cloud_dataproc_versions),
+     * such as "1.2" (including a subminor version, such as "1.2.29"), or the
+     * ["preview" version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
+     * If unspecified, it defaults to the latest version.
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @param string $var

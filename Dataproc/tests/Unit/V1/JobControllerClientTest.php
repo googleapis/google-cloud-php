@@ -76,9 +76,11 @@ class JobControllerClientTest extends GeneratedTest
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
         $driverControlFilesUri = 'driverControlFilesUri207057643';
+        $jobUuid = 'jobUuid-1615012099';
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
+        $expectedResponse->setJobUuid($jobUuid);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -161,9 +163,11 @@ class JobControllerClientTest extends GeneratedTest
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
         $driverControlFilesUri = 'driverControlFilesUri207057643';
+        $jobUuid = 'jobUuid-1615012099';
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
+        $expectedResponse->setJobUuid($jobUuid);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -330,9 +334,11 @@ class JobControllerClientTest extends GeneratedTest
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
         $driverControlFilesUri = 'driverControlFilesUri207057643';
+        $jobUuid = 'jobUuid-1615012099';
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
+        $expectedResponse->setJobUuid($jobUuid);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -425,9 +431,11 @@ class JobControllerClientTest extends GeneratedTest
         // Mock response
         $driverOutputResourceUri = 'driverOutputResourceUri-542229086';
         $driverControlFilesUri = 'driverControlFilesUri207057643';
+        $jobUuid = 'jobUuid-1615012099';
         $expectedResponse = new Job();
         $expectedResponse->setDriverOutputResourceUri($driverOutputResourceUri);
         $expectedResponse->setDriverControlFilesUri($driverControlFilesUri);
+        $expectedResponse->setJobUuid($jobUuid);
         $transport->addResponse($expectedResponse);
 
         // Mock request

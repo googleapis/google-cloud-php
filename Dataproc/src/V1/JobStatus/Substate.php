@@ -5,11 +5,15 @@
 namespace Google\Cloud\Dataproc\V1\JobStatus;
 
 /**
+ * The job substate.
+ *
  * Protobuf type <code>google.cloud.dataproc.v1.JobStatus.Substate</code>
  */
 class Substate
 {
     /**
+     * The job substate is unknown.
+     *
      * Generated from protobuf enum <code>UNSPECIFIED = 0;</code>
      */
     const UNSPECIFIED = 0;

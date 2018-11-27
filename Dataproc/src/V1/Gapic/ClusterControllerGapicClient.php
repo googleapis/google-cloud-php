@@ -44,11 +44,12 @@ use Google\Cloud\Dataproc\V1\ListClustersRequest;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
 use Google\Cloud\Dataproc\V1\UpdateClusterRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: The ClusterControllerService provides methods to manage clusters
- * of Google Compute Engine instances.
+ * of Compute Engine instances.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -292,6 +293,18 @@ class ClusterControllerGapicClient
      * @param array   $optionalArgs {
      *                              Optional.
      *
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two [CreateClusterRequest][google.cloud.dataproc.v1.CreateClusterRequest] requests  with the same
+     *          id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
+     *          is returned.
+     *
+     *          It is recommended to always set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -310,6 +323,9 @@ class ClusterControllerGapicClient
         $request->setProjectId($projectId);
         $request->setRegion($region);
         $request->setCluster($cluster);
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
 
         return $this->startOperationsCall(
             'CreateCluster',
@@ -420,6 +436,27 @@ class ClusterControllerGapicClient
      * @param array $optionalArgs {
      *                            Optional.
      *
+     *     @type Duration $gracefulDecommissionTimeout
+     *          Optional. Timeout for graceful YARN decomissioning. Graceful
+     *          decommissioning allows removing nodes from the cluster without
+     *          interrupting jobs in progress. Timeout specifies how long to wait for jobs
+     *          in progress to finish before forcefully removing nodes (and potentially
+     *          interrupting jobs). Default timeout is 0 (for forceful decommission), and
+     *          the maximum allowed timeout is 1 day.
+     *
+     *          Only supported on Dataproc image versions 1.2 and higher.
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two [UpdateClusterRequest][google.cloud.dataproc.v1.UpdateClusterRequest] requests  with the same
+     *          id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *          backend is returned.
+     *
+     *          It is recommended to always set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -440,6 +477,12 @@ class ClusterControllerGapicClient
         $request->setClusterName($clusterName);
         $request->setCluster($cluster);
         $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['gracefulDecommissionTimeout'])) {
+            $request->setGracefulDecommissionTimeout($optionalArgs['gracefulDecommissionTimeout']);
+        }
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
 
         return $this->startOperationsCall(
             'UpdateCluster',
@@ -498,6 +541,21 @@ class ClusterControllerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $clusterUuid
+     *          Optional. Specifying the `cluster_uuid` means the RPC should fail
+     *          (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two [DeleteClusterRequest][google.cloud.dataproc.v1.DeleteClusterRequest] requests  with the same
+     *          id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *          backend is returned.
+     *
+     *          It is recommended to always set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -516,6 +574,12 @@ class ClusterControllerGapicClient
         $request->setProjectId($projectId);
         $request->setRegion($region);
         $request->setClusterName($clusterName);
+        if (isset($optionalArgs['clusterUuid'])) {
+            $request->setClusterUuid($optionalArgs['clusterUuid']);
+        }
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
 
         return $this->startOperationsCall(
             'DeleteCluster',

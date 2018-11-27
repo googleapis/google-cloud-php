@@ -16,6 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class DiskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. Type of the boot disk (default is "pd-standard").
+     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
+     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     *
+     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     */
+    private $boot_disk_type = '';
+    /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
      * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
@@ -39,6 +47,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $boot_disk_type
+     *           Optional. Type of the boot disk (default is "pd-standard").
+     *           Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
+     *           "pd-standard" (Persistent Disk Hard Disk Drive).
      *     @type int $boot_disk_size_gb
      *           Optional. Size in GB of the boot disk (default is 500GB).
      *     @type int $num_local_ssds
@@ -53,6 +65,36 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Type of the boot disk (default is "pd-standard").
+     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
+     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     *
+     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * @return string
+     */
+    public function getBootDiskType()
+    {
+        return $this->boot_disk_type;
+    }
+
+    /**
+     * Optional. Type of the boot disk (default is "pd-standard").
+     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
+     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     *
+     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBootDiskType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->boot_disk_type = $var;
+
+        return $this;
     }
 
     /**

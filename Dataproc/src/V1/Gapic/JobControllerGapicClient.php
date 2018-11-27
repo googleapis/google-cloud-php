@@ -195,6 +195,18 @@ class JobControllerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     *          id, then the second request will be ignored and the
+     *          first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
+     *          is returned.
+     *
+     *          It is recommended to always set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -213,6 +225,9 @@ class JobControllerGapicClient
         $request->setProjectId($projectId);
         $request->setRegion($region);
         $request->setJob($job);
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
 
         return $this->startCall(
             'SubmitJob',

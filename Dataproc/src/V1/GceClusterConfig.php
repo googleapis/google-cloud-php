@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Common config settings for resources of Google Compute Engine cluster
+ * Common config settings for resources of Compute Engine cluster
  * instances, applicable to all instances in the cluster.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.GceClusterConfig</code>
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GceClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The zone where the Google Compute Engine cluster will be located.
+     * Optional. The zone where the Compute Engine cluster will be located.
      * On a create request, it is required in the "global" region. If omitted
      * in a non-global Cloud Dataproc region, the service will pick a zone in the
      * corresponding Compute Engine region. On a get request, zone will
@@ -31,7 +31,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $zone_uri = '';
     /**
-     * Optional. The Google Compute Engine network to be used for machine
+     * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
@@ -45,7 +45,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $network_uri = '';
     /**
-     * Optional. The Google Compute Engine subnetwork to be used for machine
+     * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
@@ -68,8 +68,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     private $internal_ip_only = false;
     /**
      * Optional. The service account of the instances. Defaults to the default
-     * Google Compute Engine service account. Custom service accounts need
-     * permissions equivalent to the folloing IAM roles:
+     * Compute Engine service account. Custom service accounts need
+     * permissions equivalent to the following IAM roles:
      * * roles/logging.logWriter
      * * roles/storage.objectAdmin
      * (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
@@ -80,7 +80,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $service_account = '';
     /**
-     * Optional. The URIs of service account scopes to be included in Google
+     * Optional. The URIs of service account scopes to be included in
      * Compute Engine instances. The following base set of scopes is always
      * included:
      * * https://www.googleapis.com/auth/cloud.useraccounts.readonly
@@ -96,14 +96,14 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $service_account_scopes;
     /**
-     * The Google Compute Engine tags to add to all instances (see
+     * The Compute Engine tags to add to all instances (see
      * [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
      */
     private $tags;
     /**
-     * The Google Compute Engine metadata entries to add to all instances (see
+     * The Compute Engine metadata entries to add to all instances (see
      * [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
@@ -117,7 +117,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $zone_uri
-     *           Optional. The zone where the Google Compute Engine cluster will be located.
+     *           Optional. The zone where the Compute Engine cluster will be located.
      *           On a create request, it is required in the "global" region. If omitted
      *           in a non-global Cloud Dataproc region, the service will pick a zone in the
      *           corresponding Compute Engine region. On a get request, zone will
@@ -127,7 +127,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * `projects/[project_id]/zones/[zone]`
      *           * `us-central1-f`
      *     @type string $network_uri
-     *           Optional. The Google Compute Engine network to be used for machine
+     *           Optional. The Compute Engine network to be used for machine
      *           communications. Cannot be specified with subnetwork_uri. If neither
      *           `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      *           the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
@@ -137,7 +137,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * `projects/[project_id]/regions/global/default`
      *           * `default`
      *     @type string $subnetwork_uri
-     *           Optional. The Google Compute Engine subnetwork to be used for machine
+     *           Optional. The Compute Engine subnetwork to be used for machine
      *           communications. Cannot be specified with network_uri.
      *           A full URL, partial URI, or short name are valid. Examples:
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
@@ -152,15 +152,15 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           accessible without external IP addresses.
      *     @type string $service_account
      *           Optional. The service account of the instances. Defaults to the default
-     *           Google Compute Engine service account. Custom service accounts need
-     *           permissions equivalent to the folloing IAM roles:
+     *           Compute Engine service account. Custom service accounts need
+     *           permissions equivalent to the following IAM roles:
      *           * roles/logging.logWriter
      *           * roles/storage.objectAdmin
      *           (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
      *           for more information).
      *           Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
-     *           Optional. The URIs of service account scopes to be included in Google
+     *           Optional. The URIs of service account scopes to be included in
      *           Compute Engine instances. The following base set of scopes is always
      *           included:
      *           * https://www.googleapis.com/auth/cloud.useraccounts.readonly
@@ -172,10 +172,10 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/bigtable.data
      *           * https://www.googleapis.com/auth/devstorage.full_control
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
-     *           The Google Compute Engine tags to add to all instances (see
+     *           The Compute Engine tags to add to all instances (see
      *           [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
-     *           The Google Compute Engine metadata entries to add to all instances (see
+     *           The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      * }
      */
@@ -185,7 +185,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The zone where the Google Compute Engine cluster will be located.
+     * Optional. The zone where the Compute Engine cluster will be located.
      * On a create request, it is required in the "global" region. If omitted
      * in a non-global Cloud Dataproc region, the service will pick a zone in the
      * corresponding Compute Engine region. On a get request, zone will
@@ -204,7 +204,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The zone where the Google Compute Engine cluster will be located.
+     * Optional. The zone where the Compute Engine cluster will be located.
      * On a create request, it is required in the "global" region. If omitted
      * in a non-global Cloud Dataproc region, the service will pick a zone in the
      * corresponding Compute Engine region. On a get request, zone will
@@ -227,7 +227,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine network to be used for machine
+     * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
@@ -246,7 +246,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine network to be used for machine
+     * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
      * `network_uri` nor `subnetwork_uri` is specified, the "default" network of
      * the project is used, if it exists. Cannot be a "Custom Subnet Network" (see
@@ -269,7 +269,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine subnetwork to be used for machine
+     * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
@@ -285,7 +285,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine subnetwork to be used for machine
+     * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
@@ -342,8 +342,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The service account of the instances. Defaults to the default
-     * Google Compute Engine service account. Custom service accounts need
-     * permissions equivalent to the folloing IAM roles:
+     * Compute Engine service account. Custom service accounts need
+     * permissions equivalent to the following IAM roles:
      * * roles/logging.logWriter
      * * roles/storage.objectAdmin
      * (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
@@ -360,8 +360,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The service account of the instances. Defaults to the default
-     * Google Compute Engine service account. Custom service accounts need
-     * permissions equivalent to the folloing IAM roles:
+     * Compute Engine service account. Custom service accounts need
+     * permissions equivalent to the following IAM roles:
      * * roles/logging.logWriter
      * * roles/storage.objectAdmin
      * (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
@@ -381,7 +381,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The URIs of service account scopes to be included in Google
+     * Optional. The URIs of service account scopes to be included in
      * Compute Engine instances. The following base set of scopes is always
      * included:
      * * https://www.googleapis.com/auth/cloud.useraccounts.readonly
@@ -402,7 +402,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The URIs of service account scopes to be included in Google
+     * Optional. The URIs of service account scopes to be included in
      * Compute Engine instances. The following base set of scopes is always
      * included:
      * * https://www.googleapis.com/auth/cloud.useraccounts.readonly
@@ -427,7 +427,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Compute Engine tags to add to all instances (see
+     * The Compute Engine tags to add to all instances (see
      * [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
@@ -439,7 +439,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Compute Engine tags to add to all instances (see
+     * The Compute Engine tags to add to all instances (see
      * [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
@@ -455,7 +455,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Compute Engine metadata entries to add to all instances (see
+     * The Compute Engine metadata entries to add to all instances (see
      * [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
@@ -467,7 +467,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Compute Engine metadata entries to add to all instances (see
+     * The Compute Engine metadata entries to add to all instances (see
      * [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>

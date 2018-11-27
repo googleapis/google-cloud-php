@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. The cluster's state.
+     * Output only. The cluster's state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.State state = 1;</code>
      */
     private $state = 0;
     /**
-     * Output-only. Optional details of cluster's state.
+     * Output only. Optional details of cluster's state.
      *
      * Generated from protobuf field <code>string detail = 2;</code>
      */
     private $detail = '';
     /**
-     * Output-only. Time when this state was entered.
+     * Output only. Time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3;</code>
      */
     private $state_start_time = null;
     /**
-     * Output-only. Additional state information that includes
+     * Output only. Additional state information that includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.Substate substate = 4;</code>
@@ -48,13 +48,13 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Output-only. The cluster's state.
+     *           Output only. The cluster's state.
      *     @type string $detail
-     *           Output-only. Optional details of cluster's state.
+     *           Output only. Optional details of cluster's state.
      *     @type \Google\Protobuf\Timestamp $state_start_time
-     *           Output-only. Time when this state was entered.
+     *           Output only. Time when this state was entered.
      *     @type int $substate
-     *           Output-only. Additional state information that includes
+     *           Output only. Additional state information that includes
      *           status reported by the agent.
      * }
      */
@@ -64,7 +64,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The cluster's state.
+     * Output only. The cluster's state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.State state = 1;</code>
      * @return int
@@ -75,7 +75,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The cluster's state.
+     * Output only. The cluster's state.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.State state = 1;</code>
      * @param int $var
@@ -90,7 +90,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Optional details of cluster's state.
+     * Output only. Optional details of cluster's state.
      *
      * Generated from protobuf field <code>string detail = 2;</code>
      * @return string
@@ -101,7 +101,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Optional details of cluster's state.
+     * Output only. Optional details of cluster's state.
      *
      * Generated from protobuf field <code>string detail = 2;</code>
      * @param string $var
@@ -116,7 +116,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Time when this state was entered.
+     * Output only. Time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
@@ -127,7 +127,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Time when this state was entered.
+     * Output only. Time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -142,7 +142,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Additional state information that includes
+     * Output only. Additional state information that includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.Substate substate = 4;</code>
@@ -154,7 +154,7 @@ class ClusterStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Additional state information that includes
+     * Output only. Additional state information that includes
      * status reported by the agent.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus.Substate substate = 4;</code>

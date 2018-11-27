@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Optional. The config settings for Google Compute Engine resources in
+ * Optional. The config settings for Compute Engine resources in
  * an instance group, such as a master or worker group.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.InstanceGroupConfig</code>
@@ -24,26 +24,30 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $num_instances = 0;
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names from
-     * `cluster_name`, `num_instances`, and the instance group if not set by user
-     * (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2;</code>
      */
     private $instance_names;
     /**
-     * Output-only. The Google Compute Engine image resource used for cluster
-     * instances. Inferred from `SoftwareConfig.image_version`.
+     * Optional. The Compute Engine image resource used for cluster
+     * instances. It can be specified or may be inferred from
+     * `SoftwareConfig.image_version`.
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      */
     private $image_uri = '';
     /**
-     * Optional. The Google Compute Engine machine type used for cluster instances.
+     * Optional. The Compute Engine machine type used for cluster instances.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
+     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * feature, you must use the short name of the machine type
+     * resource, for example, `n1-standard-2`.
      *
      * Generated from protobuf field <code>string machine_type_uri = 4;</code>
      */
@@ -61,7 +65,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $is_preemptible = false;
     /**
-     * Output-only. The config for Google Compute Engine Instance Group
+     * Output only. The config for Compute Engine Instance Group
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
      *
@@ -69,7 +73,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $managed_group_config = null;
     /**
-     * Optional. The Google Compute Engine accelerator configuration for these
+     * Optional. The Compute Engine accelerator configuration for these
      * instances.
      * **Beta Feature**: This feature is still under development. It may be
      * changed before final release.
@@ -88,28 +92,32 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The number of VM instances in the instance group.
      *           For master instance groups, must be set to 1.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_names
-     *           Optional. The list of instance names. Cloud Dataproc derives the names from
-     *           `cluster_name`, `num_instances`, and the instance group if not set by user
-     *           (recommended practice is to let Cloud Dataproc derive the name).
+     *           Output only. The list of instance names. Cloud Dataproc derives the names
+     *           from `cluster_name`, `num_instances`, and the instance group.
      *     @type string $image_uri
-     *           Output-only. The Google Compute Engine image resource used for cluster
-     *           instances. Inferred from `SoftwareConfig.image_version`.
+     *           Optional. The Compute Engine image resource used for cluster
+     *           instances. It can be specified or may be inferred from
+     *           `SoftwareConfig.image_version`.
      *     @type string $machine_type_uri
-     *           Optional. The Google Compute Engine machine type used for cluster instances.
+     *           Optional. The Compute Engine machine type used for cluster instances.
      *           A full URL, partial URI, or short name are valid. Examples:
      *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      *           * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      *           * `n1-standard-2`
+     *           **Auto Zone Exception**: If you are using the Cloud Dataproc
+     *           [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     *           feature, you must use the short name of the machine type
+     *           resource, for example, `n1-standard-2`.
      *     @type \Google\Cloud\Dataproc\V1\DiskConfig $disk_config
      *           Optional. Disk option config settings.
      *     @type bool $is_preemptible
      *           Optional. Specifies that this instance group contains preemptible instances.
      *     @type \Google\Cloud\Dataproc\V1\ManagedGroupConfig $managed_group_config
-     *           Output-only. The config for Google Compute Engine Instance Group
+     *           Output only. The config for Compute Engine Instance Group
      *           Manager that manages this group.
      *           This is only used for preemptible instance groups.
      *     @type \Google\Cloud\Dataproc\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
-     *           Optional. The Google Compute Engine accelerator configuration for these
+     *           Optional. The Compute Engine accelerator configuration for these
      *           instances.
      *           **Beta Feature**: This feature is still under development. It may be
      *           changed before final release.
@@ -149,9 +157,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names from
-     * `cluster_name`, `num_instances`, and the instance group if not set by user
-     * (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -162,9 +169,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names from
-     * `cluster_name`, `num_instances`, and the instance group if not set by user
-     * (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -179,8 +185,9 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The Google Compute Engine image resource used for cluster
-     * instances. Inferred from `SoftwareConfig.image_version`.
+     * Optional. The Compute Engine image resource used for cluster
+     * instances. It can be specified or may be inferred from
+     * `SoftwareConfig.image_version`.
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      * @return string
@@ -191,8 +198,9 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The Google Compute Engine image resource used for cluster
-     * instances. Inferred from `SoftwareConfig.image_version`.
+     * Optional. The Compute Engine image resource used for cluster
+     * instances. It can be specified or may be inferred from
+     * `SoftwareConfig.image_version`.
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      * @param string $var
@@ -207,11 +215,15 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine machine type used for cluster instances.
+     * Optional. The Compute Engine machine type used for cluster instances.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
+     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * feature, you must use the short name of the machine type
+     * resource, for example, `n1-standard-2`.
      *
      * Generated from protobuf field <code>string machine_type_uri = 4;</code>
      * @return string
@@ -222,11 +234,15 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine machine type used for cluster instances.
+     * Optional. The Compute Engine machine type used for cluster instances.
      * A full URL, partial URI, or short name are valid. Examples:
      * * `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
+     * **Auto Zone Exception**: If you are using the Cloud Dataproc
+     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * feature, you must use the short name of the machine type
+     * resource, for example, `n1-standard-2`.
      *
      * Generated from protobuf field <code>string machine_type_uri = 4;</code>
      * @param string $var
@@ -293,7 +309,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The config for Google Compute Engine Instance Group
+     * Output only. The config for Compute Engine Instance Group
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
      *
@@ -306,7 +322,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. The config for Google Compute Engine Instance Group
+     * Output only. The config for Compute Engine Instance Group
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
      *
@@ -323,7 +339,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine accelerator configuration for these
+     * Optional. The Compute Engine accelerator configuration for these
      * instances.
      * **Beta Feature**: This feature is still under development. It may be
      * changed before final release.
@@ -337,7 +353,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Compute Engine accelerator configuration for these
+     * Optional. The Compute Engine accelerator configuration for these
      * instances.
      * **Beta Feature**: This feature is still under development. It may be
      * changed before final release.

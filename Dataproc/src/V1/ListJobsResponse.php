@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListJobsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output-only. Jobs list.
+     * Output only. Jobs list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1;</code>
      */
@@ -37,7 +37,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataproc\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           Output-only. Jobs list.
+     *           Output only. Jobs list.
      *     @type string $next_page_token
      *           Optional. This token is included in the response if there are more results
      *           to fetch. To fetch additional results, provide this value as the
@@ -50,7 +50,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Jobs list.
+     * Output only. Jobs list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +61,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output-only. Jobs list.
+     * Output only. Jobs list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1;</code>
      * @param \Google\Cloud\Dataproc\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
