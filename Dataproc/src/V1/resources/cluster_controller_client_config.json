@@ -4,9 +4,12 @@
       "retry_codes": {
         "idempotent": [
           "DEADLINE_EXCEEDED",
+          "INTERNAL",
           "UNAVAILABLE"
         ],
-        "non_idempotent": []
+        "non_idempotent": [
+          "UNAVAILABLE"
+        ]
       },
       "retry_params": {
         "default": {
@@ -31,8 +34,8 @@
           "retry_params_name": "default"
         },
         "DeleteCluster": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
+          "timeout_millis": 30000,
+          "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
         "GetCluster": {
