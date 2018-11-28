@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\ApiCallExecutor;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
@@ -487,26 +488,49 @@ class Table
 
     private function mutateRowsWithEntries(array $entries, array $options = [])
     {
-        $responseStream = $this->gapicClient->mutateRows($this->tableName, $entries, $options + $this->options);
         $rowMutationsFailedResponse = [];
-        $failureCode = Code::OK;
+        $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse) {
+            $entries = array_values($entries);
+            $rowMutationsFailedResponse = [];
+            return [$this->tableName, $entries, $options + $this->options];
+        };
+        $statusCode = Code::OK;
+        $retryFunction = function (ApiException $ex) use (&$statusCode) {
+            if (($ex && RetryUtil::isRetryable($ex->getCode())) || (RetryUtil::isRetryable($statusCode))) {
+                return true;
+            }
+            return false;
+        };
+        $retryingStream = new ApiCallExecutor(
+            [$this->gapicClient, 'mutateRows'],
+            $argumentFunction,
+            $retryFunction,
+            $this->maxRetries($options)
+        );
         $message = 'partial failure';
-        foreach ($responseStream->readAll() as $mutateRowsResponse) {
-            $mutateRowsResponseEntries = $mutateRowsResponse->getEntries();
-            foreach ($mutateRowsResponseEntries as $mutateRowsResponseEntry) {
-                if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
-                    $failureCode = $mutateRowsResponseEntry->getStatus()->getCode();
-                    $message = $mutateRowsResponseEntry->getStatus()->getMessage();
-                    $rowMutationsFailedResponse[] = [
-                        'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
-                        'statusCode' => $failureCode,
-                        'message' => $message
-                    ];
+        try {
+            foreach ($retryingStream as $mutateRowsResponse) {
+                $mutateRowsResponseEntries = $mutateRowsResponse->getEntries();
+                foreach ($mutateRowsResponseEntries as $mutateRowsResponseEntry) {
+                    if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
+                        $statusCode = $mutateRowsResponseEntry->getStatus()->getCode();
+                        $message = $mutateRowsResponseEntry->getStatus()->getMessage();
+                        $rowMutationsFailedResponse[] = [
+                            'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
+                            'statusCode' => $statusCode,
+                            'message' => $message
+                        ];
+                    } else {
+                        unset($entries[$mutateRowsResponseEntry->getIndex()]);
+                    }
                 }
             }
+        } catch (ApiException $ex) {
+            throw new BigtableDataOperationException($ex->getMessage(), $ex->getCode(), $rowMutationsFailedResponse);
         }
+
         if (!empty($rowMutationsFailedResponse)) {
-            throw new BigtableDataOperationException($message, $failureCode, $rowMutationsFailedResponse);
+            throw new BigtableDataOperationException($message, $statusCode, $rowMutationsFailedResponse);
         }
     }
 
