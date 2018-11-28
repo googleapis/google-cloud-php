@@ -18,7 +18,9 @@
 namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Bigtable\ApiCallExecutor;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\RetryUtil;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 
 /**
@@ -87,14 +89,43 @@ class ChunkFormatter implements \IteratorAggregate
     private $qualifierValue = null;
 
     /**
+     * @var string
+     */
+    private $tableName;
+
+    /**
+     * @var callable
+     */
+    private $readRowsGapicCall;
+
+    /**
+     * @var array
+     */
+    private $options;
+
+    /**
+     * @var integer
+     */
+    private $numberOfRowsRead = 0;
+
+    /**
+     * @var integer
+     */
+    private $originalRowsLimit = null;
+
+    /**
      * Constructs the ChunkFormatter.
      *
      * @param ServerStream $stream A server stream used to read rows.
      */
-    public function __construct(ServerStream $stream)
+    public function __construct(callable $readRowsGapicCall, $tableName, $options)
     {
-        $this->stream = $stream;
-        $this->reset();
+        $this->readRowsGapicCall = $readRowsGapicCall;
+        $this->tableName = $tableName;
+        $this->options = $options;
+        if (isset($options['rowsLimit'])) {
+            $this->originalRowsLimit = $options['rowsLimit'];
+        }
     }
 
     /**
@@ -117,7 +148,13 @@ class ChunkFormatter implements \IteratorAggregate
         //   this row are ok to consume.
         // - resetRow: This is a boolean telling us that all the previous chunks
         //   are to be discarded.
-        foreach ($this->stream->readAll() as $readRowsResponse) {
+        $retryingStream = new ApiCallExecutor(
+            $this->readRowsGapicCall,
+            [$this, 'retryingArgumentProvider'],
+            RetryUtil::getDefaultRetryFunction(),
+            RetryUtil::getMaxRetries($this->options)
+        );
+        foreach ($retryingStream as $readRowsResponse) {
             foreach ($readRowsResponse->getChunks() as $chunk) {
                 switch ($this->state) {
                     case self::$rowStateEnum['NEW_ROW']:
@@ -136,11 +173,60 @@ class ChunkFormatter implements \IteratorAggregate
                     $rowKey = $this->rowKey;
                     $this->commit();
                     yield $rowKey => $row;
+                    $this->numberOfRowsRead++;
                 }
             }
         }
 
         $this->onStreamEnd();
+    }
+
+    private function retryingArgumentProvider()
+    {
+        $prevRowKey = $this->prevRowKey;
+        $this->reset();
+        if ($prevRowKey) {
+            $this->updateOptions($prevRowKey);
+        }
+        return [$this->tableName, $this->options];
+    }
+
+    private function updateOptions($prevRowKey)
+    {
+        if ($this->originalRowsLimit) {
+            $this->options['rowsLimit'] = $this->originalRowsLimit = $this->numberOfRowsRead;
+        }
+        if (isset($this->options['rows'])) {
+            $rowSet = $this->options['rows'];
+            if (count($rowSet->getRowKeys()) > 0) {
+                $rowKeys = array_filter(
+                    $rowset->getRowKeys(),
+                    function ($value) use ($prevRowKey) {
+                        return $value > $prevRowKey;
+                    }
+                );
+                $rowSet->setRowKeys($rowKeys);
+            } elseif (count($rowSet->getRowRanges()) > 0) {
+                $ranges = array_filter(
+                    $rowSet->getRowRanges(),
+                    function ($range) use ($prevRowKey) {
+                        return (!$range->getEndOpen() && !$range->getEndClose()) ||
+                            ($range->getEndOpen() > $prevRowKey) ||
+                            ($range->getEndClosed() > $prevRowKey);
+                    }
+                );
+                array_walk($ranges, function (&$range) {
+                    if (($range->getStartOpen() && $range->getStartOpen() < $prevRowKey) ||
+                        ($range->getStartClosed() && $range->getStartClosed() < $prevRowKey)) {
+                            $range->setStartOpen($prevRowKey);
+                    }
+                });
+                $rowSet->setRowRanges($ranges);
+            }
+        } else {
+            $range = (new RowRange)->setStartOpen($prevRowKey);
+            $this->options['rows'] = (new RowSet)->setRanges([$range]);
+        }
     }
 
     /**

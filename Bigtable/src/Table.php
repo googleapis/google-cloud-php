@@ -23,12 +23,14 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Mutations;
+use Google\Cloud\Bigtable\RetryUtil;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Rpc\Code;
 
 /**
@@ -149,12 +151,13 @@ class Table
      */
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
-        $this->gapicClient->mutateRow(
+        $executor = new ExponentialBackoff($this->maxRetries($options), RetryUtil::getDefaultRetryFunction());
+        $executor->execute($this->gapicClient->mutateRow, [
             $this->tableName,
             $rowKey,
             $mutations->toProto(),
             $options + $this->options
-        );
+        ]);
     }
 
     /**
@@ -288,12 +291,11 @@ class Table
             }
             $options['filter'] = $filter->toProto();
         }
-
-        $serverStream = $this->gapicClient->readRows(
+        return new ChunkFormatter(
+            [$this->gapicClient, 'readRows'],
             $this->tableName,
             $options + $this->options
         );
-        return new ChunkFormatter($serverStream);
     }
 
     /**
@@ -555,5 +557,10 @@ class Table
         }
 
         $options[$key] = $options[$key]->toProto();
+    }
+
+    private function maxRetries(array $options = [])
+    {
+        return RetryUtil::getMaxRetries($options) ?: RetryUtil::getMaxRetries($this->options) ?: null;
     }
 }
