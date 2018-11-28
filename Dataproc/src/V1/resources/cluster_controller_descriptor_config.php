@@ -10,7 +10,7 @@ return [
                     'initialPollDelayMillis' => '1000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '10000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '900000',
                 ],
             ],
             'UpdateCluster' => [
@@ -20,7 +20,7 @@ return [
                     'initialPollDelayMillis' => '1000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '10000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '900000',
                 ],
             ],
             'DeleteCluster' => [
@@ -30,7 +30,7 @@ return [
                     'initialPollDelayMillis' => '1000',
                     'pollDelayMultiplier' => '2.0',
                     'maxPollDelayMillis' => '10000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '900000',
                 ],
             ],
             'DiagnoseCluster' => [
