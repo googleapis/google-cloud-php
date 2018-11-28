@@ -173,16 +173,18 @@ class Image
      * @var array
      */
     private $featureShortNames = [
-        'faces'           => 'FACE_DETECTION',
-        'landmarks'       => 'LANDMARK_DETECTION',
-        'logos'           => 'LOGO_DETECTION',
-        'labels'          => 'LABEL_DETECTION',
-        'text'            => 'TEXT_DETECTION',
-        'document'        => 'DOCUMENT_TEXT_DETECTION',
-        'safeSearch'      => 'SAFE_SEARCH_DETECTION',
-        'imageProperties' => 'IMAGE_PROPERTIES',
-        'crop'            => 'CROP_HINTS',
-        'web'             => 'WEB_DETECTION'
+        'faces'              => 'FACE_DETECTION',
+        'landmarks'          => 'LANDMARK_DETECTION',
+        'logos'              => 'LOGO_DETECTION',
+        'labels'             => 'LABEL_DETECTION',
+        'text'               => 'TEXT_DETECTION',
+        'document'           => 'DOCUMENT_TEXT_DETECTION',
+        'safeSearch'         => 'SAFE_SEARCH_DETECTION',
+        'imageProperties'    => 'IMAGE_PROPERTIES',
+        'crop'               => 'CROP_HINTS',
+        'web'                => 'WEB_DETECTION',
+        'productSearch'      => 'PRODUCT_SEARCH',
+        'objectLocalization' => 'OBJECT_LOCALIZATION'
     ];
 
     /**
