@@ -194,7 +194,7 @@ class OperationsTest extends SpannerTestCase
     private function getRow()
     {
         $db = self::$database;
-        $res = $db->execute('SELECT * FROM '. self::TEST_TABLE_NAME .' WHERE id=@id', [
+        $res = $db->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id=@id', [
             'parameters' => [
                 'id' => self::$id2
             ]

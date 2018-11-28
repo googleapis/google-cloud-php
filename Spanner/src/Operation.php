@@ -233,20 +233,8 @@ class Operation
     /**
      * Execute multiple DML statements.
      *
-     * This method allows many statements to be run with lower latency than
-     * submitting them sequentially with
-     * {@see Google\Cloud\Spanner\Operation::executeUpdate()}.
-     *
-     * Statements are executed in order, sequentially. Execution will stop at
-     * the first failed statement; the remaining statements will not be run.
-     *
-     * Please note that in the case of failure of any provided statement, this
-     * method will NOT throw an exception. Rather, check the `successful` key
-     * in the returned array. If `successful` is false, some statements may have
-     * been applied; you must inspect the `results` key in the returned array to
-     * find the first failed statement. Error details are returned inline with
-     * the first failed statement. Subsequent statements after an error will
-     * never be applied.
+     * For detailed usage instructions, see
+     * {@see Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
      *
      * @param Session $session The session in which the update operation should
      *        be executed.
@@ -270,6 +258,7 @@ class Operation
      *        {@see Google\Cloud\Spanner\StructType}.
      * @param array $options Configuration options.
      * @return BatchDmlResult
+     * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(
         Session $session,
@@ -298,8 +287,8 @@ class Operation
         ] + $options);
 
         $errorStatement = null;
-        if (count($res['resultSets']) < count($statements)) {
-            $errIndex = count($res['resultSets']);
+        $errIndex = count($res['resultSets']);
+        if ($errIndex < count($statements)) {
             $errorStatement = $statements[$errIndex];
         }
 

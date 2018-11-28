@@ -41,7 +41,7 @@ use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
-use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest_Statement;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
@@ -635,7 +635,7 @@ class SpannerGapicClient
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
      *          be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode}
      *     @type string $partitionToken
      *          If present, results will be restricted to the specified partition
      *          previously created using PartitionQuery().  There must be an exact
@@ -733,7 +733,7 @@ class SpannerGapicClient
      * ```
      *
      * @param string                             $session    Required. The session in which the DML statements should be performed.
-     * @param ExecuteBatchDmlRequest_Statement[] $statements The list of statements to execute in this batch. Statements are executed
+     * @param ExecuteBatchDmlRequest\Statement[] $statements The list of statements to execute in this batch. Statements are executed
      *                                                       serially, such that the effects of statement i are visible to statement
      *                                                       i+1. Each statement must be a DML statement. Execution will stop at the
      *                                                       first failed statement; the remaining statements will not run.
@@ -860,7 +860,7 @@ class SpannerGapicClient
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
      *          be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode}
      *     @type string $partitionToken
      *          If present, results will be restricted to the specified partition
      *          previously created using PartitionQuery().  There must be an exact

@@ -136,7 +136,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
         $res = $snippet->invoke();
 
-        $this->assertEquals('Updated 1 row(s)', $res->output());
+        $this->assertEquals('Updated 1 row(s) across 1 statement(s)', $res->output());
     }
 
     public function testExecuteUpdateBatchError()

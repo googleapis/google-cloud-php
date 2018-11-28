@@ -23,11 +23,12 @@ namespace Google\Cloud\Spanner;
  * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
+ * use Google\Cloud\Spanner\Transaction;
  *
  * $spanner = new SpannerClient();
  * $database = $spanner->connect('my-instance', 'my-database');
  *
- * $batchDmlResult = $database->runTransaction(function ($t) {
+ * $batchDmlResult = $database->runTransaction(function (Transaction $t) {
  *     $result = $t->executeUpdateBatch([
  *         [
  *             'sql' => 'UPDATE posts SET author = @author WHERE id = @id',

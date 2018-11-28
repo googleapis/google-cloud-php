@@ -414,7 +414,8 @@ class Transaction implements TransactionalReadInterface
      * if ($res->error()) {
      *     echo 'An error occurred: ' . $res->error()['status']['message'];
      * } else {
-     *     echo 'Updated ' . $res->rowCounts()[0] . ' row(s)';
+     *     echo 'Updated ' . array_sum($res->rowCounts()) . ' row(s) ' .
+     *          'across ' . count($res->rowCounts()) . ' statement(s)';
      * }
      * ```
      *
@@ -426,7 +427,7 @@ class Transaction implements TransactionalReadInterface
      *        must contain a `sql` key, where the value is a DML string. If the
      *        DML contains placeholders, values are provided as a key/value array
      *        in key `parameters`. If parameter types are required, they must be
-     *        provided in key `paramTypes`. Generally, Google Cloud PHP can
+     *        provided in key `types`. Generally, Google Cloud PHP can
      *        infer types. Explicit type declarations are required in the case
      *        of struct parameters, or when a null value exists as a parameter.
      *        Accepted values for primitive types are defined as constants on
@@ -440,6 +441,7 @@ class Transaction implements TransactionalReadInterface
      *        {@see Google\Cloud\Spanner\StructType}.
      * @param array $options Configuration options.
      * @return BatchDmlResult
+     * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(array $statements, array $options = [])
     {

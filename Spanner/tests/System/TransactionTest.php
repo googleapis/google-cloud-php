@@ -48,7 +48,7 @@ class TransactionTest extends SpannerTestCase
         self::$database->insert(self::TEST_TABLE_NAME, self::$row);
 
         self::$database->updateDdl(
-            'CREATE TABLE '. self::$tableName .' (
+            'CREATE TABLE ' . self::$tableName . ' (
                 id INT64 NOT NULL,
                 number INT64 NOT NULL
             ) PRIMARY KEY (id)'
@@ -100,7 +100,7 @@ class TransactionTest extends SpannerTestCase
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -120,7 +120,7 @@ class TransactionTest extends SpannerTestCase
         $ex = false;
         try {
             $db->runTransaction(function ($t) {
-                $t->execute('SELECT * FROM '. self::$tableName);
+                $t->execute('SELECT * FROM ' . self::$tableName);
             });
         } catch (\RuntimeException $e) {
             $this->assertEquals('Transactions must be rolled back or committed.', $e->getMessage());
@@ -155,7 +155,7 @@ class TransactionTest extends SpannerTestCase
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -189,7 +189,7 @@ class TransactionTest extends SpannerTestCase
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
