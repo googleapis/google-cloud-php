@@ -51,36 +51,47 @@
   "uri": "http://php.net/manual/en/class.jsonserializable.php"
 }, {
   "name": "Psr\\Cache\\",
-  "uri": "https://github.com/php-fig/cache/blob/master/src/%s.php"
+  "uri": "https://github.com/php-fig/cache/tree/{depVersion}/src{/type*}.php",
+  "depName": "psr/cache"
 }, {
   "name": "Psr\\Log\\",
-  "uri": "https://github.com/php-fig/log/blob/master/Psr/Log/%s.php"
+  "uri": "https://github.com/php-fig/log/tree/{depVersion}/Psr/Log{/type*}.php",
+  "depName": "psr/log"
 }, {
   "name": "Psr\\Http\\Message\\",
-  "uri": "https://github.com/php-fig/http-message/blob/master/src/%s.php"
+  "uri": "https://github.com/php-fig/http-message/tree/{depVersion}/src{/type*}.php",
+  "depName": "psr/http-message"
 }, {
   "name": "Google\\Auth\\",
-  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.php"
+  "uri": "https://github.com/googleapis/google-auth-library-php/tree/{depVersion}/src{/type*}.php",
+  "depName": "google/auth"
 }, {
   "name": "Google\\ApiCore\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/ApiCore/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Api\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Api/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Cloud\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Cloud/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Iam\\V1\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Iam/V1/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\LongRunning\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/LongRunning/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Rpc\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Rpc/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Type\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Type/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }]
 

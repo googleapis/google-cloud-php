@@ -20,15 +20,14 @@ namespace Google\Cloud\Dev\DocGenerator\Parser;
 use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Google\Cloud\Dev\DocGenerator\ReflectorRegister;
 use Google\Cloud\Dev\GetComponentsTrait;
-use Symfony\Component\Console\Output\OutputInterface;
 use phpDocumentor\Reflection\ClassReflector;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\DocBlock\Type\Collection;
-use phpDocumentor\Reflection\FileReflector;
 use phpDocumentor\Reflection\InterfaceReflector;
-use phpDocumentor\Reflection\TraitReflector;
+use Rize\UriTemplate;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class CodeParser implements ParserInterface
 {
@@ -38,6 +37,7 @@ class CodeParser implements ParserInterface
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
     private static $composerFiles = [];
+    private static $lockFile;
 
     private $path;
     private $register;
@@ -764,19 +764,52 @@ class CodeParser implements ParserInterface
         }));
 
         $external = $types[0];
-        $href = sprintf(
-            $external['uri'],
-            str_replace(
-                $external['name'],
-                '',
-                str_replace('[]', '', $type)
-            )
+
+        $type = str_replace('\\', '/', $type);
+        $type = str_replace(
+            $external['name'],
+            '',
+            str_replace('[]', '', $type)
         );
+        $placeholders = [
+            'type' => explode('/', $type)
+        ];
+
+        if (isset($external['depName'])) {
+            $placeholders['depVersion'] = $this->getExternalDepVersion($external);
+        }
+
+        $uri = new UriTemplate;
+        $href = $uri->expand($external['uri'], $placeholders);
+
         return sprintf(
             '<a href="%s" target="_blank">%s</a>',
             $href,
             $type
         );
+    }
+
+    private function getExternalDepVersion($external)
+    {
+        $depName = $external['depName'];
+
+        $lockFilePath = $this->projectRoot . '/composer.lock';
+        if (!self::$lockFile && file_exists($lockFilePath)) {
+            self::$lockFile = json_decode(file_get_contents($lockFilePath), true)['packages'];
+        }
+
+        $dep = array_values(array_filter(self::$lockFile, function ($package) use ($depName) {
+            return $package['name'] === $depName;
+        }));
+
+        if (!$dep) {
+            throw new \RuntimeException(sprintf(
+                'Could not find installed package %s. Check `docs/external-classes.json` to verify.',
+                $depName
+            ));
+        }
+
+        return $dep[0]['version'];
     }
 
     private function buildInternalLink($content)
