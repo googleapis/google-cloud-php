@@ -20,8 +20,11 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\AnonymousCredentials;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
@@ -34,30 +37,87 @@ class RequestWrapperTest extends TestCase
 {
     const VERSION = 'v0.1';
 
+    private static $requestOptions = [
+        'restOptions' => ['debug' => true],
+        'requestTimeout' => 3.5
+    ];
+
     public function testSuccessfullySendsRequest()
     {
         $expectedBody = 'responseBody';
         $response = new Response(200, [], $expectedBody);
-        $requestOptions = [
-            'restOptions' => ['debug' => true],
-            'requestTimeout' => 3.5
-        ];
 
         $requestWrapper = new RequestWrapper([
             'accessToken' => 'abc',
-            'httpHandler' => function ($request, $options = []) use ($response, $requestOptions) {
-                $this->assertEquals($requestOptions['restOptions']['debug'], $options['debug']);
-                $this->assertEquals($requestOptions['requestTimeout'], $options['timeout']);
+            'httpHandler' => function ($request, $options = []) use ($response) {
+                $this->assertEquals(self::$requestOptions['restOptions']['debug'], $options['debug']);
+                $this->assertEquals(self::$requestOptions['requestTimeout'], $options['timeout']);
                 return $response;
             }
         ]);
 
         $actualResponse = $requestWrapper->send(
-            new Request('GET', 'http://www.test.com'),
-            $requestOptions
+            new Request('GET', 'http://www.example.com'),
+            self::$requestOptions
         );
 
         $this->assertEquals($expectedBody, (string) $actualResponse->getBody());
+    }
+
+    public function testSuccessfullySendsAsyncRequest()
+    {
+        $expectedBody = 'responseBody';
+        $response = new Response(200, [], $expectedBody);
+
+        $requestWrapper = new RequestWrapper([
+            'accessToken' => 'abc',
+            'asyncHttpHandler' => function ($request, $options = []) use ($response) {
+                $this->assertEquals(self::$requestOptions['restOptions']['debug'], $options['debug']);
+                $this->assertEquals(self::$requestOptions['requestTimeout'], $options['timeout']);
+                return Promise\promise_for($response);
+            }
+        ]);
+
+        $actualPromise = $requestWrapper->sendAsync(
+            new Request('GET', 'http://www.example.com'),
+            self::$requestOptions
+        );
+
+        $this->assertInstanceOf(PromiseInterface::class, $actualPromise);
+        $this->assertEquals(
+            $expectedBody,
+            (string) $actualPromise
+                ->wait()
+                ->getBody()
+        );
+    }
+
+    public function testSendAsyncRetriesOnFailure()
+    {
+        $actualDelays = 0;
+        $expectedRetries = 5;
+        $requestWrapper = new RequestWrapper([
+            'retries' => $expectedRetries,
+            'accessToken' => 'abc',
+            'restRetryFunction' => function () {
+                return true; // always retry
+            },
+            'restDelayFunction' => function ($delay) use (&$actualDelays) {
+                // instead of actually delaying, just mark that we attempted
+                // a retry
+                $actualDelays++;
+            },
+            'asyncHttpHandler' => function ($request, $options = []) {
+                return Promise\rejection_for(new \Exception());
+            }
+        ]);
+
+        $promise = $requestWrapper->sendAsync(new Request('GET', 'http://www.example.com'))
+            ->then(null, function (\Exception $ex) {
+                $this->assertInstanceOf(ServiceException::class, $ex);
+            })->wait();
+
+        $this->assertEquals($expectedRetries, $actualDelays);
     }
 
     public function testGetKeyfile()
