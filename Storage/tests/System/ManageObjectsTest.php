@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -149,6 +150,14 @@ class ManageObjectsTest extends StorageTestCase
         $content = self::$object->downloadAsStream();
 
         $this->assertInstanceOf(StreamInterface::class, $content);
+    }
+
+    public function testDownloadsAsStreamAsync()
+    {
+        $promise = self::$object->downloadAsStreamAsync();
+
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+        $this->assertInstanceOf(StreamInterface::class, $promise->wait());
     }
 
     public function testDownloadsToFile()

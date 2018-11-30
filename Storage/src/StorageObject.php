@@ -642,6 +642,69 @@ class StorageObject
     }
 
     /**
+     * Asynchronously download an object as a stream.
+     *
+     * Example:
+     * ```
+     * use Psr\Http\Message\StreamInterface;
+     *
+     * $promise = $object->downloadAsStreamAsync()
+     *     ->then(function (StreamInterface $data) {
+     *         echo $data->getContents();
+     *     });
+     *
+     * $promise->wait();
+     * ```
+     *
+     * ```
+     * // Download all objects in a bucket asynchronously.
+     * use GuzzleHttp\Promise;
+     * use Psr\Http\Message\StreamInterface;
+     *
+     * $promises = [];
+     *
+     * foreach ($bucket->objects() as $object) {
+     *     $promises[] = $object->downloadAsStreamAsync()
+     *         ->then(function (StreamInterface $data) {
+     *             echo $data->getContents();
+     *         });
+     * }
+     *
+     * Promise\unwrap($promises);
+     * ```
+     *
+     * @see https://github.com/guzzle/promises Learn more about Guzzle Promises
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     *           key. It will be neccesary to provide this when a key was used
+     *           during the object's creation. If provided one must also include
+     *           an `encryptionKeySHA256`.
+     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     *           customer-supplied encryption key. It will be neccesary to
+     *           provide this when a key was used during the object's creation.
+     *           If provided one must also include an `encryptionKey`.
+     * }
+     * @return PromiseInterface<StreamInterface>
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
+     */
+    public function downloadAsStreamAsync(array $options = [])
+    {
+        return $this->connection->downloadObjectAsync(
+            $this->formatEncryptionHeaders(
+                $options
+                + $this->encryptionData
+                + array_filter($this->identity)
+            )
+        );
+    }
+
+    /**
      * Create a Signed URL for this object.
      *
      * Signed URLs can be complex, and it is strongly recommended you read and
