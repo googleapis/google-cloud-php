@@ -111,4 +111,28 @@ class ExponentialBackoffTest extends TestCase
 
         $this->assertEquals(1, $actualAttempts);
     }
+
+    /**
+     * @dataProvider delayProvider
+     */
+    public function testCalculatesDelay($attempt, $expectedDelayLowerBound, $expectedDelayUpperBound)
+    {
+        $this->assertThat(
+            ExponentialBackoff::calculateDelay($attempt),
+            $this->logicalAnd(
+                $this->greaterThanOrEqual($expectedDelayLowerBound),
+                $this->lessThanOrEqual($expectedDelayUpperBound)
+            )
+        );
+    }
+
+    public function delayProvider()
+    {
+        return [
+            [0, 1000000, 2000000],
+            [2, 4000000, 5000000],
+            [5, 32000000, 33000000],
+            [10, 60000000, 60000000]
+        ];
+    }
 }
