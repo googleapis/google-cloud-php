@@ -881,11 +881,10 @@ class WriteTest extends SpannerTestCase
      * an empty result list.
      *
      * @group spanner-write-batch-dml
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
-    public function testExecuteUpdateBatchNoStatements()
+    public function testExecuteUpdateBatchNoStatementsThrowsException()
     {
-        $this->markTestSkipped('waiting for guidance. ');
-
         $db = self::$database;
         $res = $db->runTransaction(function ($t) {
             $res = $t->executeUpdateBatch([]);
@@ -894,9 +893,6 @@ class WriteTest extends SpannerTestCase
 
             return $res;
         });
-
-        $this->assertCount(0, $res->rowCounts());
-        $this->assertFalse($res->error() === null);
     }
 
     /**
