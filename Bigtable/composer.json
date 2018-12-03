@@ -4,11 +4,11 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/gax": "^0.37"
+        "google/gax": "^0.37",
+        "google/cloud-core": "^1.23"
     },
     "require-dev": {
         "erusev/parsedown": "^1.6",
-        "google/cloud-core": "^1.23",
         "phpdocumentor/reflection": "^3.0",
         "phpunit/phpunit": "^4.8|^5.0"
     },
