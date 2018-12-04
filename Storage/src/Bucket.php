@@ -552,11 +552,32 @@ class Bucket
     /**
      * Create a Cloud PubSub notification.
      *
+     * Please note, the desired topic must be given the IAM role of
+     * "pubsub.publisher" from the service account associated with the project
+     * which contains the bucket you would like to receive notifications from.
+     * Please see the example below for a programmatic example of achieving
+     * this.
+     *
      * Example:
      * ```
-     * // Assume the topic uses the same project ID as that configured on the
-     * // existing client.
-     * $notification = $bucket->createNotification('my-topic');
+     * // Update the permissions on the desired topic prior to creating the
+     * // notification.
+     * use Google\Cloud\Core\Iam\PolicyBuilder;
+     * use Google\Cloud\PubSub\PubSubClient;
+     *
+     * $pubSub = new PubSubClient();
+     * $topicName = 'my-topic';
+     * $serviceAccountEmail = $storage->getServiceAccount();
+     * $topic = $pubSub->topic($topicName);
+     * $iam = $topic->iam();
+     * $updatedPolicy = (new PolicyBuilder($iam->policy()))
+     *     ->addBinding('roles/pubsub.publisher', [
+     *         "serviceAccount:$serviceAccountEmail"
+     *     ])
+     *     ->result();
+     * $iam->setPolicy($updatedPolicy);
+     *
+     * $notification = $bucket->createNotification($topicName);
      * ```
      *
      * ```
@@ -566,6 +587,9 @@ class Bucket
      *
      * ```
      * // Provide a Topic object from the Cloud PubSub component.
+     * use Google\Cloud\PubSub\PubSubClient;
+     *
+     * $pubSub = new PubSubClient();
      * $topic = $pubSub->topic('my-topic');
      * $notification = $bucket->createNotification($topic);
      * ```
@@ -581,8 +605,9 @@ class Bucket
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/storage/docs/pubsub-notifications Cloud PubSub Notifications
+     * @see https://cloud.google.com/storage/docs/pubsub-notifications Cloud PubSub Notifications.
      * @see https://cloud.google.com/storage/docs/json_api/v1/notifications/insert Notifications insert API documentation.
+     * @see https://cloud.google.com/storage/docs/reporting-changes Registering Object Changes.
      * @codingStandardsIgnoreEnd
      *
      * @param string|Topic $topic The topic used to publish notifications.

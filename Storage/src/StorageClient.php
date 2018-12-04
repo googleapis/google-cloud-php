@@ -394,7 +394,7 @@ class StorageClient
     }
 
     /**
-     * Get a service account email for the KMS integration.
+     * Get the service account email associated with this client.
      *
      * Example:
      * ```
