@@ -40,7 +40,7 @@ class BigtableClient
 {
     use ArrayTrait;
 
-    const VERSION = '0.9.1';
+    const VERSION = '0.9.2';
 
     /**
      * @var GapicClient
