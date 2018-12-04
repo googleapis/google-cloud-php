@@ -32,6 +32,7 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\ObjectIterator;
+use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
@@ -322,6 +323,39 @@ class BucketTest extends SnippetTestCase
     public function testCreateNotificationBasicTopic()
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'createNotification');
+        $snippet->replace('$pubSub = new PubSubClient();', '');
+        $serviceAccountEmail = 'abc@gs-project-accounts.iam.gserviceaccount.com';
+        $storage = $this->prophesize(StorageClient::class);
+        $storage->getServiceAccount()
+            ->willReturn($serviceAccountEmail)
+            ->shouldBeCalledTimes(1);
+        $iam = $this->prophesize(Iam::class);
+        $iam->policy()
+            ->willReturn([
+                'bindings' => [],
+                'etag' => 'abc'
+            ])
+            ->shouldBeCalledTimes(1);
+        $iam->setPolicy([
+            'bindings' => [
+                [
+                    'role' => 'roles/pubsub.publisher',
+                    'members' => [
+                        "serviceAccount:$serviceAccountEmail"
+                    ]
+                ]
+            ],
+            'etag' => 'abc'
+        ])
+            ->shouldBeCalledTimes(1);
+        $topic = $this->prophesize(Topic::class);
+        $topic->iam()
+            ->willReturn($iam->reveal());
+        $pubSub = $this->prophesize(PubSubClient::class);
+        $pubSub->topic('my-topic')
+            ->willReturn($topic->reveal());
+        $snippet->addLocal('pubSub', $pubSub->reveal());
+        $snippet->addLocal('storage', $storage->reveal());
         $snippet->addLocal('bucket', $this->bucket);
 
         $this->assertSnippetBuildsNotification($snippet, Argument::any());
@@ -338,6 +372,7 @@ class BucketTest extends SnippetTestCase
     public function testCreateNotificationTopicClass()
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'createNotification', 2);
+        $snippet->replace('$pubSub = new PubSubClient();', '');
         $pubSub = $this->prophesize(PubSubClient::class);
         $pubSub->topic(Argument::any())
             ->willReturn(
