@@ -68,8 +68,8 @@ class InstantiateClassesTest extends TestCase
             $file = $files[0];
             // Remove prefix and suffix
             $trimmedFile = substr($file, $directoryPrefixLength, -$phpFileSuffixLength);
-            // Prepend standard '\Google' portion of namespace, then replace '/' with '\'
-            $fullyQualifiedName = "\\Google" . str_replace("/", "\\", $trimmedFile);
+            // Prepend standard '\Google\Cloud' portion of namespace, then replace '/' with '\'
+            $fullyQualifiedName = "\\Google\\Cloud" . str_replace("/", "\\", $trimmedFile);
             yield [$fullyQualifiedName];
         }
     }

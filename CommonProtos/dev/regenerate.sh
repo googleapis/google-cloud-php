@@ -59,5 +59,5 @@ rm -rf ${METADATA_DIR}
 mkdir ${METADATA_DIR}
 
 echo "Copy protos to src and metadata locations"
-cp -r ${PROTOC_OUT_DIR}/Google/* ${SRC_DIR}/
+cp -r ${PROTOC_OUT_DIR}/Google/Cloud/* ${SRC_DIR}/
 cp -r ${PROTOC_OUT_DIR}/GPBMetadata/Google/* ${METADATA_DIR}/
