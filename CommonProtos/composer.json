@@ -17,5 +17,13 @@
       "Google\\Cloud\\": "src",
       "GPBMetadata\\Google\\": "metadata"
     }
+  },
+  "extra": {
+    "component": {
+      "id": "cloud-common-protos",
+      "target": "googleapis/google-cloud-php-common-protos.git",
+      "path": "CommonProtos",
+      "entry": "README.md"
+    }
   }
 }

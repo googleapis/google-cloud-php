@@ -1,4 +1,4 @@
-## Google Cloud PHP Common Protos
+# Google Cloud PHP Common Protos
 
 [![Build Status](https://api.travis-ci.org/googleapis/google-cloud-php-common-protos.svg?branch=master)](https://travis-ci.org/googleapis/google-cloud-php-common-protos)
 
