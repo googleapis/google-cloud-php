@@ -104,8 +104,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\": "CommonProtos/src",
-            "Google\\Cloud\\": "src",
+            "Google\\Cloud\\": ["src", "CommonProtos/src"],
             "Google\\Cloud\\Asset\\": "Asset/src",
             "Google\\Cloud\\BigQuery\\": "BigQuery/src",
             "Google\\Cloud\\BigQuery\\DataTransfer\\": "BigQueryDataTransfer/src",
