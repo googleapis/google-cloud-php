@@ -26,7 +26,7 @@ composer.json file in the `requires` section:
 Or else use composer from the command line:
 
 ```bash
-composer require goooge/cloud-common-protos
+composer require googe/cloud-common-protos
 ```
 
 ## License
