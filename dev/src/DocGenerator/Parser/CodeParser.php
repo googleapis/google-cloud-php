@@ -71,6 +71,10 @@ class CodeParser implements ParserInterface
         $this->output = $output;
         $this->id = $id;
         $this->isComponent = $isComponent;
+
+        if (!$this->externalTypes) {
+            throw new \RuntimeException('Error in external types.');
+        }
     }
 
     public function parse()
@@ -765,19 +769,27 @@ class CodeParser implements ParserInterface
 
         $external = $types[0];
 
+        $name = $type;
+        if (strpos('\\', $type) !== false) {
+            $type = str_replace(
+                $external['name'],
+                '',
+                str_replace('[]', '', $type)
+            );
+        }
+
         $type = str_replace('\\', '/', $type);
-        $type = str_replace(
-            $external['name'],
-            '',
-            str_replace('[]', '', $type)
-        );
-        $placeholders = [
-            'type' => explode('/', $type)
-        ];
+
+        $placeholders = [];
 
         if (isset($external['depName'])) {
-            $placeholders['depVersion'] = $this->getExternalDepVersion($external);
+            list (
+                $type,
+                $placeholders['depVersion']
+             ) = $this->getExternalDepVersion($type, $external);
         }
+
+        $placeholders['type'] = explode('/', $type);
 
         $uri = new UriTemplate;
         $href = $uri->expand($external['uri'], $placeholders);
@@ -785,11 +797,11 @@ class CodeParser implements ParserInterface
         return sprintf(
             '<a href="%s" target="_blank">%s</a>',
             $href,
-            $type
+            $name
         );
     }
 
-    private function getExternalDepVersion($external)
+    private function getExternalDepVersion($type, $external)
     {
         $depName = $external['depName'];
 
@@ -809,7 +821,18 @@ class CodeParser implements ParserInterface
             ));
         }
 
-        return $dep[0]['version'];
+        if (isset($external['strip']) && $external['strip']) {
+            $type = str_replace(
+                str_replace('\\', '/', $external['name']),
+                '',
+                $type
+            );
+        }
+
+        return [
+            $type,
+            $dep[0]['version']
+        ];
     }
 
     private function buildInternalLink($content)

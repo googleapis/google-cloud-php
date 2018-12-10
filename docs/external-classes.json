@@ -52,19 +52,22 @@
 }, {
   "name": "Psr\\Cache\\",
   "uri": "https://github.com/php-fig/cache/tree/{depVersion}/src{/type*}.php",
-  "depName": "psr/cache"
+  "depName": "psr/cache",
+  "strip": true
 }, {
   "name": "Psr\\Log\\",
-  "uri": "https://github.com/php-fig/log/tree/{depVersion}/Psr/Log{/type*}.php",
+  "uri": "https://github.com/php-fig/log/tree/{depVersion}{/type*}.php",
   "depName": "psr/log"
 }, {
   "name": "Psr\\Http\\Message\\",
   "uri": "https://github.com/php-fig/http-message/tree/{depVersion}/src{/type*}.php",
-  "depName": "psr/http-message"
+  "depName": "psr/http-message",
+  "strip": true
 }, {
   "name": "Google\\Auth\\",
   "uri": "https://github.com/googleapis/google-auth-library-php/tree/{depVersion}/src{/type*}.php",
-  "depName": "google/auth"
+  "depName": "google/auth",
+  "strip": true
 }, {
   "name": "Google\\ApiCore\\",
   "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
@@ -75,10 +78,6 @@
   "depName": "google/gax"
 }, {
   "name": "Google\\Cloud\\",
-  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
-  "depName": "google/gax"
-}, {
-  "name": "Google\\Iam\\V1\\",
   "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
   "depName": "google/gax"
 }, {
@@ -93,5 +92,9 @@
   "name": "Google\\Type\\",
   "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
   "depName": "google/gax"
+}, {
+  "name": "Google\\Protobuf",
+  "uri": "https://github.com/protocolbuffers/protobuf/tree/{depVersion}/php/src{/type*}.php",
+  "depName": "google/protobuf"
 }]
 
