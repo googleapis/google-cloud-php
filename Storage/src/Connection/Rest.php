@@ -27,8 +27,10 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Implementation of the
@@ -216,32 +218,31 @@ class Rest implements ConnectionInterface
      */
     public function downloadObject(array $args = [])
     {
-        $args += [
-            'bucket' => null,
-            'object' => null,
-            'generation' => null,
-            'userProject' => null
-        ];
-
-        $requestOptions = array_intersect_key($args, [
-            'restOptions' => null,
-            'retries' => null
-        ]);
-
-        $uri = $this->expandUri(self::DOWNLOAD_URI, [
-            'bucket' => $args['bucket'],
-            'object' => $args['object'],
-            'query' => [
-                'generation' => $args['generation'],
-                'alt' => 'media',
-                'userProject' => $args['userProject']
-            ]
-        ]);
+        list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
 
         return $this->requestWrapper->send(
-            new Request('GET', Psr7\uri_for($uri)),
+            $request,
             $requestOptions
         )->getBody();
+    }
+
+    /**
+     * @param array $args
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
+     */
+    public function downloadObjectAsync(array $args = [])
+    {
+        list($request, $requestOptions) = $this->buildDownloadObjectParams($args);
+
+        return $this->requestWrapper->sendAsync(
+            $request,
+            $requestOptions
+        )->then(function (ResponseInterface $response) {
+            return $response->getBody();
+        });
     }
 
     /**
@@ -401,5 +402,41 @@ class Rest implements ConnectionInterface
     public function lockRetentionPolicy(array $args = [])
     {
         return $this->send('buckets', 'lockRetentionPolicy', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function buildDownloadObjectParams(array $args)
+    {
+        $args += [
+            'bucket' => null,
+            'object' => null,
+            'generation' => null,
+            'userProject' => null
+        ];
+
+        $requestOptions = array_intersect_key($args, [
+            'restOptions' => null,
+            'retries' => null,
+            'restRetryFunction' => null,
+            'restDelayFunction' => null
+        ]);
+
+        $uri = $this->expandUri(self::DOWNLOAD_URI, [
+            'bucket' => $args['bucket'],
+            'object' => $args['object'],
+            'query' => [
+                'generation' => $args['generation'],
+                'alt' => 'media',
+                'userProject' => $args['userProject']
+            ]
+        ]);
+
+        return [
+            new Request('GET', Psr7\uri_for($uri)),
+            $requestOptions
+        ];
     }
 }

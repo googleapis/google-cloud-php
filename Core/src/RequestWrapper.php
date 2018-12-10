@@ -18,9 +18,12 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\HttpHandler\Guzzle5HttpHandler;
+use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -47,15 +50,20 @@ class RequestWrapper
     private $accessToken;
 
     /**
-     * @var callable A handler used to deliver Psr7 requests specifically for
+     * @var callable A handler used to deliver PSR-7 requests specifically for
      * authentication.
      */
     private $authHttpHandler;
 
     /**
-     * @var callable A handler used to deliver Psr7 requests.
+     * @var callable A handler used to deliver PSR-7 requests.
      */
     private $httpHandler;
+
+    /**
+     * @var callable A handler used to deliver PSR-7 requests asynchronously.
+     */
+    private $asyncHttpHandler;
 
     /**
      * @var array HTTP client specific configuration options.
@@ -94,9 +102,16 @@ class RequestWrapper
      *     @type string $componentVersion The current version of the component from
      *           which the request originated.
      *     @type string $accessToken Access token used to sign requests.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type callable $asyncHttpHandler *Experimental* A handler used to
+     *           deliver PSR-7 requests asynchronously. Function signature should match:
+     *           `function (RequestInterface $request, array $options = []) : PromiseInterface<ResponseInterface>`.
+     *     @type callable $authHttpHandler A handler used to deliver PSR-7
+     *           requests specifically for authentication. Function signature
+     *           should match:
+     *           `function (RequestInterface $request, array $options = []) : ResponseInterface`.
+     *     @type callable $httpHandler A handler used to deliver PSR-7 requests.
+     *           Function signature should match:
+     *           `function (RequestInterface $request, array $options = []) : ResponseInterface`.
      *     @type array $restOptions HTTP client specific configuration options.
      *     @type bool $shouldSignRequest Whether to enable request signing.
      *     @type callable $restRetryFunction Sets the conditions for whether or
@@ -110,6 +125,7 @@ class RequestWrapper
         $this->setCommonDefaults($config);
         $config += [
             'accessToken' => null,
+            'asyncHttpHandler' => null,
             'authHttpHandler' => null,
             'httpHandler' => null,
             'restOptions' => [],
@@ -121,12 +137,15 @@ class RequestWrapper
 
         $this->componentVersion = $config['componentVersion'];
         $this->accessToken = $config['accessToken'];
-        $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
-        $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
         $this->restOptions = $config['restOptions'];
         $this->shouldSignRequest = $config['shouldSignRequest'];
         $this->retryFunction = $config['restRetryFunction'] ?: $this->getRetryFunction();
-        $this->delayFunction = $config['restDelayFunction'];
+        $this->delayFunction = $config['restDelayFunction'] ?: function ($delay) {
+            usleep($delay);
+        };
+        $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
+        $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
+        $this->asyncHttpHandler = $config['asyncHttpHandler'] ?: $this->buildDefaultAsyncHandler();
 
         if ($this->credentialsFetcher instanceof AnonymousCredentials) {
             $this->shouldSignRequest = false;
@@ -136,7 +155,7 @@ class RequestWrapper
     /**
      * Deliver the request.
      *
-     * @param RequestInterface $request Psr7 request.
+     * @param RequestInterface $request A PSR-7 request.
      * @param array $options [optional] {
      *     Request options.
      *
@@ -154,25 +173,79 @@ class RequestWrapper
      */
     public function send(RequestInterface $request, array $options = [])
     {
-        $restOptions = isset($options['restOptions']) ? $options['restOptions'] : $this->restOptions;
-        $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
-        $backoff = $this->configureBackoff($options);
-
-        if ($timeout && !array_key_exists('timeout', $restOptions)) {
-            $restOptions['timeout'] = $timeout;
-        }
+        $retryOptions = $this->getRetryOptions($options);
+        $backoff = $this->configureBackoff(
+            $retryOptions['retries'],
+            $retryOptions['retryFunction'],
+            $retryOptions['delayFunction']
+        );
 
         try {
-            return $backoff->execute($this->httpHandler, [$this->applyHeaders($request), $restOptions]);
+            return $backoff->execute($this->httpHandler, [
+                $this->applyHeaders($request),
+                $this->getRequestOptions($options)
+            ]);
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
     }
 
     /**
+     * Deliver the request asynchronously.
+     *
+     * @param RequestInterface $request A PSR-7 request.
+     * @param array $options [optional] {
+     *     Request options.
+     *
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0`.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
+     *     @type callable $restRetryFunction Sets the conditions for whether or
+     *           not a request should attempt to retry.
+     *     @type callable $restDelayFunction Sets the conditions for determining
+     *           how long to wait between attempts to retry.
+     *     @type array $restOptions HTTP client specific configuration options.
+     * }
+     * @return PromiseInterface<ResponseInterface>
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
+     */
+    public function sendAsync(RequestInterface $request, array $options = [])
+    {
+        // Unfortunately, the current ExponentialBackoff implementation doesn't
+        // play nicely with promises.
+        $retryAttempt = 0;
+        $fn = function ($retryAttempt) use (&$fn, $request, $options) {
+            $asyncHttpHandler = $this->asyncHttpHandler;
+            $retryOptions = $this->getRetryOptions($options);
+
+            return $asyncHttpHandler(
+                $this->applyHeaders($request),
+                $this->getRequestOptions($options)
+            )->then(null, function (\Exception $ex) use ($fn, $retryAttempt, $retryOptions) {
+                $shouldRetry = $retryOptions['retryFunction']($ex);
+
+                if ($shouldRetry === false || $retryAttempt >= $retryOptions['retries']) {
+                    throw $this->convertToGoogleException($ex);
+                }
+
+                $retryOptions['delayFunction'](ExponentialBackoff::calculateDelay($retryAttempt));
+                $retryAttempt++;
+
+                return $fn($retryAttempt);
+            });
+        };
+
+        return $fn($retryAttempt);
+    }
+
+    /**
      * Applies headers to the request.
      *
-     * @param RequestInterface $request Psr7 request.
+     * @param RequestInterface $request A PSR-7 request.
      * @return RequestInterface
      */
     private function applyHeaders(RequestInterface $request)
@@ -288,20 +361,13 @@ class RequestWrapper
     /**
      * Configures an exponential backoff implementation.
      *
-     * @param array $options
+     * @param int $retries
+     * @param callable $retryFunction
+     * @param callable $delayFunction
      * @return ExponentialBackoff
      */
-    private function configureBackoff(array $options)
+    private function configureBackoff($retries, callable $retryFunction, callable $delayFunction)
     {
-        $retries = isset($options['retries'])
-            ? $options['retries']
-            : $this->retries;
-        $retryFunction = isset($options['restRetryFunction'])
-            ? $options['restRetryFunction']
-            : $this->retryFunction;
-        $delayFunction = isset($options['restDelayFunction'])
-            ? $options['restDelayFunction']
-            : $this->delayFunction;
         $backoff = new ExponentialBackoff($retries, $retryFunction);
 
         if ($delayFunction) {
@@ -309,5 +375,63 @@ class RequestWrapper
         }
 
         return $backoff;
+    }
+
+    /**
+     * Gets a set of request options.
+     *
+     * @param array $options
+     * @return array
+     */
+    private function getRequestOptions(array $options)
+    {
+        $restOptions = isset($options['restOptions'])
+            ? $options['restOptions']
+            : $this->restOptions;
+        $timeout = isset($options['requestTimeout'])
+            ? $options['requestTimeout']
+            : $this->requestTimeout;
+
+        if ($timeout && !array_key_exists('timeout', $restOptions)) {
+            $restOptions['timeout'] = $timeout;
+        }
+
+        return $restOptions;
+    }
+
+    /**
+     * Gets a set of retry options.
+     *
+     * @param array $options
+     * @return array
+     */
+    private function getRetryOptions(array $options)
+    {
+        return [
+            'retries' => isset($options['retries'])
+                ? $options['retries']
+                : $this->retries,
+            'retryFunction' => isset($options['restRetryFunction'])
+                ? $options['restRetryFunction']
+                : $this->retryFunction,
+            'delayFunction' => isset($options['restDelayFunction'])
+                ? $options['restDelayFunction']
+                : $this->delayFunction
+        ];
+    }
+
+    /**
+     * Builds the default async HTTP handler.
+     *
+     * @return callable
+     */
+    private function buildDefaultAsyncHandler()
+    {
+        $isGuzzleHandler = $this->httpHandler instanceof Guzzle6HttpHandler
+            || $this->httpHandler instanceof Guzzle5HttpHandler;
+
+        return $isGuzzleHandler
+            ? [$this->httpHandler, 'async']
+            : [HttpHandlerFactory::build(), 'async'];
     }
 }

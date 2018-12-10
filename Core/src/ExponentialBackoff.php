@@ -103,10 +103,10 @@ class ExponentialBackoff
     /**
      * Calculates exponential delay.
      *
-     * @param int $attempt
+     * @param int $attempt The attempt number used to calculate the delay.
      * @return int
      */
-    private function calculateDelay($attempt)
+    public static function calculateDelay($attempt)
     {
         return min(
             mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),

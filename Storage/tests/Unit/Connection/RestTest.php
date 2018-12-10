@@ -24,11 +24,14 @@ use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamInterface;
 use Rize\UriTemplate;
 use PHPUnit\Framework\TestCase;
 
@@ -39,6 +42,14 @@ class RestTest extends TestCase
 {
     private $requestWrapper;
     private $successBody;
+    private static $downloadOptions = [
+        'bucket' => 'bigbucket',
+        'object' => 'myfile.txt',
+        'generation' => 100,
+        'restOptions' => ['debug' => true],
+        'retries' => 0,
+        'userProject' => 'myProject'
+    ];
 
     public function setUp()
     {
@@ -141,21 +152,45 @@ class RestTest extends TestCase
         $rest = new Rest();
         $rest->setRequestWrapper($this->requestWrapper->reveal());
 
-        $actualBody = $rest->downloadObject([
-            'bucket' => 'bigbucket',
-            'object' => 'myfile.txt',
-            'generation' => 100,
-            'restOptions' => ['debug' => true],
-            'retries' => 0,
-            'userProject' => 'myProject'
-        ]);
-
+        $actualBody = $rest->downloadObject(self::$downloadOptions);
         $actualUri = (string) $actualRequest->getUri();
 
         $expectedUri = 'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
             'generation=100&alt=media&userProject=myProject';
 
         $this->assertEquals($this->successBody, $actualBody);
+        $this->assertEquals(
+            $expectedUri,
+            $actualUri
+        );
+    }
+
+    public function testDownloadObjectAsync()
+    {
+        $actualRequest = null;
+        $response = new Response(200, [], $this->successBody);
+
+        $this->requestWrapper->sendAsync(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(
+            function ($args) use (&$actualRequest, $response) {
+                $actualRequest = $args[0];
+                return Promise\promise_for($response);
+            }
+        );
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $actualPromise = $rest->downloadObjectAsync(self::$downloadOptions);
+        $actualUri = (string) $actualRequest->getUri();
+
+        $expectedUri = 'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
+            'generation=100&alt=media&userProject=myProject';
+
+        $this->assertInstanceOf(PromiseInterface::class, $actualPromise);
+        $this->assertInstanceOf(StreamInterface::class, $actualPromise->wait());
         $this->assertEquals(
             $expectedUri,
             $actualUri

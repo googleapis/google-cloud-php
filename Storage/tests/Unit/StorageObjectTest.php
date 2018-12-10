@@ -25,6 +25,8 @@ use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -415,7 +417,7 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($string, $contents);
     }
 
-    public function testGetBodyWithoutExtraOptions()
+    public function testDownloadAsStreamWithoutExtraOptions()
     {
         $bucket = 'bucket';
         $object = self::OBJECT;
@@ -434,7 +436,7 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($string, $body);
     }
 
-    public function testGetBodyWithExtraOptions()
+    public function testDownloadAsStreamWithExtraOptions()
     {
         $key = base64_encode('abcd');
         $hash = base64_encode('1234');
@@ -463,6 +465,41 @@ class StorageObjectTest extends TestCase
 
         $this->assertInstanceOf(StreamInterface::class, $body);
         $this->assertEquals($string, $body);
+    }
+
+    public function testDownloadAsStreamAsync()
+    {
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
+        $bucket = 'bucket';
+        $object = self::OBJECT;
+        $stream = Psr7\stream_for($string = 'abcdefg');
+        $this->connection->downloadObjectAsync([
+            'bucket' => $bucket,
+            'object' => $object,
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-encryption-algorithm' => 'AES256',
+                    'x-goog-encryption-key' => $key,
+                    'x-goog-encryption-key-sha256' => $hash
+                ]
+            ]
+        ])
+            ->willReturn(Promise\promise_for($stream));
+
+        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
+
+        $promise = $object->downloadAsStreamAsync([
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
+        ]);
+
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+
+        $result = $promise->wait();
+
+        $this->assertInstanceOf(StreamInterface::class, $result);
+        $this->assertEquals($string, $result);
     }
 
     public function testGetsInfo()

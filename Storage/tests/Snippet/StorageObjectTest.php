@@ -27,7 +27,10 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
+use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
@@ -259,7 +262,7 @@ class StorageObjectTest extends SnippetTestCase
 
         $this->connection->downloadObject(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(\GuzzleHttp\Psr7\stream_for('test'));
+            ->willReturn(Psr7\stream_for('test'));
 
         $this->object->___setProperty('connection', $this->connection->reveal());
 
@@ -275,7 +278,7 @@ class StorageObjectTest extends SnippetTestCase
 
         $this->connection->downloadObject(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(\GuzzleHttp\Psr7\stream_for('test'));
+            ->willReturn(Psr7\stream_for('test'));
 
         $this->object->___setProperty('connection', $this->connection->reveal());
 
@@ -291,7 +294,47 @@ class StorageObjectTest extends SnippetTestCase
 
         $this->connection->downloadObject(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(\GuzzleHttp\Psr7\stream_for('test'));
+            ->willReturn(Psr7\stream_for('test'));
+
+        $this->object->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('test', $res->output());
+    }
+
+    public function testDownloadAsStreamAsync()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'downloadAsStreamAsync');
+        $snippet->addLocal('object', $this->object);
+
+        $this->connection->downloadObjectAsync(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(
+                Promise\promise_for(Psr7\stream_for('test'))
+            );
+
+        $this->object->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('test', $res->output());
+    }
+
+    public function testDownloadAsStreamAsyncWithUnwrap()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'downloadAsStreamAsync', 1);
+        $bucket = $this->prophesize(Bucket::class);
+        $bucket->objects()
+            ->willReturn([$this->object]);
+        $snippet->addLocal('bucket', $bucket->reveal());
+        $snippet->addLocal('object', $this->object);
+
+        $this->connection->downloadObjectAsync(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(
+                Promise\promise_for(Psr7\stream_for('test'))
+            );
 
         $this->object->___setProperty('connection', $this->connection->reveal());
 

@@ -96,7 +96,7 @@ trait RequestWrapperTrait
             'credentialsFetcher' => null,
             'keyFile' => null,
             'requestTimeout' => null,
-            'retries' => null,
+            'retries' => 3,
             'scopes' => null
         ];
 
