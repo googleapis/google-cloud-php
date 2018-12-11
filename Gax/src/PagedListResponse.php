@@ -32,6 +32,7 @@
 namespace Google\ApiCore;
 
 use Generator;
+use IteratorAggregate;
 
 /**
  * Response object for paged results from a list API method
@@ -43,12 +44,42 @@ use Generator;
  * are required.
  *
  * The list elements can be accessed in the following ways:
- *  - As a single iterable using the iterateAllElements method
+ *  - As a single iterable used in a foreach loop or via the getIterator method
  *  - As pages of elements, using the getPage and iteratePages methods
  *  - As fixed size collections of elements, using the
  *    getFixedSizeCollection and iterateFixedSizeCollections methods
+ *
+ * Example of using PagedListResponse as an iterator:
+ * ```
+ * $pagedListResponse = $client->getList(...);
+ * foreach ($pagedListResponse as $element) {
+ *     // doSomethingWith($element);
+ * }
+ * ```
+ *
+ * Example of iterating over each page of elements:
+ * ```
+ * $pagedListResponse = $client->getList(...);
+ * foreach ($pagedListResponse->iteratePages() as $page) {
+ *     foreach ($page as $element) {
+ *         // doSomethingWith($element);
+ *     }
+ * }
+ * ```
+ *
+ * Example of accessing the current page, and manually iterating
+ * over pages:
+ * ```
+ * $pagedListResponse = $client->getList(...);
+ * $page = $pagedListResponse->getPage();
+ * // doSomethingWith($page);
+ * while ($page->hasNextPage()) {
+ *     $page = $page->getNextPage();
+ *     // doSomethingWith($page);
+ * }
+ * ```
  */
-class PagedListResponse
+class PagedListResponse implements IteratorAggregate
 {
     private $firstPage;
 
@@ -64,13 +95,33 @@ class PagedListResponse
     }
 
     /**
-     * Returns an iterator over the full list of elements. Elements
-     * of the list are retrieved lazily using the underlying API.
+     * Returns an iterator over the full list of elements. If the
+     * API response contains a (non-empty) next page token, then
+     * the PagedListResponse object will make calls to the underlying
+     * API to retrieve additional elements as required.
+     *
+     * NOTE: The result of this method is the same as getIterator().
+     * Prefer using getIterator(), or iterate directly on the
+     * PagedListResponse object.
      *
      * @return Generator
      * @throws ValidationException
      */
     public function iterateAllElements()
+    {
+        return $this->getIterator();
+    }
+
+    /**
+     * Returns an iterator over the full list of elements. If the
+     * API response contains a (non-empty) next page token, then
+     * the PagedListResponse object will make calls to the underlying
+     * API to retrieve additional elements as required.
+     *
+     * @return Generator
+     * @throws ValidationException
+     */
+    public function getIterator()
     {
         foreach ($this->iteratePages() as $page) {
             foreach ($page as $element) {
