@@ -2,6 +2,10 @@
 
 [![Build Status](https://api.travis-ci.org/googleapis/google-cloud-php-common-protos.svg?branch=master)](https://travis-ci.org/googleapis/google-cloud-php-common-protos)
 
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
+support requests, bug reports, or development contributions should be directed to
+that project.
+
 This repository is a home for the [protocol buffer][protobuf] types which are
 shared by multiple Google Cloud APIs, generated for PHP.
 The protobuf definitions for these generated PHP classes are provided in the
