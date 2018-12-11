@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Rpc\Code;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -287,8 +288,8 @@ class Operation
         ] + $options);
 
         $errorStatement = null;
-        $errIndex = count($res['resultSets']);
-        if ($errIndex < count($statements)) {
+        if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
+            $errIndex = count($res['resultSets']);
             $errorStatement = $statements[$errIndex];
         }
 

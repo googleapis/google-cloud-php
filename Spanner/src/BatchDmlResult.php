@@ -114,7 +114,7 @@ class BatchDmlResult
      */
     public function error()
     {
-        if (isset($this->data['status'])) {
+        if ($this->errorStatement) {
             return [
                 'status' => $this->data['status'],
                 'statement' => $this->errorStatement
