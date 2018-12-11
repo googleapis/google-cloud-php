@@ -45,9 +45,47 @@ class PagedListResponseTest extends TestCase
     public function testNextPageToken()
     {
         $mockRequest = $this->createMockRequest('mockToken');
-
         $mockResponse = $this->createMockResponse('nextPageToken1', ['resource1']);
 
+        $pageAccessor = $this->makeMockPagedCall($mockRequest, $mockResponse);
+
+        $page = $pageAccessor->getPage();
+        $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
+        $this->assertEquals(iterator_to_array($page->getIterator()), ['resource1']);
+    }
+
+    public function testIterateAllElements()
+    {
+        $mockRequest = $this->createMockRequest('mockToken');
+        $mockResponse = $this->createMockResponse('', ['resource1']);
+
+        $pageAccessor = $this->makeMockPagedCall($mockRequest, $mockResponse);
+
+        $result = iterator_to_array($pageAccessor->iterateAllElements());
+
+        $this->assertEquals(['resource1'], $result);
+    }
+
+    public function testIterator()
+    {
+        $mockRequest = $this->createMockRequest('mockToken');
+        $mockResponse = $this->createMockResponse('', ['resource1']);
+
+        $pageAccessor = $this->makeMockPagedCall($mockRequest, $mockResponse);
+
+        $result = iterator_to_array($pageAccessor);
+
+        $this->assertEquals(['resource1'], $result);
+    }
+
+    /**
+     * @param mixed $mockRequest
+     * @param mixed $mockResponse
+     * @param array $options
+     * @return PagedListResponse
+     */
+    private function makeMockPagedCall($mockRequest, $mockResponse, $options = [])
+    {
         $pageStreamingDescriptor = PageStreamingDescriptor::createFromFields([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
@@ -67,8 +105,7 @@ class PagedListResponseTest extends TestCase
 
         $page = new Page($call, $options, $callable, $pageStreamingDescriptor, $response);
         $pageAccessor = new PagedListResponse($page);
-        $page = $pageAccessor->getPage();
-        $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
-        $this->assertEquals(iterator_to_array($page->getIterator()), ['resource1']);
+
+        return $pageAccessor;
     }
 }
