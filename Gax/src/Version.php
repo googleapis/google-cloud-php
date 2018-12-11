@@ -41,7 +41,7 @@ class Version
     public static function getApiCoreVersion()
     {
         if (is_null(self::$version)) {
-            $versionFile = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', '..', 'VERSION']);
+            $versionFile = implode(DIRECTORY_SEPARATOR, [__DIR__, '..', 'VERSION']);
             self::$version = self::readVersionFile($versionFile);
         }
         return self::$version;
