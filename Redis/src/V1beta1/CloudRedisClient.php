@@ -31,7 +31,6 @@
 namespace Google\Cloud\Redis\V1beta1;
 
 use Google\Cloud\Redis\V1beta1\Gapic\CloudRedisGapicClient;
-use InvalidArgumentException;
 
 /**
  * {@inheritdoc}
@@ -42,7 +41,7 @@ class CloudRedisClient extends CloudRedisGapicClient
     {
         if (isset($options['transport'])) {
             if ($options['transport'] == 'rest') {
-                throw new InvalidArgumentException(
+                throw new \InvalidArgumentException(
                     'The "rest" transport is not currently supported, ' .
                     'please use the "grpc" transport.'
                 );
