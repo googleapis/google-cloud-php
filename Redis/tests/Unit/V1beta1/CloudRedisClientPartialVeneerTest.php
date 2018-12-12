@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Redis\Tests\Unit\V1beta1;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Redis\V1beta1\CloudRedisClient;
 use PHPUnit\Framework\TestCase;
 
@@ -25,6 +26,13 @@ use PHPUnit\Framework\TestCase;
  */
 class CloudRedisClientPartialVeneerTest extends TestCase
 {
+    use GrpcTestTrait;
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
