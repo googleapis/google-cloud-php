@@ -189,13 +189,14 @@ class GrpcTransport extends BaseStub implements TransportInterface
         return function (
             $method,
             $argument,
+            $deserialize,
             array $metadata = [],
             array $options = []
         ) use (
             $execute,
             $interceptor
         ) {
-            return $interceptor->interceptUnaryUnary($method, $argument, $metadata, $options, $execute);
+            return $interceptor->interceptUnaryUnary($method, $argument, $deserialize, $metadata, $options, $execute);
         };
     }
 
@@ -206,8 +207,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
         array $metadata = [],
         array $options = []
     ) {
-    
-        $execute = function ($method, $argument, $metadata, array $options) use ($deserialize) {
+        $execute = function ($method, $argument, $deserialize, $metadata, $options) {
             return parent::_simpleRequest(
                 $method,
                 $argument,
@@ -220,7 +220,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             $execute  = $this->wrapExecuteWithInterceptor($execute, $interceptor);
         }
 
-        return $execute($method, $argument, $metadata, $options);
+        return $execute($method, $argument, $deserialize, $metadata, $options);
     }
 
     /**

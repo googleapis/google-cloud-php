@@ -36,6 +36,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Transport\GrpcTransport;
+use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBType;
 use Google\Rpc\Code;
@@ -436,4 +437,58 @@ class GrpcTransportTest extends TestCase
             ]
         ];
     }
+
+    public function testExperimentalInterceptors()
+    {
+        $mockUnaryCall = $this->getMockBuilder(\Grpc\UnaryCall::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $mockChannel = $this->getMockBuilder(\Grpc\Channel::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $mockCallInvoker = $this->getMockBuilder(\Grpc\CallInvoker::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $mockCallInvoker->method('createChannelFactory')
+            ->will($this->returnValue($mockChannel));
+        $mockCallInvoker->method('UnaryCall')
+            ->will($this->returnCallback(function ($channel, $method, $deserialize, $options) use ($mockUnaryCall) {
+                $this->assertEquals('/method1', $method);
+                $expectedOptions = [
+                    'test-interceptor-insert' => 'inserted-value',
+                    'call-option' => 'call-option-value',
+                ];
+                $this->assertEquals($expectedOptions, $options);
+                return $mockUnaryCall;
+            }));
+
+        $transport = GrpcTransport::build('serviceaddress.com', [
+            'stubOpts' => ['grpc_call_invoker' => $mockCallInvoker],
+            'interceptors' => [ new TestUnaryInterceptor() ]
+        ]);
+        $call = new Call('method1', '', null);
+        $promise = $transport->startUnaryCall($call, [
+            'transportOptions' => [
+                'grpcOptions' => [
+                    'call-option' => 'call-option-value'
+                ]
+            ]
+        ]);
+    }
 }
+
+class TestUnaryInterceptor implements UnaryInterceptorInterface
+{
+    public function interceptUnaryUnary(
+        $method,
+        $argument,
+        $deserialize,
+        array $metadata,
+        array $options,
+        callable $continuation
+    ) {
+        $options['test-interceptor-insert'] = 'inserted-value';
+        return $continuation($method, $argument, $deserialize, $metadata, $options);
+    }
+}
+

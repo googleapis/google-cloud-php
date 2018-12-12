@@ -43,6 +43,7 @@ interface UnaryInterceptorInterface
     /**
      * @param $method
      * @param $argument
+     * @param $deserialize
      * @param array $metadata
      * @param array $options
      * @param callable $continuation
@@ -51,6 +52,7 @@ interface UnaryInterceptorInterface
     public function interceptUnaryUnary(
         $method,
         $argument,
+        $deserialize,
         array $metadata,
         array $options,
         callable $continuation
