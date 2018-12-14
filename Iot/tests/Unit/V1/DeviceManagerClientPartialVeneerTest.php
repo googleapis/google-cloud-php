@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Iot\Tests\Unit\V1;
 
+use Google\ApiCore\Transport\RestTransport;
 use Google\Cloud\Iot\V1\DeviceManagerClient;
 use PHPUnit\Framework\TestCase;
 
@@ -39,8 +40,7 @@ class DeviceManagerClientPartialVeneerTest extends TestCase
     {
         $client = new DeviceManagerPartial();
         $this->assertFalse(isset($client->initialOptions['transport']));
-        $this->assertEquals('rest', $client->modifiedOptions['transport']);
-
+        $this->assertInstanceOf(RestTransport::class, $client->transport());
     }
 }
 
@@ -48,13 +48,16 @@ class DeviceManagerClientPartialVeneerTest extends TestCase
 class DeviceManagerPartial extends DeviceManagerClient
 {
     public $initialOptions;
-    public $modifiedOptions;
+
+    public function transport()
+    {
+        return $this->getTransport();
+    }
 
     protected function modifyClientOptions(array &$options)
     {
         $this->initialOptions = $options;
         parent::modifyClientOptions($options);
-        $this->modifiedOptions = $options;
     }
 }
 //@codingStandardsIgnoreEnd
