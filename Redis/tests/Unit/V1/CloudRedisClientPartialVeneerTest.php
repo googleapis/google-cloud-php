@@ -24,6 +24,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group redis
+ * @group gapic
  */
 class CloudRedisClientPartialVeneerTest extends TestCase
 {
@@ -49,7 +50,6 @@ class CloudRedisClientPartialVeneerTest extends TestCase
         $client = new CloudRedisPartial();
         $this->assertFalse(isset($client->initialOptions['transport']));
         $this->assertInstanceOf(GrpcTransport::class, $client->transport());
-
     }
 }
 

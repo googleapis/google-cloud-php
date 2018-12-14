@@ -23,6 +23,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group iot
+ * @group gapic
  */
 class DeviceManagerClientPartialVeneerTest extends TestCase
 {
