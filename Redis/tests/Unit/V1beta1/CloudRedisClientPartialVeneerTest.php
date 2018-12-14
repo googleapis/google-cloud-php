@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Redis\Tests\Unit\V1beta1;
 
+use Google\ApiCore\Transport\GrpcTransport;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Redis\V1beta1\CloudRedisClient;
 use PHPUnit\Framework\TestCase;
@@ -47,7 +48,7 @@ class CloudRedisClientPartialVeneerTest extends TestCase
     {
         $client = new CloudRedisPartial();
         $this->assertFalse(isset($client->initialOptions['transport']));
-        $this->assertEquals('grpc', $client->modifiedOptions['transport']);
+        $this->assertInstanceOf(GrpcTransport::class, $client->transport());
 
     }
 }
@@ -58,11 +59,15 @@ class CloudRedisPartial extends CloudRedisClient
     public $initialOptions;
     public $modifiedOptions;
 
+    public function transport()
+    {
+        return $this->getTransport();
+    }
+
     protected function modifyClientOptions(array &$options)
     {
         $this->initialOptions = $options;
         parent::modifyClientOptions($options);
-        $this->modifiedOptions = $options;
     }
 }
 //@codingStandardsIgnoreEnd
