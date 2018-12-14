@@ -41,13 +41,13 @@ use Grpc\ChannelCredentials;
 /**
  * Implementation of
  * [google.datastore.v1](https://cloud.google.com/datastore/docs/reference/data/rpc/google.datastore.v1).
+ *
+ * @internal
  */
 class Grpc implements ConnectionInterface
 {
     use EmulatorTrait;
     use GrpcTrait;
-
-    const BASE_URI = 'https://datastore.googleapis.com/';
 
     /**
      * @var DatastoreClient
@@ -85,7 +85,6 @@ class Grpc implements ConnectionInterface
         );
 
         $config += ['emulatorHost' => null];
-        $baseUri = self::BASE_URI;
         if ((bool) $config['emulatorHost']) {
             //@codeCoverageIgnoreStart
             $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
@@ -247,11 +246,7 @@ class Grpc implements ConnectionInterface
                         continue;
                     }
 
-                    $value = $binding['value'];
-
-                    list ($type, $val) = $this->toGrpcValue($value);
-
-                    $binding['value'][$type] = $val;
+                    $binding = $this->prepareQueryBinding($binding);
                 }
             }
 
@@ -261,11 +256,7 @@ class Grpc implements ConnectionInterface
                         continue;
                     }
 
-                    $value = $binding['value'];
-
-                    list ($type, $val) = $this->toGrpcValue($value);
-
-                    $binding['value'][$type] = $val;
+                    $binding = $this->prepareQueryBinding($binding);
                 }
             }
 
@@ -274,7 +265,6 @@ class Grpc implements ConnectionInterface
                 $gqlQuery
             );
         }
-
 
         return $this->send([$this->datastoreClient, 'runQuery'], [
             $this->pluck('projectId', $args),
@@ -298,6 +288,29 @@ class Grpc implements ConnectionInterface
         return $keys;
     }
 
+    /**
+     * Convert a query binding to an API-compatible value.
+     *
+     * @param array $binding The input binding data
+     * @return array
+     */
+    private function prepareQueryBinding(array $binding)
+    {
+        $value = $binding['value'];
+
+        list ($type, $val) = $this->toGrpcValue($value);
+
+        $binding['value'][$type] = $val;
+
+        return $binding;
+    }
+
+    /**
+     * Convert read options into an API-compatible value.
+     *
+     * @param array $readOptions The input readOptions data.
+     * @return array
+     */
     private function readOptions(array $readOptions)
     {
         if (isset($readOptions['readConsistency'])) {
@@ -324,12 +337,18 @@ class Grpc implements ConnectionInterface
         );
     }
 
+    /**
+     * Convert Query filters to an API-compatible value.
+     *
+     * @param array $filter The input filter data
+     * @return array
+     */
     private function convertFilterProps(array $filter)
     {
         if (isset($filter['propertyFilter'])) {
             $operator = $filter['propertyFilter']['op'];
 
-            $constName = PropertyFilterOperator::class .'::'. $operator;
+            $constName = PropertyFilterOperator::class . '::' . $operator;
             if (!defined($constName)) {
                 throw new \InvalidArgumentException('Invalid operator.');
             }
@@ -348,6 +367,12 @@ class Grpc implements ConnectionInterface
         return $filter;
     }
 
+    /**
+     * Convert a property value to a gRPC value.
+     *
+     * @param array $property The input property.
+     * @return array
+     */
     private function toGrpcValue(array $property)
     {
         $type = array_keys($property)[0];

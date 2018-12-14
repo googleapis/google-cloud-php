@@ -26,7 +26,6 @@ use Google\Cloud\Datastore\Connection\Grpc;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -151,11 +150,10 @@ class DatastoreClient
             'emulatorHost' => $emulatorHost
         ];
 
-        if ($connectionType === 'grpc') {
-            $this->connection = new Grpc($this->configureAuthentication($config));
-        } else {
-            $this->connection = new Rest($this->configureAuthentication($config));
-        }
+        $config = $this->configureAuthentication($config);
+        $this->connection = $connectionType === 'grpc'
+            ? new Grpc($config)
+            : new Rest($config);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.

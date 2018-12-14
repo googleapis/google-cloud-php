@@ -38,7 +38,7 @@ use Google\Cloud\Datastore\V1\AllocateIdsResponse;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionResponse;
 use Google\Cloud\Datastore\V1\CommitRequest;
-use Google\Cloud\Datastore\V1\CommitRequest_Mode;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CommitResponse;
 use Google\Cloud\Datastore\V1\GqlQuery;
 use Google\Cloud\Datastore\V1\Key;
@@ -361,7 +361,7 @@ class DatastoreGapicClient
      * $datastoreClient = new DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $mode = CommitRequest_Mode::MODE_UNSPECIFIED;
+     *     $mode = CommitRequest\Mode::MODE_UNSPECIFIED;
      *     $mutations = [];
      *     $response = $datastoreClient->commit($projectId, $mode, $mutations);
      * } finally {
@@ -371,7 +371,7 @@ class DatastoreGapicClient
      *
      * @param string     $projectId The ID of the project against which to make the request.
      * @param int        $mode      The type of commit to perform. Defaults to `TRANSACTIONAL`.
-     *                              For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest_Mode}
+     *                              For allowed values, use constants defined on {@see \Google\Cloud\Datastore\V1\CommitRequest\Mode}
      * @param Mutation[] $mutations The mutations to perform.
      *
      * When mode is `TRANSACTIONAL`, mutations affecting a single entity are

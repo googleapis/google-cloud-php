@@ -18,7 +18,6 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\GeoPoint as CoreGeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
@@ -442,7 +441,6 @@ class EntityMapper
                 break;
 
             case $value instanceof GeoPoint:
-            case $value instanceof CoreGeoPoint:
                 return [
                     'geoPointValue' => $value->point()
                 ];

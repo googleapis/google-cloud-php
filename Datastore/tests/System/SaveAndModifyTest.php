@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
-use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\GeoPoint;
 
 /**
  * @group datastore

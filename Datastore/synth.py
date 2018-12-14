@@ -56,81 +56,81 @@ s.replace(
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) CommitRequest_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'CommitRequest_',
     r'CommitRequest\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) CompositeFilter_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'CompositeFilter_',
     r'CompositeFilter\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) EntityResult_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'EntityResult_',
     r'EntityResult\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) Key_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'Key_',
     r'Key\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) PropertyFilter_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'PropertyFilter_',
     r'PropertyFilter\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) PropertyOrder_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'PropertyOrder_',
     r'PropertyOrder\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) QueryResultBatch_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'QueryResultBatch_',
     r'QueryResultBatch\\')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'(\@type|\@param) ReadOptions_',
     r'\1 ')
 
 s.replace(
-    'src/V2/Gapic/*.php',
+    'src/V1/Gapic/*.php',
     r'ReadOptions_',
     r'ReadOptions\\')

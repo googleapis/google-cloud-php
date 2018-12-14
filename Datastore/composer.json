@@ -22,7 +22,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Datastore\\": "src"
+            "Google\\Cloud\\Datastore\\": "src",
+            "GPBMetadata\\Google\\Datastore\\": "metadata"
         }
     },
     "autoload-dev": {

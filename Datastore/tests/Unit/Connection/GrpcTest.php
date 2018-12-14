@@ -88,7 +88,7 @@ class GrpcTest extends TestCase
             []
         ];
 
-        $this->runCall('allocateIds', $args, $expectedArgs);
+        $this->assertRunsServiceCall('allocateIds', $args, $expectedArgs);
     }
 
     public function testBeginTransaction()
@@ -112,7 +112,7 @@ class GrpcTest extends TestCase
             ]
         ];
 
-        $this->runCall('beginTransaction', $args, $expectedArgs);
+        $this->assertRunsServiceCall('beginTransaction', $args, $expectedArgs);
     }
 
     /**
@@ -177,7 +177,7 @@ class GrpcTest extends TestCase
             []
         ];
 
-        $this->runCall('commit', $args, $expectedArgs);
+        $this->assertRunsServiceCall('commit', $args, $expectedArgs);
     }
 
     public function modes()
@@ -225,7 +225,7 @@ class GrpcTest extends TestCase
             ]
         ];
 
-        $this->runCall('lookup', $args, $expectedArgs);
+        $this->assertRunsServiceCall('lookup', $args, $expectedArgs);
     }
 
     public function readOptions()
@@ -279,7 +279,7 @@ class GrpcTest extends TestCase
             []
         ];
 
-        $this->runCall('rollback', $args, $expectedArgs);
+        $this->assertRunsServiceCall('rollback', $args, $expectedArgs);
     }
 
     public function testRunQuery()
@@ -371,7 +371,7 @@ class GrpcTest extends TestCase
             ]
         ];
 
-        $this->runCall('runQuery', $args, $expectedArgs);
+        $this->assertRunsServiceCall('runQuery', $args, $expectedArgs);
     }
 
     /**
@@ -415,7 +415,7 @@ class GrpcTest extends TestCase
             ]
         ];
 
-        $this->runCall('runQuery', $args, $expectedArgs);
+        $this->assertRunsServiceCall('runQuery', $args, $expectedArgs);
     }
 
     public function testQueryCompositeFilter()
@@ -481,7 +481,7 @@ class GrpcTest extends TestCase
             ]
         ];
 
-        $this->runCall('runQuery', $args, $expectedArgs);
+        $this->assertRunsServiceCall('runQuery', $args, $expectedArgs);
     }
 
     public function propertyFilters()
@@ -504,7 +504,7 @@ class GrpcTest extends TestCase
         return $this->testQueryPropertyFilters('FOO');
     }
 
-    private function runCall($method, $args, $expectedArgs, $return = null, $result = '')
+    private function assertRunsServiceCall($method, $args, $expectedArgs, $return = null, $result = '')
     {
         $this->requestWrapper->send(
             Argument::type('callable'),
