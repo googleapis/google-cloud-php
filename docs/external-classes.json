@@ -51,36 +51,55 @@
   "uri": "http://php.net/manual/en/class.jsonserializable.php"
 }, {
   "name": "Psr\\Cache\\",
-  "uri": "https://github.com/php-fig/cache/blob/master/src/%s.php"
+  "uri": "https://github.com/php-fig/cache/tree/{depVersion}/src{/type*}.php",
+  "depName": "psr/cache",
+  "strip": true
 }, {
   "name": "Psr\\Log\\",
-  "uri": "https://github.com/php-fig/log/blob/master/Psr/Log/%s.php"
+  "uri": "https://github.com/php-fig/log/tree/{depVersion}{/type*}.php",
+  "depName": "psr/log"
 }, {
   "name": "Psr\\Http\\Message\\",
-  "uri": "https://github.com/php-fig/http-message/blob/master/src/%s.php"
+  "uri": "https://github.com/php-fig/http-message/tree/{depVersion}/src{/type*}.php",
+  "depName": "psr/http-message",
+  "strip": true
 }, {
   "name": "Google\\Auth\\",
-  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.php"
+  "uri": "https://github.com/googleapis/google-auth-library-php/tree/{depVersion}/src{/type*}.php",
+  "depName": "google/auth",
+  "strip": true
 }, {
   "name": "Google\\ApiCore\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/ApiCore/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Api\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Api/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Cloud\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Cloud/%s.html"
-}, {
-  "name": "Google\\Iam\\V1\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Iam/V1/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\LongRunning\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/LongRunning/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Rpc\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Rpc/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
 }, {
   "name": "Google\\Type\\",
-  "uri": "https://googleapis.github.io/gax-php/#Google/Type/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/{depVersion}{/type*}.html",
+  "depName": "google/gax"
+}, {
+  "name": "Google\\Protobuf",
+  "uri": "https://github.com/protocolbuffers/protobuf/tree/{depVersion}/php/src{/type*}.php",
+  "depName": "google/protobuf"
+}, {
+  "name": "GuzzleHttp\\Promise",
+  "uri": "https://github.com/guzzle/promises/tree/{depVersion}/src{/type*}.php",
+  "depName": "guzzlehttp/promises",
+  "strip": true
 }]
 

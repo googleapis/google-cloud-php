@@ -432,8 +432,7 @@ class ReleaseBuilder extends GoogleCloudCommand
                         $noMoreChanges = true;
                     }
 
-                    continue;
-                    break;
+                    continue 2;
             }
         } while (!$noMoreChanges);
 
