@@ -37,6 +37,8 @@ use Psr\Http\Message\UriInterface;
 
 /**
  * Provides a light wrapper around often used URI related functions.
+ *
+ * @internal
  */
 trait UriTrait
 {

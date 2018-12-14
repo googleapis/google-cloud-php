@@ -53,14 +53,14 @@ class Call
     /**
      * @param string $method
      * @param string $decodeType
-     * @param Message $message
+     * @param mixed|Message $message
      * @param array $descriptor
      * @param int $callType
      */
     public function __construct(
         $method,
         $decodeType,
-        Message $message = null,
+        $message = null,
         $descriptor = [],
         $callType = Call::UNARY_CALL
     ) {
@@ -96,7 +96,7 @@ class Call
     }
 
     /**
-     * @return Message
+     * @return mixed|Message
      */
     public function getMessage()
     {
@@ -112,10 +112,10 @@ class Call
     }
 
     /**
-     * @param Message $message
+     * @param mixed|Message $message
      * @return Call
      */
-    public function withMessage(Message $message)
+    public function withMessage($message)
     {
         return new static(
             $this->method,
