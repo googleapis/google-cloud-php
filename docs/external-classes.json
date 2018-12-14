@@ -96,5 +96,10 @@
   "name": "Google\\Protobuf",
   "uri": "https://github.com/protocolbuffers/protobuf/tree/{depVersion}/php/src{/type*}.php",
   "depName": "google/protobuf"
+}, {
+  "name": "GuzzleHttp\\Promise",
+  "uri": "https://github.com/guzzle/promises/tree/{depVersion}/src{/type*}.php",
+  "depName": "guzzlehttp/promises",
+  "strip": true
 }]
 

@@ -808,6 +808,8 @@ class CodeParser implements ParserInterface
         $lockFilePath = $this->projectRoot . '/composer.lock';
         if (!self::$lockFile && file_exists($lockFilePath)) {
             self::$lockFile = json_decode(file_get_contents($lockFilePath), true)['packages'];
+        } elseif (!file_exists($lockFilePath)) {
+            throw new \RuntimeException('composer.lock file does not exist. Run `composer install` first.');
         }
 
         $dep = array_values(array_filter(self::$lockFile, function ($package) use ($depName) {
