@@ -31,7 +31,6 @@
 namespace Google\Cloud\Iot\V1;
 
 use Google\Cloud\Iot\V1\Gapic\DeviceManagerGapicClient;
-use InvalidArgumentException;
 
 /**
  * {@inheritdoc}
@@ -42,7 +41,7 @@ class DeviceManagerClient extends DeviceManagerGapicClient
     {
         if (isset($options['transport'])) {
             if ($options['transport'] == 'grpc') {
-                throw new InvalidArgumentException(
+                throw new \InvalidArgumentException(
                     'The "grpc" transport is not currently supported, ' .
                     'please use the "rest" transport.'
                 );
