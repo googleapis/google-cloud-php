@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Tests\System\Entities\Kingdom;
 use Google\Cloud\Datastore\Tests\System\Entities\Person;
 use Google\Cloud\Datastore\Tests\System\Entities\Pet;
@@ -28,36 +29,38 @@ use Google\Cloud\Datastore\Tests\System\Entities\Species;
  */
 class CustomEntityTypeTest extends DatastoreTestCase
 {
-    public function testCustomEntity()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testCustomEntity(DatastoreClient $client)
     {
-        $datastore = self::$client;
         $id = uniqid('MyDog');
-        $key = $datastore->key('Pet', $id);
+        $key = $client->key('Pet', $id);
 
-        $owner = $datastore->entity(null, [
+        $owner = $client->entity(null, [
             'name' => 'Kate'
         ], ['className' => Person::class]);
 
-        $kingdom = $datastore->entity(null, [
+        $kingdom = $client->entity(null, [
             'name' => 'Animalia'
         ], ['className' => Kingdom::class]);
 
-        $species = $datastore->entity(null, [
+        $species = $client->entity(null, [
             'name' => 'C. lupus',
             'kingdom' => $kingdom
         ], ['className' => Species::class]);
 
-        $myDog = $datastore->entity($key, [
+        $myDog = $client->entity($key, [
             'name' => 'Scout',
             'age' => 10,
             'owner' => $owner,
             'species' => $species
         ], ['className' => Pet::class]);
 
-        $datastore->insert($myDog);
+        $client->insert($myDog);
         self::$localDeletionQueue->add($key);
 
-        $lookup = $datastore->lookup($key, ['className' => Pet::class]);
+        $lookup = $client->lookup($key, ['className' => Pet::class]);
         $this->assertInstanceOf(Pet::class, $lookup);
         $this->assertInstanceOf(Person::class, $lookup->get()['owner']);
         $this->assertInstanceOf(Species::class, $lookup->get()['species']);

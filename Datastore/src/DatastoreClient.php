@@ -22,10 +22,10 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\Connection\Grpc;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -139,6 +139,8 @@ class DatastoreClient
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
 
+        $connectionType = $this->getConnectionType($config);
+
         $config += [
             'namespaceId' => null,
             'returnInt64AsObject' => false,
@@ -148,14 +150,16 @@ class DatastoreClient
             'emulatorHost' => $emulatorHost
         ];
 
-        $connection = new Rest($this->configureAuthentication($config));
-        $this->connection = $connection;
+        $config = $this->configureAuthentication($config);
+        $this->connection = $connectionType === 'grpc'
+            ? new Grpc($config)
+            : new Rest($config);
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
         $this->entityMapper = new EntityMapper($this->projectId, true, $config['returnInt64AsObject']);
         $this->operation = new Operation(
-            $connection,
+            $this->connection,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper
@@ -383,11 +387,13 @@ class DatastoreClient
      *
      * @param float $latitude The latitude
      * @param float $longitude The longitude
+     * @param bool $allowNull [optional] Whether null values are allowed.
+     *        **Defaults to** `false`.
      * @return GeoPoint
      */
-    public function geoPoint($latitude, $longitude)
+    public function geoPoint($latitude, $longitude, $allowNull = false)
     {
-        return new GeoPoint($latitude, $longitude);
+        return new GeoPoint($latitude, $longitude, $allowNull);
     }
 
     /**
@@ -1083,13 +1089,14 @@ class DatastoreClient
     {
         $mutationResult = $res['mutationResults'][0];
 
-        if (isset($mutationResult['conflictDetected'])) {
+        if (isset($mutationResult['conflictDetected']) && $mutationResult['conflictDetected']) {
             throw new DomainException(
                 'A conflict was detected in the mutation. ' .
                 'The operation failed.'
             );
         }
 
-        return $mutationResult['version'];
+        // cast to string for conformance between REST and gRPC.
+        return (string) $mutationResult['version'];
     }
 }

@@ -45,8 +45,10 @@ class Rest implements ConnectionInterface
 
         $baseUri = self::BASE_URI;
         if ((bool) $config['emulatorHost']) {
+            // @codeCoverageIgnoreStart
             $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
             $config['shouldSignRequest'] = false;
+            // @codeCoverageIgnoreEnd
         }
 
         $config += [

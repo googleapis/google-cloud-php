@@ -28,7 +28,8 @@ class SampleEntity implements EntityInterface, \arrayaccess
     {
         return [
             'foo' => SampleEntity::class,
-            'nest' => SampleEntity::class
+            'nest' => SampleEntity::class,
+            'invalid' => \stdClass::class
         ];
     }
 

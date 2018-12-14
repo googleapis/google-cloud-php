@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Datastore\DatastoreClient;
+
 /**
  * @group datastore
  * @group datastore-query
@@ -51,18 +53,18 @@ class RunQueryTest extends DatastoreTestCase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        self::$ancestor = self::$client->key(self::$kind, 'Grandpa Frank');
-        $key1 = self::$client->key(self::$kind, 'Frank');
+        self::$ancestor = self::$restClient->key(self::$kind, 'Grandpa Frank');
+        $key1 = self::$restClient->key(self::$kind, 'Frank');
         $key1->ancestorKey(self::$ancestor);
-        $key2 = self::$client->key(self::$kind, 'Dave');
+        $key2 = self::$restClient->key(self::$kind, 'Dave');
         $key2->ancestorKey(self::$ancestor);
-        $key3 = self::$client->key(self::$kind, 'Greg');
+        $key3 = self::$restClient->key(self::$kind, 'Greg');
 
-        self::$client->insertBatch([
-            self::$client->entity(self::$ancestor, self::$data[0]),
-            self::$client->entity($key1, self::$data[1]),
-            self::$client->entity($key2, self::$data[2]),
-            self::$client->entity($key3, self::$data[3])
+        self::$restClient->insertBatch([
+            self::$restClient->entity(self::$ancestor, self::$data[0]),
+            self::$restClient->entity($key1, self::$data[1]),
+            self::$restClient->entity($key2, self::$data[2]),
+            self::$restClient->entity($key3, self::$data[3])
         ]);
 
         // on rare occasions the queries below are returning no results when
@@ -76,13 +78,16 @@ class RunQueryTest extends DatastoreTestCase
         self::$localDeletionQueue->add($key3);
     }
 
-    public function testQueryWithOrder()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithOrder(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->order('knownDances');
 
-        $results = iterator_to_array(self::$client->runQuery($query));
+        $results = iterator_to_array($client->runQuery($query));
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
@@ -91,13 +96,16 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertCount(4, $results);
     }
 
-    public function testQueryWithFilter()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithFilter(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->filter('lastName', '=', 'Smith');
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
@@ -105,13 +113,16 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertCount(3, $results);
     }
 
-    public function testQueryWithAncestor()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithAncestor(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->hasAncestor(self::$ancestor);
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
@@ -119,13 +130,16 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertCount(3, $results);
     }
 
-    public function testQueryWithProjection()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithProjection(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->projection('knownDances');
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $data = self::$data;
 
@@ -141,26 +155,32 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertCount(4, $results);
     }
 
-    public function testQueryWithDistinctOn()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithDistinctOn(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->distinctOn('lastName');
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[2], $results[1]->get());
         $this->assertCount(2, $results);
     }
 
-    public function testQueryWithKeysOnly()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithKeysOnly(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->keysOnly();
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertCount(4, $results);
         foreach ($results as $result) {
@@ -168,31 +188,37 @@ class RunQueryTest extends DatastoreTestCase
         }
     }
 
-    public function testQueryWithOffset()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithOffset(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->offset(3);
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[3], $results[0]->get());
         $this->assertCount(1, $results);
     }
 
-    public function testQueryWithStartCursor()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithStartCursor(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->limit(1);
 
-        $results = iterator_to_array(self::$client->runQuery($query));
+        $results = iterator_to_array($client->runQuery($query));
 
-        $cursorQuery = self::$client->query()
+        $cursorQuery = $client->query()
             ->kind(self::$kind)
             ->start($results[0]->cursor());
 
-        $results = $this->runQueryAndSortResults($cursorQuery);
+        $results = $this->runQueryAndSortResults($client, $cursorQuery);
 
         $this->assertEquals(self::$data[1], $results[0]->get());
         $this->assertEquals(self::$data[2], $results[1]->get());
@@ -200,65 +226,77 @@ class RunQueryTest extends DatastoreTestCase
         $this->assertCount(3, $results);
     }
 
-    public function testQueryWithEndCursor()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithEndCursor(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->limit(1);
 
-        $results = iterator_to_array(self::$client->runQuery($query));
+        $results = iterator_to_array($client->runQuery($query));
 
-        $cursorQuery = self::$client->query()
+        $cursorQuery = $client->query()
             ->kind(self::$kind)
             ->end($results[0]->cursor());
 
-        $results = $this->runQueryAndSortResults($cursorQuery);
+        $results = $this->runQueryAndSortResults($client, $cursorQuery);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertCount(1, $results);
     }
 
-    public function testQueryWithLimit()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryWithLimit(DatastoreClient $client)
     {
-        $query = self::$client->query()
+        $query = $client->query()
             ->kind(self::$kind)
             ->limit(1);
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertCount(1, $results);
     }
 
-    public function testGqlQueryWithBindings()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testGqlQueryWithBindings(DatastoreClient $client)
     {
-        $query = self::$client->gqlQuery('SELECT * From Person WHERE lastName = @lastName', [
+        $query = $client->gqlQuery('SELECT * From Person WHERE lastName = @lastName', [
             'bindings' => [
                 'lastName' => 'McAllen'
             ]
         ]);
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[2], $results[0]->get());
         $this->assertCount(1, $results);
     }
 
-    public function testGqlQueryWithLiteral()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testGqlQueryWithLiteral(DatastoreClient $client)
     {
-        $query = self::$client->gqlQuery("SELECT * From Person WHERE lastName = 'McAllen'", [
+        $query = $client->gqlQuery("SELECT * From Person WHERE lastName = 'McAllen'", [
             'allowLiterals' => true
         ]);
 
-        $results = $this->runQueryAndSortResults($query);
+        $results = $this->runQueryAndSortResults($client, $query);
 
         $this->assertEquals(self::$data[2], $results[0]->get());
         $this->assertCount(1, $results);
     }
 
-    private function runQueryAndSortResults($query)
+    private function runQueryAndSortResults($client, $query)
     {
-        $results = iterator_to_array(self::$client->runQuery($query));
+        $results = iterator_to_array($client->runQuery($query));
         usort($results, function ($a, $b) {
             return $a['knownDances'] - $b['knownDances'];
         });

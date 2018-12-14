@@ -17,27 +17,35 @@
 
 namespace Google\Cloud\Datastore\Tests\System;
 
+use Google\Cloud\Datastore\DatastoreClient;
+
 /**
  * @group datastore
  * @group datastore-key
  */
 class AllocateKeyTest extends DatastoreTestCase
 {
-    public function testAllocateId()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testAllocateId(DatastoreClient $client)
     {
         $kind = 'Person';
-        $key = self::$client->key($kind);
-        $path = self::$client->allocateId($key)->path()[0];
+        $key = $client->key($kind);
+        $path = $client->allocateId($key)->path()[0];
 
         $this->assertInternalType('numeric', $path['id']);
         $this->assertEquals($kind, $path['kind']);
     }
 
-    public function testAllocateIds()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testAllocateIds(DatastoreClient $client)
     {
         $kind = 'Person';
-        $keys = self::$client->keys($kind);
-        $allocatedKeys = self::$client->allocateIds($keys);
+        $keys = $client->keys($kind);
+        $allocatedKeys = $client->allocateIds($keys);
 
         foreach ($allocatedKeys as $key) {
             $path = $key->path()[0];

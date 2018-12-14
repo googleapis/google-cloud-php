@@ -288,15 +288,6 @@ class Operation
                     (string) $key
                 ));
             }
-
-            if (!isset($key->pathEnd()['kind'])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Cannot allocate IDs because a path element was missing a kind. ' .
-                    'This usually means a key was created but no path elements were defined. ' .
-                    'Given path was %s',
-                    (string) $key
-                ));
-            }
         });
 
         $serviceKeys = [];
