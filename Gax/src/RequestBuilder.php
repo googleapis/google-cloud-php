@@ -42,6 +42,8 @@ use Psr\Http\Message\UriInterface;
 
 /**
  * Builds a PSR-7 request from a set of request information.
+ *
+ * @internal
  */
 class RequestBuilder
 {
