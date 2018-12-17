@@ -18,14 +18,16 @@ class NotificationService
         \GPBMetadata\Google\Monitoring\V3\Notification::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
+        \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
-            "0aeb1d0a2f676f6f676c652f6d6f6e69746f72696e672f76332f6e6f7469" .
+            "0a891e0a2f676f6f676c652f6d6f6e69746f72696e672f76332f6e6f7469" .
             "6669636174696f6e5f736572766963652e70726f746f1214676f6f676c65" .
             "2e6d6f6e69746f72696e672e76331a27676f6f676c652f6d6f6e69746f72" .
             "696e672f76332f6e6f74696669636174696f6e2e70726f746f1a1b676f6f" .
             "676c652f70726f746f6275662f656d7074792e70726f746f1a20676f6f67" .
-            "6c652f70726f746f6275662f6669656c645f6d61736b2e70726f746f1a1f" .
+            "6c652f70726f746f6275662f6669656c645f6d61736b2e70726f746f1a1c" .
+            "676f6f676c652f70726f746f6275662f7374727563742e70726f746f1a1f" .
             "676f6f676c652f70726f746f6275662f74696d657374616d702e70726f74" .
             "6f22600a294c6973744e6f74696669636174696f6e4368616e6e656c4465" .
             "7363726970746f727352657175657374120c0a046e616d65180420012809" .
