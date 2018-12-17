@@ -233,6 +233,14 @@
             ]
         },
         {
+            "id": "cloud-common-protos",
+            "name": "google/cloud-common-protos",
+            "defaultService": "commonprotos/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-container",
             "name": "google/cloud-container",
             "defaultService": "container/readme",
