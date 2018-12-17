@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Automl\V1beta1\Gapic;
+namespace Google\Cloud\AutoMl\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;

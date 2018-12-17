@@ -20,9 +20,9 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Automl\Tests\Unit\V1beta1;
+namespace Google\Cloud\AutoMl\Tests\Unit\V1beta1;
 
-use Google\Cloud\Automl\V1beta1\AutoMlClient;
+use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;

@@ -147,7 +147,7 @@
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
-            "GPBMetadata\\Google\\Cloud\\AutoMl\\": "AutoMl/metadata",
+            "GPBMetadata\\Google\\Cloud\\Automl\\": "AutoMl/metadata",
             "GPBMetadata\\Google\\Cloud\\Bigquery\\Datatransfer\\": "BigQueryDataTransfer/metadata",
             "GPBMetadata\\Google\\Cloud\\Dataproc\\": "Dataproc/metadata",
             "GPBMetadata\\Google\\Cloud\\Dialogflow\\": "Dialogflow/metadata",
