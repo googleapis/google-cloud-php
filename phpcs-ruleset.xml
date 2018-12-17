@@ -23,5 +23,6 @@
   <exclude-pattern>*/metadata</exclude-pattern>
   <exclude-pattern>Firestore/tests/Conformance</exclude-pattern>
   <exclude-pattern>tests/Component/TestComposerInstall.php</exclude-pattern>
+  <exclude-pattern>CommonProtos</exclude-pattern>
   <arg name="extensions" value="php"/>
 </ruleset>
