@@ -28,11 +28,11 @@ namespace Google\Cloud\Container\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Container\V1\AddonsConfig;
 use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\Cluster;
