@@ -26,13 +26,13 @@ namespace Google\Cloud\VideoIntelligence\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\VideoIntelligence\V1\AnnotateVideoProgress;
 use Google\Cloud\VideoIntelligence\V1\AnnotateVideoRequest;
 use Google\Cloud\VideoIntelligence\V1\AnnotateVideoResponse;
