@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/aggregation\/aligner","type":"","title":"Google\\Cloud\\Monitoring\\V3\\Aggregation\\Aligner","name":"Aligner","description":"<p>The Aligner describes how to bring the data points in a single\ntime series into temporal alignment.<\/p>\n<p>Protobuf type <code>google.monitoring.v3.Aggregation.Aligner<\/code><\/p>","examples":[],"resources":[],"methods":[]}
