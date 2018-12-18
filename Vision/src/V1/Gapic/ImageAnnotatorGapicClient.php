@@ -28,13 +28,13 @@ namespace Google\Cloud\Vision\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest;
