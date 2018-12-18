@@ -28,13 +28,13 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest;
