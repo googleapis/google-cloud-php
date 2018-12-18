@@ -28,7 +28,6 @@ namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RetrySettings;
@@ -36,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\MetricDescriptor;
 use Google\Api\MonitoredResourceDescriptor;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Monitoring\V3\Aggregation;
 use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
 use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
