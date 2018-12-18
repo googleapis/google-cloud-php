@@ -28,7 +28,6 @@ namespace Google\Cloud\Bigtable\Admin\V2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\FetchAuthTokenInterface;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
@@ -37,6 +36,7 @@ use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
