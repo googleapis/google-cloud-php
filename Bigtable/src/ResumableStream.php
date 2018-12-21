@@ -72,9 +72,11 @@ class ResumableStream implements \IteratorAggregate
     public function readAll()
     {
         $tries = 0;
+        $argumentCallable = $this->argumentFunction;
+        $retryCallable = $this->retryFunction;
         do {
             $ex = null;
-            $stream = $this->createExponentialBackoff()->execute($this->apiFunction, ($this->argumentFunction)());
+            $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $argumentCallable());
             try {
                 foreach ($stream->readAll() as $item) {
                     yield $item;
@@ -82,7 +84,7 @@ class ResumableStream implements \IteratorAggregate
             } catch (\Exception $ex) {
             }
             $tries++;
-        } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $tries <= $this->retries);
+        } while ((!$this->retryFunction || $retryCallable($ex)) && $tries <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }
