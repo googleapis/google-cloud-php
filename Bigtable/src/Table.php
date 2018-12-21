@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
-use Google\Cloud\Bigtable\ApiCallExecutor;
+use Google\Cloud\Bigtable\ResumableStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
@@ -153,7 +153,7 @@ class Table
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
         $executor = new ExponentialBackoff($this->maxRetries($options), RetryUtil::getDefaultRetryFunction());
-        $executor->execute($this->gapicClient->mutateRow, [
+        $executor->execute([$this->gapicClient, 'mutateRow'], [
             $this->tableName,
             $rowKey,
             $mutations->toProto(),
@@ -489,19 +489,26 @@ class Table
     private function mutateRowsWithEntries(array $entries, array $options = [])
     {
         $rowMutationsFailedResponse = [];
-        $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse) {
-            $entries = array_values($entries);
-            $rowMutationsFailedResponse = [];
-            return [$this->tableName, $entries, $options + $this->options];
+        $tableName = $this->tableName;
+        $options = $options + $this->options;
+        $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse, $options) {
+            if (count($rowMutationsFailedResponse) > 0) {
+                $entries = array_values($entries);
+                $rowMutationsFailedResponse = [];
+            }
+            return [$this->tableName, $entries, $options];
         };
         $statusCode = Code::OK;
-        $retryFunction = function (ApiException $ex) use (&$statusCode) {
+        $lastProcessedIndex = -1;
+        $retryFunction = function ($ex) use (&$statusCode, &$lastProcessedIndex) {
             if (($ex && RetryUtil::isRetryable($ex->getCode())) || (RetryUtil::isRetryable($statusCode))) {
+                $statusCode = Code::OK;
+                $lastProcessedIndex = -1;
                 return true;
             }
             return false;
         };
-        $retryingStream = new ApiCallExecutor(
+        $retryingStream = new ResumableStream(
             [$this->gapicClient, 'mutateRows'],
             $argumentFunction,
             $retryFunction,
@@ -510,27 +517,62 @@ class Table
         $message = 'partial failure';
         try {
             foreach ($retryingStream as $mutateRowsResponse) {
-                $mutateRowsResponseEntries = $mutateRowsResponse->getEntries();
-                foreach ($mutateRowsResponseEntries as $mutateRowsResponseEntry) {
+                foreach ($mutateRowsResponse->getEntries() as $mutateRowsResponseEntry) {
                     if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
-                        $statusCode = $mutateRowsResponseEntry->getStatus()->getCode();
-                        $message = $mutateRowsResponseEntry->getStatus()->getMessage();
+                        if ($statusCode === Code::OK
+                            || !RetryUtil::isRetryable($mutateRowsResponseEntry->getStatus()->getCode())) {
+                            $statusCode = $mutateRowsResponseEntry->getStatus()->getCode();
+                        }
                         $rowMutationsFailedResponse[] = [
                             'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
-                            'statusCode' => $statusCode,
+                            'statusCode' => $mutateRowsResponseEntry->getStatus()->getCode(),
                             'message' => $message
                         ];
                     } else {
                         unset($entries[$mutateRowsResponseEntry->getIndex()]);
                     }
+                    $lastProcessedIndex = $mutateRowsResponseEntry->getIndex();
                 }
             }
         } catch (ApiException $ex) {
+            $this->appendPendingEntryToFailedMutations(
+                $lastProcessedIndex,
+                $entries,
+                $rowMutationsFailedResponse,
+                $ex->getCode(),
+                $ex->getMessage()
+            );
             throw new BigtableDataOperationException($ex->getMessage(), $ex->getCode(), $rowMutationsFailedResponse);
         }
 
         if (!empty($rowMutationsFailedResponse)) {
+            $this->appendPendingEntryToFailedMutations(
+                $lastProcessedIndex,
+                $entries,
+                $rowMutationsFailedResponse,
+                $statusCode,
+                $message
+            );
             throw new BigtableDataOperationException($message, $statusCode, $rowMutationsFailedResponse);
+        }
+    }
+
+    private function appendPendingEntryToFailedMutations(
+        $lastProcessedIndex,
+        &$entries,
+        &$rowMutationsFailedResponse,
+        $statusCode,
+        $message
+    ) {
+        if (count($rowMutationsFailedResponse) !== count($entries)) {
+            end($entries);
+            foreach (range($lastProcessedIndex + 1, key($entries)) as $index) {
+                $rowMutationsFailedResponse[] = [
+                    'rowKey' => $entries[$index]->getRowKey(),
+                    'statusCode' => $statusCode,
+                    'message' => $message
+                ];
+            }
         }
     }
 

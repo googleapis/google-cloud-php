@@ -20,8 +20,10 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Bigtable\RetryUtil;
 use Google\Cloud\Core\ExponentialBackoff;
 
-class ApiCallExecutor implements \IteratorAggregate
+class ResumableStream implements \IteratorAggregate
 {
+    const DEFAULT_MAX_RETRIES = 3;
+
     /**
      * @var integer
      */
@@ -39,29 +41,48 @@ class ApiCallExecutor implements \IteratorAggregate
      */
     private $retryFunction;
 
-    public function __construct(callable $apiFunction, callable $argumentFunction, callable $retryFunction, $retries)
-    {
-        $this->retries = $retries;
+    /**
+     * Constructs resumable stream.
+     *
+     * @param callable $apiFunction Function to execute to get server stream. Function signature
+     *        should match: `function (...) : Google\ApiCore\ServerStream`.
+     * @param callable $argumentFunction Function which returns the argument to be used while
+     *        calling `$apiFunction`.
+     * @param callable $retryFunction Function which determines whether to retry or not.
+     * @param integer $retries Number of times to retry. **Defaults to** `3`.
+     */
+    public function __construct(
+        callable $apiFunction,
+        callable $argumentFunction,
+        callable $retryFunction,
+        $retries = self::DEFAULT_MAX_RETRIES
+    ) {
+        $this->retries = $retries ?: self::DEFAULT_MAX_RETRIES;
         $this->apiFunction = $apiFunction;
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
     }
 
-    public function execute()
+    /**
+     * Starts executing the call and reading elements from server stream.
+     *
+     * @return \Generator
+     * @throws Google\ApiCore\ApiException
+     */
+    public function readAll()
     {
         $tries = 0;
         do {
             $ex = null;
-            $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $this->argumentFunction());
+            $stream = $this->createExponentialBackoff()->execute($this->apiFunction, ($this->argumentFunction)());
             try {
                 foreach ($stream->readAll() as $item) {
                     yield $item;
                 }
-            } catch (ApiException $ex) {
+            } catch (\Exception $ex) {
             }
             $tries++;
-        } while ((($this->retryFunction && $this->retryFunction($ex)) || true) && $tries <= $this->retries);
-
+        } while ((!$this->retryFunction || ($this->retryFunction)($ex)) && $tries <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }
@@ -79,6 +100,6 @@ class ApiCallExecutor implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return $this->execute();
+        return $this->readAll();
     }
 }

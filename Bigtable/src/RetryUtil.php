@@ -17,37 +17,59 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\ApiCore\ApiException;
-use Grpc;
+use Google\Rpc\Code;
 
+/**
+ * Utility class for retries.
+ */
 class RetryUtil
 {
     /**
      * @var array
      */
     public static $retryableStatusCodes = [
-        Grpc\DEADLINE_EXCEEDED => Grpc\DEADLINE_EXCEEDED,
-        Grpc\ABORTED => Grpc\ABORTED,
-        Grpc\STATUS_UNAVAILABLE => Grpc\STATUS_UNAVAILABLE
+       Code::DEADLINE_EXCEEDED => Code::DEADLINE_EXCEEDED,
+       Code::ABORTED => Code::ABORTED,
+       Code::UNAVAILABLE => Code::UNAVAILABLE
     ];
 
+    /**
+     * @var callable
+     */
     private static $defaultRetryFunction;
 
-    public function isRetryable($code)
+    /**
+     * Checks if code is retryable or not.
+     *
+     * @param int $code Code to check.
+     * @return boolean
+     */
+    public static function isRetryable($code)
     {
         return isset(self::$retryableStatusCodes[$code]);
     }
 
+    /**
+     * Helper method to get default retry function.
+     *
+     * @return callable
+     */
     public static function getDefaultRetryFunction()
     {
         if (self::$defaultRetryFunction === null) {
-            self::$defaultRetryFunction = function (ApiException $ex) {
+            self::$defaultRetryFunction = function ($ex) {
                 return self::isRetryable($ex->getCode());
             };
         }
         return self::$defaultRetryFunction;
     }
 
+    /**
+     * Return value of `retries` in provided array if set.
+     *
+     * @param array $options
+     * @return int
+     */
     public static function getMaxRetries($options)
     {
         if (isset($options['retries'])) {
