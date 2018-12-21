@@ -59,7 +59,7 @@ class ChunkFormatterTest extends SnippetTestCase
         $snippet->replace('$table = $bigtable->table(\'my-instance\', \'my-table\');', '');
         $this->serverStream->readAll()
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
+            ->willReturn(new \EmptyIterator);
         $this->bigtableClient->readRows(self::TABLE_NAME, [])
             ->shouldBeCalled()
             ->willReturn(
