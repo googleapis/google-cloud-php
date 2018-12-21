@@ -77,14 +77,9 @@ class ChunkFormatterTest extends SnippetTestCase
         $formatter = $this->prophesize(ChunkFormatter::class);
         $formatter->readAll()
             ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
+            ->willReturn(new \EmptyIterator);
         $snippet->addLocal('formatter', $formatter->reveal());
         $res = $snippet->invoke('rows');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
-    }
-
-    private function resultGenerator()
-    {
-        yield [];
     }
 }
