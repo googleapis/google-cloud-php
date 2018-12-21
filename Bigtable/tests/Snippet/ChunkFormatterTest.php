@@ -65,6 +65,7 @@ class ChunkFormatterTest extends SnippetTestCase
         $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('formatter');
         $this->assertInstanceOf(ChunkFormatter::class, $res->returnVal());
+        $res->returnVal()->getIterator()->current();
     }
 
     public function testReadAll()
