@@ -173,7 +173,7 @@ class TableTest extends TestCase
                     'message' => 'Invalid argument'
                 ]
             ];
-            $this->assertEquals('Invalid argument', $e->getMessage());
+            $this->assertEquals('partial failure', $e->getMessage());
             $this->assertEquals(Code::INVALID_ARGUMENT, $e->getCode());
             $this->assertEquals(
                 $metadata,

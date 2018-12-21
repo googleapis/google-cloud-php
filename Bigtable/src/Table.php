@@ -526,7 +526,7 @@ class Table
                         $rowMutationsFailedResponse[] = [
                             'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
                             'statusCode' => $mutateRowsResponseEntry->getStatus()->getCode(),
-                            'message' => $message
+                            'message' => $mutateRowsResponseEntry->getStatus()->getMessage()
                         ];
                     } else {
                         unset($entries[$mutateRowsResponseEntry->getIndex()]);

@@ -718,7 +718,7 @@ class SmartRetriesTest extends TestCase
             if (isset($status[$key])) {
                 $value = $status[$key];
             }
-            $returnStatus[$key] = (new Status)->setCode($value);
+            $returnStatus[$key] = (new Status)->setCode($value)->setMessage('partial failure');
         }
         return $returnStatus;
     }
