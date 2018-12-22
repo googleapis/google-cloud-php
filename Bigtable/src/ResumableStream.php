@@ -20,6 +20,10 @@ namespace Google\Cloud\Bigtable;
 use Google\Cloud\Bigtable\RetryUtil;
 use Google\Cloud\Core\ExponentialBackoff;
 
+/**
+ * User stream which handles failure from upstream, retries if necessary and
+ * provides single retrying user stream.
+ */
 class ResumableStream implements \IteratorAggregate
 {
     const DEFAULT_MAX_RETRIES = 3;
