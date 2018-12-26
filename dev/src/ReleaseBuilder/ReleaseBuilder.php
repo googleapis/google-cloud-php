@@ -263,21 +263,23 @@ class ReleaseBuilder extends GoogleCloudCommand
      */
     private function createReleaseNotes(array $release)
     {
-        $buildDir = $this->rootPath .'/build';
-        $locationTemplate = $buildDir . '/release-%s.md';
+        $buildDir = $this->rootPath .'/docs/changelog';
+        $locationTemplate = $buildDir . '/release-%s.%s';
 
         if (!is_dir($buildDir)) {
             mkdir($buildDir);
         }
 
         $umbrella = $release[self::DEFAULT_COMPONENT];
-        $location = sprintf($locationTemplate, $umbrella['version']);
+        $mdLoc = sprintf($locationTemplate, $umbrella['version'], 'md');
+        $jsonLoc = sprintf($locationTemplate, $umbrella['version'], 'json');
 
         unset($release[self::DEFAULT_COMPONENT]);
 
         ksort($release);
 
         $notes = [];
+        $json = [];
         foreach ($release as $key => $component) {
             $messages = [];
             foreach ($component['messages'] as $message) {
@@ -286,15 +288,18 @@ class ReleaseBuilder extends GoogleCloudCommand
 
             $notes[] = sprintf('### google/%s v%s', $key, $component['version'])
                 . PHP_EOL . PHP_EOL . implode(PHP_EOL, $messages);
+
+            $json[$key] = $messages;
         }
 
         $template = file_get_contents(__DIR__ .'/templates/release-notes.md.txt');
         $template = str_replace('{version}', $umbrella['version'], $template);
         $template = str_replace('{notes}', implode(PHP_EOL . PHP_EOL, $notes), $template);
 
-        file_put_contents($location, $template);
+        file_put_contents($mdLoc, $template);
+        file_put_contents($jsonLoc, json_encode($json));
 
-        return $location;
+        return $mdLoc;
     }
 
     /**

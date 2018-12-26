@@ -12,5 +12,5 @@ if (false) {
     class DocumentTransform_FieldTransform {}
 }
 class_exists(DocumentTransform\FieldTransform::class);
-@trigger_error('Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform instead', E_USER_DEPRECATED);
+trigger_error('Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform instead', E_USER_DEPRECATED);
 

@@ -24,7 +24,7 @@ use Google\Cloud\Dev\Credentials\Command as Credentials;
 use Google\Cloud\Dev\DocGenerator\Command\Docs;
 use Google\Cloud\Dev\Release\Release;
 use Google\Cloud\Dev\ReleaseBuilder\ReleaseBuilder;
-use Google\Cloud\Dev\Split\Command\Split;
+use Google\Cloud\Dev\Split\Command as Split;
 use Symfony\Component\Console\Application;
 
 if (!class_exists(Application::class)) {

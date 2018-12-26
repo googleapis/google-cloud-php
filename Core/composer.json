@@ -28,7 +28,7 @@
     "extra": {
         "component": {
             "id": "cloud-core",
-            "target": "googleapis/google-cloud-php-core.git",
+            "target": "jdpedrie/google-cloud-php-core.git",
             "path": "Core",
             "entry": "src/ServiceBuilder.php"
         }
