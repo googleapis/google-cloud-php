@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
@@ -34,6 +35,7 @@ use Prophecy\Argument;
  */
 class BatchDmlResultTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
     use TimeTrait;
 
     private $result;
@@ -62,6 +64,8 @@ class BatchDmlResultTest extends SnippetTestCase
 
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->executeBatchDml(Argument::any())
             ->shouldBeCalled()
