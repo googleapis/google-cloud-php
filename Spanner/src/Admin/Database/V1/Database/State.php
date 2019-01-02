@@ -30,10 +30,6 @@ class State
      * Generated from protobuf enum <code>READY = 2;</code>
      */
     const READY = 2;
-    /**
-     * Generated from protobuf enum <code>READY_OPTIMIZING = 3;</code>
-     */
-    const READY_OPTIMIZING = 3;
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

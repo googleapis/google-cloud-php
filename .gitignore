@@ -6,6 +6,7 @@ docs/json/**/*
 vendor/
 .idea/
 *.iml
+__pycache__
 
 # do not delete
 keys/

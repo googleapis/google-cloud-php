@@ -757,11 +757,11 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Sets the access control policy on a database resource.
-     * Replaces any existing policy.
+     * Sets the access control policy on a database resource. Replaces any
+     * existing policy.
      *
-     * Authorization requires `spanner.databases.setIamPolicy`
-     * permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
+     * Authorization requires `spanner.databases.setIamPolicy` permission on
+     * [resource][google.iam.v1.SetIamPolicyRequest.resource].
      *
      * Sample code:
      * ```
@@ -812,9 +812,8 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Gets the access control policy for a database resource.
-     * Returns an empty policy if a database exists but does
-     * not have a policy set.
+     * Gets the access control policy for a database resource. Returns an empty
+     * policy if a database exists but does not have a policy set.
      *
      * Authorization requires `spanner.databases.getIamPolicy` permission on
      * [resource][google.iam.v1.GetIamPolicyRequest.resource].
@@ -864,10 +863,10 @@ class DatabaseAdminGapicClient
     /**
      * Returns permissions that the caller has on the specified database resource.
      *
-     * Attempting this RPC on a non-existent Cloud Spanner database will
-     * result in a NOT_FOUND error if the user has
-     * `spanner.databases.list` permission on the containing Cloud
-     * Spanner instance. Otherwise returns an empty set of permissions.
+     * Attempting this RPC on a non-existent Cloud Spanner database will result in
+     * a NOT_FOUND error if the user has `spanner.databases.list` permission on
+     * the containing Cloud Spanner instance. Otherwise returns an empty set of
+     * permissions.
      *
      * Sample code:
      * ```

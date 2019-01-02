@@ -31,18 +31,6 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     private $state = 0;
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress creating_progress = 3;</code>
-     */
-    private $creating_progress = null;
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress ready_optimizing_progress = 4;</code>
-     */
-    private $ready_optimizing_progress = null;
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 5;</code>
-     */
-    private $restore_info = null;
 
     /**
      * Constructor.
@@ -58,9 +46,6 @@ class Database extends \Google\Protobuf\Internal\Message
      *           identify the database.
      *     @type int $state
      *           Output only. The current database state.
-     *     @type \Google\Spanner\Admin\Database\V1\OperationProgress $creating_progress
-     *     @type \Google\Spanner\Admin\Database\V1\OperationProgress $ready_optimizing_progress
-     *     @type \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo $restore_info
      * }
      */
     public function __construct($data = NULL) {
@@ -124,72 +109,6 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\Database_State::class);
         $this->state = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress creating_progress = 3;</code>
-     * @return \Google\Spanner\Admin\Database\V1\OperationProgress
-     */
-    public function getCreatingProgress()
-    {
-        return $this->creating_progress;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress creating_progress = 3;</code>
-     * @param \Google\Spanner\Admin\Database\V1\OperationProgress $var
-     * @return $this
-     */
-    public function setCreatingProgress($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Spanner\Admin\Database\V1\OperationProgress::class);
-        $this->creating_progress = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress ready_optimizing_progress = 4;</code>
-     * @return \Google\Spanner\Admin\Database\V1\OperationProgress
-     */
-    public function getReadyOptimizingProgress()
-    {
-        return $this->ready_optimizing_progress;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress ready_optimizing_progress = 4;</code>
-     * @param \Google\Spanner\Admin\Database\V1\OperationProgress $var
-     * @return $this
-     */
-    public function setReadyOptimizingProgress($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Spanner\Admin\Database\V1\OperationProgress::class);
-        $this->ready_optimizing_progress = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 5;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo
-     */
-    public function getRestoreInfo()
-    {
-        return $this->restore_info;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 5;</code>
-     * @param \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo $var
-     * @return $this
-     */
-    public function setRestoreInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo::class);
-        $this->restore_info = $var;
 
         return $this;
     }

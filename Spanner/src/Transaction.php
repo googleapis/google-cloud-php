@@ -20,8 +20,6 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode;
-use RuntimeException;
 
 /**
  * Manages interaction with Cloud Spanner inside a Transaction.
