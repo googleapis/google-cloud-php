@@ -11,8 +11,12 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A message that is published by publishers and consumed by subscribers. The
  * message must contain either a non-empty data field or at least one attribute.
- * See <a href="/pubsub/quotas">Quotas and limits</a> for more information about
- * message limits.
+ * Note that client libraries represent this object differently
+ * depending on the language. See the corresponding
+ * <a href="https://cloud.google.com/pubsub/docs/reference/libraries">client
+ * library documentation</a> for more information. See
+ * <a href="https://cloud.google.com/pubsub/quotas">Quotas and limits</a>
+ * for more information about message limits.
  *
  * Generated from protobuf message <code>google.pubsub.v1.PubsubMessage</code>
  */
