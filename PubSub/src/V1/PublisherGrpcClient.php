@@ -36,7 +36,8 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates the given topic with the given name. See the
-     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>.
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -122,8 +123,13 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the names of the snapshots on this topic.<br><br>
-     * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+     * Lists the names of the snapshots on this topic. Snapshots are used in
+     * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+     * operations, which allow
+     * you to manage message acknowledgments in bulk. That is, you can set the
+     * acknowledgment state of messages in an existing subscription to the state
+     * captured by a snapshot.<br><br>
+     * <b>BETA:</b> This feature is part of a beta release. This API might be
      * changed in backward-incompatible ways and is not recommended for production
      * use. It is not subject to any SLA or deprecation policy.
      * @param \Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument input argument
