@@ -82,7 +82,9 @@ class ComponentManager
         $components = $this->components ?: $this->loadComponents();
 
         array_walk($components, function (&$component) {
+            $name = $component['composer']['name'];
             $component = $component['composer']['extra']['component'];
+            $component['displayName'] = $name;
         });
 
         return $componentId

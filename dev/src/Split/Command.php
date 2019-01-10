@@ -95,6 +95,10 @@ class Command extends GoogleCloudCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (PHP_VERSION_ID < 50600) {
+            throw new \RuntimeException('This command is only available in PHP 5.6 and later.');
+        }
+
         $execDir = $this->rootPath . '/' . self::EXEC_DIR;
         $github = $this->github;
         $split = $this->split;
@@ -152,6 +156,11 @@ class Command extends GoogleCloudCommand
 
         $componentId = $input->getOption('component');
         $components = $this->components->componentsExtra($componentId);
+
+        // remove umbrella component.
+        $components = array_filter($components, function ($component, $key) {
+            return $key !== 'google-cloud';
+        }, ARRAY_FILTER_USE_BOTH);
 
         $manifestPath = $this->rootPath . '/docs/manifest.json';
 

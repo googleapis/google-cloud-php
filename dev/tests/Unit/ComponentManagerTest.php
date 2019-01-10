@@ -52,7 +52,9 @@ class ComponentManagerTest extends TestCase
     {
         $components = $this->components;
         array_walk($components, function (&$component) {
+            $name = $component['composer']['name'];
             $component = $component['composer']['extra']['component'];
+            $component['displayName'] = $name;
         });
 
         $this->assertEquals($components, $this->cm->componentsExtra());
@@ -62,7 +64,9 @@ class ComponentManagerTest extends TestCase
     {
         $components = $this->components;
         array_walk($components, function (&$component) {
+            $name = $component['composer']['name'];
             $component = $component['composer']['extra']['component'];
+            $component['displayName'] = $name;
         });
 
         $componentId = array_keys($this->components)[0];
@@ -136,6 +140,7 @@ class ComponentManagerTest extends TestCase
     private $components = [
         'component-a' => [
             'composer' => [
+                'name' => 'test/component-a',
                 'extra' => [
                     'component' => [
                         'id' => 'component-a'
@@ -146,6 +151,7 @@ class ComponentManagerTest extends TestCase
         ],
         'component-b' => [
             'composer' => [
+                'name' => 'test/component-a',
                 'extra' => [
                     'component' => [
                         'id' => 'component-b'
