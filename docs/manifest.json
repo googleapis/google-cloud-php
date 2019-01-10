@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.91.0",
                 "v0.90.0",
                 "v0.89.0",
                 "v0.88.0",
@@ -350,6 +351,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.8.2",
                 "v0.8.1",
                 "v0.8.0",
                 "v0.7.0",
@@ -816,6 +818,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.8.0",
                 "v1.7.2",
                 "v1.7.1",
                 "v1.7.0",
@@ -892,6 +895,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.11.5",
                 "v1.11.4",
                 "v1.11.3",
                 "v1.11.2",
@@ -948,6 +952,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.19.0",
                 "v0.18.2",
                 "v0.18.1",
                 "v0.18.0",
@@ -1068,6 +1073,7 @@
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
             "versions": [
+                "v0.12.3",
                 "v0.12.2",
                 "v0.12.1",
                 "v0.12.0",
