@@ -27,6 +27,8 @@ namespace Google\Cloud\Dev\Split;
 class RunShell
 {
     /**
+     * Executing commands in Windows may behave differently.
+     *
      * @param string $command
      * @return array [(bool) $succeeded, (string) $shellOutput, (int) $exitCode]
      */
