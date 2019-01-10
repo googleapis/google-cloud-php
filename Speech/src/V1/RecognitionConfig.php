@@ -37,6 +37,17 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $sample_rate_hertz = 0;
     /**
+     * This needs to be set to `true` explicitly and `audio_channel_count` > 1
+     * to get each channel recognized separately. The recognition result will
+     * contain a `channel_tag` field to state which channel that result belongs
+     * to. If this is not true, we will only recognize the first channel. The
+     * request is billed cumulatively for all channels recognized:
+     * `audio_channel_count` multiplied by the length of the audio.
+     *
+     * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
+     */
+    private $enable_separate_recognition_per_channel = false;
+    /**
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
@@ -134,15 +145,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     private $model = '';
     /**
      * *Optional* Set to true to use an enhanced model for speech recognition.
-     * You must also set the `model` field to a valid, enhanced model. If
-     * `use_enhanced` is set to true and the `model` field is not set, then
-     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
-     * version of the specified model does not exist, then the speech is
-     * recognized using the standard version of the specified model.
+     * If `use_enhanced` is set to true and the `model` field is not set, then
+     * an appropriate enhanced model is chosen if:
+     * 1. project is eligible for requesting enhanced models
+     * 2. an enhanced model exists for the audio
+     * If `use_enhanced` is true and an enhanced version of the specified model
+     * does not exist, then the speech is recognized using the standard version
+     * of the specified model.
      * Enhanced speech models require that you opt-in to data logging using
-     * instructions in the [documentation](/speech-to-text/enable-data-logging).
-     * If you set `use_enhanced` to true and you have not enabled audio logging,
-     * then you will receive an error.
+     * instructions in the
+     * [documentation](/speech-to-text/docs/enable-data-logging). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
      *
      * Generated from protobuf field <code>bool use_enhanced = 14;</code>
      */
@@ -166,6 +180,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           the audio source (instead of re-sampling).
      *           This field is optional for `FLAC` and `WAV` audio files and required
      *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     *     @type bool $enable_separate_recognition_per_channel
+     *           This needs to be set to `true` explicitly and `audio_channel_count` > 1
+     *           to get each channel recognized separately. The recognition result will
+     *           contain a `channel_tag` field to state which channel that result belongs
+     *           to. If this is not true, we will only recognize the first channel. The
+     *           request is billed cumulatively for all channels recognized:
+     *           `audio_channel_count` multiplied by the length of the audio.
      *     @type string $language_code
      *           *Required* The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
@@ -236,15 +257,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           </table>
      *     @type bool $use_enhanced
      *           *Optional* Set to true to use an enhanced model for speech recognition.
-     *           You must also set the `model` field to a valid, enhanced model. If
-     *           `use_enhanced` is set to true and the `model` field is not set, then
-     *           `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
-     *           version of the specified model does not exist, then the speech is
-     *           recognized using the standard version of the specified model.
+     *           If `use_enhanced` is set to true and the `model` field is not set, then
+     *           an appropriate enhanced model is chosen if:
+     *           1. project is eligible for requesting enhanced models
+     *           2. an enhanced model exists for the audio
+     *           If `use_enhanced` is true and an enhanced version of the specified model
+     *           does not exist, then the speech is recognized using the standard version
+     *           of the specified model.
      *           Enhanced speech models require that you opt-in to data logging using
-     *           instructions in the [documentation](/speech-to-text/enable-data-logging).
-     *           If you set `use_enhanced` to true and you have not enabled audio logging,
-     *           then you will receive an error.
+     *           instructions in the
+     *           [documentation](/speech-to-text/docs/enable-data-logging). If you set
+     *           `use_enhanced` to true and you have not enabled audio logging, then you
+     *           will receive an error.
      * }
      */
     public function __construct($data = NULL) {
@@ -316,6 +340,42 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->sample_rate_hertz = $var;
+
+        return $this;
+    }
+
+    /**
+     * This needs to be set to `true` explicitly and `audio_channel_count` > 1
+     * to get each channel recognized separately. The recognition result will
+     * contain a `channel_tag` field to state which channel that result belongs
+     * to. If this is not true, we will only recognize the first channel. The
+     * request is billed cumulatively for all channels recognized:
+     * `audio_channel_count` multiplied by the length of the audio.
+     *
+     * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
+     * @return bool
+     */
+    public function getEnableSeparateRecognitionPerChannel()
+    {
+        return $this->enable_separate_recognition_per_channel;
+    }
+
+    /**
+     * This needs to be set to `true` explicitly and `audio_channel_count` > 1
+     * to get each channel recognized separately. The recognition result will
+     * contain a `channel_tag` field to state which channel that result belongs
+     * to. If this is not true, we will only recognize the first channel. The
+     * request is billed cumulatively for all channels recognized:
+     * `audio_channel_count` multiplied by the length of the audio.
+     *
+     * Generated from protobuf field <code>bool enable_separate_recognition_per_channel = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableSeparateRecognitionPerChannel($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_separate_recognition_per_channel = $var;
 
         return $this;
     }
@@ -612,15 +672,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * *Optional* Set to true to use an enhanced model for speech recognition.
-     * You must also set the `model` field to a valid, enhanced model. If
-     * `use_enhanced` is set to true and the `model` field is not set, then
-     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
-     * version of the specified model does not exist, then the speech is
-     * recognized using the standard version of the specified model.
+     * If `use_enhanced` is set to true and the `model` field is not set, then
+     * an appropriate enhanced model is chosen if:
+     * 1. project is eligible for requesting enhanced models
+     * 2. an enhanced model exists for the audio
+     * If `use_enhanced` is true and an enhanced version of the specified model
+     * does not exist, then the speech is recognized using the standard version
+     * of the specified model.
      * Enhanced speech models require that you opt-in to data logging using
-     * instructions in the [documentation](/speech-to-text/enable-data-logging).
-     * If you set `use_enhanced` to true and you have not enabled audio logging,
-     * then you will receive an error.
+     * instructions in the
+     * [documentation](/speech-to-text/docs/enable-data-logging). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
      *
      * Generated from protobuf field <code>bool use_enhanced = 14;</code>
      * @return bool
@@ -632,15 +695,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * *Optional* Set to true to use an enhanced model for speech recognition.
-     * You must also set the `model` field to a valid, enhanced model. If
-     * `use_enhanced` is set to true and the `model` field is not set, then
-     * `use_enhanced` is ignored. If `use_enhanced` is true and an enhanced
-     * version of the specified model does not exist, then the speech is
-     * recognized using the standard version of the specified model.
+     * If `use_enhanced` is set to true and the `model` field is not set, then
+     * an appropriate enhanced model is chosen if:
+     * 1. project is eligible for requesting enhanced models
+     * 2. an enhanced model exists for the audio
+     * If `use_enhanced` is true and an enhanced version of the specified model
+     * does not exist, then the speech is recognized using the standard version
+     * of the specified model.
      * Enhanced speech models require that you opt-in to data logging using
-     * instructions in the [documentation](/speech-to-text/enable-data-logging).
-     * If you set `use_enhanced` to true and you have not enabled audio logging,
-     * then you will receive an error.
+     * instructions in the
+     * [documentation](/speech-to-text/docs/enable-data-logging). If you set
+     * `use_enhanced` to true and you have not enabled audio logging, then you
+     * will receive an error.
      *
      * Generated from protobuf field <code>bool use_enhanced = 14;</code>
      * @param bool $var

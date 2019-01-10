@@ -45,6 +45,14 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float stability = 3;</code>
      */
     private $stability = 0.0;
+    /**
+     * For multi-channel audio, this is the channel number corresponding to the
+     * recognized result for the audio from that channel.
+     * For audio_channel_count = N, its output values can range from '1' to 'N'.
+     *
+     * Generated from protobuf field <code>int32 channel_tag = 5;</code>
+     */
+    private $channel_tag = 0;
 
     /**
      * Constructor.
@@ -69,6 +77,10 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *           (completely unstable) to 1.0 (completely stable).
      *           This field is only provided for interim results (`is_final=false`).
      *           The default of 0.0 is a sentinel value indicating `stability` was not set.
+     *     @type int $channel_tag
+     *           For multi-channel audio, this is the channel number corresponding to the
+     *           recognized result for the audio from that channel.
+     *           For audio_channel_count = N, its output values can range from '1' to 'N'.
      * }
      */
     public function __construct($data = NULL) {
@@ -172,6 +184,36 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->stability = $var;
+
+        return $this;
+    }
+
+    /**
+     * For multi-channel audio, this is the channel number corresponding to the
+     * recognized result for the audio from that channel.
+     * For audio_channel_count = N, its output values can range from '1' to 'N'.
+     *
+     * Generated from protobuf field <code>int32 channel_tag = 5;</code>
+     * @return int
+     */
+    public function getChannelTag()
+    {
+        return $this->channel_tag;
+    }
+
+    /**
+     * For multi-channel audio, this is the channel number corresponding to the
+     * recognized result for the audio from that channel.
+     * For audio_channel_count = N, its output values can range from '1' to 'N'.
+     *
+     * Generated from protobuf field <code>int32 channel_tag = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setChannelTag($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->channel_tag = $var;
 
         return $this;
     }
