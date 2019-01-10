@@ -1,5 +1,0 @@
-#!/bin/bash
-
-$(dirname $0)/compile-splitsh
-git fetch --unshallow
-composer google-cloud split

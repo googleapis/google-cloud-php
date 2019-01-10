@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +19,8 @@ namespace Google\Cloud\Dev\Split;
 
 /**
  * Execute Subtree Split
+ *
+ * @internal
  */
 class Split
 {
@@ -38,7 +39,7 @@ class Split
      * @param string $rootPath The path to the root of the repository.
      * @param string $folderToSplit The name of the folder to split, relative to
      *      `$rootPath`.
-     * @return string|null The branch name of the split, or null if failure.
+     * @return string|null The sha identifier, or null if failure.
     */
     public function execute($binaryPath, $rootPath, $folderToSplit)
     {

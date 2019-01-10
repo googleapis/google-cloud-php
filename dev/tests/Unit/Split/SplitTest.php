@@ -21,6 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\Split\RunShell;
 use Google\Cloud\Dev\Split\Split;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group dev
@@ -34,13 +35,46 @@ class SplitTest extends TestCase
     public function setUp()
     {
         $this->shell = $this->prophesize(RunShell::class);
-        $this->split = TestHelpers::stub(RunShell::class, [
-            $this->shell
+        $this->split = TestHelpers::stub(Split::class, [
+            $this->shell->reveal()
         ], [
             'shell'
         ]);
     }
 
     public function testExecute()
-    {}
+    {
+        $binaryPath = '/foo/bar/bin/splitsh-lite';
+        $folderToSplit = '/foo/bar/src';
+
+        // method uses `realpath()`, so we need to give it a real directory.
+        $rootPath = __DIR__;
+
+        $cmd = sprintf(
+            'SPLIT_SHA=`%s --prefix=%s --path=%s`; echo $SPLIT_SHA;',
+            $binaryPath,
+            $folderToSplit,
+            $rootPath
+        );
+
+        $this->shell->execute($cmd)->shouldBeCalled()->willReturn([
+            true, [
+                'foobar'
+            ]
+        ]);
+
+        $this->split->___setProperty('shell', $this->shell->reveal());
+
+        $this->assertEquals('foobar', $this->split->execute($binaryPath, $rootPath, $folderToSplit));
+    }
+
+    public function testExecuteFails()
+    {
+        $this->shell->execute(Argument::any())->shouldBeCalled()->willReturn([
+            false
+        ]);
+
+        $this->split->___setProperty('shell', $this->shell->reveal());
+        $this->assertNull($this->split->execute('', '', ''));
+    }
 }

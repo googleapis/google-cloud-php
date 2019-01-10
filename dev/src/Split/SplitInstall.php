@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@
 namespace Google\Cloud\Dev\Split;
 
 /**
- * Class Description
+ * Install the Splitsh-lite program.
+ *
+ * @internal
  */
 class SplitInstall
 {
@@ -47,7 +49,9 @@ class SplitInstall
     public function installFromSource($rootPath)
     {
         $message = 'Success';
-        if ($this->fileExists($this->installPath . '/splitsh-lite')) {
+        $location = $this->installPath . '/splitsh-lite';
+
+        if ($this->fileExists($location)) {
             $message = 'Already Installed';
         } else {
             $res = $this->shell->execute(sprintf(
@@ -63,7 +67,7 @@ class SplitInstall
             }
         }
 
-        return [$message, $this->installPath . '/splitsh-lite'];
+        return [$message, $location];
     }
 
     /**

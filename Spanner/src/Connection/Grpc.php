@@ -158,18 +158,18 @@ class Grpc implements ConnectionInterface
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
             : new SpannerClient($grpcConfig);
-        // $this->instanceAdminClient = isset($config['gapicSpannerInstanceAdminClient'])
-        //     ? $config['gapicSpannerInstanceAdminClient']
-        //     : new InstanceAdminClient($grpcConfig);
-        // $this->databaseAdminClient = isset($config['gapicSpannerDatabaseAdminClient'])
-        //     ? $config['gapicSpannerDatabaseAdminClient']
-        //     : new DatabaseAdminClient($grpcConfig);
+        $this->instanceAdminClient = isset($config['gapicSpannerInstanceAdminClient'])
+            ? $config['gapicSpannerInstanceAdminClient']
+            : new InstanceAdminClient($grpcConfig);
+        $this->databaseAdminClient = isset($config['gapicSpannerDatabaseAdminClient'])
+            ? $config['gapicSpannerDatabaseAdminClient']
+            : new DatabaseAdminClient($grpcConfig);
 
-        // $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
-        // $this->longRunningGrpcClients = [
-        //     $this->instanceAdminClient,
-        //     $this->databaseAdminClient
-        // ];
+        $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
+        $this->longRunningGrpcClients = [
+            $this->instanceAdminClient,
+            $this->databaseAdminClient
+        ];
     }
 
     /**

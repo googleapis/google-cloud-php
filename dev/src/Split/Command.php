@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 namespace Google\Cloud\Dev\Split;
 
 use Google\Cloud\Dev\Command\GoogleCloudCommand;
-use Google\Cloud\Dev\GetComponentsTrait;
+use Google\Cloud\Dev\ComponentManager;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,29 +27,36 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * A Symfony command for executing subtree splits.
+ *
+ * @internal
  */
 class Command extends GoogleCloudCommand
 {
-    use GetComponentsTrait;
-
     const PARENT_TAG_NAME = 'https://github.com/googleapis/google-cloud-php/releases/tag/%s';
     const EXEC_DIR = '.split';
 
+    private $components;
     private $github;
     private $split;
 
     /**
      * @param string $rootPath The path to the repository root directory.
+     * @param ComponentManager $components An instance of the Component Manager.
      * @param GitHub|null $github The Github API wrapper. If not provided, it
      *        will be instantiated. Available for testing purposes.
      * @param Split|null $split The Splitsh wrapper. If not provided, it will be
      *        instantiated. Available for testing purposes.
      */
-    public function __construct($rootPath, GitHub $github = null, Split $split = null)
-    {
+    public function __construct(
+        $rootPath,
+        ComponentManager $components,
+        GitHub $github = null,
+        Split $split = null
+    ) {
         parent::__construct($rootPath);
 
         $this->rootPath = realpath($rootPath);
+        $this->components = $components;
         $this->github = $github;
         $this->split = $split;
     }
@@ -144,13 +151,7 @@ class Command extends GoogleCloudCommand
         }
 
         $componentId = $input->getOption('component');
-        $components = $this->getComponents($this->rootPath, $this->rootPath);
-
-        if ($componentId) {
-            $components = array_filter($components, function ($component) use ($componentId) {
-                return $componentId === $component['id'];
-            });
-        }
+        $components = $this->components->componentsExtra($componentId);
 
         $manifestPath = $this->rootPath . '/docs/manifest.json';
 
@@ -158,7 +159,7 @@ class Command extends GoogleCloudCommand
 
         foreach ($components as $component) {
             $output->writeln('');
-            $localVersion = $this->getComponentVersion($manifestPath, $component['id']);
+            $localVersion = current($this->components->componentsVersion($component['id']));
             $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
 
             $output->writeln(sprintf(
@@ -211,6 +212,8 @@ class Command extends GoogleCloudCommand
             $output->writeln('');
             $output->writeln('<comment>[info]</comment> Creating GitHub tag.');
 
+            // @todo once the release builder is refactored, this should generate
+            //       actually useful release notes for the component in question.
             $notes = sprintf(
                 'For release notes, please see the [associated Google Cloud PHP release](%s).',
                 $parentTagSource
