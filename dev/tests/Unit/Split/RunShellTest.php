@@ -31,18 +31,16 @@ class RunShellTest extends TestCase
      */
     public function testExecute($cmd, $code, $output)
     {
-        if (defined(PHP_OS) && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $this->markTestSkipped('Cannot execute test in Windows.');
+            return;
         }
 
         $shell = new RunShell;
         $res = $shell->execute($cmd);
 
         $this->assertEquals($code == 0, $res[0]);
-        // trim quotes for windows.
-        $this->assertEquals($output, array_map(function ($line) {
-            return trim($line, '"');
-        }, $res[1]));
+        $this->assertEquals($output, $res[1]);
     }
 
     public function cmds()
