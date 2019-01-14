@@ -72,15 +72,19 @@ class IamConfigurationTest extends StorageTestCase
         // user to get objects.
         $policy = $bucket->iam()->policy();
 
-        $bindingKey = array_keys(array_filter($policy['bindings'], function ($binding) {
-            return $binding['role'] === 'roles/storage.objects.get';
-        }));
+        $role = 'roles/storage.objects.get';
+        $hasBinding = false;
+        foreach ($policy['bindings'] as $key => $binding) {
+            if ($binding['role'] === $role) {
+                $policy['bindings'][$key]['members'][] = $client;
+                $hasBinding = true;
+                break;
+            }
+        }
 
-        if (current($bindingKey)) {
-            $policy['bindings'][current($bindingKey)]['members'][] = $client;
-        } else {
+        if (!$hasBinding) {
             $policy['bindings'][] = [
-                'role' => 'roles/storage.objects.get',
+                'role' => $role,
                 'members' => [
                     $client
                 ]
