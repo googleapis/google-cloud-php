@@ -62,6 +62,46 @@ class IamConfigurationTest extends StorageTestCase
         $bucket->acl()->get();
     }
 
+    /**
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testObjectPolicyOnlyAclFails()
+    {
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+
+        $keyfile = json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true);
+        $client = $keyfile['client_email'];
+
+        // Ensure that the bucket IAM policy grants permission to the current
+        // user to get objects.
+        $policy = $bucket->iam()->policy();
+
+        $bindingKey = array_keys(array_filter($policy['bindings'], function ($binding) {
+            return $binding['role'] === 'roles/storage.objects.get';
+        }));
+
+        if (current($bindingKey)) {
+            $policy['bindings'][current($bindingKey)]['members'][] = $client;
+        } else {
+            $policy['bindings'][] = [
+                'role' => 'roles/storage.objects.get',
+                'members' => [
+                    $client
+                ]
+            ];
+        }
+
+        $bucket->iam()->setPolicy($policy);
+
+        $object = $bucket->upload('foobar', [
+            'name' => 'test.txt'
+        ]);
+
+        $bucket->update($this->bucketConfig());
+
+        $object->acl()->get();
+    }
+
     public function testCreateBucketWithBucketPolicyOnlyAndInsertObject()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->bucketConfig());
@@ -72,38 +112,6 @@ class IamConfigurationTest extends StorageTestCase
 
         $this->assertInstanceOf(StorageObject::class, $object);
         $object->reload();
-    }
-
-    public function testBucketObjectAccessibilityAndAcl()
-    {
-        $uniqid = uniqid(self::TESTING_PREFIX);
-        $uri = sprintf('https://storage.googleapis.com/%s/%s', $uniqid, $uniqid);
-
-        $bucket = self::createBucket(self::$client, $uniqid);
-        $object = $bucket->upload($uniqid, [
-            'name' => $uniqid,
-            'predefinedAcl' => 'publicRead',
-        ]);
-
-        $res = $this->guzzle->request('GET', $uri);
-        $this->assertEquals($uniqid, (string) $res->getBody());
-
-        $beforeAcl = $object->acl()->get();
-
-        $bucket->update($this->bucketConfig());
-
-        $this->assertTrue($bucket->reload()['iamConfiguration']['bucketPolicyOnly']['enabled']);
-
-        // take a nap until the cache expires.
-        sleep(90);
-        $res = $this->guzzle->request('GET', $uri);
-        $this->assertEquals(403, $res->getStatusCode(), (string) $res->getBody());
-
-        $bucket->update($this->bucketConfig());
-
-        $afterAcl = $object->acl()->get();
-
-        $this->assertEquals($beforeAcl, $afterAcl);
     }
 
     private function bucketConfig($enabled = true)
