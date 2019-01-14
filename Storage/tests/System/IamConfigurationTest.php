@@ -36,17 +36,14 @@ class IamConfigurationTest extends StorageTestCase
     public function testBucketPolicyOnly()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
-
         $bucket->update($this->bucketConfig());
 
         $info = $bucket->reload();
-
         $this->assertTrue($info['iamConfiguration']['bucketPolicyOnly']['enabled']);
 
         $bucket->update($this->bucketConfig(false));
 
         $info = $bucket->reload();
-
         $this->assertFalse($info['iamConfiguration']['bucketPolicyOnly']['enabled']);
     }
 
@@ -56,7 +53,6 @@ class IamConfigurationTest extends StorageTestCase
     public function testBucketPolicyOnlyAclFails()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
-
         $bucket->update($this->bucketConfig());
 
         $bucket->acl()->get();
