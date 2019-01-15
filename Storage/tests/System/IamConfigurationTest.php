@@ -38,13 +38,11 @@ class IamConfigurationTest extends StorageTestCase
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $bucket->update($this->bucketConfig());
 
-        $info = $bucket->reload();
-        $this->assertTrue($info['iamConfiguration']['bucketPolicyOnly']['enabled']);
+        $this->assertTrue($bucket->info()['iamConfiguration']['bucketPolicyOnly']['enabled']);
 
         $bucket->update($this->bucketConfig(false));
 
-        $info = $bucket->reload();
-        $this->assertFalse($info['iamConfiguration']['bucketPolicyOnly']['enabled']);
+        $this->assertFalse($bucket->info()['iamConfiguration']['bucketPolicyOnly']['enabled']);
     }
 
     /**
