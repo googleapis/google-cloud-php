@@ -55,8 +55,9 @@ $trace = $traceClient->trace();
 $span = $trace->span([
     'name' => 'main'
 ]);
-$span->setStart();
-$span->setEnd();
+$span->setStartTime();
+// some expensive operation
+$span->setEndTime();
 
 $trace->setSpans([$span]);
 $traceClient->insert($trace);
