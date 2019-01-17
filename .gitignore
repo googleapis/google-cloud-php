@@ -10,3 +10,4 @@ vendor/
 # do not delete
 keys/
 .testing
+__pycache__
