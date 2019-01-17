@@ -45,7 +45,7 @@ s.replace(
     'Copyright 2018')
 for client in ['Agents', 'Contexts', 'EntityTypes', 'Intents', 'SessionEntityTypes', 'Sessions']:
     s.replace(
-        f'**/V1/{client}Client.php',
+        f'**/V2/{client}Client.php',
         r'Copyright \d{4}',
         'Copyright 2018')
 s.replace(
