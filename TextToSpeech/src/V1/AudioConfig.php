@@ -62,6 +62,18 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 sample_rate_hertz = 5;</code>
      */
     private $sample_rate_hertz = 0;
+    /**
+     * An identifier which selects 'audio effects' profiles that are applied on
+     * (post synthesized) text to speech.
+     * Effects are applied on top of each other in the order they are given.
+     * See
+     * [audio-profiles](https:
+     * //cloud.google.com/text-to-speech/docs/audio-profiles)
+     * for current supported profile ids.
+     *
+     * Generated from protobuf field <code>repeated string effects_profile_id = 6;</code>
+     */
+    private $effects_profile_id;
 
     /**
      * Constructor.
@@ -96,6 +108,14 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *           result in worse audio quality), unless the specified sample rate is not
      *           supported for the encoding chosen, in which case it will fail the request
      *           and return [google.rpc.Code.INVALID_ARGUMENT][].
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $effects_profile_id
+     *           An identifier which selects 'audio effects' profiles that are applied on
+     *           (post synthesized) text to speech.
+     *           Effects are applied on top of each other in the order they are given.
+     *           See
+     *           [audio-profiles](https:
+     *           //cloud.google.com/text-to-speech/docs/audio-profiles)
+     *           for current supported profile ids.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +283,44 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->sample_rate_hertz = $var;
+
+        return $this;
+    }
+
+    /**
+     * An identifier which selects 'audio effects' profiles that are applied on
+     * (post synthesized) text to speech.
+     * Effects are applied on top of each other in the order they are given.
+     * See
+     * [audio-profiles](https:
+     * //cloud.google.com/text-to-speech/docs/audio-profiles)
+     * for current supported profile ids.
+     *
+     * Generated from protobuf field <code>repeated string effects_profile_id = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEffectsProfileId()
+    {
+        return $this->effects_profile_id;
+    }
+
+    /**
+     * An identifier which selects 'audio effects' profiles that are applied on
+     * (post synthesized) text to speech.
+     * Effects are applied on top of each other in the order they are given.
+     * See
+     * [audio-profiles](https:
+     * //cloud.google.com/text-to-speech/docs/audio-profiles)
+     * for current supported profile ids.
+     *
+     * Generated from protobuf field <code>repeated string effects_profile_id = 6;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEffectsProfileId($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->effects_profile_id = $arr;
 
         return $this;
     }
