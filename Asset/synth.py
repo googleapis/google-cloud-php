@@ -37,3 +37,17 @@ s.copy(v1beta1_library / f'proto/src/Google/Cloud/Asset', f'src')
 s.copy(v1beta1_library / f'tests')
 
 s.copy(templates)
+
+# fix year
+s.replace(
+    'src/V1beta1/*Client.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
+s.replace(
+    '**/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
+s.replace(
+    'tests/*/V1beta1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
