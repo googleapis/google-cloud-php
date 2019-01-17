@@ -43,14 +43,18 @@ s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
     'Copyright 2017')
+
+for client in ['ClusterController', 'JobController']:
+    s.replace(
+        f'**/V1/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2017')
+
 s.replace(
-    '**/V1/ClusterControllerClient.php',
+    '**/V1/WorkflowTemplateServiceClient.php',
     r'Copyright \d{4}',
-    'Copyright 2017')
-s.replace(
-    '**/V1/JobControllerClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
+    'Copyright 2018')
+
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
