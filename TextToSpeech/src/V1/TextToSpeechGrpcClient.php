@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\TextToSpeech\V1;
 
@@ -33,8 +34,7 @@ class TextToSpeechGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns a list of [Voice][google.cloud.texttospeech.v1.Voice]
-     * supported for synthesis.
+     * Returns a list of Voice supported for synthesis.
      * @param \Google\Cloud\TextToSpeech\V1\ListVoicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
