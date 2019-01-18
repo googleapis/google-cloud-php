@@ -27,6 +27,7 @@ use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperato
 use Google\Cloud\Datastore\V1\DatastoreClient;
 use Google\Cloud\Datastore\V1\GqlQuery;
 use Google\Cloud\Datastore\V1\Key;
+use Google\Cloud\Datastore\V1\Key\PathElement;
 use Google\Cloud\Datastore\V1\Mutation;
 use Google\Cloud\Datastore\V1\PartitionId;
 use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
@@ -281,11 +282,34 @@ class Grpc implements ConnectionInterface
      */
     private function keysList(array $keys)
     {
-        foreach ($keys as &$key) {
-            $key = $this->serializer->decodeMessage(new Key, $key);
+        $out = [];
+        foreach ($keys as $key) {
+            $local = [];
+
+            if (isset($key['partitionId'])) {
+                $p = $this->arrayFilterRemoveNull([
+                    'project_id' => isset($key['partitionId']['projectId'])
+                        ? $key['partitionId']['projectId']
+                        : null,
+                    'namespace_id' => isset($key['partitionId']['namespaceId'])
+                        ? $key['partitionId']['namespaceId']
+                        : null
+                ]);
+
+                $local['partition_id'] = new PartitionId($p);
+            }
+
+            $local['path'] = [];
+            if (isset($key['path'])) {
+                foreach ($key['path'] as $element) {
+                    $local['path'][] = new PathElement($element);
+                }
+            }
+
+            $out[] = new Key($local);
         }
 
-        return $keys;
+        return $out;
     }
 
     /**
