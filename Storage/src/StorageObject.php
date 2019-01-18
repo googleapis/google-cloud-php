@@ -926,7 +926,8 @@ class StorageObject
         if ($options['responseDisposition']) {
             $query[] = 'response-content-disposition=' . urlencode($options['responseDisposition']);
         } elseif ($options['saveAsName']) {
-            $query[] = 'response-content-disposition=attachment;filename="' . urlencode($options['saveAsName']) . '"';
+            $query[] = 'response-content-disposition=attachment;filename='
+                . urlencode('"' . $options['saveAsName'] . '"');
         }
 
         if ($options['responseType']) {
