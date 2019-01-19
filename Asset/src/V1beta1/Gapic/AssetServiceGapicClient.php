@@ -368,23 +368,27 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent       Required. The relative name of the root asset. This can only be an organization
-     *                                   number (such as "organizations/123"), a project ID (such as
-     *                                   "projects/my-project-id"), or a project number (such as "projects/12345").
+     * @param string       $parent       Required. The relative name of the root asset. This can only be an
+     *                                   organization number (such as "organizations/123"), a project ID (such as
+     *                                   "projects/my-project-id"), a project number (such as "projects/12345"), or
+     *                                   a folder number (such as "folders/123").
      * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
      *                                   to. All results will be in newline delimited JSON format.
      * @param array        $optionalArgs {
      *                                   Optional.
      *
      *     @type Timestamp $readTime
-     *          Timestamp to take an asset snapshot. This can only be set to a timestamp in
-     *          the past or of the current time. If not specified, the current time will be
-     *          used. Due to delays in resource data collection and indexing, there is a
-     *          volatile window during which running the same query may get different
-     *          results.
+     *          Timestamp to take an asset snapshot. This can only be set to a timestamp
+     *          between 2018-10-02 UTC (inclusive) and the current time. If not specified,
+     *          the current time will be used. Due to delays in resource data collection
+     *          and indexing, there is a volatile window during which running the same
+     *          query may get different results.
      *     @type string[] $assetTypes
      *          A list of asset types of which to take a snapshot for. For example:
-     *          "google.compute.disk". If specified, only matching assets will be returned.
+     *          "google.compute.Disk". If specified, only matching assets will be returned.
+     *          See [Introduction to Cloud Asset
+     *          Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     *          for all supported asset types.
      *     @type int $contentType
      *          Asset content type. If not specified, no content but the asset name will be
      *          returned.
@@ -449,9 +453,12 @@ class AssetServiceGapicClient
      *                                   "projects/my-project-id")", or a project number (such as "projects/12345").
      * @param int        $contentType    Required. The content type.
      *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1beta1\ContentType}
-     * @param TimeWindow $readTimeWindow Required. The time window for the asset history. The start time is
-     *                                   required. The returned results contain all temporal assets whose time
-     *                                   window overlap with read_time_window.
+     * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
+     *                                   end_time are optional and if set, it must be after 2018-10-02 UTC. If
+     *                                   end_time is not set, it is default to current timestamp. If start_time is
+     *                                   not set, the snapshot of the assets at end_time will be returned. The
+     *                                   returned results contain all temporal assets whose time window overlap with
+     *                                   read_time_window.
      * @param array      $optionalArgs   {
      *                                   Optional.
      *
