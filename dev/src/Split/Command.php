@@ -44,21 +44,20 @@ class Command extends GoogleCloudCommand
      * @param string $rootPath The path to the repository root directory.
      * @param ComponentManager $componentManaher An instance of the Component
      *        Manager.
-     * @param GitHub|null $github The Github API wrapper. If not provided, it
-     *        will be instantiated. Available for testing purposes.
-     * @param Split|null $split The Splitsh wrapper. If not provided, it will be
-     *        instantiated. Available for testing purposes.
      */
-    public function __construct(
-        $rootPath,
-        ComponentManager $componentManager
-    ) {
+    public function __construct($rootPath, ComponentManager $componentManager)
+    {
         parent::__construct($rootPath);
 
         $this->rootPath = realpath($rootPath);
         $this->componentManager = $componentManager;
     }
 
+    /**
+     * Command configuration.
+     *
+     * @return void
+     */
     protected function configure()
     {
         $this->setName('split')
@@ -91,6 +90,13 @@ class Command extends GoogleCloudCommand
             );
     }
 
+    /**
+     * Execute Split and Release process.
+     *
+     * @param InputInterface $input The Symfony input handler.
+     * @param OutputInterface $output The Symfony output handler.
+     * @return int The exit code.
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (PHP_VERSION_ID < 50600) {
@@ -121,85 +127,126 @@ class Command extends GoogleCloudCommand
 
         $parentTagSource = sprintf(self::PARENT_TAG_NAME, $input->getArgument('parent'));
 
+        $errors = [];
         foreach ($components as $component) {
-            $output->writeln('');
-            $localVersion = current($this->componentManager->componentsVersion($component['id']));
-            $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
-
-            $output->writeln(sprintf(
-                '<comment>%s</comment>: Starting on component. Target version <info>%s</info>',
-                $component['id'],
-                $localVersion
-            ));
-
-            $this->writeDiv($output);
-
-            if ($isAlreadyTagged) {
-                $output->writeln(sprintf(
-                    'Version <info>%s</info> already exists on target <info>%s</info>',
-                    $localVersion,
-                    $component['target']
-                ));
-
-                $output->writeln('<comment>[info]</comment> Skipping.');
-                continue;
-            }
-
-            $output->writeln(sprintf(
-                '<comment>%s</comment>: Running splitsh',
-                $component['id']
-            ));
-
-
-            $splitBranch = $split->execute($splitBinaryPath, $this->rootPath, $component['path']);
-            if ($splitBranch) {
-                $output->writeln(sprintf('Split succeeded, branch <info>%s</info> created.', $splitBranch));
-            } else {
-                $output->writeln('<error>Split failed!</error>');
+            $res = $this->processComponent($output, $github, $split, $component);
+            if (!$res) {
+                $errors[] = $component['id'];
             }
 
             $output->writeln('');
+            $output->writeln('');
+        }
 
+        if ($errors) {
+            $output->writeln('<error>[ERROR]</error>: One or more components reported an error.');
+            $output->writeln('Please correct errors and try again.');
+            $output->writeln('Error component(s): ' . implode(', ', $errors));
+
+            return 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * Process release for a given component.
+     *
+     * Checks if the tag exists on the remote target, splits the component,
+     * pushes to the remote target and creates a github release.
+     *
+     * @param OutputInterface $output Allows writing to cli.
+     * @param GitHub A GitHub API wrapper.
+     * @param Split A Splitsh wrapper.
+     * @param array $component The component data.
+     * @return bool
+     */
+    private function processComponent(
+        OutputInterface $output,
+        GitHub $github,
+        Split $split,
+        array $component
+    ) {
+        $output->writeln('');
+        $localVersion = current($this->componentManager->componentsVersion($component['id']));
+        $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
+
+        $output->writeln(sprintf(
+            '<comment>%s</comment>: Starting on component. Target version <info>%s</info>',
+            $component['id'],
+            $localVersion
+        ));
+
+        $this->writeDiv($output);
+
+        if ($isAlreadyTagged) {
             $output->writeln(sprintf(
-                '<comment>%s</comment>: Push to github target %s',
-                $component['id'],
+                'Version <info>%s</info> already exists on target <info>%s</info>',
+                $localVersion,
                 $component['target']
             ));
 
-            $res = $github->push($component['target'], $splitBranch);
-            if ($res[0]) {
-                $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $component['id']));
-            } else {
-                $output->writeln(sprintf('<error>%s</error>: Push failed.', $component['id']));
-            }
-
-            $output->writeln('');
-            $output->writeln('<comment>[info]</comment> Creating GitHub tag.');
-
-            // @todo once the release builder is refactored, this should generate
-            //       actually useful release notes for the component in question.
-            $notes = sprintf(
-                'For release notes, please see the [associated Google Cloud PHP release](%s).',
-                $parentTagSource
-            );
-
-            $res = $github->createRelease(
-                $component['target'],
-                $localVersion,
-                $component['displayName'] . ' ' . $localVersion,
-                $notes
-            );
-
-            if ($res) {
-                $output->writeln(sprintf('<comment>%s</comment>: Tag succeeded.', $component['id']));
-            } else {
-                $output->writeln(sprintf('<error>%s</error>: Tag failed.', $component['id']));
-            }
-
-            $output->writeln('');
-            $output->writeln('');
-            exit;
+            $output->writeln('<comment>[info]</comment> Skipping.');
+            return;
         }
+
+        $output->writeln(sprintf(
+            '<comment>%s</comment>: Running splitsh',
+            $component['id']
+        ));
+
+        $splitBranch = $split->execute($splitBinaryPath, $this->rootPath, $component['path']);
+        if ($splitBranch) {
+            $output->writeln(sprintf('Split succeeded, branch <info>%s</info> created.', $splitBranch));
+        } else {
+            $output->writeln('<error>Split failed!</error>');
+
+            return false;
+        }
+
+        $output->writeln('');
+
+        $output->writeln(sprintf(
+            '<comment>%s</comment>: Push to github target %s',
+            $component['id'],
+            $component['target']
+        ));
+
+        $res = $github->push($component['target'], $splitBranch);
+        if ($res[0]) {
+            $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $component['id']));
+        } else {
+            $output->writeln(sprintf('<error>%s</error>: Push failed.', $component['id']));
+
+            return false;
+        }
+
+        $output->writeln('');
+        $output->writeln('<comment>[info]</comment> Creating GitHub tag.');
+
+        // @todo once the release builder is refactored, this should generate
+        //       actually useful release notes for the component in question.
+        $notes = sprintf(
+            'For release notes, please see the [associated Google Cloud PHP release](%s).',
+            $parentTagSource
+        );
+
+        $res = $github->createRelease(
+            $component['target'],
+            $localVersion,
+            $component['displayName'] . ' ' . $localVersion,
+            $notes
+        );
+
+        if ($res) {
+            $output->writeln(sprintf('<comment>%s</comment>: Tag succeeded.', $component['id']));
+        } else {
+            $output->writeln(sprintf('<error>%s</error>: Tag failed.', $component['id']));
+
+            return false;
+        }
+
+        return true;
     }
 
     /**
