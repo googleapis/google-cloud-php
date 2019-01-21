@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A time window of [start_time, end_time).
+ * A time window of (start_time, end_time].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1beta1.TimeWindow</code>
  */
 class TimeWindow extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Start time of the time window (inclusive).
+     * Start time of the time window (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
     /**
-     * End time of the time window (exclusive).
+     * End time of the time window (inclusive).
      * Current timestamp if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
@@ -36,9 +36,9 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Start time of the time window (inclusive).
+     *           Start time of the time window (exclusive).
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           End time of the time window (exclusive).
+     *           End time of the time window (inclusive).
      *           Current timestamp if not specified.
      * }
      */
@@ -48,7 +48,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the time window (inclusive).
+     * Start time of the time window (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
@@ -59,7 +59,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the time window (inclusive).
+     * Start time of the time window (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -74,7 +74,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End time of the time window (exclusive).
+     * End time of the time window (inclusive).
      * Current timestamp if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
@@ -86,7 +86,7 @@ class TimeWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End time of the time window (exclusive).
+     * End time of the time window (inclusive).
      * Current timestamp if not specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
