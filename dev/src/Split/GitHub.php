@@ -116,23 +116,17 @@ class GitHub
      */
     public function push($target, $ref, $targetBranch = 'master', $force = true)
     {
-        $cmd = 'git push -q ' .
-            'https://%s@github.com/%s ' .
-            '%s:%s';
+        $cmd = [
+            'git push -q',
+            sprintf('https://%s@github.com/%s', $this->token, $target),
+            sprintf('%s:%s', $ref, $targetBranch)
+        ];
 
         if ($force) {
-            $cmd .= ' --force';
+            $cmd[] = '--force';
         }
 
-        $cmd = sprintf(
-            $cmd,
-            $this->token,
-            $target,
-            $ref,
-            $targetBranch
-        );
-
-        return $this->shell->execute($cmd);
+        return $this->shell->execute(implode(' ' , $cmd));
     }
 
     private function cleanTarget($target)

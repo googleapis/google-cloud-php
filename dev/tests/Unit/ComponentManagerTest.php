@@ -51,11 +51,11 @@ class ComponentManagerTest extends TestCase
     public function testComponentsExtra()
     {
         $components = $this->components;
-        array_walk($components, function (&$component) {
+        foreach ($components as &$component) {
             $name = $component['composer']['name'];
             $component = $component['composer']['extra']['component'];
             $component['displayName'] = $name;
-        });
+        };
 
         $this->assertEquals($components, $this->cm->componentsExtra());
     }

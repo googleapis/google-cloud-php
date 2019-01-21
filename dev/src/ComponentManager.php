@@ -151,13 +151,7 @@ class ComponentManager
         // add root composer.json.
         $composerFiles = array_merge(glob($this->rootPath . '/*/composer.json'), [$this->rootPath .'/composer.json']);
         foreach ($composerFiles as $composerPath) {
-            $composer = json_decode(@file_get_contents($composerPath), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \RuntimeException(sprintf(
-                    'Could not load composer from %s. Check that the file exists and is valid JSON.',
-                    $composerPath
-                ));
-            }
+            $composer = $this->loadJsonFromFile($composerPath);
 
             if (!isset($composer['extra']['component'])) {
                 continue;
@@ -178,15 +172,22 @@ class ComponentManager
 
     private function loadManifest()
     {
-        $manifest = json_decode(@file_get_contents($this->manifestPath), true);
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \RuntimeException(sprintf(
-                'Could not load manifest from %s. Check that the file exists and is valid JSON.',
-                $this->manifestPath
-            ));
-        }
+        $manifest = $this->loadJsonFromFile($this->manifestPath);
 
         $this->manifest = $manifest;
         return $manifest;
+    }
+
+    protected function loadJsonFromFile($path)
+    {
+        $json = json_decode(@file_get_contents($path), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \RuntimeException(sprintf(
+                'Could not load manifest from %s. Check that the file exists and is valid JSON.',
+                $path
+            ));
+        }
+
+        return $json;
     }
 }

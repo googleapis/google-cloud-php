@@ -35,13 +35,15 @@ class Command extends GoogleCloudCommand
     const PARENT_TAG_NAME = 'https://github.com/googleapis/google-cloud-php/releases/tag/%s';
     const EXEC_DIR = '.split';
 
-    private $components;
-    private $github;
-    private $split;
+    /**
+     * @var ComponentManager
+     */
+    private $componentManager;
 
     /**
      * @param string $rootPath The path to the repository root directory.
-     * @param ComponentManager $components An instance of the Component Manager.
+     * @param ComponentManager $componentManaher An instance of the Component
+     *        Manager.
      * @param GitHub|null $github The Github API wrapper. If not provided, it
      *        will be instantiated. Available for testing purposes.
      * @param Split|null $split The Splitsh wrapper. If not provided, it will be
@@ -49,16 +51,12 @@ class Command extends GoogleCloudCommand
      */
     public function __construct(
         $rootPath,
-        ComponentManager $components,
-        GitHub $github = null,
-        Split $split = null
+        ComponentManager $componentManager
     ) {
         parent::__construct($rootPath);
 
         $this->rootPath = realpath($rootPath);
-        $this->components = $components;
-        $this->github = $github;
-        $this->split = $split;
+        $this->componentManager = $componentManager;
     }
 
     protected function configure()
@@ -100,62 +98,19 @@ class Command extends GoogleCloudCommand
         }
 
         $execDir = $this->rootPath . '/' . self::EXEC_DIR;
-        $github = $this->github;
-        $split = $this->split;
+        $token = $this->githubToken($input->getOption('token'));
 
         $shell = new RunShell;
-
-        if (!$github) {
-            $output->writeln('<comment>[info]</comment> Instantiating GitHub API Wrapper.');
-
-            $token = $input->getOption('token');
-            if (!$token && getenv(self::TOKEN_ENV)) {
-                $token = getenv(self::TOKEN_ENV);
-            } else {
-                throw new \RuntimeException(sprintf(
-                    'Could not find GitHub auth token. Please set the environment ' .
-                    'variable `%s` or pass token as console argument.',
-                    self::TOKEN_ENV
-                ));
-            }
-
-            $guzzle = new Client;
-            $github = new GitHub($shell, $guzzle, $token);
-        } else {
-            $output->writeln('<comment>[info]</comment> Using injected Github API Wrapper.');
-        }
-
-        if (!$split) {
-            $output->writeln('<comment>[info]</comment> Instantiating Splitsh Wrapper.');
-
-            $split = new Split($shell);
-        } else {
-            $output->writeln('<comment>[info]</comment> Using injected Splitsh Wrapper.');
-        }
+        $guzzle = $this->guzzleClient();
+        $github = $this->githubClient($output, $shell, $guzzle, $token);
+        $split = $this->splitWrapper($output, $shell);
 
         @mkdir($execDir);
 
-        if ($input->getOption('splitsh')) {
-            $output->writeln('<comment>[info]</comment> Using User-Provided Splitsh binary.');
-            $splitBinaryPath = $input->getOption('splitsh');
-        } else {
-            $output->writeln('<comment>[info]</comment> Compiling Splitsh');
-            $this->writeDiv($output);
-
-            $install = new SplitInstall($shell, $execDir);
-
-            $res = $install->installFromSource($this->rootPath);
-
-            $output->writeln(sprintf(
-                '<comment>[info]</comment> Splitsh Installer says <info>%s</info>',
-                $res[0]
-            ));
-
-            $splitBinaryPath = $res[1];
-        }
+        $splitBinaryPath = $this->splitshInstall($output, $shell, $execDir, $input->getOption('splitsh'));
 
         $componentId = $input->getOption('component');
-        $components = $this->components->componentsExtra($componentId);
+        $components = $this->componentManager->componentsExtra($componentId);
 
         // remove umbrella component.
         $components = array_filter($components, function ($component, $key) {
@@ -168,7 +123,7 @@ class Command extends GoogleCloudCommand
 
         foreach ($components as $component) {
             $output->writeln('');
-            $localVersion = current($this->components->componentsVersion($component['id']));
+            $localVersion = current($this->componentManager->componentsVersion($component['id']));
             $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
 
             $output->writeln(sprintf(
@@ -243,7 +198,111 @@ class Command extends GoogleCloudCommand
 
             $output->writeln('');
             $output->writeln('');
+            exit;
         }
+    }
+
+    /**
+     * Fetch the GitHub auth token from the user or environment.
+     *
+     * @param string|null $userToken The user token, if provided, else `null`.
+     * @return string
+     * @throws \RuntimeException If no user token was given and the environment
+     *         variable is not set.
+     */
+    protected function githubToken($userToken)
+    {
+        $token = $userToken ?: getenv(self::TOKEN_ENV);
+
+        if (!$token) {
+            throw new \RuntimeException(sprintf(
+                'Could not find GitHub auth token. Please set the environment ' .
+                'variable `%s` or pass token as console argument.',
+                self::TOKEN_ENV
+            ));
+        }
+
+        return $token;
+    }
+
+    /**
+     * Initialize the Split wrapper.
+     *
+     * You can override this method in unit tests.
+     *
+     * @param OutputInterface $output Allows writing to cli.
+     * @param RunShell $shell A wrapper for executing shell commands.
+     * @return Split
+     */
+    protected function splitWrapper(OutputInterface $output, RunShell $shell)
+    {
+        $output->writeln('<comment>[info]</comment> Instantiating Splitsh Wrapper.');
+
+        return new Split($shell);
+    }
+
+    /**
+     * Initialize the Github client.
+     *
+     * You can override this method in unit tests.
+     *
+     * @param OutputInterface $output Allows writing to cli.
+     * @param RunShell $shell A wrapper for executing shell commands.
+     * @param Client $guzzle A guzzle client for executing HTTP requests.
+     * @param string $token A Github auth token.
+     * @return GitHub
+     */
+    protected function githubClient(OutputInterface $output, RunShell $shell, Client $guzzle, $token)
+    {
+        $output->writeln('<comment>[info]</comment> Instantiating GitHub API Wrapper.');
+
+        return new GitHub($shell, $guzzle, $token);
+    }
+
+    /**
+     * Create a Guzzle client.
+     *
+     * You can override this method in unit tests.
+     *
+     * @return Client
+     */
+    protected function guzzleClient()
+    {
+        return new Client;
+    }
+
+    /**
+     * Install the Splitsh program.
+     *
+     * You can override this method in unit tests.
+     *
+     * @param OutputInterface $output Allows writing to cli.
+     * @param RunShell $shell A wrapper for executing shell commands.
+     * @param string $execDir The path to a working directory.
+     * @param string|null The path to an existing splitsh binary, or null if
+     *        install from source is desired.
+     * @return string
+     */
+    protected function splitshInstall(OutputInterface $output, RunShell $shell, $execDir, $binaryPath)
+    {
+        if ($binaryPath) {
+            $output->writeln('<comment>[info]</comment> Using User-Provided Splitsh binary.');
+            return $binaryPath;
+        }
+
+        $output->writeln('<comment>[info]</comment> Compiling Splitsh');
+        $this->writeDiv($output);
+
+        $install = new SplitInstall($shell, $execDir);
+
+        $res = $install->installFromSource($this->rootPath);
+
+        $output->writeln(sprintf(
+            '<comment>[info]</comment> Splitsh Installer says <info>%s</info>',
+            $res[0]
+        ));
+
+        return $res[1];
     }
 
     private function writeDiv(OutputInterface $output)
