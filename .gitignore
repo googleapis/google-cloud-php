@@ -11,3 +11,4 @@ vendor/
 keys/
 .testing
 .split
+__pycache__

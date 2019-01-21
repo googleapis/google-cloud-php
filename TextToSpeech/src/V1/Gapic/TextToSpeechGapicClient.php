@@ -167,8 +167,7 @@ class TextToSpeechGapicClient
     }
 
     /**
-     * Returns a list of [Voice][google.cloud.texttospeech.v1.Voice]
-     * supported for synthesis.
+     * Returns a list of Voice supported for synthesis.
      *
      * Sample code:
      * ```

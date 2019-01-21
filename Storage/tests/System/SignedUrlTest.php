@@ -155,14 +155,24 @@ class SignedUrlTest extends StorageTestCase
             'responseType' => 'image/jpg'
         ]);
 
-        $res = $this->guzzle->request('GET', $url, [
-            'headers' => [
-                // 'Content-Type' => 'image/jpg'
-            ]
-        ]);
+        $res = $this->guzzle->request('GET', $url);
 
         $this->assertEquals('image/jpg', $res->getHeaderLine('Content-Type'));
         $this->assertEquals('attachment;filename="image.jpg"', $res->getHeaderLine('Content-Disposition'));
+    }
+
+    public function testSignedUrlWithSaveAsName()
+    {
+        $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
+
+        $saveAs = 'foo bar';
+        $url = $obj->signedUrl(time()+2, [
+            'saveAsName' => $saveAs
+        ]);
+
+        $res = $this->guzzle->request('GET', $url);
+
+        $this->assertEquals('attachment;filename="' . $saveAs . '"', $res->getHeaderLine('Content-Disposition'));
     }
 
     private function createFile($name)

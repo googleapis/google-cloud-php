@@ -15,14 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class GcsDestination extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * The path of the Cloud Storage objects. It's the same path that is used by
-     *  gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
-     * for more information.
-     *
-     * Generated from protobuf field <code>string uri = 1;</code>
-     */
-    private $uri = '';
+    protected $object_uri;
 
     /**
      * Constructor.
@@ -31,8 +24,10 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The path of the Cloud Storage objects. It's the same path that is used by
-     *            gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     *           The uri of the Cloud Storage object. It's the same uri that is used by
+     *           gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
+     *           Editing Object
+     *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      *           for more information.
      * }
      */
@@ -42,8 +37,10 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path of the Cloud Storage objects. It's the same path that is used by
-     *  gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * The uri of the Cloud Storage object. It's the same uri that is used by
+     * gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
+     * Editing Object
+     * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
@@ -51,12 +48,14 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      */
     public function getUri()
     {
-        return $this->uri;
+        return $this->readOneof(1);
     }
 
     /**
-     * The path of the Cloud Storage objects. It's the same path that is used by
-     *  gsutil. For example: "gs://bucket_name/object_path". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * The uri of the Cloud Storage object. It's the same uri that is used by
+     * gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
+     * Editing Object
+     * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
@@ -66,9 +65,17 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     public function setUri($var)
     {
         GPBUtil::checkString($var, True);
-        $this->uri = $var;
+        $this->writeOneof(1, $var);
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getObjectUri()
+    {
+        return $this->whichOneof("object_uri");
     }
 
 }

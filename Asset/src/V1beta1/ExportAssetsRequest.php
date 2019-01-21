@@ -16,26 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative name of the root asset. This can only be an organization
-     * number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an
+     * organization number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), a project number (such as "projects/12345"), or
+     * a folder number (such as "folders/123").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * Timestamp to take an asset snapshot. This can only be set to a timestamp in
-     * the past or of the current time. If not specified, the current time will be
-     * used. Due to delays in resource data collection and indexing, there is a
-     * volatile window during which running the same query may get different
-     * results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp
+     * between 2018-10-02 UTC (inclusive) and the current time. If not specified,
+     * the current time will be used. Due to delays in resource data collection
+     * and indexing, there is a volatile window during which running the same
+     * query may get different results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      */
     private $read_time = null;
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "google.compute.disk". If specified, only matching assets will be returned.
+     * "google.compute.Disk". If specified, only matching assets will be returned.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -62,18 +66,22 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative name of the root asset. This can only be an organization
-     *           number (such as "organizations/123"), a project ID (such as
-     *           "projects/my-project-id"), or a project number (such as "projects/12345").
+     *           Required. The relative name of the root asset. This can only be an
+     *           organization number (such as "organizations/123"), a project ID (such as
+     *           "projects/my-project-id"), a project number (such as "projects/12345"), or
+     *           a folder number (such as "folders/123").
      *     @type \Google\Protobuf\Timestamp $read_time
-     *           Timestamp to take an asset snapshot. This can only be set to a timestamp in
-     *           the past or of the current time. If not specified, the current time will be
-     *           used. Due to delays in resource data collection and indexing, there is a
-     *           volatile window during which running the same query may get different
-     *           results.
+     *           Timestamp to take an asset snapshot. This can only be set to a timestamp
+     *           between 2018-10-02 UTC (inclusive) and the current time. If not specified,
+     *           the current time will be used. Due to delays in resource data collection
+     *           and indexing, there is a volatile window during which running the same
+     *           query may get different results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types of which to take a snapshot for. For example:
-     *           "google.compute.disk". If specified, only matching assets will be returned.
+     *           "google.compute.Disk". If specified, only matching assets will be returned.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     *           for all supported asset types.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name will be
      *           returned.
@@ -88,9 +96,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. This can only be an organization
-     * number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an
+     * organization number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), a project number (such as "projects/12345"), or
+     * a folder number (such as "folders/123").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -101,9 +110,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. This can only be an organization
-     * number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an
+     * organization number (such as "organizations/123"), a project ID (such as
+     * "projects/my-project-id"), a project number (such as "projects/12345"), or
+     * a folder number (such as "folders/123").
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -118,11 +128,11 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp to take an asset snapshot. This can only be set to a timestamp in
-     * the past or of the current time. If not specified, the current time will be
-     * used. Due to delays in resource data collection and indexing, there is a
-     * volatile window during which running the same query may get different
-     * results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp
+     * between 2018-10-02 UTC (inclusive) and the current time. If not specified,
+     * the current time will be used. Due to delays in resource data collection
+     * and indexing, there is a volatile window during which running the same
+     * query may get different results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -133,11 +143,11 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp to take an asset snapshot. This can only be set to a timestamp in
-     * the past or of the current time. If not specified, the current time will be
-     * used. Due to delays in resource data collection and indexing, there is a
-     * volatile window during which running the same query may get different
-     * results.
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp
+     * between 2018-10-02 UTC (inclusive) and the current time. If not specified,
+     * the current time will be used. Due to delays in resource data collection
+     * and indexing, there is a volatile window during which running the same
+     * query may get different results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -153,7 +163,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "google.compute.disk". If specified, only matching assets will be returned.
+     * "google.compute.Disk". If specified, only matching assets will be returned.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -165,7 +178,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "google.compute.disk". If specified, only matching assets will be returned.
+     * "google.compute.Disk". If specified, only matching assets will be returned.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

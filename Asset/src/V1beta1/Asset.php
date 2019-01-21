@@ -25,7 +25,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Type of the asset. Example: "google.compute.disk".
+     * Type of the asset. Example: "google.compute.Disk".
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      */
@@ -55,7 +55,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
      *     @type string $asset_type
-     *           Type of the asset. Example: "google.compute.disk".
+     *           Type of the asset. Example: "google.compute.Disk".
      *     @type \Google\Cloud\Asset\V1beta1\Resource $resource
      *           Representation of the resource.
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy
@@ -99,7 +99,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the asset. Example: "google.compute.disk".
+     * Type of the asset. Example: "google.compute.Disk".
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      * @return string
@@ -110,7 +110,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the asset. Example: "google.compute.disk".
+     * Type of the asset. Example: "google.compute.Disk".
      *
      * Generated from protobuf field <code>string asset_type = 2;</code>
      * @param string $var
