@@ -36,6 +36,9 @@ namespace Google\Cloud\Speech;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionResult SpeechRecognitionResult
  * @codingStandardsIgnoreEnd
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Result
 {
@@ -48,7 +51,6 @@ class Result
 
     /**
      * @param array $info Data corresponding to the result.
-     * @deprecated Class no longer supported
      */
     public function __construct(array $info)
     {
