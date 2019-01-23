@@ -91,7 +91,14 @@ class ComponentIntegration extends GoogleCloudCommand
             // If the latest version in the manifest is greater than the latest remote,
             // then the component is being updated.
             // use semver to normalize both versions.
-            $isUpdated = version::gt($localLatestVersion, $remoteLatestVersion);
+            try {
+                $isUpdated = version::gt($localLatestVersion, $remoteLatestVersion);
+            } catch (\RuntimeException $e) {
+                // `master` is not a valid semver version and will raise an
+                // exception. Handle and set the value to false to continue on.
+                $isUpdated = false;
+            }
+
             $component['useLocalPath'] = $isUpdated;
             $component['tmpDir'] = realpath($tmpDir);
         }
