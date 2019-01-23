@@ -891,6 +891,14 @@
             ]
         },
         {
+            "id": "cloud-scheduler",
+            "name": "google/cloud-scheduler",
+            "defaultService": "scheduler/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-spanner",
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",

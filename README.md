@@ -31,6 +31,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud KMS](#google-cloud-kms-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
+* [Google Cloud Scheduler](#google-cloud-scheduler-beta) (Beta)
 * [Google Cloud Tasks](#google-cloud-tasks-beta) (Beta)
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
@@ -761,6 +762,30 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 ```
 $ composer require google/cloud-oslogin
+```
+
+## Google Cloud Scheduler (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/scheduler/readme)
+- [Official Documentation](https://cloud.google.com/scheduler/docs/)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Scheduler\V1beta1\CloudSchedulerClient;
+
+$schedulerClient = new CloudSchedulerClient();
+$projectId = '[MY_PROJECT_ID]';
+$formattedName = $schedulerClient->projectName($projectId);
+$jobs = $schedulerClient->listJobs($formattedName);
+```
+
+#### google/cloud-scheduler
+
+[Google Cloud Scheduler](https://github.com/googleapis/google-cloud-php-scheduler) can be installed separately by requiring the [`google/cloud-scheduler`](https://packagist.org/packages/google/cloud-scheduler) composer package:
+
+```
+$ composer require google/cloud-scheduler
 ```
 
 ## Google Cloud Tasks (Beta)

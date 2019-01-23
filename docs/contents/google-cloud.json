@@ -28,6 +28,7 @@
         "cloud-oslogin",
         "cloud-pubsub",
         "cloud-redis",
+        "cloud-scheduler",
         "cloud-spanner",
         "cloud-speech",
         "cloud-storage",
