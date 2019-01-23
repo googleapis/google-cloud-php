@@ -21,6 +21,7 @@ use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
+use Google\Cloud\Speech\DeprecatedTrait;
 use Google\Cloud\Speech\SpeechClient;
 
 /**
@@ -31,11 +32,13 @@ class Rest implements ConnectionInterface
 {
     use RestTrait;
     use UriTrait;
+    use DeprecatedTrait;
 
     const BASE_URI = 'https://speech.googleapis.com/';
 
     /**
      * @param array $config
+     * @deprecated
      */
     public function __construct(array $config = [])
     {
@@ -49,6 +52,8 @@ class Rest implements ConnectionInterface
             $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
+
+        $this->triggerDeprecatedWarning();
     }
 
     /**
