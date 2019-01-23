@@ -35,6 +35,9 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  *     fopen(__DIR__  . '/audio.flac', 'r')
  * );
  * ```
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Operation
 {
@@ -60,7 +63,6 @@ class Operation
      *        Google Cloud Speech API.
      * @param string $name The operation's name.
      * @param array $info [optional] The operation's data.
-     * @deprecated Class no longer supported
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
