@@ -38,7 +38,7 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $config
-     * @deprecated
+     * @deprecated Class is no longer supported
      */
     public function __construct(array $config = [])
     {
