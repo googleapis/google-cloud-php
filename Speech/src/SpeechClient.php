@@ -38,6 +38,9 @@ use Psr\Cache\CacheItemPoolInterface;
  *     'languageCode' => 'en-US'
  * ]);
  * ```
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class SpeechClient
 {
@@ -97,8 +100,6 @@ class SpeechClient
      *           client. If not provided, you must include a language code with
      *           each individual request.
      * }
-     *
-     * @deprecated Class is no longer supported.
      */
     public function __construct(array $config = [])
     {
