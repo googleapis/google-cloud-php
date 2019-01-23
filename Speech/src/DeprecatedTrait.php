@@ -19,7 +19,8 @@ namespace Google\Cloud\Speech;
 
 trait DeprecatedTrait
 {
-    private function triggerDeprecatedWarning() {
+    private function triggerDeprecatedWarning()
+    {
         $class = get_class($this);
         $err = "The class {$class} is no longer supported";
         @trigger_error($err, E_USER_DEPRECATED);
