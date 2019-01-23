@@ -39,6 +39,8 @@ namespace Google\Cloud\Speech;
  */
 class Result
 {
+    use DeprecatedTrait;
+
     /**
      * @var array
      */
@@ -46,10 +48,12 @@ class Result
 
     /**
      * @param array $info Data corresponding to the result.
+     * @deprecated Class no longer supported
      */
     public function __construct(array $info)
     {
         $this->info = $info;
+        $this->triggerDeprecatedWarning();
     }
 
     /**

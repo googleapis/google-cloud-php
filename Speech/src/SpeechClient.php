@@ -42,6 +42,7 @@ use Psr\Cache\CacheItemPoolInterface;
 class SpeechClient
 {
     use ClientTrait;
+    use DeprecatedTrait;
 
     const VERSION = '0.18.2';
 
@@ -96,6 +97,8 @@ class SpeechClient
      *           client. If not provided, you must include a language code with
      *           each individual request.
      * }
+     *
+     * @deprecated Class is no longer supported.
      */
     public function __construct(array $config = [])
     {
@@ -109,6 +112,8 @@ class SpeechClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+
+        $this->triggerDeprecatedWarning();
     }
 
     /**

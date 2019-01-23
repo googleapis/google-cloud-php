@@ -38,6 +38,8 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  */
 class Operation
 {
+    use DeprecatedTrait;
+
     /**
      * @var ConnectionInterface
      */
@@ -58,12 +60,14 @@ class Operation
      *        Google Cloud Speech API.
      * @param string $name The operation's name.
      * @param array $info [optional] The operation's data.
+     * @deprecated Class no longer supported
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
         $this->connection = $connection;
         $this->name = $name;
         $this->info = $info;
+        $this->triggerDeprecatedWarning();
     }
 
     /**
