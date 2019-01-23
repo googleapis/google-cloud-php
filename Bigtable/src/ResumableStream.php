@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018, Google LLC All rights reserved.
+ * Copyright 2019, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\Cloud\Bigtable\RetryUtil;
+use Google\ApiCore\ApiException;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Rpc\Code;
 
 /**
  * User stream which handles failure from upstream, retries if necessary and
@@ -29,31 +30,43 @@ class ResumableStream implements \IteratorAggregate
     const DEFAULT_MAX_RETRIES = 3;
 
     /**
-     * @var integer
+     * @var array
+     */
+    public static $retryableStatusCodes = [
+        Code::DEADLINE_EXCEEDED => Code::DEADLINE_EXCEEDED,
+        Code::ABORTED => Code::ABORTED,
+        Code::UNAVAILABLE => Code::UNAVAILABLE
+    ];
+
+    /**
+     * @var int
      */
     private $retries;
+
     /**
      * @var callable
      */
     private $apiFunction;
+
     /**
      * @var callable
      */
     private $argumentFunction;
+
     /**
      * @var callable
      */
     private $retryFunction;
 
     /**
-     * Constructs resumable stream.
+     * Constructs a resumable stream.
      *
      * @param callable $apiFunction Function to execute to get server stream. Function signature
      *        should match: `function (...) : Google\ApiCore\ServerStream`.
      * @param callable $argumentFunction Function which returns the argument to be used while
      *        calling `$apiFunction`.
      * @param callable $retryFunction Function which determines whether to retry or not.
-     * @param integer $retries Number of times to retry. **Defaults to** `3`.
+     * @param int $retries [optional] Number of times to retry. **Defaults to** `3`.
      */
     public function __construct(
         callable $apiFunction,
@@ -71,16 +84,16 @@ class ResumableStream implements \IteratorAggregate
      * Starts executing the call and reading elements from server stream.
      *
      * @return \Generator
-     * @throws Google\ApiCore\ApiException
+     * @throws ApiException
      */
     public function readAll()
     {
         $tries = 0;
-        $argumentCallable = $this->argumentFunction;
-        $retryCallable = $this->retryFunction;
+        $argumentFunction = $this->argumentFunction;
+        $retryFunction = $this->retryFunction;
         do {
             $ex = null;
-            $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $argumentCallable());
+            $stream = $this->createExponentialBackoff()->execute($this->apiFunction, $argumentFunction());
             try {
                 foreach ($stream->readAll() as $item) {
                     yield $item;
@@ -88,7 +101,7 @@ class ResumableStream implements \IteratorAggregate
             } catch (\Exception $ex) {
             }
             $tries++;
-        } while ((!$this->retryFunction || $retryCallable($ex)) && $tries <= $this->retries);
+        } while ((!$this->retryFunction || $retryFunction($ex)) && $tries <= $this->retries);
         if ($ex !== null) {
             throw $ex;
         }
@@ -96,7 +109,12 @@ class ResumableStream implements \IteratorAggregate
 
     private function createExponentialBackoff()
     {
-        return new ExponentialBackoff($this->retries, RetryUtil::getDefaultRetryFunction());
+        return new ExponentialBackoff(
+            $this->retries,
+            function ($ex) {
+                return self::isRetryable($ex->getCode());
+            }
+        );
     }
 
     /**
@@ -107,5 +125,16 @@ class ResumableStream implements \IteratorAggregate
     public function getIterator()
     {
         return $this->readAll();
+    }
+
+    /**
+     * Checks if code is retryable or not.
+     *
+     * @param int $code Code to check.
+     * @return bool
+     */
+    public static function isRetryable($code)
+    {
+        return isset(self::$retryableStatusCodes[$code]);
     }
 }

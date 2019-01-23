@@ -17,9 +17,7 @@
 
 namespace Google\Cloud\Bigtable;
 
-use Google\Cloud\Bigtable\ResumableStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
-use Google\Cloud\Bigtable\RetryUtil;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -100,23 +98,23 @@ class ChunkFormatter implements \IteratorAggregate
     private $options;
 
     /**
-     * @var integer
+     * @var int
      */
     private $numberOfRowsRead = 0;
 
     /**
-     * @var integer
+     * @var int|null
      */
     private $originalRowsLimit = null;
 
     /**
      * Constructs the ChunkFormatter.
      *
-     * @param callable $readRowsGapicCall A readrows gapic call.
-     * @param string $tableName Tablename for readRows gapic call.
-     * @param array $options [optional] Configuration options for readRows gapic call.
+     * @param callable $readRowsCall A callable which executes a read rows call and returns a stream.
+     * @param string $tableName The table name used for the read rows call.
+     * @param array $options [optional] Configuration options for read rows call.
      */
-    public function __construct(callable $readRowsGapicCall, $tableName, array $options = [])
+    public function __construct(callable $readRowsCall, $tableName, array $options = [])
     {
         $this->tableName = $tableName;
         $this->options = $options;
@@ -124,15 +122,22 @@ class ChunkFormatter implements \IteratorAggregate
             $this->originalRowsLimit = $options['rowsLimit'];
         }
         $this->stream = new ResumableStream(
-            $readRowsGapicCall,
-            [$this, 'retryingArgumentProvider'],
+            $readRowsCall,
+            function () {
+                $prevRowKey = $this->prevRowKey;
+                $this->reset();
+                if ($prevRowKey) {
+                    $this->updateOptions($prevRowKey);
+                }
+                return [$this->tableName, $this->options];
+            },
             function ($ex) {
-                if ($ex && RetryUtil::isRetryable($ex->getCode())) {
+                if ($ex && ResumableStream::isRetryable($ex->getCode())) {
                     return true;
                 }
                 return false;
             },
-            RetryUtil::getMaxRetries($this->options)
+            $this->options['retries']
         );
     }
 
@@ -182,16 +187,6 @@ class ChunkFormatter implements \IteratorAggregate
         }
 
         $this->onStreamEnd();
-    }
-
-    public function retryingArgumentProvider()
-    {
-        $prevRowKey = $this->prevRowKey;
-        $this->reset();
-        if ($prevRowKey) {
-            $this->updateOptions($prevRowKey);
-        }
-        return [$this->tableName, $this->options];
     }
 
     private function updateOptions($prevRowKey)

@@ -19,12 +19,10 @@ namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
-use Google\Cloud\Bigtable\ResumableStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
-use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Mutations;
-use Google\Cloud\Bigtable\RetryUtil;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Row;
@@ -152,13 +150,12 @@ class Table
      */
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
-        $executor = new ExponentialBackoff($this->maxRetries($options), RetryUtil::getDefaultRetryFunction());
-        $executor->execute([$this->gapicClient, 'mutateRow'], [
+        $this->gapicClient->mutateRow(
             $this->tableName,
             $rowKey,
             $mutations->toProto(),
             $options + $this->options
-        ]);
+        );
     }
 
     /**
@@ -501,7 +498,7 @@ class Table
         $statusCode = Code::OK;
         $lastProcessedIndex = -1;
         $retryFunction = function ($ex) use (&$statusCode, &$lastProcessedIndex) {
-            if (($ex && RetryUtil::isRetryable($ex->getCode())) || (RetryUtil::isRetryable($statusCode))) {
+            if (($ex && ResumableStream::isRetryable($ex->getCode())) || (ResumableStream::isRetryable($statusCode))) {
                 $statusCode = Code::OK;
                 $lastProcessedIndex = -1;
                 return true;
@@ -512,7 +509,7 @@ class Table
             [$this->gapicClient, 'mutateRows'],
             $argumentFunction,
             $retryFunction,
-            $this->maxRetries($options)
+            $options['retries']
         );
         $message = 'partial failure';
         try {
@@ -520,7 +517,7 @@ class Table
                 foreach ($mutateRowsResponse->getEntries() as $mutateRowsResponseEntry) {
                     if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
                         if ($statusCode === Code::OK
-                            || !RetryUtil::isRetryable($mutateRowsResponseEntry->getStatus()->getCode())) {
+                            || !ResumableStream::isRetryable($mutateRowsResponseEntry->getStatus()->getCode())) {
                             $statusCode = $mutateRowsResponseEntry->getStatus()->getCode();
                         }
                         $rowMutationsFailedResponse[] = [
@@ -623,10 +620,5 @@ class Table
         }
 
         $options[$key] = $options[$key]->toProto();
-    }
-
-    private function maxRetries(array $options = [])
-    {
-        return RetryUtil::getMaxRetries($options) ?: RetryUtil::getMaxRetries($this->options) ?: null;
     }
 }
