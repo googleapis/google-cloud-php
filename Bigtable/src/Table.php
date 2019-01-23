@@ -509,7 +509,7 @@ class Table
             [$this->gapicClient, 'mutateRows'],
             $argumentFunction,
             $retryFunction,
-            $options['retries']
+            ResumableStream::getMaxRetries($options)
         );
         $message = 'partial failure';
         try {

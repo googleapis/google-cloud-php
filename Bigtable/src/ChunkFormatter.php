@@ -137,7 +137,7 @@ class ChunkFormatter implements \IteratorAggregate
                 }
                 return false;
             },
-            $this->options['retries']
+            ResumableStream::getMaxRetries($this->options)
         );
     }
 
