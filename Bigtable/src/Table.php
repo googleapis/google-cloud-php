@@ -29,7 +29,6 @@ use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ExponentialBackoff;
 use Google\Rpc\Code;
 
 /**
@@ -80,6 +79,9 @@ class Table
      *     @type string $appProfileId This value specifies routing for
      *           replication. **Defaults to** the "default" application profile.
      *     @type array $headers Headers to be passed with each request.
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     *           This settings only applies to {@see mutateRows()}, {@see upsert()}
+     *           and {@see readRows()}.
      * }
      */
     public function __construct(
@@ -144,7 +146,11 @@ class Table
      *
      * @param string $rowKey The row key of the row to mutate.
      * @param Mutations $mutations Mutations to apply on row.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     * }
      * @return void
      * @throws ApiException If the remote call fails.
      */
@@ -176,7 +182,11 @@ class Table
      * ```
      *
      * @param array[] $rows An array of rows.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     * }
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
      */
@@ -245,6 +255,7 @@ class Table
      *           To learn more please see {@see Google\Cloud\Bigtable\Filter} which
      *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
      * }
      * @return ChunkFormatter
      */
@@ -486,7 +497,6 @@ class Table
     private function mutateRowsWithEntries(array $entries, array $options = [])
     {
         $rowMutationsFailedResponse = [];
-        $tableName = $this->tableName;
         $options = $options + $this->options;
         $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse, $options) {
             if (count($rowMutationsFailedResponse) > 0) {
@@ -509,7 +519,7 @@ class Table
             [$this->gapicClient, 'mutateRows'],
             $argumentFunction,
             $retryFunction,
-            ResumableStream::getMaxRetries($options)
+            $this->pluck('retries', $options, false) ?: null
         );
         $message = 'partial failure';
         try {

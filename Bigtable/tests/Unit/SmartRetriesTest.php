@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018, Google LLC All rights reserved.
+ * Copyright 2019, Google LLC All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -492,7 +492,7 @@ class SmartRetriesTest extends TestCase
         $this->table->mutateRows($mutations, ['retries' => 5]);
     }
 
-    public function testMutateRowsOnlyRetriesOnlyFailed()
+    public function testMutateRowsOnlyRetriesFailedEntries()
     {
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
@@ -520,7 +520,7 @@ class SmartRetriesTest extends TestCase
         $this->table->mutateRows($mutations);
     }
 
-    public function testMutateRowsExceptionShouldPendingMutations()
+    public function testMutateRowsExceptionShouldAddEntryToPendingMutations()
     {
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(2)
@@ -551,7 +551,7 @@ class SmartRetriesTest extends TestCase
             $this->fail('Expected exception is not thrown');
         } catch (BigtableDataOperationException $ex) {
             $expectedFailedMutations = [];
-            foreach (array_merge(range(1, 2), range(4, 5)) as $rowKey) {
+            foreach ([1, 2, 4, 5] as $rowKey) {
                 $expectedFailedMutations[] = [
                     'rowKey' => 'rk' . $rowKey,
                     'statusCode' => $ex->getCode(),
@@ -562,7 +562,7 @@ class SmartRetriesTest extends TestCase
         }
     }
 
-    public function testMutateRowsShouldNotRetryIfAnyMutationWithNonRetrying()
+    public function testMutateRowsShouldNotRetryIfAnyMutationIsNotRetryable()
     {
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(1)

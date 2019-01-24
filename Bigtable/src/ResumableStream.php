@@ -107,16 +107,6 @@ class ResumableStream implements \IteratorAggregate
         }
     }
 
-    private function createExponentialBackoff()
-    {
-        return new ExponentialBackoff(
-            $this->retries,
-            function ($ex) {
-                return self::isRetryable($ex->getCode());
-            }
-        );
-    }
-
     /**
      * @access private
      * @return \Generator
@@ -138,17 +128,13 @@ class ResumableStream implements \IteratorAggregate
         return isset(self::$retryableStatusCodes[$code]);
     }
 
-    /**
-     * Return value of `retries` in provided array if set.
-     *
-     * @param array $options
-     * @return int
-     */
-    public static function getMaxRetries($options)
+    private function createExponentialBackoff()
     {
-        if (isset($options['retries'])) {
-            return $options['retries'];
-        }
-        return null;
+        return new ExponentialBackoff(
+            $this->retries,
+            function ($ex) {
+                return self::isRetryable($ex->getCode());
+            }
+        );
     }
 }

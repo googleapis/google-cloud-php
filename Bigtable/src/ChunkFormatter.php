@@ -21,6 +21,7 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
+use Google\Cloud\Core\ArrayTrait;
 
 /**
  * Converts cell chunks into an easily digestable format. Please note this class
@@ -38,6 +39,8 @@ use Google\Cloud\Bigtable\V2\RowSet;
  */
 class ChunkFormatter implements \IteratorAggregate
 {
+    use ArrayTrait;
+
     /**
      * @var array
      */
@@ -137,7 +140,7 @@ class ChunkFormatter implements \IteratorAggregate
                 }
                 return false;
             },
-            ResumableStream::getMaxRetries($this->options)
+            $this->pluck('retries', $this->options, false) ?: null
         );
     }
 
