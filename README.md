@@ -1236,6 +1236,8 @@ $ composer require google/cloud-redis
 #### Preview
 
 ```php
+require 'vendor/autoload.php';
+
 use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
