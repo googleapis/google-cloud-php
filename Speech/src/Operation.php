@@ -41,8 +41,6 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  */
 class Operation
 {
-    use DeprecatedTrait;
-
     /**
      * @var ConnectionInterface
      */
@@ -69,7 +67,10 @@ class Operation
         $this->connection = $connection;
         $this->name = $name;
         $this->info = $info;
-        $this->triggerDeprecatedWarning();
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

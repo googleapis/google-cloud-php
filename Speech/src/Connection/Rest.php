@@ -35,7 +35,6 @@ class Rest implements ConnectionInterface
 {
     use RestTrait;
     use UriTrait;
-    use DeprecatedTrait;
 
     const BASE_URI = 'https://speech.googleapis.com/';
 
@@ -55,7 +54,9 @@ class Rest implements ConnectionInterface
             self::BASE_URI
         ));
 
-        $this->triggerDeprecatedWarning();
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

@@ -38,6 +38,9 @@ use Psr\Cache\CacheItemPoolInterface;
  *     'languageCode' => 'en-US'
  * ]);
  * ```
+ * Please note this client will be deprecated in our next release. In order
+ * to receive the latest features and updates, please take
+ * the time to familiarize yourself with {@see Google\Cloud\Speech\V1\SpeechClient}.
  *
  * @deprecated This class is no longer supported and will be removed in a future
  * release.
@@ -45,7 +48,6 @@ use Psr\Cache\CacheItemPoolInterface;
 class SpeechClient
 {
     use ClientTrait;
-    use DeprecatedTrait;
 
     const VERSION = '0.18.2';
 
@@ -114,7 +116,9 @@ class SpeechClient
 
         $this->connection = new Rest($this->configureAuthentication($config));
 
-        $this->triggerDeprecatedWarning();
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**
