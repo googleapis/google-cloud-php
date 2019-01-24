@@ -30,6 +30,10 @@ use Psr\Cache\CacheItemPoolInterface;
  * transcription from the Cloud Speech API service. Find more information at the
  * [Google Cloud Speech docs](https://cloud.google.com/speech/docs/).
  *
+ * Please note this client will be deprecated in our next release. In order
+ * to receive the latest features and updates, please take
+ * the time to familiarize yourself with {@see Google\Cloud\Speech\V1\SpeechClient}.
+ *
  * Example:
  * ```
  * use Google\Cloud\Speech\SpeechClient;
@@ -38,9 +42,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *     'languageCode' => 'en-US'
  * ]);
  * ```
- * Please note this client will be deprecated in our next release. In order
- * to receive the latest features and updates, please take
- * the time to familiarize yourself with {@see Google\Cloud\Speech\V1\SpeechClient}.
  *
  * @deprecated This class is no longer supported and will be removed in a future
  * release.
