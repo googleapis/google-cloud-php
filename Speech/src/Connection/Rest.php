@@ -21,7 +21,6 @@ use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
-use Google\Cloud\Speech\DeprecatedTrait;
 use Google\Cloud\Speech\SpeechClient;
 
 /**
