@@ -78,7 +78,7 @@ trait QuestionTrait
 
     private function removeDefaultFromChoice($answer)
     {
-        return rtrim($answer, $this->choiceDefaultText);
+        return explode($this->choiceDefaultText, $answer)[0];
     }
 
     private function confirm($question, $defaultToYes = true)
