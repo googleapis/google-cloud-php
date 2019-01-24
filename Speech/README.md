@@ -40,21 +40,23 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-require 'vendor/autoload.php';
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 
-use Google\Cloud\Speech\SpeechClient;
+$recognitionConfig = new RecognitionConfig();
+$recognitionConfig->setEncoding(AudioEncoding::FLAC);
+$recognitionConfig->setSampleRateHertz(44100);
+$recognitionConfig->setLanguageCode('en-US');
+$config = new StreamingRecognitionConfig();
+$config->setConfig($recognitionConfig);
 
-$speech = new SpeechClient([
-    'languageCode' => 'en-US'
-]);
+$audioResource = fopen('path/to/audio.flac', 'r');
 
-// Recognize the speech in an audio file.
-$results = $speech->recognize(
-    fopen(__DIR__ . '/audio_sample.flac', 'r')
-);
+$responses = $speechClient->recognizeAudioStream($config, $audioResource);
 
-foreach ($results as $result) {
-    echo $result->topAlternative()['transcript'] . "\n";
+foreach ($responses as $element) {
+    // doSomethingWith($element);
 }
 ```
 
