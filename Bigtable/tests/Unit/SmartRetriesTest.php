@@ -109,7 +109,7 @@ class SmartRetriesTest extends TestCase
      */
     public function testReadRowsShouldRetryForProvidedAttempts()
     {
-        $expectedArgs = $this->options + ['retries' => 5];
+        $expectedArgs = $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(6)
             ->willThrow(
