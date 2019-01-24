@@ -21,9 +21,6 @@ use InvalidArgumentException;
 
 /**
  * Provides helper functions for generated Speech clients.
- * 
- * @deprecated This class is no longer supported and will be removed in a future
- * release.
  */
 trait SpeechHelpersTrait
 {
