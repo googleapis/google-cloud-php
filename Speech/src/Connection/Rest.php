@@ -26,6 +26,9 @@ use Google\Cloud\Speech\SpeechClient;
 /**
  * Implementation of the
  * [Google Cloud Speech JSON API](https://cloud.google.com/speech/reference/rest/).
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Rest implements ConnectionInterface
 {
@@ -49,6 +52,10 @@ class Rest implements ConnectionInterface
             $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

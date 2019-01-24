@@ -36,6 +36,9 @@ namespace Google\Cloud\Speech;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionResult SpeechRecognitionResult
  * @codingStandardsIgnoreEnd
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Result
 {
@@ -50,6 +53,10 @@ class Result
     public function __construct(array $info)
     {
         $this->info = $info;
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**
