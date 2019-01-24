@@ -1238,19 +1238,23 @@ $ composer require google/cloud-redis
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Speech\SpeechClient;
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 
-$speech = new SpeechClient([
-    'languageCode' => 'en-US'
-]);
+$recognitionConfig = new RecognitionConfig();
+$recognitionConfig->setEncoding(AudioEncoding::FLAC);
+$recognitionConfig->setSampleRateHertz(44100);
+$recognitionConfig->setLanguageCode('en-US');
+$config = new StreamingRecognitionConfig();
+$config->setConfig($recognitionConfig);
 
-// Recognize the speech in an audio file.
-$results = $speech->recognize(
-    fopen(__DIR__ . '/audio_sample.flac', 'r')
-);
+$audioResource = fopen('path/to/audio.flac', 'r');
 
-foreach ($results as $result) {
-    echo $result->topAlternative()['transcript'] . "\n";
+$responses = $speechClient->recognizeAudioStream($config, $audioResource);
+
+foreach ($responses as $element) {
+    // doSomethingWith($element);
 }
 ```
 
