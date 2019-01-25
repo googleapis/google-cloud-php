@@ -21,8 +21,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
-use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Mutations;
+use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Row;
@@ -79,6 +79,10 @@ class Table
      *     @type string $appProfileId This value specifies routing for
      *           replication. **Defaults to** the "default" application profile.
      *     @type array $headers Headers to be passed with each request.
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     *           This settings only applies to {@see Google\Cloud\Bigtable\Table::mutateRows()},
+     *           {@see Google\Cloud\Bigtable\Table::upsert()} and
+     *           {@see Google\Cloud\Bigtable\Table::readRows()}.
      * }
      */
     public function __construct(
@@ -143,7 +147,11 @@ class Table
      *
      * @param string $rowKey The row key of the row to mutate.
      * @param Mutations $mutations Mutations to apply on row.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     * }
      * @return void
      * @throws ApiException If the remote call fails.
      */
@@ -175,7 +183,11 @@ class Table
      * ```
      *
      * @param array[] $rows An array of rows.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     * }
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
      */
@@ -244,6 +256,7 @@ class Table
      *           To learn more please see {@see Google\Cloud\Bigtable\Filter} which
      *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
+     *     @type int $retries Number of times to retry. **Defaults to** `3`.
      * }
      * @return ChunkFormatter
      */
@@ -288,12 +301,11 @@ class Table
             }
             $options['filter'] = $filter->toProto();
         }
-
-        $serverStream = $this->gapicClient->readRows(
+        return new ChunkFormatter(
+            [$this->gapicClient, 'readRows'],
             $this->tableName,
             $options + $this->options
         );
-        return new ChunkFormatter($serverStream);
     }
 
     /**
@@ -485,26 +497,90 @@ class Table
 
     private function mutateRowsWithEntries(array $entries, array $options = [])
     {
-        $responseStream = $this->gapicClient->mutateRows($this->tableName, $entries, $options + $this->options);
         $rowMutationsFailedResponse = [];
-        $failureCode = Code::OK;
+        $options = $options + $this->options;
+        $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse, $options) {
+            if (count($rowMutationsFailedResponse) > 0) {
+                $entries = array_values($entries);
+                $rowMutationsFailedResponse = [];
+            }
+            return [$this->tableName, $entries, $options];
+        };
+        $statusCode = Code::OK;
+        $lastProcessedIndex = -1;
+        $retryFunction = function ($ex) use (&$statusCode, &$lastProcessedIndex) {
+            if (($ex && ResumableStream::isRetryable($ex->getCode())) || (ResumableStream::isRetryable($statusCode))) {
+                $statusCode = Code::OK;
+                $lastProcessedIndex = -1;
+                return true;
+            }
+            return false;
+        };
+        $retryingStream = new ResumableStream(
+            [$this->gapicClient, 'mutateRows'],
+            $argumentFunction,
+            $retryFunction,
+            $this->pluck('retries', $options, false)
+        );
         $message = 'partial failure';
-        foreach ($responseStream->readAll() as $mutateRowsResponse) {
-            $mutateRowsResponseEntries = $mutateRowsResponse->getEntries();
-            foreach ($mutateRowsResponseEntries as $mutateRowsResponseEntry) {
-                if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
-                    $failureCode = $mutateRowsResponseEntry->getStatus()->getCode();
-                    $message = $mutateRowsResponseEntry->getStatus()->getMessage();
-                    $rowMutationsFailedResponse[] = [
-                        'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
-                        'statusCode' => $failureCode,
-                        'message' => $message
-                    ];
+        try {
+            foreach ($retryingStream as $mutateRowsResponse) {
+                foreach ($mutateRowsResponse->getEntries() as $mutateRowsResponseEntry) {
+                    if ($mutateRowsResponseEntry->getStatus()->getCode() !== Code::OK) {
+                        if ($statusCode === Code::OK
+                            || !ResumableStream::isRetryable($mutateRowsResponseEntry->getStatus()->getCode())) {
+                            $statusCode = $mutateRowsResponseEntry->getStatus()->getCode();
+                        }
+                        $rowMutationsFailedResponse[] = [
+                            'rowKey' => $entries[$mutateRowsResponseEntry->getIndex()]->getRowKey(),
+                            'statusCode' => $mutateRowsResponseEntry->getStatus()->getCode(),
+                            'message' => $mutateRowsResponseEntry->getStatus()->getMessage()
+                        ];
+                    } else {
+                        unset($entries[$mutateRowsResponseEntry->getIndex()]);
+                    }
+                    $lastProcessedIndex = $mutateRowsResponseEntry->getIndex();
                 }
             }
+        } catch (ApiException $ex) {
+            $this->appendPendingEntryToFailedMutations(
+                $lastProcessedIndex,
+                $entries,
+                $rowMutationsFailedResponse,
+                $ex->getCode(),
+                $ex->getMessage()
+            );
+            throw new BigtableDataOperationException($ex->getMessage(), $ex->getCode(), $rowMutationsFailedResponse);
         }
+
         if (!empty($rowMutationsFailedResponse)) {
-            throw new BigtableDataOperationException($message, $failureCode, $rowMutationsFailedResponse);
+            $this->appendPendingEntryToFailedMutations(
+                $lastProcessedIndex,
+                $entries,
+                $rowMutationsFailedResponse,
+                $statusCode,
+                $message
+            );
+            throw new BigtableDataOperationException($message, $statusCode, $rowMutationsFailedResponse);
+        }
+    }
+
+    private function appendPendingEntryToFailedMutations(
+        $lastProcessedIndex,
+        &$entries,
+        &$rowMutationsFailedResponse,
+        $statusCode,
+        $message
+    ) {
+        if (count($rowMutationsFailedResponse) !== count($entries)) {
+            end($entries);
+            foreach (range($lastProcessedIndex + 1, key($entries)) as $index) {
+                $rowMutationsFailedResponse[] = [
+                    'rowKey' => $entries[$index]->getRowKey(),
+                    'statusCode' => $statusCode,
+                    'message' => $message
+                ];
+            }
         }
     }
 
