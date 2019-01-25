@@ -140,7 +140,7 @@ class ChunkFormatter implements \IteratorAggregate
                 }
                 return false;
             },
-            $this->pluck('retries', $this->options, false) ?: null
+            $this->pluck('retries', $this->options, false)
         );
     }
 

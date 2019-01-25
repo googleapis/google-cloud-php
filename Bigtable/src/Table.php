@@ -80,8 +80,9 @@ class Table
      *           replication. **Defaults to** the "default" application profile.
      *     @type array $headers Headers to be passed with each request.
      *     @type int $retries Number of times to retry. **Defaults to** `3`.
-     *           This settings only applies to {@see mutateRows()}, {@see upsert()}
-     *           and {@see readRows()}.
+     *           This settings only applies to {@see Google\Cloud\Bigtable\Table::mutateRows()},
+     *           {@see Google\Cloud\Bigtable\Table::upsert()} and
+     *           {@see Google\Cloud\Bigtable\Table::readRows()}.
      * }
      */
     public function __construct(
@@ -519,7 +520,7 @@ class Table
             [$this->gapicClient, 'mutateRows'],
             $argumentFunction,
             $retryFunction,
-            $this->pluck('retries', $options, false) ?: null
+            $this->pluck('retries', $options, false)
         );
         $message = 'partial failure';
         try {
