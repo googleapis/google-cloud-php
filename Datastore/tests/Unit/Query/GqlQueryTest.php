@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Query\Cursor;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use PHPUnit\Framework\TestCase;
 
@@ -35,29 +36,35 @@ class GqlQueryTest extends TestCase
 
     public function testBindingTypeAutomaticDetectionNamed()
     {
+        $cursorValue = 'foo';
         $query = new GqlQuery($this->mapper, 'SELECT * FROM foo', [
             'bindings' => [
-                'bind' => 'this'
+                'bind' => 'this',
+                'offset' => new Cursor($cursorValue)
             ]
         ]);
 
         $res = $query->queryObject();
         $this->assertEquals($res['namedBindings'], [
-            'bind' => ['value' => ['stringValue' => 'this']]
+            'bind' => ['value' => ['stringValue' => 'this']],
+            'offset' => ['cursor' => $cursorValue]
         ]);
     }
 
     public function testBindingTypeAutomaticDetectionPositional()
     {
+        $cursorValue = 'foo';
         $query = new GqlQuery($this->mapper, 'SELECT * FROM foo', [
             'bindings' => [
-                'this'
+                'this',
+                new Cursor($cursorValue)
             ]
         ]);
 
         $res = $query->queryObject();
         $this->assertEquals($res['positionalBindings'], [
-            ['value' => ['stringValue' => 'this']]
+            ['value' => ['stringValue' => 'this']],
+            ['cursor' => $cursorValue]
         ]);
     }
 

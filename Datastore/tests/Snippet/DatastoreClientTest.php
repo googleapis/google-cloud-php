@@ -25,10 +25,8 @@ use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
-use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
@@ -597,36 +595,12 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 
+    /**
+     * Other GQL snippets are found in {@see Google\Cloud\Datastore\Tests\Snippets\Query\GqlQueryTest}.
+     */
     public function testGqlQuery()
     {
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'gqlQuery');
-        $snippet->addLocal('datastore', $this->client);
-
-        $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
-    }
-
-    public function testGqlQueryBindings()
-    {
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'gqlQuery', 'bindings');
-        $snippet->addLocal('datastore', $this->client);
-
-        $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
-    }
-
-    public function testGqlQueryPositionalBindings()
-    {
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'gqlQuery', 'pos_bindings');
-        $snippet->addLocal('datastore', $this->client);
-
-        $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
-    }
-
-    public function testGqlQueryLiterals()
-    {
-        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'gqlQuery', 'literals');
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('query');

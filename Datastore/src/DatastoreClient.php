@@ -964,7 +964,7 @@ class DatastoreClient
     }
 
     /**
-     * Create a Query
+     * Create a Query object.
      *
      * The Query class can be used as a builder, or it can accept a query
      * representation at instantiation.
@@ -985,7 +985,10 @@ class DatastoreClient
     }
 
     /**
-     * Create a GqlQuery
+     * Create a GqlQuery object.
+     *
+     * Returns a Query object which can be executed using
+     * {@see Google\Cloud\Datastore\DatastoreClient::runQuery()}.
      *
      * Example:
      * ```
@@ -1015,8 +1018,22 @@ class DatastoreClient
      * ```
      * //[snippet=literals]
      * // While not recommended, you can use literals in your query string:
-     * $query = $datastore->gqlQuery("SELECT * FROM Companies WHERE companyName = 'Google'", [
+     * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = \'Google\'', [
      *     'allowLiterals' => true
+     * ]);
+     * ```
+     *
+     * ```
+     * //[snippet=cursor]
+     * // Using cursors as query bindings:
+     * use Google\Cloud\Datastore\Query\Cursor;
+     *
+     * $cursor = new Cursor($cursorValue);
+     *
+     * $query = $datastore->gqlQuery('SELECT * FROM Companies OFFSET @offset', [
+     *     'bindings' => [
+     *         'offset' => $cursor
+     *     ]
      * ]);
      * ```
      *
@@ -1030,7 +1047,8 @@ class DatastoreClient
      *     @type array $bindings An array of values to bind to the query string.
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple
-     *           array.
+     *           array. Query cursors may be provided using instances of
+     *           {@see Google\Cloud\Datastore\Query\Cursor}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
