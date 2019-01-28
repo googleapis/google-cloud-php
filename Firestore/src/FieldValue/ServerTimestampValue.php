@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Firestore\FieldValue;
 
-use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 
 /**
  * Represents a ServerTimestamp DocumentTransform.

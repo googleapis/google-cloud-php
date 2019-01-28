@@ -21,7 +21,7 @@ namespace Google\Cloud\Firestore\FieldValue;
  * Represents a DocumentTransform value.
  *
  * A DocumentTransformInterface instance defines the structure of a
- * {@see Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform}
+ * {@see Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform}
  * message. `$key` defines the `oneof transformType` key, and `$args` defines
  * the transformType message data.
  */

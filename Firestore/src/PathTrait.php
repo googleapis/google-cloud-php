@@ -18,7 +18,7 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Firestore\V1beta1\FirestoreClient as FirestoreGapicClient;
+use Google\Cloud\Firestore\V1\FirestoreClient as FirestoreGapicClient;
 use Ramsey\Uuid\Uuid;
 
 /**

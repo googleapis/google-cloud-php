@@ -18,7 +18,6 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\DebugInfoTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
