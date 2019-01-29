@@ -23,8 +23,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform\FieldTransform\ServerValue;
-use Prophecy\Argument;
+use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 
 /**
  * @group firestore

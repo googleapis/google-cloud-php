@@ -19,13 +19,12 @@ namespace Google\Cloud\Firestore\Connection;
 
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Firestore\V1beta1\FirestoreClient;
+use Google\Cloud\Firestore\V1\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
-use Google\Cloud\Firestore\V1beta1\DocumentMask;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery;
-use Google\Cloud\Firestore\V1beta1\TransactionOptions;
-use Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite;
-use Google\Cloud\Firestore\V1beta1\Write;
+use Google\Cloud\Firestore\V1\StructuredQuery;
+use Google\Cloud\Firestore\V1\TransactionOptions;
+use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
+use Google\Cloud\Firestore\V1\Write;
 use Google\ApiCore\Serializer;
 
 /**

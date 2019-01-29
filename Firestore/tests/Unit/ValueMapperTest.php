@@ -26,8 +26,6 @@ use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
-use Google\Cloud\Firestore\FieldPath;
-use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
 use PHPUnit\Framework\TestCase;

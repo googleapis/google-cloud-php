@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\AbortedException;

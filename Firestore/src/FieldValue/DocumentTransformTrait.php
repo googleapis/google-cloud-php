@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Firestore\FieldValue;
 
-use Google\Cloud\Firestore\FieldPath;
-
 /**
  * Common methods for DocumentTransforms.
  */

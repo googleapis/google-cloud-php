@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Firestore\FieldValue;
 
-use Google\Cloud\Firestore\FieldPath;
-
 /**
  * Represents a field to be deleted.
  *
