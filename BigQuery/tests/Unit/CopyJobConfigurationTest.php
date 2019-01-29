@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
-use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\CopyJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use PHPUnit\Framework\TestCase;

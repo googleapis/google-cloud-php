@@ -30,7 +30,6 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Storage\Connection\Rest as StorageConnection;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
