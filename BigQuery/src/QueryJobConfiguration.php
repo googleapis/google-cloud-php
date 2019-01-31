@@ -101,7 +101,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * @see https://cloud.google.com/bigquery/docs/clustered-tables Introduction to Clustered Tables
      *
      * @param array $clustering Clustering specification for the table.
-     * @return LoadJobConfiguration
+     * @return QueryJobConfiguration
      */
     public function clustering(array $clustering)
     {

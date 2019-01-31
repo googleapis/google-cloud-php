@@ -129,7 +129,6 @@ class LoadJobConfiguration implements JobConfigurationInterface
      *
      * @see https://cloud.google.com/bigquery/docs/clustered-tables Introduction to Clustered Tables
      *
-     *
      * @param array $clustering Clustering specification for the table.
      * @return LoadJobConfiguration
      */
