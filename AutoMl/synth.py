@@ -39,3 +39,13 @@ s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
 s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Automl', 'metadata/')
+
+# fix year
+s.replace(
+    '**/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
+    'tests/**/V1beta1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
