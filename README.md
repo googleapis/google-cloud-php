@@ -16,7 +16,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
 * [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
-* [Google Cloud KMS](#google-cloud-kms-beta) (GA)
+* [Google Cloud KMS](#google-cloud-kms-ga) (GA)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
