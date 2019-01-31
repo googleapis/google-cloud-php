@@ -17,9 +17,6 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Exception\ServiceException;
-
 /**
  * @group bigquery
  * @group bigquery-regionalization

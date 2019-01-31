@@ -83,6 +83,34 @@ class QueryJobConfiguration implements JobConfigurationInterface
     }
 
     /**
+     * Set the clustering specification for the table.
+     *
+     * Refer to BigQuery documentation for a guide to clustered tables and
+     * constraints imposed by the service.
+     *
+     * Example:
+     * ```
+     * $query->clustering([
+     *     'fields' => [
+     *         'col1',
+     *         'col2'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/clustered-tables Introduction to Clustered Tables
+     *
+     * @param array $clustering Clustering specification for the table.
+     * @return QueryJobConfiguration
+     */
+    public function clustering(array $clustering)
+    {
+        $this->config['configuration']['query']['clustering'] = $clustering;
+
+        return $this;
+    }
+
+    /**
      * Sets whether the job is allowed to create new tables.
      *
      * Example:

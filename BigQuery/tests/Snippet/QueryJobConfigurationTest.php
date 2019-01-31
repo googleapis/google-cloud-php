@@ -84,6 +84,15 @@ class QueryJobConfigurationTest extends SnippetTestCase
                 true
             ],
             [
+                'clustering',
+                [
+                    'fields' => [
+                        'col1',
+                        'col2'
+                    ]
+                ]
+            ],
+            [
                 'createDisposition',
                 'CREATE_NEVER'
             ],

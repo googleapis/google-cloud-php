@@ -18,7 +18,6 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\InsertResponse;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
 /**

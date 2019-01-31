@@ -17,13 +17,8 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
-use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Numeric;
-use Google\Cloud\BigQuery\Date;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\BigQuery\Time;
-use Google\Cloud\BigQuery\Timestamp;
-use Google\Cloud\BigQuery\ValueMapper;
 use GuzzleHttp\Psr7;
 
 /**
@@ -388,6 +383,71 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             [fopen(__DIR__ . '/data/table-data.json', 'r')],
             [Psr7\stream_for($data)]
         ];
+    }
+
+    /**
+     * @depends testLoadsDataToTable
+     */
+    public function testQueryDatatoClusteredTable()
+    {
+        $table = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $queryConfig = self::$client->query('SELECT * FROM ' . self::$dataset->id() . '.' . self::$table->id())
+            ->timePartitioning([
+                'expirationMs' => 10000
+            ])
+            ->clustering([
+                'fields' => [
+                    'Name'
+                ]
+            ])
+            ->destinationTable($table);
+
+        $res = self::$client->runQuery($queryConfig);
+        $actualRows = count(iterator_to_array($table->rows()));
+        $this->assertEquals(self::$expectedRows, $actualRows);
+
+        $info = $table->reload();
+        $this->assertEquals([
+            'fields' => [
+                'Name'
+            ]
+        ], $info['clustering']);
+    }
+
+    public function testLoadDataToClusteredTable()
+    {
+        $data = file_get_contents(__DIR__ . '/data/table-data.json');
+        $table = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $loadJobConfig = $table->load($data)
+            ->autodetect(true)
+            ->timePartitioning([
+                'expirationMs' => 10000
+            ])
+            ->clustering([
+                'fields' => [
+                    'Name'
+                ]
+            ])
+            ->sourceFormat('NEWLINE_DELIMITED_JSON');
+
+        $job = $table->startJob($loadJobConfig);
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $expectedRows = count(file(__DIR__ . '/data/table-data.json'));
+        $actualRows = count(iterator_to_array($table->rows()));
+
+        $this->assertEquals($expectedRows, $actualRows);
     }
 
     /**
