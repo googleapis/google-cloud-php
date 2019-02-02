@@ -129,7 +129,7 @@ class LoggingServiceV2GapicClient
 
     private static function getLogNameTemplate()
     {
-        if (self::$logNameTemplate == null) {
+        if (null == self::$logNameTemplate) {
             self::$logNameTemplate = new PathTemplate('projects/{project}/logs/{log}');
         }
 
@@ -138,7 +138,7 @@ class LoggingServiceV2GapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -147,7 +147,7 @@ class LoggingServiceV2GapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'log' => self::getLogNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
