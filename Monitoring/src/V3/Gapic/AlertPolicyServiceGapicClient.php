@@ -149,7 +149,7 @@ class AlertPolicyServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -158,7 +158,7 @@ class AlertPolicyServiceGapicClient
 
     private static function getAlertPolicyNameTemplate()
     {
-        if (self::$alertPolicyNameTemplate == null) {
+        if (null == self::$alertPolicyNameTemplate) {
             self::$alertPolicyNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}');
         }
 
@@ -167,7 +167,7 @@ class AlertPolicyServiceGapicClient
 
     private static function getAlertPolicyConditionNameTemplate()
     {
-        if (self::$alertPolicyConditionNameTemplate == null) {
+        if (null == self::$alertPolicyConditionNameTemplate) {
             self::$alertPolicyConditionNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}');
         }
 
@@ -176,7 +176,7 @@ class AlertPolicyServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'alertPolicy' => self::getAlertPolicyNameTemplate(),
