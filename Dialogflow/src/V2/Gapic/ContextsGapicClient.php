@@ -154,7 +154,7 @@ class ContextsGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (self::$sessionNameTemplate == null) {
+        if (null == self::$sessionNameTemplate) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
         }
 
@@ -163,7 +163,7 @@ class ContextsGapicClient
 
     private static function getContextNameTemplate()
     {
-        if (self::$contextNameTemplate == null) {
+        if (null == self::$contextNameTemplate) {
             self::$contextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
         }
 
@@ -172,7 +172,7 @@ class ContextsGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'session' => self::getSessionNameTemplate(),
                 'context' => self::getContextNameTemplate(),

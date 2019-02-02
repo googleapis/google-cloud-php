@@ -177,7 +177,7 @@ class EntityTypesGapicClient
 
     private static function getProjectAgentNameTemplate()
     {
-        if (self::$projectAgentNameTemplate == null) {
+        if (null == self::$projectAgentNameTemplate) {
             self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
         }
 
@@ -186,7 +186,7 @@ class EntityTypesGapicClient
 
     private static function getEntityTypeNameTemplate()
     {
-        if (self::$entityTypeNameTemplate == null) {
+        if (null == self::$entityTypeNameTemplate) {
             self::$entityTypeNameTemplate = new PathTemplate('projects/{project}/agent/entityTypes/{entity_type}');
         }
 
@@ -195,7 +195,7 @@ class EntityTypesGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'projectAgent' => self::getProjectAgentNameTemplate(),
                 'entityType' => self::getEntityTypeNameTemplate(),
