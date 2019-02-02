@@ -165,7 +165,7 @@ class ProductSearchGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
+        if (null == self::$locationNameTemplate) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -174,7 +174,7 @@ class ProductSearchGapicClient
 
     private static function getProductSetNameTemplate()
     {
-        if (self::$productSetNameTemplate == null) {
+        if (null == self::$productSetNameTemplate) {
             self::$productSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/productSets/{product_set}');
         }
 
@@ -183,7 +183,7 @@ class ProductSearchGapicClient
 
     private static function getProductNameTemplate()
     {
-        if (self::$productNameTemplate == null) {
+        if (null == self::$productNameTemplate) {
             self::$productNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}');
         }
 
@@ -192,7 +192,7 @@ class ProductSearchGapicClient
 
     private static function getReferenceImageNameTemplate()
     {
-        if (self::$referenceImageNameTemplate == null) {
+        if (null == self::$referenceImageNameTemplate) {
             self::$referenceImageNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}');
         }
 
@@ -201,7 +201,7 @@ class ProductSearchGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
                 'productSet' => self::getProductSetNameTemplate(),
