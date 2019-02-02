@@ -131,7 +131,7 @@ class WorkflowTemplateServiceGapicClient
 
     private static function getRegionNameTemplate()
     {
-        if (self::$regionNameTemplate == null) {
+        if (null == self::$regionNameTemplate) {
             self::$regionNameTemplate = new PathTemplate('projects/{project}/regions/{region}');
         }
 
@@ -140,7 +140,7 @@ class WorkflowTemplateServiceGapicClient
 
     private static function getWorkflowTemplateNameTemplate()
     {
-        if (self::$workflowTemplateNameTemplate == null) {
+        if (null == self::$workflowTemplateNameTemplate) {
             self::$workflowTemplateNameTemplate = new PathTemplate('projects/{project}/regions/{region}/workflowTemplates/{workflow_template}');
         }
 
@@ -149,7 +149,7 @@ class WorkflowTemplateServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'region' => self::getRegionNameTemplate(),
                 'workflowTemplate' => self::getWorkflowTemplateNameTemplate(),
