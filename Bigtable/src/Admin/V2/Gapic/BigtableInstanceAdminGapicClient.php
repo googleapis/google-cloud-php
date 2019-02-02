@@ -191,7 +191,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -200,7 +200,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -209,7 +209,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getAppProfileNameTemplate()
     {
-        if (self::$appProfileNameTemplate == null) {
+        if (null == self::$appProfileNameTemplate) {
             self::$appProfileNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/appProfiles/{app_profile}');
         }
 
@@ -218,7 +218,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getClusterNameTemplate()
     {
-        if (self::$clusterNameTemplate == null) {
+        if (null == self::$clusterNameTemplate) {
             self::$clusterNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/clusters/{cluster}');
         }
 
@@ -227,7 +227,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
+        if (null == self::$locationNameTemplate) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -236,7 +236,7 @@ class BigtableInstanceAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
