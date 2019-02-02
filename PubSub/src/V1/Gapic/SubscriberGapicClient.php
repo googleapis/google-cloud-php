@@ -152,7 +152,7 @@ class SubscriberGapicClient
 
     private static function getSubscriptionNameTemplate()
     {
-        if (self::$subscriptionNameTemplate == null) {
+        if (null == self::$subscriptionNameTemplate) {
             self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
         }
 
@@ -161,7 +161,7 @@ class SubscriberGapicClient
 
     private static function getTopicNameTemplate()
     {
-        if (self::$topicNameTemplate == null) {
+        if (null == self::$topicNameTemplate) {
             self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
         }
 
@@ -170,7 +170,7 @@ class SubscriberGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -179,7 +179,7 @@ class SubscriberGapicClient
 
     private static function getSnapshotNameTemplate()
     {
-        if (self::$snapshotNameTemplate == null) {
+        if (null == self::$snapshotNameTemplate) {
             self::$snapshotNameTemplate = new PathTemplate('projects/{project}/snapshots/{snapshot}');
         }
 
@@ -188,7 +188,7 @@ class SubscriberGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'subscription' => self::getSubscriptionNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
