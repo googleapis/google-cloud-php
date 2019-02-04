@@ -180,7 +180,7 @@ class KeyManagementServiceGapicClient
 
     private static function getKeyRingNameTemplate()
     {
-        if (self::$keyRingNameTemplate == null) {
+        if (null == self::$keyRingNameTemplate) {
             self::$keyRingNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}');
         }
 
@@ -189,7 +189,7 @@ class KeyManagementServiceGapicClient
 
     private static function getCryptoKeyPathNameTemplate()
     {
-        if (self::$cryptoKeyPathNameTemplate == null) {
+        if (null == self::$cryptoKeyPathNameTemplate) {
             self::$cryptoKeyPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}');
         }
 
@@ -198,7 +198,7 @@ class KeyManagementServiceGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
+        if (null == self::$locationNameTemplate) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -207,7 +207,7 @@ class KeyManagementServiceGapicClient
 
     private static function getCryptoKeyNameTemplate()
     {
-        if (self::$cryptoKeyNameTemplate == null) {
+        if (null == self::$cryptoKeyNameTemplate) {
             self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
         }
 
@@ -216,7 +216,7 @@ class KeyManagementServiceGapicClient
 
     private static function getCryptoKeyVersionNameTemplate()
     {
-        if (self::$cryptoKeyVersionNameTemplate == null) {
+        if (null == self::$cryptoKeyVersionNameTemplate) {
             self::$cryptoKeyVersionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}');
         }
 
@@ -225,7 +225,7 @@ class KeyManagementServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'keyRing' => self::getKeyRingNameTemplate(),
                 'cryptoKeyPath' => self::getCryptoKeyPathNameTemplate(),
