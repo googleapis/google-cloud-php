@@ -163,7 +163,7 @@ class CloudTasksGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -172,7 +172,7 @@ class CloudTasksGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
+        if (null == self::$locationNameTemplate) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -181,7 +181,7 @@ class CloudTasksGapicClient
 
     private static function getQueueNameTemplate()
     {
-        if (self::$queueNameTemplate == null) {
+        if (null == self::$queueNameTemplate) {
             self::$queueNameTemplate = new PathTemplate('projects/{project}/locations/{location}/queues/{queue}');
         }
 
@@ -190,7 +190,7 @@ class CloudTasksGapicClient
 
     private static function getTaskNameTemplate()
     {
-        if (self::$taskNameTemplate == null) {
+        if (null == self::$taskNameTemplate) {
             self::$taskNameTemplate = new PathTemplate('projects/{project}/locations/{location}/queues/{queue}/tasks/{task}');
         }
 
@@ -199,7 +199,7 @@ class CloudTasksGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
