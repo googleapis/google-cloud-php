@@ -185,7 +185,7 @@ class DlpServiceGapicClient
 
     private static function getOrganizationNameTemplate()
     {
-        if (self::$organizationNameTemplate == null) {
+        if (null == self::$organizationNameTemplate) {
             self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
         }
 
@@ -194,7 +194,7 @@ class DlpServiceGapicClient
 
     private static function getOrganizationDeidentifyTemplateNameTemplate()
     {
-        if (self::$organizationDeidentifyTemplateNameTemplate == null) {
+        if (null == self::$organizationDeidentifyTemplateNameTemplate) {
             self::$organizationDeidentifyTemplateNameTemplate = new PathTemplate('organizations/{organization}/deidentifyTemplates/{deidentify_template}');
         }
 
@@ -203,7 +203,7 @@ class DlpServiceGapicClient
 
     private static function getProjectDeidentifyTemplateNameTemplate()
     {
-        if (self::$projectDeidentifyTemplateNameTemplate == null) {
+        if (null == self::$projectDeidentifyTemplateNameTemplate) {
             self::$projectDeidentifyTemplateNameTemplate = new PathTemplate('projects/{project}/deidentifyTemplates/{deidentify_template}');
         }
 
@@ -212,7 +212,7 @@ class DlpServiceGapicClient
 
     private static function getOrganizationInspectTemplateNameTemplate()
     {
-        if (self::$organizationInspectTemplateNameTemplate == null) {
+        if (null == self::$organizationInspectTemplateNameTemplate) {
             self::$organizationInspectTemplateNameTemplate = new PathTemplate('organizations/{organization}/inspectTemplates/{inspect_template}');
         }
 
@@ -221,7 +221,7 @@ class DlpServiceGapicClient
 
     private static function getProjectInspectTemplateNameTemplate()
     {
-        if (self::$projectInspectTemplateNameTemplate == null) {
+        if (null == self::$projectInspectTemplateNameTemplate) {
             self::$projectInspectTemplateNameTemplate = new PathTemplate('projects/{project}/inspectTemplates/{inspect_template}');
         }
 
@@ -230,7 +230,7 @@ class DlpServiceGapicClient
 
     private static function getProjectJobTriggerNameTemplate()
     {
-        if (self::$projectJobTriggerNameTemplate == null) {
+        if (null == self::$projectJobTriggerNameTemplate) {
             self::$projectJobTriggerNameTemplate = new PathTemplate('projects/{project}/jobTriggers/{job_trigger}');
         }
 
@@ -239,7 +239,7 @@ class DlpServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -248,7 +248,7 @@ class DlpServiceGapicClient
 
     private static function getDlpJobNameTemplate()
     {
-        if (self::$dlpJobNameTemplate == null) {
+        if (null == self::$dlpJobNameTemplate) {
             self::$dlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
         }
 
@@ -257,7 +257,7 @@ class DlpServiceGapicClient
 
     private static function getOrganizationStoredInfoTypeNameTemplate()
     {
-        if (self::$organizationStoredInfoTypeNameTemplate == null) {
+        if (null == self::$organizationStoredInfoTypeNameTemplate) {
             self::$organizationStoredInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/storedInfoTypes/{stored_info_type}');
         }
 
@@ -266,7 +266,7 @@ class DlpServiceGapicClient
 
     private static function getProjectStoredInfoTypeNameTemplate()
     {
-        if (self::$projectStoredInfoTypeNameTemplate == null) {
+        if (null == self::$projectStoredInfoTypeNameTemplate) {
             self::$projectStoredInfoTypeNameTemplate = new PathTemplate('projects/{project}/storedInfoTypes/{stored_info_type}');
         }
 
@@ -275,7 +275,7 @@ class DlpServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationDeidentifyTemplate' => self::getOrganizationDeidentifyTemplateNameTemplate(),
