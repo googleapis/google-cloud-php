@@ -82,13 +82,11 @@ class Grpc implements ConnectionInterface
         );
 
         $config += ['emulatorHost' => null];
-        $baseUri = self::BASE_URI;
+
         if ((bool) $config['emulatorHost']) {
-            $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
+            $serviceAddress = $this->emulatorBaseUri($config['emulatorHost']);
             $grpcConfig += [
-                'serviceAddress' => parse_url($baseUri, PHP_URL_HOST),
-                'port' => parse_url($baseUri, PHP_URL_PORT),
-                'sslCreds' => ChannelCredentials::createInsecure()
+                'serviceAddress' => $serviceAddress
             ];
         }
 
