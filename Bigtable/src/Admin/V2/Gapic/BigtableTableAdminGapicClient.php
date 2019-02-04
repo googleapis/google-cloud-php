@@ -158,7 +158,7 @@ class BigtableTableAdminGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -167,7 +167,7 @@ class BigtableTableAdminGapicClient
 
     private static function getClusterNameTemplate()
     {
-        if (self::$clusterNameTemplate == null) {
+        if (null == self::$clusterNameTemplate) {
             self::$clusterNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/clusters/{cluster}');
         }
 
@@ -176,7 +176,7 @@ class BigtableTableAdminGapicClient
 
     private static function getSnapshotNameTemplate()
     {
-        if (self::$snapshotNameTemplate == null) {
+        if (null == self::$snapshotNameTemplate) {
             self::$snapshotNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}');
         }
 
@@ -185,7 +185,7 @@ class BigtableTableAdminGapicClient
 
     private static function getTableNameTemplate()
     {
-        if (self::$tableNameTemplate == null) {
+        if (null == self::$tableNameTemplate) {
             self::$tableNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/tables/{table}');
         }
 
@@ -194,7 +194,7 @@ class BigtableTableAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'instance' => self::getInstanceNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
