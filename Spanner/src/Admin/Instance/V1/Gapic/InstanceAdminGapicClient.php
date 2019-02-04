@@ -175,7 +175,7 @@ class InstanceAdminGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -184,7 +184,7 @@ class InstanceAdminGapicClient
 
     private static function getInstanceConfigNameTemplate()
     {
-        if (self::$instanceConfigNameTemplate == null) {
+        if (null == self::$instanceConfigNameTemplate) {
             self::$instanceConfigNameTemplate = new PathTemplate('projects/{project}/instanceConfigs/{instance_config}');
         }
 
@@ -193,7 +193,7 @@ class InstanceAdminGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -202,7 +202,7 @@ class InstanceAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'instanceConfig' => self::getInstanceConfigNameTemplate(),
