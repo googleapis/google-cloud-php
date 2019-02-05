@@ -88,9 +88,15 @@ class Grpc implements ConnectionInterface
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
             //@codeCoverageIgnoreStart
-            $serviceAddress = $this->emulatorBaseUri($config['emulatorHost']);
             $grpcConfig += [
-                'serviceAddress' => $serviceAddress
+                'serviceAddress' => $config['emulatorHost'],
+                'transportConfig' => [
+                    'grpc' => [
+                        'stubOpts' => [
+                            'credentials' => ChannelCredentials::createInsecure()
+                        ]
+                    ]
+                ]
             ];
             //@codeCoverageIgnoreEnd
         }
