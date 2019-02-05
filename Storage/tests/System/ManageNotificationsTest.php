@@ -33,7 +33,7 @@ class ManageNotificationsTest extends StorageTestCase
             [
                 'role' => 'roles/pubsub.publisher',
                 'members' => [
-                    "serviceAccount:$projectId@gs-project-accounts.iam.gserviceaccount.com"
+                    'serviceAccount:' . self::$client->getServiceAccount()
                 ]
             ]
         ];
