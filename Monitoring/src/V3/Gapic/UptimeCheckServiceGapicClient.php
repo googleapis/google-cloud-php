@@ -149,7 +149,7 @@ class UptimeCheckServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -158,7 +158,7 @@ class UptimeCheckServiceGapicClient
 
     private static function getUptimeCheckConfigNameTemplate()
     {
-        if (self::$uptimeCheckConfigNameTemplate == null) {
+        if (null == self::$uptimeCheckConfigNameTemplate) {
             self::$uptimeCheckConfigNameTemplate = new PathTemplate('projects/{project}/uptimeCheckConfigs/{uptime_check_config}');
         }
 
@@ -167,7 +167,7 @@ class UptimeCheckServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'uptimeCheckConfig' => self::getUptimeCheckConfigNameTemplate(),

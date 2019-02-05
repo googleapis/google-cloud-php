@@ -68,6 +68,7 @@
     },
     "replace": {
         "google/cloud-asset": "0.1.6",
+        "google/cloud-automl": "master",
         "google/cloud-bigquery": "1.4.6",
         "google/cloud-bigquerydatatransfer": "0.8.4",
         "google/cloud-bigtable": "0.9.3",
@@ -111,6 +112,7 @@
                 "CommonProtos/src"
             ],
             "Google\\Cloud\\Asset\\": "Asset/src",
+            "Google\\Cloud\\AutoMl\\": "AutoMl/src",
             "Google\\Cloud\\BigQuery\\": "BigQuery/src",
             "Google\\Cloud\\BigQuery\\DataTransfer\\": "BigQueryDataTransfer/src",
             "Google\\Cloud\\Bigtable\\": "Bigtable/src",
@@ -142,9 +144,10 @@
             "Google\\Cloud\\VideoIntelligence\\": "VideoIntelligence/src",
             "Google\\Cloud\\Vision\\": "Vision/src",
             "GPBMetadata\\Google\\": "CommonProtos/metadata",
-            "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
+            "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
+            "GPBMetadata\\Google\\Cloud\\Automl\\": "AutoMl/metadata",
             "GPBMetadata\\Google\\Cloud\\Bigquery\\Datatransfer\\": "BigQueryDataTransfer/metadata",
             "GPBMetadata\\Google\\Cloud\\Dataproc\\": "Dataproc/metadata",
             "GPBMetadata\\Google\\Cloud\\Dialogflow\\": "Dialogflow/metadata",

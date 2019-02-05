@@ -178,7 +178,7 @@ class IntentsGapicClient
 
     private static function getProjectAgentNameTemplate()
     {
-        if (self::$projectAgentNameTemplate == null) {
+        if (null == self::$projectAgentNameTemplate) {
             self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
         }
 
@@ -187,7 +187,7 @@ class IntentsGapicClient
 
     private static function getIntentNameTemplate()
     {
-        if (self::$intentNameTemplate == null) {
+        if (null == self::$intentNameTemplate) {
             self::$intentNameTemplate = new PathTemplate('projects/{project}/agent/intents/{intent}');
         }
 
@@ -196,7 +196,7 @@ class IntentsGapicClient
 
     private static function getAgentNameTemplate()
     {
-        if (self::$agentNameTemplate == null) {
+        if (null == self::$agentNameTemplate) {
             self::$agentNameTemplate = new PathTemplate('projects/{project}/agents/{agent}');
         }
 
@@ -205,7 +205,7 @@ class IntentsGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'projectAgent' => self::getProjectAgentNameTemplate(),
                 'intent' => self::getIntentNameTemplate(),

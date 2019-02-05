@@ -68,6 +68,9 @@ class LoadJobConfigurationTest extends TestCase
             'allowJaggedRows' => true,
             'allowQuotedNewlines' => true,
             'autodetect' => true,
+            'clustering' => [
+                'fields' => ['a', 'b', 'c']
+            ],
             'createDisposition' => 'CREATE_NEVER',
             'destinationEncryptionConfiguration' => [
                 'kmsKeyName' => 'my_key'
@@ -96,6 +99,7 @@ class LoadJobConfigurationTest extends TestCase
             ->allowJaggedRows($load['allowJaggedRows'])
             ->allowQuotedNewlines($load['allowQuotedNewlines'])
             ->autodetect($load['autodetect'])
+            ->clustering($load['clustering'])
             ->createDisposition($load['createDisposition'])
             ->destinationEncryptionConfiguration($load['destinationEncryptionConfiguration'])
             ->data($data)

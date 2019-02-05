@@ -40,9 +40,11 @@ class State
     /**
      * The queue is disabled.
      * A queue becomes `DISABLED` when
-     * [queue.yaml](https://cloud.google.com/appengine/docs/python/config/queueref) or
-     * [queue.xml](https://cloud.google.com/appengine/docs/standard/java/config/queueref) is uploaded
-     * which does not contain the queue. You cannot directly disable a queue.
+     * [queue.yaml](https://cloud.google.com/appengine/docs/python/config/queueref)
+     * or
+     * [queue.xml](https://cloud.google.com/appengine/docs/standard/java/config/queueref)
+     * is uploaded which does not contain the queue. You cannot directly disable
+     * a queue.
      * When a queue is disabled, tasks can still be added to a queue
      * but the tasks are not dispatched.
      * To permanently delete this queue and all of its tasks, call

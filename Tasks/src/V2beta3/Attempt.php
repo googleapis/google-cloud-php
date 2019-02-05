@@ -37,7 +37,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
      */
     private $response_time = null;
     /**
-     * Output only. The response from the target for this attempt.
+     * Output only. The response from the worker for this attempt.
      * If `response_time` is unset, then the task has not been attempted or is
      * currently running and the `response_status` field is meaningless.
      *
@@ -61,7 +61,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
      *           Output only. The time that this attempt response was received.
      *           `response_time` will be truncated to the nearest microsecond.
      *     @type \Google\Rpc\Status $response_status
-     *           Output only. The response from the target for this attempt.
+     *           Output only. The response from the worker for this attempt.
      *           If `response_time` is unset, then the task has not been attempted or is
      *           currently running and the `response_status` field is meaningless.
      * }
@@ -156,7 +156,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The response from the target for this attempt.
+     * Output only. The response from the worker for this attempt.
      * If `response_time` is unset, then the task has not been attempted or is
      * currently running and the `response_status` field is meaningless.
      *
@@ -169,7 +169,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The response from the target for this attempt.
+     * Output only. The response from the worker for this attempt.
      * If `response_time` is unset, then the task has not been attempted or is
      * currently running and the `response_status` field is meaningless.
      *

@@ -131,7 +131,7 @@ class TraceServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -140,7 +140,7 @@ class TraceServiceGapicClient
 
     private static function getSpanNameTemplate()
     {
-        if (self::$spanNameTemplate == null) {
+        if (null == self::$spanNameTemplate) {
             self::$spanNameTemplate = new PathTemplate('projects/{project}/traces/{trace}/spans/{span}');
         }
 
@@ -149,7 +149,7 @@ class TraceServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'span' => self::getSpanNameTemplate(),

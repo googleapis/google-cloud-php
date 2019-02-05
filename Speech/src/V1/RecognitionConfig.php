@@ -37,6 +37,20 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $sample_rate_hertz = 0;
     /**
+     * *Optional* The number of channels in the input audio data.
+     * ONLY set this for MULTI-CHANNEL recognition.
+     * Valid values for LINEAR16 and FLAC are `1`-`8`.
+     * Valid values for OGG_OPUS are '1'-'254'.
+     * Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     * If `0` or omitted, defaults to one channel (mono).
+     * Note: We only recognize the first channel by default.
+     * To perform independent recognition on each channel set
+     * `enable_separate_recognition_per_channel` to 'true'.
+     *
+     * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
+     */
+    private $audio_channel_count = 0;
+    /**
      * This needs to be set to `true` explicitly and `audio_channel_count` > 1
      * to get each channel recognized separately. The recognition result will
      * contain a `channel_tag` field to state which channel that result belongs
@@ -180,6 +194,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           the audio source (instead of re-sampling).
      *           This field is optional for `FLAC` and `WAV` audio files and required
      *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     *     @type int $audio_channel_count
+     *           *Optional* The number of channels in the input audio data.
+     *           ONLY set this for MULTI-CHANNEL recognition.
+     *           Valid values for LINEAR16 and FLAC are `1`-`8`.
+     *           Valid values for OGG_OPUS are '1'-'254'.
+     *           Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     *           If `0` or omitted, defaults to one channel (mono).
+     *           Note: We only recognize the first channel by default.
+     *           To perform independent recognition on each channel set
+     *           `enable_separate_recognition_per_channel` to 'true'.
      *     @type bool $enable_separate_recognition_per_channel
      *           This needs to be set to `true` explicitly and `audio_channel_count` > 1
      *           to get each channel recognized separately. The recognition result will
@@ -340,6 +364,48 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->sample_rate_hertz = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* The number of channels in the input audio data.
+     * ONLY set this for MULTI-CHANNEL recognition.
+     * Valid values for LINEAR16 and FLAC are `1`-`8`.
+     * Valid values for OGG_OPUS are '1'-'254'.
+     * Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     * If `0` or omitted, defaults to one channel (mono).
+     * Note: We only recognize the first channel by default.
+     * To perform independent recognition on each channel set
+     * `enable_separate_recognition_per_channel` to 'true'.
+     *
+     * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
+     * @return int
+     */
+    public function getAudioChannelCount()
+    {
+        return $this->audio_channel_count;
+    }
+
+    /**
+     * *Optional* The number of channels in the input audio data.
+     * ONLY set this for MULTI-CHANNEL recognition.
+     * Valid values for LINEAR16 and FLAC are `1`-`8`.
+     * Valid values for OGG_OPUS are '1'-'254'.
+     * Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`.
+     * If `0` or omitted, defaults to one channel (mono).
+     * Note: We only recognize the first channel by default.
+     * To perform independent recognition on each channel set
+     * `enable_separate_recognition_per_channel` to 'true'.
+     *
+     * Generated from protobuf field <code>int32 audio_channel_count = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAudioChannelCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->audio_channel_count = $var;
 
         return $this;
     }

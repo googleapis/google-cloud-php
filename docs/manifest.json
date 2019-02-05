@@ -145,6 +145,14 @@
             ]
         },
         {
+            "id": "cloud-automl",
+            "name": "google/cloud-automl",
+            "defaultService": "automl/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",

@@ -30,7 +30,6 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 

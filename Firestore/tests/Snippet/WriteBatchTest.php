@@ -22,7 +22,7 @@ use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
+use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -138,7 +138,7 @@ class WriteBatchTest extends SnippetTestCase
                     'fieldTransforms' => [
                         [
                             'fieldPath' => 'lastLogin',
-                            'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                            'setToServerValue' => ServerValue::REQUEST_TIME
                         ]
                     ]
                 ]

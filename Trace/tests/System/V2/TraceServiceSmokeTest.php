@@ -37,7 +37,7 @@ class TraceServiceSmokeTest extends GeneratedTest
     public function batchWriteSpansTest()
     {
         $projectId = getenv('PROJECT_ID');
-        if ($projectId === false) {
+        if (false === $projectId) {
             $this->fail('Environment variable PROJECT_ID must be set for smoke test');
         }
 

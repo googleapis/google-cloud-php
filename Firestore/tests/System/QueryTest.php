@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
-use Google\Cloud\Firestore\CollectionReference;
-
 /**
  * @group firestore
  * @group firestore-query

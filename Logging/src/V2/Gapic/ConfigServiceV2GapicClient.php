@@ -150,7 +150,7 @@ class ConfigServiceV2GapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -159,7 +159,7 @@ class ConfigServiceV2GapicClient
 
     private static function getSinkNameTemplate()
     {
-        if (self::$sinkNameTemplate == null) {
+        if (null == self::$sinkNameTemplate) {
             self::$sinkNameTemplate = new PathTemplate('projects/{project}/sinks/{sink}');
         }
 
@@ -168,7 +168,7 @@ class ConfigServiceV2GapicClient
 
     private static function getExclusionNameTemplate()
     {
-        if (self::$exclusionNameTemplate == null) {
+        if (null == self::$exclusionNameTemplate) {
             self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
         }
 
@@ -177,7 +177,7 @@ class ConfigServiceV2GapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'sink' => self::getSinkNameTemplate(),
