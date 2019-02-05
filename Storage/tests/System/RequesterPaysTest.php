@@ -111,7 +111,7 @@ class RequesterPaysTest extends StorageTestCase
         $p['bindings'][] = [
             'role' => 'roles/pubsub.publisher',
             'members' => [
-                'serviceAccount:'. $client->getServiceAccount()
+                'serviceAccount:' . $client->getServiceAccount()
             ]
         ];
         self::$topic->iam()->setPolicy($p);
