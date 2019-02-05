@@ -26,9 +26,20 @@ class Where extends \Google\Protobuf\Internal\Message
      */
     private $json_value = '';
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\FieldPath $path
+     *     @type string $op
+     *     @type string $json_value
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**

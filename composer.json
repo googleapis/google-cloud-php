@@ -209,7 +209,10 @@
             "Google\\Cloud\\Translate\\Tests\\": "Translate/tests",
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
             "Google\\Cloud\\Vision\\Tests\\": "Vision/tests"
-        }
+        },
+        "files": [
+            "Firestore/tests/Conformance/FirestoreTestGpb.php"
+        ]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud",

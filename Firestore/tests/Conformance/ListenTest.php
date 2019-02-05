@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListenTest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.ListenResponse responses = 1;</code>
+     * Generated from protobuf field <code>repeated .google.firestore.v1.ListenResponse responses = 1;</code>
      */
     private $responses;
     /**
@@ -36,13 +36,24 @@ class ListenTest extends \Google\Protobuf\Internal\Message
      */
     private $is_error = false;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1\ListenResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Snapshot[]|\Google\Protobuf\Internal\RepeatedField $snapshots
+     *     @type bool $is_error
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.ListenResponse responses = 1;</code>
+     * Generated from protobuf field <code>repeated .google.firestore.v1.ListenResponse responses = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResponses()
@@ -51,13 +62,13 @@ class ListenTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.ListenResponse responses = 1;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\ListenResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.firestore.v1.ListenResponse responses = 1;</code>
+     * @param \Google\Cloud\Firestore\V1\ListenResponse[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResponses($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\ListenResponse::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1\ListenResponse::class);
         $this->responses = $arr;
 
         return $this;
