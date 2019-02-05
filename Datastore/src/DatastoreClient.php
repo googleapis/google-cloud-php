@@ -1065,7 +1065,7 @@ class DatastoreClient
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple
      *           array. Query cursors may be provided using instances of
-     *           {@see Google\Cloud\Datastore\Query\Cursor}.
+     *           {@see Google\Cloud\Datastore\Cursor}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
