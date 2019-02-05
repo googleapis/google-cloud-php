@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit\Query;
 
+use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\Query\Cursor;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use PHPUnit\Framework\TestCase;
 

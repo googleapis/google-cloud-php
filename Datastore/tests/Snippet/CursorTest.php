@@ -15,41 +15,24 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Datastore\Query;
+namespace Google\Cloud\Datastore\Tests\Snippet;
+
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Datastore\Cursor;
 
 /**
- * Represents a Query Cursor.
- *
- * The cursor type allows binding of cursors as GQL parameters.
- *
- * Example:
- * ```
- * use Google\Cloud\Datastore\Query\Cursor;
- *
- * $cursor = new Cursor($cursorValue);
- * ```
+ * @group datastore
  */
-class Cursor
+class CursorTest extends SnippetTestCase
 {
-    /**
-     * @var string|int
-     */
-    private $cursor;
-
-    /**
-     * @param string|int $cursor The cursor value.
-     */
-    public function __construct($cursor)
+    public function testClass()
     {
-        $this->cursor = $cursor;
-    }
+        $value = 'foo';
+        $snippet = $this->snippetFromClass(Cursor::class);
+        $snippet->addLocal('cursorValue', $value);
 
-    /**
-     * @access private
-     * @return array
-     */
-    public function cursor()
-    {
-        return $this->cursor;
+        $res = $snippet->invoke('cursor');
+        $this->assertInstanceOf(Cursor::class, $res->returnVal());
+        $this->assertEquals($value, $res->returnVal()->cursor());
     }
 }

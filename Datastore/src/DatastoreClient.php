@@ -435,6 +435,25 @@ class DatastoreClient
     }
 
     /**
+     * Create a Cursor.
+     *
+     * A cursor points to a position within a set of entities. Cloud Datastore
+     * uses Cursors for paginating query results.
+     *
+     * Example:
+     * ```
+     * $cursor = $datastore->cursor($cursorValue);
+     * ```
+     *
+     * @param string|int $cursorValue
+     * @return Cursor
+     */
+    public function cursor($cursorValue)
+    {
+        return new Cursor($cursorValue);
+    }
+
+    /**
      * Allocates an available ID to a given incomplete key
      *
      * Key MUST be in an incomplete state (i.e. including a kind but not an ID
@@ -1026,9 +1045,7 @@ class DatastoreClient
      * ```
      * //[snippet=cursor]
      * // Using cursors as query bindings:
-     * use Google\Cloud\Datastore\Query\Cursor;
-     *
-     * $cursor = new Cursor($cursorValue);
+     * $cursor = $datastore->cursor($cursorValue);
      *
      * $query = $datastore->gqlQuery('SELECT * FROM Companies OFFSET @offset', [
      *     'bindings' => [

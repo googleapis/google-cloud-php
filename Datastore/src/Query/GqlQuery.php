@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
@@ -78,9 +79,7 @@ use InvalidArgumentException;
  * ```
  * //[snippet=cursor]
  * // Using cursors as query bindings:
- * use Google\Cloud\Datastore\Query\Cursor;
- *
- * $cursor = new Cursor($cursorValue);
+ * $cursor = $datastore->cursor($cursorValue);
  *
  * $query = $datastore->gqlQuery('SELECT * FROM Companies OFFSET @offset', [
  *     'bindings' => [

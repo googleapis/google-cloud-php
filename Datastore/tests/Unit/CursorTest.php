@@ -15,25 +15,21 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Datastore\Tests\Snippet\Query;
+namespace Google\Cloud\Datastore\Tests\Unit;
 
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Datastore\Query\Cursor;
+use Google\Cloud\Datastore\Cursor;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group datastore
  * @group datastore-query
  */
-class CursorTest extends SnippetTestCase
+class CursorTest extends TestCase
 {
-    public function testClass()
+    public function testValue()
     {
-        $value = 'foo';
-        $snippet = $this->snippetFromClass(Cursor::class);
-        $snippet->addLocal('cursorValue', $value);
-
-        $res = $snippet->invoke('cursor');
-        $this->assertInstanceOf(Cursor::class, $res->returnVal());
-        $this->assertEquals($value, $res->returnVal()->cursor());
+        $val = 'foobar';
+        $cursor = new Cursor($val);
+        $this->assertEquals($val, $cursor->cursor());
     }
 }

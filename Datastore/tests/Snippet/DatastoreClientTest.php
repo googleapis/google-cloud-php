@@ -23,6 +23,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
@@ -255,6 +256,19 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('int64');
         $this->assertInstanceOf(Int64::class, $res->returnVal());
+    }
+
+    public function testCursor()
+    {
+        $val = 'foobar';
+
+        $snippet = $this->snippetFromMethod(DatastoreClient::class, 'cursor');
+        $snippet->addLocal('datastore', $this->client);
+        $snippet->addLocal('cursorValue', $val);
+
+        $res = $snippet->invoke('cursor');
+        $this->assertInstanceOf(Cursor::class, $res->returnVal());
+        $this->assertEquals($val, $res->returnVal()->cursor());
     }
 
     public function testBlobWithFile()
