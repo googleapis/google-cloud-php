@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Container\Tests\System;
+namespace Google\Cloud\Dataproc\Tests\System;
 
 use Google\Auth\CredentialsLoader;
 use Google\ApiCore\PagedListResponse;

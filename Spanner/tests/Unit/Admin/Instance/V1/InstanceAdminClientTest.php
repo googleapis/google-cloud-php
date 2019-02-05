@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Spanner\Admin\Instance\Tests\Unit\V1;
+namespace Google\Cloud\Spanner\Tests\Unit\Admin\Instance\V1;
 
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\ApiCore\ApiException;

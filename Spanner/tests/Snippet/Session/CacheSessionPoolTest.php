@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Spanner\Tests\Snippet;
+namespace Google\Cloud\Spanner\Tests\Snippet\Session;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
