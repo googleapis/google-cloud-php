@@ -4,26 +4,13 @@
 
 namespace Google\Cloud\Firestore\Tests\Conformance;
 
-/**
- * Protobuf enum <code>Tests\DocChange\Kind</code>
- */
-class DocChange_Kind
-{
+if (false) {
     /**
-     * Generated from protobuf enum <code>KIND_UNSPECIFIED = 0;</code>
+     * This class is deprecated. Use Google\Cloud\Firestore\Tests\Conformance\DocChange\Kind instead.
+     * @deprecated
      */
-    const KIND_UNSPECIFIED = 0;
-    /**
-     * Generated from protobuf enum <code>ADDED = 1;</code>
-     */
-    const ADDED = 1;
-    /**
-     * Generated from protobuf enum <code>REMOVED = 2;</code>
-     */
-    const REMOVED = 2;
-    /**
-     * Generated from protobuf enum <code>MODIFIED = 3;</code>
-     */
-    const MODIFIED = 3;
+    class DocChange_Kind {}
 }
+class_exists(DocChange\Kind::class);
+@trigger_error('Google\Cloud\Firestore\Tests\Conformance\DocChange_Kind is deprecated and will be removed in the next major release. Use Google\Cloud\Firestore\Tests\Conformance\DocChange\Kind instead', E_USER_DEPRECATED);
 

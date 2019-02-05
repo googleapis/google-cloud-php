@@ -18,7 +18,7 @@ class DocChange extends \Google\Protobuf\Internal\Message
      */
     private $kind = 0;
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Document doc = 2;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.Document doc = 2;</code>
      */
     private $doc = null;
     /**
@@ -30,9 +30,21 @@ class DocChange extends \Google\Protobuf\Internal\Message
      */
     private $new_index = 0;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type int $kind
+     *     @type \Google\Cloud\Firestore\V1\Document $doc
+     *     @type int $old_index
+     *     @type int $new_index
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
@@ -51,15 +63,15 @@ class DocChange extends \Google\Protobuf\Internal\Message
      */
     public function setKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Tests\Conformance\DocChange_Kind::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Tests\Conformance\DocChange\Kind::class);
         $this->kind = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Document doc = 2;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\Document
+     * Generated from protobuf field <code>.google.firestore.v1.Document doc = 2;</code>
+     * @return \Google\Cloud\Firestore\V1\Document
      */
     public function getDoc()
     {
@@ -67,13 +79,13 @@ class DocChange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Document doc = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\Document $var
+     * Generated from protobuf field <code>.google.firestore.v1.Document doc = 2;</code>
+     * @param \Google\Cloud\Firestore\V1\Document $var
      * @return $this
      */
     public function setDoc($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\Document::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Document::class);
         $this->doc = $var;
 
         return $this;

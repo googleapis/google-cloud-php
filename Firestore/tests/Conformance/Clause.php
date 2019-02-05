@@ -15,9 +15,26 @@ class Clause extends \Google\Protobuf\Internal\Message
 {
     protected $clause;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Select $select
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Where $where
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\OrderBy $order_by
+     *     @type int $offset
+     *     @type int $limit
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Cursor $start_at
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Cursor $start_after
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Cursor $end_at
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Cursor $end_before
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**

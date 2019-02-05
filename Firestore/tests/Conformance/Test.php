@@ -23,9 +23,27 @@ class Test extends \Google\Protobuf\Internal\Message
     private $description = '';
     protected $test;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $description
+     *           short description of the test
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\GetTest $get
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\CreateTest $create
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\SetTest $set
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\UpdateTest $update
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\UpdatePathsTest $update_paths
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\DeleteTest $delete
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\QueryTest $query
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\ListenTest $listen
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
