@@ -37,6 +37,20 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Talent\V4beta1\Company;
+use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
+
+$client = new CompanyServiceClient();
+$response = $client->createCompany(
+    CompanyServiceClient::projectName('spaceman-spiff2'),
+    new Company([
+        'display_name' => 'Google, LLC',
+        'external_id' => 1,
+        'headquarters_address' => '1600 Amphitheatre Parkway, Mountain View, CA'
+    ])
+);
 ```
 
 ### Version

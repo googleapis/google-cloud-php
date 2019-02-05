@@ -1327,7 +1327,7 @@ $response = $client->createCompany(
 
 #### google/cloud-talent
 
-[Google Cloud Speech](https://github.com/googleapis/google-cloud-php-talent) can be installed separately by requiring the [`google/cloud-talent`](https://packagist.org/packages/google/cloud-talent) composer package:
+[Google Cloud Talent Solution](https://github.com/googleapis/google-cloud-php-talent) can be installed separately by requiring the [`google/cloud-talent`](https://packagist.org/packages/google/cloud-talent) composer package:
 
 ```
 $ composer require google/cloud-talent
