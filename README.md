@@ -13,6 +13,7 @@ PHP 7.2 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/b
 * [API Documentation](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
+* [Cloud Firestore](#cloud-firestore-ga) (GA)
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
 * [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
@@ -26,7 +27,6 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud AutoML](#cloud-automl-beta) (Beta)
-* [Cloud Firestore](#cloud-firestore-beta) (Beta)
 * [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
@@ -117,6 +117,35 @@ $ pecl install protobuf
 
 * [gRPC Installation Instructions](https://cloud.google.com/php/grpc)
 * [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library)
+
+## Cloud Firestore (GA)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
+- [Official Documentation](https://cloud.google.com/firestore/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Firestore\FirestoreClient;
+
+$firestore = new FirestoreClient();
+
+$collectionReference = $firestore->collection('Users');
+$documentReference = $collectionReference->document($userId);
+$snapshot = $documentReference->snapshot();
+
+echo "Hello " . $snapshot['firstName'];
+```
+
+#### google/cloud-firestore
+
+[Cloud Firestore](https://github.com/googleapis/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
+
+```
+$ composer require google/cloud-firestore
+```
 
 ## Cloud Spanner (GA)
 
@@ -581,35 +610,6 @@ $response = $autoMlClient->createDataset($formattedParent, $dataset);
 #### google/cloud-automl
 
 [Cloud AutoML](https://github.com/GoogleCloudPlatform/google-cloud-php-automl) can be installed separately by requiring the [`google/cloud-automl`](https://packagist.org/packages/google/cloud-automl) composer package:
-
-```
-$ composer require google/cloud-firestore
-```
-
-## Cloud Firestore (Beta)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
-- [Official Documentation](https://cloud.google.com/firestore/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Firestore\FirestoreClient;
-
-$firestore = new FirestoreClient();
-
-$collectionReference = $firestore->collection('Users');
-$documentReference = $collectionReference->document($userId);
-$snapshot = $documentReference->snapshot();
-
-echo "Hello " . $snapshot['firstName'];
-```
-
-#### google/cloud-firestore
-
-[Cloud Firestore](https://github.com/googleapis/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
 
 ```
 $ composer require google/cloud-firestore
