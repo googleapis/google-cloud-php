@@ -101,7 +101,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
 
-        $this->assertEquals('http://localhost:8900', getenv('DATASTORE_EMULATOR_HOST'));
+        $this->assertEquals('localhost:8900', getenv('DATASTORE_EMULATOR_HOST'));
     }
 
     public function testKey()

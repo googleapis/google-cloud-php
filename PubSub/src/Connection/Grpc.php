@@ -17,19 +17,19 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\PublisherClient;
-use Google\Cloud\PubSub\V1\SubscriberClient;
-use Google\ApiCore\Serializer;
-use Google\Cloud\Iam\V1\Policy;
-use Google\Protobuf\FieldMask;
-use Google\Protobuf\Timestamp;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
-use Grpc\ChannelCredentials;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
 
 /**
  * Implementation of the
@@ -37,6 +37,7 @@ use Grpc\ChannelCredentials;
  */
 class Grpc implements ConnectionInterface
 {
+    use EmulatorTrait;
     use GrpcTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
@@ -82,16 +83,7 @@ class Grpc implements ConnectionInterface
         $config += ['emulatorHost' => null];
 
         if ((bool) $config['emulatorHost']) {
-            $grpcConfig += [
-                'serviceAddress' => $config['emulatorHost'],
-                'transportConfig' => [
-                        'grpc' => [
-                            'stubOpts' => [
-                                'credentials' => ChannelCredentials::createInsecure()
-                            ]
-                        ]
-                    ]
-            ];
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
 
         $this->publisherClient = new PublisherClient($grpcConfig);

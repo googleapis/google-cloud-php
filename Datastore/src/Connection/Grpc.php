@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Connection;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Datastore\DatastoreClient as ManualDatastoreClient;
@@ -36,7 +37,6 @@ use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
-use Grpc\ChannelCredentials;
 
 /**
  * Implementation of
@@ -46,6 +46,7 @@ use Grpc\ChannelCredentials;
  */
 class Grpc implements ConnectionInterface
 {
+    use EmulatorTrait;
     use GrpcTrait;
 
     /**
@@ -85,18 +86,7 @@ class Grpc implements ConnectionInterface
 
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
-            //@codeCoverageIgnoreStart
-            $grpcConfig += [
-                'serviceAddress' => $config['emulatorHost'],
-                'transportConfig' => [
-                    'grpc' => [
-                        'stubOpts' => [
-                            'credentials' => ChannelCredentials::createInsecure()
-                        ]
-                    ]
-                ]
-            ];
-            //@codeCoverageIgnoreEnd
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
 
         $this->datastoreClient = isset($config['gapicDatastoreClient'])
