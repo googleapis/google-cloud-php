@@ -27,6 +27,7 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud AutoML](#cloud-automl-beta) (Beta)
+* [Google Bigtable](#google-bigtable-beta) (Beta)
 * [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
@@ -42,7 +43,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Dialogflow API](#dialogflow-api-alpha) (Alpha)
-* [Google Bigtable](#google-bigtable-alpha) (Alpha)
 * [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
@@ -615,6 +615,35 @@ $response = $autoMlClient->createDataset($formattedParent, $dataset);
 $ composer require google/cloud-firestore
 ```
 
+## Google Bigtable (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
+- [Official Documentation](https://cloud.google.com/bigtable/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Bigtable\BigtableClient;
+
+$bigtable = new BigtableClient();
+$table = $bigtable->table('my-instance', 'my-table');
+$rows = $table->readRows();
+
+foreach ($rows as $row) {
+    print_r($row) . PHP_EOL;
+}
+```
+
+#### google/cloud-bigtable
+
+[Google Bigtable](https://github.com/googleapis/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
+
+```
+$ composer require google/cloud-bigtable
+```
+
 ## Google Cloud Asset (Beta)
 
 - [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/asset/assetclient)
@@ -1135,35 +1164,6 @@ foreach ($entityType->getEntities() as $entity) {
 
 ```
 $ composer require google/cloud-dialogflow
-```
-
-## Google Bigtable (Alpha)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
-- [Official Documentation](https://cloud.google.com/bigtable/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Bigtable\BigtableClient;
-
-$bigtable = new BigtableClient();
-$table = $bigtable->table('my-instance', 'my-table');
-$rows = $table->readRows();
-
-foreach ($rows as $row) {
-    print_r($row) . PHP_EOL;
-}
-```
-
-#### google/cloud-bigtable
-
-[Google Bigtable](https://github.com/googleapis/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
-
-```
-$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud BigQuery Data Transfer (Alpha)
