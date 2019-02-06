@@ -1,0 +1,1 @@
+{"id":"bigtable\/v2\/mutaterowsresponse_entry","type":"","title":"Google\\Cloud\\Bigtable\\V2\\MutateRowsResponse_Entry","name":"MutateRowsResponse_Entry","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\V2\\MutateRowsResponse\\Entry instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"errorreporting\/v1beta1\/querytimerange\/period","type":"","title":"Google\\Cloud\\ErrorReporting\\V1beta1\\QueryTimeRange\\Period","name":"Period","description":"<p>The supported time ranges.<\/p>\n<p>Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period<\/code><\/p>","examples":[],"resources":[],"methods":[]}
