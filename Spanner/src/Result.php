@@ -482,6 +482,15 @@ class Result implements \IteratorAggregate
      */
     private function mergeValues(array $set1, array $set2)
     {
+        // `$set2` may be empty if an array value is chunked at the end of the
+        // list. Handling it normally results in an additional `null` value
+        // being pushed onto the list of values. Since this method is only
+        // called in cases where two chunks must be merged, we can safely
+        // short-circuit the operation of the second chunk is empty.
+        if (empty($set2)) {
+            return $set1;
+        }
+
         $lastItemSet1 = array_pop($set1);
         $firstItemSet2 = array_shift($set2);
         $item = $firstItemSet2;

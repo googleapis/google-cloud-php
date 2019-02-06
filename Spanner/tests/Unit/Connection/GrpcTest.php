@@ -33,7 +33,6 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation_Write;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\Cloud\Spanner\V1\SpannerGrpcClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;

@@ -21,7 +21,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 /**
  * @group spanner-admin
