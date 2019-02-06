@@ -659,7 +659,7 @@
             "id": "cloud-irm",
             "name": "google/cloud-irm",
             "defaultService": "irm/readme",
-            "version": [
+            "versions": [
                 "master"
             ]
         },

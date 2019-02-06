@@ -143,6 +143,7 @@ class IncidentServiceGapicClient
      * The default scopes required by the service.
      */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
     ];
     private static $projectNameTemplate;
     private static $incidentNameTemplate;
