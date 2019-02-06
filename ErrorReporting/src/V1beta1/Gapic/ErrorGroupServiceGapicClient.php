@@ -115,7 +115,7 @@ class ErrorGroupServiceGapicClient
 
     private static function getGroupNameTemplate()
     {
-        if (self::$groupNameTemplate == null) {
+        if (null == self::$groupNameTemplate) {
             self::$groupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
         }
 
@@ -124,7 +124,7 @@ class ErrorGroupServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'group' => self::getGroupNameTemplate(),
             ];

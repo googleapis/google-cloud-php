@@ -435,6 +435,25 @@ class DatastoreClient
     }
 
     /**
+     * Create a Cursor.
+     *
+     * A cursor points to a position within a set of entities. Cloud Datastore
+     * uses Cursors for paginating query results.
+     *
+     * Example:
+     * ```
+     * $cursor = $datastore->cursor($cursorValue);
+     * ```
+     *
+     * @param string|int $cursorValue
+     * @return Cursor
+     */
+    public function cursor($cursorValue)
+    {
+        return new Cursor($cursorValue);
+    }
+
+    /**
      * Allocates an available ID to a given incomplete key
      *
      * Key MUST be in an incomplete state (i.e. including a kind but not an ID
@@ -964,7 +983,7 @@ class DatastoreClient
     }
 
     /**
-     * Create a Query
+     * Create a Query object.
      *
      * The Query class can be used as a builder, or it can accept a query
      * representation at instantiation.
@@ -985,7 +1004,10 @@ class DatastoreClient
     }
 
     /**
-     * Create a GqlQuery
+     * Create a GqlQuery object.
+     *
+     * Returns a Query object which can be executed using
+     * {@see Google\Cloud\Datastore\DatastoreClient::runQuery()}.
      *
      * Example:
      * ```
@@ -1015,8 +1037,20 @@ class DatastoreClient
      * ```
      * //[snippet=literals]
      * // While not recommended, you can use literals in your query string:
-     * $query = $datastore->gqlQuery("SELECT * FROM Companies WHERE companyName = 'Google'", [
+     * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = \'Google\'', [
      *     'allowLiterals' => true
+     * ]);
+     * ```
+     *
+     * ```
+     * //[snippet=cursor]
+     * // Using cursors as query bindings:
+     * $cursor = $datastore->cursor($cursorValue);
+     *
+     * $query = $datastore->gqlQuery('SELECT * FROM Companies OFFSET @offset', [
+     *     'bindings' => [
+     *         'offset' => $cursor
+     *     ]
      * ]);
      * ```
      *
@@ -1030,7 +1064,8 @@ class DatastoreClient
      *     @type array $bindings An array of values to bind to the query string.
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple
-     *           array.
+     *           array. Query cursors may be provided using instances of
+     *           {@see Google\Cloud\Datastore\Cursor}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }

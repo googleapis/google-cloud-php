@@ -24,13 +24,25 @@ class GetTest extends \Google\Protobuf\Internal\Message
     /**
      * The request that the call should send to the Firestore service.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.GetDocumentRequest request = 2;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.GetDocumentRequest request = 2;</code>
      */
     private $request = null;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $doc_ref_path
+     *           The path of the doc, e.g. "projects/projectID/databases/(default)/documents/C/d"
+     *     @type \Google\Cloud\Firestore\V1\GetDocumentRequest $request
+     *           The request that the call should send to the Firestore service.
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
@@ -62,8 +74,8 @@ class GetTest extends \Google\Protobuf\Internal\Message
     /**
      * The request that the call should send to the Firestore service.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.GetDocumentRequest request = 2;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\GetDocumentRequest
+     * Generated from protobuf field <code>.google.firestore.v1.GetDocumentRequest request = 2;</code>
+     * @return \Google\Cloud\Firestore\V1\GetDocumentRequest
      */
     public function getRequest()
     {
@@ -73,13 +85,13 @@ class GetTest extends \Google\Protobuf\Internal\Message
     /**
      * The request that the call should send to the Firestore service.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.GetDocumentRequest request = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\GetDocumentRequest $var
+     * Generated from protobuf field <code>.google.firestore.v1.GetDocumentRequest request = 2;</code>
+     * @param \Google\Cloud\Firestore\V1\GetDocumentRequest $var
      * @return $this
      */
     public function setRequest($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\GetDocumentRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\GetDocumentRequest::class);
         $this->request = $var;
 
         return $this;

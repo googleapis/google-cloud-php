@@ -68,6 +68,7 @@
     },
     "replace": {
         "google/cloud-asset": "0.1.6",
+        "google/cloud-automl": "master",
         "google/cloud-bigquery": "1.4.6",
         "google/cloud-bigquerydatatransfer": "0.8.4",
         "google/cloud-bigtable": "0.9.3",
@@ -93,6 +94,7 @@
         "google/cloud-spanner": "1.11.5",
         "google/cloud-speech": "0.20.0",
         "google/cloud-storage": "1.10.1",
+        "google/cloud-talent": "master",
         "google/cloud-tasks": "0.5.3",
         "google/cloud-text-to-speech": "0.2.0",
         "google/cloud-trace": "0.12.4",
@@ -111,6 +113,7 @@
                 "CommonProtos/src"
             ],
             "Google\\Cloud\\Asset\\": "Asset/src",
+            "Google\\Cloud\\AutoMl\\": "AutoMl/src",
             "Google\\Cloud\\BigQuery\\": "BigQuery/src",
             "Google\\Cloud\\BigQuery\\DataTransfer\\": "BigQueryDataTransfer/src",
             "Google\\Cloud\\Bigtable\\": "Bigtable/src",
@@ -135,6 +138,7 @@
             "Google\\Cloud\\Spanner\\": "Spanner/src",
             "Google\\Cloud\\Speech\\": "Speech/src",
             "Google\\Cloud\\Storage\\": "Storage/src",
+            "Google\\Cloud\\Talent\\": "Talent/src",
             "Google\\Cloud\\Tasks\\": "Tasks/src",
             "Google\\Cloud\\TextToSpeech\\": "TextToSpeech/src",
             "Google\\Cloud\\Trace\\": "Trace/src",
@@ -142,9 +146,10 @@
             "Google\\Cloud\\VideoIntelligence\\": "VideoIntelligence/src",
             "Google\\Cloud\\Vision\\": "Vision/src",
             "GPBMetadata\\Google\\": "CommonProtos/metadata",
-            "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
+            "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
+            "GPBMetadata\\Google\\Cloud\\Automl\\": "AutoMl/metadata",
             "GPBMetadata\\Google\\Cloud\\Bigquery\\Datatransfer\\": "BigQueryDataTransfer/metadata",
             "GPBMetadata\\Google\\Cloud\\Dataproc\\": "Dataproc/metadata",
             "GPBMetadata\\Google\\Cloud\\Dialogflow\\": "Dialogflow/metadata",
@@ -155,6 +160,7 @@
             "GPBMetadata\\Google\\Cloud\\Redis\\": "Redis/metadata",
             "GPBMetadata\\Google\\Cloud\\Scheduler\\": "Scheduler/metadata",
             "GPBMetadata\\Google\\Cloud\\Speech\\": "Speech/metadata",
+            "GPBMetadata\\Google\\Cloud\\Talent\\": "Talent/metadata",
             "GPBMetadata\\Google\\Cloud\\Tasks\\": "Tasks/metadata",
             "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "TextToSpeech/metadata",
             "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "VideoIntelligence/metadata",
@@ -200,13 +206,17 @@
             "Google\\Cloud\\Spanner\\Tests\\": "Spanner/tests",
             "Google\\Cloud\\Speech\\Tests\\": "Speech/tests",
             "Google\\Cloud\\Storage\\Tests\\": "Storage/tests",
+            "Google\\Cloud\\Tasks\\Talent\\": "Talent/tests",
             "Google\\Cloud\\Tasks\\Tests\\": "Tasks/tests",
             "Google\\Cloud\\TextToSpeech\\Tests\\": "TextToSpeech/tests",
             "Google\\Cloud\\Trace\\Tests\\": "Trace/tests",
             "Google\\Cloud\\Translate\\Tests\\": "Translate/tests",
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
             "Google\\Cloud\\Vision\\Tests\\": "Vision/tests"
-        }
+        },
+        "files": [
+            "Firestore/tests/Conformance/FirestoreTestGpb.php"
+        ]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud",

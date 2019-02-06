@@ -145,6 +145,14 @@
             ]
         },
         {
+            "id": "cloud-automl",
+            "name": "google/cloud-automl",
+            "defaultService": "automl/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
@@ -1049,6 +1057,14 @@
                 "v1.1.0",
                 "v1.0.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-talent",
+            "name": "google/cloud-talent",
+            "defaultService": "talent/readme",
+            "versions": [
                 "master"
             ]
         },

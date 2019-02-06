@@ -24,9 +24,20 @@ class Cursor extends \Google\Protobuf\Internal\Message
      */
     private $json_values;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\DocSnapshot $doc_snapshot
+     *           one of:
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $json_values
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**

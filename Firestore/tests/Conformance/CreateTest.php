@@ -32,7 +32,7 @@ class CreateTest extends \Google\Protobuf\Internal\Message
     /**
      * The request that the call should generate.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 3;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.CommitRequest request = 3;</code>
      */
     private $request = null;
     /**
@@ -43,9 +43,28 @@ class CreateTest extends \Google\Protobuf\Internal\Message
      */
     private $is_error = false;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $doc_ref_path
+     *           The path of the doc, e.g. "projects/projectID/databases/(default)/documents/C/d"
+     *     @type string $json_data
+     *           The data passed to Create, as JSON. The strings "Delete" and "ServerTimestamp"
+     *           denote the two special sentinel values. Values that could be interpreted as integers
+     *           (i.e. digit strings) should be treated as integers.
+     *     @type \Google\Cloud\Firestore\V1\CommitRequest $request
+     *           The request that the call should generate.
+     *     @type bool $is_error
+     *           If true, the call should result in an error without generating a request.
+     *           If this is true, request should not be set.
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
@@ -107,8 +126,8 @@ class CreateTest extends \Google\Protobuf\Internal\Message
     /**
      * The request that the call should generate.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 3;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\CommitRequest
+     * Generated from protobuf field <code>.google.firestore.v1.CommitRequest request = 3;</code>
+     * @return \Google\Cloud\Firestore\V1\CommitRequest
      */
     public function getRequest()
     {
@@ -118,13 +137,13 @@ class CreateTest extends \Google\Protobuf\Internal\Message
     /**
      * The request that the call should generate.
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 3;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\CommitRequest $var
+     * Generated from protobuf field <code>.google.firestore.v1.CommitRequest request = 3;</code>
+     * @param \Google\Cloud\Firestore\V1\CommitRequest $var
      * @return $this
      */
     public function setRequest($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\CommitRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\CommitRequest::class);
         $this->request = $var;
 
         return $this;

@@ -28,9 +28,21 @@ class SetOption extends \Google\Protobuf\Internal\Message
      */
     private $fields;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type bool $all
+     *           if true, merge all fields ("fields" is ignored).
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\FieldPath[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *           field paths for a Merge option
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**

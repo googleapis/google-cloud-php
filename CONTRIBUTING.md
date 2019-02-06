@@ -88,7 +88,7 @@ To run the system tests, first create and configure a project in the Google Deve
 To run the system tests for a package:
 
 ``` sh
-$ vendor/bin/phpunit --group=datastore
+$ vendor/bin/phpunit -c phpunit-system.xml.dist --group=datastore
 ```
 
 System test credentials should be provided via environment variable:

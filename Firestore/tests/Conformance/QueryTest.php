@@ -24,7 +24,7 @@ class QueryTest extends \Google\Protobuf\Internal\Message
      */
     private $clauses;
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery query = 3;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery query = 3;</code>
      */
     private $query = null;
     /**
@@ -32,9 +32,22 @@ class QueryTest extends \Google\Protobuf\Internal\Message
      */
     private $is_error = false;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $coll_path
+     *           path of collection, e.g. "projects/projectID/databases/(default)/documents/C"
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\Clause[]|\Google\Protobuf\Internal\RepeatedField $clauses
+     *     @type \Google\Cloud\Firestore\V1\StructuredQuery $query
+     *     @type bool $is_error
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
@@ -86,8 +99,8 @@ class QueryTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery query = 3;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\StructuredQuery
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery query = 3;</code>
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery
      */
     public function getQuery()
     {
@@ -95,13 +108,13 @@ class QueryTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.StructuredQuery query = 3;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\StructuredQuery $var
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery query = 3;</code>
+     * @param \Google\Cloud\Firestore\V1\StructuredQuery $var
      * @return $this
      */
     public function setQuery($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\StructuredQuery::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery::class);
         $this->query = $var;
 
         return $this;

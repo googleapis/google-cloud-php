@@ -22,13 +22,13 @@ class DeleteTest extends \Google\Protobuf\Internal\Message
      */
     private $doc_ref_path = '';
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Precondition precondition = 2;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.Precondition precondition = 2;</code>
      */
     private $precondition = null;
     /**
      * expected rquest
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 3;</code>
+     * Generated from protobuf field <code>.google.firestore.v1.CommitRequest request = 3;</code>
      */
     private $request = null;
     /**
@@ -38,9 +38,24 @@ class DeleteTest extends \Google\Protobuf\Internal\Message
      */
     private $is_error = false;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $doc_ref_path
+     *           path of doc
+     *     @type \Google\Cloud\Firestore\V1\Precondition $precondition
+     *     @type \Google\Cloud\Firestore\V1\CommitRequest $request
+     *           expected rquest
+     *     @type bool $is_error
+     *           call signals an error
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
@@ -70,8 +85,8 @@ class DeleteTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Precondition precondition = 2;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\Precondition
+     * Generated from protobuf field <code>.google.firestore.v1.Precondition precondition = 2;</code>
+     * @return \Google\Cloud\Firestore\V1\Precondition
      */
     public function getPrecondition()
     {
@@ -79,13 +94,13 @@ class DeleteTest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.firestore.v1beta1.Precondition precondition = 2;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\Precondition $var
+     * Generated from protobuf field <code>.google.firestore.v1.Precondition precondition = 2;</code>
+     * @param \Google\Cloud\Firestore\V1\Precondition $var
      * @return $this
      */
     public function setPrecondition($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\Precondition::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Precondition::class);
         $this->precondition = $var;
 
         return $this;
@@ -94,8 +109,8 @@ class DeleteTest extends \Google\Protobuf\Internal\Message
     /**
      * expected rquest
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 3;</code>
-     * @return \Google\Cloud\Firestore\V1beta1\CommitRequest
+     * Generated from protobuf field <code>.google.firestore.v1.CommitRequest request = 3;</code>
+     * @return \Google\Cloud\Firestore\V1\CommitRequest
      */
     public function getRequest()
     {
@@ -105,13 +120,13 @@ class DeleteTest extends \Google\Protobuf\Internal\Message
     /**
      * expected rquest
      *
-     * Generated from protobuf field <code>.google.firestore.v1beta1.CommitRequest request = 3;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\CommitRequest $var
+     * Generated from protobuf field <code>.google.firestore.v1.CommitRequest request = 3;</code>
+     * @param \Google\Cloud\Firestore\V1\CommitRequest $var
      * @return $this
      */
     public function setRequest($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1beta1\CommitRequest::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\CommitRequest::class);
         $this->request = $var;
 
         return $this;

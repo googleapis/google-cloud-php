@@ -8,6 +8,7 @@
     ],
     "includes": [
         "cloud-asset",
+        "cloud-automl",
         "cloud-bigquery",
         "cloud-bigquerydatatransfer",
         "cloud-bigtable",
@@ -32,6 +33,7 @@
         "cloud-spanner",
         "cloud-speech",
         "cloud-storage",
+        "cloud-talent",
         "cloud-tasks",
         "cloud-text-to-speech",
         "cloud-trace",

@@ -25,6 +25,7 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
+* [Cloud AutoML](#cloud-automl-beta) (Beta)
 * [Cloud Firestore](#cloud-firestore-beta) (Beta)
 * [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
@@ -46,6 +47,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -549,6 +551,39 @@ foreach ($entries as $entry) {
 
 ```
 $ composer require google/cloud-logging
+```
+
+## Cloud AutoML (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/automl/v1beta1/automlclient)
+- [Official Documentation](https://cloud.google.com/automl/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
+use Google\Cloud\AutoMl\V1beta1\TranslationDatasetMetadata;
+
+$autoMlClient = new AutoMlClient();
+$formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+$dataset = new Dataset([
+    'display_name' => '[DISPLAY_NAME]',
+    'translation_dataset_metadata' => new TranslationDatasetMetadata([
+        'source_language_code' => 'en',
+        'target_language_code' => 'es'
+    ])
+]);
+$response = $autoMlClient->createDataset($formattedParent, $dataset);
+```
+
+#### google/cloud-automl
+
+[Cloud AutoML](https://github.com/GoogleCloudPlatform/google-cloud-php-automl) can be installed separately by requiring the [`google/cloud-automl`](https://packagist.org/packages/google/cloud-automl) composer package:
+
+```
+$ composer require google/cloud-firestore
 ```
 
 ## Cloud Firestore (Beta)
@@ -1264,6 +1299,38 @@ foreach ($responses as $element) {
 
 ```
 $ composer require google/cloud-speech
+```
+
+## Google Cloud Talent Solution (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
+- [Official Documentation](https://cloud.google.com/talent-solution/job-search/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Talent\V4beta1\Company;
+use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
+
+$client = new CompanyServiceClient();
+$response = $client->createCompany(
+    CompanyServiceClient::projectName('MY_PROJECT_ID'),
+    new Company([
+        'display_name' => 'Google, LLC',
+        'external_id' => 1,
+        'headquarters_address' => '1600 Amphitheatre Parkway, Mountain View, CA'
+    ])
+);
+```
+
+#### google/cloud-talent
+
+[Google Cloud Talent Solution](https://github.com/googleapis/google-cloud-php-talent) can be installed separately by requiring the [`google/cloud-talent`](https://packagist.org/packages/google/cloud-talent) composer package:
+
+```
+$ composer require google/cloud-talent
 ```
 
 ## Google Stackdriver Debugger (Alpha)

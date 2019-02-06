@@ -146,7 +146,7 @@ class NotificationChannelServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -155,7 +155,7 @@ class NotificationChannelServiceGapicClient
 
     private static function getNotificationChannelNameTemplate()
     {
-        if (self::$notificationChannelNameTemplate == null) {
+        if (null == self::$notificationChannelNameTemplate) {
             self::$notificationChannelNameTemplate = new PathTemplate('projects/{project}/notificationChannels/{notification_channel}');
         }
 
@@ -164,7 +164,7 @@ class NotificationChannelServiceGapicClient
 
     private static function getNotificationChannelDescriptorNameTemplate()
     {
-        if (self::$notificationChannelDescriptorNameTemplate == null) {
+        if (null == self::$notificationChannelDescriptorNameTemplate) {
             self::$notificationChannelDescriptorNameTemplate = new PathTemplate('projects/{project}/notificationChannelDescriptors/{channel_descriptor}');
         }
 
@@ -173,7 +173,7 @@ class NotificationChannelServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'notificationChannel' => self::getNotificationChannelNameTemplate(),

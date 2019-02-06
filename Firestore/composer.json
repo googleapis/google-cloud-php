@@ -35,6 +35,9 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Firestore\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "tests/Conformance/FirestoreTestGpb.php"
+        ]
     }
 }

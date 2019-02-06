@@ -151,7 +151,7 @@ class MetricServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -160,7 +160,7 @@ class MetricServiceGapicClient
 
     private static function getMetricDescriptorNameTemplate()
     {
-        if (self::$metricDescriptorNameTemplate == null) {
+        if (null == self::$metricDescriptorNameTemplate) {
             self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
         }
 
@@ -169,7 +169,7 @@ class MetricServiceGapicClient
 
     private static function getMonitoredResourceDescriptorNameTemplate()
     {
-        if (self::$monitoredResourceDescriptorNameTemplate == null) {
+        if (null == self::$monitoredResourceDescriptorNameTemplate) {
             self::$monitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
         }
 
@@ -178,7 +178,7 @@ class MetricServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),

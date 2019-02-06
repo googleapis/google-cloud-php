@@ -162,7 +162,7 @@ class FirestoreGapicClient
 
     private static function getDatabaseRootNameTemplate()
     {
-        if (self::$databaseRootNameTemplate == null) {
+        if (null == self::$databaseRootNameTemplate) {
             self::$databaseRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}');
         }
 
@@ -171,7 +171,7 @@ class FirestoreGapicClient
 
     private static function getDocumentRootNameTemplate()
     {
-        if (self::$documentRootNameTemplate == null) {
+        if (null == self::$documentRootNameTemplate) {
             self::$documentRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents');
         }
 
@@ -180,7 +180,7 @@ class FirestoreGapicClient
 
     private static function getDocumentPathNameTemplate()
     {
-        if (self::$documentPathNameTemplate == null) {
+        if (null == self::$documentPathNameTemplate) {
             self::$documentPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}');
         }
 
@@ -189,7 +189,7 @@ class FirestoreGapicClient
 
     private static function getAnyPathNameTemplate()
     {
-        if (self::$anyPathNameTemplate == null) {
+        if (null == self::$anyPathNameTemplate) {
             self::$anyPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{any_path=**}');
         }
 
@@ -198,7 +198,7 @@ class FirestoreGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'databaseRoot' => self::getDatabaseRootNameTemplate(),
                 'documentRoot' => self::getDocumentRootNameTemplate(),
