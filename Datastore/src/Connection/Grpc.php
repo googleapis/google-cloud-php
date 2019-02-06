@@ -37,7 +37,6 @@ use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
-use Grpc\ChannelCredentials;
 
 /**
  * Implementation of
@@ -87,14 +86,7 @@ class Grpc implements ConnectionInterface
 
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
-            //@codeCoverageIgnoreStart
-            $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
-            $grpcConfig += [
-                'serviceAddress' => parse_url($baseUri, PHP_URL_HOST),
-                'port' => parse_url($baseUri, PHP_URL_PORT),
-                'sslCreds' => ChannelCredentials::createInsecure()
-            ];
-            //@codeCoverageIgnoreEnd
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
 
         $this->datastoreClient = isset($config['gapicDatastoreClient'])

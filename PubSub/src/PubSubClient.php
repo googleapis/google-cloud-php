@@ -73,7 +73,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * // Be sure to use the port specified when starting the emulator.
  * // `8900` is used as an example only.
- * putenv('PUBSUB_EMULATOR_HOST=http://localhost:8900');
+ * putenv('PUBSUB_EMULATOR_HOST=localhost:8900');
  *
  * $pubsub = new PubSubClient();
  * ```

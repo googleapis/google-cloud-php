@@ -68,7 +68,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * // Be sure to use the port specified when starting the emulator.
  * // `8900` is used as an example only.
- * putenv('DATASTORE_EMULATOR_HOST=http://localhost:8900');
+ * putenv('DATASTORE_EMULATOR_HOST=localhost:8900');
  *
  * $datastore = new DatastoreClient();
  * ```
