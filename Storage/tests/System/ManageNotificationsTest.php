@@ -27,7 +27,6 @@ class ManageNotificationsTest extends StorageTestCase
     {
         $created = [];
         $topic = self::createTopic(self::$pubsubClient, uniqid(self::TESTING_PREFIX));
-        $projectId = self::getProjectId(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'));
         $policy = $topic->iam()->policy();
         $policy['bindings'] = [
             [
