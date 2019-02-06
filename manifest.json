@@ -1061,6 +1061,14 @@
             ]
         },
         {
+            "id": "cloud-talent",
+            "name": "google/cloud-talent",
+            "defaultService": "talent/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-tasks",
             "name": "google/cloud-tasks",
             "defaultService": "tasks/readme",
