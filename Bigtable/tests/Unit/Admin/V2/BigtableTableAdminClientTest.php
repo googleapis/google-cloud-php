@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Bigtable\Admin\Tests\Unit\V2;
+namespace Google\Cloud\Bigtable\Tests\Unit\Admin\V2;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
 use Google\ApiCore\ApiException;

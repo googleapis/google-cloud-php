@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @group bigquery
  */
-class BigQueryPerfTest extends TestCase
+class BigQueryTest extends TestCase
 {
     const SOURCE = 'bigquery.json';
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Vision\Tests\Unit\Annotation;
+namespace Google\Cloud\Vision\Tests\Unit\Annotation\Face;
 
 use Google\Cloud\Vision\Tests\Unit\Fixtures;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;

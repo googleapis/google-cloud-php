@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\Cloud\Tests\Unit;
+namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
