@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
-use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\PubSub\PubSubClient;
@@ -38,7 +37,6 @@ use Grpc\ChannelCredentials;
  */
 class Grpc implements ConnectionInterface
 {
-    use EmulatorTrait;
     use GrpcTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
@@ -84,9 +82,15 @@ class Grpc implements ConnectionInterface
         $config += ['emulatorHost' => null];
 
         if ((bool) $config['emulatorHost']) {
-            $serviceAddress = $this->emulatorBaseUri($config['emulatorHost']);
             $grpcConfig += [
-                'serviceAddress' => $serviceAddress
+                'serviceAddress' => $config['emulatorHost'],
+                'transportConfig' => [
+                        'grpc' => [
+                            'stubOpts' => [
+                                'credentials' => ChannelCredentials::createInsecure()
+                            ]
+                        ]
+                    ]
             ];
         }
 

@@ -18,7 +18,6 @@
 namespace Google\Cloud\Datastore\Connection;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Datastore\DatastoreClient as ManualDatastoreClient;
@@ -47,7 +46,6 @@ use Grpc\ChannelCredentials;
  */
 class Grpc implements ConnectionInterface
 {
-    use EmulatorTrait;
     use GrpcTrait;
 
     /**
