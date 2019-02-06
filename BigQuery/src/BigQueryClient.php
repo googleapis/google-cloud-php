@@ -49,7 +49,7 @@ class BigQueryClient
     use ClientTrait;
     use RetryDeciderTrait;
 
-    const VERSION = '1.4.6';
+    const VERSION = '1.5.0';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
