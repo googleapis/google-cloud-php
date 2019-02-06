@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Core;
 
-use Grpc\ChannelCredentials;
-
 /**
  * Provides common logic for configuring the usage of an emulator.
  */
@@ -43,7 +41,7 @@ trait EmulatorTrait
             'transportConfig' => [
                 'grpc' => [
                     'stubOpts' => [
-                        'credentials' => ChannelCredentials::createInsecure()
+                        'credentials' => \Grpc\ChannelCredentials::createInsecure()
                     ]
                 ]
             ]
