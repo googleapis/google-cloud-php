@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
@@ -39,21 +40,28 @@ use InvalidArgumentException;
  *
  * $datastore = new DatastoreClient();
  *
+ * $query = $datastore->gqlQuery('SELECT * FROM Companies');
+ * $res = $datastore->runQuery($query);
+ *
+ * foreach ($res as $company) {
+ *     echo $company['companyName'] . PHP_EOL;
+ * }
+ * ```
+ *
+ * ```
+ * //[snippet=bindings]
+ * // Literals must be provided as bound parameters by default:
  * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @companyName', [
  *     'bindings' => [
  *         'companyName' => 'Google'
  *     ]
  * ]);
- *
- * $res = $datastore->runQuery($query);
- * foreach ($res as $company) {
- *     echo $company['companyName']; // Google
- * }
  * ```
  *
  * ```
- * // Positional binding is also supported
- * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @1', [
+ * //[snippet=pos_bindings]
+ * // Positional binding is also supported:
+ * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @1 LIMIT 1', [
  *     'bindings' => [
  *         'Google'
  *     ]
@@ -61,9 +69,22 @@ use InvalidArgumentException;
  * ```
  *
  * ```
+ * //[snippet=literals]
  * // While not recommended, you can use literals in your query string:
- * $query = $datastore->gqlQuery("SELECT * FROM Companies WHERE companyName = 'Google'", [
+ * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = \'Google\'', [
  *     'allowLiterals' => true
+ * ]);
+ * ```
+ *
+ * ```
+ * //[snippet=cursor]
+ * // Using cursors as query bindings:
+ * $cursor = $datastore->cursor($cursorValue);
+ *
+ * $query = $datastore->gqlQuery('SELECT * FROM Companies OFFSET @offset', [
+ *     'bindings' => [
+ *         'offset' => $cursor
+ *     ]
  * ]);
  * ```
  *
@@ -209,16 +230,20 @@ class GqlQuery implements QueryInterface
     {
         $res = [];
         foreach ($bindings as $key => $binding) {
-            $value = $this->entityMapper->valueObject($binding);
-
-            if ($bindingType === self::BINDING_NAMED) {
-                $res[$key] = [
-                    'value' => $value
+            if ($binding instanceof Cursor) {
+                $value = [
+                    'cursor' => $binding->cursor()
                 ];
             } else {
-                $res[] = [
-                    'value' => $value
+                $value = [
+                    'value' => $this->entityMapper->valueObject($binding)
                 ];
+            }
+
+            if ($bindingType === self::BINDING_NAMED) {
+                $res[$key] = $value;
+            } else {
+                $res[] = $value;
             }
         }
 
