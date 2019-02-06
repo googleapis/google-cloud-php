@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
@@ -29,6 +28,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
+ * @group spanner-result
  */
 class ResultTest extends TestCase
 {
@@ -57,7 +57,6 @@ class ResultTest extends TestCase
     public function testRows($chunks, $expectedValues)
     {
         $result = iterator_to_array($this->getResultClass($chunks)->rows());
-
         $this->assertEquals($expectedValues, $result);
     }
 

@@ -442,6 +442,40 @@
         "{\n  \"metadata\": {\n    \"rowType\": {\n      \"fields\": [{\n        \"name\": \"f1\",\n        \"type\": {\n          \"code\": 6\n        }\n      }]\n    }\n  }}"
       ],
       "name": "Returns early with no values"
+    },
+    {
+      "result": {
+        "value": [
+          [
+            "f1-v1",
+            [
+              [
+                "f2-1-1-v1",
+                "f2-2-1-v2"
+              ]
+            ]
+          ], [
+            "f1-v2",
+            [
+              [
+                "f2-1-2-v1",
+                "f2-2-2-v2"
+              ], [
+                "f2-1-3-v1",
+                "f2-2-3-v2"
+              ], [
+                "f2-1-4-v1",
+                "f2-2-4-v2"
+              ]
+            ]
+          ]
+        ]
+      },
+      "chunks": [
+        "{\n\"metadata\": {\n\"rowType\": {\n\"fields\": [\n{\n\"name\": \"f1\",\n\"type\": {\n\"code\": 6\n}\n},\n{\n\"name\": \"f2\",\n\"type\": {\n\"code\": 8,\n\"arrayElementType\": {\n\"code\": 9,\n\"structType\": {\n\"fields\": [\n{\n\"name\": \"f2-1\",\n\"type\": {\n\"code\": 6\n}\n},\n{\n\"name\": \"f2-2\",\n\"type\": {\n\"code\": 6\n}\n}\n]\n}\n}\n}\n}\n]\n}\n},\n\"values\": [\n\"f1-v1\",\n[\n[\n\"f2-1-1-v1\",\n\"f2-2-1-v2\"\n]\n],\n\"f1-v2\",\n[\n[\n\"f2-1-2-v1\",\n\"f2-2-2-v2\"\n],\n[\n\"f2-1-3-v1\",\n\"f2-2-3-v2\"\n]\n]\n],\n\"chunkedValue\": true\n}",
+        "{\n\"values\": [\n[\n[],\n[\n\"f2-1-4-v1\",\n\"f2-2-4-v2\"\n]\n]\n],\n\"chunkedValue\": false\n}"
+      ],
+      "name": "Splits chunk at end of nested listValue"
     }
   ]
 }

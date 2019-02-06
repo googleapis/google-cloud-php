@@ -17,11 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
-use Google\Cloud\Core\Int64;
-use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\ValueMapper;
 
 /**
  * @group spanner
