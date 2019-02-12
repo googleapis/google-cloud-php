@@ -176,13 +176,16 @@ class Result implements \IteratorAggregate
     {
         $bufferedResults = [];
         $call = $this->call;
-        $generator = $call();
+        $generator = null;
         $shouldRetry = false;
         $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
             return $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
         });
 
-        $valid = $backoff->execute([$generator, 'valid']);
+        $valid = $backoff->execute(function () use ($call, &$generator) {
+            $generator = $call();
+            return $generator->valid();
+        });
 
         while ($valid) {
             try {
