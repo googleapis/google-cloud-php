@@ -8,7 +8,7 @@
         },
         {
             "title": "IndicentServiceClient",
-            "type": "irm\/v1alpha2\/indicentserviceclient",
+            "type": "irm\/v1alpha2\/incidentserviceclient",
             "nav": [],
             "patterns": [
                 "irm\/v1alpha2\/\\w{1,}"
