@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-irm",
-    "description": "Cloud IRM Client for PHP",
+    "description": "Stackdriver IRM Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
