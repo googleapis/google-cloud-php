@@ -656,6 +656,14 @@
             ]
         },
         {
+            "id": "cloud-irm",
+            "name": "google/cloud-irm",
+            "defaultService": "irm/readme",
+            "version": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-kms",
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",

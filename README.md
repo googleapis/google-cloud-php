@@ -49,6 +49,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
+* [Google Stackdriver IRM](#google-stackdriver-irm-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -1354,6 +1355,24 @@ $debuggee->register();
 
 ```
 $ composer require google/cloud-debugger
+```
+
+## Google Stackdriver IRM (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/irm/readme)
+- [Official Documentation](https://cloud.google.com/irm/docs)
+
+#### Preview
+
+```php
+```
+
+#### google/cloud-irm
+
+[Stackdriver IRM](https://github.com/googleapis/google-cloud-php-irm) can be installed separately by requiring the [`google/cloud-irm`](https://packagist.org/packages/google/cloud-irm) composer package:
+
+```
+$ composer require google/cloud-irm
 ```
 
 ## Google Stackdriver Trace (Alpha)

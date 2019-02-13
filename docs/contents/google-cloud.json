@@ -22,6 +22,7 @@
         "cloud-error-reporting",
         "cloud-firestore",
         "cloud-iot",
+        "cloud-irm",
         "cloud-kms",
         "cloud-language",
         "cloud-logging",
