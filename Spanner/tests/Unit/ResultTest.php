@@ -105,6 +105,42 @@ class ResultTest extends TestCase
         $this->assertEquals(2, $timesCalled);
     }
 
+    public function testResumesAfterStreamStartFailure()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b']
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+                if ($timesCalled === 1) {
+                    throw new ServiceException('Unavailable', 14);
+                }
+
+                foreach ($chunks as $key => $chunk) {
+                    yield $chunk;
+                }
+            }
+        );
+
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
     /**
      * @expectedException Google\Cloud\Core\Exception\ServiceException
      */
