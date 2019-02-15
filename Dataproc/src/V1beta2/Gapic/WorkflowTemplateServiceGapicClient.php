@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1/workflow_templates.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/dataproc/v1beta2/workflow_templates.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * @experimental
  */
 
-namespace Google\Cloud\Dataproc\V1\Gapic;
+namespace Google\Cloud\Dataproc\V1beta2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -36,16 +36,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Dataproc\V1\CreateWorkflowTemplateRequest;
-use Google\Cloud\Dataproc\V1\DeleteWorkflowTemplateRequest;
-use Google\Cloud\Dataproc\V1\GetWorkflowTemplateRequest;
-use Google\Cloud\Dataproc\V1\InstantiateInlineWorkflowTemplateRequest;
-use Google\Cloud\Dataproc\V1\InstantiateWorkflowTemplateRequest;
-use Google\Cloud\Dataproc\V1\ListWorkflowTemplatesRequest;
-use Google\Cloud\Dataproc\V1\ListWorkflowTemplatesResponse;
-use Google\Cloud\Dataproc\V1\UpdateWorkflowTemplateRequest;
-use Google\Cloud\Dataproc\V1\WorkflowMetadata;
-use Google\Cloud\Dataproc\V1\WorkflowTemplate;
+use Google\Cloud\Dataproc\V1beta2\CreateWorkflowTemplateRequest;
+use Google\Cloud\Dataproc\V1beta2\DeleteWorkflowTemplateRequest;
+use Google\Cloud\Dataproc\V1beta2\GetWorkflowTemplateRequest;
+use Google\Cloud\Dataproc\V1beta2\InstantiateInlineWorkflowTemplateRequest;
+use Google\Cloud\Dataproc\V1beta2\InstantiateWorkflowTemplateRequest;
+use Google\Cloud\Dataproc\V1beta2\ListWorkflowTemplatesRequest;
+use Google\Cloud\Dataproc\V1beta2\ListWorkflowTemplatesResponse;
+use Google\Cloud\Dataproc\V1beta2\UpdateWorkflowTemplateRequest;
+use Google\Cloud\Dataproc\V1beta2\WorkflowMetadata;
+use Google\Cloud\Dataproc\V1beta2\WorkflowTemplate;
 use Google\LongRunning\Operation;
 use Google\Protobuf\GPBEmpty;
 
@@ -81,7 +81,7 @@ class WorkflowTemplateServiceGapicClient
     /**
      * The name of the service.
      */
-    const SERVICE_NAME = 'google.cloud.dataproc.v1.WorkflowTemplateService';
+    const SERVICE_NAME = 'google.cloud.dataproc.v1beta2.WorkflowTemplateService';
 
     /**
      * The default address of the service.
@@ -362,7 +362,7 @@ class WorkflowTemplateServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -416,7 +416,7 @@ class WorkflowTemplateServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -451,7 +451,7 @@ class WorkflowTemplateServiceGapicClient
      * clusters to be deleted.
      *
      * The [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [WorkflowMetadata][google.cloud.dataproc.v1.WorkflowMetadata].
+     * [WorkflowMetadata][google.cloud.dataproc.v1beta2.WorkflowMetadata].
      *
      * On successful completion,
      * [Operation.response][google.longrunning.Operation.response] will be
@@ -507,6 +507,8 @@ class WorkflowTemplateServiceGapicClient
      *
      *          This option cannot be used to instantiate a previous version of
      *          workflow template.
+     *     @type string $instanceId
+     *          Deprecated. Please use `request_id` field instead.
      *     @type string $requestId
      *          Optional. A tag that prevents multiple concurrent workflow
      *          instances with the same tag from running. This mitigates risk of
@@ -539,6 +541,9 @@ class WorkflowTemplateServiceGapicClient
         if (isset($optionalArgs['version'])) {
             $request->setVersion($optionalArgs['version']);
         }
+        if (isset($optionalArgs['instanceId'])) {
+            $request->setInstanceId($optionalArgs['instanceId']);
+        }
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -558,8 +563,8 @@ class WorkflowTemplateServiceGapicClient
      * Instantiates a template and begins execution.
      *
      * This method is equivalent to executing the sequence
-     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate], [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
-     * [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
+     * [CreateWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.CreateWorkflowTemplate], [InstantiateWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.InstantiateWorkflowTemplate],
+     * [DeleteWorkflowTemplate][google.cloud.dataproc.v1beta2.WorkflowTemplateService.DeleteWorkflowTemplate].
      *
      * The returned Operation can be used to track execution of
      * workflow by polling
@@ -572,7 +577,7 @@ class WorkflowTemplateServiceGapicClient
      * clusters to be deleted.
      *
      * The [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [WorkflowMetadata][google.cloud.dataproc.v1.WorkflowMetadata].
+     * [WorkflowMetadata][google.cloud.dataproc.v1beta2.WorkflowMetadata].
      *
      * On successful completion,
      * [Operation.response][google.longrunning.Operation.response] will be
@@ -623,6 +628,8 @@ class WorkflowTemplateServiceGapicClient
      * @param array            $optionalArgs {
      *                                       Optional.
      *
+     *     @type string $instanceId
+     *          Deprecated. Please use `request_id` field instead.
      *     @type string $requestId
      *          Optional. A tag that prevents multiple concurrent workflow
      *          instances with the same tag from running. This mitigates risk of
@@ -650,6 +657,9 @@ class WorkflowTemplateServiceGapicClient
         $request = new InstantiateInlineWorkflowTemplateRequest();
         $request->setParent($parent);
         $request->setTemplate($template);
+        if (isset($optionalArgs['instanceId'])) {
+            $request->setInstanceId($optionalArgs['instanceId']);
+        }
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -690,7 +700,7 @@ class WorkflowTemplateServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      *
      * @throws ApiException if the remote call fails
      * @experimental

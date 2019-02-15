@@ -23,45 +23,62 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='dataproc',
-    version='v1',
-    artman_output_name='google-cloud-dataproc-v1')
+for version in ['V1', 'V1beta2']:
+    lower_version = version.lower()
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    library = gapic.php_library(
+        service='dataproc',
+        version=lower_version,
+        artman_output_name=f'google-cloud-dataproc-{lower_version}')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Dataproc', 'src/')
-s.move(library / 'tests/')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Dataproc', 'metadata/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/Dataproc', 'src/')
+    s.move(library / 'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Dataproc', 'metadata/')
+
+    # Use new namespaces
+    s.replace(
+        f'src/{version}/Gapic/JobControllerGapicClient.php',
+        r'ListJobsRequest_JobStateMatcher',
+        r'ListJobsRequest\\JobStateMatcher')
 
 # fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-
 for client in ['ClusterController', 'JobController']:
+    s.replace(
+        f'**/V1/Gapic/{client}GapicClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2017')
     s.replace(
         f'**/V1/{client}Client.php',
         r'Copyright \d{4}',
         'Copyright 2017')
 
 s.replace(
+    '**/V1beta2/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
+    '**/V1beta2/*Client.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
+    '**/V1/Gapic/WorkflowTemplateServiceGapicClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2018')
+s.replace(
     '**/V1/WorkflowTemplateServiceClient.php',
     r'Copyright \d{4}',
     'Copyright 2018')
-
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
-
-# Use new namespaces
 s.replace(
-    'src/V1/Gapic/JobControllerGapicClient.php',
-    r'ListJobsRequest_JobStateMatcher',
-    'ListJobsRequest\\JobStateMatcher')
+    'tests/**/V1beta2/*Test.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')
