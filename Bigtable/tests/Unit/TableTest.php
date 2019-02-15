@@ -345,6 +345,32 @@ class TableTest extends TestCase
         $this->assertNull($row);
     }
 
+    public function testReadRowWithFilter()
+    {
+        $rowSet = new RowSet();
+        $rowSet->setRowKeys(['rk1']);
+        $rowFilter = Filter::pass();
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet,
+            'filter' => $rowFilter->toProto()
+        ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $args = [
+            'filter' => $rowFilter
+        ];
+        $row = $this->table->readRow('rk1', $args);
+        $this->assertNull($row);
+    }
+
     public function testReadRowsWithMultipleRowKeys()
     {
         $rowSet = new RowSet();
