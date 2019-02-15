@@ -59,6 +59,14 @@ for client in ['ClusterController', 'JobController']:
         'Copyright 2017')
 
 s.replace(
+    '**/V1beta2/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
+    '**/V1beta2/*Client.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
     '**/V1/Gapic/WorkflowTemplateServiceGapicClient.php',
     r'Copyright \d{4}',
     'Copyright 2018')
