@@ -22,6 +22,13 @@ class AttestationFormat
      * Generated from protobuf enum <code>CAVIUM_V1_COMPRESSED = 3;</code>
      */
     const CAVIUM_V1_COMPRESSED = 3;
+    /**
+     * Cavium HSM attestation V2 compressed with gzip. This is a new format
+     * Introduced in Cavium's version 3.2-08
+     *
+     * Generated from protobuf enum <code>CAVIUM_V2_COMPRESSED = 4;</code>
+     */
+    const CAVIUM_V2_COMPRESSED = 4;
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
