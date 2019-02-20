@@ -34,5 +34,13 @@ class FileType
      * Generated from protobuf enum <code>TEXT_FILE = 2;</code>
      */
     const TEXT_FILE = 2;
+    /**
+     * Included file extensions:
+     *   bmp, gif, jpg, jpeg, jpe, png.
+     * bytes_limit_per_file has no effect on image files.
+     *
+     * Generated from protobuf enum <code>IMAGE = 3;</code>
+     */
+    const IMAGE = 3;
 }
 

@@ -30,6 +30,9 @@ class Action extends \Google\Protobuf\Internal\Message
      *           Publish a notification to a pubsub topic.
      *     @type \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $publish_summary_to_cscc
      *           Publish summary to Cloud Security Command Center (Alpha).
+     *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
+     *           Enable email notification to project owners and editors on job‘s
+     *           completion/failure.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +114,34 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enable email notification to project owners and editors on job‘s
+     * completion/failure.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
+     * @return \Google\Cloud\Dlp\V2\Action\JobNotificationEmails
+     */
+    public function getJobNotificationEmails()
+    {
+        return $this->readOneof(8);
+    }
+
+    /**
+     * Enable email notification to project owners and editors on job‘s
+     * completion/failure.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
+     * @param \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $var
+     * @return $this
+     */
+    public function setJobNotificationEmails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_JobNotificationEmails::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

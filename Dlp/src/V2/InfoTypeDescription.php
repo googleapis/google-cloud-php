@@ -33,6 +33,13 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeSupportedBy supported_by = 3;</code>
      */
     private $supported_by;
+    /**
+     * Description of the infotype. Translated when language is provided in the
+     * request.
+     *
+     * Generated from protobuf field <code>string description = 4;</code>
+     */
+    private $description = '';
 
     /**
      * Constructor.
@@ -46,6 +53,9 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *           Human readable form of the infoType name.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_by
      *           Which parts of the API supports this InfoType.
+     *     @type string $description
+     *           Description of the infotype. Translated when language is provided in the
+     *           request.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +137,34 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dlp\V2\InfoTypeSupportedBy::class);
         $this->supported_by = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Description of the infotype. Translated when language is provided in the
+     * request.
+     *
+     * Generated from protobuf field <code>string description = 4;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Description of the infotype. Translated when language is provided in the
+     * request.
+     *
+     * Generated from protobuf field <code>string description = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
 
         return $this;
     }

@@ -16,7 +16,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     /**
      * Max number of findings that will be returned for each item scanned.
      * When set within `InspectDataSourceRequest`,
-     * the maximum returned is 1000 regardless if this is set higher.
+     * the maximum returned is 2000 regardless if this is set higher.
      * When set within `InspectContentRequest`, this field is ignored.
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
@@ -24,7 +24,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     private $max_findings_per_item = 0;
     /**
      * Max number of findings that will be returned per request/job.
-     * When set within `InspectContentRequest`, the maximum returned is 1000
+     * When set within `InspectContentRequest`, the maximum returned is 2000
      * regardless if this is set higher.
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
@@ -46,11 +46,11 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *     @type int $max_findings_per_item
      *           Max number of findings that will be returned for each item scanned.
      *           When set within `InspectDataSourceRequest`,
-     *           the maximum returned is 1000 regardless if this is set higher.
+     *           the maximum returned is 2000 regardless if this is set higher.
      *           When set within `InspectContentRequest`, this field is ignored.
      *     @type int $max_findings_per_request
      *           Max number of findings that will be returned per request/job.
-     *           When set within `InspectContentRequest`, the maximum returned is 1000
+     *           When set within `InspectContentRequest`, the maximum returned is 2000
      *           regardless if this is set higher.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[]|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
      *           Configuration of findings limit given for specified infoTypes.
@@ -64,7 +64,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     /**
      * Max number of findings that will be returned for each item scanned.
      * When set within `InspectDataSourceRequest`,
-     * the maximum returned is 1000 regardless if this is set higher.
+     * the maximum returned is 2000 regardless if this is set higher.
      * When set within `InspectContentRequest`, this field is ignored.
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
@@ -78,7 +78,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     /**
      * Max number of findings that will be returned for each item scanned.
      * When set within `InspectDataSourceRequest`,
-     * the maximum returned is 1000 regardless if this is set higher.
+     * the maximum returned is 2000 regardless if this is set higher.
      * When set within `InspectContentRequest`, this field is ignored.
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
@@ -95,7 +95,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
 
     /**
      * Max number of findings that will be returned per request/job.
-     * When set within `InspectContentRequest`, the maximum returned is 1000
+     * When set within `InspectContentRequest`, the maximum returned is 2000
      * regardless if this is set higher.
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
@@ -108,7 +108,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
 
     /**
      * Max number of findings that will be returned per request/job.
-     * When set within `InspectContentRequest`, the maximum returned is 1000
+     * When set within `InspectContentRequest`, the maximum returned is 2000
      * regardless if this is set higher.
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
