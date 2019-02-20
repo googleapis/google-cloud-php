@@ -41,6 +41,9 @@ use Psr\Http\Message\StreamInterface;
  * $ pecl install protobuf
  * ```
  *
+ * To enable the [Google Cloud Firestore Emulator](https://cloud.google.com/sdk/gcloud/reference/beta/emulators/firestore/),
+ * set the `FIRESTORE_EMULATOR_HOST` environment variable as instructed from the gcloud emulator command.
+ *
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
