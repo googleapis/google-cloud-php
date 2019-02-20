@@ -111,11 +111,21 @@ class FirestoreClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('FIRESTORE_EMULATOR_HOST');
+
+        // Firebase will provide something like [::1]:8080,127.0.0.1:8080
+        if (strpos($emulatorHost, ",")) {
+            $parts = explode(",", $emulatorHost);
+            $emulatorHost = $parts[0];
+        }
+
         $this->requireGrpc();
         $config += [
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'database' => self::DEFAULT_DATABASE
+            'database' => self::DEFAULT_DATABASE,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         $this->database = $config['database'];
