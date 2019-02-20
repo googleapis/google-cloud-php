@@ -245,4 +245,12 @@ class FirestoreClientTest extends SnippetTestCase
         $res = $snippet->invoke('path');
         $this->assertInstanceOf(FieldPath::class, $res->returnVal());
     }
+    
+    public function testEmulator()
+    {
+        $snippet = $this->snippetFromClass(FirestoreClient::class, 1);
+        $res = $snippet->invoke('firestore');
+        $this->assertInstanceOf(FirestoreClient::class, $res->returnVal());
+        $this->assertEquals('localhost:8900', getenv('FIRESTORE_EMULATOR_HOST'));
+    }
 }

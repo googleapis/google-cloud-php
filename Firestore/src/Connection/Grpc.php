@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Connection;
 
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Firestore\V1\FirestoreClient;
@@ -32,6 +33,7 @@ use Google\ApiCore\Serializer;
  */
 class Grpc implements ConnectionInterface
 {
+    use EmulatorTrait;
     use GrpcTrait;
 
     /**
@@ -78,6 +80,14 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
+        //@codeCoverageIgnoreStart
+        $config += ['emulatorHost' => null];
+        if ((bool) $config['emulatorHost']) {
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
+        }
+        //@codeCoverageIgnoreEnd
+
         $this->firestore = new FirestoreClient($grpcConfig);
 
         $this->resourcePrefixHeader = FirestoreClient::databaseRootName(
