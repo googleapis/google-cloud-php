@@ -41,12 +41,24 @@ use Psr\Http\Message\StreamInterface;
  * $ pecl install protobuf
  * ```
  *
- * To enable the [Google Cloud Firestore Emulator](https://cloud.google.com/sdk/gcloud/reference/beta/emulators/firestore/),
- * set the `FIRESTORE_EMULATOR_HOST` environment variable as instructed from the gcloud emulator command.
+ * To enable the 
+ * [Google Cloud Firestore Emulator](https://cloud.google.com/sdk/gcloud/reference/beta/emulators/firestore/),
+ * set the `FIRESTORE_EMULATOR_HOST` to the value provided by the gcloud command.
  *
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * ```
+ * 
+ * ```
+ * // Using the Firestore Emulator
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `8900` is used as an example only.
+ * putenv('FIRESTORE_EMULATOR_HOST=http://localhost:8900');
  *
  * $firestore = new FirestoreClient();
  * ```
