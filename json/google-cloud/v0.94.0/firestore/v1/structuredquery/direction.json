@@ -1,0 +1,1 @@
+{"id":"firestore\/v1\/structuredquery\/direction","type":"","title":"Google\\Cloud\\Firestore\\V1\\StructuredQuery\\Direction","name":"Direction","description":"<p>A sort direction.<\/p>\n<p>Protobuf type <code>google.firestore.v1.StructuredQuery.Direction<\/code><\/p>","examples":[],"resources":[],"methods":[]}
