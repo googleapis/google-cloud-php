@@ -81,10 +81,12 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
+        //@codeCoverageIgnoreStart
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
+        //@codeCoverageIgnoreEnd
 
         $this->firestore = new FirestoreClient($grpcConfig);
 

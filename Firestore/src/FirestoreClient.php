@@ -45,6 +45,12 @@ use Psr\Http\Message\StreamInterface;
  * [Google Cloud Firestore Emulator](https://cloud.google.com/sdk/gcloud/reference/beta/emulators/firestore/),
  * set the `FIRESTORE_EMULATOR_HOST` to the value provided by the gcloud command.
  *
+ * Please note that Google Cloud PHP currently does not support IPv6 hostnames.
+ * If the Firestore emulator provides a IPv6 hostname, or a comma-separated list
+ * of both IPv6 and IPv4 names, be sure to set the environment variable to only
+ * an IPv4 address. The equivalent of `[::1]:8080`, for instance, would be
+ * `127.0.0.1:8080`.
+ *
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
