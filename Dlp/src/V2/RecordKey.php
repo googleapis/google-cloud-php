@@ -15,6 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class RecordKey extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Values of identifying columns in the given row. Order of values matches
+     * the order of field identifiers specified in the scanning request.
+     *
+     * Generated from protobuf field <code>repeated string id_values = 5;</code>
+     */
+    private $id_values;
     protected $type;
 
     /**
@@ -25,6 +32,9 @@ class RecordKey extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\DatastoreKey $datastore_key
      *     @type \Google\Cloud\Dlp\V2\BigQueryKey $big_query_key
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $id_values
+     *           Values of identifying columns in the given row. Order of values matches
+     *           the order of field identifiers specified in the scanning request.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,6 +82,34 @@ class RecordKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BigQueryKey::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Values of identifying columns in the given row. Order of values matches
+     * the order of field identifiers specified in the scanning request.
+     *
+     * Generated from protobuf field <code>repeated string id_values = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIdValues()
+    {
+        return $this->id_values;
+    }
+
+    /**
+     * Values of identifying columns in the given row. Order of values matches
+     * the order of field identifiers specified in the scanning request.
+     *
+     * Generated from protobuf field <code>repeated string id_values = 5;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIdValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->id_values = $arr;
 
         return $this;
     }

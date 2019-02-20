@@ -12,9 +12,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * Pseudonymization method that generates surrogates via cryptographic hashing.
  * Uses SHA-256.
  * The key size must be either 32 or 64 bytes.
- * Outputs a 32 byte digest as an uppercase hex string
- * (for example, 41D1567F7F99F1DC2A5FAB886DEE5BEE).
+ * Outputs a base64 encoded representation of the hashed output
+ * (for example, L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=).
  * Currently, only string and integer values can be hashed.
+ * See https://cloud.google.com/dlp/docs/pseudonymization to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoHashConfig</code>
  */

@@ -17,8 +17,13 @@ class FileSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Cloud Storage url of the file(s) to scan, in the format
-     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
-     * one of `url` or `regex_file_set` must be set.
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     * If the url ends in a trailing slash, the bucket or directory represented
+     * by the url will be scanned non-recursively (content in sub-directories
+     * will not be scanned). This means that `gs://mybucket/` is equivalent to
+     * `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
+     * `gs://mybucket/directory/&#42;`.
+     * Exactly one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
@@ -39,8 +44,13 @@ class FileSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $url
      *           The Cloud Storage url of the file(s) to scan, in the format
-     *           `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
-     *           one of `url` or `regex_file_set` must be set.
+     *           `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     *           If the url ends in a trailing slash, the bucket or directory represented
+     *           by the url will be scanned non-recursively (content in sub-directories
+     *           will not be scanned). This means that `gs://mybucket/` is equivalent to
+     *           `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
+     *           `gs://mybucket/directory/&#42;`.
+     *           Exactly one of `url` or `regex_file_set` must be set.
      *     @type \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet $regex_file_set
      *           The regex-filtered set of files to scan. Exactly one of `url` or
      *           `regex_file_set` must be set.
@@ -53,8 +63,13 @@ class FileSet extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage url of the file(s) to scan, in the format
-     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
-     * one of `url` or `regex_file_set` must be set.
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     * If the url ends in a trailing slash, the bucket or directory represented
+     * by the url will be scanned non-recursively (content in sub-directories
+     * will not be scanned). This means that `gs://mybucket/` is equivalent to
+     * `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
+     * `gs://mybucket/directory/&#42;`.
+     * Exactly one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @return string
@@ -66,8 +81,13 @@ class FileSet extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage url of the file(s) to scan, in the format
-     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed. Exactly
-     * one of `url` or `regex_file_set` must be set.
+     * `gs://<bucket>/<path>`. Trailing wildcard in the path is allowed.
+     * If the url ends in a trailing slash, the bucket or directory represented
+     * by the url will be scanned non-recursively (content in sub-directories
+     * will not be scanned). This means that `gs://mybucket/` is equivalent to
+     * `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
+     * `gs://mybucket/directory/&#42;`.
+     * Exactly one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var

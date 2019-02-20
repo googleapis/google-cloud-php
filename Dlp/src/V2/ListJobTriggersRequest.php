@@ -44,6 +44,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Supported fields are:
      * - `create_time`: corresponds to time the JobTrigger was created.
      * - `update_time`: corresponds to time the JobTrigger was last updated.
+     * - `last_run_time`: corresponds to the last time the JobTrigger ran.
      * - `name`: corresponds to JobTrigger's name.
      * - `display_name`: corresponds to JobTrigger's display name.
      * - `status`: corresponds to JobTrigger's status.
@@ -51,6 +52,30 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
     private $order_by = '';
+    /**
+     * Optional. Allows filtering.
+     * Supported syntax:
+     * * Filter expressions are made up of one or more restrictions.
+     * * Restrictions can be combined by `AND` or `OR` logical operators. A
+     * sequence of restrictions implicitly uses `AND`.
+     * * A restriction has the form of `<field> <operator> <value>`.
+     * * Supported fields/values for inspect jobs:
+     *     - `status` - HEALTHY|PAUSED|CANCELLED
+     *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+     *     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
+     *     quotation marks. Nanoseconds are ignored.
+     *     - 'error_count' - Number of errors that have occurred while running.
+     * * The operator must be `=` or `!=` for status and inspected_storage.
+     * Examples:
+     * * inspected_storage = cloud_storage AND status = HEALTHY
+     * * inspected_storage = cloud_storage OR inspected_storage = bigquery
+     * * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
+     * * last_run_time > \"2017-12-12T00:00:00+00:00\"
+     * The length of this field should be no more than 500 characters.
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -75,9 +100,30 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           Supported fields are:
      *           - `create_time`: corresponds to time the JobTrigger was created.
      *           - `update_time`: corresponds to time the JobTrigger was last updated.
+     *           - `last_run_time`: corresponds to the last time the JobTrigger ran.
      *           - `name`: corresponds to JobTrigger's name.
      *           - `display_name`: corresponds to JobTrigger's display name.
      *           - `status`: corresponds to JobTrigger's status.
+     *     @type string $filter
+     *           Optional. Allows filtering.
+     *           Supported syntax:
+     *           * Filter expressions are made up of one or more restrictions.
+     *           * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *           sequence of restrictions implicitly uses `AND`.
+     *           * A restriction has the form of `<field> <operator> <value>`.
+     *           * Supported fields/values for inspect jobs:
+     *               - `status` - HEALTHY|PAUSED|CANCELLED
+     *               - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+     *               - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
+     *               quotation marks. Nanoseconds are ignored.
+     *               - 'error_count' - Number of errors that have occurred while running.
+     *           * The operator must be `=` or `!=` for status and inspected_storage.
+     *           Examples:
+     *           * inspected_storage = cloud_storage AND status = HEALTHY
+     *           * inspected_storage = cloud_storage OR inspected_storage = bigquery
+     *           * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
+     *           * last_run_time > \"2017-12-12T00:00:00+00:00\"
+     *           The length of this field should be no more than 500 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +222,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Supported fields are:
      * - `create_time`: corresponds to time the JobTrigger was created.
      * - `update_time`: corresponds to time the JobTrigger was last updated.
+     * - `last_run_time`: corresponds to the last time the JobTrigger ran.
      * - `name`: corresponds to JobTrigger's name.
      * - `display_name`: corresponds to JobTrigger's display name.
      * - `status`: corresponds to JobTrigger's status.
@@ -197,6 +244,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Supported fields are:
      * - `create_time`: corresponds to time the JobTrigger was created.
      * - `update_time`: corresponds to time the JobTrigger was last updated.
+     * - `last_run_time`: corresponds to the last time the JobTrigger ran.
      * - `name`: corresponds to JobTrigger's name.
      * - `display_name`: corresponds to JobTrigger's display name.
      * - `status`: corresponds to JobTrigger's status.
@@ -209,6 +257,68 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Allows filtering.
+     * Supported syntax:
+     * * Filter expressions are made up of one or more restrictions.
+     * * Restrictions can be combined by `AND` or `OR` logical operators. A
+     * sequence of restrictions implicitly uses `AND`.
+     * * A restriction has the form of `<field> <operator> <value>`.
+     * * Supported fields/values for inspect jobs:
+     *     - `status` - HEALTHY|PAUSED|CANCELLED
+     *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+     *     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
+     *     quotation marks. Nanoseconds are ignored.
+     *     - 'error_count' - Number of errors that have occurred while running.
+     * * The operator must be `=` or `!=` for status and inspected_storage.
+     * Examples:
+     * * inspected_storage = cloud_storage AND status = HEALTHY
+     * * inspected_storage = cloud_storage OR inspected_storage = bigquery
+     * * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
+     * * last_run_time > \"2017-12-12T00:00:00+00:00\"
+     * The length of this field should be no more than 500 characters.
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Allows filtering.
+     * Supported syntax:
+     * * Filter expressions are made up of one or more restrictions.
+     * * Restrictions can be combined by `AND` or `OR` logical operators. A
+     * sequence of restrictions implicitly uses `AND`.
+     * * A restriction has the form of `<field> <operator> <value>`.
+     * * Supported fields/values for inspect jobs:
+     *     - `status` - HEALTHY|PAUSED|CANCELLED
+     *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+     *     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
+     *     quotation marks. Nanoseconds are ignored.
+     *     - 'error_count' - Number of errors that have occurred while running.
+     * * The operator must be `=` or `!=` for status and inspected_storage.
+     * Examples:
+     * * inspected_storage = cloud_storage AND status = HEALTHY
+     * * inspected_storage = cloud_storage OR inspected_storage = bigquery
+     * * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
+     * * last_run_time > \"2017-12-12T00:00:00+00:00\"
+     * The length of this field should be no more than 500 characters.
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }
