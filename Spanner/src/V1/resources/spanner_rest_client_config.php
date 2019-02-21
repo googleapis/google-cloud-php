@@ -130,18 +130,6 @@ return [
                     ],
                 ],
             ],
-            'ExecuteBatchDml' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeBatchDml',
-                'body' => '*',
-                'placeholders' => [
-                    'session' => [
-                        'getters' => [
-                            'getSession',
-                        ],
-                    ],
-                ],
-            ],
             'Read' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:read',
