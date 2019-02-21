@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC
+// Copyright 2018 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\Spanner\V1;
 
@@ -98,7 +99,9 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Ends a session, releasing server resources associated with it.
+     * Ends a session, releasing server resources associated with it. This will
+     * asynchronously trigger cancellation of any operations that are running with
+     * this session.
      * @param \Google\Cloud\Spanner\V1\DeleteSessionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -150,6 +153,38 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
         return $this->_serverStreamRequest('/google.spanner.v1.Spanner/ExecuteStreamingSql',
         $argument,
         ['\Google\Cloud\Spanner\V1\PartialResultSet', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Executes a batch of SQL DML statements. This method allows many statements
+     * to be run with lower latency than submitting them sequentially with
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
+     *
+     * Statements are executed in order, sequentially.
+     * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse] will contain a
+     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has successfully executed. If a
+     * statement fails, its error status will be returned as part of the
+     * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse]. Execution will
+     * stop at the first failed statement; the remaining statements will not run.
+     *
+     * ExecuteBatchDml is expected to return an OK status with a response even if
+     * there was an error while processing one of the DML statements. Clients must
+     * inspect response.status to determine if there were any errors while
+     * processing the request.
+     *
+     * See more details in
+     * [ExecuteBatchDmlRequest][Spanner.ExecuteBatchDmlRequest] and
+     * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse].
+     * @param \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ExecuteBatchDml(\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/ExecuteBatchDml',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse', 'decode'],
         $metadata, $options);
     }
 
