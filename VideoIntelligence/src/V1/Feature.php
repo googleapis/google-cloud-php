@@ -47,5 +47,17 @@ class Feature
      * Generated from protobuf enum <code>SPEECH_TRANSCRIPTION = 6;</code>
      */
     const SPEECH_TRANSCRIPTION = 6;
+    /**
+     * OCR text detection and tracking.
+     *
+     * Generated from protobuf enum <code>TEXT_DETECTION = 7;</code>
+     */
+    const TEXT_DETECTION = 7;
+    /**
+     * Object detection and tracking.
+     *
+     * Generated from protobuf enum <code>OBJECT_TRACKING = 9;</code>
+     */
+    const OBJECT_TRACKING = 9;
 }
 
