@@ -53,6 +53,12 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
      */
     private $speech_transcription_config = null;
+    /**
+     * Config for TEXT_DETECTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.TextDetectionConfig text_detection_config = 8;</code>
+     */
+    private $text_detection_config = null;
 
     /**
      * Constructor.
@@ -74,6 +80,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *           Config for FACE_DETECTION.
      *     @type \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig $speech_transcription_config
      *           Config for SPEECH_TRANSCRIPTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig $text_detection_config
+     *           Config for TEXT_DETECTION.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,6 +245,32 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig::class);
         $this->speech_transcription_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Config for TEXT_DETECTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.TextDetectionConfig text_detection_config = 8;</code>
+     * @return \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig
+     */
+    public function getTextDetectionConfig()
+    {
+        return $this->text_detection_config;
+    }
+
+    /**
+     * Config for TEXT_DETECTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.TextDetectionConfig text_detection_config = 8;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig $var
+     * @return $this
+     */
+    public function setTextDetectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig::class);
+        $this->text_detection_config = $var;
 
         return $this;
     }
