@@ -125,6 +125,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue $app_engine_http_queue
      *           [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
      *           [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
+     *           [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *     @type \Google\Cloud\Tasks\V2beta3\RateLimits $rate_limits
      *           Rate limits for task dispatches.
      *           [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are
@@ -234,6 +235,7 @@ class Queue extends \Google\Protobuf\Internal\Message
     /**
      * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
      * [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
+     * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpQueue app_engine_http_queue = 3;</code>
      * @return \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue
@@ -246,6 +248,7 @@ class Queue extends \Google\Protobuf\Internal\Message
     /**
      * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
      * [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
+     * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpQueue app_engine_http_queue = 3;</code>
      * @param \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue $var
