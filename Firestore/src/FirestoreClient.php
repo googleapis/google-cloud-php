@@ -240,7 +240,7 @@ class FirestoreClient
                 },
                 [$this->connection, 'listCollectionIds'],
                 [
-                    'parent' => $this->databaseName($this->projectId, $this->database),
+                    'parent' => $this->fullName($this->projectId, $this->database),
                 ] + $options,
                 [
                     'itemsKey' => 'collectionIds',
