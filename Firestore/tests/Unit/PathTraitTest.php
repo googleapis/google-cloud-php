@@ -50,6 +50,14 @@ class PathTraitTest extends TestCase
         );
     }
 
+    public function testRootName()
+    {
+        $this->assertEquals(
+            sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            $this->impl->call('fullName', [self::PROJECT, self::DATABASE])
+        );
+    }
+
     public function testDatabaseName()
     {
         $this->assertEquals(

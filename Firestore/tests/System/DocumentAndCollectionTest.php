@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Firestore\CollectionReference;
+
 /**
  * @group firestore
  * @group firestore-documentandcollection
@@ -158,5 +160,14 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $this->assertEquals('another value', $snap->get('level1.level2.level3val'));
         $this->assertEquals('world', $snap->get('level1.level2.level3.level4.hello'));
         $this->assertEquals('final', $snap->get('level1.level2.level3.level4.final'));
+    }
+
+    public function testRootCollections()
+    {
+        $client = self::$client;
+        $this->assertContainsOnlyInstancesOf(
+            CollectionReference::class,
+            iterator_to_array($client->collections())
+        );
     }
 }
