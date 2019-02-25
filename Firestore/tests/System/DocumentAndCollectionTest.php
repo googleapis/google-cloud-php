@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\System;
 
 use Google\Cloud\Firestore\CollectionReference;
+use Google\Cloud\Firestore\DocumentReference;
 
 /**
  * @group firestore
@@ -106,6 +107,17 @@ class DocumentAndCollectionTest extends FirestoreTestCase
         $collection = $this->document->collections()->current();
 
         $this->assertEquals($childName, $collection->id());
+    }
+
+    public function testListDocuments()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        $doc = $collection->add(['a' => 'b']);
+
+        $list = $collection->listDocuments();
+        $this->assertCount(1, iterator_to_array($list));
+        $this->assertContainsOnlyInstancesOf(DocumentReference::class, $list);
     }
 
     public function testNonAlphaNumericFieldPaths()

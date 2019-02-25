@@ -17,14 +17,15 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Cloud\Firestore\DocumentReference;
-use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
+use Google\Cloud\Firestore\ValueMapper;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\CollectionReference;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * @group firestore
@@ -36,6 +37,7 @@ class CollectionReferenceTest extends SnippetTestCase
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
+    const PARENT = 'projects/example_project/databases/(default)/documents';
     const NAME = 'projects/example_project/databases/(default)/documents/users';
 
     private $connection;
@@ -115,5 +117,34 @@ class CollectionReferenceTest extends SnippetTestCase
         $res = $snippet->invoke('newUser');
 
         $this->assertInstanceOf(DocumentReference::class, $res->returnVal());
+    }
+
+    public function testListDocuments()
+    {
+        $parts = explode('/', self::NAME);
+        $id = end($parts);
+
+        $docName = self::NAME . '/foo';
+
+        $this->connection->listDocuments(Argument::any())->shouldBeCalled()->willReturn([
+            'documents' => [
+                [
+                    'name' => $docName
+                ]
+            ]
+        ]);
+
+        $this->collection->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(CollectionReference::class, 'listDocuments');
+        $snippet->addLocal('collection', $this->collection);
+        $res = $snippet->invoke('documents');
+        $docs = iterator_to_array($res->returnVal());
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(DocumentReference::class, $docs);
+        $this->assertEquals($docName, $docs[0]->name());
+
+        $this->assertEquals($docName . PHP_EOL, $res->output());
     }
 }

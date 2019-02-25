@@ -241,17 +241,21 @@ class CollectionReference extends Query
     public function listDocuments(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        $options += [
+            'parent' => $this->parentPath($this->name),
+            'collectionId' => $this->pathId($this->name),
+            'mask' => []
+        ];
+
         return new ItemIterator(
             new PageIterator(
                 function ($document) {
                     return $this->documentFactory($document['name']);
                 },
                 [$this->connection, 'listDocuments'],
-                $options + [
-                    'parent' => $this->parentPath($this->name),
-                    'collectionId' => $this->pathId($this->name),
-                    'mask' => []
-                ], [
+                $options,
+                [
                     'itemsKey' => 'documents',
                     'resultLimit' => $resultLimit
                 ]
