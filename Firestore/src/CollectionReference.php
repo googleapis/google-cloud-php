@@ -19,6 +19,8 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -217,6 +219,44 @@ class CollectionReference extends Query
         $result = $document->create($fields, $options);
 
         return $document;
+    }
+
+    /**
+     * List all documents in the collection.
+     *
+     * Missing documents will be included in the result. A missing document is
+     * one which does not exist, but has sub-documents.
+     *
+     * Example:
+     * ```
+     * $documents = $collection->listDocuments();
+     * foreach ($documents as $document) {
+     *     echo $document->name() . PHP_EOL;
+     * }
+     * ```
+     *
+     * @param array $options Configuration options
+     * @return ItemIterator<DocumentReference>
+     */
+    public function listDocuments(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function ($document) {
+                    return $this->documentFactory($document['name']);
+                },
+                [$this->connection, 'listDocuments'],
+                $options + [
+                    'parent' => $this->parentPath($this->name),
+                    'collectionId' => $this->pathId($this->name),
+                    'mask' => []
+                ], [
+                    'itemsKey' => 'documents',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
