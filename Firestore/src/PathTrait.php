@@ -36,7 +36,7 @@ trait PathTrait
      */
     private function fullName($projectId, $database, $relativeName = null)
     {
-        return $relativeName
+        return $relativeName !== null
             ? FirestoreGapicClient::documentPathName($projectId, $database, $relativeName)
             : FirestoreGapicClient::documentRootName($projectId, $database);
     }
