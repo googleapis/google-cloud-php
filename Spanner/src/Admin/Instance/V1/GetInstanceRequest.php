@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [GetInstance][google.spanner.admin.instance.v1.InstanceAdmin.GetInstance].
+ * The request for
+ * [GetInstance][google.spanner.admin.instance.v1.InstanceAdmin.GetInstance].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.GetInstanceRequest</code>
  */

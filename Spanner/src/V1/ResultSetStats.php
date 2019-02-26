@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Additional statistics about a [ResultSet][google.spanner.v1.ResultSet] or [PartialResultSet][google.spanner.v1.PartialResultSet].
+ * Additional statistics about a [ResultSet][google.spanner.v1.ResultSet] or
+ * [PartialResultSet][google.spanner.v1.PartialResultSet].
  *
  * Generated from protobuf message <code>google.spanner.v1.ResultSetStats</code>
  */
 class ResultSetStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
+     * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this
+     * result.
      *
      * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
@@ -43,7 +45,8 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Spanner\V1\QueryPlan $query_plan
-     *           [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
+     *           [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this
+     *           result.
      *     @type \Google\Protobuf\Struct $query_stats
      *           Aggregated statistics from the execution of the query. Only present when
      *           the query is profiled. For example, a query could return the statistics as
@@ -66,7 +69,8 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
+     * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this
+     * result.
      *
      * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      * @return \Google\Cloud\Spanner\V1\QueryPlan
@@ -77,7 +81,8 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
+     * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this
+     * result.
      *
      * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      * @param \Google\Cloud\Spanner\V1\QueryPlan $var

@@ -74,7 +74,8 @@ class TypeCode
     const BYTES = 7;
     /**
      * Encoded as `list`, where the list elements are represented
-     * according to [array_element_type][google.spanner.v1.Type.array_element_type].
+     * according to
+     * [array_element_type][google.spanner.v1.Type.array_element_type].
      *
      * Generated from protobuf enum <code>ARRAY = 8;</code>
      */
