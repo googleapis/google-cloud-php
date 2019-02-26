@@ -51,8 +51,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
-     * specifies the error for the operation.
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
+     * message that specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      */
@@ -80,8 +80,8 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Rpc\Status $error
-     *           Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
-     *           specifies the error for the operation.
+     *           Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
+     *           message that specifies the error for the operation.
      *     @type \Google\Cloud\Speech\V1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
      *           Output only. This repeated list contains zero or more results that
      *           correspond to consecutive portions of the audio currently being processed.
@@ -97,8 +97,8 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
-     * specifies the error for the operation.
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
+     * message that specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      * @return \Google\Rpc\Status
@@ -109,8 +109,8 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status] message that
-     * specifies the error for the operation.
+     * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]
+     * message that specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      * @param \Google\Rpc\Status $var
