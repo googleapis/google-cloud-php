@@ -38,8 +38,10 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the
-     * [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * It is advisable to use the `ListTimeSeries` method when debugging this field.
+     * [`MetricService.ListTimeSeries`
+     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     * is advisable to use the `ListTimeSeries` method when debugging this
+     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>
      */
@@ -147,8 +149,10 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           members of a group of resrouces). Multiple aggregations
      *           are applied in the order specified.
      *           This field is similar to the one in the
-     *           [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     *           It is advisable to use the `ListTimeSeries` method when debugging this field.
+     *           [`MetricService.ListTimeSeries`
+     *           request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     *           is advisable to use the `ListTimeSeries` method when debugging this
+     *           field.
      *     @type string $denominator_filter
      *           A [filter](/monitoring/api/v3/filters) that identifies a time
      *           series that should be used as the denominator of a ratio that will be
@@ -260,8 +264,10 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the
-     * [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * It is advisable to use the `ListTimeSeries` method when debugging this field.
+     * [`MetricService.ListTimeSeries`
+     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     * is advisable to use the `ListTimeSeries` method when debugging this
+     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -279,8 +285,10 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the
-     * [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * It is advisable to use the `ListTimeSeries` method when debugging this field.
+     * [`MetricService.ListTimeSeries`
+     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     * is advisable to use the `ListTimeSeries` method when debugging this
+     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>
      * @param \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $var

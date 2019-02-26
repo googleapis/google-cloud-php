@@ -35,7 +35,8 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
+     * Lists monitored resource descriptors that match a filter. This method does
+     * not require a Stackdriver account.
      * @param \Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -49,7 +50,8 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
+     * Gets a single monitored resource descriptor. This method does not require a
+     * Stackdriver account.
      * @param \Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -63,7 +65,8 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
+     * Lists metric descriptors that match a filter. This method does not require
+     * a Stackdriver account.
      * @param \Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -77,7 +80,8 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a single metric descriptor. This method does not require a Stackdriver account.
+     * Gets a single metric descriptor. This method does not require a Stackdriver
+     * account.
      * @param \Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -122,7 +126,8 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Stackdriver account.
+     * Lists time series that match a filter. This method does not require a
+     * Stackdriver account.
      * @param \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
