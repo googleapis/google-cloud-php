@@ -36,7 +36,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * splits, remotely evaluates a subquery independently on each split, and
      * then unions all results.
      * This must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * DELETE. Use
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
      * PartitionedDml transaction for large, partition-friendly DML operations.
      *
      * Generated from protobuf field <code>string sql = 3;</code>
@@ -61,7 +62,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     * of type `STRING` both appear in
+     * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -96,7 +98,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *           splits, remotely evaluates a subquery independently on each split, and
      *           then unions all results.
      *           This must not contain DML commands, such as INSERT, UPDATE, or
-     *           DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     *           DELETE. Use
+     *           [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
      *           PartitionedDml transaction for large, partition-friendly DML operations.
      *     @type \Google\Protobuf\Struct $params
      *           The SQL query string can contain parameter placeholders. A parameter
@@ -113,7 +116,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
      *           It is not always possible for Cloud Spanner to infer the right SQL type
      *           from a JSON value.  For example, values of type `BYTES` and values
-     *           of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     *           of type `STRING` both appear in
+     *           [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      *           In these cases, `param_types` can be used to specify the exact
      *           SQL type for some or all of the SQL query parameters. See the
      *           definition of [Type][google.spanner.v1.Type] for more information
@@ -189,7 +193,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * splits, remotely evaluates a subquery independently on each split, and
      * then unions all results.
      * This must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * DELETE. Use
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
      * PartitionedDml transaction for large, partition-friendly DML operations.
      *
      * Generated from protobuf field <code>string sql = 3;</code>
@@ -208,7 +213,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * splits, remotely evaluates a subquery independently on each split, and
      * then unions all results.
      * This must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * DELETE. Use
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
      * PartitionedDml transaction for large, partition-friendly DML operations.
      *
      * Generated from protobuf field <code>string sql = 3;</code>
@@ -272,7 +278,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     * of type `STRING` both appear in
+     * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -289,7 +296,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     * of type `STRING` both appear in
+     * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information

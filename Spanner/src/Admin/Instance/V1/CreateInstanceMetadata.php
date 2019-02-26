@@ -24,8 +24,8 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
     private $instance = null;
     /**
      * The time at which the
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance] request was
-     * received.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance]
+     * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
@@ -55,8 +55,8 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *           The instance being created.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The time at which the
-     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance] request was
-     *           received.
+     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance]
+     *           request was received.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which this operation was cancelled. If set, this operation is
      *           in the process of undoing itself (which is guaranteed to succeed) and
@@ -98,8 +98,8 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time at which the
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance] request was
-     * received.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance]
+     * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -111,8 +111,8 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time at which the
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance] request was
-     * received.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance]
+     * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

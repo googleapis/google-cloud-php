@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata about a [ResultSet][google.spanner.v1.ResultSet] or [PartialResultSet][google.spanner.v1.PartialResultSet].
+ * Metadata about a [ResultSet][google.spanner.v1.ResultSet] or
+ * [PartialResultSet][google.spanner.v1.PartialResultSet].
  *
  * Generated from protobuf message <code>google.spanner.v1.ResultSetMetadata</code>
  */

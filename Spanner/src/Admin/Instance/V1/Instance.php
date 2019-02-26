@@ -43,7 +43,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. The number of nodes allocated to this instance. This may be zero
      * in API responses for instances that are not yet in state `READY`.
-     * See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count)
+     * See [the
+     * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
      * for more information about nodes.
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
@@ -51,10 +52,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $node_count = 0;
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     * either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     * either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     * the state must be either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     * the state must be either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
@@ -105,14 +106,15 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $node_count
      *           Required. The number of nodes allocated to this instance. This may be zero
      *           in API responses for instances that are not yet in state `READY`.
-     *           See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count)
+     *           See [the
+     *           documentation](https://cloud.google.com/spanner/docs/instances#node_count)
      *           for more information about nodes.
      *     @type int $state
      *           Output only. The current instance state. For
-     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     *           either omitted or set to `CREATING`. For
-     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     *           either omitted or set to `READY`.
+     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     *           the state must be either omitted or set to `CREATING`. For
+     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     *           the state must be either omitted or set to `READY`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      *           resources into groups that reflect a customer's organizational needs and
@@ -234,7 +236,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. The number of nodes allocated to this instance. This may be zero
      * in API responses for instances that are not yet in state `READY`.
-     * See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count)
+     * See [the
+     * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
      * for more information about nodes.
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
@@ -248,7 +251,8 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. The number of nodes allocated to this instance. This may be zero
      * in API responses for instances that are not yet in state `READY`.
-     * See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count)
+     * See [the
+     * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
      * for more information about nodes.
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
@@ -265,10 +269,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     * either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     * either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     * the state must be either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     * the state must be either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      * @return int
@@ -280,10 +284,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     * either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     * either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     * the state must be either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     * the state must be either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      * @param int $var

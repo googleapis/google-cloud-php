@@ -12,7 +12,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * This message is used to select the transaction in which a
  * [Read][google.spanner.v1.Spanner.Read] or
  * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] call runs.
- * See [TransactionOptions][google.spanner.v1.TransactionOptions] for more information about transactions.
+ * See [TransactionOptions][google.spanner.v1.TransactionOptions] for more
+ * information about transactions.
  *
  * Generated from protobuf message <code>google.spanner.v1.TransactionSelector</code>
  */
@@ -35,7 +36,8 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\TransactionOptions $begin
      *           Begin a new transaction and execute this read or SQL query in
      *           it. The transaction ID of the new transaction is returned in
-     *           [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
+     *           [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction],
+     *           which is a [Transaction][google.spanner.v1.Transaction].
      * }
      */
     public function __construct($data = NULL) {
@@ -102,7 +104,8 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     /**
      * Begin a new transaction and execute this read or SQL query in
      * it. The transaction ID of the new transaction is returned in
-     * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
+     * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction],
+     * which is a [Transaction][google.spanner.v1.Transaction].
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions
@@ -115,7 +118,8 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     /**
      * Begin a new transaction and execute this read or SQL query in
      * it. The transaction ID of the new transaction is returned in
-     * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
+     * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction],
+     * which is a [Transaction][google.spanner.v1.Transaction].
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $var

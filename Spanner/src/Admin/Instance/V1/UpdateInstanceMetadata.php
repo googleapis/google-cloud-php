@@ -23,7 +23,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     private $instance = null;
     /**
-     * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     * The time at which
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
@@ -53,7 +54,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance
      *           The desired end state of the update.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     *           The time at which
+     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      *           request was received.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which this operation was cancelled. If set, this operation is
@@ -95,7 +97,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     * The time at which
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
@@ -107,7 +110,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     * The time at which
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
