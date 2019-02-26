@@ -51,11 +51,13 @@ class Resource extends \Google\Protobuf\Internal\Message
     private $resource_url = '';
     /**
      * The full name of the immediate parent of this resource. See
-     * [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * [Resource
+     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      * For GCP assets, it is the parent resource defined in the [Cloud IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     * For example: `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
+     * For example:
+     * `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
      * For third-party assets, it is up to the users to define.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
@@ -95,11 +97,13 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           It will be left unspecified for resources without a REST API.
      *     @type string $parent
      *           The full name of the immediate parent of this resource. See
-     *           [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     *           [Resource
+     *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
      *           For GCP assets, it is the parent resource defined in the [Cloud IAM policy
      *           hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     *           For example: `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
+     *           For example:
+     *           `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
      *           For third-party assets, it is up to the users to define.
      *     @type \Google\Protobuf\Struct $data
      *           The content of the resource, in which some sensitive fields are scrubbed
@@ -237,11 +241,13 @@ class Resource extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the immediate parent of this resource. See
-     * [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * [Resource
+     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      * For GCP assets, it is the parent resource defined in the [Cloud IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     * For example: `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
+     * For example:
+     * `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
      * For third-party assets, it is up to the users to define.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
@@ -254,11 +260,13 @@ class Resource extends \Google\Protobuf\Internal\Message
 
     /**
      * The full name of the immediate parent of this resource. See
-     * [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * [Resource
+     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      * For GCP assets, it is the parent resource defined in the [Cloud IAM policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
-     * For example: `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
+     * For example:
+     * `"//cloudresourcemanager.googleapis.com/projects/my_project_123"`.
      * For third-party assets, it is up to the users to define.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
