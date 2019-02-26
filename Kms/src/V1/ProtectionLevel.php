@@ -5,7 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 /**
- * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how cryptographic operations are performed.
+ * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how
+ * cryptographic operations are performed.
  *
  * Protobuf type <code>google.cloud.kms.v1.ProtectionLevel</code>
  */

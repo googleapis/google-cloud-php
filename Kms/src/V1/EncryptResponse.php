@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+ * Response message for
+ * [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.EncryptResponse</code>
  */
 class EncryptResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     * The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     * encryption.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -35,7 +38,9 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     *           The resource name of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     *           encryption.
      *     @type string $ciphertext
      *           The encrypted data.
      * }
@@ -46,7 +51,9 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     * The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     * encryption.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -57,7 +64,9 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     * The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in
+     * encryption.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

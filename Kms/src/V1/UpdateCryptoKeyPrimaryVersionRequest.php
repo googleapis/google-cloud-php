@@ -9,20 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+ * Request message for
+ * [KeyManagementService.UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.UpdateCryptoKeyPrimaryVersionRequest</code>
  */
 class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
+     * update.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * The id of the child
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *
      * Generated from protobuf field <code>string crypto_key_version_id = 2;</code>
      */
@@ -35,9 +38,11 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     *           The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
+     *           update.
      *     @type string $crypto_key_version_id
-     *           The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     *           The id of the child
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +51,8 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
+     * update.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -57,7 +63,8 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
+     * update.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -72,7 +79,8 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * The id of the child
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *
      * Generated from protobuf field <code>string crypto_key_version_id = 2;</code>
      * @return string
@@ -83,7 +91,8 @@ class UpdateCryptoKeyPrimaryVersionRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * The id of the child
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      *
      * Generated from protobuf field <code>string crypto_key_version_id = 2;</code>
      * @param string $var

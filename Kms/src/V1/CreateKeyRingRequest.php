@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.CreateKeyRing][google.cloud.kms.v1.KeyManagementService.CreateKeyRing].
+ * Request message for
+ * [KeyManagementService.CreateKeyRing][google.cloud.kms.v1.KeyManagementService.CreateKeyRing].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CreateKeyRingRequest</code>
  */
@@ -17,7 +18,8 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the location associated with the
-     * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
+     * [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     * `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -44,7 +46,8 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the location associated with the
-     *           [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
+     *           [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     *           `projects/&#42;&#47;locations/&#42;`.
      *     @type string $key_ring_id
      *           Required. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
@@ -59,7 +62,8 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location associated with the
-     * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
+     * [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     * `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -71,7 +75,8 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location associated with the
-     * [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;&#47;locations/&#42;`.
+     * [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     * `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
