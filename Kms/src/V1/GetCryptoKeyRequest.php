@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.GetCryptoKey][google.cloud.kms.v1.KeyManagementService.GetCryptoKey].
+ * Request message for
+ * [KeyManagementService.GetCryptoKey][google.cloud.kms.v1.KeyManagementService.GetCryptoKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.GetCryptoKeyRequest</code>
  */
 class GetCryptoKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     * The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -29,7 +31,8 @@ class GetCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     *           The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,8 @@ class GetCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     * The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -49,7 +53,8 @@ class GetCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     * The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
