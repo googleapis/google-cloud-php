@@ -19,7 +19,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
@@ -31,7 +32,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -109,9 +111,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $profanity_filter = false;
     /**
-     * *Optional* array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
-     * A means to provide context to assist the speech recognition. For more
-     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * *Optional* array of
+     * [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext]. A means to
+     * provide context to assist the speech recognition. For more information, see
+     * [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
      */
@@ -239,7 +242,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encoding
      *           Encoding of audio data sent in all `RecognitionAudio` messages.
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see
+     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
      *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
@@ -247,7 +251,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see
+     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $audio_channel_count
      *           *Optional* The number of channels in the input audio data.
      *           ONLY set this for MULTI-CHANNEL recognition.
@@ -297,9 +302,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
      *     @type \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
-     *           *Optional* array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
-     *           A means to provide context to assist the speech recognition. For more
-     *           information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     *           *Optional* array of
+     *           [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext]. A means to
+     *           provide context to assist the speech recognition. For more information, see
+     *           [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *     @type bool $enable_word_time_offsets
      *           *Optional* If `true`, the top result includes a list of words and
      *           the start and end time offsets (timestamps) for those words. If
@@ -391,7 +397,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -404,7 +411,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -425,7 +433,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -442,7 +451,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -685,9 +695,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
-     * A means to provide context to assist the speech recognition. For more
-     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * *Optional* array of
+     * [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext]. A means to
+     * provide context to assist the speech recognition. For more information, see
+     * [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -698,9 +709,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
-     * A means to provide context to assist the speech recognition. For more
-     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * *Optional* array of
+     * [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext]. A means to
+     * provide context to assist the speech recognition. For more information, see
+     * [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
      * @param \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
