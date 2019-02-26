@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for [Contexts.DeleteContext][google.cloud.dialogflow.v2.Contexts.DeleteContext].
+ * The request message for
+ * [Contexts.DeleteContext][google.cloud.dialogflow.v2.Contexts.DeleteContext].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.DeleteContextRequest</code>
  */
