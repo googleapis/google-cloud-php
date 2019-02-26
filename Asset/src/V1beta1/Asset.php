@@ -17,8 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Asset extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * The full name of the asset. For example:
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     * See [Resource
+     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -37,8 +39,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $resource = null;
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For each
-     * resource, there must be at most one Cloud IAM policy set on it.
+     * Representation of the actual Cloud IAM policy set on a cloud resource. For
+     * each resource, there must be at most one Cloud IAM policy set on it.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
@@ -51,16 +53,18 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     *           See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     *           The full name of the asset. For example:
+     *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     *           See [Resource
+     *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
      *     @type string $asset_type
      *           Type of the asset. Example: "google.compute.Disk".
      *     @type \Google\Cloud\Asset\V1beta1\Resource $resource
      *           Representation of the resource.
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy
-     *           Representation of the actual Cloud IAM policy set on a cloud resource. For each
-     *           resource, there must be at most one Cloud IAM policy set on it.
+     *           Representation of the actual Cloud IAM policy set on a cloud resource. For
+     *           each resource, there must be at most one Cloud IAM policy set on it.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,8 +73,10 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * The full name of the asset. For example:
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     * See [Resource
+     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -82,8 +88,10 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full name of the asset. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+     * The full name of the asset. For example:
+     * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+     * See [Resource
+     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -151,8 +159,8 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For each
-     * resource, there must be at most one Cloud IAM policy set on it.
+     * Representation of the actual Cloud IAM policy set on a cloud resource. For
+     * each resource, there must be at most one Cloud IAM policy set on it.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @return \Google\Cloud\Iam\V1\Policy
@@ -163,8 +171,8 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Representation of the actual Cloud IAM policy set on a cloud resource. For each
-     * resource, there must be at most one Cloud IAM policy set on it.
+     * Representation of the actual Cloud IAM policy set on a cloud resource. For
+     * each resource, there must be at most one Cloud IAM policy set on it.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @param \Google\Cloud\Iam\V1\Policy $var

@@ -36,8 +36,9 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Exports assets with time and resource types to a given Cloud Storage
      * location. The output format is newline-delimited JSON.
-     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing you
-     * to keep track of the export.
+     * This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API allowing
+     * you to keep track of the export.
      * @param \Google\Cloud\Asset\V1beta1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
