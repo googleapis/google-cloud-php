@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
+ * Request for
+ * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.ListInstancesRequest</code>
  */
