@@ -34,7 +34,6 @@ namespace Google\ApiCore;
 
 use Google\ApiCore\ResourceTemplate\AbsoluteResourceTemplate;
 use Google\Protobuf\Internal\Message;
-use Google\Protobuf\Internal\RepeatedField;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
@@ -47,6 +46,7 @@ use Psr\Http\Message\UriInterface;
  */
 class RequestBuilder
 {
+    use ArrayTrait;
     use UriTrait;
     use ValidationTrait;
 
@@ -103,7 +103,7 @@ class RequestBuilder
                     $config['method'],
                     $uri,
                     ['Content-Type' => 'application/json'] + $headers,
-                    $body
+                    $body ? json_encode($body) : null
                 );
             }
         }
@@ -145,26 +145,26 @@ class RequestBuilder
      */
     private function constructBodyAndQueryParameters(Message $message, $config)
     {
+        $messageData = json_decode($message->serializeToJsonString(), true);
+
         if ($config['body'] === '*') {
-            return [$message->serializeToJsonString(), []];
+            return [$messageData, []];
         }
 
         $body = null;
         $queryParams = [];
 
-        foreach ($this->getAllProperties($message) as $name => $value) {
+        foreach ($messageData as $name => $value) {
             if (array_key_exists($name, $config['placeholders'])) {
                 continue;
             }
 
-            $propertyValue = $this->getPrivatePropertyValue($message, $name);
-            if ($name === $config['body']) {
-                $body = $propertyValue->serializeToJsonString();
+            if (Serializer::toSnakeCase($name) === $config['body']) {
+                $body = $value;
                 continue;
             }
 
-            $value = $this->getQuerystringValue($propertyValue);
-            if ($propertyValue instanceof Message && is_array($value)) {
+            if (is_array($value) && $this->isAssoc($value)) {
                 foreach ($value as $key => $value2) {
                     $queryParams[$name . '.' . $key] = $value2;
                 }
@@ -190,8 +190,6 @@ class RequestBuilder
                 function (Message $result = null, $getter) {
                     if ($result) {
                         return $result->$getter();
-                    } else {
-                        return null;
                     }
                 },
                 $message
@@ -242,69 +240,5 @@ class RequestBuilder
             );
         }
         return $uri;
-    }
-
-    private function getPrivatePropertyValue(Message $message, $propertyName)
-    {
-        $privatePropertyValueFunc = \Closure::bind(function (Message $message, $propertyName) {
-            return $message->$propertyName;
-        }, null, $message);
-
-        return $privatePropertyValueFunc($message, $propertyName);
-    }
-
-    private function getAllProperties(Message $message)
-    {
-        $privatePropertiesFunc = \Closure::bind(function (Message $message) {
-            return get_class_vars(get_class($message));
-        }, null, $message);
-
-        return $privatePropertiesFunc($message);
-    }
-
-    private function getQuerystringValue($propertyValue)
-    {
-        if ($propertyValue instanceof Message) {
-            return $this->messageToArray($propertyValue);
-        }
-        if ($propertyValue instanceof RepeatedField) {
-            return iterator_to_array($propertyValue);
-        }
-        return $propertyValue;
-    }
-
-    private function messageToArray(Message $message)
-    {
-        if ($this->hasSpecialJsonMapping($message)) {
-            return json_decode($message->serializeToJsonString(), true);
-        }
-        $messageArray = [];
-        foreach ($this->getAllProperties($message) as $name => $value) {
-            $propertyValue = $this->getPrivatePropertyValue($message, $name);
-            $messageArray[$name] = $this->getQuerystringValue($propertyValue);
-        }
-        return $messageArray;
-    }
-
-    private function hasSpecialJsonMapping(Message $message)
-    {
-        return in_array(get_class($message), [
-            'Google\Protobuf\Any',
-            'Google\Protobuf\ListValue',
-            'Google\Protobuf\Struct',
-            'Google\Protobuf\Value',
-            'Google\Protobuf\Duration',
-            'Google\Protobuf\Timestamp',
-            'Google\Protobuf\FieldMask',
-            'Google\Protobuf\DoubleValue',
-            'Google\Protobuf\FloatValue',
-            'Google\Protobuf\Int64Value',
-            'Google\Protobuf\UInt64Value',
-            'Google\Protobuf\Int32Value',
-            'Google\Protobuf\UInt32Value',
-            'Google\Protobuf\BoolValue',
-            'Google\Protobuf\StringValue',
-            'Google\Protobuf\BytesValue'
-        ]);
     }
 }

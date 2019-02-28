@@ -30,17 +30,70 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
      */
     private $nested_message = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BytesValue bytes_value = 5;</code>
+     */
+    private $bytes_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Duration duration_value = 6;</code>
+     */
+    private $duration_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      */
     private $field_mask = null;
     /**
-     * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value int64_value = 8;</code>
+     */
+    private $int64_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.ListValue list_value = 9;</code>
+     */
+    private $list_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 10;</code>
      */
     private $string_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_value = 11;</code>
+     */
+    private $struct_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 12;</code>
+     */
+    private $timestamp_value = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Value value_value = 13;</code>
+     */
+    private $value_value = null;
+    protected $oneof_field;
 
-    public function __construct() {
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $name
+     *     @type int|string $number
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $repeated_field
+     *     @type \Google\ApiCore\Testing\MockRequestBody $nested_message
+     *     @type \Google\Protobuf\BytesValue $bytes_value
+     *     @type \Google\Protobuf\Duration $duration_value
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *     @type \Google\Protobuf\Int64Value $int64_value
+     *     @type \Google\Protobuf\ListValue $list_value
+     *     @type \Google\Protobuf\StringValue $string_value
+     *     @type \Google\Protobuf\Struct $struct_value
+     *     @type \Google\Protobuf\Timestamp $timestamp_value
+     *     @type \Google\Protobuf\Value $value_value
+     *     @type string $field_1
+     *     @type string $field_2
+     *     @type string $field_3
+     * }
+     */
+    public function __construct($data = NULL) {
         \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
-        parent::__construct();
+        parent::__construct($data);
     }
 
     /**
@@ -132,7 +185,51 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.BytesValue bytes_value = 5;</code>
+     * @return \Google\Protobuf\BytesValue
+     */
+    public function getBytesValue()
+    {
+        return $this->bytes_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.BytesValue bytes_value = 5;</code>
+     * @param \Google\Protobuf\BytesValue $var
+     * @return $this
+     */
+    public function setBytesValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BytesValue::class);
+        $this->bytes_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Duration duration_value = 6;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getDurationValue()
+    {
+        return $this->duration_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Duration duration_value = 6;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDurationValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->duration_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getFieldMask()
@@ -141,7 +238,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -154,7 +251,51 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Int64Value int64_value = 8;</code>
+     * @return \Google\Protobuf\Int64Value
+     */
+    public function getInt64Value()
+    {
+        return $this->int64_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Int64Value int64_value = 8;</code>
+     * @param \Google\Protobuf\Int64Value $var
+     * @return $this
+     */
+    public function setInt64Value($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
+        $this->int64_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.ListValue list_value = 9;</code>
+     * @return \Google\Protobuf\ListValue
+     */
+    public function getListValue()
+    {
+        return $this->list_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.ListValue list_value = 9;</code>
+     * @param \Google\Protobuf\ListValue $var
+     * @return $this
+     */
+    public function setListValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\ListValue::class);
+        $this->list_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 10;</code>
      * @return \Google\Protobuf\StringValue
      */
     public function getStringValue()
@@ -163,7 +304,7 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.StringValue string_value = 10;</code>
      * @param \Google\Protobuf\StringValue $var
      * @return $this
      */
@@ -173,6 +314,146 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
         $this->string_value = $var;
 
         return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_value = 11;</code>
+     * @return \Google\Protobuf\Struct
+     */
+    public function getStructValue()
+    {
+        return $this->struct_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_value = 11;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setStructValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->struct_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 12;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getTimestampValue()
+    {
+        return $this->timestamp_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 12;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setTimestampValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->timestamp_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Value value_value = 13;</code>
+     * @return \Google\Protobuf\Value
+     */
+    public function getValueValue()
+    {
+        return $this->value_value;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Value value_value = 13;</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setValueValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->value_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string field_1 = 14;</code>
+     * @return string
+     */
+    public function getField1()
+    {
+        return $this->readOneof(14);
+    }
+
+    /**
+     * Generated from protobuf field <code>string field_1 = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setField1($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string field_2 = 15;</code>
+     * @return string
+     */
+    public function getField2()
+    {
+        return $this->readOneof(15);
+    }
+
+    /**
+     * Generated from protobuf field <code>string field_2 = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setField2($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>string field_3 = 16;</code>
+     * @return string
+     */
+    public function getField3()
+    {
+        return $this->readOneof(16);
+    }
+
+    /**
+     * Generated from protobuf field <code>string field_3 = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setField3($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOneofField()
+    {
+        return $this->whichOneof("oneof_field");
     }
 
 }
