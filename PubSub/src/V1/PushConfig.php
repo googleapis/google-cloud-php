@@ -43,6 +43,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      */
     private $attributes;
+    protected $authentication_method;
 
     /**
      * Constructor.
@@ -70,6 +71,9 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *           The possible values for this attribute are:
      *           * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      *           * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
+     *     @type \Google\Cloud\PubSub\V1\PushConfig\OidcToken $oidc_token
+     *           If specified, Pub/Sub will generate and attach an OIDC JWT token as an
+     *           `Authorization` header in the HTTP request for every pushed message.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +163,42 @@ class PushConfig extends \Google\Protobuf\Internal\Message
         $this->attributes = $arr;
 
         return $this;
+    }
+
+    /**
+     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
+     * `Authorization` header in the HTTP request for every pushed message.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3;</code>
+     * @return \Google\Cloud\PubSub\V1\PushConfig\OidcToken
+     */
+    public function getOidcToken()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
+     * `Authorization` header in the HTTP request for every pushed message.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3;</code>
+     * @param \Google\Cloud\PubSub\V1\PushConfig\OidcToken $var
+     * @return $this
+     */
+    public function setOidcToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PushConfig_OidcToken::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod()
+    {
+        return $this->whichOneof("authentication_method");
     }
 
 }
