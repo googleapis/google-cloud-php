@@ -20,9 +20,9 @@ namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 /**
  * The Google BigQuery Data Transfer Service API enables BigQuery users to
- * configure the transfer of their data from other Google Products into BigQuery.
- * This service contains methods that are end user exposed. It backs up the
- * frontend.
+ * configure the transfer of their data from other Google Products into
+ * BigQuery. This service contains methods that are end user exposed. It backs
+ * up the frontend.
  */
 class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
 
