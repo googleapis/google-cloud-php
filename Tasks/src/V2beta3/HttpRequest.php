@@ -19,7 +19,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * any other HTTP response code is returned or no response is received, the
  * task will be retried according to the following:
  * * User-specified throttling: [retry configuration][Queue.RetryConfig],
- *   [rate limits][Queue.RateLimits], and the [queue's state][google.cloud.tasks.v2beta3.Queue.state].
+ *   [rate limits][Queue.RateLimits], and the [queue's
+ *   state][google.cloud.tasks.v2beta3.Queue.state].
  * * System throttling: To prevent the worker from overloading, Cloud Tasks may
  *   temporarily reduce the queue's effective rate. User-specified settings
  *   will not be changed.
@@ -86,8 +87,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     * PUT, or PATCH. It is an error to set body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      */
@@ -134,8 +136,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *     @type string $body
      *           HTTP request body.
      *           A request body is allowed only if the
-     *           [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     *           error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     *           [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     *           PUT, or PATCH. It is an error to set body on a task with an incompatible
+     *           [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      * }
      */
     public function __construct($data = NULL) {
@@ -276,8 +279,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     * PUT, or PATCH. It is an error to set body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      * @return string
@@ -290,8 +294,9 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
-     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
+     * PUT, or PATCH. It is an error to set body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      * @param string $var
