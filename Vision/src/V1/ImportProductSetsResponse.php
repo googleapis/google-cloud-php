@@ -11,8 +11,10 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for the `ImportProductSets` method.
  * This message is returned by the
- * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation] method in the returned
- * [google.longrunning.Operation.response][google.longrunning.Operation.response] field.
+ * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
+ * method in the returned
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response]
+ * field.
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsResponse</code>
  */
