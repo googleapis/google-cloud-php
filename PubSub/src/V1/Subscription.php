@@ -70,7 +70,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
+     * <a
+     * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      * Seek to a timestamp</a>.
      * <br><br>
      * <b>BETA:</b> This feature is part of a beta release. This API might be
@@ -161,7 +162,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           messages are not expunged from the subscription's backlog, even if they are
      *           acknowledged, until they fall out of the `message_retention_duration`
      *           window. This must be true if you would like to
-     *           <a href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
+     *           <a
+     *           href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      *           Seek to a timestamp</a>.
      *           <br><br>
      *           <b>BETA:</b> This feature is part of a beta release. This API might be
@@ -358,7 +360,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
+     * <a
+     * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      * Seek to a timestamp</a>.
      * <br><br>
      * <b>BETA:</b> This feature is part of a beta release. This API might be
@@ -378,7 +381,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window. This must be true if you would like to
-     * <a href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
+     * <a
+     * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      * Seek to a timestamp</a>.
      * <br><br>
      * <b>BETA:</b> This feature is part of a beta release. This API might be

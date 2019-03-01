@@ -45,9 +45,10 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * If the name is not provided in the request, the server will assign a random
      * name for this subscription on the same project as the topic, conforming
      * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names).
-     * The generated name is populated in the returned Subscription object.
-     * Note that for REST API requests, you must specify a name in the request.
+     * [resource name
+     * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
+     * generated name is populated in the returned Subscription object. Note that
+     * for REST API requests, you must specify a name in the request.
      * @param \Google\Cloud\PubSub\V1\Subscription $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -273,9 +274,10 @@ class SubscriberGrpcClient extends \Grpc\BaseStub {
      * the request, the server will assign a random
      * name for this snapshot on the same project as the subscription, conforming
      * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names).
-     * The generated name is populated in the returned Snapshot object. Note that
-     * for REST API requests, you must specify a name in the request.
+     * [resource name
+     * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
+     * generated name is populated in the returned Snapshot object. Note that for
+     * REST API requests, you must specify a name in the request.
      * @param \Google\Cloud\PubSub\V1\CreateSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
