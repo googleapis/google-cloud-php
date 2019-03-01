@@ -63,9 +63,9 @@ use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: The Google BigQuery Data Transfer Service API enables BigQuery users to
- * configure the transfer of their data from other Google Products into BigQuery.
- * This service contains methods that are end user exposed. It backs up the
- * frontend.
+ * configure the transfer of their data from other Google Products into
+ * BigQuery. This service contains methods that are end user exposed. It backs
+ * up the frontend.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
