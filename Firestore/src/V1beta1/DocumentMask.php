@@ -13,14 +13,16 @@ use Google\Protobuf\Internal\GPBUtil;
  * Used to restrict a get or update operation on a document to a subset of its
  * fields.
  * This is different from standard field masks, as this is always scoped to a
- * [Document][google.firestore.v1beta1.Document], and takes in account the dynamic nature of [Value][google.firestore.v1beta1.Value].
+ * [Document][google.firestore.v1beta1.Document], and takes in account the
+ * dynamic nature of [Value][google.firestore.v1beta1.Value].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.DocumentMask</code>
  */
 class DocumentMask extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of field paths in the mask. See [Document.fields][google.firestore.v1beta1.Document.fields] for a field
+     * The list of field paths in the mask. See
+     * [Document.fields][google.firestore.v1beta1.Document.fields] for a field
      * path syntax reference.
      *
      * Generated from protobuf field <code>repeated string field_paths = 1;</code>
@@ -34,7 +36,8 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $field_paths
-     *           The list of field paths in the mask. See [Document.fields][google.firestore.v1beta1.Document.fields] for a field
+     *           The list of field paths in the mask. See
+     *           [Document.fields][google.firestore.v1beta1.Document.fields] for a field
      *           path syntax reference.
      * }
      */
@@ -44,7 +47,8 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of field paths in the mask. See [Document.fields][google.firestore.v1beta1.Document.fields] for a field
+     * The list of field paths in the mask. See
+     * [Document.fields][google.firestore.v1beta1.Document.fields] for a field
      * path syntax reference.
      *
      * Generated from protobuf field <code>repeated string field_paths = 1;</code>
@@ -56,7 +60,8 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of field paths in the mask. See [Document.fields][google.firestore.v1beta1.Document.fields] for a field
+     * The list of field paths in the mask. See
+     * [Document.fields][google.firestore.v1beta1.Document.fields] for a field
      * path syntax reference.
      *
      * Generated from protobuf field <code>repeated string field_paths = 1;</code>

@@ -9,19 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [Document][google.firestore.v1.Document] has been removed from the view of the targets.
+ * A [Document][google.firestore.v1.Document] has been removed from the view of
+ * the targets.
  * Sent if the document is no longer relevant to a target and is out of view.
  * Can be sent instead of a DocumentDelete or a DocumentChange if the server
  * can not send the new value of the document.
- * Multiple [DocumentRemove][google.firestore.v1.DocumentRemove] messages may be returned for the same logical
- * write or delete, if multiple targets are affected.
+ * Multiple [DocumentRemove][google.firestore.v1.DocumentRemove] messages may be
+ * returned for the same logical write or delete, if multiple targets are
+ * affected.
  *
  * Generated from protobuf message <code>google.firestore.v1.DocumentRemove</code>
  */
 class DocumentRemove extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the [Document][google.firestore.v1.Document] that has gone out of view.
+     * The resource name of the [Document][google.firestore.v1.Document] that has
+     * gone out of view.
      *
      * Generated from protobuf field <code>string document = 1;</code>
      */
@@ -47,7 +50,8 @@ class DocumentRemove extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $document
-     *           The resource name of the [Document][google.firestore.v1.Document] that has gone out of view.
+     *           The resource name of the [Document][google.firestore.v1.Document] that has
+     *           gone out of view.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
      *           A set of target IDs for targets that previously matched this document.
      *     @type \Google\Protobuf\Timestamp $read_time
@@ -61,7 +65,8 @@ class DocumentRemove extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [Document][google.firestore.v1.Document] that has gone out of view.
+     * The resource name of the [Document][google.firestore.v1.Document] that has
+     * gone out of view.
      *
      * Generated from protobuf field <code>string document = 1;</code>
      * @return string
@@ -72,7 +77,8 @@ class DocumentRemove extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [Document][google.firestore.v1.Document] that has gone out of view.
+     * The resource name of the [Document][google.firestore.v1.Document] that has
+     * gone out of view.
      *
      * Generated from protobuf field <code>string document = 1;</code>
      * @param string $var

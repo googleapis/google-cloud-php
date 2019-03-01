@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.Rollback][google.firestore.v1beta1.Firestore.Rollback].
+ * The request for
+ * [Firestore.Rollback][google.firestore.v1beta1.Firestore.Rollback].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.RollbackRequest</code>
  */

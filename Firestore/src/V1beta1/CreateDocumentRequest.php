@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Firestore.CreateDocument][google.firestore.v1beta1.Firestore.CreateDocument].
+ * The request for
+ * [Firestore.CreateDocument][google.firestore.v1beta1.Firestore.CreateDocument].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.CreateDocumentRequest</code>
  */
