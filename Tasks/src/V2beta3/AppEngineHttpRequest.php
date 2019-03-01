@@ -13,38 +13,46 @@ use Google\Protobuf\Internal\GPBUtil;
  * The message defines the HTTP request that is sent to an App Engine app when
  * the task is dispatched.
  * This proto can only be used for tasks in a queue which has
- * [app_engine_http_queue][google.cloud.tasks.v2beta3.Queue.app_engine_http_queue] set.
- * Using [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] requires
+ * [app_engine_http_queue][google.cloud.tasks.v2beta3.Queue.app_engine_http_queue]
+ * set.
+ * Using [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest]
+ * requires
  * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
  * Google IAM permission for the project
  * and the following scope:
  * `https://www.googleapis.com/auth/cloud-platform`
  * The task will be delivered to the App Engine app which belongs to the same
  * project as the queue. For more information, see
- * [How Requests are Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed)
+ * [How Requests are
+ * Routed](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed)
  * and how routing is affected by
- * [dispatch files](https://cloud.google.com/appengine/docs/python/config/dispatchref).
+ * [dispatch
+ * files](https://cloud.google.com/appengine/docs/python/config/dispatchref).
  * Traffic is encrypted during transport and never leaves Google datacenters.
  * Because this traffic is carried over a communication mechanism internal to
  * Google, you cannot explicitly set the protocol (for example, HTTP or HTTPS).
  * The request to the handler, however, will appear to have used the HTTP
  * protocol.
- * The [AppEngineRouting][google.cloud.tasks.v2beta3.AppEngineRouting] used to construct the URL that the task is
- * delivered to can be set at the queue-level or task-level:
+ * The [AppEngineRouting][google.cloud.tasks.v2beta3.AppEngineRouting] used to
+ * construct the URL that the task is delivered to can be set at the queue-level
+ * or task-level:
  * * If set,
  *    [app_engine_routing_override][google.cloud.tasks.v2beta3.AppEngineHttpQueue.app_engine_routing_override]
  *    is used for all tasks in the queue, no matter what the setting
  *    is for the
- *    [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+ *    [task-level
+ *    app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
  * The `url` that the task will be sent to is:
  * * `url =` [host][google.cloud.tasks.v2beta3.AppEngineRouting.host] `+`
  *   [relative_uri][google.cloud.tasks.v2beta3.AppEngineHttpRequest.relative_uri]
  * Tasks can be dispatched to secure app handlers, unsecure app handlers, and
  * URIs restricted with
- * [`login: admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref).
+ * [`login:
+ * admin`](https://cloud.google.com/appengine/docs/standard/python/config/appref).
  * Because tasks are not run as any user, they cannot be dispatched to URIs
  * restricted with
- * [`login: required`](https://cloud.google.com/appengine/docs/standard/python/config/appref)
+ * [`login:
+ * required`](https://cloud.google.com/appengine/docs/standard/python/config/appref)
  * Task dispatches also do not follow redirects.
  * The task attempt has succeeded if the app's request handler returns
  * an HTTP response code in the range [`200` - `299`]. `503` is
@@ -63,10 +71,12 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * The app's request handler for the task's target URL must be able to handle
      * HTTP requests with this http_method, otherwise the task attempt will fail
      * with error code 405 (Method Not Allowed). See
-     * [Writing a push task request handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
+     * [Writing a push task request
+     * handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
      * and the documentation for the request handlers in the language your app is
      * written in e.g.
-     * [Python Request Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
+     * [Python Request
+     * Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpMethod http_method = 1;</code>
      */
@@ -76,7 +86,8 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * If set,
      * [app_engine_routing_override][google.cloud.tasks.v2beta3.AppEngineHttpQueue.app_engine_routing_override]
      * is used for all tasks in the queue, no matter what the setting is for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing = 2;</code>
      */
@@ -103,8 +114,9 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *   This header can be modified, but Cloud Tasks will append
      *   `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *   modified `User-Agent`.
-     * If the task has a [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud
-     * Tasks sets the following headers:
+     * If the task has a
+     * [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud Tasks
+     * sets the following headers:
      * * `Content-Type`: By default, the `Content-Type` header is set to
      *   `"application/octet-stream"`. The default can be overridden by explicitly
      *   setting `Content-Type` to a particular media type when the
@@ -118,12 +130,15 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * * `X-AppEngine-*`
      * In addition, Cloud Tasks sets some headers when the task is dispatched,
      * such as headers containing information about the task; see
-     * [request headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
+     * [request
+     * headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
      * These headers are set only when the task is dispatched, so they are not
      * visible when the task is returned in a Cloud Tasks response.
      * Although there is no specific limit for the maximum number of headers or
-     * the size, there is a limit on the maximum size of the [Task][google.cloud.tasks.v2beta3.Task]. For more
-     * information, see the [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask] documentation.
+     * the size, there is a limit on the maximum size of the
+     * [Task][google.cloud.tasks.v2beta3.Task]. For more information, see the
+     * [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask]
+     * documentation.
      *
      * Generated from protobuf field <code>map<string, string> headers = 4;</code>
      */
@@ -131,7 +146,8 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the HTTP method is POST or PUT. It is
-     * an error to set a body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * an error to set a body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      */
@@ -148,16 +164,19 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *           The app's request handler for the task's target URL must be able to handle
      *           HTTP requests with this http_method, otherwise the task attempt will fail
      *           with error code 405 (Method Not Allowed). See
-     *           [Writing a push task request handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
+     *           [Writing a push task request
+     *           handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
      *           and the documentation for the request handlers in the language your app is
      *           written in e.g.
-     *           [Python Request Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
+     *           [Python Request
+     *           Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
      *     @type \Google\Cloud\Tasks\V2beta3\AppEngineRouting $app_engine_routing
      *           Task-level setting for App Engine routing.
      *           If set,
      *           [app_engine_routing_override][google.cloud.tasks.v2beta3.AppEngineHttpQueue.app_engine_routing_override]
      *           is used for all tasks in the queue, no matter what the setting is for the
-     *           [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     *           [task-level
+     *           app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *     @type string $relative_uri
      *           The relative URI.
      *           The relative URI must begin with "/" and must be a valid HTTP relative URI.
@@ -176,8 +195,9 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *             This header can be modified, but Cloud Tasks will append
      *             `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *             modified `User-Agent`.
-     *           If the task has a [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud
-     *           Tasks sets the following headers:
+     *           If the task has a
+     *           [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud Tasks
+     *           sets the following headers:
      *           * `Content-Type`: By default, the `Content-Type` header is set to
      *             `"application/octet-stream"`. The default can be overridden by explicitly
      *             setting `Content-Type` to a particular media type when the
@@ -191,16 +211,20 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *           * `X-AppEngine-*`
      *           In addition, Cloud Tasks sets some headers when the task is dispatched,
      *           such as headers containing information about the task; see
-     *           [request headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
+     *           [request
+     *           headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
      *           These headers are set only when the task is dispatched, so they are not
      *           visible when the task is returned in a Cloud Tasks response.
      *           Although there is no specific limit for the maximum number of headers or
-     *           the size, there is a limit on the maximum size of the [Task][google.cloud.tasks.v2beta3.Task]. For more
-     *           information, see the [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask] documentation.
+     *           the size, there is a limit on the maximum size of the
+     *           [Task][google.cloud.tasks.v2beta3.Task]. For more information, see the
+     *           [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask]
+     *           documentation.
      *     @type string $body
      *           HTTP request body.
      *           A request body is allowed only if the HTTP method is POST or PUT. It is
-     *           an error to set a body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     *           an error to set a body on a task with an incompatible
+     *           [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      * }
      */
     public function __construct($data = NULL) {
@@ -213,10 +237,12 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * The app's request handler for the task's target URL must be able to handle
      * HTTP requests with this http_method, otherwise the task attempt will fail
      * with error code 405 (Method Not Allowed). See
-     * [Writing a push task request handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
+     * [Writing a push task request
+     * handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
      * and the documentation for the request handlers in the language your app is
      * written in e.g.
-     * [Python Request Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
+     * [Python Request
+     * Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpMethod http_method = 1;</code>
      * @return int
@@ -231,10 +257,12 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * The app's request handler for the task's target URL must be able to handle
      * HTTP requests with this http_method, otherwise the task attempt will fail
      * with error code 405 (Method Not Allowed). See
-     * [Writing a push task request handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
+     * [Writing a push task request
+     * handler](https://cloud.google.com/appengine/docs/java/taskqueue/push/creating-handlers#writing_a_push_task_request_handler)
      * and the documentation for the request handlers in the language your app is
      * written in e.g.
-     * [Python Request Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
+     * [Python Request
+     * Handler](https://cloud.google.com/appengine/docs/python/tools/webapp/requesthandlerclass).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpMethod http_method = 1;</code>
      * @param int $var
@@ -253,7 +281,8 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * If set,
      * [app_engine_routing_override][google.cloud.tasks.v2beta3.AppEngineHttpQueue.app_engine_routing_override]
      * is used for all tasks in the queue, no matter what the setting is for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing = 2;</code>
      * @return \Google\Cloud\Tasks\V2beta3\AppEngineRouting
@@ -268,7 +297,8 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * If set,
      * [app_engine_routing_override][google.cloud.tasks.v2beta3.AppEngineHttpQueue.app_engine_routing_override]
      * is used for all tasks in the queue, no matter what the setting is for the
-     * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
+     * [task-level
+     * app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing = 2;</code>
      * @param \Google\Cloud\Tasks\V2beta3\AppEngineRouting $var
@@ -328,8 +358,9 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *   This header can be modified, but Cloud Tasks will append
      *   `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *   modified `User-Agent`.
-     * If the task has a [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud
-     * Tasks sets the following headers:
+     * If the task has a
+     * [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud Tasks
+     * sets the following headers:
      * * `Content-Type`: By default, the `Content-Type` header is set to
      *   `"application/octet-stream"`. The default can be overridden by explicitly
      *   setting `Content-Type` to a particular media type when the
@@ -343,12 +374,15 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * * `X-AppEngine-*`
      * In addition, Cloud Tasks sets some headers when the task is dispatched,
      * such as headers containing information about the task; see
-     * [request headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
+     * [request
+     * headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
      * These headers are set only when the task is dispatched, so they are not
      * visible when the task is returned in a Cloud Tasks response.
      * Although there is no specific limit for the maximum number of headers or
-     * the size, there is a limit on the maximum size of the [Task][google.cloud.tasks.v2beta3.Task]. For more
-     * information, see the [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask] documentation.
+     * the size, there is a limit on the maximum size of the
+     * [Task][google.cloud.tasks.v2beta3.Task]. For more information, see the
+     * [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask]
+     * documentation.
      *
      * Generated from protobuf field <code>map<string, string> headers = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -370,8 +404,9 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *   This header can be modified, but Cloud Tasks will append
      *   `"AppEngine-Google; (+http://code.google.com/appengine)"` to the
      *   modified `User-Agent`.
-     * If the task has a [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud
-     * Tasks sets the following headers:
+     * If the task has a
+     * [body][google.cloud.tasks.v2beta3.AppEngineHttpRequest.body], Cloud Tasks
+     * sets the following headers:
      * * `Content-Type`: By default, the `Content-Type` header is set to
      *   `"application/octet-stream"`. The default can be overridden by explicitly
      *   setting `Content-Type` to a particular media type when the
@@ -385,12 +420,15 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      * * `X-AppEngine-*`
      * In addition, Cloud Tasks sets some headers when the task is dispatched,
      * such as headers containing information about the task; see
-     * [request headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
+     * [request
+     * headers](https://cloud.google.com/appengine/docs/python/taskqueue/push/creating-handlers#reading_request_headers).
      * These headers are set only when the task is dispatched, so they are not
      * visible when the task is returned in a Cloud Tasks response.
      * Although there is no specific limit for the maximum number of headers or
-     * the size, there is a limit on the maximum size of the [Task][google.cloud.tasks.v2beta3.Task]. For more
-     * information, see the [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask] documentation.
+     * the size, there is a limit on the maximum size of the
+     * [Task][google.cloud.tasks.v2beta3.Task]. For more information, see the
+     * [CreateTask][google.cloud.tasks.v2beta3.CloudTasks.CreateTask]
+     * documentation.
      *
      * Generated from protobuf field <code>map<string, string> headers = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -407,7 +445,8 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the HTTP method is POST or PUT. It is
-     * an error to set a body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * an error to set a body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      * @return string
@@ -420,7 +459,8 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the HTTP method is POST or PUT. It is
-     * an error to set a body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * an error to set a body on a task with an incompatible
+     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 5;</code>
      * @param string $var

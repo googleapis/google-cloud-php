@@ -25,23 +25,29 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
     private $attempt_dispatch_count = 0;
     /**
      * Output only. The number of attempts which have received a response.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>int32 attempt_response_count = 2;</code>
      */
     private $attempt_response_count = 0;
     /**
      * Output only. The status of the task's first attempt.
-     * Only [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time] will be set.
-     * The other [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is not retained by Cloud Tasks.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * Only
+     * [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time]
+     * will be set. The other
+     * [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is
+     * not retained by Cloud Tasks.
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus first_attempt_status = 3;</code>
      */
     private $first_attempt_status = null;
     /**
      * Output only. The status of the task's last attempt.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus last_attempt_status = 4;</code>
      */
@@ -59,15 +65,21 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      *           received a response.
      *     @type int $attempt_response_count
      *           Output only. The number of attempts which have received a response.
-     *           This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     *           This field is not calculated for [pull
+     *           tasks][google.cloud.tasks.v2beta2.PullMessage].
      *     @type \Google\Cloud\Tasks\V2beta2\AttemptStatus $first_attempt_status
      *           Output only. The status of the task's first attempt.
-     *           Only [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time] will be set.
-     *           The other [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is not retained by Cloud Tasks.
-     *           This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     *           Only
+     *           [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time]
+     *           will be set. The other
+     *           [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is
+     *           not retained by Cloud Tasks.
+     *           This field is not calculated for [pull
+     *           tasks][google.cloud.tasks.v2beta2.PullMessage].
      *     @type \Google\Cloud\Tasks\V2beta2\AttemptStatus $last_attempt_status
      *           Output only. The status of the task's last attempt.
-     *           This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     *           This field is not calculated for [pull
+     *           tasks][google.cloud.tasks.v2beta2.PullMessage].
      * }
      */
     public function __construct($data = NULL) {
@@ -107,7 +119,8 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The number of attempts which have received a response.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>int32 attempt_response_count = 2;</code>
      * @return int
@@ -119,7 +132,8 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The number of attempts which have received a response.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>int32 attempt_response_count = 2;</code>
      * @param int $var
@@ -135,9 +149,13 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the task's first attempt.
-     * Only [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time] will be set.
-     * The other [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is not retained by Cloud Tasks.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * Only
+     * [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time]
+     * will be set. The other
+     * [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is
+     * not retained by Cloud Tasks.
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus first_attempt_status = 3;</code>
      * @return \Google\Cloud\Tasks\V2beta2\AttemptStatus
@@ -149,9 +167,13 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the task's first attempt.
-     * Only [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time] will be set.
-     * The other [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is not retained by Cloud Tasks.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * Only
+     * [dispatch_time][google.cloud.tasks.v2beta2.AttemptStatus.dispatch_time]
+     * will be set. The other
+     * [AttemptStatus][google.cloud.tasks.v2beta2.AttemptStatus] information is
+     * not retained by Cloud Tasks.
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus first_attempt_status = 3;</code>
      * @param \Google\Cloud\Tasks\V2beta2\AttemptStatus $var
@@ -167,7 +189,8 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the task's last attempt.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus last_attempt_status = 4;</code>
      * @return \Google\Cloud\Tasks\V2beta2\AttemptStatus
@@ -179,7 +202,8 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The status of the task's last attempt.
-     * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
+     * This field is not calculated for [pull
+     * tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus last_attempt_status = 4;</code>
      * @param \Google\Cloud\Tasks\V2beta2\AttemptStatus $var

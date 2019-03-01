@@ -68,14 +68,15 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * Creates a queue.
      *
      * Queues created with this method allow tasks to live for a maximum of 31
-     * days. After a task is 31 days old, the task will be deleted regardless of whether
-     * it was dispatched or not.
+     * days. After a task is 31 days old, the task will be deleted regardless of
+     * whether it was dispatched or not.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
-     * before using this method.
+     * [Overview of Queue Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      * @param \Google\Cloud\Tasks\V2beta3\CreateQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -95,14 +96,15 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * the queue if it does exist.
      *
      * Queues created with this method allow tasks to live for a maximum of 31
-     * days. After a task is 31 days old, the task will be deleted regardless of whether
-     * it was dispatched or not.
+     * days. After a task is 31 days old, the task will be deleted regardless of
+     * whether it was dispatched or not.
      *
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
-     * before using this method.
+     * [Overview of Queue Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      * @param \Google\Cloud\Tasks\V2beta3\UpdateQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -126,8 +128,9 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
-     * before using this method.
+     * [Overview of Queue Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      * @param \Google\Cloud\Tasks\V2beta3\DeleteQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -164,9 +167,10 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      *
      * If a queue is paused then the system will stop dispatching tasks
      * until the queue is resumed via
-     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue]. Tasks can still be added
-     * when the queue is paused. A queue is paused if its
-     * [state][google.cloud.tasks.v2beta3.Queue.state] is [PAUSED][google.cloud.tasks.v2beta3.Queue.State.PAUSED].
+     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue]. Tasks can
+     * still be added when the queue is paused. A queue is paused if its
+     * [state][google.cloud.tasks.v2beta3.Queue.state] is
+     * [PAUSED][google.cloud.tasks.v2beta3.Queue.State.PAUSED].
      * @param \Google\Cloud\Tasks\V2beta3\PauseQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -184,14 +188,17 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      *
      * This method resumes a queue after it has been
      * [PAUSED][google.cloud.tasks.v2beta3.Queue.State.PAUSED] or
-     * [DISABLED][google.cloud.tasks.v2beta3.Queue.State.DISABLED]. The state of a queue is stored
-     * in the queue's [state][google.cloud.tasks.v2beta3.Queue.state]; after calling this method it
-     * will be set to [RUNNING][google.cloud.tasks.v2beta3.Queue.State.RUNNING].
+     * [DISABLED][google.cloud.tasks.v2beta3.Queue.State.DISABLED]. The state of a
+     * queue is stored in the queue's
+     * [state][google.cloud.tasks.v2beta3.Queue.state]; after calling this method
+     * it will be set to
+     * [RUNNING][google.cloud.tasks.v2beta3.Queue.State.RUNNING].
      *
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
      * queues, follow the 500/50/5 pattern described in
-     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+     * [Managing Cloud Tasks Scaling
+     * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      * @param \Google\Cloud\Tasks\V2beta3\ResumeQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -205,9 +212,9 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the access control policy for a [Queue][google.cloud.tasks.v2beta3.Queue].
-     * Returns an empty policy if the resource exists and does not have a policy
-     * set.
+     * Gets the access control policy for a
+     * [Queue][google.cloud.tasks.v2beta3.Queue]. Returns an empty policy if the
+     * resource exists and does not have a policy set.
      *
      * Authorization requires the following
      * [Google IAM](https://cloud.google.com/iam) permission on the specified
@@ -227,8 +234,8 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the access control policy for a [Queue][google.cloud.tasks.v2beta3.Queue]. Replaces any existing
-     * policy.
+     * Sets the access control policy for a
+     * [Queue][google.cloud.tasks.v2beta3.Queue]. Replaces any existing policy.
      *
      * Note: The Cloud Console does not check queue-level IAM permissions yet.
      * Project-level permissions are required to use the Cloud Console.
@@ -251,9 +258,10 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns permissions that a caller has on a [Queue][google.cloud.tasks.v2beta3.Queue].
-     * If the resource does not exist, this will return an empty set of
-     * permissions, not a [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
+     * Returns permissions that a caller has on a
+     * [Queue][google.cloud.tasks.v2beta3.Queue]. If the resource does not exist,
+     * this will return an empty set of permissions, not a
+     * [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
      *
      * Note: This operation is designed to be used for building permission-aware
      * UIs and command-line tools, not for authorization checking. This operation
@@ -273,10 +281,10 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
     /**
      * Lists the tasks in a queue.
      *
-     * By default, only the [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC] view is retrieved
-     * due to performance considerations;
-     * [response_view][google.cloud.tasks.v2beta3.ListTasksRequest.response_view] controls the
-     * subset of information which is returned.
+     * By default, only the [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]
+     * view is retrieved due to performance considerations;
+     * [response_view][google.cloud.tasks.v2beta3.ListTasksRequest.response_view]
+     * controls the subset of information which is returned.
      *
      * The tasks may be returned in any order. The ordering may change at any
      * time.
@@ -311,7 +319,8 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * For [App Engine queues][google.cloud.tasks.v2beta3.AppEngineHttpQueue], the maximum task size is
+     * * For [App Engine queues][google.cloud.tasks.v2beta3.AppEngineHttpQueue],
+     * the maximum task size is
      *   100KB.
      * @param \Google\Cloud\Tasks\V2beta3\CreateTaskRequest $argument input argument
      * @param array $metadata metadata
@@ -347,13 +356,14 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * Forces a task to run now.
      *
      * When this method is called, Cloud Tasks will dispatch the task, even if
-     * the task is already running, the queue has reached its [RateLimits][google.cloud.tasks.v2beta3.RateLimits] or
-     * is [PAUSED][google.cloud.tasks.v2beta3.Queue.State.PAUSED].
+     * the task is already running, the queue has reached its
+     * [RateLimits][google.cloud.tasks.v2beta3.RateLimits] or is
+     * [PAUSED][google.cloud.tasks.v2beta3.Queue.State.PAUSED].
      *
      * This command is meant to be used for manual debugging. For
-     * example, [RunTask][google.cloud.tasks.v2beta3.CloudTasks.RunTask] can be used to retry a failed
-     * task after a fix has been made or to manually force a task to be
-     * dispatched now.
+     * example, [RunTask][google.cloud.tasks.v2beta3.CloudTasks.RunTask] can be
+     * used to retry a failed task after a fix has been made or to manually force
+     * a task to be dispatched now.
      *
      * The dispatched task is returned. That is, the task that is returned
      * contains the [status][Task.status] after the task is dispatched but
@@ -361,9 +371,11 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      *
      * If Cloud Tasks receives a successful response from the task's
      * target, then the task will be deleted; otherwise the task's
-     * [schedule_time][google.cloud.tasks.v2beta3.Task.schedule_time] will be reset to the time that
-     * [RunTask][google.cloud.tasks.v2beta3.CloudTasks.RunTask] was called plus the retry delay specified
-     * in the queue's [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
+     * [schedule_time][google.cloud.tasks.v2beta3.Task.schedule_time] will be
+     * reset to the time that
+     * [RunTask][google.cloud.tasks.v2beta3.CloudTasks.RunTask] was called plus
+     * the retry delay specified in the queue's
+     * [RetryConfig][google.cloud.tasks.v2beta3.RetryConfig].
      *
      * [RunTask][google.cloud.tasks.v2beta3.CloudTasks.RunTask] returns
      * [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
