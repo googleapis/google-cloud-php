@@ -10,8 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Cloud Dataproc job for running
- * [Apache Hadoop MapReduce](https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html)
- * jobs on [Apache Hadoop YARN](https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
+ * [Apache Hadoop
+ * MapReduce](https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html)
+ * jobs on [Apache Hadoop
+ * YARN](https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.HadoopJob</code>
  */
@@ -19,8 +21,8 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The arguments to pass to the driver. Do not
-     * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as job
-     * properties, since a collision may occur that causes an incorrect job
+     * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
+     * job properties, since a collision may occur that causes an incorrect job
      * submission.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
@@ -83,8 +85,8 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      *           must be in the default CLASSPATH or specified in `jar_file_uris`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the driver. Do not
-     *           include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as job
-     *           properties, since a collision may occur that causes an incorrect job
+     *           include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
+     *           job properties, since a collision may occur that causes an incorrect job
      *           submission.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. Jar file URIs to add to the CLASSPATHs of the
@@ -175,8 +177,8 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The arguments to pass to the driver. Do not
-     * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as job
-     * properties, since a collision may occur that causes an incorrect job
+     * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
+     * job properties, since a collision may occur that causes an incorrect job
      * submission.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
@@ -189,8 +191,8 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The arguments to pass to the driver. Do not
-     * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as job
-     * properties, since a collision may occur that causes an incorrect job
+     * include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
+     * job properties, since a collision may occur that causes an incorrect job
      * submission.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>

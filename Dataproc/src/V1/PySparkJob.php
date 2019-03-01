@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A Cloud Dataproc job for running
- * [Apache PySpark](https://spark.apache.org/docs/0.9.0/python-programming-guide.html)
+ * [Apache
+ * PySpark](https://spark.apache.org/docs/0.9.0/python-programming-guide.html)
  * applications on YARN.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.PySparkJob</code>

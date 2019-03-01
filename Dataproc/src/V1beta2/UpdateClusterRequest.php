@@ -65,9 +65,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *         }
      *       }
      *     }
-     * Similarly, to change the number of preemptible workers in a cluster to 5, the
-     * `update_mask` parameter would be `config.secondary_worker_config.num_instances`,
-     * and the `PATCH` request body would be set as follows:
+     * Similarly, to change the number of preemptible workers in a cluster to 5,
+     * the `update_mask` parameter would be
+     * `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     * body would be set as follows:
      *     {
      *       "config":{
      *         "secondaryWorkerConfig":{
@@ -84,19 +85,24 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * <td>labels</td><td>Updates labels</td>
      * </tr>
      * <tr>
-     * <td>config.worker_config.num_instances</td><td>Resize primary worker group</td>
+     * <td>config.worker_config.num_instances</td><td>Resize primary worker
+     * group</td>
      * </tr>
      * <tr>
-     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary worker group</td>
+     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary
+     * worker group</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL duration</td>
+     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     * duration</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL deletion timestamp</td>
+     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     * deletion timestamp</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL duration</td>
+     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     * duration</td>
      * </tr>
      * </table>
      *
@@ -105,10 +111,11 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
-     * id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     * backend is returned.
+     * receives two
+     * [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
+     * requests  with the same id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
@@ -154,9 +161,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *                   }
      *                 }
      *               }
-     *           Similarly, to change the number of preemptible workers in a cluster to 5, the
-     *           `update_mask` parameter would be `config.secondary_worker_config.num_instances`,
-     *           and the `PATCH` request body would be set as follows:
+     *           Similarly, to change the number of preemptible workers in a cluster to 5,
+     *           the `update_mask` parameter would be
+     *           `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     *           body would be set as follows:
      *               {
      *                 "config":{
      *                   "secondaryWorkerConfig":{
@@ -173,27 +181,33 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           <td>labels</td><td>Updates labels</td>
      *           </tr>
      *           <tr>
-     *           <td>config.worker_config.num_instances</td><td>Resize primary worker group</td>
+     *           <td>config.worker_config.num_instances</td><td>Resize primary worker
+     *           group</td>
      *           </tr>
      *           <tr>
-     *           <td>config.secondary_worker_config.num_instances</td><td>Resize secondary worker group</td>
+     *           <td>config.secondary_worker_config.num_instances</td><td>Resize secondary
+     *           worker group</td>
      *           </tr>
      *           <tr>
-     *           <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL duration</td>
+     *           <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     *           duration</td>
      *           </tr>
      *           <tr>
-     *           <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL deletion timestamp</td>
+     *           <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     *           deletion timestamp</td>
      *           </tr>
      *           <tr>
-     *           <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL duration</td>
+     *           <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     *           duration</td>
      *           </tr>
      *           </table>
      *     @type string $request_id
      *           Optional. A unique id used to identify the request. If the server
-     *           receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
-     *           id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     *           backend is returned.
+     *           receives two
+     *           [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
+     *           requests  with the same id, then the second request will be ignored and the
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created
+     *           and stored in the backend is returned.
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      *           The id must contain only letters (a-z, A-Z), numbers (0-9),
@@ -362,9 +376,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *         }
      *       }
      *     }
-     * Similarly, to change the number of preemptible workers in a cluster to 5, the
-     * `update_mask` parameter would be `config.secondary_worker_config.num_instances`,
-     * and the `PATCH` request body would be set as follows:
+     * Similarly, to change the number of preemptible workers in a cluster to 5,
+     * the `update_mask` parameter would be
+     * `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     * body would be set as follows:
      *     {
      *       "config":{
      *         "secondaryWorkerConfig":{
@@ -381,19 +396,24 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * <td>labels</td><td>Updates labels</td>
      * </tr>
      * <tr>
-     * <td>config.worker_config.num_instances</td><td>Resize primary worker group</td>
+     * <td>config.worker_config.num_instances</td><td>Resize primary worker
+     * group</td>
      * </tr>
      * <tr>
-     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary worker group</td>
+     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary
+     * worker group</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL duration</td>
+     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     * duration</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL deletion timestamp</td>
+     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     * deletion timestamp</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL duration</td>
+     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     * duration</td>
      * </tr>
      * </table>
      *
@@ -418,9 +438,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *         }
      *       }
      *     }
-     * Similarly, to change the number of preemptible workers in a cluster to 5, the
-     * `update_mask` parameter would be `config.secondary_worker_config.num_instances`,
-     * and the `PATCH` request body would be set as follows:
+     * Similarly, to change the number of preemptible workers in a cluster to 5,
+     * the `update_mask` parameter would be
+     * `config.secondary_worker_config.num_instances`, and the `PATCH` request
+     * body would be set as follows:
      *     {
      *       "config":{
      *         "secondaryWorkerConfig":{
@@ -437,19 +458,24 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * <td>labels</td><td>Updates labels</td>
      * </tr>
      * <tr>
-     * <td>config.worker_config.num_instances</td><td>Resize primary worker group</td>
+     * <td>config.worker_config.num_instances</td><td>Resize primary worker
+     * group</td>
      * </tr>
      * <tr>
-     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary worker group</td>
+     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary
+     * worker group</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL duration</td>
+     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     * duration</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL deletion timestamp</td>
+     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     * deletion timestamp</td>
      * </tr>
      * <tr>
-     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL duration</td>
+     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     * duration</td>
      * </tr>
      * </table>
      *
@@ -467,10 +493,11 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
-     * id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     * backend is returned.
+     * receives two
+     * [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
+     * requests  with the same id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
@@ -486,10 +513,11 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
-     * id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     * backend is returned.
+     * receives two
+     * [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
+     * requests  with the same id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created
+     * and stored in the backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),

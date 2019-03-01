@@ -92,7 +92,8 @@ class JobControllerGrpcClient extends \Grpc\BaseStub {
     /**
      * Starts a job cancellation request. To access the job resource
      * after cancellation, call
-     * [regions/{region}/jobs.list](/dataproc/docs/reference/rest/v1/projects.regions.jobs/list) or
+     * [regions/{region}/jobs.list](/dataproc/docs/reference/rest/v1/projects.regions.jobs/list)
+     * or
      * [regions/{region}/jobs.get](/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
      * @param \Google\Cloud\Dataproc\V1\CancelJobRequest $argument input argument
      * @param array $metadata metadata

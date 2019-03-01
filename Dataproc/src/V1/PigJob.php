@@ -18,8 +18,8 @@ class PigJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Whether to continue executing queries if a query fails.
-     * The default value is `false`. Setting to `true` can be useful when executing
-     * independent parallel queries.
+     * The default value is `false`. Setting to `true` can be useful when
+     * executing independent parallel queries.
      *
      * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
      */
@@ -67,8 +67,8 @@ class PigJob extends \Google\Protobuf\Internal\Message
      *           A list of queries.
      *     @type bool $continue_on_failure
      *           Optional. Whether to continue executing queries if a query fails.
-     *           The default value is `false`. Setting to `true` can be useful when executing
-     *           independent parallel queries.
+     *           The default value is `false`. Setting to `true` can be useful when
+     *           executing independent parallel queries.
      *     @type array|\Google\Protobuf\Internal\MapField $script_variables
      *           Optional. Mapping of query variable names to values (equivalent to the Pig
      *           command: `name=[value]`).
@@ -143,8 +143,8 @@ class PigJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Whether to continue executing queries if a query fails.
-     * The default value is `false`. Setting to `true` can be useful when executing
-     * independent parallel queries.
+     * The default value is `false`. Setting to `true` can be useful when
+     * executing independent parallel queries.
      *
      * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
      * @return bool
@@ -156,8 +156,8 @@ class PigJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Whether to continue executing queries if a query fails.
-     * The default value is `false`. Setting to `true` can be useful when executing
-     * independent parallel queries.
+     * The default value is `false`. Setting to `true` can be useful when
+     * executing independent parallel queries.
      *
      * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
      * @param bool $var
