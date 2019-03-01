@@ -47,8 +47,8 @@ class Job extends \Google\Protobuf\Internal\Message
     private $status_history;
     /**
      * Output only. The collection of YARN applications spun up by this job.
-     * **Beta** Feature: This report is available for testing purposes only. It may
-     * be changed before final release.
+     * **Beta** Feature: This report is available for testing purposes only. It
+     * may be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9;</code>
      */
@@ -80,8 +80,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Label **values** may be empty, but, if present, must contain 1 to 63
-     * characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * No more than 32 labels can be associated with a job.
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with a job.
      *
      * Generated from protobuf field <code>map<string, string> labels = 18;</code>
      */
@@ -136,8 +137,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The previous job status.
      *     @type \Google\Cloud\Dataproc\V1beta2\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $yarn_applications
      *           Output only. The collection of YARN applications spun up by this job.
-     *           **Beta** Feature: This report is available for testing purposes only. It may
-     *           be changed before final release.
+     *           **Beta** Feature: This report is available for testing purposes only. It
+     *           may be changed before final release.
      *     @type string $submitted_by
      *           Output only. The email address of the user submitting the job. For jobs
      *           submitted on the cluster, the address is <code>username&#64;hostname</code>.
@@ -153,8 +154,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Label **keys** must contain 1 to 63 characters, and must conform to
      *           [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      *           Label **values** may be empty, but, if present, must contain 1 to 63
-     *           characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     *           No more than 32 labels can be associated with a job.
+     *           characters, and must conform to [RFC
+     *           1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     *           associated with a job.
      *     @type \Google\Cloud\Dataproc\V1beta2\JobScheduling $scheduling
      *           Optional. Job scheduling configuration.
      *     @type string $job_uuid
@@ -442,8 +444,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The collection of YARN applications spun up by this job.
-     * **Beta** Feature: This report is available for testing purposes only. It may
-     * be changed before final release.
+     * **Beta** Feature: This report is available for testing purposes only. It
+     * may be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -455,8 +457,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The collection of YARN applications spun up by this job.
-     * **Beta** Feature: This report is available for testing purposes only. It may
-     * be changed before final release.
+     * **Beta** Feature: This report is available for testing purposes only. It
+     * may be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.YarnApplication yarn_applications = 9;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -561,8 +563,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Label **values** may be empty, but, if present, must contain 1 to 63
-     * characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * No more than 32 labels can be associated with a job.
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with a job.
      *
      * Generated from protobuf field <code>map<string, string> labels = 18;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -577,8 +580,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Label **values** may be empty, but, if present, must contain 1 to 63
-     * characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * No more than 32 labels can be associated with a job.
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with a job.
      *
      * Generated from protobuf field <code>map<string, string> labels = 18;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

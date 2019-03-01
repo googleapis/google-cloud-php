@@ -45,7 +45,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Cloud Dataproc
-     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * [Auto Zone
+     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -59,7 +60,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     private $disk_config = null;
     /**
-     * Optional. Specifies that this instance group contains preemptible instances.
+     * Optional. Specifies that this instance group contains preemptible
+     * instances.
      *
      * Generated from protobuf field <code>bool is_preemptible = 6;</code>
      */
@@ -105,13 +107,15 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      *           * `n1-standard-2`
      *           **Auto Zone Exception**: If you are using the Cloud Dataproc
-     *           [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     *           [Auto Zone
+     *           Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      *           feature, you must use the short name of the machine type
      *           resource, for example, `n1-standard-2`.
      *     @type \Google\Cloud\Dataproc\V1\DiskConfig $disk_config
      *           Optional. Disk option config settings.
      *     @type bool $is_preemptible
-     *           Optional. Specifies that this instance group contains preemptible instances.
+     *           Optional. Specifies that this instance group contains preemptible
+     *           instances.
      *     @type \Google\Cloud\Dataproc\V1\ManagedGroupConfig $managed_group_config
      *           Output only. The config for Compute Engine Instance Group
      *           Manager that manages this group.
@@ -221,7 +225,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Cloud Dataproc
-     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * [Auto Zone
+     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -240,7 +245,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`
      * * `n1-standard-2`
      * **Auto Zone Exception**: If you are using the Cloud Dataproc
-     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * [Auto Zone
+     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
@@ -283,7 +289,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies that this instance group contains preemptible instances.
+     * Optional. Specifies that this instance group contains preemptible
+     * instances.
      *
      * Generated from protobuf field <code>bool is_preemptible = 6;</code>
      * @return bool
@@ -294,7 +301,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifies that this instance group contains preemptible instances.
+     * Optional. Specifies that this instance group contains preemptible
+     * instances.
      *
      * Generated from protobuf field <code>bool is_preemptible = 6;</code>
      * @param bool $var

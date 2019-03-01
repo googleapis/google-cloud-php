@@ -41,8 +41,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Label **values** may be empty, but, if present, must contain 1 to 63
-     * characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * No more than 32 labels can be associated with a cluster.
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with a cluster.
      *
      * Generated from protobuf field <code>map<string, string> labels = 8;</code>
      */
@@ -68,8 +69,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $cluster_uuid = '';
     /**
      * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
-     * **Beta Feature**: This report is available for testing purposes only. It may
-     * be changed before final release.
+     * **Beta Feature**: This report is available for testing purposes only. It
+     * may be changed before final release.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterMetrics metrics = 9;</code>
      */
@@ -94,8 +95,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Label **keys** must contain 1 to 63 characters, and must conform to
      *           [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      *           Label **values** may be empty, but, if present, must contain 1 to 63
-     *           characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     *           No more than 32 labels can be associated with a cluster.
+     *           characters, and must conform to [RFC
+     *           1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     *           associated with a cluster.
      *     @type \Google\Cloud\Dataproc\V1beta2\ClusterStatus $status
      *           Output only. Cluster status.
      *     @type \Google\Cloud\Dataproc\V1beta2\ClusterStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
@@ -105,8 +107,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           generates this value when it creates the cluster.
      *     @type \Google\Cloud\Dataproc\V1beta2\ClusterMetrics $metrics
      *           Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
-     *           **Beta Feature**: This report is available for testing purposes only. It may
-     *           be changed before final release.
+     *           **Beta Feature**: This report is available for testing purposes only. It
+     *           may be changed before final release.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,8 +203,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Label **values** may be empty, but, if present, must contain 1 to 63
-     * characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * No more than 32 labels can be associated with a cluster.
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with a cluster.
      *
      * Generated from protobuf field <code>map<string, string> labels = 8;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -217,8 +220,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * Label **values** may be empty, but, if present, must contain 1 to 63
-     * characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-     * No more than 32 labels can be associated with a cluster.
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with a cluster.
      *
      * Generated from protobuf field <code>map<string, string> labels = 8;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -314,8 +318,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
-     * **Beta Feature**: This report is available for testing purposes only. It may
-     * be changed before final release.
+     * **Beta Feature**: This report is available for testing purposes only. It
+     * may be changed before final release.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterMetrics metrics = 9;</code>
      * @return \Google\Cloud\Dataproc\V1beta2\ClusterMetrics
@@ -327,8 +331,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Contains cluster daemon metrics such as HDFS and YARN stats.
-     * **Beta Feature**: This report is available for testing purposes only. It may
-     * be changed before final release.
+     * **Beta Feature**: This report is available for testing purposes only. It
+     * may be changed before final release.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterMetrics metrics = 9;</code>
      * @param \Google\Cloud\Dataproc\V1beta2\ClusterMetrics $var

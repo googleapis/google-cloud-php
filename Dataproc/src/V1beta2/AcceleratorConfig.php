@@ -25,7 +25,8 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
      * **Auto Zone Exception**: If you are using the Cloud Dataproc
-     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * [Auto Zone
+     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the accelerator type
      * resource, for example, `nvidia-tesla-k80`.
      *
@@ -54,7 +55,8 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *           * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      *           * `nvidia-tesla-k80`
      *           **Auto Zone Exception**: If you are using the Cloud Dataproc
-     *           [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     *           [Auto Zone
+     *           Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      *           feature, you must use the short name of the accelerator type
      *           resource, for example, `nvidia-tesla-k80`.
      *     @type int $accelerator_count
@@ -75,7 +77,8 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
      * **Auto Zone Exception**: If you are using the Cloud Dataproc
-     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * [Auto Zone
+     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the accelerator type
      * resource, for example, `nvidia-tesla-k80`.
      *
@@ -96,7 +99,8 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80`
      * * `nvidia-tesla-k80`
      * **Auto Zone Exception**: If you are using the Cloud Dataproc
-     * [Auto Zone Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
+     * [Auto Zone
+     * Placement](/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement)
      * feature, you must use the short name of the accelerator type
      * resource, for example, `nvidia-tesla-k80`.
      *

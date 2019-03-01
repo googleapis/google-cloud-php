@@ -36,8 +36,8 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     private $job = null;
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
-     * id, then the second request will be ignored and the
+     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest]
+     * requests  with the same id, then the second request will be ignored and the
      * first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
@@ -64,8 +64,8 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      *           Required. The job resource.
      *     @type string $request_id
      *           Optional. A unique id used to identify the request. If the server
-     *           receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
-     *           id, then the second request will be ignored and the
+     *           receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest]
+     *           requests  with the same id, then the second request will be ignored and the
      *           first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
      *           is returned.
      *           It is recommended to always set this value to a
@@ -161,8 +161,8 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
-     * id, then the second request will be ignored and the
+     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest]
+     * requests  with the same id, then the second request will be ignored and the
      * first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
@@ -180,8 +180,8 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
-     * id, then the second request will be ignored and the
+     * receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest]
+     * requests  with the same id, then the second request will be ignored and the
      * first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a

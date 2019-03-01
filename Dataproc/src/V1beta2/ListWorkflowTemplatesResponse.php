@@ -22,8 +22,8 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      */
     private $templates;
     /**
-     * Output only. This token is included in the response if there are more results
-     * to fetch. To fetch additional results, provide this value as the
+     * Output only. This token is included in the response if there are more
+     * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -39,8 +39,8 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate[]|\Google\Protobuf\Internal\RepeatedField $templates
      *           Output only. WorkflowTemplates list.
      *     @type string $next_page_token
-     *           Output only. This token is included in the response if there are more results
-     *           to fetch. To fetch additional results, provide this value as the
+     *           Output only. This token is included in the response if there are more
+     *           results to fetch. To fetch additional results, provide this value as the
      *           page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.
      * }
      */
@@ -76,8 +76,8 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This token is included in the response if there are more results
-     * to fetch. To fetch additional results, provide this value as the
+     * Output only. This token is included in the response if there are more
+     * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -89,8 +89,8 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This token is included in the response if there are more results
-     * to fetch. To fetch additional results, provide this value as the
+     * Output only. This token is included in the response if there are more
+     * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>

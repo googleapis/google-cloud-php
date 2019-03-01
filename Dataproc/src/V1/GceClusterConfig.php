@@ -57,11 +57,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     private $subnetwork_uri = '';
     /**
      * Optional. If true, all instances in the cluster will only have internal IP
-     * addresses. By default, clusters are not restricted to internal IP addresses,
-     * and will have ephemeral external IP addresses assigned to each instance.
-     * This `internal_ip_only` restriction can only be enabled for subnetwork
-     * enabled networks, and all off-cluster dependencies must be configured to be
-     * accessible without external IP addresses.
+     * addresses. By default, clusters are not restricted to internal IP
+     * addresses, and will have ephemeral external IP addresses assigned to each
+     * instance. This `internal_ip_only` restriction can only be enabled for
+     * subnetwork enabled networks, and all off-cluster dependencies must be
+     * configured to be accessible without external IP addresses.
      *
      * Generated from protobuf field <code>bool internal_ip_only = 7;</code>
      */
@@ -72,7 +72,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * permissions equivalent to the following IAM roles:
      * * roles/logging.logWriter
      * * roles/storage.objectAdmin
-     * (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
+     * (see
+     * https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
      * for more information).
      * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *
@@ -104,7 +105,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     private $tags;
     /**
      * The Compute Engine metadata entries to add to all instances (see
-     * [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     * [Project and instance
+     * metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
      */
@@ -145,18 +147,19 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * `sub0`
      *     @type bool $internal_ip_only
      *           Optional. If true, all instances in the cluster will only have internal IP
-     *           addresses. By default, clusters are not restricted to internal IP addresses,
-     *           and will have ephemeral external IP addresses assigned to each instance.
-     *           This `internal_ip_only` restriction can only be enabled for subnetwork
-     *           enabled networks, and all off-cluster dependencies must be configured to be
-     *           accessible without external IP addresses.
+     *           addresses. By default, clusters are not restricted to internal IP
+     *           addresses, and will have ephemeral external IP addresses assigned to each
+     *           instance. This `internal_ip_only` restriction can only be enabled for
+     *           subnetwork enabled networks, and all off-cluster dependencies must be
+     *           configured to be accessible without external IP addresses.
      *     @type string $service_account
      *           Optional. The service account of the instances. Defaults to the default
      *           Compute Engine service account. Custom service accounts need
      *           permissions equivalent to the following IAM roles:
      *           * roles/logging.logWriter
      *           * roles/storage.objectAdmin
-     *           (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
+     *           (see
+     *           https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
      *           for more information).
      *           Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
@@ -176,7 +179,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The Compute Engine metadata entries to add to all instances (see
-     *           [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     *           [Project and instance
+     *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      * }
      */
     public function __construct($data = NULL) {
@@ -306,11 +310,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If true, all instances in the cluster will only have internal IP
-     * addresses. By default, clusters are not restricted to internal IP addresses,
-     * and will have ephemeral external IP addresses assigned to each instance.
-     * This `internal_ip_only` restriction can only be enabled for subnetwork
-     * enabled networks, and all off-cluster dependencies must be configured to be
-     * accessible without external IP addresses.
+     * addresses. By default, clusters are not restricted to internal IP
+     * addresses, and will have ephemeral external IP addresses assigned to each
+     * instance. This `internal_ip_only` restriction can only be enabled for
+     * subnetwork enabled networks, and all off-cluster dependencies must be
+     * configured to be accessible without external IP addresses.
      *
      * Generated from protobuf field <code>bool internal_ip_only = 7;</code>
      * @return bool
@@ -322,11 +326,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. If true, all instances in the cluster will only have internal IP
-     * addresses. By default, clusters are not restricted to internal IP addresses,
-     * and will have ephemeral external IP addresses assigned to each instance.
-     * This `internal_ip_only` restriction can only be enabled for subnetwork
-     * enabled networks, and all off-cluster dependencies must be configured to be
-     * accessible without external IP addresses.
+     * addresses. By default, clusters are not restricted to internal IP
+     * addresses, and will have ephemeral external IP addresses assigned to each
+     * instance. This `internal_ip_only` restriction can only be enabled for
+     * subnetwork enabled networks, and all off-cluster dependencies must be
+     * configured to be accessible without external IP addresses.
      *
      * Generated from protobuf field <code>bool internal_ip_only = 7;</code>
      * @param bool $var
@@ -346,7 +350,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * permissions equivalent to the following IAM roles:
      * * roles/logging.logWriter
      * * roles/storage.objectAdmin
-     * (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
+     * (see
+     * https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
      * for more information).
      * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *
@@ -364,7 +369,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * permissions equivalent to the following IAM roles:
      * * roles/logging.logWriter
      * * roles/storage.objectAdmin
-     * (see https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
+     * (see
+     * https://cloud.google.com/compute/docs/access/service-accounts#custom_service_accounts
      * for more information).
      * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *
@@ -456,7 +462,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Compute Engine metadata entries to add to all instances (see
-     * [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     * [Project and instance
+     * metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -468,7 +475,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Compute Engine metadata entries to add to all instances (see
-     * [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     * [Project and instance
+     * metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

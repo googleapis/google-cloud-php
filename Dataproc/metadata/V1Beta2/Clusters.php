@@ -15,8 +15,8 @@ class Clusters
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Cloud\Dataproc\V1Beta2\Shared::initOnce();
         \GPBMetadata\Google\Cloud\Dataproc\V1Beta2\Operations::initOnce();
+        \GPBMetadata\Google\Cloud\Dataproc\V1Beta2\Shared::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
@@ -24,10 +24,10 @@ class Clusters
         $pool->internalAddGeneratedFile(hex2bin(
             "0ab32d0a2c676f6f676c652f636c6f75642f6461746170726f632f763162" .
             "657461322f636c7573746572732e70726f746f121d676f6f676c652e636c" .
-            "6f75642e6461746170726f632e763162657461321a2a676f6f676c652f63" .
-            "6c6f75642f6461746170726f632f763162657461322f7368617265642e70" .
-            "726f746f1a2e676f6f676c652f636c6f75642f6461746170726f632f7631" .
-            "62657461322f6f7065726174696f6e732e70726f746f1a23676f6f676c65" .
+            "6f75642e6461746170726f632e763162657461321a2e676f6f676c652f63" .
+            "6c6f75642f6461746170726f632f763162657461322f6f7065726174696f" .
+            "6e732e70726f746f1a2a676f6f676c652f636c6f75642f6461746170726f" .
+            "632f763162657461322f7368617265642e70726f746f1a23676f6f676c65" .
             "2f6c6f6e6772756e6e696e672f6f7065726174696f6e732e70726f746f1a" .
             "1e676f6f676c652f70726f746f6275662f6475726174696f6e2e70726f74" .
             "6f1a20676f6f676c652f70726f746f6275662f6669656c645f6d61736b2e" .
