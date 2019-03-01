@@ -382,9 +382,10 @@ class SubscriberGapicClient
      * If the name is not provided in the request, the server will assign a random
      * name for this subscription on the same project as the topic, conforming
      * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names).
-     * The generated name is populated in the returned Subscription object.
-     * Note that for REST API requests, you must specify a name in the request.
+     * [resource name
+     * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
+     * generated name is populated in the returned Subscription object. Note that
+     * for REST API requests, you must specify a name in the request.
      *
      * Sample code:
      * ```
@@ -441,7 +442,8 @@ class SubscriberGapicClient
      *          messages are not expunged from the subscription's backlog, even if they are
      *          acknowledged, until they fall out of the `message_retention_duration`
      *          window. This must be true if you would like to
-     *          <a href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
+     *          <a
+     *          href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      *          Seek to a timestamp</a>.
      *          <br><br>
      *          <b>BETA:</b> This feature is part of a beta release. This API might be
@@ -1131,9 +1133,10 @@ class SubscriberGapicClient
      * the request, the server will assign a random
      * name for this snapshot on the same project as the subscription, conforming
      * to the
-     * [resource name format](https://cloud.google.com/pubsub/docs/admin#resource_names).
-     * The generated name is populated in the returned Snapshot object. Note that
-     * for REST API requests, you must specify a name in the request.
+     * [resource name
+     * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
+     * generated name is populated in the returned Snapshot object. Note that for
+     * REST API requests, you must specify a name in the request.
      *
      * Sample code:
      * ```
