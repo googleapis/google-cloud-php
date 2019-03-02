@@ -811,8 +811,6 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name()
                 ]);
         }
-
-        \GuzzleHttp\Promise\unwrap($this->deleteCalls);
     }
 
     /**
