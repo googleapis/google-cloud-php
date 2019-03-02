@@ -22,9 +22,19 @@ class DocSnapshot extends \Google\Protobuf\Internal\Message
      */
     private $json_data = '';
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type string $path
+     *     @type string $json_data
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**

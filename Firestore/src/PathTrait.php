@@ -18,7 +18,7 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Firestore\V1beta1\FirestoreClient as FirestoreGapicClient;
+use Google\Cloud\Firestore\V1\FirestoreClient as FirestoreGapicClient;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -34,9 +34,11 @@ trait PathTrait
      * @param string $relativeName
      * @return string
      */
-    private function fullName($projectId, $database, $relativeName)
+    private function fullName($projectId, $database, $relativeName = null)
     {
-        return FirestoreGapicClient::documentPathName($projectId, $database, $relativeName);
+        return $relativeName !== null
+            ? FirestoreGapicClient::documentPathName($projectId, $database, $relativeName)
+            : FirestoreGapicClient::documentRootName($projectId, $database);
     }
 
     /**

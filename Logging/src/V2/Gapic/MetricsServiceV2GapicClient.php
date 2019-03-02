@@ -140,7 +140,7 @@ class MetricsServiceV2GapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -149,7 +149,7 @@ class MetricsServiceV2GapicClient
 
     private static function getMetricNameTemplate()
     {
-        if (self::$metricNameTemplate == null) {
+        if (null == self::$metricNameTemplate) {
             self::$metricNameTemplate = new PathTemplate('projects/{project}/metrics/{metric}');
         }
 
@@ -158,7 +158,7 @@ class MetricsServiceV2GapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'metric' => self::getMetricNameTemplate(),

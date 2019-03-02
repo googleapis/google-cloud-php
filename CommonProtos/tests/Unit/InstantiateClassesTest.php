@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\CommonProtos\Unit;
+namespace Google\Cloud\CommonProtos\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use RecursiveDirectoryIterator;

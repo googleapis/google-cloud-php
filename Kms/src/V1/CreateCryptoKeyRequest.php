@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
+ * Request message for
+ * [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CreateCryptoKeyRequest</code>
  */
 class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     * associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -43,8 +44,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     *           [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     *           associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *     @type string $crypto_key_id
      *           Required. It must be unique within a KeyRing and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
@@ -58,8 +59,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     * associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -70,8 +71,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     * associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

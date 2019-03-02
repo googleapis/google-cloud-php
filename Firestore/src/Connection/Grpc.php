@@ -17,15 +17,15 @@
 
 namespace Google\Cloud\Firestore\Connection;
 
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Firestore\V1beta1\FirestoreClient;
+use Google\Cloud\Firestore\V1\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
-use Google\Cloud\Firestore\V1beta1\DocumentMask;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery;
-use Google\Cloud\Firestore\V1beta1\TransactionOptions;
-use Google\Cloud\Firestore\V1beta1\TransactionOptions\ReadWrite;
-use Google\Cloud\Firestore\V1beta1\Write;
+use Google\Cloud\Firestore\V1\StructuredQuery;
+use Google\Cloud\Firestore\V1\TransactionOptions;
+use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
+use Google\Cloud\Firestore\V1\Write;
 use Google\ApiCore\Serializer;
 
 /**
@@ -33,6 +33,7 @@ use Google\ApiCore\Serializer;
  */
 class Grpc implements ConnectionInterface
 {
+    use EmulatorTrait;
     use GrpcTrait;
 
     /**
@@ -79,6 +80,14 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
+        //@codeCoverageIgnoreStart
+        $config += ['emulatorHost' => null];
+        if ((bool) $config['emulatorHost']) {
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
+        }
+        //@codeCoverageIgnoreEnd
+
         $this->firestore = new FirestoreClient($grpcConfig);
 
         $this->resourcePrefixHeader = FirestoreClient::databaseRootName(

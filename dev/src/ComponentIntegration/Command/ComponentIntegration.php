@@ -91,9 +91,16 @@ class ComponentIntegration extends GoogleCloudCommand
             // If the latest version in the manifest is greater than the latest remote,
             // then the component is being updated.
             // use semver to normalize both versions.
-            $isUpdated = version::gt($localLatestVersion, $remoteLatestVersion);
+            try {
+                $isUpdated = version::gt($localLatestVersion, $remoteLatestVersion);
+            } catch (\RuntimeException $e) {
+                // `master` is not a valid semver version and will raise an
+                // exception. Handle and set the value to false to continue on.
+                $isUpdated = false;
+            }
+
             $component['useLocalPath'] = $isUpdated;
-            $component['tmpDir'] = $tmpDir;
+            $component['tmpDir'] = realpath($tmpDir);
         }
 
         $components = $this->updateComposerFiles($dest, $components);
@@ -272,11 +279,21 @@ class ComponentIntegration extends GoogleCloudCommand
         $commands = [
             "cd {$component['tmpDir']}",
             "composer update --no-suggest",
-            "echo \"\\nRUNNING UNIT TESTS\\n\"",
-            "vendor/bin/phpunit",
-            "echo \"\\nRUNNING SNIPPET TESTS\\n\"",
-            "vendor/bin/phpunit -c phpunit-snippets.xml.dist"
         ];
+
+        if ($this->hasTests($component, 'Unit', 'phpunit.xml.dist')) {
+            $commands = array_merge($commands, [
+                "echo \"\\nRUNNING UNIT TESTS\\n\"",
+                "vendor/bin/phpunit",
+            ]);
+        }
+
+        if ($this->hasTests($component, 'Snippet', 'phpunit-snippets.xml.dist')) {
+            $commands = array_merge($commands, [
+                "echo \"\\nRUNNING SNIPPET TESTS\\n\"",
+                "vendor/bin/phpunit -c phpunit-snippets.xml.dist"
+            ]);
+        }
 
         passthru(implode(" && ", $commands), $exitCode);
 
@@ -311,5 +328,25 @@ class ComponentIntegration extends GoogleCloudCommand
         $composer['repositories'] = array_merge($oldRepositories, $repositories);
 
         file_put_contents($composerFile, json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+    }
+
+    private function hasTests(array $component, $folderName, $configFile)
+    {
+        $folderPath = $component['tmpDir'] . '/tests/' . $folderName;
+        $configFilePath = $component['tmpDir'] . '/' . $configFile;
+
+        if (file_exists($folderPath)) {
+            if (!file_exists($configFilePath)) {
+                throw new \RuntimeException(sprintf(
+                    'Test folder %s exists, but no relevant PHPUnit configuration was found at %s.',
+                    $folderPath,
+                    $configFilePath
+                ));
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

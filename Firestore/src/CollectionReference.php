@@ -19,8 +19,6 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**

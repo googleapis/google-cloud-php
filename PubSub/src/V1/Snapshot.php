@@ -9,8 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A snapshot resource.<br><br>
- * <b>ALPHA:</b> This feature is part of an alpha release. This API might be
+ * A snapshot resource. Snapshots are used in
+ * <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
+ * operations, which allow
+ * you to manage message acknowledgments in bulk. That is, you can set the
+ * acknowledgment state of messages in an existing subscription to the state
+ * captured by a snapshot.<br><br>
+ * <b>BETA:</b> This feature is part of a beta release. This API might be
  * changed in backward-incompatible ways and is not recommended for production
  * use. It is not subject to any SLA or deprecation policy.
  *
@@ -46,7 +51,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     * managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      */
@@ -74,7 +80,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           exists -- will expire in 4 days. The service will refuse to create a
      *           snapshot that would expire in less than 1 hour after creation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     *           managing labels</a>.
      * }
      */
     public function __construct($data = NULL) {
@@ -179,7 +186,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     * managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -190,7 +198,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     * managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

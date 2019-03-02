@@ -346,12 +346,16 @@ class ReleaseBuilder extends GoogleCloudCommand
 
             $choices = [
                 'Proceed without changes',
-                'Change component release type or message.',
+                'Change Release Message',
+                'Change Release Type to Patch',
+                'Change Release Type to Minor',
+                'Change Release Type to Major',
                 'Start over'
             ];
             $q = $this->choice('Choose an action', $choices, $choices[0]);
 
-            $action = $this->removeDefaultFromChoice($this->askQuestion($q));
+            $action = $this->askQuestion($q);
+            $action = $this->removeDefaultFromChoice($action);
 
             switch ($action) {
                 case $choices[0]:
@@ -362,7 +366,19 @@ class ReleaseBuilder extends GoogleCloudCommand
                     $commitRelease = $this->handleChange($output, $commitRelease);
                     break;
 
-                case $choices[2]:
+                case $choices[2]: // patch
+                    $commitRelease = $this->handleChange($output, $commitRelease, self::LEVEL_PATCH);
+                    break;
+
+                case $choices[3]: // minor
+                    $commitRelease = $this->handleChange($output, $commitRelease, self::LEVEL_MINOR);
+                    break;
+
+                case $choices[4]: // major
+                    $commitRelease = $this->handleChange($output, $commitRelease, self::LEVEL_MAJOR);
+                    break;
+
+                case $choices[5]:
                     $commitRelease = $this->processCommit($output, $commit, $components);
                     break;
             }
@@ -379,105 +395,78 @@ class ReleaseBuilder extends GoogleCloudCommand
      * @param OutputInterface $output
      * @param array $commitRelease Structured data about components modified by
      *        the current commit.
+     * @param int|null $level The level to change to. If null, assume change release message.
      */
-    public function handleChange(OutputInterface $output, array $commitRelease)
+    public function handleChange(OutputInterface $output, array $commitRelease, $level = null)
     {
         $choices = array_keys($commitRelease);
 
-        $noMoreChanges = false;
-        do {
-            if (count($choices) > 1) {
-                $q = $this->choice('Choose a component to modify.', array_merge($choices, [
-                    'Go Back'
-                ]));
-                $component = $this->askQuestion($q);
-
-                if ($component === 'Go Back') {
-                    $noMoreChanges = true;
-                    continue;
-                }
-            } else {
-                $component = $choices[0];
-            }
-
-            $componentOverview = sprintf(
-                '<info>google/%s</info> [<info>%s</info>]:',
-                $component,
-                $this->levels[$commitRelease[$component]['level']]
-            );
-
-            $q = $this->choice(sprintf('%s What to you want to change?', $componentOverview), [
-                'Message',
-                'Release Type',
+        if (count($choices) > 1) {
+            $options = array_merge([
+                'All Components'
+            ], $choices, [
                 'Go Back'
             ]);
-            $action = $this->askQuestion($q);
 
-            switch ($action) {
-                case 'Message':
-                    $commitRelease[$component]['message'] = $this->askMessage(
-                        $commitRelease[$component],
-                        $componentOverview
-                    );
-                    break;
+            // By default, all components are batch modified in this method.
+            $q = $this->choice('Choose a component to modify.', $options, $options[0]);
+            $component = $this->removeDefaultFromChoice($this->askQuestion($q));
 
-                case 'Release Type':
-                    $commitRelease[$component]['level'] = $this->askLevel(
-                        $componentOverview
-                    );
-                    break;
-
-                case 'Go Back':
-                    if (count($choices) === 1) {
-                        $noMoreChanges = true;
-                    }
-
-                    continue 2;
+            if ($component === 'Go Back') {
+                return $commitRelease;
             }
-        } while (!$noMoreChanges);
+
+            if ($component === 'All Components') {
+                $component = null;
+            }
+        } else {
+            $component = $choices[0];
+        }
+
+        if ($level === null) {
+            if ($component) {
+                $componentOverview = sprintf(
+                    '<info>google/%s</info> [<info>%s</info>]:',
+                    $component,
+                    $this->levels[$commitRelease[$component]['level']]
+                );
+
+                $currentMessage = $commitRelease[$component]['message'];
+            } else {
+                $componentOverview = sprintf(
+                    'Modifying <info>%s</info> components.',
+                    count($commitRelease)
+                );
+
+                $currentMessage = current($commitRelease)['message'];
+            }
+
+            $key = 'message';
+            $value = $this->ask(sprintf(
+                '%s Enter a release note message. Do not enter the Pull Request reference number.'.
+                PHP_EOL .'  - Message: <info>%s</info>',
+                $componentOverview,
+                $currentMessage
+            ), $currentMessage);
+
+            $value .= ' (#'. current($commitRelease)['ref'] .')';
+        } elseif (array_key_exists($level, $this->levels)) {
+            $key = 'level';
+            $value = $level;
+        } else {
+            throw new \Exception('Something went really wrong.');
+        }
+
+        if ($component) {
+            $commitRelease[$component][$key] = $value;
+        } else {
+            foreach ($commitRelease as &$commitComponent) {
+                $commitComponent[$key] = $value;
+            }
+
+        }
 
         return $commitRelease;
-    }
-
-    /**
-     * Interactive multiple-choice dialog to select a release level.
-     *
-     * @param string $overview A string describing the name and current state of
-     *        the component.
-     * @return int The new commit level.
-     */
-    private function askLevel($overview)
-    {
-        $q = $this->choice(sprintf(
-            '%s Choose a release level.',
-            $overview
-        ), $this->levels);
-
-        $level = $this->askQuestion($q);
-
-        return array_search($level, $this->levels);
-    }
-
-    /**
-     * An interactive dialog to modify the release note for a component.
-     *
-     * @param array $component An array containing component data.
-     * @param string $overview A string describing the name and current state of
-     *        the component.
-     * @return string
-     */
-    private function askMessage(array $component, $overview)
-    {
-        $message = $this->ask(sprintf(
-            '%s Enter a release note message. Do not enter the Pull Request reference number.'.
-            PHP_EOL .'  - Message: <info>%s</info>',
-            $overview,
-            $component['message']
-        ), $component['message']);
-
-        $message .= ' (#'. $component['ref'] .')';
-
-        return $message;
     }
 
     /**

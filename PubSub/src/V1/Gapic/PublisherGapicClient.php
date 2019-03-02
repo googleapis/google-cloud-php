@@ -135,7 +135,7 @@ class PublisherGapicClient
 
     private static function getTopicNameTemplate()
     {
-        if (self::$topicNameTemplate == null) {
+        if (null == self::$topicNameTemplate) {
             self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
         }
 
@@ -144,7 +144,7 @@ class PublisherGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -153,7 +153,7 @@ class PublisherGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'topic' => self::getTopicNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
@@ -299,7 +299,8 @@ class PublisherGapicClient
 
     /**
      * Creates the given topic with the given name. See the
-     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names"> resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>.
      *
      * Sample code:
      * ```
@@ -322,7 +323,8 @@ class PublisherGapicClient
      *                             Optional.
      *
      *     @type array $labels
-     *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     *          managing labels</a>.
      *     @type MessageStoragePolicy $messageStoragePolicy
      *          Policy constraining how messages published to the topic may be stored. It
      *          is determined when the topic is created based on the policy configured at

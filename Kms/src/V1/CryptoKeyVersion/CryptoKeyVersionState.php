@@ -5,7 +5,8 @@
 namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
 
 /**
- * The state of a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating if it can be used.
+ * The state of a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion],
+ * indicating if it can be used.
  *
  * Protobuf type <code>google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState</code>
  */
@@ -20,7 +21,9 @@ class CryptoKeyVersionState
     /**
      * This version is still being generated. It may not be used, enabled,
      * disabled, or destroyed yet. Cloud KMS will automatically mark this
-     * version [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] as soon as the version is ready.
+     * version
+     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
+     * as soon as the version is ready.
      *
      * Generated from protobuf enum <code>PENDING_GENERATION = 5;</code>
      */
@@ -33,7 +36,9 @@ class CryptoKeyVersionState
     const ENABLED = 1;
     /**
      * This version may not be used, but the key material is still available,
-     * and the version can be placed back into the [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] state.
+     * and the version can be placed back into the
+     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
+     * state.
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */
@@ -49,7 +54,9 @@ class CryptoKeyVersionState
      * This version is scheduled for destruction, and will be destroyed soon.
      * Call
      * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
-     * to put it back into the [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED] state.
+     * to put it back into the
+     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED]
+     * state.
      *
      * Generated from protobuf enum <code>DESTROY_SCHEDULED = 4;</code>
      */

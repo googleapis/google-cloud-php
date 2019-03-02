@@ -8,7 +8,7 @@ jobs:
         - composer self-update
         - travis_retry composer install
         - ./dev/google-cloud credentials
-        - composer --no-interaction --dev remove google/protobuf google/gax google/proto-client
+        - composer --no-interaction --dev remove google/protobuf google/gax
 
     - stage: "Push Docs"
       php: 7.2

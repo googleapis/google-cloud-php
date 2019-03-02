@@ -25,7 +25,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
-use Google\Cloud\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
 

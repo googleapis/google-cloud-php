@@ -63,9 +63,9 @@ use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: The Google BigQuery Data Transfer Service API enables BigQuery users to
- * configure the transfer of their data from other Google Products into BigQuery.
- * This service contains methods that are end user exposed. It backs up the
- * frontend.
+ * configure the transfer of their data from other Google Products into
+ * BigQuery. This service contains methods that are end user exposed. It backs
+ * up the frontend.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -144,7 +144,7 @@ class DataTransferServiceGapicClient
 
     private static function getProjectDataSourceNameTemplate()
     {
-        if (self::$projectDataSourceNameTemplate == null) {
+        if (null == self::$projectDataSourceNameTemplate) {
             self::$projectDataSourceNameTemplate = new PathTemplate('projects/{project}/dataSources/{data_source}');
         }
 
@@ -153,7 +153,7 @@ class DataTransferServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -162,7 +162,7 @@ class DataTransferServiceGapicClient
 
     private static function getProjectTransferConfigNameTemplate()
     {
-        if (self::$projectTransferConfigNameTemplate == null) {
+        if (null == self::$projectTransferConfigNameTemplate) {
             self::$projectTransferConfigNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}');
         }
 
@@ -171,7 +171,7 @@ class DataTransferServiceGapicClient
 
     private static function getProjectRunNameTemplate()
     {
-        if (self::$projectRunNameTemplate == null) {
+        if (null == self::$projectRunNameTemplate) {
             self::$projectRunNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}/runs/{run}');
         }
 
@@ -180,7 +180,7 @@ class DataTransferServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'projectDataSource' => self::getProjectDataSourceNameTemplate(),
                 'project' => self::getProjectNameTemplate(),

@@ -10,9 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request for the `CreateSnapshot` method.<br><br>
- * <b>ALPHA:</b> This feature is part of an alpha release. This API might be changed in
- * backward-incompatible ways and is not recommended for production use.
- * It is not subject to any SLA or deprecation policy.
+ * <b>BETA:</b> This feature is part of a beta release. This API might be
+ * changed in backward-incompatible ways and is not recommended for production
+ * use. It is not subject to any SLA or deprecation policy.
  *
  * Generated from protobuf message <code>google.pubsub.v1.CreateSnapshotRequest</code>
  */
@@ -23,7 +23,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * If the name is not provided in the request, the server will assign a random
      * name for this snapshot on the same project as the subscription.
      * Note that for REST API requests, you must specify a name.  See the
-     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -44,7 +45,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     private $subscription = '';
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     * managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 3;</code>
      */
@@ -61,7 +63,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *           If the name is not provided in the request, the server will assign a random
      *           name for this snapshot on the same project as the subscription.
      *           Note that for REST API requests, you must specify a name.  See the
-     *           <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">resource name rules</a>.
+     *           <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     *           resource name rules</a>.
      *           Format is `projects/{project}/snapshots/{snap}`.
      *     @type string $subscription
      *           The subscription whose backlog the snapshot retains.
@@ -74,7 +77,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *                successful completion of the CreateSnapshot request.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     *           managing labels</a>.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +91,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * If the name is not provided in the request, the server will assign a random
      * name for this snapshot on the same project as the subscription.
      * Note that for REST API requests, you must specify a name.  See the
-     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -103,7 +108,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * If the name is not provided in the request, the server will assign a random
      * name for this snapshot on the same project as the subscription.
      * Note that for REST API requests, you must specify a name.  See the
-     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">resource name rules</a>.
+     * <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
+     * resource name rules</a>.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -161,7 +167,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     * managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -172,7 +179,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and managing labels</a>.
+     * See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+     * managing labels</a>.
      *
      * Generated from protobuf field <code>map<string, string> labels = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

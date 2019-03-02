@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.10.0';
+    const VERSION = '1.11.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -304,6 +304,11 @@ class StorageClient
      *           period for objects in seconds. During the retention period an
      *           object cannot be overwritten or deleted. Retention period must
      *           be greater than zero and less than 100 years.
+     *     @type array $iamConfiguration The bucket's IAM configuration.
+     *     @type bool $iamConfiguration.bucketPolicyOnly.enabled If set and
+     *           true, access checks only use bucket-level IAM policies or
+     *           above. When enabled, requests attempting to view or manipulate
+     *           ACLs will fail with error code 400.
      * }
      * @return Bucket
      * @throws GoogleException When a project ID has not been detected.

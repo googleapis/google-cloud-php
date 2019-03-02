@@ -32,14 +32,15 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           Update existing rows in a table. If any of the rows does not
      *           already exist, the transaction fails with error `NOT_FOUND`.
      *     @type \Google\Cloud\Spanner\V1\Mutation\Write $insert_or_update
-     *           Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
-     *           its column values are overwritten with the ones provided. Any
-     *           column values not explicitly written are preserved.
+     *           Like [insert][google.spanner.v1.Mutation.insert], except that if the row
+     *           already exists, then its column values are overwritten with the ones
+     *           provided. Any column values not explicitly written are preserved.
      *     @type \Google\Cloud\Spanner\V1\Mutation\Write $replace
-     *           Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
-     *           deleted, and the column values provided are inserted
-     *           instead. Unlike [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this means any values not
-     *           explicitly written become `NULL`.
+     *           Like [insert][google.spanner.v1.Mutation.insert], except that if the row
+     *           already exists, it is deleted, and the column values provided are
+     *           inserted instead. Unlike
+     *           [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this
+     *           means any values not explicitly written become `NULL`.
      *     @type \Google\Cloud\Spanner\V1\Mutation\Delete $delete
      *           Delete rows from a table. Succeeds whether or not the named
      *           rows were present.
@@ -107,9 +108,9 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
-     * its column values are overwritten with the ones provided. Any
-     * column values not explicitly written are preserved.
+     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row
+     * already exists, then its column values are overwritten with the ones
+     * provided. Any column values not explicitly written are preserved.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation\Write
@@ -120,9 +121,9 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
-     * its column values are overwritten with the ones provided. Any
-     * column values not explicitly written are preserved.
+     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row
+     * already exists, then its column values are overwritten with the ones
+     * provided. Any column values not explicitly written are preserved.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation\Write $var
@@ -137,10 +138,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
-     * deleted, and the column values provided are inserted
-     * instead. Unlike [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this means any values not
-     * explicitly written become `NULL`.
+     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row
+     * already exists, it is deleted, and the column values provided are
+     * inserted instead. Unlike
+     * [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this
+     * means any values not explicitly written become `NULL`.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation\Write
@@ -151,10 +153,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
-     * deleted, and the column values provided are inserted
-     * instead. Unlike [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this means any values not
-     * explicitly written become `NULL`.
+     * Like [insert][google.spanner.v1.Mutation.insert], except that if the row
+     * already exists, it is deleted, and the column values provided are
+     * inserted instead. Unlike
+     * [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this
+     * means any values not explicitly written become `NULL`.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation\Write $var

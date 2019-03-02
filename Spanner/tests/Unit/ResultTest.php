@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
@@ -29,6 +28,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group spanner
+ * @group spanner-result
  */
 class ResultTest extends TestCase
 {
@@ -57,7 +57,6 @@ class ResultTest extends TestCase
     public function testRows($chunks, $expectedValues)
     {
         $result = iterator_to_array($this->getResultClass($chunks)->rows());
-
         $this->assertEquals($expectedValues, $result);
     }
 
@@ -97,6 +96,42 @@ class ResultTest extends TestCase
                     if ($timesCalled === 1 && $key === 2) {
                         throw new ServiceException('Unavailable', 14);
                     }
+                    yield $chunk;
+                }
+            }
+        );
+
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
+    public function testResumesAfterStreamStartFailure()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b']
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+                if ($timesCalled === 1) {
+                    throw new ServiceException('Unavailable', 14);
+                }
+
+                foreach ($chunks as $key => $chunk) {
                     yield $chunk;
                 }
             }

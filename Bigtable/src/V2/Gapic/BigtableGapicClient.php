@@ -140,7 +140,7 @@ class BigtableGapicClient
 
     private static function getTableNameTemplate()
     {
-        if (self::$tableNameTemplate == null) {
+        if (null == self::$tableNameTemplate) {
             self::$tableNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/tables/{table}');
         }
 
@@ -149,7 +149,7 @@ class BigtableGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'table' => self::getTableNameTemplate(),
             ];

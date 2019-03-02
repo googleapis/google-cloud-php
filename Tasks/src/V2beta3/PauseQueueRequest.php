@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue].
+ * Request message for
+ * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.PauseQueueRequest</code>
  */

@@ -77,6 +77,9 @@ class QueryJobConfigurationTest extends TestCase
             ->willReturn($this->tableIdentity);
         $query = [
             'allowLargeResults' => true,
+            'clustering' => [
+                'fields' => ['a', 'b', 'c']
+            ],
             'createDisposition' => 'CREATE_NEVER',
             'defaultDataset' => $this->datasetIdentity,
             'destinationEncryptionConfiguration' => [
@@ -109,6 +112,7 @@ class QueryJobConfigurationTest extends TestCase
             + $this->expectedConfig['configuration']['query'];
         $this->config
             ->allowLargeResults($query['allowLargeResults'])
+            ->clustering($query['clustering'])
             ->createDisposition($query['createDisposition'])
             ->defaultDataset($defaultDataset->reveal())
             ->destinationEncryptionConfiguration($query['destinationEncryptionConfiguration'])

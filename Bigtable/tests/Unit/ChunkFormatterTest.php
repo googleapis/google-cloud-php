@@ -31,6 +31,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ChunkFormatterTest extends TestCase
 {
+    const TABLE_NAME = 'test-table';
     private $serverStream;
     private $chunkFormatter;
 
@@ -38,7 +39,11 @@ class ChunkFormatterTest extends TestCase
     {
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->chunkFormatter = new ChunkFormatter(
-            $this->serverStream->reveal()
+            function () {
+                return $this->serverStream->reveal();
+            },
+            self::TABLE_NAME,
+            []
         );
     }
 

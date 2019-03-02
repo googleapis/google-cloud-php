@@ -13,9 +13,11 @@ PHP 7.2 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/b
 * [API Documentation](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
+* [Cloud Firestore](#cloud-firestore-ga) (GA)
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
 * [Google BigQuery](#google-bigquery-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
+* [Google Cloud KMS](#google-cloud-kms-ga) (GA)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
@@ -24,13 +26,14 @@ This client supports the following Google Cloud Platform services at a [General 
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
-* [Cloud Firestore](#cloud-firestore-beta) (Beta)
+* [Cloud AutoML](#cloud-automl-beta) (Beta)
+* [Google Bigtable](#google-bigtable-beta) (Beta)
 * [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
-* [Google Cloud KMS](#google-cloud-kms-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
+* [Google Cloud Scheduler](#google-cloud-scheduler-beta) (Beta)
 * [Google Cloud Tasks](#google-cloud-tasks-beta) (Beta)
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
@@ -40,11 +43,11 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Dialogflow API](#dialogflow-api-alpha) (Alpha)
-* [Google Bigtable](#google-bigtable-alpha) (Alpha)
 * [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -114,6 +117,35 @@ $ pecl install protobuf
 
 * [gRPC Installation Instructions](https://cloud.google.com/php/grpc)
 * [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library)
+
+## Cloud Firestore (GA)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
+- [Official Documentation](https://cloud.google.com/firestore/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Firestore\FirestoreClient;
+
+$firestore = new FirestoreClient();
+
+$collectionReference = $firestore->collection('Users');
+$documentReference = $collectionReference->document($userId);
+$snapshot = $documentReference->snapshot();
+
+echo "Hello " . $snapshot['firstName'];
+```
+
+#### google/cloud-firestore
+
+[Cloud Firestore](https://github.com/googleapis/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
+
+```
+$ composer require google/cloud-firestore
+```
 
 ## Cloud Spanner (GA)
 
@@ -228,6 +260,74 @@ $entity = $datastore->lookup($key);
 
 ```
 $ composer require google/cloud-datastore
+```
+
+## Google Cloud KMS (GA)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/kms/readme)
+- [Official Documentation](https://cloud.google.com/kms/docs/reference/rest/)
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\CryptoKey;
+use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose;
+use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\KeyRing;
+
+$client = new KeyManagementServiceClient();
+
+$projectId = 'example-project';
+$location = 'global';
+
+// Create a keyring
+$keyRingId = 'example-keyring';
+$locationName = $client::locationName($projectId, $location);
+$keyRingName = $client::keyRingName($projectId, $location, $keyRingId);
+
+try {
+    $keyRing = $client->getKeyRing($keyRingName);
+} catch (ApiException $e) {
+    if ($e->getStatus() === 'NOT_FOUND') {
+        $keyRing = new KeyRing();
+        $keyRing->setName($keyRingName);
+        $client->createKeyRing($locationName, $keyRingId, $keyRing);
+    }
+}
+
+// Create a cryptokey
+$keyId = 'example-key';
+$keyName = $client::cryptoKeyName($projectId, $location, $keyRingId, $keyId);
+
+try {
+    $cryptoKey = $client->getCryptoKey($keyName);
+} catch (ApiException $e) {
+    if ($e->getStatus() === 'NOT_FOUND') {
+        $cryptoKey = new CryptoKey();
+        $cryptoKey->setPurpose(CryptoKeyPurpose::ENCRYPT_DECRYPT);
+        $cryptoKey = $client->createCryptoKey($keyRingName, $keyId, $cryptoKey);
+    }
+}
+
+// Encrypt and decrypt
+$secret = 'My secret text';
+$response = $client->encrypt($keyName, $secret);
+$cipherText = $response->getCiphertext();
+
+$response = $client->decrypt($keyName, $cipherText);
+
+$plainText = $response->getPlaintext();
+
+assert($secret === $plainText);
+```
+
+#### google/cloud-kms
+
+[Google Cloud KMS](https://github.com/googleapis/google-cloud-php-kms) can be installed separately by requiring the [`google/cloud-kms`](https://packagist.org/packages/google/cloud-kms) composer package:
+
+```
+$ composer require google/cloud-kms
 ```
 
 ## Google Cloud Pub/Sub (GA)
@@ -482,33 +582,66 @@ foreach ($entries as $entry) {
 $ composer require google/cloud-logging
 ```
 
-## Cloud Firestore (Beta)
+## Cloud AutoML (Beta)
 
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/firestore/firestoreclient)
-- [Official Documentation](https://cloud.google.com/firestore/docs)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/automl/v1beta1/automlclient)
+- [Official Documentation](https://cloud.google.com/automl/docs)
 
 #### Preview
 
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
+use Google\Cloud\AutoMl\V1beta1\TranslationDatasetMetadata;
 
-$firestore = new FirestoreClient();
-
-$collectionReference = $firestore->collection('Users');
-$documentReference = $collectionReference->document($userId);
-$snapshot = $documentReference->snapshot();
-
-echo "Hello " . $snapshot['firstName'];
+$autoMlClient = new AutoMlClient();
+$formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
+$dataset = new Dataset([
+    'display_name' => '[DISPLAY_NAME]',
+    'translation_dataset_metadata' => new TranslationDatasetMetadata([
+        'source_language_code' => 'en',
+        'target_language_code' => 'es'
+    ])
+]);
+$response = $autoMlClient->createDataset($formattedParent, $dataset);
 ```
 
-#### google/cloud-firestore
+#### google/cloud-automl
 
-[Cloud Firestore](https://github.com/googleapis/google-cloud-php-firestore) can be installed separately by requiring the [`google/cloud-firestore`](https://packagist.org/packages/google/cloud-firestore) composer package:
+[Cloud AutoML](https://github.com/GoogleCloudPlatform/google-cloud-php-automl) can be installed separately by requiring the [`google/cloud-automl`](https://packagist.org/packages/google/cloud-automl) composer package:
 
 ```
 $ composer require google/cloud-firestore
+```
+
+## Google Bigtable (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
+- [Official Documentation](https://cloud.google.com/bigtable/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Bigtable\BigtableClient;
+
+$bigtable = new BigtableClient();
+$table = $bigtable->table('my-instance', 'my-table');
+$rows = $table->readRows();
+
+foreach ($rows as $row) {
+    print_r($row) . PHP_EOL;
+}
+```
+
+#### google/cloud-bigtable
+
+[Google Bigtable](https://github.com/googleapis/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
+
+```
+$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud Asset (Beta)
@@ -626,74 +759,6 @@ $submittedJob = $jobControllerClient->submitJob($projectId, $region, $job);
 $ composer require google/cloud-dataproc
 ```
 
-## Google Cloud KMS (Beta)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/kms/readme)
-- [Official Documentation](https://cloud.google.com/kms/docs/reference/rest/)
-
-```php
-require __DIR__ . '/vendor/autoload.php';
-
-use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\CryptoKey;
-use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
-use Google\Cloud\Kms\V1\KeyRing;
-
-$client = new KeyManagementServiceClient();
-
-$projectId = 'example-project';
-$location = 'global';
-
-// Create a keyring
-$keyRingId = 'example-keyring';
-$locationName = $client::locationName($projectId, $location);
-$keyRingName = $client::keyRingName($projectId, $location, $keyRingId);
-
-try {
-    $keyRing = $client->getKeyRing($keyRingName);
-} catch (ApiException $e) {
-    if ($e->getStatus() === 'NOT_FOUND') {
-        $keyRing = new KeyRing();
-        $keyRing->setName($keyRingName);
-        $client->createKeyRing($locationName, $keyRingId, $keyRing);
-    }
-}
-
-// Create a cryptokey
-$keyId = 'example-key';
-$keyName = $client::cryptoKeyName($projectId, $location, $keyRingId, $keyId);
-
-try {
-    $cryptoKey = $client->getCryptoKey($keyName);
-} catch (ApiException $e) {
-    if ($e->getStatus() === 'NOT_FOUND') {
-        $cryptoKey = new CryptoKey();
-        $cryptoKey->setPurpose(CryptoKeyPurpose::ENCRYPT_DECRYPT);
-        $cryptoKey = $client->createCryptoKey($keyRingName, $keyId, $cryptoKey);
-    }
-}
-
-// Encrypt and decrypt
-$secret = 'My secret text';
-$response = $client->encrypt($keyName, $secret);
-$cipherText = $response->getCiphertext();
-
-$response = $client->decrypt($keyName, $cipherText);
-
-$plainText = $response->getPlaintext();
-
-assert($secret === $plainText);
-```
-
-#### google/cloud-kms
-
-[Google Cloud KMS](https://github.com/googleapis/google-cloud-php-kms) can be installed separately by requiring the [`google/cloud-kms`](https://packagist.org/packages/google/cloud-kms) composer package:
-
-```
-$ composer require google/cloud-kms
-```
-
 ## Google Cloud Natural Language (Beta)
 
 - [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/language/languageclient)
@@ -761,6 +826,30 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 ```
 $ composer require google/cloud-oslogin
+```
+
+## Google Cloud Scheduler (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/scheduler/readme)
+- [Official Documentation](https://cloud.google.com/scheduler/docs/)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Scheduler\V1beta1\CloudSchedulerClient;
+
+$schedulerClient = new CloudSchedulerClient();
+$projectId = '[MY_PROJECT_ID]';
+$formattedName = $schedulerClient->projectName($projectId);
+$jobs = $schedulerClient->listJobs($formattedName);
+```
+
+#### google/cloud-scheduler
+
+[Google Cloud Scheduler](https://github.com/googleapis/google-cloud-php-scheduler) can be installed separately by requiring the [`google/cloud-scheduler`](https://packagist.org/packages/google/cloud-scheduler) composer package:
+
+```
+$ composer require google/cloud-scheduler
 ```
 
 ## Google Cloud Tasks (Beta)
@@ -1077,35 +1166,6 @@ foreach ($entityType->getEntities() as $entity) {
 $ composer require google/cloud-dialogflow
 ```
 
-## Google Bigtable (Alpha)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
-- [Official Documentation](https://cloud.google.com/bigtable/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Bigtable\BigtableClient;
-
-$bigtable = new BigtableClient();
-$table = $bigtable->table('my-instance', 'my-table');
-$rows = $table->readRows();
-
-foreach ($rows as $row) {
-    print_r($row) . PHP_EOL;
-}
-```
-
-#### google/cloud-bigtable
-
-[Google Bigtable](https://github.com/googleapis/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
-
-```
-$ composer require google/cloud-bigtable
-```
-
 ## Google Cloud BigQuery Data Transfer (Alpha)
 
 - [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigquerydatatransfer/readme)
@@ -1213,19 +1273,23 @@ $ composer require google/cloud-redis
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Speech\SpeechClient;
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 
-$speech = new SpeechClient([
-    'languageCode' => 'en-US'
-]);
+$recognitionConfig = new RecognitionConfig();
+$recognitionConfig->setEncoding(AudioEncoding::FLAC);
+$recognitionConfig->setSampleRateHertz(44100);
+$recognitionConfig->setLanguageCode('en-US');
+$config = new StreamingRecognitionConfig();
+$config->setConfig($recognitionConfig);
 
-// Recognize the speech in an audio file.
-$results = $speech->recognize(
-    fopen(__DIR__ . '/audio_sample.flac', 'r')
-);
+$audioResource = fopen('path/to/audio.flac', 'r');
 
-foreach ($results as $result) {
-    echo $result->topAlternative()['transcript'] . "\n";
+$responses = $speechClient->recognizeAudioStream($config, $audioResource);
+
+foreach ($responses as $element) {
+    // doSomethingWith($element);
 }
 ```
 
@@ -1235,6 +1299,38 @@ foreach ($results as $result) {
 
 ```
 $ composer require google/cloud-speech
+```
+
+## Google Cloud Talent Solution (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
+- [Official Documentation](https://cloud.google.com/talent-solution/job-search/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Talent\V4beta1\Company;
+use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
+
+$client = new CompanyServiceClient();
+$response = $client->createCompany(
+    CompanyServiceClient::projectName('MY_PROJECT_ID'),
+    new Company([
+        'display_name' => 'Google, LLC',
+        'external_id' => 1,
+        'headquarters_address' => '1600 Amphitheatre Parkway, Mountain View, CA'
+    ])
+);
+```
+
+#### google/cloud-talent
+
+[Google Cloud Talent Solution](https://github.com/googleapis/google-cloud-php-talent) can be installed separately by requiring the [`google/cloud-talent`](https://packagist.org/packages/google/cloud-talent) composer package:
+
+```
+$ composer require google/cloud-talent
 ```
 
 ## Google Stackdriver Debugger (Alpha)

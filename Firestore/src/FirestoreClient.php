@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\AbortedException;
@@ -42,9 +41,30 @@ use Psr\Http\Message\StreamInterface;
  * $ pecl install protobuf
  * ```
  *
+ * To enable the
+ * [Google Cloud Firestore Emulator](https://cloud.google.com/sdk/gcloud/reference/beta/emulators/firestore/),
+ * set the `FIRESTORE_EMULATOR_HOST` to the value provided by the gcloud command.
+ *
+ * Please note that Google Cloud PHP currently does not support IPv6 hostnames.
+ * If the Firestore emulator provides a IPv6 hostname, or a comma-separated list
+ * of both IPv6 and IPv4 names, be sure to set the environment variable to only
+ * an IPv4 address. The equivalent of `[::1]:8080`, for instance, would be
+ * `127.0.0.1:8080`.
+ *
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * ```
+ *
+ * ```
+ * // Using the Firestore Emulator
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `8900` is used as an example only.
+ * putenv('FIRESTORE_EMULATOR_HOST=localhost:8900');
  *
  * $firestore = new FirestoreClient();
  * ```
@@ -55,7 +75,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '0.15.7';
+    const VERSION = '1.1.1';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -112,11 +132,15 @@ class FirestoreClient
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('FIRESTORE_EMULATOR_HOST');
+
         $this->requireGrpc();
         $config += [
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
-            'database' => self::DEFAULT_DATABASE
+            'database' => self::DEFAULT_DATABASE,
+            'hasEmulator' => (bool) $emulatorHost,
+            'emulatorHost' => $emulatorHost
         ];
 
         $this->database = $config['database'];
@@ -216,7 +240,7 @@ class FirestoreClient
                 },
                 [$this->connection, 'listCollectionIds'],
                 [
-                    'parent' => $this->databaseName($this->projectId, $this->database),
+                    'parent' => $this->fullName($this->projectId, $this->database),
                 ] + $options,
                 [
                     'itemsKey' => 'collectionIds',

@@ -699,7 +699,8 @@ class StorageObjectTest extends TestCase
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
-        $this->assertContains('response-content-disposition=attachment;filename="foo"', $pieces);
+        $filename = urlencode('"foo"');
+        $this->assertContains('response-content-disposition=attachment;filename=' . $filename, $pieces);
     }
 
     /**

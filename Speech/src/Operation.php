@@ -35,6 +35,9 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  *     fopen(__DIR__  . '/audio.flac', 'r')
  * );
  * ```
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Operation
 {
@@ -64,6 +67,10 @@ class Operation
         $this->connection = $connection;
         $this->name = $name;
         $this->info = $info;
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

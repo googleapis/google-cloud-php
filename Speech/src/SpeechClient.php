@@ -30,6 +30,10 @@ use Psr\Cache\CacheItemPoolInterface;
  * transcription from the Cloud Speech API service. Find more information at the
  * [Google Cloud Speech docs](https://cloud.google.com/speech/docs/).
  *
+ * Please note this client will be deprecated in our next release. In order
+ * to receive the latest features and updates, please take
+ * the time to familiarize yourself with {@see Google\Cloud\Speech\V1\SpeechClient}.
+ *
  * Example:
  * ```
  * use Google\Cloud\Speech\SpeechClient;
@@ -38,12 +42,15 @@ use Psr\Cache\CacheItemPoolInterface;
  *     'languageCode' => 'en-US'
  * ]);
  * ```
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class SpeechClient
 {
     use ClientTrait;
 
-    const VERSION = '0.18.2';
+    const VERSION = '0.21.0';
 
     const SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -109,6 +116,10 @@ class SpeechClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

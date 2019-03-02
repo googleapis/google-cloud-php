@@ -55,11 +55,11 @@ use Google\Protobuf\GPBEmpty;
  *
  * You can include contexts as input parameters of a
  * [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) request,
- * or as output contexts included in the returned intent.
- * Contexts expire when an intent is matched, after the number of `DetectIntent`
- * requests specified by the `lifespan_count` parameter, or after 10 minutes
- * if no intents are matched for a `DetectIntent` request.
+ * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent])
+ * request, or as output contexts included in the returned intent. Contexts
+ * expire when an intent is matched, after the number of `DetectIntent` requests
+ * specified by the `lifespan_count` parameter, or after 10 minutes if no
+ * intents are matched for a `DetectIntent` request.
  *
  * For more information about contexts, see the
  * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
@@ -154,7 +154,7 @@ class ContextsGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (self::$sessionNameTemplate == null) {
+        if (null == self::$sessionNameTemplate) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
         }
 
@@ -163,7 +163,7 @@ class ContextsGapicClient
 
     private static function getContextNameTemplate()
     {
-        if (self::$contextNameTemplate == null) {
+        if (null == self::$contextNameTemplate) {
             self::$contextNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/contexts/{context}');
         }
 
@@ -172,7 +172,7 @@ class ContextsGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'session' => self::getSessionNameTemplate(),
                 'context' => self::getContextNameTemplate(),

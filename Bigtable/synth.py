@@ -97,3 +97,9 @@ s.replace(
     'src/V2/Gapic/BigtableGapicClient.php',
     r'MutateRowsRequest_Entry',
     'MutateRowsRequest\\Entry')
+
+# fix unit test namespace
+s.replace(
+    'tests/Unit/Admin/*/*.php',
+    r'namespace\ Google\\Cloud\\Bigtable\\Admin\\Tests\\Unit',
+    'namespace Google\\Cloud\\Bigtable\\Tests\\Unit\\Admin')

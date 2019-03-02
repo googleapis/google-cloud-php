@@ -111,3 +111,13 @@ s.replace(
     'src/V1/Gapic/SpannerGapicClient.php',
     r'ExecuteSqlRequest_QueryMode',
     'ExecuteSqlRequest\\QueryMode')
+
+# Fix test namespaces
+s.replace(
+    'tests/Unit/Admin/Database/*/*.php',
+    r'namespace Google\\Cloud\\Spanner\\Admin\\Database\\Tests\\Unit',
+    'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Database')
+s.replace(
+    'tests/Unit/Admin/Instance/*/*.php',
+    r'namespace Google\\Cloud\\Spanner\\Admin\\Instance\\Tests\\Unit',
+    'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Instance')

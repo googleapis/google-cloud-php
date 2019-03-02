@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [Firestore.BeginTransaction][google.firestore.v1beta1.Firestore.BeginTransaction].
+ * The response for
+ * [Firestore.BeginTransaction][google.firestore.v1beta1.Firestore.BeginTransaction].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.BeginTransactionResponse</code>
  */

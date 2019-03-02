@@ -131,7 +131,7 @@ class OsLoginServiceGapicClient
 
     private static function getUserNameTemplate()
     {
-        if (self::$userNameTemplate == null) {
+        if (null == self::$userNameTemplate) {
             self::$userNameTemplate = new PathTemplate('users/{user}');
         }
 
@@ -140,7 +140,7 @@ class OsLoginServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('users/{user}/projects/{project}');
         }
 
@@ -149,7 +149,7 @@ class OsLoginServiceGapicClient
 
     private static function getFingerprintNameTemplate()
     {
-        if (self::$fingerprintNameTemplate == null) {
+        if (null == self::$fingerprintNameTemplate) {
             self::$fingerprintNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
         }
 
@@ -158,7 +158,7 @@ class OsLoginServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'user' => self::getUserNameTemplate(),
                 'project' => self::getProjectNameTemplate(),

@@ -3,12 +3,12 @@
 ### Sample
 
 ```php
-use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 
 $recognitionConfig = new RecognitionConfig();
-$recognitionConfig->setEncoding(RecognitionConfig_AudioEncoding::FLAC);
+$recognitionConfig->setEncoding(AudioEncoding::FLAC);
 $recognitionConfig->setSampleRateHertz(44100);
 $recognitionConfig->setLanguageCode('en-US');
 $config = new StreamingRecognitionConfig();

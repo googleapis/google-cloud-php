@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Vision\Annotation;
+namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
 use Google\Cloud\Vision\Annotation\Document;
 use PHPUnit\Framework\TestCase;

@@ -143,7 +143,7 @@ class SpannerGapicClient
 
     private static function getDatabaseNameTemplate()
     {
-        if (self::$databaseNameTemplate == null) {
+        if (null == self::$databaseNameTemplate) {
             self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
         }
 
@@ -152,7 +152,7 @@ class SpannerGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (self::$sessionNameTemplate == null) {
+        if (null == self::$sessionNameTemplate) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
         }
 
@@ -161,7 +161,7 @@ class SpannerGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'database' => self::getDatabaseNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
@@ -560,10 +560,12 @@ class SpannerGapicClient
      *
      * Operations inside read-write transactions might return `ABORTED`. If
      * this occurs, the application should restart the transaction from
-     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+     * details.
      *
      * Larger result sets can be fetched in streaming fashion by calling
-     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] instead.
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
+     * instead.
      *
      * Sample code:
      * ```
@@ -614,7 +616,8 @@ class SpannerGapicClient
      *     @type array $paramTypes
      *          It is not always possible for Cloud Spanner to infer the right SQL type
      *          from a JSON value.  For example, values of type `BYTES` and values
-     *          of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     *          of type `STRING` both appear in
+     *          [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
      *
      *          In these cases, `param_types` can be used to specify the exact
      *          SQL type for some or all of the SQL statement parameters. See the
@@ -623,14 +626,17 @@ class SpannerGapicClient
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted SQL statement
      *          execution, `resume_token` should be copied from the last
-     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     *          enables the new SQL statement execution to resume where the last one left
-     *          off. The rest of the request parameters must exactly match the
-     *          request that yielded this token.
+     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     *          interruption. Doing this enables the new SQL statement execution to resume
+     *          where the last one left off. The rest of the request parameters must
+     *          exactly match the request that yielded this token.
      *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
-     *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
-     *          be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
+     *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If
+     *          [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is
+     *          set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     *          be set to
+     *          [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode}
      *     @type string $partitionToken
      *          If present, results will be restricted to the specified partition
@@ -696,11 +702,11 @@ class SpannerGapicClient
     }
 
     /**
-     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the result
-     * set as a stream. Unlike [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there
-     * is no limit on the size of the returned result set. However, no
-     * individual row in the result set can exceed 100 MiB, and no
-     * column value can exceed 10 MiB.
+     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the
+     * result set as a stream. Unlike
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there is no limit on
+     * the size of the returned result set. However, no individual row in the
+     * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
      *
      * Sample code:
      * ```
@@ -755,7 +761,8 @@ class SpannerGapicClient
      *     @type array $paramTypes
      *          It is not always possible for Cloud Spanner to infer the right SQL type
      *          from a JSON value.  For example, values of type `BYTES` and values
-     *          of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     *          of type `STRING` both appear in
+     *          [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
      *
      *          In these cases, `param_types` can be used to specify the exact
      *          SQL type for some or all of the SQL statement parameters. See the
@@ -764,14 +771,17 @@ class SpannerGapicClient
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted SQL statement
      *          execution, `resume_token` should be copied from the last
-     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     *          enables the new SQL statement execution to resume where the last one left
-     *          off. The rest of the request parameters must exactly match the
-     *          request that yielded this token.
+     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     *          interruption. Doing this enables the new SQL statement execution to resume
+     *          where the last one left off. The rest of the request parameters must
+     *          exactly match the request that yielded this token.
      *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
-     *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
-     *          be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
+     *          [ResultSetStats][google.spanner.v1.ResultSetStats]. If
+     *          [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is
+     *          set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     *          be set to
+     *          [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode}
      *     @type string $partitionToken
      *          If present, results will be restricted to the specified partition
@@ -837,14 +847,15 @@ class SpannerGapicClient
     /**
      * Reads rows from the database using key lookups and scans, as a
      * simple key/value style alternative to
-     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be used to
-     * return a result set larger than 10 MiB; if the read matches more
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be
+     * used to return a result set larger than 10 MiB; if the read matches more
      * data than that, the read fails with a `FAILED_PRECONDITION`
      * error.
      *
      * Reads inside read-write transactions might return `ABORTED`. If
      * this occurs, the application should restart the transaction from
-     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+     * details.
      *
      * Larger result sets can be yielded in streaming fashion by calling
      * [StreamingRead][google.spanner.v1.Spanner.StreamingRead] instead.
@@ -865,17 +876,21 @@ class SpannerGapicClient
      *
      * @param string   $session Required. The session in which the read should be performed.
      * @param string   $table   Required. The name of the table in the database to be read.
-     * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
-     *                          this request.
+     * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned
+     *                          for each row matching this request.
      * @param KeySet   $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
-     *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
-     *                          index keys in [index][google.spanner.v1.ReadRequest.index].
+     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
+     *                          be yielded, unless [index][google.spanner.v1.ReadRequest.index] is present.
+     *                          If [index][google.spanner.v1.ReadRequest.index] is present, then
+     *                          [key_set][google.spanner.v1.ReadRequest.key_set] instead names index keys
+     *                          in [index][google.spanner.v1.ReadRequest.index].
      *
-     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
-     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
-     * empty, rows will be yielded in an unspecified order.
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
+     * field is empty, rows are yielded in table primary key order (if
+     * [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
+     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
+     * not empty, rows will be yielded in an unspecified order.
      *
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
@@ -886,9 +901,12 @@ class SpannerGapicClient
      *          The transaction to use. If none is provided, the default is a
      *          temporary read-only transaction with strong concurrency.
      *     @type string $index
-     *          If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
-     *          used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
-     *          and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
+     *          If non-empty, the name of an index on
+     *          [table][google.spanner.v1.ReadRequest.table]. This index is used instead of
+     *          the table primary key when interpreting
+     *          [key_set][google.spanner.v1.ReadRequest.key_set] and sorting result rows.
+     *          See [key_set][google.spanner.v1.ReadRequest.key_set] for further
+     *          information.
      *     @type int $limit
      *          If greater than zero, only the first `limit` rows are yielded. If `limit`
      *          is zero, the default is no limit. A limit cannot be specified if
@@ -896,9 +914,9 @@ class SpannerGapicClient
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted read,
      *          `resume_token` should be copied from the last
-     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     *          enables the new read to resume where the last read left off. The
-     *          rest of the request parameters must exactly match the request
+     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     *          interruption. Doing this enables the new read to resume where the last read
+     *          left off. The rest of the request parameters must exactly match the request
      *          that yielded this token.
      *     @type string $partitionToken
      *          If present, results will be restricted to the specified partition
@@ -949,9 +967,9 @@ class SpannerGapicClient
     }
 
     /**
-     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set as a
-     * stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no limit on the
-     * size of the returned result set. However, no individual row in
+     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set
+     * as a stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no
+     * limit on the size of the returned result set. However, no individual row in
      * the result set can exceed 100 MiB, and no column value can exceed
      * 10 MiB.
      *
@@ -975,17 +993,21 @@ class SpannerGapicClient
      *
      * @param string   $session Required. The session in which the read should be performed.
      * @param string   $table   Required. The name of the table in the database to be read.
-     * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
-     *                          this request.
+     * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned
+     *                          for each row matching this request.
      * @param KeySet   $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
-     *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
-     *                          index keys in [index][google.spanner.v1.ReadRequest.index].
+     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to
+     *                          be yielded, unless [index][google.spanner.v1.ReadRequest.index] is present.
+     *                          If [index][google.spanner.v1.ReadRequest.index] is present, then
+     *                          [key_set][google.spanner.v1.ReadRequest.key_set] instead names index keys
+     *                          in [index][google.spanner.v1.ReadRequest.index].
      *
-     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is empty, rows are yielded
-     * in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
-     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the [partition_token][google.spanner.v1.ReadRequest.partition_token] field is not
-     * empty, rows will be yielded in an unspecified order.
+     * If the [partition_token][google.spanner.v1.ReadRequest.partition_token]
+     * field is empty, rows are yielded in table primary key order (if
+     * [index][google.spanner.v1.ReadRequest.index] is empty) or index key order
+     * (if [index][google.spanner.v1.ReadRequest.index] is non-empty).  If the
+     * [partition_token][google.spanner.v1.ReadRequest.partition_token] field is
+     * not empty, rows will be yielded in an unspecified order.
      *
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
@@ -996,9 +1018,12 @@ class SpannerGapicClient
      *          The transaction to use. If none is provided, the default is a
      *          temporary read-only transaction with strong concurrency.
      *     @type string $index
-     *          If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
-     *          used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
-     *          and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
+     *          If non-empty, the name of an index on
+     *          [table][google.spanner.v1.ReadRequest.table]. This index is used instead of
+     *          the table primary key when interpreting
+     *          [key_set][google.spanner.v1.ReadRequest.key_set] and sorting result rows.
+     *          See [key_set][google.spanner.v1.ReadRequest.key_set] for further
+     *          information.
      *     @type int $limit
      *          If greater than zero, only the first `limit` rows are yielded. If `limit`
      *          is zero, the default is no limit. A limit cannot be specified if
@@ -1006,9 +1031,9 @@ class SpannerGapicClient
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted read,
      *          `resume_token` should be copied from the last
-     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     *          enables the new read to resume where the last read left off. The
-     *          rest of the request parameters must exactly match the request
+     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     *          interruption. Doing this enables the new read to resume where the last read
+     *          left off. The rest of the request parameters must exactly match the request
      *          that yielded this token.
      *     @type string $partitionToken
      *          If present, results will be restricted to the specified partition
@@ -1058,7 +1083,8 @@ class SpannerGapicClient
 
     /**
      * Begins a new transaction. This step can often be skipped:
-     * [Read][google.spanner.v1.Spanner.Read], [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
+     * [Read][google.spanner.v1.Spanner.Read],
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
      * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
      * side-effect.
      *
@@ -1181,8 +1207,9 @@ class SpannerGapicClient
     /**
      * Rolls back a transaction, releasing any locks it holds. It is a good
      * idea to call this for any transaction that includes one or more
-     * [Read][google.spanner.v1.Spanner.Read] or [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and
-     * ultimately decides not to commit.
+     * [Read][google.spanner.v1.Spanner.Read] or
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and ultimately
+     * decides not to commit.
      *
      * `Rollback` returns `OK` if it successfully aborts the transaction, the
      * transaction was already aborted, or the transaction is not
@@ -1232,10 +1259,11 @@ class SpannerGapicClient
     /**
      * Creates a set of partition tokens that can be used to execute a query
      * operation in parallel.  Each of the returned partition tokens can be used
-     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
-     * of the query result to read.  The same session and read-only transaction
-     * must be used by the PartitionQueryRequest used to create the
-     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to
+     * specify a subset of the query result to read.  The same session and
+     * read-only transaction must be used by the PartitionQueryRequest used to
+     * create the partition tokens and the ExecuteSqlRequests that use the
+     * partition tokens.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -1263,7 +1291,8 @@ class SpannerGapicClient
      *                        then unions all results.
      *
      * This must not contain DML commands, such as INSERT, UPDATE, or
-     * DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+     * DELETE. Use
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
      * PartitionedDml transaction for large, partition-friendly DML operations.
      * @param array $optionalArgs {
      *                            Optional.
@@ -1289,7 +1318,8 @@ class SpannerGapicClient
      *     @type array $paramTypes
      *          It is not always possible for Cloud Spanner to infer the right SQL type
      *          from a JSON value.  For example, values of type `BYTES` and values
-     *          of type `STRING` both appear in [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
+     *          of type `STRING` both appear in
+     *          [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      *
      *          In these cases, `param_types` can be used to specify the exact
      *          SQL type for some or all of the SQL query parameters. See the
@@ -1338,12 +1368,13 @@ class SpannerGapicClient
     /**
      * Creates a set of partition tokens that can be used to execute a read
      * operation in parallel.  Each of the returned partition tokens can be used
-     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
-     * result to read.  The same session and read-only transaction must be used by
-     * the PartitionReadRequest used to create the partition tokens and the
-     * ReadRequests that use the partition tokens.  There are no ordering
-     * guarantees on rows returned among the returned partition tokens, or even
-     * within each individual StreamingRead call issued with a partition_token.
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a
+     * subset of the read result to read.  The same session and read-only
+     * transaction must be used by the PartitionReadRequest used to create the
+     * partition tokens and the ReadRequests that use the partition tokens.  There
+     * are no ordering guarantees on rows returned among the returned partition
+     * tokens, or even within each individual StreamingRead call issued with a
+     * partition_token.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -1366,8 +1397,11 @@ class SpannerGapicClient
      * @param string $session Required. The session used to create the partitions.
      * @param string $table   Required. The name of the table in the database to be read.
      * @param KeySet $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
-     *                        primary keys of the rows in [table][google.spanner.v1.PartitionReadRequest.table] to be yielded, unless [index][google.spanner.v1.PartitionReadRequest.index]
-     *                        is present. If [index][google.spanner.v1.PartitionReadRequest.index] is present, then [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
+     *                        primary keys of the rows in
+     *                        [table][google.spanner.v1.PartitionReadRequest.table] to be yielded, unless
+     *                        [index][google.spanner.v1.PartitionReadRequest.index] is present. If
+     *                        [index][google.spanner.v1.PartitionReadRequest.index] is present, then
+     *                        [key_set][google.spanner.v1.PartitionReadRequest.key_set] instead names
      *                        index keys in [index][google.spanner.v1.PartitionReadRequest.index].
      *
      * It is not an error for the `key_set` to name rows that do not
@@ -1379,12 +1413,15 @@ class SpannerGapicClient
      *          Read only snapshot transactions are supported, read/write and single use
      *          transactions are not.
      *     @type string $index
-     *          If non-empty, the name of an index on [table][google.spanner.v1.PartitionReadRequest.table]. This index is
-     *          used instead of the table primary key when interpreting [key_set][google.spanner.v1.PartitionReadRequest.key_set]
-     *          and sorting result rows. See [key_set][google.spanner.v1.PartitionReadRequest.key_set] for further information.
+     *          If non-empty, the name of an index on
+     *          [table][google.spanner.v1.PartitionReadRequest.table]. This index is used
+     *          instead of the table primary key when interpreting
+     *          [key_set][google.spanner.v1.PartitionReadRequest.key_set] and sorting
+     *          result rows. See [key_set][google.spanner.v1.PartitionReadRequest.key_set]
+     *          for further information.
      *     @type string[] $columns
-     *          The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be returned for each row matching
-     *          this request.
+     *          The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be
+     *          returned for each row matching this request.
      *     @type PartitionOptions $partitionOptions
      *          Additional options that affect how many partitions are created.
      *     @type RetrySettings|array $retrySettings

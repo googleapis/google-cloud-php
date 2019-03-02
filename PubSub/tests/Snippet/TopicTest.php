@@ -43,7 +43,9 @@ class TopicTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->pubsub = TestHelpers::stub(PubSubClient::class);
+        $this->pubsub = TestHelpers::stub(PubSubClient::class, [
+            ['transport' => 'rest']
+        ]);
         $this->topic = TestHelpers::stub(Topic::class, [
             $this->connection->reveal(),
             'my-awesome-project',

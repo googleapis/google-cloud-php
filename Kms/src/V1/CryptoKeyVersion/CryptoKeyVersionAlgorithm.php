@@ -5,13 +5,16 @@
 namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
 
 /**
- * The algorithm of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
+ * The algorithm of the
+ * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
  * parameters must be used for each cryptographic operation.
  * The
  * [GOOGLE_SYMMETRIC_ENCRYPTION][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION]
- * algorithm is usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * algorithm is usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
- * Algorithms beginning with "RSA_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "RSA_SIGN_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "RSA_SIGN_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
@@ -24,7 +27,8 @@ namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
  * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
  * The fields in the name after "RSA_DECRYPT_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
- * Algorithms beginning with "EC_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "EC_SIGN_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "EC_SIGN_" correspond to the following
  * parameters: elliptic curve, digest algorithm.

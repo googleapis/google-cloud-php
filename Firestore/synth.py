@@ -23,25 +23,34 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='firestore',
-    version='v1beta1',
-    config_path='/google/firestore/artman_firestore.yaml',
-    artman_output_name='google-cloud-firestore-v1beta1')
+versions = []
+versions.append({'version': 'V1', 'config': '/google/firestore/artman_firestore_v1.yaml'})
+versions.append({'version': 'V1beta1', 'config': '/google/firestore/artman_firestore.yaml'})
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+for v in versions:
+    ver = v['version']
+    lower_version = ver.lower()
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Firestore', 'src/')
-s.move(library / 'tests/')
+    library = gapic.php_library(
+        service='firestore',
+        version=lower_version,
+        config_path=v['config'],
+        artman_output_name=f'google-cloud-firestore-{lower_version}')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Firestore', 'metadata/')
+    # copy all src except partial veneer classes
+    s.move(library / f'src/{ver}/Gapic')
+    s.move(library / f'src/{ver}/resources')
+
+    # copy proto files to src also
+    s.move(library / f'proto/src/Google/Cloud/Firestore', f'src/')
+    s.move(library / f'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    '**/V1beta1/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
     'Copyright 2017')
 s.replace(
@@ -52,3 +61,17 @@ s.replace(
     'tests/**/V1beta1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# fix year
+s.replace(
+    '**/V1/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')
+s.replace(
+    '**/V1/FirestoreClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')

@@ -38,10 +38,16 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Redis\V1\CreateInstanceRequest;
 use Google\Cloud\Redis\V1\DeleteInstanceRequest;
+use Google\Cloud\Redis\V1\ExportInstanceRequest;
+use Google\Cloud\Redis\V1\FailoverInstanceRequest;
+use Google\Cloud\Redis\V1\FailoverInstanceRequest_DataProtectionMode;
 use Google\Cloud\Redis\V1\GetInstanceRequest;
+use Google\Cloud\Redis\V1\ImportInstanceRequest;
+use Google\Cloud\Redis\V1\InputConfig;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\ListInstancesRequest;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
+use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Cloud\Redis\V1\UpdateInstanceRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -155,7 +161,7 @@ class CloudRedisGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
+        if (null == self::$locationNameTemplate) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -164,7 +170,7 @@ class CloudRedisGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/instances/{instance}');
         }
 
@@ -173,7 +179,7 @@ class CloudRedisGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
@@ -745,6 +751,249 @@ class CloudRedisGapicClient
 
         return $this->startOperationsCall(
             'DeleteInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Import a Redis RDB snapshot file from GCS into a Redis instance.
+     *
+     * Redis may stop serving during this operation. Instance state will be
+     * IMPORTING for entire operation. When complete, the instance will contain
+     * only data from the imported file.
+     *
+     * The returned operation is automatically deleted after a few hours, so
+     * there is no need to call DeleteOperation.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new CloudRedisClient();
+     * try {
+     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $inputConfig = new InputConfig();
+     *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'importInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string      $name         Required. Redis instance resource name using the form:
+     *                                  `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                                  where `location_id` refers to a GCP region
+     * @param InputConfig $inputConfig  Required. Specify data to be imported.
+     * @param array       $optionalArgs {
+     *                                  Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function importInstance($name, $inputConfig, array $optionalArgs = [])
+    {
+        $request = new ImportInstanceRequest();
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+
+        return $this->startOperationsCall(
+            'ImportInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Export Redis instance data into a Redis RDB format file in GCS.
+     *
+     * Redis will continue serving during this operation.
+     *
+     * The returned operation is automatically deleted after a few hours, so
+     * there is no need to call DeleteOperation.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new CloudRedisClient();
+     * try {
+     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'exportInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string       $name         Required. Redis instance resource name using the form:
+     *                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                                   where `location_id` refers to a GCP region
+     * @param OutputConfig $outputConfig Required. Specify data to be exported.
+     * @param array        $optionalArgs {
+     *                                   Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function exportInstance($name, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportInstanceRequest();
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+
+        return $this->startOperationsCall(
+            'ExportInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Failover the master role to current replica node against a specific
+     * STANDARD tier redis instance.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new CloudRedisClient();
+     * try {
+     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $dataProtectionMode = FailoverInstanceRequest_DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'failoverInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string $name               Required. Redis instance resource name using the form:
+     *                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                                   where `location_id` refers to a GCP region
+     * @param int    $dataProtectionMode Optional. Available data protection modes that the user can choose. If it's
+     *                                   unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
+     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1\FailoverInstanceRequest_DataProtectionMode}
+     * @param array  $optionalArgs       {
+     *                                   Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function failoverInstance($name, $dataProtectionMode, array $optionalArgs = [])
+    {
+        $request = new FailoverInstanceRequest();
+        $request->setName($name);
+        $request->setDataProtectionMode($dataProtectionMode);
+
+        return $this->startOperationsCall(
+            'FailoverInstance',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

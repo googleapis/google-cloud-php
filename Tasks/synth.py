@@ -45,6 +45,19 @@ s.copy(v2beta3_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata
 s.copy(v2beta3_library / f'proto/src/Google/Cloud/Tasks', f'src')
 s.copy(v2beta3_library / f'tests')
 
+# fix year
+s.replace(
+    '**/*Client.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
+s.replace(
+    '**/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
+s.replace(
+    'tests/**/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2018')
 
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141

@@ -21,7 +21,8 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * in which to look for the notification channels; it does not name a
      * specific channel. To query a specific channel by REST resource name, use
      * the
-     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel] operation.
+     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+     * operation.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
@@ -74,7 +75,8 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *           in which to look for the notification channels; it does not name a
      *           specific channel. To query a specific channel by REST resource name, use
      *           the
-     *           [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel] operation.
+     *           [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+     *           operation.
      *     @type string $filter
      *           If provided, this field specifies the criteria that must be met by
      *           notification channels to be included in the response.
@@ -107,7 +109,8 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * in which to look for the notification channels; it does not name a
      * specific channel. To query a specific channel by REST resource name, use
      * the
-     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel] operation.
+     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+     * operation.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @return string
@@ -123,7 +126,8 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * in which to look for the notification channels; it does not name a
      * specific channel. To query a specific channel by REST resource name, use
      * the
-     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel] operation.
+     * [`GetNotificationChannel`][google.monitoring.v3.NotificationChannelService.GetNotificationChannel]
+     * operation.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var

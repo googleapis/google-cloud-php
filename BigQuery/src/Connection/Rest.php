@@ -24,10 +24,8 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
-use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\UriTrait;
 use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Request;
 
 /**
  * Implementation of the

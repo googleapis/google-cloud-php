@@ -19,7 +19,6 @@ namespace Google\Cloud\BigQuery\Tests\Snippet;
 
 use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Prophecy\Argument;
 
 /**
  * @group bigquery

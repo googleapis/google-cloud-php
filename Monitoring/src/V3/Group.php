@@ -62,7 +62,8 @@ class Group extends \Google\Protobuf\Internal\Message
      */
     private $parent_name = '';
     /**
-     * The filter used to determine which monitored resources belong to this group.
+     * The filter used to determine which monitored resources belong to this
+     * group.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
@@ -94,7 +95,8 @@ class Group extends \Google\Protobuf\Internal\Message
      *           The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
      *           For groups with no parent, `parentName` is the empty string, `""`.
      *     @type string $filter
-     *           The filter used to determine which monitored resources belong to this group.
+     *           The filter used to determine which monitored resources belong to this
+     *           group.
      *     @type bool $is_cluster
      *           If true, the members of this group are considered to be a cluster.
      *           The system can perform additional analysis on groups that are clusters.
@@ -196,7 +198,8 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter used to determine which monitored resources belong to this group.
+     * The filter used to determine which monitored resources belong to this
+     * group.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @return string
@@ -207,7 +210,8 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter used to determine which monitored resources belong to this group.
+     * The filter used to determine which monitored resources belong to this
+     * group.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @param string $var

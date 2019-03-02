@@ -197,8 +197,8 @@ class JobControllerGapicClient
      *
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
-     *          id, then the second request will be ignored and the
+     *          receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest]
+     *          requests  with the same id, then the second request will be ignored and the
      *          first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
      *          is returned.
      *
@@ -461,7 +461,8 @@ class JobControllerGapicClient
     /**
      * Starts a job cancellation request. To access the job resource
      * after cancellation, call
-     * [regions/{region}/jobs.list](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/list) or
+     * [regions/{region}/jobs.list](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/list)
+     * or
      * [regions/{region}/jobs.get](https://cloud.google.com/dataproc/docs/reference/rest/v1/projects.regions.jobs/get).
      *
      * Sample code:

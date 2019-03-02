@@ -24,7 +24,6 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
-use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
 
 /**

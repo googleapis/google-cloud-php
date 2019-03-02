@@ -116,7 +116,7 @@ class ReportErrorsServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -125,7 +125,7 @@ class ReportErrorsServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
             ];
@@ -257,7 +257,8 @@ class ReportErrorsServiceGapicClient
      * <a href="https://support.google.com/cloud/answer/6158862">API key</a>
      * for authentication. To use an API key, append it to the URL as the value of
      * a `key` parameter. For example:
-     * <pre>POST https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
+     * <pre>POST
+     * https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456</pre>
      *
      * Sample code:
      * ```
@@ -273,8 +274,9 @@ class ReportErrorsServiceGapicClient
      *
      * @param string             $projectName  [Required] The resource name of the Google Cloud Platform project. Written
      *                                         as `projects/` plus the
-     *                                         [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
-     *                                         Example: `projects/my-project-123`.
+     *                                         [Google Cloud Platform project
+     *                                         ID](https://support.google.com/cloud/answer/6158840). Example:
+     *                                         `projects/my-project-123`.
      * @param ReportedErrorEvent $event        [Required] The error event to be reported.
      * @param array              $optionalArgs {
      *                                         Optional.

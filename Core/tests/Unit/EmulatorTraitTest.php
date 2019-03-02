@@ -18,20 +18,44 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\EmulatorTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 
 /**
  * @group core
  */
 class EmulatorTraitTest extends TestCase
 {
+    use GrpcTestTrait;
+
     private $impl;
 
     public function setUp()
     {
         $this->impl = TestHelpers::impl(EmulatorTrait::class);
+    }
+
+    /**
+     * @dataProvider hostnames
+     */
+    public function testEmulatorGapicConfig($hostname, $expected = null)
+    {
+        $this->checkAndSkipGrpcTests();
+
+        $expected = $expected ?: $hostname;
+
+        $res = $this->impl->call('emulatorGapicConfig', [$hostname]);
+        $this->assertEquals($expected, $res['serviceAddress']);
+        $this->assertNull($res['transportConfig']['grpc']['stubOpts']['credentials']);
+    }
+
+    public function hostnames()
+    {
+        return [
+            ['localhost:0001'],
+            ['http://localhost:0001', 'localhost:0001'],
+        ];
     }
 
     public function testEmulatorBaseUri()

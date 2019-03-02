@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue].
+ * Request message for
+ * [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.PurgeQueueRequest</code>
  */

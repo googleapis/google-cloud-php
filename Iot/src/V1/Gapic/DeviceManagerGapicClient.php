@@ -151,7 +151,7 @@ class DeviceManagerGapicClient
 
     private static function getLocationNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
+        if (null == self::$locationNameTemplate) {
             self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
@@ -160,7 +160,7 @@ class DeviceManagerGapicClient
 
     private static function getRegistryNameTemplate()
     {
-        if (self::$registryNameTemplate == null) {
+        if (null == self::$registryNameTemplate) {
             self::$registryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}');
         }
 
@@ -169,7 +169,7 @@ class DeviceManagerGapicClient
 
     private static function getDeviceNameTemplate()
     {
-        if (self::$deviceNameTemplate == null) {
+        if (null == self::$deviceNameTemplate) {
             self::$deviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}/devices/{device}');
         }
 
@@ -178,7 +178,7 @@ class DeviceManagerGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
                 'registry' => self::getRegistryNameTemplate(),

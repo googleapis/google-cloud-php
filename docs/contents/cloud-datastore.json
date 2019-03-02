@@ -34,5 +34,13 @@
             "title": "Query",
             "type": "datastore/query/query"
         }]
+    }, {
+        "title": "V1",
+        "type": "datastore/v1/readme",
+        "patterns": ["datastore\/v1\/\\w{1,}"],
+        "nav": [{
+            "title": "DatastoreClient",
+            "type": "datastore/v1/datastoreclient"
+        }]
     }]
 }

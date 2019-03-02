@@ -73,7 +73,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * // Be sure to use the port specified when starting the emulator.
  * // `8900` is used as an example only.
- * putenv('PUBSUB_EMULATOR_HOST=http://localhost:8900');
+ * putenv('PUBSUB_EMULATOR_HOST=localhost:8900');
  *
  * $pubsub = new PubSubClient();
  * ```
@@ -85,7 +85,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.7.2';
+    const VERSION = '1.8.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 

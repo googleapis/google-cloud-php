@@ -30,7 +30,6 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 
@@ -245,5 +244,13 @@ class FirestoreClientTest extends SnippetTestCase
         $snippet->addLocal('firestore', $this->client);
         $res = $snippet->invoke('path');
         $this->assertInstanceOf(FieldPath::class, $res->returnVal());
+    }
+    
+    public function testEmulator()
+    {
+        $snippet = $this->snippetFromClass(FirestoreClient::class, 1);
+        $res = $snippet->invoke('firestore');
+        $this->assertInstanceOf(FirestoreClient::class, $res->returnVal());
+        $this->assertEquals('localhost:8900', getenv('FIRESTORE_EMULATOR_HOST'));
     }
 }

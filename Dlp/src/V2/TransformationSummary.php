@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransformationSummary extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Set if the transformation was limited to a specific info_type.
+     * Set if the transformation was limited to a specific InfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
@@ -67,7 +67,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
-     *           Set if the transformation was limited to a specific info_type.
+     *           Set if the transformation was limited to a specific InfoType.
      *     @type \Google\Cloud\Dlp\V2\FieldId $field
      *           Set if the transformation was limited to a specific FieldId.
      *     @type \Google\Cloud\Dlp\V2\PrimitiveTransformation $transformation
@@ -89,7 +89,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set if the transformation was limited to a specific info_type.
+     * Set if the transformation was limited to a specific InfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      * @return \Google\Cloud\Dlp\V2\InfoType
@@ -100,7 +100,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set if the transformation was limited to a specific info_type.
+     * Set if the transformation was limited to a specific InfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType $var

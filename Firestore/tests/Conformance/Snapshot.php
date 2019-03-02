@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.Document docs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.firestore.v1.Document docs = 1;</code>
      */
     private $docs;
     /**
@@ -26,13 +26,24 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $read_time = null;
 
-    public function __construct() {
-        \Google\Cloud\Firestore\Tests\Conformance\FirestoreTestGpb::initOnce();
-        parent::__construct();
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     *     @type \Google\Cloud\Firestore\V1\Document[]|\Google\Protobuf\Internal\RepeatedField $docs
+     *     @type \Google\Cloud\Firestore\Tests\Conformance\DocChange[]|\Google\Protobuf\Internal\RepeatedField $changes
+     *     @type \Google\Protobuf\Timestamp $read_time
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Test::initOnce();
+        parent::__construct($data);
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.Document docs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.firestore.v1.Document docs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDocs()
@@ -41,13 +52,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.firestore.v1beta1.Document docs = 1;</code>
-     * @param \Google\Cloud\Firestore\V1beta1\Document[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.firestore.v1.Document docs = 1;</code>
+     * @param \Google\Cloud\Firestore\V1\Document[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDocs($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1beta1\Document::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Firestore\V1\Document::class);
         $this->docs = $arr;
 
         return $this;

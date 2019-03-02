@@ -252,11 +252,11 @@ class Bucket
      *           `"projectPrivate"`, and `"publicRead"`.
      *     @type array $metadata The full list of available options are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
-     *     @type array $metadata['metadata'] User-provided metadata, in key/value pairs.
+     *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
-     *           $metadata['kmsKeyName'] setting. Please note if using KMS the
+     *           `$metadata.kmsKeyName` setting. Please note if using KMS the
      *           key ring must use the same location as the bucket.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
@@ -839,6 +839,11 @@ class Bucket
      *     @type int $retentionPolicy.retentionPeriod Specifies the duration
      *           that objects need to be retained, in seconds. Retention
      *           duration must be greater than zero and less than 100 years.
+     *     @type array $iamConfiguration The bucket's IAM configuration.
+     *     @type bool $iamConfiguration.bucketPolicyOnly.enabled If set and
+     *           true, access checks only use bucket-level IAM policies or
+     *           above. When enabled, requests attempting to view or manipulate
+     *           ACLs will fail with error code 400.
      * }
      * @return array
      */

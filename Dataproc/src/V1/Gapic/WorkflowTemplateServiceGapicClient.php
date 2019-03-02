@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -131,7 +131,7 @@ class WorkflowTemplateServiceGapicClient
 
     private static function getRegionNameTemplate()
     {
-        if (self::$regionNameTemplate == null) {
+        if (null == self::$regionNameTemplate) {
             self::$regionNameTemplate = new PathTemplate('projects/{project}/regions/{region}');
         }
 
@@ -140,7 +140,7 @@ class WorkflowTemplateServiceGapicClient
 
     private static function getWorkflowTemplateNameTemplate()
     {
-        if (self::$workflowTemplateNameTemplate == null) {
+        if (null == self::$workflowTemplateNameTemplate) {
             self::$workflowTemplateNameTemplate = new PathTemplate('projects/{project}/regions/{region}/workflowTemplates/{workflow_template}');
         }
 
@@ -149,7 +149,7 @@ class WorkflowTemplateServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'region' => self::getRegionNameTemplate(),
                 'workflowTemplate' => self::getWorkflowTemplateNameTemplate(),
@@ -558,7 +558,8 @@ class WorkflowTemplateServiceGapicClient
      * Instantiates a template and begins execution.
      *
      * This method is equivalent to executing the sequence
-     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate], [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+     * [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
      * [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
      *
      * The returned Operation can be used to track execution of

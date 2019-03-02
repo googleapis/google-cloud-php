@@ -23,15 +23,17 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     private $code = 0;
     /**
-     * If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     * is the type of the array elements.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     * type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      */
     private $array_element_type = null;
     /**
-     * If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     * provides type information for the struct's fields.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     * type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      */
@@ -46,11 +48,13 @@ class Type extends \Google\Protobuf\Internal\Message
      *     @type int $code
      *           Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.
      *     @type \Google\Cloud\Spanner\V1\Type $array_element_type
-     *           If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     *           is the type of the array elements.
+     *           If [code][google.spanner.v1.Type.code] ==
+     *           [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     *           type of the array elements.
      *     @type \Google\Cloud\Spanner\V1\StructType $struct_type
-     *           If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     *           provides type information for the struct's fields.
+     *           If [code][google.spanner.v1.Type.code] ==
+     *           [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     *           type information for the struct's fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,8 +89,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     * is the type of the array elements.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     * type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      * @return \Google\Cloud\Spanner\V1\Type
@@ -97,8 +102,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type`
-     * is the type of the array elements.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [ARRAY][google.spanner.v1.TypeCode.ARRAY], then `array_element_type` is the
+     * type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
      * @param \Google\Cloud\Spanner\V1\Type $var
@@ -113,8 +119,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     * provides type information for the struct's fields.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     * type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      * @return \Google\Cloud\Spanner\V1\StructType
@@ -125,8 +132,9 @@ class Type extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If [code][google.spanner.v1.Type.code] == [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type`
-     * provides type information for the struct's fields.
+     * If [code][google.spanner.v1.Type.code] ==
+     * [STRUCT][google.spanner.v1.TypeCode.STRUCT], then `struct_type` provides
+     * type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
      * @param \Google\Cloud\Spanner\V1\StructType $var

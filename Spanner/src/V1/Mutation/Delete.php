@@ -22,9 +22,10 @@ class Delete extends \Google\Protobuf\Internal\Message
      */
     private $table = '';
     /**
-     * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     * Delete is idempotent. The transaction will succeed even if some or all
-     * rows do not exist.
+     * Required. The primary keys of the rows within
+     * [table][google.spanner.v1.Mutation.Delete.table] to delete. Delete is
+     * idempotent. The transaction will succeed even if some or all rows do not
+     * exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      */
@@ -39,9 +40,10 @@ class Delete extends \Google\Protobuf\Internal\Message
      *     @type string $table
      *           Required. The table whose rows will be deleted.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
-     *           Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     *           Delete is idempotent. The transaction will succeed even if some or all
-     *           rows do not exist.
+     *           Required. The primary keys of the rows within
+     *           [table][google.spanner.v1.Mutation.Delete.table] to delete. Delete is
+     *           idempotent. The transaction will succeed even if some or all rows do not
+     *           exist.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +78,10 @@ class Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     * Delete is idempotent. The transaction will succeed even if some or all
-     * rows do not exist.
+     * Required. The primary keys of the rows within
+     * [table][google.spanner.v1.Mutation.Delete.table] to delete. Delete is
+     * idempotent. The transaction will succeed even if some or all rows do not
+     * exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      * @return \Google\Cloud\Spanner\V1\KeySet
@@ -89,9 +92,10 @@ class Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     * Delete is idempotent. The transaction will succeed even if some or all
-     * rows do not exist.
+     * Required. The primary keys of the rows within
+     * [table][google.spanner.v1.Mutation.Delete.table] to delete. Delete is
+     * idempotent. The transaction will succeed even if some or all rows do not
+     * exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var

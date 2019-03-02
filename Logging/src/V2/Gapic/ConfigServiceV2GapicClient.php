@@ -150,7 +150,7 @@ class ConfigServiceV2GapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -159,7 +159,7 @@ class ConfigServiceV2GapicClient
 
     private static function getSinkNameTemplate()
     {
-        if (self::$sinkNameTemplate == null) {
+        if (null == self::$sinkNameTemplate) {
             self::$sinkNameTemplate = new PathTemplate('projects/{project}/sinks/{sink}');
         }
 
@@ -168,7 +168,7 @@ class ConfigServiceV2GapicClient
 
     private static function getExclusionNameTemplate()
     {
-        if (self::$exclusionNameTemplate == null) {
+        if (null == self::$exclusionNameTemplate) {
             self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
         }
 
@@ -177,7 +177,7 @@ class ConfigServiceV2GapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'sink' => self::getSinkNameTemplate(),
@@ -511,7 +511,8 @@ class ConfigServiceV2GapicClient
      *          If this field is set to true, or if the sink is owned by a non-project
      *          resource such as an organization, then the value of `writer_identity` will
      *          be a unique service account used only for exports from the new sink.  For
-     *          more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
+     *          more information, see `writer_identity` in
+     *          [LogSink][google.logging.v2.LogSink].
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -895,8 +896,9 @@ class ConfigServiceV2GapicClient
      *                                 in `update_mask` are relevant.
      * @param FieldMask    $updateMask Required. A nonempty list of fields to change in the existing exclusion.
      *                                 New values for the fields are taken from the corresponding fields in the
-     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request. Fields not mentioned in
-     *                                 `update_mask` are not changed and are ignored in the request.
+     *                                 [LogExclusion][google.logging.v2.LogExclusion] included in this request.
+     *                                 Fields not mentioned in `update_mask` are not changed and are ignored in
+     *                                 the request.
      *
      * For example, to change the filter and description of an exclusion,
      * specify an `update_mask` of `"filter,description"`.

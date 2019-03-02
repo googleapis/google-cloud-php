@@ -151,7 +151,7 @@ class MetricServiceGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -160,7 +160,7 @@ class MetricServiceGapicClient
 
     private static function getMetricDescriptorNameTemplate()
     {
-        if (self::$metricDescriptorNameTemplate == null) {
+        if (null == self::$metricDescriptorNameTemplate) {
             self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
         }
 
@@ -169,7 +169,7 @@ class MetricServiceGapicClient
 
     private static function getMonitoredResourceDescriptorNameTemplate()
     {
-        if (self::$monitoredResourceDescriptorNameTemplate == null) {
+        if (null == self::$monitoredResourceDescriptorNameTemplate) {
             self::$monitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
         }
 
@@ -178,7 +178,7 @@ class MetricServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
@@ -343,7 +343,8 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
+     * Lists monitored resource descriptors that match a filter. This method does
+     * not require a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -428,7 +429,8 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
+     * Gets a single monitored resource descriptor. This method does not require a
+     * Stackdriver account.
      *
      * Sample code:
      * ```
@@ -474,7 +476,8 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
+     * Lists metric descriptors that match a filter. This method does not require
+     * a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -560,7 +563,8 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Gets a single metric descriptor. This method does not require a Stackdriver account.
+     * Gets a single metric descriptor. This method does not require a Stackdriver
+     * account.
      *
      * Sample code:
      * ```
@@ -701,7 +705,8 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Stackdriver account.
+     * Lists time series that match a filter. This method does not require a
+     * Stackdriver account.
      *
      * Sample code:
      * ```

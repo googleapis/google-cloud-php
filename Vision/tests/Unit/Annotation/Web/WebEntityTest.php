@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Vision\Annotation;
+namespace Google\Cloud\Vision\Tests\Unit\Annotation\Web;
 
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use PHPUnit\Framework\TestCase;

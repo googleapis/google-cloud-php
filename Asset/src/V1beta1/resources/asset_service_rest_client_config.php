@@ -10,6 +10,11 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{parent=folders/*}:exportAssets',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1beta1/{parent=organizations/*}:exportAssets',
                         'body' => '*',
                     ],
@@ -63,7 +68,15 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{name=folders/*/operations/*/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1beta1/{name=organizations/*/operations/*/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=*/*/operations/*/*}',
                     ],
                 ],
                 'placeholders' => [

@@ -17,20 +17,19 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\PublisherClient;
-use Google\Cloud\PubSub\V1\SubscriberClient;
-use Google\ApiCore\Serializer;
-use Google\Cloud\Iam\V1\Policy;
-use Google\Protobuf\FieldMask;
-use Google\Protobuf\Timestamp;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
-use Grpc\ChannelCredentials;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
 
 /**
  * Implementation of the
@@ -82,14 +81,9 @@ class Grpc implements ConnectionInterface
         );
 
         $config += ['emulatorHost' => null];
-        $baseUri = self::BASE_URI;
+
         if ((bool) $config['emulatorHost']) {
-            $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
-            $grpcConfig += [
-                'serviceAddress' => parse_url($baseUri, PHP_URL_HOST),
-                'port' => parse_url($baseUri, PHP_URL_PORT),
-                'sslCreds' => ChannelCredentials::createInsecure()
-            ];
+            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
 
         $this->publisherClient = new PublisherClient($grpcConfig);

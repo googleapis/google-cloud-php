@@ -148,7 +148,7 @@ class SessionEntityTypesGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (self::$sessionNameTemplate == null) {
+        if (null == self::$sessionNameTemplate) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
         }
 
@@ -157,7 +157,7 @@ class SessionEntityTypesGapicClient
 
     private static function getSessionEntityTypeNameTemplate()
     {
-        if (self::$sessionEntityTypeNameTemplate == null) {
+        if (null == self::$sessionEntityTypeNameTemplate) {
             self::$sessionEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}/entityTypes/{entity_type}');
         }
 
@@ -166,7 +166,7 @@ class SessionEntityTypesGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'session' => self::getSessionNameTemplate(),
                 'sessionEntityType' => self::getSessionEntityTypeNameTemplate(),

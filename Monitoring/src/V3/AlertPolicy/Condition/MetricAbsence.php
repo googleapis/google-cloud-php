@@ -41,8 +41,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the
-     * one in the [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * It is advisable to use the `ListTimeSeries` method when debugging this field.
+     * one in the [`MetricService.ListTimeSeries`
+     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     * is advisable to use the `ListTimeSeries` method when debugging this
+     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 5;</code>
      */
@@ -92,8 +94,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *           members of a group of resrouces). Multiple aggregations
      *           are applied in the order specified.
      *           This field is similar to the
-     *           one in the [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     *           It is advisable to use the `ListTimeSeries` method when debugging this field.
+     *           one in the [`MetricService.ListTimeSeries`
+     *           request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     *           is advisable to use the `ListTimeSeries` method when debugging this
+     *           field.
      *     @type \Google\Protobuf\Duration $duration
      *           The amount of time that a time series must fail to report new
      *           data to be considered failing. Currently, only values that
@@ -163,8 +167,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the
-     * one in the [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * It is advisable to use the `ListTimeSeries` method when debugging this field.
+     * one in the [`MetricService.ListTimeSeries`
+     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     * is advisable to use the `ListTimeSeries` method when debugging this
+     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -182,8 +188,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * members of a group of resrouces). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the
-     * one in the [`MetricService.ListTimeSeries` request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * It is advisable to use the `ListTimeSeries` method when debugging this field.
+     * one in the [`MetricService.ListTimeSeries`
+     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
+     * is advisable to use the `ListTimeSeries` method when debugging this
+     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 5;</code>
      * @param \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $var

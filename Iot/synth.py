@@ -46,6 +46,6 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
-    'tests/**/V2/*Test.php',
+    'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')

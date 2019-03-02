@@ -173,7 +173,7 @@ class TableTest extends TestCase
                     'message' => 'Invalid argument'
                 ]
             ];
-            $this->assertEquals('Invalid argument', $e->getMessage());
+            $this->assertEquals('partial failure', $e->getMessage());
             $this->assertEquals(Code::INVALID_ARGUMENT, $e->getCode());
             $this->assertEquals(
                 $metadata,
@@ -183,7 +183,7 @@ class TableTest extends TestCase
     }
 
     /**
-     * @expectedException \Google\ApiCore\ApiException
+     * @expectedException Google\Cloud\Bigtable\Exception\BigtableDataOperationException
      * @expectedExceptionMessage unauthenticated
      */
     public function testMutateRowsApiExceptionInMutateRows()
@@ -198,7 +198,7 @@ class TableTest extends TestCase
     }
 
     /**
-     * @expectedException \Google\ApiCore\ApiException
+     * @expectedException Google\Cloud\Bigtable\Exception\BigtableDataOperationException
      * @expectedExceptionMessage unauthenticated
      */
     public function testMutateRowsApiExceptionInReadAll()
@@ -308,6 +308,11 @@ class TableTest extends TestCase
     public function testReadRowsNoArg()
     {
         $expectedArgs = $this->options;
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -316,6 +321,7 @@ class TableTest extends TestCase
         $args = [];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRow()
@@ -339,6 +345,32 @@ class TableTest extends TestCase
         $this->assertNull($row);
     }
 
+    public function testReadRowWithFilter()
+    {
+        $rowSet = new RowSet();
+        $rowSet->setRowKeys(['rk1']);
+        $rowFilter = Filter::pass();
+        $expectedArgs = $this->options + [
+            'rows' => $rowSet,
+            'filter' => $rowFilter->toProto()
+        ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
+        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->serverStream->reveal()
+            );
+        $args = [
+            'filter' => $rowFilter
+        ];
+        $row = $this->table->readRow('rk1', $args);
+        $this->assertNull($row);
+    }
+
     public function testReadRowsWithMultipleRowKeys()
     {
         $rowSet = new RowSet();
@@ -346,6 +378,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -356,6 +393,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithRowLimit()
@@ -366,6 +404,11 @@ class TableTest extends TestCase
             'rows' => $rowSet,
             'rowsLimit' => 10
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -377,6 +420,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithRowRangeKeysOpen()
@@ -389,6 +433,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -404,6 +453,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithRowRangeKeysClosed()
@@ -416,6 +466,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -431,6 +486,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithRowRangeKeysOpenClosed()
@@ -443,6 +499,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -458,6 +519,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithRowRangeKeysClosedOpen()
@@ -470,6 +532,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -485,6 +552,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithRowRangeKeysMultipleRowRanges()
@@ -502,6 +570,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -521,6 +594,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithKeyAndRanges()
@@ -534,6 +608,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'rows' => $rowSet
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -550,6 +629,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadRowsWithFilter()
@@ -558,6 +638,11 @@ class TableTest extends TestCase
         $expectedArgs = $this->options + [
             'filter' => $rowFilter->toProto()
         ];
+        $this->serverStream->readAll()
+            ->shouldBeCalled()
+            ->willReturn(
+                $this->arrayAsGenerator([])
+            );
         $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
             ->shouldBeCalled()
             ->willReturn(
@@ -568,6 +653,7 @@ class TableTest extends TestCase
         ];
         $iterator = $this->table->readRows($args);
         $this->assertInstanceOf(ChunkFormatter::class, $iterator);
+        $iterator->getIterator()->current();
     }
 
     public function testReadModifyWriteRowAppend()

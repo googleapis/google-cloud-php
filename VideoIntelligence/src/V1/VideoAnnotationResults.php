@@ -68,6 +68,20 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     private $speech_transcriptions;
     /**
+     * OCR text detection and tracking.
+     * Annotations for list of detected text snippets. Each will have list of
+     * frame information associated with it.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextAnnotation text_annotations = 12;</code>
+     */
+    private $text_annotations;
+    /**
+     * Annotations for list of objects detected and tracked in video.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingAnnotation object_annotations = 14;</code>
+     */
+    private $object_annotations;
+    /**
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      *
@@ -101,6 +115,12 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *           Explicit content annotation.
      *     @type \Google\Cloud\VideoIntelligence\V1\SpeechTranscription[]|\Google\Protobuf\Internal\RepeatedField $speech_transcriptions
      *           Speech transcription.
+     *     @type \Google\Cloud\VideoIntelligence\V1\TextAnnotation[]|\Google\Protobuf\Internal\RepeatedField $text_annotations
+     *           OCR text detection and tracking.
+     *           Annotations for list of detected text snippets. Each will have list of
+     *           frame information associated with it.
+     *     @type \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation[]|\Google\Protobuf\Internal\RepeatedField $object_annotations
+     *           Annotations for list of objects detected and tracked in video.
      *     @type \Google\Rpc\Status $error
      *           If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      *           some videos may succeed and some may fail.
@@ -323,6 +343,62 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\SpeechTranscription::class);
         $this->speech_transcriptions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * OCR text detection and tracking.
+     * Annotations for list of detected text snippets. Each will have list of
+     * frame information associated with it.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextAnnotation text_annotations = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTextAnnotations()
+    {
+        return $this->text_annotations;
+    }
+
+    /**
+     * OCR text detection and tracking.
+     * Annotations for list of detected text snippets. Each will have list of
+     * frame information associated with it.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextAnnotation text_annotations = 12;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\TextAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTextAnnotations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\TextAnnotation::class);
+        $this->text_annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Annotations for list of objects detected and tracked in video.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingAnnotation object_annotations = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getObjectAnnotations()
+    {
+        return $this->object_annotations;
+    }
+
+    /**
+     * Annotations for list of objects detected and tracked in video.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingAnnotation object_annotations = 14;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setObjectAnnotations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation::class);
+        $this->object_annotations = $arr;
 
         return $this;
     }

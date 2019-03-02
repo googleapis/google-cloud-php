@@ -53,17 +53,12 @@ class RequesterPaysTest extends StorageTestCase
 
         $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
         $ownerKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
         self::$requesterKeyFile = json_decode(file_get_contents($requesterKeyFilePath), true);
         self::$requesterEmail = self::$requesterKeyFile['client_email'];
         self::$requesterProject = self::$requesterKeyFile['project_id'];
-
         self::$ownerKeyFile = json_decode(file_get_contents($ownerKeyFilePath), true);
         self::$ownerEmail = self::$ownerKeyFile['client_email'];
-        self::$ownerProject = self::$ownerKeyFile['project_id'];
-
         self::$bucketName = uniqid(self::TESTING_PREFIX);
-
         $client = self::$client;
 
         // Owner bucket instance is a bucket class with requester pays turned on
@@ -111,7 +106,7 @@ class RequesterPaysTest extends StorageTestCase
         $p['bindings'][] = [
             'role' => 'roles/pubsub.publisher',
             'members' => [
-                'serviceAccount:'. self::$ownerProject .'@gs-project-accounts.iam.gserviceaccount.com',
+                'serviceAccount:' . $client->getServiceAccount()
             ]
         ];
         self::$topic->iam()->setPolicy($p);

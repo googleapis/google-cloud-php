@@ -175,7 +175,7 @@ class InstanceAdminGapicClient
 
     private static function getProjectNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
+        if (null == self::$projectNameTemplate) {
             self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
@@ -184,7 +184,7 @@ class InstanceAdminGapicClient
 
     private static function getInstanceConfigNameTemplate()
     {
-        if (self::$instanceConfigNameTemplate == null) {
+        if (null == self::$instanceConfigNameTemplate) {
             self::$instanceConfigNameTemplate = new PathTemplate('projects/{project}/instanceConfigs/{instance_config}');
         }
 
@@ -193,7 +193,7 @@ class InstanceAdminGapicClient
 
     private static function getInstanceNameTemplate()
     {
-        if (self::$instanceNameTemplate == null) {
+        if (null == self::$instanceNameTemplate) {
             self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
@@ -202,7 +202,7 @@ class InstanceAdminGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'instanceConfig' => self::getInstanceConfigNameTemplate(),
@@ -791,9 +791,9 @@ class InstanceAdminGapicClient
      * Until completion of the returned operation:
      *
      *   * Cancelling the operation sets its metadata's
-     *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
-     *     restoring resources to their pre-request values. The operation
-     *     is guaranteed to succeed at undoing all resource changes,
+     *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time],
+     *     and begins restoring resources to their pre-request values. The
+     *     operation is guaranteed to succeed at undoing all resource changes,
      *     after which point it terminates with a `CANCELLED` status.
      *   * All other attempts to modify the instance are rejected.
      *   * Reading the instance via the API continues to give the pre-request
@@ -859,11 +859,15 @@ class InstanceAdminGapicClient
      * ```
      *
      * @param Instance  $instance     Required. The instance to update, which must always include the instance
-     *                                name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * @param FieldMask $fieldMask    Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
-     *                                The field mask must always be specified; this prevents any future fields in
-     *                                [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
-     *                                about them.
+     *                                name.  Otherwise, only fields mentioned in
+     *                                [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need
+     *                                be included.
+     * @param FieldMask $fieldMask    Required. A mask specifying which fields in
+     *                                [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should
+     *                                be updated. The field mask must always be specified; this prevents any
+     *                                future fields in
+     *                                [][google.spanner.admin.instance.v1.Instance] from being erased
+     *                                accidentally by clients that do not know about them.
      * @param array     $optionalArgs {
      *                                Optional.
      *

@@ -16,13 +16,13 @@ class RelationalOperator
      */
     const RELATIONAL_OPERATOR_UNSPECIFIED = 0;
     /**
-     * Equal.
+     * Equal. Attempts to match even with incompatible types.
      *
      * Generated from protobuf enum <code>EQUAL_TO = 1;</code>
      */
     const EQUAL_TO = 1;
     /**
-     * Not equal to.
+     * Not equal to. Attempts to match even with incompatible types.
      *
      * Generated from protobuf enum <code>NOT_EQUAL_TO = 2;</code>
      */

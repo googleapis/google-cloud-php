@@ -44,9 +44,10 @@ use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
 
 /**
  * Service Description: A session represents an interaction with a user. You retrieve user input
- * and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
- * user intent and respond.
+ * and pass it to the
+ * [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
+ * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent])
+ * method to determine user intent and respond.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -123,7 +124,7 @@ class SessionsGapicClient
 
     private static function getSessionNameTemplate()
     {
-        if (self::$sessionNameTemplate == null) {
+        if (null == self::$sessionNameTemplate) {
             self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
         }
 
@@ -132,7 +133,7 @@ class SessionsGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'session' => self::getSessionNameTemplate(),
             ];

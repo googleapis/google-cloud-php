@@ -23,6 +23,13 @@ class Regex extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string pattern = 1;</code>
      */
     private $pattern = '';
+    /**
+     * The index of the submatch to extract as findings. When not
+     * specified, the entire match is returned. No more than 3 may be included.
+     *
+     * Generated from protobuf field <code>repeated int32 group_indexes = 2;</code>
+     */
+    private $group_indexes;
 
     /**
      * Constructor.
@@ -34,6 +41,9 @@ class Regex extends \Google\Protobuf\Internal\Message
      *           Pattern defining the regular expression. Its syntax
      *           (https://github.com/google/re2/wiki/Syntax) can be found under the
      *           google/re2 repository on GitHub.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $group_indexes
+     *           The index of the submatch to extract as findings. When not
+     *           specified, the entire match is returned. No more than 3 may be included.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +77,34 @@ class Regex extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pattern = $var;
+
+        return $this;
+    }
+
+    /**
+     * The index of the submatch to extract as findings. When not
+     * specified, the entire match is returned. No more than 3 may be included.
+     *
+     * Generated from protobuf field <code>repeated int32 group_indexes = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGroupIndexes()
+    {
+        return $this->group_indexes;
+    }
+
+    /**
+     * The index of the submatch to extract as findings. When not
+     * specified, the entire match is returned. No more than 3 may be included.
+     *
+     * Generated from protobuf field <code>repeated int32 group_indexes = 2;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGroupIndexes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
+        $this->group_indexes = $arr;
 
         return $this;
     }

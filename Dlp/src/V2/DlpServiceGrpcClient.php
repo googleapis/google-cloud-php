@@ -372,6 +372,21 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Activate a job trigger. Causes the immediate execute of a trigger
+     * instead of waiting on the trigger event to occur.
+     * @param \Google\Cloud\Dlp\V2\ActivateJobTriggerRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ActivateJobTrigger(\Google\Cloud\Dlp\V2\ActivateJobTriggerRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.privacy.dlp.v2.DlpService/ActivateJobTrigger',
+        $argument,
+        ['\Google\Cloud\Dlp\V2\DlpJob', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a new job to inspect storage or calculate risk metrics.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\OsLogin\V1beta\Tests\System;
+namespace Google\Cloud\OsLogin\Tests\System\V1beta;
 
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\OsLogin\V1beta\OsLoginServiceClient;

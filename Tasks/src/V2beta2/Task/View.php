@@ -5,7 +5,8 @@
 namespace Google\Cloud\Tasks\V2beta2\Task;
 
 /**
- * The view specifies a subset of [Task][google.cloud.tasks.v2beta2.Task] data.
+ * The view specifies a subset of [Task][google.cloud.tasks.v2beta2.Task]
+ * data.
  * When a task is returned in a response, not all
  * information is retrieved by default because some data, such as
  * payloads, might be desirable to return only when needed because
@@ -26,20 +27,23 @@ class View
      * The basic view omits fields which can be large or can contain
      * sensitive data.
      * This view does not include the
-     * ([payload in AppEngineHttpRequest][google.cloud.tasks.v2beta2.AppEngineHttpRequest] and
-     * [payload in PullMessage][google.cloud.tasks.v2beta2.PullMessage.payload]). These payloads are
-     * desirable to return only when needed, because they can be large
-     * and because of the sensitivity of the data that you choose to
-     * store in it.
+     * ([payload in
+     * AppEngineHttpRequest][google.cloud.tasks.v2beta2.AppEngineHttpRequest]
+     * and [payload in
+     * PullMessage][google.cloud.tasks.v2beta2.PullMessage.payload]). These
+     * payloads are desirable to return only when needed, because they can be
+     * large and because of the sensitivity of the data that you choose to store
+     * in it.
      *
      * Generated from protobuf enum <code>BASIC = 1;</code>
      */
     const BASIC = 1;
     /**
      * All information is returned.
-     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL] requires
-     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
-     * permission on the [Queue][google.cloud.tasks.v2beta2.Queue] resource.
+     * Authorization for [FULL][google.cloud.tasks.v2beta2.Task.View.FULL]
+     * requires `cloudtasks.tasks.fullView` [Google
+     * IAM](https://cloud.google.com/iam/) permission on the
+     * [Queue][google.cloud.tasks.v2beta2.Queue] resource.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */

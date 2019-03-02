@@ -6,8 +6,8 @@ namespace Google\Cloud\Dlp\V2\BigQueryOptions;
 
 /**
  * How to sample rows if not all rows are scanned. Meaningful only when used
- * in conjunction with rows_limit. If not specified, scanning would start
- * from the top.
+ * in conjunction with either rows_limit or rows_limit_percent. If not
+ * specified, scanning would start from the top.
  *
  * Protobuf type <code>google.privacy.dlp.v2.BigQueryOptions.SampleMethod</code>
  */
