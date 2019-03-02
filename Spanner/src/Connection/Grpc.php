@@ -484,13 +484,23 @@ class Grpc implements ConnectionInterface
         $request->setName($this->pluck('name', $args));
 
         $transport = $this->spannerClient->getTransport();
+        $opts = $this->addResourcePrefixHeader([], $database);
+        $grpcConfig = $this->getGaxConfig(
+            ManualSpannerClient::VERSION,
+            isset($config['authHttpHandler'])
+                ? $config['authHttpHandler']
+                : null
+        );
+
+        $opts['credentialsWrapper'] = $grpcConfig['credentials'];
+
         return $transport->startUnaryCall(
             new Call(
                 'google.spanner.v1.Spanner/DeleteSession',
                 GPBEmpty::class,
                 $request
             ),
-            $this->addResourcePrefixHeader([], $database)
+            $opts
         );
     }
 

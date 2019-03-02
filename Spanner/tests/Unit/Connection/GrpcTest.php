@@ -79,8 +79,11 @@ class GrpcTest extends TestCase
         $transport = $this->prophesize(TransportInterface::class);
         $transport->startUnaryCall(
             Argument::type(Call::class),
-            Argument::type('array')
+            Argument::that(function($argument) {
+                return is_array($argument) && array_key_exists('credentialsWrapper', $argument);
+            })
         )->willReturn($promise);
+
         $client->getTransport()
             ->willReturn($transport->reveal());
         $grpc = new Grpc(['gapicSpannerClient' => $client->reveal()]);
