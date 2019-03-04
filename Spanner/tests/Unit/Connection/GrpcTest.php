@@ -78,7 +78,7 @@ class GrpcTest extends TestCase
         $transport = $this->prophesize(TransportInterface::class);
         $transport->startUnaryCall(
             Argument::type(Call::class),
-            Argument::that(function($argument) {
+            Argument::that(function ($argument) {
                 return is_array($argument) && array_key_exists('credentialsWrapper', $argument);
             })
         )->willReturn($promise);
