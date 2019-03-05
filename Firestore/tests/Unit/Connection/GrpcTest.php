@@ -166,12 +166,32 @@ class GrpcTest extends TestCase
     public function testListCollectionIds()
     {
         $args = [
-            'parent' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE)
         ];
 
         $expected = [$args['parent'], $this->header()];
 
         $this->sendAndAssert('listCollectionIds', $args, $expected);
+    }
+
+    public function testListDocuments()
+    {
+        $args = [
+            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'collectionId' => 'coll1',
+            'mask' => [],
+        ];
+
+        $expected = [
+            $args['parent'],
+            $args['collectionId'],
+            [
+                'showMissing' => true,
+                'mask' => new DocumentMask(['field_paths' => []]),
+            ] + $this->header()
+        ];
+
+        $this->sendAndAssert('listDocuments', $args, $expected);
     }
 
     public function testRollback()

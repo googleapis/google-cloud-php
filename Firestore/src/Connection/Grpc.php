@@ -17,16 +17,17 @@
 
 namespace Google\Cloud\Firestore\Connection;
 
-use Google\Cloud\Core\EmulatorTrait;
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\EmulatorTrait;
+use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\FirestoreClient;
-use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite;
-use Google\Cloud\Firestore\V1\Write;
-use Google\ApiCore\Serializer;
+use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 
 /**
  * A gRPC connection to Cloud Firestore via GAPIC.
@@ -159,6 +160,26 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function listDocuments(array $args)
+    {
+        $mask = isset($args['mask'])
+            ? $args['mask']
+            : [];
+
+        $args['mask'] = $this->documentMask($mask);
+
+        return $this->send([$this->firestore, 'listDocuments'], [
+            $this->pluck('parent', $args),
+            $this->pluck('collectionId', $args),
+            $this->addResourcePrefixHeader([
+                'showMissing' => true
+            ] + $args)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function rollback(array $args)
     {
         return $this->send([$this->firestore, 'rollback'], [
@@ -181,6 +202,13 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'runQuery'], [
             $this->pluck('parent', $args),
             $this->addResourcePrefixHeader($args)
+        ]);
+    }
+
+    private function documentMask(array $mask)
+    {
+        return new DocumentMask([
+            'field_paths' => $mask
         ]);
     }
 

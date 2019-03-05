@@ -19,6 +19,8 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -217,6 +219,61 @@ class CollectionReference extends Query
         $result = $document->create($fields, $options);
 
         return $document;
+    }
+
+    /**
+     * List all documents in the collection.
+     *
+     * Missing documents will be included in the result. A missing document is
+     * one which does not exist, but has sub-documents.
+     *
+     * Example:
+     * ```
+     * $documents = $collection->listDocuments();
+     * foreach ($documents as $document) {
+     *     echo $document->name() . PHP_EOL;
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ListDocumentsRequest ListDocumentsRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options {
+     *     Configuration options
+     *
+     *     @type int $pageSize The maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<DocumentReference>
+     */
+    public function listDocuments(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        $options += [
+            'parent' => $this->parentPath($this->name),
+            'collectionId' => $this->pathId($this->name),
+            'mask' => []
+        ];
+
+        return new ItemIterator(
+            new PageIterator(
+                function ($document) {
+                    return $this->documentFactory($document['name']);
+                },
+                [$this->connection, 'listDocuments'],
+                $options,
+                [
+                    'itemsKey' => 'documents',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

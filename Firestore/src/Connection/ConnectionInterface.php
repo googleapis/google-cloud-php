@@ -45,6 +45,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function listDocuments(array $args);
+
+    /**
+     * @param array $args
+     */
     public function rollback(array $args);
 
     /**
