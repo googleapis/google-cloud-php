@@ -971,8 +971,10 @@ class GrpcTest extends TestCase
         $end = end($args);
         if (!is_array($end) || !$append) {
             $args[]['headers'] = $header;
-        } else {
-            $args[array_key_last($args)]['headers'] = $header;
+        } elseif (is_array($end)) {
+            $keys = array_keys($args);
+            $key = end($keys);
+            $args[$key]['headers'] = $header;
         }
 
         return $args;
