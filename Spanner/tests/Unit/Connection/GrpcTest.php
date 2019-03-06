@@ -745,7 +745,7 @@ class GrpcTest extends TestCase
 
         $grpc = new Grpc;
         $formatKeySet = function () {
-            return $this->formatKeySet(...func_get_args());
+            return call_user_func_array([$this, 'formatKeySet'], func_get_args());
         };
 
         $this->assertEquals(
@@ -811,7 +811,7 @@ class GrpcTest extends TestCase
 
         $grpc = new Grpc;
         $fieldValue = function () {
-            return $this->fieldValue(...func_get_args());
+            return call_user_func_array([$this, 'fieldValue'], func_get_args());
         };
 
         $this->assertEquals(
@@ -891,7 +891,8 @@ class GrpcTest extends TestCase
 
         $grpc = new Grpc;
         $createTransactionSelector = function () {
-            return $this->createTransactionSelector(...func_get_args());
+            $args = func_get_args();
+            return $this->createTransactionSelector($args[0]);
         };
 
         $this->assertEquals(
