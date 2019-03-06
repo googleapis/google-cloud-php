@@ -25,22 +25,30 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\Mutation\Delete;
+use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\NullValue;
 use Google\Protobuf\Struct;
+use Google\Protobuf\Timestamp;
+use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -54,16 +62,282 @@ class GrpcTest extends TestCase
     use GrpcTestTrait;
     use GrpcTrait;
 
+    const CONFIG = 'projects/my-project/instanceConfigs/config-1';
+    const DATABASE = 'projects/my-project/instances/instance-1/databases/database-1';
+    const INSTANCE = 'projects/my-project/instances/instance-1';
     const PROJECT = 'projects/my-project';
+    const SESSION = 'projects/my-project/instances/instance-1/databases/database-1/sessions/session-1';
+    const TABLE = 'table-1';
+    const TRANSACTION = 'transaction-1';
 
+    private $requestWrapper;
+    private $serializer;
     private $successMessage;
+    private $lro;
 
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
 
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
+        $this->serializer = new Serializer;
         $this->successMessage = 'success';
+        $this->lro = $this->prophesize(OperationResponse::class)->reveal();
+    }
+
+    public function testListInstanceConfigs()
+    {
+        $this->assertCallCorrect('listInstanceConfigs', [
+            'projectId' => self::PROJECT
+        ], $this->expectResourceHeader(self::PROJECT, [
+            self::PROJECT
+        ]));
+    }
+
+    public function testGetInstanceConfig()
+    {
+        $this->assertCallCorrect('getInstanceConfig', [
+            'name' => self::CONFIG,
+            'projectId' => self::PROJECT
+        ], $this->expectResourceHeader(self::PROJECT, [
+            self::CONFIG
+        ]));
+    }
+
+    public function testListInstances()
+    {
+        $this->assertCallCorrect('listInstances', [
+            'projectId' => self::PROJECT
+        ], $this->expectResourceHeader(self::PROJECT, [
+            self::PROJECT
+        ]));
+    }
+
+    public function testGetInstance()
+    {
+        $this->assertCallCorrect('getInstance', [
+            'name' => self::INSTANCE,
+            'projectId' => self::PROJECT
+        ], $this->expectResourceHeader(self::PROJECT, [
+            self::INSTANCE
+        ]));
+    }
+
+    public function testCreateInstance()
+    {
+        list ($args, $instance) = $this->instance();
+
+        $this->assertCallCorrect('createInstance', [
+            'projectId' => self::PROJECT,
+            'instanceId' => self::INSTANCE
+        ] + $args, $this->expectResourceHeader(self::INSTANCE, [
+            self::PROJECT,
+            self::INSTANCE,
+            $instance
+        ]), $this->lro, null);
+    }
+
+    // public function testUpdateInstance()
+    // {
+    //     list ($args, $instance, $fieldMask) = $this->instance();
+
+    //     $this->assertCallCorrect('updateInstance', $args, $this->expectResourceHeader(self::INSTANCE, [
+    //         $instance, $fieldMask
+    //     ]), $this->lro, null);
+    // }
+
+    public function testUpdateInstancePartial()
+    {
+        list ($args, $instance, $fieldMask) = $this->instance(false);
+
+        $this->assertCallCorrect('updateInstance', $args, $this->expectResourceHeader(self::INSTANCE, [
+            $instance, $fieldMask
+        ]), $this->lro, null);
+    }
+
+    public function testDeleteInstance()
+    {
+        $this->assertCallCorrect('deleteInstance', [
+            'name' => self::INSTANCE
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE
+        ]));
+    }
+
+    public function testSetInstanceIamPolicy()
+    {
+        $policy = ['foo' => 'bar'];
+
+        $this->assertCallCorrect('setInstanceIamPolicy', [
+            'resource' => self::INSTANCE,
+            'policy' => $policy
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $policy
+        ], false));
+    }
+
+    public function testGetInstanceIamPolicy()
+    {
+        $this->assertCallCorrect('getInstanceIamPolicy', [
+            'resource' => self::INSTANCE
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE
+        ]));
+    }
+
+    public function testTestInstanceIamPermissions()
+    {
+        $permissions = ['permission1', 'permission2'];
+        $this->assertCallCorrect('testInstanceIamPermissions', [
+            'resource' => self::INSTANCE,
+            'permissions' => $permissions
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $permissions
+        ], false));
+    }
+
+    public function testListDatabases()
+    {
+        $this->assertCallCorrect('listDatabases', [
+            'instance' => self::INSTANCE
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE
+        ]));
+    }
+
+    public function testCreateDatabase()
+    {
+        $createStmt = 'CREATE Foo';
+        $extraStmts = [
+            'CREATE TABLE Bar'
+        ];
+
+        $this->assertCallCorrect('createDatabase', [
+            'instance' => self::INSTANCE,
+            'createStatement' => $createStmt,
+            'extraStatements' => $extraStmts
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $createStmt,
+            [
+                'extraStatements' => $extraStmts
+            ]
+        ]), $this->lro, null);
+    }
+
+    public function testUpdateDatabaseDdl()
+    {
+        $statements = [
+            'CREATE TABLE Bar'
+        ];
+
+        $this->assertCallCorrect('updateDatabaseDdl', [
+            'name' => self::DATABASE,
+            'statements' => $statements
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE,
+            $statements
+        ], false), $this->lro, null);
+    }
+
+    public function testDropDatabase()
+    {
+        $this->assertCallCorrect('dropDatabase', [
+            'name' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE
+        ]));
+    }
+
+    public function testGetDatabase()
+    {
+        $this->assertCallCorrect('getDatabase', [
+            'name' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE
+        ]));
+    }
+
+    public function testGetDatabaseDdl()
+    {
+        $this->assertCallCorrect('getDatabaseDdl', [
+            'name' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE
+        ]));
+    }
+
+    public function testSetDatabaseIamPolicy()
+    {
+        $policy = ['foo' => 'bar'];
+
+        $this->assertCallCorrect('setDatabaseIamPolicy', [
+            'resource' => self::DATABASE,
+            'policy' => $policy
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE,
+            $policy
+        ], false));
+    }
+
+    public function testGetDatabaseIamPolicy()
+    {
+        $this->assertCallCorrect('getDatabaseIamPolicy', [
+            'resource' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE
+        ]));
+    }
+
+    public function testTestDatabaseIamPermissions()
+    {
+        $permissions = ['permission1', 'permission2'];
+        $this->assertCallCorrect('testDatabaseIamPermissions', [
+            'resource' => self::DATABASE,
+            'permissions' => $permissions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE,
+            $permissions
+        ], false));
+    }
+
+    public function testCreateSession()
+    {
+        $labels = ['foo' => 'bar'];
+
+        $this->assertCallCorrect('createSession', [
+            'database' => self::DATABASE,
+            'session' => [
+                'labels' => $labels
+            ]
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE,
+            [
+                'session' => (new Session)->setLabels($labels)
+            ]
+        ]));
+    }
+
+    public function testGetSession()
+    {
+        $this->assertCallCorrect('getSession', [
+            'database' => self::DATABASE,
+            'name' => self::SESSION
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION
+        ]));
+    }
+
+    public function testDeleteSession()
+    {
+        $this->assertCallCorrect('deleteSession', [
+            'database' => self::DATABASE,
+            'name' => self::SESSION
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION
+        ]));
     }
 
     public function testDeleteSessionAsync()
@@ -91,10 +365,580 @@ class GrpcTest extends TestCase
         $this->assertInstanceOf(PromiseInterface::class, $call);
     }
 
+    public function testExecuteStreamingSql()
+    {
+        $sql = 'SELECT 1';
+
+        $mapper = new ValueMapper(false);
+        $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
+
+        $expectedParams = $this->serializer->decodeMessage(
+            new Struct,
+            $this->formatStructForApi($mapped['params'])
+        );
+
+        $expectedParamTypes = $mapped['paramTypes'];
+        foreach ($expectedParamTypes as $key => $param) {
+            $expectedParamTypes[$key] = $this->serializer->decodeMessage(new Type, $param);
+        }
+
+        $this->assertCallCorrect('executeStreamingSql', [
+            'session' => self::SESSION,
+            'sql' => $sql,
+            'transactionId' => self::TRANSACTION,
+            'database' => self::DATABASE
+        ] + $mapped, $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $sql,
+            [
+                'transaction' => $this->transactionSelector(),
+                'params' => $expectedParams,
+                'paramTypes' => $expectedParamTypes
+            ]
+        ]));
+    }
+
     /**
-     * @dataProvider methodProvider
+     * @dataProvider readKeysets
      */
-    public function testCallBasicMethods($method, $args, $expectedArgs, $return = null, $result = '')
+    public function testStreamingRead($keyArg, $keyObj)
+    {
+        $columns = [
+            'id',
+            'name'
+        ];
+
+        $this->assertCallCorrect('streamingRead', [
+            'keySet' => $keyArg,
+            'transactionId' => self::TRANSACTION,
+            'session' => self::SESSION,
+            'table' => self::TABLE,
+            'columns' => $columns,
+            'database' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            self::TABLE,
+            $columns,
+            $keyObj,
+            [
+                'transaction' => $this->transactionSelector()
+            ]
+        ]));
+    }
+
+    public function readKeysets()
+    {
+        $this->setUp();
+
+        return [
+            [
+                [],
+                new KeySet
+            ], [
+                ['keys' => [1]],
+                $this->serializer->decodeMessage(new KeySet, [
+                    'keys' => [
+                        [
+                            'values' => [
+                                [
+                                    'number_value' => 1
+                                ]
+                            ]
+                        ]
+                    ]
+                ])
+            ], [
+                ['keys' => [[1,1]]],
+                $this->serializer->decodeMessage(new KeySet, [
+                    'keys' => [
+                        [
+                            'values' => [
+                                [
+                                    'number_value' => 1
+                                ],
+                                [
+                                    'number_value' => 1
+                                ]
+                            ]
+                        ]
+                    ]
+                ])
+            ]
+        ];
+    }
+
+    public function testExecuteBatchDml()
+    {
+        $statements = [
+            [
+                'sql' => 'SELECT 1',
+                'params' => []
+            ]
+        ];
+
+        $statementsObjs = [
+            new Statement([
+                'sql' => 'SELECT 1'
+            ])
+        ];
+
+        $this->assertCallCorrect('executeBatchDml', [
+            'session' => self::SESSION,
+            'database' => self::DATABASE,
+            'transactionId' => self::TRANSACTION,
+            'statements' => $statements,
+            'seqno' => 1
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $this->transactionSelector(),
+            $statementsObjs,
+            1
+        ]));
+    }
+
+    /**
+     * @dataProvider transactionTypes
+     */
+    public function testBeginTransaction($optionsArr, $optionsObj)
+    {
+        $this->assertCallCorrect('beginTransaction', [
+            'session' => self::SESSION,
+            'transactionOptions' => $optionsArr,
+            'database' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $optionsObj
+        ]));
+    }
+
+    public function transactionTypes()
+    {
+        $ts = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
+        $pbTs = new Timestamp($this->formatTimestampForApi($ts));
+
+        return [
+            [
+                ['readWrite' => []],
+                new TransactionOptions([
+                    'read_write' => new ReadWrite
+                ])
+            ], [
+                [
+                    'readOnly' => [
+                        'minReadTimestamp' => $ts,
+                        'readTimestamp' => $ts
+                    ]
+                ],
+                new TransactionOptions([
+                    'read_only' => new ReadOnly([
+                        'min_read_timestamp' => $pbTs,
+                        'read_timestamp' => $pbTs
+                    ])
+                ])
+            ], [
+                ['partitionedDml' => []],
+                new TransactionOptions([
+                    'partitioned_dml' => new PartitionedDml
+                ])
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider commit
+     */
+    public function testCommit($mutationsArr, $mutationsObjArr)
+    {
+        $this->assertCallCorrect('commit', [
+            'session' => self::SESSION,
+            'mutations' => $mutationsArr,
+            'singleUseTransaction' => true,
+            'database' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $mutationsObjArr,
+            [
+                'singleUseTransaction' => new TransactionOptions([
+                    'read_write' => new ReadWrite
+                ])
+            ]
+        ]));
+    }
+
+    public function commit()
+    {
+        $mutation = [
+            'table' => self::TABLE,
+            'columns' => [
+                'col1'
+            ],
+            'values' => [
+                'val1'
+            ]
+        ];
+
+        $write = new Write([
+            'table' => self::TABLE,
+            'columns' => ['col1'],
+            'values' => [
+                new ListValue([
+                    'values' => [
+                        new Value([
+                            'string_value' => 'val1'
+                        ])
+                    ]
+                ])
+            ]
+        ]);
+
+        return [
+            [
+                [], []
+            ], [
+                [
+                    [
+                        'delete' => [
+                            'table' => self::TABLE,
+                            'keySet' => []
+                        ]
+                    ]
+                ],
+                [
+                    new Mutation([
+                        'delete' => new Delete([
+                            'table' => self::TABLE,
+                            'key_set' => new KeySet
+                        ])
+                    ])
+                ]
+            ], [
+                [
+                    [
+                        'insert' => $mutation
+                    ]
+                ],
+                [
+                    new Mutation([
+                        'insert' => $write
+                    ])
+                ]
+            ], [
+                [
+                    [
+                        'update' => $mutation
+                    ]
+                ],
+                [
+                    new Mutation([
+                        'update' => $write
+                    ])
+                ]
+            ], [
+                [
+                    [
+                        'insertOrUpdate' => $mutation
+                    ]
+                ],
+                [
+                    new Mutation([
+                        'insert_or_update' => $write
+                    ])
+                ]
+            ], [
+                [
+                    [
+                        'replace' => $mutation
+                    ]
+                ],
+                [
+                    new Mutation([
+                        'replace' => $write
+                    ])
+                ]
+            ]
+        ];
+    }
+
+    public function testRollback()
+    {
+        $this->assertCallCorrect('rollback', [
+            'session' => self::SESSION,
+            'transactionId' => self::TRANSACTION,
+            'database' => self::DATABASE
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            self::TRANSACTION
+        ]));
+    }
+
+    /**
+     * @dataProvider partitionOptions
+     */
+    public function testPartitionQuery($partitionOptions, $partitionOptionsObj)
+    {
+        $sql = 'SELECT 1';
+        $this->assertCallCorrect('partitionQuery', [
+            'session' => self::SESSION,
+            'sql' => $sql,
+            'params' => [],
+            'transactionId' => self::TRANSACTION,
+            'database' => self::DATABASE,
+            'partitionOptions' => $partitionOptions,
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $sql,
+            [
+                'transaction' => $this->transactionSelector(),
+                'partitionOptions' => $partitionOptionsObj
+            ]
+        ]));
+    }
+
+    /**
+     * @dataProvider partitionOptions
+     */
+    public function testPartitionRead($partitionOptions, $partitionOptionsObj)
+    {
+        $this->assertCallCorrect('partitionRead', [
+            'session' => self::SESSION,
+            'keySet' => [],
+            'table' => self::TABLE,
+            'transactionId' => self::TRANSACTION,
+            'database' => self::DATABASE,
+            'partitionOptions' => $partitionOptions,
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            self::TABLE,
+            new KeySet,
+            [
+                'transaction' => $this->transactionSelector(),
+                'partitionOptions' => $partitionOptionsObj
+            ]
+        ]));
+    }
+
+    public function partitionOptions()
+    {
+        return [
+            [
+                [],
+                new PartitionOptions
+            ],
+            [
+                ['maxPartitions' => 10],
+                new PartitionOptions([
+                    'max_partitions' => 10
+                ])
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider keysets
+     */
+    public function testFormatKeySet($input, $expected)
+    {
+        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+            $this->markTestSkipped('only works in php 7.');
+            return;
+        }
+
+        $grpc = new Grpc;
+        $formatKeySet = function () {
+            return $this->formatKeySet(...func_get_args());
+        };
+
+        $this->assertEquals(
+            $expected,
+            $formatKeySet->call($grpc, $input)
+        );
+    }
+
+    public function keysets()
+    {
+        return [
+            [
+                [],
+                []
+            ], [
+                [
+                    'keys' => [
+                        [
+                            1,
+                            2
+                        ]
+                    ]
+                ],
+                [
+                    'keys' => [
+                        $this->formatListForApi([1, 2])
+                    ]
+                ]
+            ], [
+                [
+                    'ranges' => [
+                        [
+                            'startOpen' => [1],
+                            'endClosed' => [2]
+                        ]
+                    ],
+                ], [
+                    'ranges' => [
+                        [
+                            'startOpen' => $this->formatListForApi([1]),
+                            'endClosed' => $this->formatListForApi([2]),
+                        ]
+                    ]
+                ]
+            ], [
+                [
+                    'ranges' => []
+                ],
+                []
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider fieldvalues
+     */
+    public function testFieldValue($input, $expected)
+    {
+        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+            $this->markTestSkipped('only works in php 7.');
+            return;
+        }
+
+        $grpc = new Grpc;
+        $fieldValue = function () {
+            return $this->fieldValue(...func_get_args());
+        };
+
+        $this->assertEquals(
+            $expected,
+            $fieldValue->call($grpc, $input)
+        );
+    }
+
+    public function fieldvalues()
+    {
+        return [
+            [
+                'foo',
+                new Value([
+                    'string_value' => 'foo'
+                ])
+            ], [
+                1,
+                new Value([
+                    'number_value' => 1
+                ])
+            ], [
+                false,
+                new Value([
+                    'bool_value' => false
+                ])
+            ], [
+                null,
+                new Value([
+                    'null_value' => NullValue::NULL_VALUE
+                ])
+            ], [
+                [
+                    'a' => 'b'
+                ],
+                new Value([
+                    'struct_value' => new Struct([
+                        'fields' => [
+                            'a' => new Value([
+                                'string_value' => 'b'
+                            ])
+                        ]
+                    ])
+                ])
+            ], [
+                [
+                    'a', 'b', 'c'
+                ],
+                new Value([
+                    'list_value' => new ListValue([
+                        'values' => [
+                            new Value([
+                                'string_value' => 'a'
+                            ]),
+                            new Value([
+                                'string_value' => 'b'
+                            ]),
+                            new Value([
+                                'string_value' => 'c'
+                            ]),
+                        ]
+                    ])
+                ])
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider transactionOptions
+     */
+    public function testTransactionOptions($input, $expected)
+    {
+        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
+            $this->markTestSkipped('only works in php 7.');
+            return;
+        }
+
+        $grpc = new Grpc;
+        $createTransactionSelector = function () {
+            return $this->createTransactionSelector(...func_get_args());
+        };
+
+        $this->assertEquals(
+            $expected->serializeToJsonString(),
+            $createTransactionSelector->call($grpc, $input)->serializeToJsonString()
+        );
+    }
+
+    public function transactionOptions()
+    {
+        return [
+            [
+                [
+                    'transactionId' => self::TRANSACTION
+                ],
+                $this->transactionSelector()
+            ], [
+                [
+                    'transaction' => [
+                        'singleUse' => [
+                            'readWrite' => []
+                        ]
+                    ]
+                ],
+                new TransactionSelector([
+                    'single_use' => new TransactionOptions([
+                        'read_write' => new ReadWrite
+                    ])
+                ])
+            ], [
+                [
+                    'transaction' => [
+                        'begin' => [
+                            'readWrite' => []
+                        ]
+                    ]
+                ],
+                new TransactionSelector([
+                    'begin' => new TransactionOptions([
+                        'read_write' => new ReadWrite
+                    ])
+                ])
+            ]
+        ];
+    }
+
+    private function assertCallCorrect($method, array $args, array $expectedArgs, $return = null, $result = '')
     {
         $this->requestWrapper->send(
             Argument::type('callable'),
@@ -102,574 +946,72 @@ class GrpcTest extends TestCase
             Argument::type('array')
         )->willReturn($return ?: $this->successMessage);
 
-        $grpc = new Grpc();
-        $grpc->setRequestWrapper($this->requestWrapper->reveal());
+        $connection = new Grpc();
+        $connection->setRequestWrapper($this->requestWrapper->reveal());
 
-        $this->assertEquals($result !== '' ? $result : $this->successMessage, $grpc->$method($args));
+        $this->assertEquals($result !== '' ? $result : $this->successMessage, $connection->$method($args));
     }
 
-    public function methodProvider()
+    /**
+     * Add the resource header to the args list.
+     *
+     * @param string $val The header value to add.
+     * @param array $args The remaining call args.
+     * @param boolean $append If true, should the last value in $args be an
+     *     array, the header will be appended to that array. If false, the
+     *     header will be added to a separate array.
+     * @return array
+     */
+    private function expectResourceHeader($val, array $args, $append = true)
     {
-        if ($this->shouldSkipGrpcTests()) {
-            return [];
-        }
-
-        $serializer = new Serializer();
-
-        $configName = 'test-config';
-        $instanceName = 'test-instance';
-        $policy = ['foo' => 'bar'];
-        $permissions = ['permission1','permission2'];
-        $databaseName = 'test-database';
-        $sessionName = 'test-session';
-        $transactionName = 'test-transaction';
-
-        $instanceArgs = [
-            'name' => $instanceName,
-            'config' => $configName,
-            'displayName' => $instanceName,
-            'nodeCount' => 1,
-            'state' => Instance_State::CREATING,
-            'labels' => []
+        $header = [
+            'google-cloud-resource-prefix' => [$val]
         ];
 
-        $instance = $serializer->decodeMessage(
-            new Instance(),
-            $instanceArgs
-        );
+        $end = end($args);
+        if (!is_array($end) || !$append) {
+            $args[]['headers'] = $header;
+        } else {
+            $args[array_key_last($args)]['headers'] = $header;
+        }
 
-        $lro = $this->prophesize(OperationResponse::class)->reveal();
+        return $args;
+    }
+
+    private function instance($full = true)
+    {
+        $args = [
+            'name' => self::INSTANCE,
+            'displayName' => self::INSTANCE,
+        ];
+
+        if ($full) {
+            $args = array_merge($args, [
+                'config' => self::CONFIG,
+                'nodeCount' => 1,
+                'state' => State::CREATING,
+                'labels' => []
+            ]);
+        }
 
         $mask = [];
-        foreach (array_keys($instanceArgs) as $key) {
+        foreach (array_keys($args) as $key) {
             $mask[] = Serializer::toSnakeCase($key);
         }
 
-        $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
-
-        $instanceArgsPartial = [
-            'name' => $instanceName,
-            'displayName' => "",
-        ];
-
-        $instancePartial = $serializer->decodeMessage(
-            new Instance(),
-            $instanceArgsPartial
-        );
-
-        $lroPartial = $this->prophesize(OperationResponse::class)->reveal();
-
-        $maskPartial = [];
-        foreach (array_keys($instanceArgsPartial) as $key) {
-            $maskPartial[] = Serializer::toSnakeCase($key);
-        }
-
-        $fieldMaskPartial = $serializer->decodeMessage(new FieldMask(), ['paths' => $maskPartial]);
-
-        $tableName = 'foo';
-
-        $createStmt = 'CREATE TABLE ' . $tableName;
-        $sql = 'SELECT * FROM ' . $tableName;
-
-        $transactionSelector = $serializer->decodeMessage(
-            new TransactionSelector,
-            ['id' => $transactionName]
-        );
-
-        $mapper = new ValueMapper(false);
-        $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
-
-        $expectedParams = $serializer->decodeMessage(
-            new Struct,
-            $this->formatStructForApi($mapped['params'])
-        );
-
-        $expectedParamTypes = $mapped['paramTypes'];
-        foreach ($expectedParamTypes as $key => $param) {
-            $expectedParamTypes[$key] = $serializer->decodeMessage(new Type, $param);
-        }
-
-        $columns = ['id', 'name'];
-        $keySetArgs = [];
-        $keySet = $serializer->decodeMessage(new KeySet, $keySetArgs);
-        $keySetSingular = $serializer->decodeMessage(new KeySet, [
-            'keys' => [
-                [
-                    'values' => [
-                        [
-                            'number_value' => 1
-                        ]
-                    ]
-                ],
-            ]
-        ]);
-
-        $keySetComposite = $serializer->decodeMessage(new KeySet, [
-            'keys' => [
-                [
-                    'values' => [
-                        [
-                            'number_value' => 1
-                        ],
-                        [
-                            'number_value' => 1
-                        ]
-                    ]
-                ]
-            ]
-        ]);
-
-        $readWriteTransactionArgs = ['readWrite' => []];
-        $readWriteTransactionOptions = new TransactionOptions;
-        $rw = new ReadWrite();
-        $readWriteTransactionOptions->setReadWrite($rw);
-
-        $ts = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
-        $readOnlyTransactionArgs = [
-            'readOnly' => [
-                'minReadTimestamp' => $ts,
-                'readTimestamp' => $ts
-            ]
-        ];
-
-        $roObjArgs = $readOnlyTransactionArgs;
-        $roObjArgs['readOnly']['minReadTimestamp'] = $this->formatTimestampForApi($ts);
-        $roObjArgs['readOnly']['readTimestamp'] = $this->formatTimestampForApi($ts);
-        $readOnlyTransactionOptions = new TransactionOptions;
-        $ro = $serializer->decodeMessage(new ReadOnly(), $roObjArgs['readOnly']);
-
-        $readOnlyTransactionOptions->setReadOnly($ro);
-
-        $insertMutations = [
-            [
-                'insert' => [
-                    'table' => $tableName,
-                    'columns' => ['foo'],
-                    'values' => [
-                        ['bar']
-                    ]
-                ]
-            ]
-        ];
-
-        $insertMutationsArr = [];
-        $insert = $insertMutations[0]['insert'];
-        $insert['values'] = [];
-        foreach ($insertMutations[0]['insert']['values'] as $list) {
-            $insert['values'][] = $this->formatListForApi($list);
-        }
-        $operation = $serializer->decodeMessage(new Mutation_Write, $insert);
-
-        $mutation = new Mutation;
-        $mutation->setInsert($operation);
-        $insertMutationsArr[] = $mutation;
+        $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
 
         return [
-            [
-                'listInstanceConfigs',
-                [
-                    'projectId' => self::PROJECT
-                ], [
-                    self::PROJECT,
-                    [
-                        'headers' => $this->header(self::PROJECT)
-                    ]
-                ]
-            ], [
-                'getInstanceConfig',
-                [
-                    'name' => $configName,
-                    'projectId' => self::PROJECT
-                ], [
-                    $configName,
-                    [
-                        'headers' => $this->header(self::PROJECT)
-                    ]
-                ]
-            ], [
-                'listInstances',
-                [
-                    'projectId' => self::PROJECT
-                ], [
-                    self::PROJECT,
-                    [
-                        'headers' => $this->header(self::PROJECT)
-                    ]
-                ]
-            ], [
-                'getInstance',
-                [
-                    'name' => $instanceName,
-                    'projectId' => self::PROJECT
-                ], [
-                    $instanceName,
-                    [
-                        'headers' => $this->header(self::PROJECT)
-                    ]
-                ]
-            ], [
-                'createInstance',
-                [
-                    'projectId' => self::PROJECT,
-                    'instanceId' => $instanceName
-                ] + $instanceArgs, [
-                    self::PROJECT,
-                    $instanceName,
-                    $instance,
-                    [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ],
-                $lro,
-                null
-            ], [
-                'updateInstance',
-                $instanceArgs,
-                [
-                    $instance,
-                    $fieldMask,
-                    [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ],
-                $lro,
-                null
-            ], [
-                'updateInstance',
-                $instanceArgsPartial,
-                [
-                    $instancePartial,
-                    $fieldMaskPartial,
-                    [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ],
-                $lroPartial,
-                null
-            ], [
-                'deleteInstance',
-                [
-                    'name' => $instanceName
-                ], [
-                    $instanceName, [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ]
-            ], [
-                'setInstanceIamPolicy',
-                [
-                    'resource' => $instanceName,
-                    'policy' => $policy
-                ], [
-                    $instanceName,
-                    $policy,
-                    [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ]
-            ], [
-                'getInstanceIamPolicy',
-                [
-                    'resource' => $instanceName
-                ], [
-                    $instanceName,
-                    [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ]
-            ], [
-                'testInstanceIamPermissions',
-                [
-                    'resource' => $instanceName,
-                    'permissions' => $permissions
-                ], [
-                    $instanceName,
-                    $permissions, [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ]
-            ], [
-                'listDatabases',
-                [
-                    'instance' => $instanceName
-                ], [
-                    $instanceName,
-                    [
-                        'headers' => $this->header($instanceName)
-                    ]
-                ]
-            ], [
-                'createDatabase',
-                [
-                    'instance' => $instanceName,
-                    'createStatement' => $createStmt,
-                    'extraStatements' => []
-                ], [
-                    $instanceName,
-                    $createStmt,
-                    [
-                        'extraStatements' => [],
-                        'headers' => $this->header($instanceName)
-                    ]
-                ],
-                $lro,
-                null
-            ], [
-                'updateDatabaseDdl',
-                [
-                    'name' => $databaseName,
-                    'statements' => []
-                ], [
-                    $databaseName,
-                    [],
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ],
-                $lro,
-                null
-            ], [
-                'dropDatabase',
-                [
-                    'name' => $databaseName
-                ], [
-                    $databaseName, [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'getDatabaseDDL',
-                [
-                    'name' => $databaseName
-                ], [
-                    $databaseName,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'setDatabaseIamPolicy',
-                [
-                    'resource' => $databaseName,
-                    'policy' => $policy
-                ], [
-                    $databaseName,
-                    $policy,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'getDatabaseIamPolicy',
-                [
-                    'resource' => $databaseName
-                ], [
-                    $databaseName,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'testDatabaseIamPermissions',
-                [
-                    'resource' => $databaseName,
-                    'permissions' => $permissions
-                ], [
-                    $databaseName,
-                    $permissions,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'createSession',
-                [
-                    'database' => $databaseName,
-                    'session' => [
-                        'labels' => [
-                            'foo' => 'bar'
-                        ]
-                    ]
-                ], [
-                    $databaseName,
-                    [
-                        'session' => (new Session)->setLabels(['foo' => 'bar']),
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'getSession',
-                [
-                    'name' => $sessionName,
-                    'database' => $databaseName
-                ], [
-                    $sessionName,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'deleteSession',
-                [
-                    'name' => $sessionName,
-                    'database' => $databaseName
-                ], [
-                    $sessionName,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'executeStreamingSql',
-                [
-                    'session' => $sessionName,
-                    'sql' => $sql,
-                    'transactionId' => $transactionName,
-                    'database' => $databaseName
-                ] + $mapped, [
-                    $sessionName,
-                    $sql, [
-                        'transaction' => $transactionSelector,
-                        'params' => $expectedParams,
-                        'paramTypes' => $expectedParamTypes,
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'streamingRead',
-                [
-                    'keySet' => [],
-                    'transactionId' => $transactionName,
-                    'session' => $sessionName,
-                    'table' => $tableName,
-                    'columns' => $columns,
-                    'database' => $databaseName,
-                ], [
-                    $sessionName,
-                    $tableName,
-                    $columns,
-                    $keySet,
-                    [
-                        'transaction' => $transactionSelector,
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'streamingRead',
-                [
-                    'keySet' => ['keys' => [1]],
-                    'transactionId' => $transactionName,
-                    'session' => $sessionName,
-                    'table' => $tableName,
-                    'columns' => $columns,
-                    'database' => $databaseName,
-                ], [
-                    $sessionName,
-                    $tableName,
-                    $columns,
-                    $keySetSingular,
-                    [
-                        'transaction' => $transactionSelector,
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'streamingRead',
-                [
-                    'keySet' => ['keys' => [[1,1]]],
-                    'transactionId' => $transactionName,
-                    'session' => $sessionName,
-                    'table' => $tableName,
-                    'columns' => $columns,
-                    'database' => $databaseName,
-                ], [
-                    $sessionName,
-                    $tableName,
-                    $columns,
-                    $keySetComposite,
-                    [
-                        'transaction' => $transactionSelector,
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ],
-            // test read write
-            [
-                'beginTransaction',
-                [
-                    'session' => $sessionName,
-                    'transactionOptions' => $readWriteTransactionArgs,
-                    'database' => $databaseName
-                ], [
-                    $sessionName,
-                    $readWriteTransactionOptions,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ],
-            // test read only
-            [
-                'beginTransaction',
-                [
-                    'session' => $sessionName,
-                    'transactionOptions' => $readOnlyTransactionArgs,
-                    'database' => $databaseName
-                ], [
-                    $sessionName,
-                    $readOnlyTransactionOptions,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ],
-            // test insert
-            // [
-            //     'commit',
-            //     ['session' => $sessionName, 'mutations' => $insertMutations],
-            //     [$sessionName, $insertMutationsArr, []]
-            // ],
-            // test single-use transaction
-            [
-                'commit',
-                [
-                    'session' => $sessionName,
-                    'mutations' => [],
-                    'singleUseTransaction' => true,
-                    'database' => $databaseName
-                ], [
-                    $sessionName,
-                    [],
-                    [
-                        'singleUseTransaction' => $readWriteTransactionOptions,
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ], [
-                'rollback',
-                [
-                    'session' => $sessionName,
-                    'transactionId' => $transactionName,
-                    'database' => $databaseName
-                ], [
-                    $sessionName,
-                    $transactionName,
-                    [
-                        'headers' => $this->header($databaseName)
-                    ]
-                ]
-            ],
-            // ['getOperation'],
-            // ['cancelOperation'],
-            // ['deleteOperation'],
-            // ['listOperations']
+            $args,
+            $this->serializer->decodeMessage(new Instance, $args),
+            $fieldMask
         ];
     }
 
-    private function header($val)
+    private function transactionSelector()
     {
-        return [
-            'google-cloud-resource-prefix' => [$val]
-        ];
+        return new TransactionSelector([
+            'id' => self::TRANSACTION
+        ]);
     }
 }
