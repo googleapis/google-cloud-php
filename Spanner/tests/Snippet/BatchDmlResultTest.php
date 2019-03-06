@@ -17,29 +17,33 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Prophecy\Argument;
 use Google\Cloud\Core\TimeTrait;
-use Google\Cloud\Spanner\BatchDmlResult;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Prophecy\Argument;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
  * @group spanner
  */
 class BatchDmlResultTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
     use TimeTrait;
 
     private $result;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->result = new BatchDmlResult([
             'resultSets' => [
                 [
