@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Batch;
 
-use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 
 /**
@@ -34,7 +33,6 @@ use Google\Cloud\Spanner\Session\Session;
  *
  * Example:
  * ```
- * use Google\Cloud\Spanner\KeySet;
  * use Google\Cloud\Spanner\SpannerClient;
  *
  * $spanner = new SpannerClient();

@@ -61,7 +61,7 @@ class SpannerTestCase extends SystemTestCase
         });
 
         $db->updateDdl(
-            'CREATE TABLE '. self::TEST_TABLE_NAME .' (
+            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 name STRING(MAX) NOT NULL,
                 birthday DATE NOT NULL
@@ -69,8 +69,8 @@ class SpannerTestCase extends SystemTestCase
         )->pollUntilComplete();
 
         $db->updateDdl(
-            'CREATE UNIQUE INDEX '. self::TEST_INDEX_NAME .'
-            ON '. self::TEST_TABLE_NAME .' (name)'
+            'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
+            ON ' . self::TEST_TABLE_NAME . ' (name)'
         )->pollUntilComplete();
 
         self::$database = $db;

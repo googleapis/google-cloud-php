@@ -45,11 +45,11 @@ class PartitionedDmlTest extends SpannerTestCase
             ]
         ];
 
-        $db->executePartitionedUpdate('UPDATE '. self::PDML_TABLE .' t
+        $db->executePartitionedUpdate('UPDATE ' . self::PDML_TABLE . ' t
             SET t.stringField = @stringValue
             WHERE t.boolField IS NULL', $opts);
 
-        $res = $db->execute('SELECT id FROM '. self::PDML_TABLE .' t WHERE t.stringField != @stringValue', $opts);
+        $res = $db->execute('SELECT id FROM ' . self::PDML_TABLE . ' t WHERE t.stringField != @stringValue', $opts);
 
         $this->assertCount(0, iterator_to_array($res));
     }

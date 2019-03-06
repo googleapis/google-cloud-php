@@ -37,7 +37,7 @@ class SnapshotTest extends SpannerTestCase
         self::$tableName = uniqid(self::TABLE_NAME);
 
         self::$database->updateDdl(
-            'CREATE TABLE '. self::$tableName .' (
+            'CREATE TABLE ' . self::$tableName . ' (
                 id INT64 NOT NULL,
                 number INT64 NOT NULL
             ) PRIMARY KEY (id)'
@@ -234,7 +234,7 @@ class SnapshotTest extends SpannerTestCase
 
     private function getRow($client, $id)
     {
-        $result = $client->execute('SELECT * FROM '. self::$tableName .' WHERE id=@id', [
+        $result = $client->execute('SELECT * FROM ' . self::$tableName . ' WHERE id=@id', [
             'parameters' => [
                 'id' => $id
             ]

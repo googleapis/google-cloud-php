@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Rpc\Code;
 
 /**
  * @group spanner
@@ -40,7 +41,7 @@ class WriteTest extends SpannerTestCase
         parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([
-            'CREATE TABLE '. self::TABLE_NAME .' (
+            'CREATE TABLE ' . self::TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 arrayField ARRAY<INT64>,
                 arrayBoolField ARRAY<BOOL>,
@@ -57,7 +58,7 @@ class WriteTest extends SpannerTestCase
                 stringField STRING(MAX),
                 timestampField TIMESTAMP
             ) PRIMARY KEY (id)',
-            'CREATE TABLE '. self::COMMIT_TIMESTAMP_TABLE_NAME .' (
+            'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
                 id INT64 NOT NULL,
                 commitTimestamp TIMESTAMP NOT NULL OPTIONS
                     (allow_commit_timestamp=true)
@@ -407,7 +408,7 @@ class WriteTest extends SpannerTestCase
             'bytesField' => $bytes
         ]);
 
-        $res = $db->execute('SELECT bytesField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $res = $db->execute('SELECT bytesField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -442,7 +443,7 @@ class WriteTest extends SpannerTestCase
             'commitTimestamp' => new CommitTimestamp
         ]);
 
-        $res = self::$database->execute('SELECT * FROM '. self::COMMIT_TIMESTAMP_TABLE_NAME .' WHERE id = @id', [
+        $res = self::$database->execute('SELECT * FROM ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -466,7 +467,7 @@ class WriteTest extends SpannerTestCase
         ]);
 
         $res = self::$database->execute(
-            'SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id',
+            'SELECT stringField FROM ' . self::TABLE_NAME . ' WHERE id = @id',
             [
                 'parameters' => [
                     'id' => $id
@@ -490,7 +491,7 @@ class WriteTest extends SpannerTestCase
             'timestampField' => $timestamp
         ]);
 
-        $res = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $res = self::$database->execute('SELECT timestampField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -502,7 +503,7 @@ class WriteTest extends SpannerTestCase
             'timestampField' => $res
         ]);
 
-        $res2 = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $res2 = self::$database->execute('SELECT timestampField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -532,7 +533,7 @@ class WriteTest extends SpannerTestCase
                 'timestampField' => $timestamp
             ]);
 
-            $res = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            $res = self::$database->execute('SELECT timestampField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
                 ]
@@ -544,7 +545,7 @@ class WriteTest extends SpannerTestCase
                 'timestampField' => $res
             ]);
 
-            $res2 = self::$database->execute('SELECT timestampField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            $res2 = self::$database->execute('SELECT timestampField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
                 ]
@@ -567,7 +568,7 @@ class WriteTest extends SpannerTestCase
         $today = new \DateTime;
         $str = $today->format('Y-m-d\TH:i:s');
 
-        $todayLowMs = \DateTime::createFromFormat('U.u', time() .'.012345');
+        $todayLowMs = \DateTime::createFromFormat('U.u', time() . '.012345');
 
         $r = new \ReflectionClass(Timestamp::class);
         return [
@@ -576,9 +577,9 @@ class WriteTest extends SpannerTestCase
             [new Timestamp($today, 0)],
             [new Timestamp($today, 1)],
             [new Timestamp($today, 000000001)],
-            [$r->newInstanceArgs($this->parseTimeString($str .'.100000000Z'))],
-            [$r->newInstanceArgs($this->parseTimeString($str .'.000000001Z'))],
-            [$r->newInstanceArgs($this->parseTimeString($str .'.101999119Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str . '.100000000Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str . '.000000001Z'))],
+            [$r->newInstanceArgs($this->parseTimeString($str . '.101999119Z'))],
         ];
     }
 
@@ -593,7 +594,7 @@ class WriteTest extends SpannerTestCase
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
                 $count = $t->executeUpdate(
-                    'INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)',
+                    'INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)',
                     [
                         'parameters' => [
                             'id' => $id,
@@ -604,7 +605,7 @@ class WriteTest extends SpannerTestCase
 
                 $this->assertEquals(1, $count);
 
-            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            $row = $t->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
                 ]
@@ -626,7 +627,7 @@ class WriteTest extends SpannerTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
-            $res = $t->execute('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+            $res = $t->execute('INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)', [
                 'parameters' => [
                     'id' => $id,
                     'string' => $randStr
@@ -637,7 +638,7 @@ class WriteTest extends SpannerTestCase
 
             $this->assertEquals(1, $res->stats()['rowCountExact']);
 
-            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            $row = $t->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
                 ]
@@ -659,7 +660,7 @@ class WriteTest extends SpannerTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
-            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)', [
                 'parameters' => [
                     'id' => $id,
                     'string' => $randStr
@@ -668,7 +669,7 @@ class WriteTest extends SpannerTestCase
 
             $this->assertEquals(1, $count);
 
-            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            $row = $t->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
                 ]
@@ -679,7 +680,7 @@ class WriteTest extends SpannerTestCase
             $t->commit();
         });
 
-        $row = $db->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -698,7 +699,7 @@ class WriteTest extends SpannerTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $randStr) {
-            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)', [
                 'parameters' => [
                     'id' => $id,
                     'string' => $randStr
@@ -707,7 +708,7 @@ class WriteTest extends SpannerTestCase
 
             $this->assertEquals(1, $count);
 
-            $row = $t->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            $row = $t->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
                 'parameters' => [
                     'id' => $id
                 ]
@@ -718,7 +719,7 @@ class WriteTest extends SpannerTestCase
             $t->rollback();
         });
 
-        $row = $db->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -738,7 +739,7 @@ class WriteTest extends SpannerTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $id2, $randStr) {
-            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)', [
                 'parameters' => [
                     'id' => $id,
                     'string' => $randStr
@@ -755,7 +756,7 @@ class WriteTest extends SpannerTestCase
             $t->commit();
         });
 
-        $rows = iterator_to_array($db->execute('SELECT * FROM '. self::TABLE_NAME .' WHERE id = @id OR id = @id2', [
+        $rows = iterator_to_array($db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id OR id = @id2', [
             'parameters' => [
                 'id' => $id,
                 'id2' => $id2
@@ -777,7 +778,7 @@ class WriteTest extends SpannerTestCase
 
         $db = self::$database;
         $db->runTransaction(function ($t) use ($id, $id2, $randStr, $randStr2) {
-            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME .' (id, stringField) VALUES (@id, @string)', [
+            $count = $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)', [
                 'parameters' => [
                     'id' => $id,
                     'string' => $randStr
@@ -786,7 +787,7 @@ class WriteTest extends SpannerTestCase
 
             $this->assertEquals(1, $count);
 
-            $count = $t->executeUpdate('UPDATE ' . self::TABLE_NAME .' SET stringField = @string WHERE id = @id', [
+            $count = $t->executeUpdate('UPDATE ' . self::TABLE_NAME . ' SET stringField = @string WHERE id = @id', [
                 'parameters' => [
                     'id' => $id,
                     'string' => $randStr2
@@ -798,7 +799,7 @@ class WriteTest extends SpannerTestCase
             $t->commit();
         });
 
-        $row = iterator_to_array($db->execute('SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $row = iterator_to_array($db->execute('SELECT stringField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id,
                 'id2' => $id2
@@ -825,7 +826,7 @@ class WriteTest extends SpannerTestCase
         ]);
 
         $count = $db->executePartitionedUpdate(
-            'UPDATE '. self::TABLE_NAME .' SET stringField = @string WHERE id = @id',
+            'UPDATE ' . self::TABLE_NAME . ' SET stringField = @string WHERE id = @id',
             [
                 'parameters' => [
                     'id' => $id,
@@ -836,11 +837,267 @@ class WriteTest extends SpannerTestCase
 
         $this->assertEquals(1, $count);
 
-        $row = $db->execute('SELECT stringField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+        $row = $db->execute('SELECT stringField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
         ])->rows()->current();
         $this->assertEquals($randStr2, $row['stringField']);
+    }
+
+    /**
+     * Run batchUpdate with a single statement. Verify that the result list size
+     * is one, and the entry in the list contains the correct row count.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchSingleStatement()
+    {
+        $id = $this->randId();
+        $randStr = base64_encode(random_bytes(500));
+
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) use ($id, $randStr) {
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO ' . self::TABLE_NAME . ' (id, stringField) VALUES (@id, @string)',
+                    'parameters' => [
+                        'id' => $id,
+                        'string' => $randStr
+                    ]
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
+    /**
+     * Run batchUpdate with no statement, expect an error to be returned, with
+     * an empty result list.
+     *
+     * @group spanner-write-batch-dml
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testExecuteUpdateBatchNoStatementsThrowsException()
+    {
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $res = $t->executeUpdateBatch([]);
+
+            $t->commit();
+
+            return $res;
+        });
+    }
+
+    /**
+     * Run batchUpdate with multiple statements that depend on each other (for
+     * example, self incrementing a integer column). Verify the correct row
+     * counts are returned in the result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchDependentStatements()
+    {
+        $id = $this->randId();
+
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO ' . self::TABLE_NAME . ' (id, intField) VALUES (@id, @int)',
+                    'parameters' => [
+                        'id' => $id,
+                        'int' => 0
+                    ]
+                ], [
+                    'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id
+                    ]
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1, 1], $res->rowCounts());
+    }
+
+    /**
+     * Run executeUpdate first, and batchUpdate next, within the same
+     * transaction, and make the statements passed into batchUpdate depend on
+     * the statement run in executeUpdate. Verify that the correct row counts
+     * are returned in the result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchSingleUpdateThenBatchUpdate()
+    {
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+
+            $t->executeUpdate('INSERT INTO ' . self::TABLE_NAME . ' (id, intField) VALUES (@id, @int)', [
+                'parameters' => [
+                    'id' => $id,
+                    'int' => 0
+                ]
+            ]);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id
+                    ]
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
+    /**
+     * Run batchUpdate first, and executeUpdate next, within the same
+     * transaction, and make the statements passed into executeUpdate depend on
+     * the statement run in batchUpdate. Verify that the correct row counts
+     * are returned in the result list.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchThenSingleUpdate()
+    {
+        $db = self::$database;
+        $res = $db->runTransaction(function ($t) {
+            $id = $this->randId();
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'INSERT INTO ' . self::TABLE_NAME . ' (id, intField) VALUES (@id, @int)',
+                    'parameters' => [
+                        'id' => $id,
+                        'int' => 0
+                    ]
+                ]
+            ]);
+
+            $res = $t->executeUpdate('UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id,
+                ]
+            ]);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals(1, $res);
+    }
+
+    /**
+     * Run batchUpdate with an error (e.g. a syntax error) in the i’th statement
+     * (the index here starts from 1). Verify:
+     * - The returned size of the result list equals i - 1;
+     * - Each row count in the list matches the expected update count for
+     *   statement  [1, i - 1].
+     * - The returned status in the response matches the expected error.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchError()
+    {
+        $db = self::$database;
+        $id = $this->randId();
+
+        $statements = [
+            [
+                'sql' => 'INSERT INTO ' . self::TABLE_NAME . ' (id, intField) VALUES (@id, @int)',
+                'parameters' => [
+                    'id' => $id,
+                    'int' => 0
+                ]
+            ], [
+                'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id',
+                'parameters' => [
+                    'id' => $id
+                ]
+            ], [
+                'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id'
+            ]
+        ];
+
+        $res = $db->runTransaction(function ($t) use ($statements) {
+            $res = $t->executeUpdateBatch($statements);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1, 1], $res->rowCounts());
+        $this->assertEquals(Code::INVALID_ARGUMENT, $res->error()['status']['code']);
+        $this->assertEquals($statements[2], $res->error()['statement']);
+    }
+
+    /**
+     * Run batchUpdate with two different errors in the i’th statement and
+     * i+1’th statement. Verify:
+     * - The returned size of the result list equals i - 1;
+     * - Each row count in the array matches the expected update count for
+     *   statement [1, i - 1].
+     * The returned status in the response matches the expected error of
+     *   statement i.
+     *
+     * @group spanner-write-batch-dml
+     */
+    public function testExecuteUpdateBatchMultipleErrors()
+    {
+        $db = self::$database;
+        $id = $this->randId();
+
+        $statements = [
+            [
+                'sql' => 'INSERT INTO ' . self::TABLE_NAME . ' (id, intField) VALUES (@id, @int)',
+                'parameters' => [
+                    'id' => $id,
+                    'int' => 0
+                ]
+            ], [
+                'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id',
+                'parameters' => [
+                    'id' => $id
+                ]
+            ], [
+                'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id'
+            ], [
+                'sql' => 'UPDATE ' . self::TABLE_NAME . ' SET intField = intField+1 WHERE id = @id'
+            ]
+        ];
+
+        $res = $db->runTransaction(function ($t) use ($statements) {
+            $res = $t->executeUpdateBatch($statements);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1, 1], $res->rowCounts());
+        $this->assertEquals(Code::INVALID_ARGUMENT, $res->error()['status']['code']);
+        $this->assertEquals($statements[2], $res->error()['statement']);
     }
 }

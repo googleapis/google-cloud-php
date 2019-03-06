@@ -168,8 +168,8 @@ class GrpcTest extends TestCase
 
         $tableName = 'foo';
 
-        $createStmt = 'CREATE TABLE '. $tableName;
-        $sql = 'SELECT * FROM '. $tableName;
+        $createStmt = 'CREATE TABLE ' . $tableName;
+        $sql = 'SELECT * FROM ' . $tableName;
 
         $transactionSelector = $serializer->decodeMessage(
             new TransactionSelector,
