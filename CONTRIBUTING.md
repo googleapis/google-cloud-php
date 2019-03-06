@@ -60,6 +60,8 @@ Unit tests are organized into groups in order to make it simpler to test a singl
 $ vendor/bin/phpunit --group=datastore
 ```
 
+If tests are getting skipped, use the flag `--verbose` or `-v` to see a more detailed error. You may be missing the required environment variables.
+
 ### Snippet Tests
 
 Documentation is an extremely important part of Google Cloud PHP, and it is crucial that all examples be correct. To support this goal, we implement a strict requirement that every public method must be accompanied by a code sample, and every code sample must be tested.
