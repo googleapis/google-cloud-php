@@ -44,6 +44,7 @@ class Rest implements ConnectionInterface
     const BASE_URI = 'https://www.googleapis.com/storage/v1/';
     const UPLOAD_URI = 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
     const DOWNLOAD_URI = 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    const SIGN_URI = "https://iam.googleapis.com/v1/projects/-/serviceAccounts/#{clientEmail}:signBlob";
 
     /**
      * @var string
@@ -439,5 +440,30 @@ class Rest implements ConnectionInterface
             new Request('GET', Psr7\uri_for($uri)),
             $requestOptions
         ];
+    }
+
+    public function signBlob(array $args = [])
+    {
+        $this->expandUri(self::SIGN_URI, [
+            'clientEmail' => $args['clientEmail']
+        ]);
+
+        $requestOptions = array_intersect_key($args, [
+            'restOptions' => null,
+            'retries' => null
+        ]);
+
+        $headers = [
+            'Content-type' => 'application/json'
+        ];
+
+        $body = json_encode([
+            'bytesToSign' => $args['string']
+        ]);
+
+        return $this->requestWrapper->send(
+            new Request('POST', Psr7\uri_for($uri), $headers, $body),
+            $requestOptions
+        )->getBody();
     }
 }

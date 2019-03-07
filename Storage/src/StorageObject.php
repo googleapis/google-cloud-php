@@ -777,17 +777,12 @@ class StorageObject
     {
         $options += [
             'method' => 'GET',
-            'cname' => self::DEFAULT_DOWNLOAD_URL,
-            'contentMd5' => null,
-            'contentType' => null,
             'headers' => [],
-            'saveAsName' => null,
-            'responseDisposition' => null,
-            'responseType' => null,
             'keyFile' => null,
             'keyFilePath' => null,
+            'signingVersion' => 'V2',
             'allowPost' => false,
-            'forceOpenssl' => false
+            'forceOpenssl' => false,
         ];
 
         if ($expires instanceof Timestamp) {
@@ -815,6 +810,173 @@ class StorageObject
                 'Invalid method. To create an upload URI, use StorageObject::signedUploadUrl().'
             );
         }
+
+        // expiration note:
+        // v2 uses absolute expiration
+        // v4 uses seconds from now.
+
+        $options['signingVersion'] = strtoupper($options['signingVersion']);
+        switch ($options['signingVersion']) {
+            case 'V2':
+                $url = $this->signUrlV2($seconds, $options);
+                break;
+
+            case 'V4':
+                $url = $this->signUrlV4($seconds - time(), $options);
+                break;
+
+            default:
+                throw new \InvalidArgumentException('$options.signingVersion must be either `V2` or `V4`.');
+                break;
+        }
+
+        return $url;
+    }
+
+    /**
+     * @param int $expires URL expiration in seconds from now.
+     * @param array $options
+     */
+    private function signUrlV4($expires, array $options = [])
+    {
+        $options += [
+            'parameters' => [],
+        ];
+
+        // implement IAM signing later
+
+        if ($options['keyFilePath']) {
+            if (!file_exists($options['keyFilePath'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not exist.',
+                    $options['keyFilePath']
+                ));
+            }
+
+            $keyFile = json_decode(file_get_contents($options['keyFilePath']), true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not contain valid json.',
+                    $options['keyFilePath']
+                ));
+            }
+        } elseif ($options['keyFile']) {
+            $keyFile = $options['keyFile'];
+        } else {
+            $requestWrapper = $this->connection->requestWrapper();
+            $keyFile = $requestWrapper->keyFile();
+        }
+
+        if (!isset($keyFile['private_key']) || !isset($keyFile['client_email'])) {
+            throw new \RuntimeException(
+                'Keyfile does not provide required information. ' .
+                'Please ensure keyfile includes `private_key` and `client_email`.'
+            );
+        }
+
+        if ($expires > 604800) {
+            throw new \InvalidArgumentException(
+                'V4 Signed URL expiration time cannot be more than one week in the future.'
+            );
+        }
+
+        $host = sprintf('%s.storage.googleapis.com', $this->identity['bucket']);
+        $objectPieces = explode('/', $this->identity['object']);
+        array_walk($objectPieces, function (&$piece) {
+            $piece = rawurlencode($piece);
+        });
+        $objectName = implode('/', $objectPieces);
+
+        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $dateTimeString = $now->format('Ymd\THis\Z');
+        $dateString = $now->format('Ymd');
+        $regionName = 'us-central-1';
+        $algo = "GOOG4-RSA-SHA256";
+
+        $scope = sprintf('%s/%s/storage/goog4_request', $dateString, $regionName);
+
+        $headers = $options['headers'];
+        $headers['host'] = $host;
+
+        // Sort headers by name.
+        ksort($headers);
+
+        $canonicalHeaders = [];
+        $signedHeaders = [];
+        foreach ($headers as $key => $val) {
+            // $key = strtolower($key);
+            $canonicalHeaders[] = sprintf("%s:%s", $key, $val);
+            $signedHeaders[] = $key;
+        }
+
+        $canonicalHeaders = implode("\n", $canonicalHeaders);
+        $signedHeaders = implode(';', $signedHeaders);
+
+        $credential = urlencode(sprintf('%s/%s', $keyFile['client_email'], $scope));
+
+        $parameters = [
+            'X-Goog-Algorithm' => $algo,
+            'X-Goog-Credential' => $credential,
+            'X-Goog-Date' => $dateTimeString,
+            'X-Goog-Expires' => $expires,
+            'X-Goog-SignedHeaders' => urlencode($signedHeaders),
+        ];
+
+        // print_r($parameters);exit;
+
+        $queryString = [];
+        foreach ($parameters as $key => $val) {
+            $queryString[] = sprintf('%s=%s', $key, $val);
+        }
+
+        $queryString = implode('&', $queryString);
+
+        $canonicalRequest = implode("\n", [
+            $options['method'],
+            '/' . $objectName,
+            $queryString,
+            $canonicalHeaders ."\n",
+            $signedHeaders,
+            'UNSIGNED-PAYLOAD'
+        ]);
+
+        $stringToSign = implode("\n", [
+            $algo,
+            $dateTimeString,
+            $credential,
+            hash('sha256', $canonicalRequest)
+        ]);
+
+        // print_r($canonicalRequest);
+        // echo PHP_EOL.PHP_EOL.'---'.PHP_EOL.PHP_EOL;
+        // print_r($stringToSign);exit;
+
+        $signature = $this->signString($keyFile['private_key'], $stringToSign, $options['forceOpenssl']);
+        // var_dump($signature);exit;
+        $encodedSignature = bin2hex($signature);
+
+        return sprintf(
+            'https://%s/%s?%s&x-goog-signature=%s',
+            $host,
+            $objectName,
+            $queryString,
+            $encodedSignature
+        );
+    }
+
+    private function signUrlV2($expires, array $options = [])
+    {
+        $options += [
+            'cname' => self::DEFAULT_DOWNLOAD_URL,
+            'contentMd5' => null,
+            'contentType' => null,
+            'saveAsName' => null,
+            'responseDisposition' => null,
+            'responseType' => null,
+        ];
+
+        // Sort headers by name.
+        ksort($options['headers']);
 
         if ($options['keyFilePath']) {
             if (!file_exists($options['keyFilePath'])) {
@@ -858,9 +1020,6 @@ class StorageObject
                 count($illegal) === 1 ? 'is' : 'are'
             ));
         }
-
-        // Sort headers by name.
-        ksort($options['headers']);
 
         $headers = [];
         foreach ($options['headers'] as $name => $value) {

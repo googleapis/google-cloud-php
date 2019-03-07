@@ -124,6 +124,9 @@ trait EncryptionTrait
     {
         $signature = '';
 
+        openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
+        return $signature;
+
         if (class_exists(RSA::class) && !$forceOpenssl) {
             $rsa = new RSA;
             $rsa->loadKey($privateKey);
