@@ -68,6 +68,23 @@ class ResultTest extends TestCase
         $this->assertEquals($fixture['result']['value'], $result);
     }
 
+    /**
+     * @expectedException \Exception
+     */
+    public function testFailsWhenStreamThrowsUnrecoverableException()
+    {
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () {
+                throw new \Exception;
+            }
+        );
+
+        iterator_to_array($result->rows());
+    }
+
     public function testResumesBrokenStream()
     {
         $timesCalled = 0;
