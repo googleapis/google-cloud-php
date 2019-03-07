@@ -112,6 +112,11 @@ s.replace(
     r'ExecuteSqlRequest_QueryMode',
     'ExecuteSqlRequest\\QueryMode')
 
+s.replace(
+    'src/V1/Gapic/SpannerGapicClient.php',
+    r'ExecuteBatchDmlRequest_Statement',
+    'ExecuteBatchDmlRequest\\Statement')
+
 # Fix test namespaces
 s.replace(
     'tests/Unit/Admin/Database/*/*.php',

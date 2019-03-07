@@ -67,7 +67,7 @@ class BatchTest extends SpannerTestCase
         $query = 'SELECT
                 id,
                 decade
-            FROM '. self::$tableName .'
+            FROM ' . self::$tableName . '
             WHERE
                 decade > @earlyBound
             AND

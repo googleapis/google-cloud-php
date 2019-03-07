@@ -19,7 +19,7 @@ $callable = function (Database $db, $tableName, $id) use ($tmpFile) {
     $db->runTransaction(function ($transaction) use ($id, $tableName, &$iterations) {
         $iterations++;
 
-        $row = $transaction->execute('SELECT * FROM '. $tableName .' WHERE id = @id', [
+        $row = $transaction->execute('SELECT * FROM ' . $tableName . ' WHERE id = @id', [
             'parameters' => [
                 'id' => (int) $id
             ]

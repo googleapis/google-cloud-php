@@ -19,7 +19,7 @@ if ($childPID1 = pcntl_fork()) {
     $iteration = 0;
     $db1->runTransaction(function ($t) use ($id, $tableName, $delay, &$iteration) {
         $iteration++;
-        $row = $t->execute('SELECT id, number FROM '. $tableName .' WHERE ID = @id', [
+        $row = $t->execute('SELECT id, number FROM ' . $tableName . ' WHERE ID = @id', [
             'parameters' => ['id' => (int) $id]
         ])->rows()->current();
 
@@ -38,7 +38,7 @@ if ($childPID1 = pcntl_fork()) {
     usleep(1 * $delay);
 
     $db2->runTransaction(function ($t) use ($id, $tableName) {
-        $row = $t->execute('SELECT id, number FROM '. $tableName .' WHERE ID = @id', [
+        $row = $t->execute('SELECT id, number FROM ' . $tableName . ' WHERE ID = @id', [
             'parameters' => ['id' => (int) $id]
         ])->rows()->current();
 

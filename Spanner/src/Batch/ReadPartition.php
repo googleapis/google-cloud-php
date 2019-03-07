@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner\Batch;
 
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Operation;
 
 /**
  * Represents a Read Partition.
