@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/pushconfig_oidctoken","type":"","title":"Google\\Cloud\\PubSub\\V1\\PushConfig_OidcToken","name":"PushConfig_OidcToken","description":"<p>This class is deprecated. Use Google\\Cloud\\PubSub\\V1\\PushConfig\\OidcToken instead.<\/p>","examples":[],"resources":[],"methods":[]}
