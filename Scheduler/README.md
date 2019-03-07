@@ -39,7 +39,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Scheduler\V1beta1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
 
 $schedulerClient = new CloudSchedulerClient();
 $projectId = '[MY_PROJECT_ID]';

@@ -836,7 +836,7 @@ $ composer require google/cloud-oslogin
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Scheduler\V1beta1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
 
 $schedulerClient = new CloudSchedulerClient();
 $projectId = '[MY_PROJECT_ID]';

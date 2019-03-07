@@ -23,35 +23,31 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='scheduler',
-    version='v1beta1',
-    config_path='/google/cloud/scheduler/artman_cloudscheduler_v1beta1.yaml',
-    artman_output_name='google-cloud-cloudscheduler-v1beta1')
+for version in ['V1', 'V1Beta1']:
+    lower_version = version.lower()
 
-# copy all src except handwritten partial veneers
-s.move(library / f'src/V1beta1/Gapic')
-s.move(library / f'src/V1beta1/resources')
+    library = gapic.php_library(
+        service='scheduler',
+        version=lower_version,
+        config_path=f'/google/cloud/scheduler/artman_cloudscheduler_{lower_version}.yaml',
+        artman_output_name=f'google-cloud-cloudscheduler-{lower_version}')
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Scheduler', f'src/')
-s.move(library / f'tests/')
+    # copy all src
+    s.move(library / f'src/{version}')
 
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Scheduler', f'metadata/')
+    # copy proto files to src also
+    s.move(library / f'proto/src/Google/Cloud/Scheduler', f'src/')
+    s.move(library / f'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Scheduler', f'metadata/')
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    'src/**/**/*.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
 s.replace(
-    'tests/**/V1beta1/*Test.php',
+    'tests/**/**/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
-
-# Use new namespaces
-# s.replace(
-#     'src/V1/Gapic/SpannerGapicClient.php',
-#     r'ExecuteSqlRequest_QueryMode',
-#     'ExecuteSqlRequest\\QueryMode')

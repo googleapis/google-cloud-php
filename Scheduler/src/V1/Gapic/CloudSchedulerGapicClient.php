@@ -18,13 +18,13 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/scheduler/v1beta1/cloudscheduler.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/scheduler/v1/cloudscheduler.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * @experimental
  */
 
-namespace Google\Cloud\Scheduler\V1beta1\Gapic;
+namespace Google\Cloud\Scheduler\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -34,16 +34,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Scheduler\V1beta1\CreateJobRequest;
-use Google\Cloud\Scheduler\V1beta1\DeleteJobRequest;
-use Google\Cloud\Scheduler\V1beta1\GetJobRequest;
-use Google\Cloud\Scheduler\V1beta1\Job;
-use Google\Cloud\Scheduler\V1beta1\ListJobsRequest;
-use Google\Cloud\Scheduler\V1beta1\ListJobsResponse;
-use Google\Cloud\Scheduler\V1beta1\PauseJobRequest;
-use Google\Cloud\Scheduler\V1beta1\ResumeJobRequest;
-use Google\Cloud\Scheduler\V1beta1\RunJobRequest;
-use Google\Cloud\Scheduler\V1beta1\UpdateJobRequest;
+use Google\Cloud\Scheduler\V1\CreateJobRequest;
+use Google\Cloud\Scheduler\V1\DeleteJobRequest;
+use Google\Cloud\Scheduler\V1\GetJobRequest;
+use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\ListJobsRequest;
+use Google\Cloud\Scheduler\V1\ListJobsResponse;
+use Google\Cloud\Scheduler\V1\PauseJobRequest;
+use Google\Cloud\Scheduler\V1\ResumeJobRequest;
+use Google\Cloud\Scheduler\V1\RunJobRequest;
+use Google\Cloud\Scheduler\V1\UpdateJobRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -93,7 +93,7 @@ class CloudSchedulerGapicClient
     /**
      * The name of the service.
      */
-    const SERVICE_NAME = 'google.cloud.scheduler.v1beta1.CloudScheduler';
+    const SERVICE_NAME = 'google.cloud.scheduler.v1.CloudScheduler';
 
     /**
      * The default address of the service.
@@ -439,7 +439,7 @@ class CloudSchedulerGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -479,11 +479,10 @@ class CloudSchedulerGapicClient
      * @param Job $job Required.
      *
      * The job to add. The user can optionally specify a name for the
-     * job in [name][google.cloud.scheduler.v1beta1.Job.name].
-     * [name][google.cloud.scheduler.v1beta1.Job.name] cannot be the same as an
+     * job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
      * existing job. If a name is not specified then the system will
      * generate a random unique name that will be returned
-     * ([name][google.cloud.scheduler.v1beta1.Job.name]) in the response.
+     * ([name][google.cloud.scheduler.v1.Job.name]) in the response.
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -494,7 +493,7 @@ class CloudSchedulerGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -516,21 +515,21 @@ class CloudSchedulerGapicClient
     /**
      * Updates a job.
      *
-     * If successful, the updated [Job][google.cloud.scheduler.v1beta1.Job] is
-     * returned. If the job does not exist, `NOT_FOUND` is returned.
+     * If successful, the updated [Job][google.cloud.scheduler.v1.Job] is returned. If the job does
+     * not exist, `NOT_FOUND` is returned.
      *
      * If UpdateJob does not successfully return, it is possible for the
-     * job to be in an
-     * [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1beta1.Job.State.UPDATE_FAILED]
-     * state. A job in this state may not be executed. If this happens, retry the
-     * UpdateJob request until a successful response is received.
+     * job to be in an [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1.Job.State.UPDATE_FAILED] state. A job in this state may
+     * not be executed. If this happens, retry the UpdateJob request
+     * until a successful response is received.
      *
      * Sample code:
      * ```
      * $cloudSchedulerClient = new CloudSchedulerClient();
      * try {
      *     $job = new Job();
-     *     $response = $cloudSchedulerClient->updateJob($job);
+     *     $updateMask = new FieldMask();
+     *     $response = $cloudSchedulerClient->updateJob($job, $updateMask);
      * } finally {
      *     $cloudSchedulerClient->close();
      * }
@@ -538,16 +537,14 @@ class CloudSchedulerGapicClient
      *
      * @param Job $job Required.
      *
-     * The new job properties. [name][google.cloud.scheduler.v1beta1.Job.name]
-     * must be specified.
+     * The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
      *
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param FieldMask $updateMask   A  mask used to specify which fields of the job are being updated.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
-     *     @type FieldMask $updateMask
-     *          A  mask used to specify which fields of the job are being updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -555,18 +552,16 @@ class CloudSchedulerGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateJob($job, array $optionalArgs = [])
+    public function updateJob($job, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
         $request->setJob($job);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         return $this->startCall(
             'UpdateJob',
@@ -624,14 +619,10 @@ class CloudSchedulerGapicClient
      * Pauses a job.
      *
      * If a job is paused then the system will stop executing the job
-     * until it is re-enabled via
-     * [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
-     * state of the job is stored in
-     * [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it will be set
-     * to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A
-     * job must be in
-     * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED] to be
-     * paused.
+     * until it is re-enabled via [ResumeJob][google.cloud.scheduler.v1.CloudScheduler.ResumeJob]. The
+     * state of the job is stored in [state][google.cloud.scheduler.v1.Job.state]; if paused it
+     * will be set to [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. A job must be in [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED]
+     * to be paused.
      *
      * Sample code:
      * ```
@@ -658,7 +649,7 @@ class CloudSchedulerGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -679,15 +670,10 @@ class CloudSchedulerGapicClient
     /**
      * Resume a job.
      *
-     * This method reenables a job after it has been
-     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
-     * state of a job is stored in
-     * [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this
-     * method it will be set to
-     * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A
-     * job must be in
-     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be
-     * resumed.
+     * This method reenables a job after it has been [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. The
+     * state of a job is stored in [Job.state][google.cloud.scheduler.v1.Job.state]; after calling this method it
+     * will be set to [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED]. A job must be in
+     * [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED] to be resumed.
      *
      * Sample code:
      * ```
@@ -714,7 +700,7 @@ class CloudSchedulerGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -763,7 +749,7 @@ class CloudSchedulerGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
      * @experimental
