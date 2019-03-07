@@ -738,19 +738,9 @@ class GrpcTest extends TestCase
      */
     public function testFormatKeySet($input, $expected)
     {
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $this->markTestSkipped('only works in php 7.');
-            return;
-        }
-
-        $grpc = new Grpc;
-        $formatKeySet = function () {
-            return call_user_func_array([$this, 'formatKeySet'], func_get_args());
-        };
-
         $this->assertEquals(
             $expected,
-            $formatKeySet->call($grpc, $input)
+            $this->callPrivateMethod('formatKeySet', [$input])
         );
     }
 
@@ -804,19 +794,9 @@ class GrpcTest extends TestCase
      */
     public function testFieldValue($input, $expected)
     {
-        if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-            $this->markTestSkipped('only works in php 7.');
-            return;
-        }
-
-        $grpc = new Grpc;
-        $fieldValue = function () {
-            return call_user_func_array([$this, 'fieldValue'], func_get_args());
-        };
-
         $this->assertEquals(
             $expected,
-            $fieldValue->call($grpc, $input)
+            $this->callPrivateMethod('fieldValue', [$input])
         );
     }
 
@@ -884,6 +864,8 @@ class GrpcTest extends TestCase
      */
     public function testTransactionOptions($input, $expected)
     {
+        // Since the tested method uses pass-by-reference arg, the callPrivateMethod function won't work.
+        // test on php7 only is better than nothing.
         if (version_compare(PHP_VERSION, '7.0.0', '<')) {
             $this->markTestSkipped('only works in php 7.');
             return;
@@ -979,6 +961,18 @@ class GrpcTest extends TestCase
         }
 
         return $args;
+    }
+
+    private function callPrivateMethod($method, array $args)
+    {
+        $grpc = new Grpc;
+        $ref = new \ReflectionClass($grpc);
+
+        $method = $ref->getMethod($method);
+        $method->setAccessible(true);
+
+        array_unshift($args, $grpc);
+        return call_user_func_array([$method, 'invoke'], $args);
     }
 
     private function instance($full = true)
