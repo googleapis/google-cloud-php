@@ -34,7 +34,5 @@ use Google\Cloud\Scheduler\V1beta1\Gapic\CloudSchedulerGapicClient;
 class CloudSchedulerClient extends CloudSchedulerGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated
-    // {@see Google\Cloud\Scheduler\V1beta1\Gapic\CloudSchedulerGapicClient}
-    // class.
+    // additions to the generated {@see CloudSchedulerGapicClient} class.
 }
