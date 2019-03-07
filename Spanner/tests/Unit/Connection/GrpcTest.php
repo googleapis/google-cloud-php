@@ -137,16 +137,7 @@ class GrpcTest extends TestCase
         ]), $this->lro, null);
     }
 
-    // public function testUpdateInstance()
-    // {
-    //     list ($args, $instance, $fieldMask) = $this->instance();
-
-    //     $this->assertCallCorrect('updateInstance', $args, $this->expectResourceHeader(self::INSTANCE, [
-    //         $instance, $fieldMask
-    //     ]), $this->lro, null);
-    // }
-
-    public function testUpdateInstancePartial()
+    public function testUpdateInstance()
     {
         list ($args, $instance, $fieldMask) = $this->instance(false);
 
