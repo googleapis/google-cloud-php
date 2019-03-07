@@ -7,6 +7,13 @@
             "type": "scheduler\/readme"
         }, {
             "title": "CloudSchedulerClient",
+            "type": "scheduler\/v1\/cloudschedulerclient",
+            "nav": [],
+            "patterns": [
+                "scheduler\/v1\/\\w{1,}"
+            ]
+        }, {
+            "title": "CloudSchedulerClient",
             "type": "scheduler\/v1beta1\/cloudschedulerclient",
             "nav": [],
             "patterns": [
