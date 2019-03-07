@@ -660,6 +660,7 @@ class ReleaseBuilder extends GoogleCloudCommand
 
             $description = explode("\n", $message)[0];
             $matches = [];
+<<<<<<< HEAD
             if (preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches) === 1) {
                 $message = trim($matches[1]);
                 $prNumber = isset($matches[2]) ? $matches[2] : null;
@@ -668,6 +669,13 @@ class ReleaseBuilder extends GoogleCloudCommand
             }
 
             if (strpos($message, '[CHANGE ME]') === 0 && $prNumber) {
+=======
+            preg_match('/(.{0,})\(\#(\d{1,})\)/', $description, $matches);
+            $message = trim($matches[1]);
+            $prNumber = isset($matches[2]) ? $matches[2] : null;
+
+            if (strpos($message, '[CHANGE ME]') !== false && $prNumber) {
+>>>>>>> 9c41887d2... Use pull request title for autosynth PRs
                 $message = $this->getMessageFromPullRequest($org, $repo, $prNumber);
             }
 
@@ -683,6 +691,7 @@ class ReleaseBuilder extends GoogleCloudCommand
         return $commits;
     }
 
+<<<<<<< HEAD
     private function askForPrNumber($message)
     {
         return trim($this->ask(sprintf(
@@ -694,6 +703,8 @@ class ReleaseBuilder extends GoogleCloudCommand
         )));
     }
 
+=======
+>>>>>>> 9c41887d2... Use pull request title for autosynth PRs
     private function getMessageFromPullRequest($org, $repo, $prNumber)
     {
         $url = sprintf(
