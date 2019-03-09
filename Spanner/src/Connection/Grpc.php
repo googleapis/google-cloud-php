@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Connection;
 
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -123,6 +124,11 @@ class Grpc implements ConnectionInterface
     private $longRunningGrpcClients;
 
     /**
+     * @var CredentialsWrapper
+     */
+    private $credentialsWrapper;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -154,6 +160,8 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
+        $this->credentialsWrapper = $grpcConfig['credentials'];
 
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
@@ -485,14 +493,7 @@ class Grpc implements ConnectionInterface
 
         $transport = $this->spannerClient->getTransport();
         $opts = $this->addResourcePrefixHeader([], $database);
-        $grpcConfig = $this->getGaxConfig(
-            ManualSpannerClient::VERSION,
-            isset($config['authHttpHandler'])
-                ? $config['authHttpHandler']
-                : null
-        );
-
-        $opts['credentialsWrapper'] = $grpcConfig['credentials'];
+        $opts['credentialsWrapper'] = $this->credentialsWrapper;
 
         return $transport->startUnaryCall(
             new Call(
