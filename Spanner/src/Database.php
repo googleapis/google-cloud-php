@@ -1692,6 +1692,16 @@ class Database
     }
 
     /**
+     * @param int $count
+     * @param array $options
+     * @return Session[]
+     */
+    public function createSessionsAsync($count, array $options = [])
+    {
+        return $this->operation->createSessionsAsync($count, $this->name, $options);
+    }
+
+    /**
      * Lazily instantiates a session. There are no network requests made at this
      * point. To see the operations that can be performed on a session please
      * see {@see Google\Cloud\Spanner\Session\Session}.

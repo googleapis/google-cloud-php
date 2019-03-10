@@ -24,7 +24,9 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use GuzzleHttp\Promise\PromiseInterface;
 use Google\Rpc\Code;
 
 /**
@@ -495,6 +497,36 @@ class Operation
 
         return $this->session($res['name']);
     }
+
+    /**
+     * @param int $count
+     * @param string $databaseName
+     * @param array $options
+     * @return Session[]
+     */
+    public function createSessionsAsync($count, $databaseName, array $options = [])
+    {
+        $args = [
+            'database' => $databaseName,
+            'session' => [
+                'labels' => $this->pluck('labels', $options, false) ?: []
+            ]
+        ] + $options;
+
+       $promises =  $this->connection->createSessionsAsync($count, $args);
+       $results = \GuzzleHttp\Promise\settle($promises)->wait();
+
+       $sessions = [];
+
+       foreach ($results as $result) {
+           if ($result['state'] === 'fulfilled') {
+               $sessions[] = $this->session($result['value']->getName());
+           }
+       }
+
+       return $sessions;
+    }
+
 
     /**
      * Lazily instantiates a session. There are no network requests made at this

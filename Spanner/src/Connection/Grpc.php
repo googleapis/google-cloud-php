@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Connection;
 
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -28,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\KeySet;
@@ -50,6 +52,7 @@ use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Grpc\UnaryCall;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -124,6 +127,11 @@ class Grpc implements ConnectionInterface
     private $longRunningGrpcClients;
 
     /**
+     * @var CredentialsWrapper
+     */
+    private $credentialsWrapper;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -157,6 +165,8 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
+        $this->credentialsWrapper = $grpcConfig['credentials'];
 
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
@@ -445,6 +455,42 @@ class Grpc implements ConnectionInterface
             $databaseName,
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
+    }
+
+    /**
+     * @return PromiseInterface[]
+     */
+    public function createSessionsAsync($count, array $args)
+    {
+
+        $database = $this->pluck('database', $args);
+        $opts = $this->addResourcePrefixHeader([], $database);
+        $opts['credentialsWrapper'] = $this->credentialsWrapper;
+        $transport = $this->spannerClient->getTransport();
+
+        $promises = [];
+
+        for ($i = 0; $i < $count; $i++) {
+            $request = new CreateSessionRequest();
+            $request->setDatabase($database);
+
+            $session = $this->pluck('session', $args, false);
+            if ($session) {
+                $sessionMessage = $this->serializer->decodeMessage(new Session, $session);
+                $request->setSession($sessionMessage);
+            }
+
+            $promises[] = $transport->startUnaryCall(
+                new Call(
+                    'google.spanner.v1.Spanner/CreateSession',
+                    Session::class,
+                    $request
+                ),
+                $opts
+            );
+        }
+
+        return $promises;
     }
 
     /**

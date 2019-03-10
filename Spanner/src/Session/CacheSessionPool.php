@@ -650,16 +650,17 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function createSessions($count)
     {
+        $options = [];
+        if ($this->config['labels']) {
+            $options['labels'] = $this->config['labels'];
+        }
+
+        $results = $this->database->createSessionsAsync($count, $options);
+
         $sessions = [];
-
-        for ($i = 0; $i < $count; $i++) {
-            $options = [];
-            if ($this->config['labels']) {
-                $options['labels'] = $this->config['labels'];
-            }
-
+        foreach ($results as $result) {
             $sessions[] = [
-                'name' => $this->database->createSession($options)->name(),
+                'name' => $result->name(),
                 'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
             ];
         }
