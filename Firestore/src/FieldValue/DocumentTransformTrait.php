@@ -30,9 +30,9 @@ trait DocumentTransformTrait
     private $args;
 
     /**
-     * @param array $args
+     * @param mixed $args
      */
-    public function __construct(array $args = [])
+    public function __construct($args = [])
     {
         $this->args = $args;
     }

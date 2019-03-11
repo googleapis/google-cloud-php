@@ -44,4 +44,13 @@ class ArrayUnionValue implements DocumentTransformInterface
     {
         return false;
     }
+
+    /**
+     * @access private
+     * @return bool
+     */
+    public function sendRaw()
+    {
+        return false;
+    }
 }

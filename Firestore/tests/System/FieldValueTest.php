@@ -24,7 +24,7 @@ use Google\Cloud\Firestore\FieldValue;
  * @group firestore
  * @group firestore-write
  */
-class SentinelValueTest extends FirestoreTestCase
+class FieldValueTest extends FirestoreTestCase
 {
     private $document;
 
@@ -64,33 +64,39 @@ class SentinelValueTest extends FirestoreTestCase
         $this->assertArrayNotHasKey('foo', $this->document->snapshot()->data());
     }
 
-    public function testArrayUnion()
+    /**
+     * @dataProvider transforms
+     */
+    public function testTransform($initialValue, $fieldValue, $expectedValue)
     {
-        $initialValue = ['a','b'];
+        $field = uniqid('transform-field');
         $this->document->update([
-            ['path' => 'foo', 'value' => $initialValue]
+            ['path' => $field, 'value' => $initialValue]
         ]);
-        $this->assertEquals($initialValue, $this->document->snapshot()['foo']);
+        $this->assertEquals($initialValue, $this->document->snapshot()[$field]);
 
         $this->document->update([
-            ['path' => 'foo', 'value' => FieldValue::arrayUnion(['a', 'c', 'd'])]
+            ['path' => $field, 'value' => $fieldValue]
         ]);
-
-        $this->assertEquals(array_merge($initialValue, ['c', 'd']), $this->document->snapshot()['foo']);
+        $this->assertEquals($expectedValue, $this->document->snapshot()[$field]);
     }
 
-    public function testArrayRemove()
+    public function transforms()
     {
-        $initialValue = ['a', 'b'];
-        $this->document->update([
-            ['path' => 'foo', 'value' => $initialValue]
-        ]);
-        $this->assertEquals($initialValue, $this->document->snapshot()['foo']);
-
-        $this->document->update([
-            ['path' => 'foo', 'value' => FieldValue::arrayRemove(['a'])]
-        ]);
-
-        $this->assertEquals(['b'], $this->document->snapshot()['foo']);
+        return [
+            [
+                ['a', 'b'],
+                FieldValue::arrayUnion(['a', 'c', 'd']),
+                ['a', 'b', 'c', 'd']
+            ], [
+                ['a', 'b'],
+                FieldValue::arrayRemove(['a']),
+                ['b']
+            ], [
+                1,
+                FieldValue::increment(2),
+                3
+            ]
+        ];
     }
 }

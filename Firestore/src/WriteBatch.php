@@ -509,8 +509,12 @@ class WriteBatch
             }
 
             $args = $transform->args();
-            if (is_array($args) && !$this->isAssoc($args)) {
-                $args = $this->valueMapper->encodeArrayValue($args);
+            if (!$transform->sendRaw()) {
+                if (is_array($args) && !$this->isAssoc($args)) {
+                    $args = $this->valueMapper->encodeArrayValue($args);
+                } else {
+                    $args = $this->valueMapper->encodeValue($args);
+                }
             }
 
             $operations[] = [

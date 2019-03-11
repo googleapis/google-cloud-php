@@ -17,19 +17,15 @@
 
 namespace Google\Cloud\Firestore\FieldValue;
 
-use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
-
 /**
- * Represents a ServerTimestamp DocumentTransform.
+ * Represents an increment DocumentTransform.
  *
  * This class is not intended to be used directly. See
- * {@see Google\Cloud\Firestore\FieldValue::serverTimestamp()} for usage.
+ * {@see Google\Cloud\Firestore\FieldValue::increment()} for usage.
  */
-class ServerTimestampValue implements DocumentTransformInterface
+class IncrementValue implements DocumentTransformInterface
 {
     use DocumentTransformTrait;
-
-    const REQUEST_TIME = ServerValue::REQUEST_TIME;
 
     /**
      * @access private
@@ -37,16 +33,7 @@ class ServerTimestampValue implements DocumentTransformInterface
      */
     public function key()
     {
-        return 'setToServerValue';
-    }
-
-    /**
-     * @access private
-     * @return int
-     */
-    public function args()
-    {
-        return self::REQUEST_TIME;
+        return 'increment';
     }
 
     /**
@@ -64,6 +51,6 @@ class ServerTimestampValue implements DocumentTransformInterface
      */
     public function sendRaw()
     {
-        return true;
+        return false;
     }
 }
