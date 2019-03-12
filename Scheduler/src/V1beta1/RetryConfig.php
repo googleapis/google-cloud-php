@@ -12,7 +12,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * Settings that determine the retry behavior.
  * By default, if a job does not complete successfully (meaning that
  * an acknowledgement is not received from the handler, then it will be retried
- * with exponential backoff according to the settings in [RetryConfig][google.cloud.scheduler.v1beta1.RetryConfig].
+ * with exponential backoff according to the settings in
+ * [RetryConfig][google.cloud.scheduler.v1beta1.RetryConfig].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1beta1.RetryConfig</code>
  */
@@ -38,8 +39,8 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     /**
      * The time limit for retrying a failed job, measured from time when an
      * execution was first attempted. If specified with
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the job will be retried until both limits are
-     * reached.
+     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the
+     * job will be retried until both limits are reached.
      * The default value for max_retry_duration is zero, which means retry
      * duration is unlimited.
      *
@@ -65,19 +66,24 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     /**
      * The time between retries will double `max_doublings` times.
      * A job's retry interval starts at
-     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration], then doubles
-     * `max_doublings` times, then increases linearly, and finally
+     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration],
+     * then doubles `max_doublings` times, then increases linearly, and finally
      * retries retries at intervals of
-     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] up to
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times.
-     * For example, if [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration] is
-     * 10s, [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] is 300s, and
-     * `max_doublings` is 3, then the a job will first be retried in 10s. The
-     * retry interval will double three times, and then increase linearly by
-     * 2^3 * 10s.  Finally, the job will retry at intervals of
-     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] until the job has
-     * been attempted [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times. Thus, the
-     * requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * up to [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * times.
+     * For example, if
+     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration]
+     * is 10s,
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     * 10s. The retry interval will double three times, and then increase linearly
+     * by 2^3 * 10s.  Finally, the job will retry at intervals of
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * until the job has been attempted
+     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s,
+     * 300s, 300s, ....
      * The default value of this field is 5.
      *
      * Generated from protobuf field <code>int32 max_doublings = 5;</code>
@@ -106,8 +112,8 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $max_retry_duration
      *           The time limit for retrying a failed job, measured from time when an
      *           execution was first attempted. If specified with
-     *           [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the job will be retried until both limits are
-     *           reached.
+     *           [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the
+     *           job will be retried until both limits are reached.
      *           The default value for max_retry_duration is zero, which means retry
      *           duration is unlimited.
      *     @type \Google\Protobuf\Duration $min_backoff_duration
@@ -121,19 +127,24 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      *     @type int $max_doublings
      *           The time between retries will double `max_doublings` times.
      *           A job's retry interval starts at
-     *           [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration], then doubles
-     *           `max_doublings` times, then increases linearly, and finally
+     *           [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration],
+     *           then doubles `max_doublings` times, then increases linearly, and finally
      *           retries retries at intervals of
-     *           [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] up to
-     *           [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times.
-     *           For example, if [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration] is
-     *           10s, [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] is 300s, and
-     *           `max_doublings` is 3, then the a job will first be retried in 10s. The
-     *           retry interval will double three times, and then increase linearly by
-     *           2^3 * 10s.  Finally, the job will retry at intervals of
-     *           [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] until the job has
-     *           been attempted [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times. Thus, the
-     *           requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
+     *           [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     *           up to [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     *           times.
+     *           For example, if
+     *           [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration]
+     *           is 10s,
+     *           [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     *           is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     *           10s. The retry interval will double three times, and then increase linearly
+     *           by 2^3 * 10s.  Finally, the job will retry at intervals of
+     *           [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     *           until the job has been attempted
+     *           [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     *           times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s,
+     *           300s, 300s, ....
      *           The default value of this field is 5.
      * }
      */
@@ -193,8 +204,8 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     /**
      * The time limit for retrying a failed job, measured from time when an
      * execution was first attempted. If specified with
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the job will be retried until both limits are
-     * reached.
+     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the
+     * job will be retried until both limits are reached.
      * The default value for max_retry_duration is zero, which means retry
      * duration is unlimited.
      *
@@ -209,8 +220,8 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     /**
      * The time limit for retrying a failed job, measured from time when an
      * execution was first attempted. If specified with
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the job will be retried until both limits are
-     * reached.
+     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count], the
+     * job will be retried until both limits are reached.
      * The default value for max_retry_duration is zero, which means retry
      * duration is unlimited.
      *
@@ -289,19 +300,24 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     /**
      * The time between retries will double `max_doublings` times.
      * A job's retry interval starts at
-     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration], then doubles
-     * `max_doublings` times, then increases linearly, and finally
+     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration],
+     * then doubles `max_doublings` times, then increases linearly, and finally
      * retries retries at intervals of
-     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] up to
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times.
-     * For example, if [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration] is
-     * 10s, [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] is 300s, and
-     * `max_doublings` is 3, then the a job will first be retried in 10s. The
-     * retry interval will double three times, and then increase linearly by
-     * 2^3 * 10s.  Finally, the job will retry at intervals of
-     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] until the job has
-     * been attempted [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times. Thus, the
-     * requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * up to [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * times.
+     * For example, if
+     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration]
+     * is 10s,
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     * 10s. The retry interval will double three times, and then increase linearly
+     * by 2^3 * 10s.  Finally, the job will retry at intervals of
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * until the job has been attempted
+     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s,
+     * 300s, 300s, ....
      * The default value of this field is 5.
      *
      * Generated from protobuf field <code>int32 max_doublings = 5;</code>
@@ -315,19 +331,24 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
     /**
      * The time between retries will double `max_doublings` times.
      * A job's retry interval starts at
-     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration], then doubles
-     * `max_doublings` times, then increases linearly, and finally
+     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration],
+     * then doubles `max_doublings` times, then increases linearly, and finally
      * retries retries at intervals of
-     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] up to
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times.
-     * For example, if [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration] is
-     * 10s, [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] is 300s, and
-     * `max_doublings` is 3, then the a job will first be retried in 10s. The
-     * retry interval will double three times, and then increase linearly by
-     * 2^3 * 10s.  Finally, the job will retry at intervals of
-     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration] until the job has
-     * been attempted [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] times. Thus, the
-     * requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, ....
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * up to [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * times.
+     * For example, if
+     * [min_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.min_backoff_duration]
+     * is 10s,
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * is 300s, and `max_doublings` is 3, then the a job will first be retried in
+     * 10s. The retry interval will double three times, and then increase linearly
+     * by 2^3 * 10s.  Finally, the job will retry at intervals of
+     * [max_backoff_duration][google.cloud.scheduler.v1beta1.RetryConfig.max_backoff_duration]
+     * until the job has been attempted
+     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s,
+     * 300s, 300s, ....
      * The default value of this field is 5.
      *
      * Generated from protobuf field <code>int32 max_doublings = 5;</code>

@@ -80,7 +80,7 @@ class QueryPartitionTest extends SnippetTestCase
         ]);
 
         $snippet = $this->snippetFromClass(QueryPartition::class);
-        $snippet->setLine(4, '');
+        $snippet->setLine(3, '');
         $snippet->addLocal('batch', $client);
 
         $res = $snippet->invoke('partitions');

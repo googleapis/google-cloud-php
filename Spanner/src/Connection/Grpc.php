@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
@@ -133,6 +134,7 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        //@codeCoverageIgnoreStart
         $this->serializer = new Serializer([
             'commit_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
@@ -151,6 +153,7 @@ class Grpc implements ConnectionInterface
                 return $this->flattenStruct($v);
             },
         ]);
+        //@codeCoverageIgnoreEnd
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
@@ -387,10 +390,10 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function getDatabaseDDL(array $args)
+    public function getDatabaseDdl(array $args)
     {
         $databaseName = $this->pluck('name', $args);
-        return $this->send([$this->databaseAdminClient, 'getDatabaseDDL'], [
+        return $this->send([$this->databaseAdminClient, 'getDatabaseDdl'], [
             $databaseName,
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
@@ -547,6 +550,29 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function executeBatchDml(array $args)
+    {
+        $database = $this->pluck('database', $args);
+        $args['transaction'] = $this->createTransactionSelector($args);
+
+        $statements = [];
+        foreach ($this->pluck('statements', $args) as $statement) {
+            $statement = $this->formatSqlParams($statement);
+            $statements[] = $this->serializer->decodeMessage(new Statement, $statement);
+        }
+
+        return $this->send([$this->spannerClient, 'executeBatchDml'], [
+            $this->pluck('session', $args),
+            $this->pluck('transaction', $args),
+            $statements,
+            $this->pluck('seqno', $args),
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function beginTransaction(array $args)
     {
         $options = new TransactionOptions;
@@ -658,6 +684,51 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function partitionQuery(array $args)
+    {
+        $args = $this->formatSqlParams($args);
+        $args['transaction'] = $this->createTransactionSelector($args);
+
+        $args['partitionOptions'] = $this->serializer->decodeMessage(
+            new PartitionOptions,
+            $this->pluck('partitionOptions', $args, false) ?: []
+        );
+
+        $database = $this->pluck('database', $args);
+        return $this->send([$this->spannerClient, 'partitionQuery'], [
+            $this->pluck('session', $args),
+            $this->pluck('sql', $args),
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function partitionRead(array $args)
+    {
+        $keySet = $this->pluck('keySet', $args);
+        $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
+
+        $args['transaction'] = $this->createTransactionSelector($args);
+
+        $args['partitionOptions'] = $this->serializer->decodeMessage(
+            new PartitionOptions,
+            $this->pluck('partitionOptions', $args, false) ?: []
+        );
+
+        $database = $this->pluck('database', $args);
+        return $this->send([$this->spannerClient, 'partitionRead'], [
+            $this->pluck('session', $args),
+            $this->pluck('table', $args),
+            $keySet,
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getOperation(array $args)
     {
         $name = $this->pluck('name', $args);
@@ -709,51 +780,6 @@ class Grpc implements ConnectionInterface
             $name,
             $filter,
             $args
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function partitionQuery(array $args)
-    {
-        $args = $this->formatSqlParams($args);
-        $args['transaction'] = $this->createTransactionSelector($args);
-
-        $args['partitionOptions'] = $this->serializer->decodeMessage(
-            new PartitionOptions,
-            $this->pluck('partitionOptions', $args, false, [])
-        );
-
-        $database = $this->pluck('database', $args);
-        return $this->send([$this->spannerClient, 'partitionQuery'], [
-            $this->pluck('session', $args),
-            $this->pluck('sql', $args),
-            $this->addResourcePrefixHeader($args, $database)
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function partitionRead(array $args)
-    {
-        $keySet = $this->pluck('keySet', $args);
-        $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
-
-        $args['transaction'] = $this->createTransactionSelector($args);
-
-        $args['partitionOptions'] = $this->serializer->decodeMessage(
-            new PartitionOptions,
-            $this->pluck('partitionOptions', $args, false, [])
-        );
-
-        $database = $this->pluck('database', $args);
-        return $this->send([$this->spannerClient, 'partitionRead'], [
-            $this->pluck('session', $args),
-            $this->pluck('table', $args),
-            $keySet,
-            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 

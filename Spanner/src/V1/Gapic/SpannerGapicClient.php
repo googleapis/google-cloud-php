@@ -40,6 +40,9 @@ use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
@@ -512,7 +515,9 @@ class SpannerGapicClient
     }
 
     /**
-     * Ends a session, releasing server resources associated with it.
+     * Ends a session, releasing server resources associated with it. This will
+     * asynchronously trigger cancellation of any operations that are running with
+     * this session.
      *
      * Sample code:
      * ```
@@ -842,6 +847,86 @@ class SpannerGapicClient
             $request,
             Call::SERVER_STREAMING_CALL
         );
+    }
+
+    /**
+     * Executes a batch of SQL DML statements. This method allows many statements
+     * to be run with lower latency than submitting them sequentially with
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
+     *
+     * Statements are executed in order, sequentially.
+     * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse] will contain a
+     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has successfully executed. If a
+     * statement fails, its error status will be returned as part of the
+     * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse]. Execution will
+     * stop at the first failed statement; the remaining statements will not run.
+     *
+     * ExecuteBatchDml is expected to return an OK status with a response even if
+     * there was an error while processing one of the DML statements. Clients must
+     * inspect response.status to determine if there were any errors while
+     * processing the request.
+     *
+     * See more details in
+     * [ExecuteBatchDmlRequest][Spanner.ExecuteBatchDmlRequest] and
+     * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse].
+     *
+     * Sample code:
+     * ```
+     * $spannerClient = new SpannerClient();
+     * try {
+     *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
+     *     $transaction = new TransactionSelector();
+     *     $statements = [];
+     *     $seqno = 0;
+     *     $response = $spannerClient->executeBatchDml($formattedSession, $transaction, $statements, $seqno);
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string                             $session     Required. The session in which the DML statements should be performed.
+     * @param TransactionSelector                $transaction The transaction to use. A ReadWrite transaction is required. Single-use
+     *                                                        transactions are not supported (to avoid replay).  The caller must either
+     *                                                        supply an existing transaction ID or begin a new transaction.
+     * @param ExecuteBatchDmlRequest\Statement[] $statements  The list of statements to execute in this batch. Statements are executed
+     *                                                        serially, such that the effects of statement i are visible to statement
+     *                                                        i+1. Each statement must be a DML statement. Execution will stop at the
+     *                                                        first failed statement; the remaining statements will not run.
+     *
+     * REQUIRES: statements_size() > 0.
+     * @param int   $seqno        A per-transaction sequence number used to identify this request. This is
+     *                            used in the same space as the seqno in
+     *                            [ExecuteSqlRequest][Spanner.ExecuteSqlRequest]. See more details
+     *                            in [ExecuteSqlRequest][Spanner.ExecuteSqlRequest].
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function executeBatchDml($session, $transaction, $statements, $seqno, array $optionalArgs = [])
+    {
+        $request = new ExecuteBatchDmlRequest();
+        $request->setSession($session);
+        $request->setTransaction($transaction);
+        $request->setStatements($statements);
+        $request->setSeqno($seqno);
+
+        return $this->startCall(
+            'ExecuteBatchDml',
+            ExecuteBatchDmlResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

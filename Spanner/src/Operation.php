@@ -24,8 +24,8 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Rpc\Code;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -229,6 +229,71 @@ class Operation
             : 'rowCountExact';
 
         return $stats[$statsItem];
+    }
+
+    /**
+     * Execute multiple DML statements.
+     *
+     * For detailed usage instructions, see
+     * {@see Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
+     *
+     * @param Session $session The session in which the update operation should
+     *        be executed.
+     * @param Transaction $transaction The transaction in which the operation
+     *        should be executed.
+     * @param array[] $statements A list of DML statements to run. Each statement
+     *        must contain a `sql` key, where the value is a DML string. If the
+     *        DML contains placeholders, values are provided as a key/value array
+     *        in key `parameters`. If parameter types are required, they must be
+     *        provided in key `paramTypes`. Generally, Google Cloud PHP can
+     *        infer types. Explicit type declarations are required in the case
+     *        of struct parameters, or when a null value exists as a parameter.
+     *        Accepted values for primitive types are defined as constants on
+     *        {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+     *        `Database::TYPE_BYTES`. If the value is an array, use
+     *        {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *        parameter types. Likewise, for structs, use
+     *        {@see Google\Cloud\Spanner\StructType}.
+     * @param array $options Configuration options.
+     * @return BatchDmlResult
+     * @throws \InvalidArgumentException If any statement is missing the `sql` key.
+     */
+    public function executeUpdateBatch(
+        Session $session,
+        Transaction $transaction,
+        array $statements,
+        array $options = []
+    ) {
+        $stmts = [];
+        foreach ($statements as $statement) {
+            if (!isset($statement['sql'])) {
+                throw new \InvalidArgumentException('Each statement must contain a SQL key.');
+            }
+
+            $parameters = $this->pluck('parameters', $statement, false) ?: [];
+            $types = $this->pluck('types', $statement, false) ?: [];
+            $stmts[] = [
+                'sql' => $statement['sql']
+            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        }
+
+        $res = $this->connection->executeBatchDml([
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transaction->id(),
+            'statements' => $stmts
+        ] + $options);
+
+        $errorStatement = null;
+        if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
+            $errIndex = count($res['resultSets']);
+            $errorStatement = $statements[$errIndex];
+        }
+
+        return new BatchDmlResult($res, $errorStatement);
     }
 
     /**
