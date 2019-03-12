@@ -956,6 +956,24 @@ class DatabaseTest extends TestCase
         $this->assertEquals($sessName, $sess->name());
     }
 
+    public function testCreateSessionsAsync()
+    {
+        $db = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE);
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $this->connection->createSessionsAsync(Argument::type('int'),Argument::withEntry('database', $db))
+            ->shouldBeCalled()
+            ->willReturn([[
+                'name' => $sessName
+            ]]);
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $sessions = $this->database->createSessionsAsync();
+
+        $this->assertInstanceOf(Session::class, $sessions[0]);
+        $this->assertEquals($sessName, $sessions[0]->name());
+    }
+
     public function testSession()
     {
         $sess = $this->database->session(
