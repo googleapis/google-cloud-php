@@ -189,7 +189,7 @@ class FieldValue
      * ]);
      * ```
      *
-     * @param mixed $value
+     * @param int|float $value
      * @return IncrementValue
      */
     public static function increment($value)
