@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Connection;
 
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -124,6 +125,11 @@ class Grpc implements ConnectionInterface
     private $longRunningGrpcClients;
 
     /**
+     * @var CredentialsWrapper
+     */
+    private $credentialsWrapper;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -157,6 +163,8 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
+
+        $this->credentialsWrapper = $grpcConfig['credentials'];
 
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
@@ -487,13 +495,16 @@ class Grpc implements ConnectionInterface
         $request->setName($this->pluck('name', $args));
 
         $transport = $this->spannerClient->getTransport();
+        $opts = $this->addResourcePrefixHeader([], $database);
+        $opts['credentialsWrapper'] = $this->credentialsWrapper;
+
         return $transport->startUnaryCall(
             new Call(
                 'google.spanner.v1.Spanner/DeleteSession',
                 GPBEmpty::class,
                 $request
             ),
-            $this->addResourcePrefixHeader([], $database)
+            $opts
         );
     }
 
