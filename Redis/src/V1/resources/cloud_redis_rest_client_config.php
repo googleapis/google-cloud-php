@@ -61,30 +61,6 @@ return [
                     ],
                 ],
             ],
-            'ImportInstance' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:import',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportInstance' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:export',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'FailoverInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:failover',

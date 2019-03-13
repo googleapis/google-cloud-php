@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ namespace Google\Cloud\Redis\V1;
  * * As such, Redis instances are resources of the form:
  *   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
  *
- * Note that location_id must be refering to a GCP `region`; for example:
+ * Note that location_id must be referring to a GCP `region`; for example:
  * * `projects/redpepper-1290/locations/us-central1/instances/my-redis`
  */
 class CloudRedisGrpcClient extends \Grpc\BaseStub {
@@ -120,46 +120,6 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     public function UpdateInstance(\Google\Cloud\Redis\V1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/UpdateInstance',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Import a Redis RDB snapshot file from GCS into a Redis instance.
-     *
-     * Redis may stop serving during this operation. Instance state will be
-     * IMPORTING for entire operation. When complete, the instance will contain
-     * only data from the imported file.
-     *
-     * The returned operation is automatically deleted after a few hours, so
-     * there is no need to call DeleteOperation.
-     * @param \Google\Cloud\Redis\V1\ImportInstanceRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function ImportInstance(\Google\Cloud\Redis\V1\ImportInstanceRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/ImportInstance',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Export Redis instance data into a Redis RDB format file in GCS.
-     *
-     * Redis will continue serving during this operation.
-     *
-     * The returned operation is automatically deleted after a few hours, so
-     * there is no need to call DeleteOperation.
-     * @param \Google\Cloud\Redis\V1\ExportInstanceRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function ExportInstance(\Google\Cloud\Redis\V1\ExportInstanceRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/ExportInstance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

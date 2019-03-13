@@ -56,12 +56,6 @@ class State
      */
     const MAINTENANCE = 6;
     /**
-     * Redis instance is importing data (availability may be affected).
-     *
-     * Generated from protobuf enum <code>IMPORTING = 8;</code>
-     */
-    const IMPORTING = 8;
-    /**
      * Redis instance is failing over (availability may be affected).
      *
      * Generated from protobuf enum <code>FAILING_OVER = 9;</code>
