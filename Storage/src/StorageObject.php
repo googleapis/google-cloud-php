@@ -781,7 +781,8 @@ class StorageObject
             'cname' => self::DEFAULT_DOWNLOAD_URL,
             'version' => 'v2',
             'keyFile' => null,
-            'keyFilePath' => null
+            'keyFilePath' => null,
+            'scopes' => null
         ];
 
         if ($options['keyFilePath']) {
@@ -802,15 +803,13 @@ class StorageObject
         }
 
         $rw = $this->connection->requestWrapper();
+        $scopes = $options['scopes'] ?: $rw->scopes();
         $credentials = $options['keyFile']
-            ? CredentialsLoader::makeCredentials($rw->scopes(), $options['keyFile'])
-            : $rw->getCredentialsFetcher();
-
-        $keyFile = $options['keyFile'] ?: $rw->keyFile();
+            ? CredentialsLoader::makeCredentials($scopes, $options['keyFile'])
+            : $rw->credentials();
 
         $helper = new SigningHelper(
             $credentials,
-            $keyFile,
             $expires
         );
 

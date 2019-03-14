@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\Signer;
 use Google\Cloud\Core\Timestamp;
 use phpseclib\Crypt\RSA;
 
@@ -29,14 +30,9 @@ class SigningHelper
     const DEFAULT_DOWNLOAD_URL = 'https://storage.googleapis.com';
 
     /**
-     * @var FetchAuthTokenInterface
+     * @var FetchAuthTokenCredential
      */
     private $credentials;
-
-    /**
-     * @var array
-     */
-    private $keyFile;
 
     /**
      * The expiration time, in seconds from epoch.
@@ -46,19 +42,20 @@ class SigningHelper
     private $expires;
 
     /**
+     * @var Signer
+     */
+    private $signer;
+
+    /**
      * @param FetchAuthTokenInterface $credentials The currently authenticated
      *        credentials.
-     * @param array $keyFile The keyfile data.
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
      *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
      *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
      *        UNIX timestamp as an integer.
      */
-    public function __construct(FetchAuthTokenInterface $credentials, array $keyFile, $expires)
+    public function __construct(FetchAuthTokenInterface $credentials, $expires)
     {
-        $this->credentials = $credentials;
-        $this->keyFile = $keyFile;
-
         if ($expires instanceof Timestamp) {
             $seconds = $expires->get()->format('U');
         } elseif ($expires instanceof \DateTimeInterface) {
@@ -73,7 +70,9 @@ class SigningHelper
             throw new \InvalidArgumentException('Expiration cannot be in the past.');
         }
 
+        $this->credentials = $credentials;
         $this->expires = $expires;
+        $this->signer = new Signer;
     }
 
     public function v4Sign(array $identity, array $options)
@@ -143,11 +142,11 @@ class SigningHelper
         // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
         // in this case `\n` is required.
         $string = implode("\n", $toSign);
-        $signature = $this->signString($this->keyFile['private_key'], $string, $options['forceOpenssl']);
-        $encodedSignature = urlencode(base64_encode($signature));
+        $signature = $this->signer->signBlob($this->credentials, $string, $options['forceOpenssl']);
+        $encodedSignature = urlencode($signature);
 
         $query = [];
-        $query[] = 'GoogleAccessId=' . $this->keyFile['client_email'];
+        $query[] = 'GoogleAccessId=' . $this->credentials->getClientEmail();
         $query[] = 'Expires=' . $this->expires;
         $query[] = 'Signature=' . $encodedSignature;
 
@@ -168,17 +167,6 @@ class SigningHelper
 
         return $uri . '?' . implode('&', $query);
     }
-
-    private function chooseSigner()
-    {
-
-    }
-
-    private function iamSigner()
-    {}
-
-    private function serviceAccountSigner()
-    {}
 
     private function normalizeOptions(array $options)
     {
@@ -210,36 +198,5 @@ class SigningHelper
         }
 
         return $options;
-    }
-
-    /**
-     * Sign a string using a given private key.
-     *
-     * @param string $privateKey The private key to use to sign the data.
-     * @param string $data The data to sign.
-     * @param bool $forceOpenssl If true, OpenSSL will be used regardless of
-     *        whether phpseclib is available. **Defaults to** `false`.
-     * @return string The signature
-     */
-    private function signString($privateKey, $data, $forceOpenssl = false)
-    {
-        $signature = '';
-
-        if (class_exists(RSA::class) && !$forceOpenssl) {
-            $rsa = new RSA;
-            $rsa->loadKey($privateKey);
-            $rsa->setSignatureMode(RSA::SIGNATURE_PKCS1);
-            $rsa->setHash('sha256');
-
-            $signature = $rsa->sign($data);
-        } elseif (extension_loaded('openssl')) {
-            openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
-        } else {
-            // @codeCoverageIgnoreStart
-            throw new \RuntimeException('OpenSSL is not installed.');
-        }
-        // @codeCoverageIgnoreEnd
-
-        return $signature;
     }
 }

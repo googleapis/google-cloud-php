@@ -137,6 +137,25 @@ trait RequestWrapperTrait
         return $this->scopes;
     }
 
+    public function credentials()
+    {
+        $credentials = null;
+
+        if ($this->credentialsFetcher) {
+            $credentials = $this->credentialsFetcher;
+        } elseif ($this->keyFile) {
+            $credentials = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
+        } else {
+            try {
+                $credentials = $this->getADC();
+            } catch (\DomainException $ex) {
+                $credentials = new AnonymousCredentials();
+            }
+        }
+
+        return $credentials;
+    }
+
     /**
      * Gets the credentials fetcher and sets up caching. Precedence is as
      * follows:
@@ -150,22 +169,8 @@ trait RequestWrapperTrait
      */
     public function getCredentialsFetcher()
     {
-        $fetcher = null;
-
-        if ($this->credentialsFetcher) {
-            $fetcher = $this->credentialsFetcher;
-        } elseif ($this->keyFile) {
-            $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
-        } else {
-            try {
-                $fetcher = $this->getADC();
-            } catch (\DomainException $ex) {
-                $fetcher = new AnonymousCredentials();
-            }
-        }
-
         return new FetchAuthTokenCache(
-            $fetcher,
+            $this->credentials(),
             $this->authCacheOptions,
             $this->authCache
         );
