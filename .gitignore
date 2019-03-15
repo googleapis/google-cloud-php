@@ -10,4 +10,5 @@ vendor/
 # do not delete
 keys/
 .testing
+.split
 __pycache__

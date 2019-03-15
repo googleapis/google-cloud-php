@@ -1,0 +1,29 @@
+{
+    "modules": [
+        {
+            "id": "component",
+            "name": "test/component",
+            "defaultService": "foo",
+            "versions": [
+                "v1.0.0",
+                "master"
+            ]
+        }, {
+            "id": "component-a",
+            "name": "test/component-a",
+            "defaultService": "foo",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        }, {
+            "id": "component-b",
+            "name": "test/component-b",
+            "defaultService": "foo",
+            "versions": [
+                "v1.0.0",
+                "master"
+            ]
+        }
+    ]
+}

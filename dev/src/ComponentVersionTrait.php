@@ -4,6 +4,8 @@ namespace Google\Cloud\Dev;
 
 /**
  * Helper for manipulating component versions.
+ *
+ * @internal
  */
 trait ComponentVersionTrait
 {

@@ -23,6 +23,8 @@ use Symfony\Component\Console\Question\Question;
 
 /**
  * Helpers for asking questions in an interactice CLI.
+ *
+ * @internal
  */
 trait QuestionTrait
 {

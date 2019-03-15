@@ -19,6 +19,9 @@ namespace Google\Cloud\Dev;
 
 /**
  * Helper for managing components.
+ *
+ * @deprecated Use {@see Google\Cloud\Dev\ComponentManager} instead.
+ * @internal
  */
 trait GetComponentsTrait
 {

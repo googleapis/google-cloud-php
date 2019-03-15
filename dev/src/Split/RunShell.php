@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Google Inc.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,27 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\Command;
+namespace Google\Cloud\Dev\Split;
 
-use Symfony\Component\Console\Command\Command;
-
-abstract class GoogleCloudCommand extends Command
+/**
+ * Execute Shell commands and return the results.
+ *
+ * Allows for unit testing of calls to exec.
+ *
+ * @internal
+ */
+class RunShell
 {
-    const TOKEN_ENV = 'GH_OAUTH_TOKEN';
-
-    protected $rootPath;
-
-    public function __construct($rootPath)
+    /**
+     * Executing commands in Windows may behave differently.
+     *
+     * @param string $command
+     * @return array [(bool) $succeeded, (string) $shellOutput, (int) $exitCode]
+     */
+    public function execute($command)
     {
-        $this->rootPath = $rootPath;
+        exec($command, $shellOutput, $exitCode);
 
-        parent::__construct();
+        return [$exitCode == 0, $shellOutput, $exitCode];
     }
 }

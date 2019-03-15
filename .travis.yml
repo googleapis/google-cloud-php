@@ -23,7 +23,8 @@ jobs:
       install:
       - travis_retry composer install
       script:
-      - ./dev/sh/trigger-split
+      - git fetch --unshallow
+      - ./dev/google-cloud split $TRAVIS_TAG
       notifications:
         email:
           recipients:
