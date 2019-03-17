@@ -50,7 +50,7 @@ class Write extends \Google\Protobuf\Internal\Message
      *           A document name to delete. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *     @type \Google\Cloud\Firestore\V1\DocumentTransform $transform
-     *           Applies a tranformation to a document.
+     *           Applies a transformation to a document.
      *           At most one `transform` per document is allowed in a given request.
      *           An `update` cannot follow a `transform` on the same document in a given
      *           request.
@@ -129,7 +129,7 @@ class Write extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies a tranformation to a document.
+     * Applies a transformation to a document.
      * At most one `transform` per document is allowed in a given request.
      * An `update` cannot follow a `transform` on the same document in a given
      * request.
@@ -143,7 +143,7 @@ class Write extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies a tranformation to a document.
+     * Applies a transformation to a document.
      * At most one `transform` per document is allowed in a given request.
      * An `update` cannot follow a `transform` on the same document in a given
      * request.
