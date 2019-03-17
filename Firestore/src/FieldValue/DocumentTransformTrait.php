@@ -41,7 +41,7 @@ trait DocumentTransformTrait
      * Get the field value arguments.
      *
      * @access private
-     * @return array
+     * @return mixed
      */
     public function args()
     {

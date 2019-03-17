@@ -24,6 +24,8 @@ use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
  *
  * This class is not intended to be used directly. See
  * {@see Google\Cloud\Firestore\FieldValue::serverTimestamp()} for usage.
+ *
+ * @internal
  */
 class ServerTimestampValue implements DocumentTransformInterface
 {

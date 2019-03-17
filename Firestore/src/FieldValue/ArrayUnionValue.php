@@ -22,6 +22,8 @@ namespace Google\Cloud\Firestore\FieldValue;
  *
  * This class is not intended to be used directly. See
  * {@see Google\Cloud\Firestore\FieldValue::arrayUnion()} for usage.
+ *
+ * @internal
  */
 class ArrayUnionValue implements DocumentTransformInterface
 {
