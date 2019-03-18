@@ -20,7 +20,6 @@ namespace Google\Cloud\Storage;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\Signer;
 use Google\Cloud\Core\Timestamp;
-use phpseclib\Crypt\RSA;
 
 /**
  * Class Description
@@ -75,9 +74,106 @@ class SigningHelper
         $this->signer = new Signer;
     }
 
-    public function v4Sign(array $identity, array $options)
+    public function v4Sign($uri, $resource, $generation, array $options)
     {
+        // $options += [
+        //     'method' => 'GET',
+        //     'cname' => self::DEFAULT_DOWNLOAD_URL,
+        //     'contentMd5' => null,
+        //     'contentType' => null,
+        //     'headers' => [],
+        //     'saveAsName' => null,
+        //     'responseDisposition' => null,
+        //     'responseType' => null,
+        //     'keyFile' => null,
+        //     'keyFilePath' => null,
+        //     'allowPost' => false,
+        //     'forceOpenssl' => false
+        // ];
         $options = $this->normalizeOptions($options);
+
+        $now = new \DateTime;
+        $expireLimit = $now->modify('+7 days')->format('U');
+        if ($this->expires > $expireLimit) {
+            throw new \InvalidArgumentException(
+                'V4 Signed URLs may not have an expiration greater than seven days in the future.'
+            );
+        }
+
+        $algo = 'GOOG4-RSA-SHA256';
+        $requestTimestamp = $now->format('Ymd\THis\Z');
+        $requestDatestamp = $now->format('Ymd');
+        $clientEmail = $this->credentials->getClientEmail();
+        $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
+        $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
+
+        $headers = $options['headers'];
+        if ($options['contentType']) {
+            $headers['Content-Type'] = $options['contentType'];
+        }
+
+        if ($options['contentMd5']) {
+            $headers['Content-MD5'] = $options['contentMd5'];
+        }
+
+        $headers['host'] = $options['cname'];
+
+        // sort headers by name
+        ksort($headers);
+
+        $canonicalHeaders = [];
+        foreach ($headers as $key => $val) {
+            $canonicalHeaders[] = sprintf('%s:%s', $key, $val);
+        }
+        $canonicalHeaders = implode("\n", $canonicalHeaders);
+        $signedHeaders = implode(';', array_map(function ($headerName) {
+            return strtolower($headerName);
+        }, array_keys($headers)));
+
+        $params = $options['queryParams'];
+        $params['X-Goog-Algorithm'] = $algo;
+        $params['X-Goog-Credential'] = $credential;
+        $params['X-Goog-Date'] = $requestTimestamp;
+        $params['X-Goog-Expires'] = $this->expires - time();
+        $params['X-Goog-SignedHeaders'] = $signedHeaders;
+
+        if ($options['responseType']) {
+            $params['response-content-type'] = $options['responseType'];
+        }
+
+        if ($options['responseDisposition']) {
+            $params['response-content-disposition'] = $options['responseDisposition'];
+        }
+
+        if ($generation) {
+            $params['generation'] = $generation;
+        }
+
+        ksort($params);
+
+        $canonicalQueryString = http_build_query($params);
+
+        $canonicalRequest = implode("\n", [
+            $options['method'],
+            $resource,
+            $canonicalQueryString,
+            $canonicalHeaders,
+            $signedHeaders,
+            'UNSIGNED-PAYLOAD'
+        ]);
+
+        $requestHash = hash('sha256', $canonicalRequest);
+
+        $stringToSign = implode("\n", [
+            $algo,
+            $requestTimestamp,
+            $credentialScope,
+            $requestHash
+        ]);
+
+        $signature = $this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl']);
+
+        return $uri . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
     }
 
     public function v2Sign($uri, $resource, $generation, array $options)
@@ -182,7 +278,8 @@ class SigningHelper
             'keyFile' => null,
             'keyFilePath' => null,
             'allowPost' => false,
-            'forceOpenssl' => false
+            'forceOpenssl' => false,
+            'queryParams' => []
         ];
 
         $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];

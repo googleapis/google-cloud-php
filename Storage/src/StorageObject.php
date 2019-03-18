@@ -840,7 +840,7 @@ class StorageObject
                 break;
 
             case "v4":
-                return $helper->v4Sign($this->identity, $options);
+                return $helper->v4Sign($uri, $resource, $this->identity['generation'], $options);
                 break;
 
             default:
