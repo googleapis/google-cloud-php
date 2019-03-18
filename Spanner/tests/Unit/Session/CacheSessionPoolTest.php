@@ -712,7 +712,7 @@ class CacheSessionPoolTest extends TestCase
                 ->willThrow(new \Exception());
         } else {
             $test = $this;
-            $database->createSessionsAsync(Argument::type('int'),Argument::any())
+            $database->createSessionsAsync(Argument::type('int'), Argument::any())
                 ->will(function ($args, $mock, $method) use ($test) {
                     $sessions = [];
                     for ($i = 0; $i < $args[0]; $i++) {

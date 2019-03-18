@@ -964,7 +964,7 @@ class DatabaseTest extends TestCase
         $session = $this->prophesize(\Google\Cloud\Spanner\V1\Session::class);
         $session->getName()->shouldBeCalled()->willReturn($sessName);
 
-        $this->connection->createSessionsAsync(Argument::type('int'),Argument::withEntry('database', $db))
+        $this->connection->createSessionsAsync(Argument::type('int'), Argument::withEntry('database', $db))
             ->shouldBeCalled()
             ->willReturn([
                 $session
