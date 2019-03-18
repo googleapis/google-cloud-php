@@ -25,7 +25,7 @@ trait DocumentTransformTrait
     use FieldValueTrait;
 
     /**
-     * @var array
+     * @var mixed
      */
     private $args;
 
