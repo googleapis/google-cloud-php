@@ -22,6 +22,8 @@ namespace Google\Cloud\Firestore\FieldValue;
  *
  * This class is not intended to be used directly. See
  * {@see Google\Cloud\Firestore\FieldValue::arrayRemove()} for usage.
+ *
+ * @internal
  */
 class ArrayRemoveValue implements DocumentTransformInterface
 {
@@ -41,6 +43,15 @@ class ArrayRemoveValue implements DocumentTransformInterface
      * @return bool
      */
     public function includeInUpdateMask()
+    {
+        return false;
+    }
+
+    /**
+     * @access private
+     * @return bool
+     */
+    public function sendRaw()
     {
         return false;
     }

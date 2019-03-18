@@ -154,6 +154,7 @@ class WriteBatchTest extends TestCase
             ['path' => 'world', 'value' =>  FieldValue::serverTimestamp()],
             ['path' => 'arr', 'value' => FieldValue::arrayUnion(['a'])],
             ['path' => 'arr2', 'value' => FieldValue::arrayRemove(['b'])],
+            ['path' => 'int', 'value' => FieldValue::increment(2)],
         ]);
 
         $this->commitAndAssert([
@@ -192,6 +193,11 @@ class WriteBatchTest extends TestCase
                                             'stringValue' => 'b'
                                         ]
                                     ]
+                                ]
+                            ], [
+                                'fieldPath' => 'int',
+                                'increment' => [
+                                    'integerValue' => 2
                                 ]
                             ]
                         ]

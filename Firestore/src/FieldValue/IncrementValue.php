@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,33 +18,41 @@
 namespace Google\Cloud\Firestore\FieldValue;
 
 /**
- * Common methods for DocumentTransforms.
+ * Represents an increment DocumentTransform.
+ *
+ * This class is not intended to be used directly. See
+ * {@see Google\Cloud\Firestore\FieldValue::increment()} for usage.
+ *
+ * @internal
  */
-trait DocumentTransformTrait
+class IncrementValue implements DocumentTransformInterface
 {
-    use FieldValueTrait;
+    use DocumentTransformTrait;
 
     /**
-     * @var mixed
+     * @access private
+     * @return string
      */
-    private $args;
-
-    /**
-     * @param mixed $args
-     */
-    public function __construct($args = [])
+    public function key()
     {
-        $this->args = $args;
+        return 'increment';
     }
 
     /**
-     * Get the field value arguments.
-     *
      * @access private
-     * @return mixed
+     * @return bool
      */
-    public function args()
+    public function includeInUpdateMask()
     {
-        return $this->args;
+        return false;
+    }
+
+    /**
+     * @access private
+     * @return bool
+     */
+    public function sendRaw()
+    {
+        return false;
     }
 }

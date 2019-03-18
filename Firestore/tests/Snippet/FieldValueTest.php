@@ -179,4 +179,37 @@ class FieldValueTest extends SnippetTestCase
 
         $snippet->invoke();
     }
+
+    public function testIncrement()
+    {
+        $this->connection->commit([
+            "database" => "projects/my-awesome-project/databases/(default)",
+            "writes" => [
+                [
+                    "transform" => [
+                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                        "fieldTransforms" => [
+                            [
+                                "fieldPath" => "loginCount",
+                                'increment' => [
+                                    'integerValue' => 1
+                                ]
+                            ]
+                        ]
+                    ],
+                    "currentDocument" => [
+                        "exists" => true
+                    ]
+                ]
+            ]
+        ])->willReturn([[]]);
+
+        $this->firestore->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(FieldValue::class, 'increment');
+        $snippet->setLine(3, '');
+        $snippet->addLocal('firestore', $this->firestore);
+
+        $snippet->invoke();
+    }
 }

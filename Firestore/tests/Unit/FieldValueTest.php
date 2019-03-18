@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FieldValue\ArrayRemoveValue;
 use Google\Cloud\Firestore\FieldValue\ArrayUnionValue;
+use Google\Cloud\Firestore\FieldValue\IncrementValue;
 use Google\Cloud\Firestore\FieldValue\ServerTimestampValue;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use PHPUnit\Framework\TestCase;
@@ -46,7 +47,8 @@ class FieldValueTest extends TestCase
         return [
             ['serverTimestamp', ServerTimestampValue::class, ServerValue::REQUEST_TIME],
             ['arrayUnion', ArrayUnionValue::class, ['a']],
-            ['arrayRemove', ArrayRemoveValue::class, ['b']]
+            ['arrayRemove', ArrayRemoveValue::class, ['b']],
+            ['increment', IncrementValue::class, 1],
         ];
     }
 }

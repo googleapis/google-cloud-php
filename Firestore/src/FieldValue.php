@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Firestore\FieldValue\ArrayRemoveValue;
 use Google\Cloud\Firestore\FieldValue\ArrayUnionValue;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
+use Google\Cloud\Firestore\FieldValue\IncrementValue;
 use Google\Cloud\Firestore\FieldValue\ServerTimestampValue;
 
 /**
@@ -157,5 +158,42 @@ class FieldValue
     public static function arrayRemove(array $elements)
     {
         return new ArrayRemoveValue($elements);
+    }
+
+    /**
+     * Returns a special value that can be used with set() or update() that
+     * tells the server to add the given value to the field's current value.
+     *
+     * Given value must be an integer or a double value. If the field is not an
+     * integer or double, or if the field does not yet exist, the
+     * transformation will set the field to the given value. If either of the
+     * given value or the current field value are doubles, both values will be
+     * interpreted as doubles. Double arithmetic and representation of double
+     * values follow IEEE 754 semantics. If there is positive/negative integer
+     * overflow, the field is resolved to the largest magnitude
+     * positive/negative integer.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\FieldValue;
+     * use Google\Cloud\Firestore\FirestoreClient;
+     *
+     * $firestore = new FirestoreClient;
+     * $document = $firestore->document('users/dave');
+     *
+     * $document->update([
+     *     [
+     *         'path' => 'loginCount',
+     *         'value' => FieldValue::increment(1)
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param int|float $value
+     * @return IncrementValue
+     */
+    public static function increment($value)
+    {
+        return new IncrementValue($value);
     }
 }

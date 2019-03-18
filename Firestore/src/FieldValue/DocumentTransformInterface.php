@@ -40,4 +40,11 @@ interface DocumentTransformInterface extends FieldValueInterface
      * @return mixed
      */
     public function args();
+
+    /**
+     * Whether the argument should be mapped or sent as given.
+     *
+     * @return bool
+     */
+    public function sendRaw();
 }
