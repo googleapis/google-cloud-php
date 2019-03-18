@@ -960,18 +960,21 @@ class DatabaseTest extends TestCase
     {
         $db = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE);
         $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+
+        $session = $this->prophesize(\Google\Cloud\Spanner\V1\Session::class);
+        $session->getName()->shouldBeCalled()->willReturn($sessName);
+
         $this->connection->createSessionsAsync(Argument::type('int'),Argument::withEntry('database', $db))
             ->shouldBeCalled()
-            ->willReturn([[
-                'name' => $sessName
-            ]]);
+            ->willReturn([
+                $session
+            ]);
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $sessions = $this->database->createSessionsAsync();
+        $sessions = $this->database->createSessionsAsync(1);
 
         $this->assertInstanceOf(Session::class, $sessions[0]);
-        $this->assertEquals($sessName, $sessions[0]->name());
     }
 
     public function testSession()

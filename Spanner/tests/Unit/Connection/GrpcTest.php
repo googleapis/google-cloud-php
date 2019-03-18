@@ -311,6 +311,31 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testCreateSessionsAsync()
+    {
+        $promise = $this->prophesize(PromiseInterface::class)->reveal();
+        $client = $this->prophesize(SpannerClient::class);
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::type('array')
+        )->willReturn($promise);
+
+        $client->getTransport()->willReturn($transport->reveal());
+
+        $grpc = new Grpc(['gapicSpannerClient' => $client->reveal()]);
+
+        $promises = $grpc->createSessionsAsync(1, [
+            'database' => 'database1',
+            'session' => [
+                'labels' => [ 'foo' => 'bar' ]
+            ]
+        ]);
+
+        $this->assertCount(1, $promises);
+        $this->assertInstanceOf(PromiseInterface::class, $promises[0]);
+    }
+
     public function testGetSession()
     {
         $this->assertCallCorrect('getSession', [

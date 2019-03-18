@@ -671,12 +671,11 @@ class CacheSessionPoolTest extends TestCase
     private function getDatabase($shouldCreateThrowException = false, $willDeleteSessions = false)
     {
         $database = $this->prophesize(Database::class);
-        $createdSession = $this->prophesize(Session::class);
         $session = $this->prophesize(Session::class);
         $connection = $this->prophesize(Grpc::class);
         $promise = $this->prophesize(PromiseInterface::class);
-        $createdSession->expiration()
-            ->willReturn($this->time + 3600);
+
+
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()
@@ -709,20 +708,22 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn(self::DATABASE_NAME);
 
         if ($shouldCreateThrowException) {
-            $database->createSession()
+            $database->createSessionsAsync()
                 ->willThrow(new \Exception());
         } else {
-            $database->createSession(Argument::any())
-                ->will(function ($args, $mock, $method) use ($createdSession) {
-                    $methodCalls = $mock->findProphecyMethodCalls(
-                        $method->getMethodName(),
-                        new ArgumentsWildcard($args)
-                    );
+            $test = $this;
+            $database->createSessionsAsync(Argument::type('int'),Argument::any())
+                ->will(function ($args, $mock, $method) use ($test) {
+                    $sessions = [];
+                    for ($i = 0; $i < $args[0]; $i++) {
+                        $createdSession = $test->prophesize(Session::class);
+                        $createdSession->expiration()->willReturn($test->time + 3600);
+                        $createdSession->name()->willReturn('session' . $i);
 
-                    $createdSession->name()
-                        ->willReturn('session' . count($methodCalls));
+                        $sessions[] = $createdSession;
+                    }
 
-                    return $createdSession;
+                    return $sessions;
                 });
         }
 
