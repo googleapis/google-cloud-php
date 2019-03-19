@@ -24,9 +24,7 @@ use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
-use GuzzleHttp\Promise\PromiseInterface;
 use Google\Rpc\Code;
 
 /**
@@ -120,7 +118,7 @@ class Operation
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type string $transactionId The ID of the transaction.
+     *     @type string $transactionId The ID of the transaction.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -131,10 +129,10 @@ class Operation
         ];
 
         $res = $this->connection->commit($this->arrayFilterRemoveNull([
-                'mutations' => $mutations,
-                'session' => $session->name(),
-                'database' => $session->info()['database']
-            ]) + $options);
+            'mutations' => $mutations,
+            'session' => $session->name(),
+            'database' => $session->info()['database']
+        ]) + $options);
 
         $time = $this->parseTimeString($res['commitTimestamp']);
         return new Timestamp($time[0], $time[1]);
@@ -153,10 +151,10 @@ class Operation
     public function rollback(Session $session, $transactionId, array $options = [])
     {
         return $this->connection->rollback([
-                'transactionId' => $transactionId,
-                'session' => $session->name(),
-                'database' => $session->info()['database']
-            ] + $options);
+            'transactionId' => $transactionId,
+            'session' => $session->name(),
+            'database' => $session->info()['database']
+        ] + $options);
     }
 
     /**
@@ -187,10 +185,10 @@ class Operation
             }
 
             return $this->connection->executeStreamingSql([
-                    'sql' => $sql,
-                    'session' => $session->name(),
-                    'database' => $session->info()['database']
-                ] + $options);
+                'sql' => $sql,
+                'session' => $session->name(),
+                'database' => $session->info()['database']
+            ] + $options);
         };
 
         return new Result($this, $session, $call, $context, $this->mapper);
@@ -211,11 +209,10 @@ class Operation
         Transaction $transaction,
         $sql,
         array $options = []
-    )
-    {
+    ) {
         $res = $this->execute($session, $sql, [
-                'transactionId' => $transaction->id()
-            ] + $options);
+            'transactionId' => $transaction->id()
+        ] + $options);
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
@@ -269,8 +266,7 @@ class Operation
         Transaction $transaction,
         array $statements,
         array $options = []
-    )
-    {
+    ) {
         $stmts = [];
         foreach ($statements as $statement) {
             if (!isset($statement['sql'])) {
@@ -280,16 +276,16 @@ class Operation
             $parameters = $this->pluck('parameters', $statement, false) ?: [];
             $types = $this->pluck('types', $statement, false) ?: [];
             $stmts[] = [
-                    'sql' => $statement['sql']
-                ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
+                'sql' => $statement['sql']
+            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
         }
 
         $res = $this->connection->executeBatchDml([
-                'session' => $session->name(),
-                'database' => $session->info()['database'],
-                'transactionId' => $transaction->id(),
-                'statements' => $stmts
-            ] + $options);
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transaction->id(),
+            'statements' => $stmts
+        ] + $options);
 
         $errorStatement = null;
         if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
@@ -310,9 +306,9 @@ class Operation
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     * @type string $index The name of an index on the table.
-     * @type int $offset The number of rows to offset results by.
-     * @type int $limit The number of results to return.
+     *     @type string $index The name of an index on the table.
+     *     @type int $offset The number of rows to offset results by.
+     *     @type int $limit The number of results to return.
      * }
      * @return Result
      */
@@ -333,12 +329,12 @@ class Operation
             }
 
             return $this->connection->streamingRead([
-                    'table' => $table,
-                    'session' => $session->name(),
-                    'columns' => $columns,
-                    'keySet' => $this->flattenKeySet($keySet),
-                    'database' => $session->info()['database']
-                ] + $options);
+                'table' => $table,
+                'session' => $session->name(),
+                'columns' => $columns,
+                'keySet' => $this->flattenKeySet($keySet),
+                'database' => $session->info()['database']
+            ] + $options);
         };
 
         return new Result($this, $session, $call, $context, $this->mapper);
@@ -353,11 +349,11 @@ class Operation
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     * @type bool $singleUse If true, a Transaction ID will not be allocated
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
-     * @type bool $isRetry If true, the resulting transaction will indicate
+     *     @type bool $isRetry If true, the resulting transaction will indicate
      *           that it is the result of a retry operation. **Defaults to**
      *           `false`.
      * }
@@ -409,11 +405,11 @@ class Operation
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     * @type bool $singleUse If true, a Transaction ID will not be allocated
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
-     * @type string $className If set, an instance of the given class will
+     *     @type string $className If set, an instance of the given class will
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
      * }
@@ -476,7 +472,7 @@ class Operation
      * @param array $options [optional] {
      *     Configuration options.
      *
-     * @type array $labels Labels to be applied to each session created in
+     *     @type array $labels Labels to be applied to each session created in
      *           the pool. Label keys must be between 1 and 63 characters long
      *           and must conform to the following regular expression:
      *           `[a-z]([-a-z0-9]*[a-z0-9])?`. Label values must be between 0
@@ -491,11 +487,11 @@ class Operation
     public function createSession($databaseName, array $options = [])
     {
         $res = $this->connection->createSession([
-                'database' => $databaseName,
-                'session' => [
-                    'labels' => $this->pluck('labels', $options, false) ?: []
-                ]
-            ] + $options);
+            'database' => $databaseName,
+            'session' => [
+                'labels' => $this->pluck('labels', $options, false) ?: []
+            ]
+        ] + $options);
 
         return $this->session($res['name']);
     }
@@ -532,19 +528,19 @@ class Operation
      * @param array $options {
      *     Configuration Options
      *
-     * @type int $maxPartitions The desired maximum number of partitions to
+     *     @type int $maxPartitions The desired maximum number of partitions to
      *           return. For example, this may be set to the number of workers
      *           available. The maximum value is currently 200,000. This is only
      *           a hint. The actual number of partitions returned may be smaller
      *           than this maximum count request. **Defaults to** `10000`.
-     * @type int $partitionSizeBytes The desired data size for each
+     *     @type int $partitionSizeBytes The desired data size for each
      *           partition generated. This is only a hint. The actual size of
      *           each partition may be smaller or larger than this size request.
      *           **Defaults to** `1000000000` (i.e. 1 GiB).
-     * @type array $parameters A key/value array of Query Parameters, where
+     *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
      *           symbol.
-     * @type array $types A key/value array of Query Parameter types.
+     *     @type array $types A key/value array of Query Parameter types.
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           definitions are only necessary for null parameter values.
      *           Accepted values are defined as constants on
@@ -572,11 +568,11 @@ class Operation
         $options = $this->partitionOptions($options);
 
         $res = $this->connection->partitionQuery([
-                'session' => $session->name(),
-                'database' => $session->info()['database'],
-                'transactionId' => $transactionId,
-                'sql' => $sql
-            ] + $options);
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transactionId,
+            'sql' => $sql
+        ] + $options);
 
         $partitions = [];
         foreach ($res['partitions'] as $partition) {
@@ -601,16 +597,16 @@ class Operation
      * @param array $options {
      *     Configuration Options
      *
-     * @type int $maxPartitions The desired maximum number of partitions to
+     *     @type int $maxPartitions The desired maximum number of partitions to
      *           return. For example, this may be set to the number of workers
      *           available. The maximum value is currently 200,000. This is only
      *           a hint. The actual number of partitions returned may be smaller
      *           than this maximum count request. **Defaults to** `10000`.
-     * @type int $partitionSizeBytes The desired data size for each
+     *     @type int $partitionSizeBytes The desired data size for each
      *           partition generated. This is only a hint. The actual size of
      *           each partition may be smaller or larger than this size request.
      *           **Defaults to** `1000000000` (i.e. 1 GiB).
-     * @type string $index The name of an index on the table.
+     *     @type string $index The name of an index on the table.
      * }
      * @return ReadPartition[]
      */
@@ -621,21 +617,20 @@ class Operation
         KeySet $keySet,
         array $columns,
         array $options = []
-    )
-    {
+    ) {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
 
         $options = $this->partitionOptions($options);
 
         $res = $this->connection->partitionRead([
-                'session' => $session->name(),
-                'database' => $session->info()['database'],
-                'transactionId' => $transactionId,
-                'table' => $table,
-                'columns' => $columns,
-                'keySet' => $this->flattenKeySet($keySet)
-            ] + $options);
+            'session' => $session->name(),
+            'database' => $session->info()['database'],
+            'transactionId' => $transactionId,
+            'table' => $table,
+            'columns' => $columns,
+            'keySet' => $this->flattenKeySet($keySet)
+        ] + $options);
 
         $partitions = [];
         foreach ($res['partitions'] as $partition) {
@@ -683,9 +678,9 @@ class Operation
         ];
 
         return $this->connection->beginTransaction($options + [
-                'session' => $session->name(),
-                'database' => $session->info()['database']
-            ]);
+            'session' => $session->name(),
+            'database' => $session->info()['database']
+        ]);
     }
 
     /**
