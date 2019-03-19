@@ -21,7 +21,6 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICGenerator()
-common_templates = gcp.CommonTemplates()
 
 for version in ['V1', 'V1beta1']:
     lower_version = version.lower()
