@@ -97,6 +97,7 @@ class SigningHelper
         $requestDatestamp = $now->format('Ymd');
 
         $expireLimit = $now->modify('+7 days')->format('U');
+        $tomorrow = $now->modify('tomorrow')->format('U');
         if ($this->expires > $expireLimit) {
             throw new \InvalidArgumentException(
                 'V4 Signed URLs may not have an expiration greater than seven days in the future.'
@@ -158,8 +159,7 @@ class SigningHelper
 
         $canonicalRequest = implode("\n", [
             $options['method'],
-            // Resource must be preceded by a leading slash.
-            '/' . $resource,
+            $resource,
             $canonicalQueryString,
             $canonicalHeaders,
             $signedHeaders,
@@ -177,7 +177,7 @@ class SigningHelper
 
         $signature = bin2hex(base64_decode($this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl'])));
 
-        return 'https://' . $options['cname'] . '/'. $resource . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
+        return 'https://' . $options['cname'] . $resource . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
     }
 
     public function v2Sign($resource, $generation, array $options)
@@ -242,7 +242,6 @@ class SigningHelper
         // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
         // in this case `\n` is required.
         $string = implode("\n", $toSign);
-        $signature = bin2hex(base64_decode($this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl'])));
         $signature = $this->signer->signBlob($this->credentials, $string, $options['forceOpenssl']);
         $encodedSignature = urlencode($signature);
 
@@ -266,7 +265,7 @@ class SigningHelper
             $query[] = 'generation=' . $generation;
         }
 
-        return 'https://' . $options['cname'] . '/'. $resource . '?' . implode('&', $query);
+        return 'https://' . $options['cname'] . $resource . '?' . implode('&', $query);
     }
 
     private function normalizeOptions(array $options)

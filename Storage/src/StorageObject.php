@@ -817,7 +817,7 @@ class StorageObject
         $objectName = implode('/', $objectPieces);
 
         $resource = sprintf(
-            '%s/%s',
+            '/%s/%s',
             $this->identity['bucket'],
             $objectName
         );

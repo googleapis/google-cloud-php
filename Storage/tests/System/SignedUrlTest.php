@@ -98,7 +98,7 @@ class SignedUrlTest extends StorageTestCase
     {
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX));
 
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = (new \DateTime)->modify('+1 day');
         $url = $obj->signedUrl($ts, [
             'method' => 'DELETE',
             'contentType' => 'text/plain',
