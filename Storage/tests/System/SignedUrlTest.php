@@ -63,6 +63,10 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testSignedUrl($objectName, array $urlOpts = [])
     {
+        $urlOpts += [
+            'version' => 'v2'
+        ];
+
         $obj = $this->createFile($objectName);
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, $urlOpts);
@@ -71,16 +75,34 @@ class SignedUrlTest extends StorageTestCase
     }
 
     /**
+     * @dataProvider signedUrls
+     */
+    public function testSignedUrlV4($objectName, array $urlOpts = [])
+    {
+        $urlOpts += [
+            'version' => 'v4'
+        ];
+
+        $obj = $this->createFile($objectName);
+        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $url = $obj->signedUrl($ts, $urlOpts);
+
+        $this->assertEquals(self::CONTENT, $this->getFile($url, $urlOpts));
+    }
+
+    /**
+     * @dataProvider urlVersion
      * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
-    public function testSignedUrlDelete()
+    public function testSignedUrlDelete($version)
     {
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX));
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, [
             'method' => 'DELETE',
-            'contentType' => 'text/plain'
+            'contentType' => 'text/plain',
+            'version' => $version
         ]);
 
         try {
@@ -97,10 +119,15 @@ class SignedUrlTest extends StorageTestCase
         $obj->reload();
     }
 
-    public function testSignedUploadSession()
+    /**
+     * @dataProvider urlVersion
+     */
+    public function testSignedUploadSession($version)
     {
         $obj = self::$bucket->object(uniqid(self::TESTING_PREFIX) .'.txt');
-        $url = $obj->beginSignedUploadSession();
+        $url = $obj->beginSignedUploadSession([
+            'version' => $version
+        ]);
 
         $this->guzzle->request('PUT', $url, [
             'body' => self::CONTENT
@@ -110,13 +137,17 @@ class SignedUrlTest extends StorageTestCase
         $this->assertEquals(self::CONTENT, $obj->downloadAsString());
     }
 
-    public function testSignedUploadSessionOrigin()
+    /**
+     * @dataProvider urlVersion
+     */
+    public function testSignedUploadSessionOrigin($version)
     {
         $obj = self::$bucket->object(uniqid(self::TESTING_PREFIX) .'.txt');
         self::$deletionQueue->add($obj);
 
         $url = $obj->beginSignedUploadSession([
             'origin' => 'https://google.com',
+            'version' => $version,
             'headers' => [
                 'x-goog-test' => 'hi'
             ]
@@ -131,6 +162,7 @@ class SignedUrlTest extends StorageTestCase
 
         $this->guzzle->request('PUT', $url, [
             'body' => self::CONTENT,
+            'version' => $version,
             'headers' => [
                 'x-goog-test' => 'hi'
             ]
@@ -142,7 +174,10 @@ class SignedUrlTest extends StorageTestCase
         $this->assertEquals(self::CONTENT, $obj->downloadAsString());
     }
 
-    public function testSignedUrlContentType()
+    /**
+     * @dataProvider urlVersion
+     */
+    public function testSignedUrlContentType($version)
     {
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
 
@@ -152,7 +187,8 @@ class SignedUrlTest extends StorageTestCase
 
         $url = $obj->signedUrl(time()+2, [
             'responseDisposition' => 'attachment;filename="image.jpg"',
-            'responseType' => 'image/jpg'
+            'responseType' => 'image/jpg',
+            'version' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
@@ -161,18 +197,30 @@ class SignedUrlTest extends StorageTestCase
         $this->assertEquals('attachment;filename="image.jpg"', $res->getHeaderLine('Content-Disposition'));
     }
 
-    public function testSignedUrlWithSaveAsName()
+    /**
+     * @dataProvider urlVersion
+     */
+    public function testSignedUrlWithSaveAsName($version)
     {
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
 
         $saveAs = 'foo bar';
         $url = $obj->signedUrl(time()+2, [
-            'saveAsName' => $saveAs
+            'saveAsName' => $saveAs,
+            'version' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
 
         $this->assertEquals('attachment;filename="' . $saveAs . '"', $res->getHeaderLine('Content-Disposition'));
+    }
+
+    public function urlVersion()
+    {
+        return [
+            ['v2'],
+            ['v4']
+        ];
     }
 
     private function createFile($name)

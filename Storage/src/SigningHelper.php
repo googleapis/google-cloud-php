@@ -26,7 +26,7 @@ use Google\Cloud\Core\Timestamp;
  */
 class SigningHelper
 {
-    const DEFAULT_DOWNLOAD_URL = 'https://storage.googleapis.com';
+    const DEFAULT_DOWNLOAD_URL = 'storage.googleapis.com';
 
     /**
      * @var FetchAuthTokenCredential
@@ -74,7 +74,7 @@ class SigningHelper
         $this->signer = new Signer;
     }
 
-    public function v4Sign($uri, $resource, $generation, array $options)
+    public function v4Sign($resource, $generation, array $options)
     {
         // $options += [
         //     'method' => 'GET',
@@ -92,7 +92,10 @@ class SigningHelper
         // ];
         $options = $this->normalizeOptions($options);
 
-        $now = new \DateTime;
+        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $requestTimestamp = $now->format('Ymd\THis\Z');
+        $requestDatestamp = $now->format('Ymd');
+
         $expireLimit = $now->modify('+7 days')->format('U');
         if ($this->expires > $expireLimit) {
             throw new \InvalidArgumentException(
@@ -101,13 +104,16 @@ class SigningHelper
         }
 
         $algo = 'GOOG4-RSA-SHA256';
-        $requestTimestamp = $now->format('Ymd\THis\Z');
-        $requestDatestamp = $now->format('Ymd');
         $clientEmail = $this->credentials->getClientEmail();
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
         $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
 
-        $headers = $options['headers'];
+        // Add headers and query params based on provided options.
+        $headers = $options['headers'] + [
+            'host' => $options['cname']
+        ];
+        $params = $options['queryParams'];
+
         if ($options['contentType']) {
             $headers['Content-Type'] = $options['contentType'];
         }
@@ -115,27 +121,6 @@ class SigningHelper
         if ($options['contentMd5']) {
             $headers['Content-MD5'] = $options['contentMd5'];
         }
-
-        $headers['host'] = $options['cname'];
-
-        // sort headers by name
-        ksort($headers);
-
-        $canonicalHeaders = [];
-        foreach ($headers as $key => $val) {
-            $canonicalHeaders[] = sprintf('%s:%s', $key, $val);
-        }
-        $canonicalHeaders = implode("\n", $canonicalHeaders);
-        $signedHeaders = implode(';', array_map(function ($headerName) {
-            return strtolower($headerName);
-        }, array_keys($headers)));
-
-        $params = $options['queryParams'];
-        $params['X-Goog-Algorithm'] = $algo;
-        $params['X-Goog-Credential'] = $credential;
-        $params['X-Goog-Date'] = $requestTimestamp;
-        $params['X-Goog-Expires'] = $this->expires - time();
-        $params['X-Goog-SignedHeaders'] = $signedHeaders;
 
         if ($options['responseType']) {
             $params['response-content-type'] = $options['responseType'];
@@ -149,20 +134,39 @@ class SigningHelper
             $params['generation'] = $generation;
         }
 
+        // sort headers by name
+        ksort($headers);
+
+        $canonicalHeaders = [];
+        $signedHeaders = [];
+        foreach ($headers as $key => $val) {
+            $canonicalHeaders[] = sprintf('%s:%s', strtolower($key), strtolower($val));
+            $signedHeaders[] = strtolower($key);
+        }
+        $canonicalHeaders = implode("\n", $canonicalHeaders) . "\n";
+        $signedHeaders = implode(';', $signedHeaders);
+
+        $params['X-Goog-Algorithm'] = $algo;
+        $params['X-Goog-Credential'] = $credential;
+        $params['X-Goog-Date'] = $requestTimestamp;
+        $params['X-Goog-Expires'] = $this->expires - time();
+        $params['X-Goog-SignedHeaders'] = $signedHeaders;
+
         ksort($params);
 
         $canonicalQueryString = http_build_query($params);
 
         $canonicalRequest = implode("\n", [
             $options['method'],
-            $resource,
+            // Resource must be preceded by a leading slash.
+            '/' . $resource,
             $canonicalQueryString,
             $canonicalHeaders,
             $signedHeaders,
             'UNSIGNED-PAYLOAD'
         ]);
 
-        $requestHash = hash('sha256', $canonicalRequest);
+        $requestHash = bin2hex(hash('sha256', $canonicalRequest, true));
 
         $stringToSign = implode("\n", [
             $algo,
@@ -171,12 +175,12 @@ class SigningHelper
             $requestHash
         ]);
 
-        $signature = $this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl']);
+        $signature = bin2hex(base64_decode($this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl'])));
 
-        return $uri . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
+        return 'https://' . $options['cname'] . '/'. $resource . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
     }
 
-    public function v2Sign($uri, $resource, $generation, array $options)
+    public function v2Sign($resource, $generation, array $options)
     {
         $options = $this->normalizeOptions($options);
 
@@ -238,6 +242,7 @@ class SigningHelper
         // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
         // in this case `\n` is required.
         $string = implode("\n", $toSign);
+        $signature = bin2hex(base64_decode($this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl'])));
         $signature = $this->signer->signBlob($this->credentials, $string, $options['forceOpenssl']);
         $encodedSignature = urlencode($signature);
 
@@ -261,7 +266,7 @@ class SigningHelper
             $query[] = 'generation=' . $generation;
         }
 
-        return $uri . '?' . implode('&', $query);
+        return 'https://' . $options['cname'] . '/'. $resource . '?' . implode('&', $query);
     }
 
     private function normalizeOptions(array $options)
@@ -293,6 +298,14 @@ class SigningHelper
                 'Invalid method. To create an upload URI, use StorageObject::signedUploadUrl().'
             );
         }
+
+        // For backwards compatibility, strip protocol from cname.
+        $cnameParts = explode('//', $options['cname']);
+        if (count($cnameParts) > 1) {
+            $options['cname'] = $cnameParts[1];
+        }
+
+        $options['cname'] = trim($options['cname'], '/');
 
         return $options;
     }

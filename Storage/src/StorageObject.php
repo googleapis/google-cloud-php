@@ -46,8 +46,6 @@ class StorageObject
     use ArrayTrait;
     use EncryptionTrait;
 
-    const DEFAULT_DOWNLOAD_URL = 'https://storage.googleapis.com';
-
     /**
      * @var Acl ACL for the object.
      */
@@ -733,7 +731,7 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v4".
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
      *     @type string $method One of `GET`, `PUT` or `DELETE`.
      *           **Defaults to** `GET`.
      *     @type string $cname The CNAME for the bucket, for instance
@@ -778,7 +776,6 @@ class StorageObject
     public function signedUrl($expires, array $options = [])
     {
         $options += [
-            'cname' => self::DEFAULT_DOWNLOAD_URL,
             'version' => 'v2',
             'keyFile' => null,
             'keyFilePath' => null,
@@ -820,312 +817,24 @@ class StorageObject
         $objectName = implode('/', $objectPieces);
 
         $resource = sprintf(
-            '/%s/%s',
+            '%s/%s',
             $this->identity['bucket'],
             $objectName
         );
 
-        $options['cname'] = trim($options['cname'], '/');
-
-        // If a custom cname is used, then the resource is simply the objectName
-        if ($options['cname'] !== self::DEFAULT_DOWNLOAD_URL) {
-            $resource = '/' . $objectName;
-        }
-
-        $uri = $options['cname'] . $resource;
-
         switch (strtolower($options['version'])) {
             case "v2":
-                return $helper->v2Sign($uri, $resource, $this->identity['generation'], $options);
+                return $helper->v2Sign($resource, $this->identity['generation'], $options);
                 break;
 
             case "v4":
-                return $helper->v4Sign($uri, $resource, $this->identity['generation'], $options);
+                return $helper->v4Sign($resource, $this->identity['generation'], $options);
                 break;
 
             default:
                 throw new \InvalidArgumentException('Invalid signing version.');
                 break;
         }
-    }
-
-    private function signedUrlV2($expires, array $options)
-    {
-
-    }
-
-    /**
-     * @param int $expires URL expiration in seconds from now.
-     * @param array $options
-     */
-    private function signUrlV4($expires, array $options = [])
-    {
-        $options += [
-            'parameters' => [],
-        ];
-
-        // implement IAM signing later
-
-        if ($options['keyFilePath']) {
-            if (!file_exists($options['keyFilePath'])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not exist.',
-                    $options['keyFilePath']
-                ));
-            }
-
-            $keyFile = json_decode(file_get_contents($options['keyFilePath']), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not contain valid json.',
-                    $options['keyFilePath']
-                ));
-            }
-        } elseif ($options['keyFile']) {
-            $keyFile = $options['keyFile'];
-        } else {
-            $requestWrapper = $this->connection->requestWrapper();
-            $keyFile = $requestWrapper->keyFile();
-        }
-
-        if (!isset($keyFile['private_key']) || !isset($keyFile['client_email'])) {
-            throw new \RuntimeException(
-                'Keyfile does not provide required information. ' .
-                'Please ensure keyfile includes `private_key` and `client_email`.'
-            );
-        }
-
-        if ($expires > 604800) {
-            throw new \InvalidArgumentException(
-                'V4 Signed URL expiration time cannot be more than one week in the future.'
-            );
-        }
-
-        $host = sprintf('%s.storage.googleapis.com', $this->identity['bucket']);
-        $objectPieces = explode('/', $this->identity['object']);
-        array_walk($objectPieces, function (&$piece) {
-            $piece = rawurlencode($piece);
-        });
-        $objectName = implode('/', $objectPieces);
-
-        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
-        $dateTimeString = $now->format('Ymd\THis\Z');
-        $dateString = $now->format('Ymd');
-        $regionName = 'us-central-1';
-        $algo = "GOOG4-RSA-SHA256";
-
-        $scope = sprintf('%s/%s/storage/goog4_request', $dateString, $regionName);
-
-        $headers = $options['headers'];
-        $headers['host'] = $host;
-
-        // Sort headers by name.
-        ksort($headers);
-
-        $canonicalHeaders = [];
-        $signedHeaders = [];
-        foreach ($headers as $key => $val) {
-            // $key = strtolower($key);
-            $canonicalHeaders[] = sprintf("%s:%s", $key, $val);
-            $signedHeaders[] = $key;
-        }
-
-        $canonicalHeaders = implode("\n", $canonicalHeaders);
-        $signedHeaders = implode(';', $signedHeaders);
-
-        $credential = urlencode(sprintf('%s/%s', $keyFile['client_email'], $scope));
-
-        $parameters = [
-            'X-Goog-Algorithm' => $algo,
-            'X-Goog-Credential' => $credential,
-            'X-Goog-Date' => $dateTimeString,
-            'X-Goog-Expires' => $expires,
-            'X-Goog-SignedHeaders' => urlencode($signedHeaders),
-        ];
-
-        // print_r($parameters);exit;
-
-        $queryString = [];
-        foreach ($parameters as $key => $val) {
-            $queryString[] = sprintf('%s=%s', $key, $val);
-        }
-
-        $queryString = implode('&', $queryString);
-
-        $canonicalRequest = implode("\n", [
-            $options['method'],
-            '/' . $objectName,
-            $queryString,
-            $canonicalHeaders ."\n",
-            $signedHeaders,
-            'UNSIGNED-PAYLOAD'
-        ]);
-
-        $stringToSign = implode("\n", [
-            $algo,
-            $dateTimeString,
-            $credential,
-            hash('sha256', $canonicalRequest)
-        ]);
-
-        // print_r($canonicalRequest);
-        // echo PHP_EOL.PHP_EOL.'---'.PHP_EOL.PHP_EOL;
-        // print_r($stringToSign);exit;
-
-        $signature = $this->signString($keyFile['private_key'], $stringToSign, $options['forceOpenssl']);
-        // var_dump($signature);exit;
-        $encodedSignature = bin2hex($signature);
-
-        return sprintf(
-            'https://%s/%s?%s&x-goog-signature=%s',
-            $host,
-            $objectName,
-            $queryString,
-            $encodedSignature
-        );
-    }
-
-    private function signUrlV2($expires, array $options = [])
-    {
-        $options += [
-            'cname' => self::DEFAULT_DOWNLOAD_URL,
-            'contentMd5' => null,
-            'contentType' => null,
-            'saveAsName' => null,
-            'responseDisposition' => null,
-            'responseType' => null,
-        ];
-
-        // Sort headers by name.
-        ksort($options['headers']);
-
-        if ($options['keyFilePath']) {
-            if (!file_exists($options['keyFilePath'])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not exist.',
-                    $options['keyFilePath']
-                ));
-            }
-
-            $keyFile = json_decode(file_get_contents($options['keyFilePath']), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not contain valid json.',
-                    $options['keyFilePath']
-                ));
-            }
-        } elseif ($options['keyFile']) {
-            $keyFile = $options['keyFile'];
-        } else {
-            $requestWrapper = $this->connection->requestWrapper();
-            $keyFile = $requestWrapper->keyFile();
-        }
-
-        if (!isset($keyFile['private_key']) || !isset($keyFile['client_email'])) {
-            throw new \RuntimeException(
-                'Keyfile does not provide required information. ' .
-                'Please ensure keyfile includes `private_key` and `client_email`.'
-            );
-        }
-
-        // Make sure disallowed headers are not included.
-        $illegalHeaders = [
-            'x-goog-encryption-key',
-            'x-goog-encryption-key-sha256'
-        ];
-
-        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $options['headers'])) {
-            throw new \InvalidArgumentException(sprintf(
-                '%s %s not allowed in Signed URL headers.',
-                implode(' and ', array_keys($illegal)),
-                count($illegal) === 1 ? 'is' : 'are'
-            ));
-        }
-
-        $headers = [];
-        foreach ($options['headers'] as $name => $value) {
-            $name = strtolower(trim($name));
-
-            $value = is_array($value)
-                ? implode(',', array_map('trim', $value))
-                : trim($value);
-
-            // Linebreaks are not allowed in headers.
-            // Rather than strip, we throw because we don't want to change the expected value without the user knowing.
-            if (strpos($value, PHP_EOL) !== false) {
-                throw new \InvalidArgumentException(
-                    'Line endings are not allowed in header values. Replace line endings with a single space.'
-                );
-            }
-
-            // Invalid header names throw exception.
-            if (strpos($name, 'x-goog-') !== 0) {
-                throw new \InvalidArgumentException(
-                    'Header names must begin with `x-goog-`.'
-                );
-            }
-
-            $headers[] = $name .':'. $value;
-        }
-
-        if ($headers) {
-            $headers[] = '';
-        }
-
-        $objectPieces = explode('/', $this->identity['object']);
-        array_walk($objectPieces, function (&$piece) {
-            $piece = rawurlencode($piece);
-        });
-        $objectName = implode('/', $objectPieces);
-
-        $resource = sprintf(
-            '/%s/%s',
-            $this->identity['bucket'],
-            $objectName
-        );
-
-        $toSign = [
-            $options['method'],
-            $options['contentMd5'],
-            $options['contentType'],
-            $seconds,
-            implode("\n", $headers) . $resource,
-        ];
-
-        // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
-        // in this case `\n` is required.
-        $string = implode("\n", $toSign);
-        $signature = $this->signString($keyFile['private_key'], $string, $options['forceOpenssl']);
-        $encodedSignature = urlencode(base64_encode($signature));
-
-        $query = [];
-        $query[] = 'GoogleAccessId=' . $keyFile['client_email'];
-        $query[] = 'Expires=' . $seconds;
-        $query[] = 'Signature=' . $encodedSignature;
-
-        if ($options['responseDisposition']) {
-            $query[] = 'response-content-disposition=' . urlencode($options['responseDisposition']);
-        } elseif ($options['saveAsName']) {
-            $query[] = 'response-content-disposition=attachment;filename='
-                . urlencode('"' . $options['saveAsName'] . '"');
-        }
-
-        if ($options['responseType']) {
-            $query[] = 'response-content-type=' . urlencode($options['responseType']);
-        }
-
-        if ($this->identity['generation']) {
-            $query[] = 'generation=' . $this->identity['generation'];
-        }
-
-        $options['cname'] = trim($options['cname'], '/');
-
-        // If a custom cname is used, then the resource is simply the objectName
-        if ($options['cname'] !== self::DEFAULT_DOWNLOAD_URL) {
-            $resource = '/' . $objectName;
-        }
-
-        return $options['cname'] . $resource . '?' . implode('&', $query);
     }
 
     /**
@@ -1160,6 +869,7 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
      *     @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
@@ -1229,6 +939,7 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
      *     @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
      *     @type string $origin Value of CORS header

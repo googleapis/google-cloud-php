@@ -162,9 +162,4 @@ interface ConnectionInterface
      * @param array $args
      */
     public function lockRetentionPolicy(array $args = []);
-
-    /**
-     * @param array $args
-     */
-    public function signBlob(array $args = []);
 }
