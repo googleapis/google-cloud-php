@@ -129,7 +129,7 @@ interface ConnectionInterface
      * @param array $args
      * @return PromiseInterface[]
      */
-    public function createSessionsAsync($count, array $args);
+    public function createSessionAsync(array $args);
 
     /**
      * @param array $args

@@ -458,9 +458,9 @@ class Grpc implements ConnectionInterface
     }
 
     /**
-     * @return PromiseInterface[]
+     * @return PromiseInterface
      */
-    public function createSessionsAsync($count, array $args)
+    public function createSessionAsync(array $args)
     {
 
         $database = $this->pluck('database', $args);
@@ -468,29 +468,25 @@ class Grpc implements ConnectionInterface
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
         $transport = $this->spannerClient->getTransport();
 
-        $promises = [];
+        $request = new CreateSessionRequest();
+        $request->setDatabase($database);
 
-        for ($i = 0; $i < $count; $i++) {
-            $request = new CreateSessionRequest();
-            $request->setDatabase($database);
-
-            $session = $this->pluck('session', $args, false);
-            if ($session) {
-                $sessionMessage = $this->serializer->decodeMessage(new Session, $session);
-                $request->setSession($sessionMessage);
-            }
-
-            $promises[] = $transport->startUnaryCall(
-                new Call(
-                    'google.spanner.v1.Spanner/CreateSession',
-                    Session::class,
-                    $request
-                ),
-                $opts
-            );
+        $session = $this->pluck('session', $args, false);
+        if ($session) {
+            $sessionMessage = $this->serializer->decodeMessage(new Session, $session);
+            $request->setSession($sessionMessage);
         }
 
-        return $promises;
+        $promise = $transport->startUnaryCall(
+            new Call(
+                'google.spanner.v1.Spanner/CreateSession',
+                Session::class,
+                $request
+            ),
+            $opts
+        );
+
+        return $promise;
     }
 
     /**
@@ -857,7 +853,7 @@ class Grpc implements ConnectionInterface
             $keySet['keys'] = [];
 
             foreach ($keys as $key) {
-                $keySet['keys'][] = $this->formatListForApi((array) $key);
+                $keySet['keys'][] = $this->formatListForApi((array)$key);
             }
         }
 

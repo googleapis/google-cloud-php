@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
@@ -100,6 +101,7 @@ use Psr\Cache\CacheItemPoolInterface;
 class CacheSessionPool implements SessionPoolInterface
 {
     use SysvTrait;
+    use ArrayTrait;
 
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
     const DURATION_TWENTY_MINUTES = 1200;
@@ -655,14 +657,31 @@ class CacheSessionPool implements SessionPoolInterface
             $options['labels'] = $this->config['labels'];
         }
 
-        $results = $this->database->createSessionsAsync($count, $options);
+        $args = [
+                'database' => $this->database->name(),
+                'session' => [
+                    'labels' => $this->pluck('labels', $options, false) ?: []
+                ]
+            ] + $options;
+
+        $promises = [];
+
+        for ($i = 0; $i < $count; $i++) {
+            $promises[] = $this->database->connection()->createSessionAsync($args);
+        }
+
+        $results = \GuzzleHttp\Promise\settle($promises)->wait();
 
         $sessions = [];
+
         foreach ($results as $result) {
-            $sessions[] = [
-                'name' => $result->name(),
-                'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
-            ];
+            if ($result['state'] === 'fulfilled') {
+                $name = $result['value']->getName();
+                $sessions[] = [
+                    'name' => $name,
+                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                ];
+            }
         }
 
         return $sessions;

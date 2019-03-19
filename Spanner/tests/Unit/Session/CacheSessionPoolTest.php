@@ -708,22 +708,19 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn(self::DATABASE_NAME);
 
         if ($shouldCreateThrowException) {
-            $database->createSessionsAsync()
-                ->willThrow(new \Exception());
+            $connection->createSessionAsync()->willThrow(new \Exception());
         } else {
             $test = $this;
-            $database->createSessionsAsync(Argument::type('int'), Argument::any())
+            $connection->createSessionAsync(Argument::any())
                 ->will(function ($args, $mock, $method) use ($test) {
-                    $sessions = [];
-                    for ($i = 0; $i < $args[0]; $i++) {
-                        $createdSession = $test->prophesize(Session::class);
-                        $createdSession->expiration()->willReturn($test->time + 3600);
-                        $createdSession->name()->willReturn('session' . $i);
+                    $methodCalls = $mock->findProphecyMethodCalls(
+                        $method->getMethodName(),
+                        new ArgumentsWildcard($args)
+                    );
 
-                        $sessions[] = $createdSession;
-                    }
-
-                    return $sessions;
+                    $createdSession = $test->prophesize(\Google\Cloud\Spanner\V1\Session::class);
+                    $createdSession->getName()->willReturn('session' . count($methodCalls));
+                    return $createdSession->reveal();
                 });
         }
 
