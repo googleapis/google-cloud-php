@@ -25,7 +25,7 @@ $resp->pollUntilComplete();
 if ($resp->operationSucceeded()) {
     echo "The result is dumped to $objectPath successfully." . PHP_EOL;
 } else {
-    $error = $operationResponse->getError();
+    $error = $resp->getError();
     // handleError($error)
 }
 ```
