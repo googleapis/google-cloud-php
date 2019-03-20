@@ -137,12 +137,12 @@ class SigningHelper
                 . urlencode('"' . $options['saveAsName'] . '"');
         }
 
-        // if ($generation) {
-        //     $params['generation'] = $generation;
-        // }
+        if ($generation) {
+            $params['generation'] = $generation;
+        }
 
         // sort headers by name
-        ksort($headers);
+        ksort($headers, SORT_NATURAL | SORT_FLAG_CASE);
 
         $canonicalHeaders = [];
         $signedHeaders = [];
@@ -162,7 +162,7 @@ class SigningHelper
         $params['X-Goog-Expires'] = $this->expires - time();
         $params['X-Goog-SignedHeaders'] = $signedHeaders;
 
-        ksort($params);
+        ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
 
         $canonicalQueryString = http_build_query($params);
 
