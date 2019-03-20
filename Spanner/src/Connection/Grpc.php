@@ -468,8 +468,9 @@ class Grpc implements ConnectionInterface
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
         $transport = $this->spannerClient->getTransport();
 
-        $request = new CreateSessionRequest();
-        $request->setDatabase($database);
+        $request = new CreateSessionRequest([
+            'database' => $database
+        ]);
 
         $session = $this->pluck('session', $args, false);
         if ($session) {
@@ -853,7 +854,7 @@ class Grpc implements ConnectionInterface
             $keySet['keys'] = [];
 
             foreach ($keys as $key) {
-                $keySet['keys'][] = $this->formatListForApi((array)$key);
+                $keySet['keys'][] = $this->formatListForApi((array) $key);
             }
         }
 

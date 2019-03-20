@@ -101,7 +101,6 @@ use Psr\Cache\CacheItemPoolInterface;
 class CacheSessionPool implements SessionPoolInterface
 {
     use SysvTrait;
-    use ArrayTrait;
 
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
     const DURATION_TWENTY_MINUTES = 1200;
@@ -660,7 +659,7 @@ class CacheSessionPool implements SessionPoolInterface
         $args = [
                 'database' => $this->database->name(),
                 'session' => [
-                    'labels' => $this->pluck('labels', $options, false) ?: []
+                    'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
                 ]
             ] + $options;
 
