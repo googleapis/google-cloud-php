@@ -21,33 +21,40 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICGenerator()
-common_templates = gcp.CommonTemplates()
 
-# tasks has two product names, and a poorly named artman yaml
-v1beta1_library = gapic._generate_code(
-    'asset', 'v1beta1', 'php',
-    config_path='artman_cloudasset_v1beta1.yaml',
-    artman_output_name='google-cloud-asset-v1beta1')
+for version in ['V1', 'V1beta1']:
+    lower_version = version.lower()
 
-templates = common_templates.php_library()
+    library = gapic.php_library(
+        service='asset',
+        version=lower_version,
+        config_path=f'artman_cloudasset_{lower_version}.yaml',
+        artman_output_name=f'google-cloud-asset-{lower_version}')
 
-s.copy(v1beta1_library / f'src/')
-s.copy(v1beta1_library / f'proto/src/GPBMetadata/Google/Cloud/Asset', f'metadata')
-s.copy(v1beta1_library / f'proto/src/Google/Cloud/Asset', f'src')
-s.copy(v1beta1_library / f'tests')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-s.copy(templates)
+    # copy proto files to src also
+    s.move(library / f'proto/src/Google/Cloud/Asset', f'src/')
+    s.move(library / f'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Asset', f'metadata/')
 
 # fix year
 s.replace(
-    'src/V1beta1/*Client.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    '**/Gapic/*GapicClient.php',
+    'src/V1beta1/**/*.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
     'tests/*/V1beta1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
+s.replace(
+    'src/V1/**/*.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
+    'tests/*/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')

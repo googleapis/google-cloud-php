@@ -39,9 +39,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\Asset\V1beta1\AssetServiceClient;
-use Google\Cloud\Asset\V1beta1\GcsDestination;
-use Google\Cloud\Asset\V1beta1\OutputConfig;
+use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\GcsDestination;
+use Google\Cloud\Asset\V1\OutputConfig;
 
 $objectPath = 'gs://your-bucket/cai-export';
 // Now you need to change this with your project number (numeric id)
@@ -59,7 +59,7 @@ $resp->pollUntilComplete();
 if ($resp->operationSucceeded()) {
     echo "The result is dumped to $objectPath successfully." . PHP_EOL;
 } else {
-    $error = $operationResponse->getError();
+    $error = $resp->getError();
     // handleError($error)
 }
 ```

@@ -7,7 +7,11 @@
             "type": "asset\/readme"
         },
         {
-            "title": "AssetServiceClient",
+            "title": "AssetServiceClient(v1)",
+            "type": "asset\/v1\/assetserviceclient"
+        },
+        {
+            "title": "AssetServiceClient(v1beta1)",
             "type": "asset\/v1beta1\/assetserviceclient"
         }
     ],
