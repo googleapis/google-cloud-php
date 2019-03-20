@@ -710,6 +710,22 @@ class StorageObject
      * Signed URLs can be complex, and it is strongly recommended you read and
      * understand the [documentation](https://cloud.google.com/storage/docs/access-control/signed-urls).
      *
+     * In cases where a keyfile is available, signing is accomplished in the
+     * client using your Service Account private key. In cases where this is not
+     * possible, signing is accomplished using
+     * [IAM signBlob](https://cloud.google.com/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob).
+     * Signing using IAM requires that your service account be granted the
+     * `iam.serviceAccounts.signBlob` permission, part of the "Service Account
+     * Token Creator" IAM role.
+     *
+     * Additionally, signing using IAM requires different scopes. When creating
+     * an instance of {@see Google\Cloud\Storage\StorageClient}, provide the
+     * `https://www.googleapis.com/auth/cloud-platform` scope, as demonstrated
+     * in the example below. This scope may be used entirely in place of the
+     * scopes provided in `StorageClient`.
+     *
+     * App Engine and Compute Engine will attempt to sign URLs using IAM.
+     *
      * Example:
      * ```
      * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')));
@@ -720,6 +736,18 @@ class StorageObject
      * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')), [
      *     'method' => 'PUT'
      * ]);
+     * ```
+     *
+     * ```
+     * // Use the correct scope to sign a URL using IAM.
+     * use Google\Cloud\Storage\StorageClient;
+     *
+     * $storage = new StorageClient([
+     *     'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
+     * ]);
+     *
+     * $object = $storage->bucket('my-bucket')->object('my-object');
+     * $url = $object->signedUrl(time() + 3600);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
@@ -763,6 +791,9 @@ class StorageObject
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
+     *     @type string|array $scopes One or more authentication scopes to be
+     *           used with a key file. This option is ignored unless
+     *           `$options.keyFile` or `$options.keyFilePath` is set.
      *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
      * }
@@ -966,8 +997,8 @@ class StorageObject
      */
     public function beginSignedUploadSession(array $options = [])
     {
-        $timestamp = new \DateTimeImmutable('+1 minute');
-        $startUri = $this->signedUploadUrl($timestamp, $options);
+        $expires = new \DateTimeImmutable('+1 minute');
+        $startUri = $this->signedUploadUrl($expires, $options);
 
         $uploaderOptions = $this->pluckArray([
             'contentType',

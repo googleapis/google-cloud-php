@@ -22,11 +22,13 @@ use Google\Auth\Signer;
 use Google\Cloud\Core\Timestamp;
 
 /**
- * Class Description
+ * Provides common methods for signing storage URLs.
+ *
+ * @internal
  */
 class SigningHelper
 {
-    const DEFAULT_DOWNLOAD_URL = 'storage.googleapis.com';
+    const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
     /**
      * @var FetchAuthTokenCredential
@@ -70,34 +72,35 @@ class SigningHelper
         }
 
         $this->credentials = $credentials;
-        $this->expires = $expires;
+        $this->expires = $seconds;
         $this->signer = new Signer;
     }
 
+    /**
+     * Sign a storage URL using Google Signed URLs v4.
+     *
+     * @param string $resource The URI to the storage resource, preceded by a
+     *     leading slash.
+     * @param string $generation The resource generation.
+     * @param array $options Configuration options. See
+     *     {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
+     * @return string
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException If required data could not be gathered from
+     *     credentials.
+     * @throws \RuntimeException If OpenSSL signing is required by user input
+     *     and OpenSSL is not available.
+     */
     public function v4Sign($resource, $generation, array $options)
     {
-        // $options += [
-        //     'method' => 'GET',
-        //     'cname' => self::DEFAULT_DOWNLOAD_URL,
-        //     'contentMd5' => null,
-        //     'contentType' => null,
-        //     'headers' => [],
-        //     'saveAsName' => null,
-        //     'responseDisposition' => null,
-        //     'responseType' => null,
-        //     'keyFile' => null,
-        //     'keyFilePath' => null,
-        //     'allowPost' => false,
-        //     'forceOpenssl' => false
-        // ];
         $options = $this->normalizeOptions($options);
 
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
 
-        $expireLimit = $now->modify('+7 days')->format('U');
-        $tomorrow = $now->modify('tomorrow')->format('U');
+        $expireLimit = time() + 604800;
+        $tomorrow = time() + 62400;
         if ($this->expires > $expireLimit) {
             throw new \InvalidArgumentException(
                 'V4 Signed URLs may not have an expiration greater than seven days in the future.'
@@ -110,10 +113,10 @@ class SigningHelper
         $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
 
         // Add headers and query params based on provided options.
+        $params = $options['queryParams'];
         $headers = $options['headers'] + [
             'host' => $options['cname']
         ];
-        $params = $options['queryParams'];
 
         if ($options['contentType']) {
             $headers['Content-Type'] = $options['contentType'];
@@ -129,11 +132,14 @@ class SigningHelper
 
         if ($options['responseDisposition']) {
             $params['response-content-disposition'] = $options['responseDisposition'];
+        } elseif ($options['saveAsName']) {
+            $params[] = 'response-content-disposition=attachment;filename='
+                . urlencode('"' . $options['saveAsName'] . '"');
         }
 
-        if ($generation) {
-            $params['generation'] = $generation;
-        }
+        // if ($generation) {
+        //     $params['generation'] = $generation;
+        // }
 
         // sort headers by name
         ksort($headers);
@@ -141,6 +147,9 @@ class SigningHelper
         $canonicalHeaders = [];
         $signedHeaders = [];
         foreach ($headers as $key => $val) {
+            if (is_array($val)) {
+                $val = implode(',', $val);
+            }
             $canonicalHeaders[] = sprintf('%s:%s', strtolower($key), strtolower($val));
             $signedHeaders[] = strtolower($key);
         }
@@ -177,26 +186,30 @@ class SigningHelper
 
         $signature = bin2hex(base64_decode($this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl'])));
 
+        $resource = $this->modifyResourceForCname($options['cname'], $resource);
         return 'https://' . $options['cname'] . $resource . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
     }
 
+    /**
+     * Sign a URL using Google Signed URLs v2.
+     *
+     * This method will be deprecated in the future.
+     *
+     * @param string $resource The URI to the storage resource, preceded by a
+     *     leading slash.
+     * @param string $generation The resource generation.
+     * @param array $options Configuration options. See
+     *     {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
+     * @return string
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException If required data could not be gathered from
+     *     credentials.
+     * @throws \RuntimeException If OpenSSL signing is required by user input
+     *     and OpenSSL is not available.
+     */
     public function v2Sign($resource, $generation, array $options)
     {
         $options = $this->normalizeOptions($options);
-
-        // Make sure disallowed headers are not included.
-        $illegalHeaders = [
-            'x-goog-encryption-key',
-            'x-goog-encryption-key-sha256'
-        ];
-
-        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $options['headers'])) {
-            throw new \InvalidArgumentException(sprintf(
-                '%s %s not allowed in Signed URL headers.',
-                implode(' and ', array_keys($illegal)),
-                count($illegal) === 1 ? 'is' : 'are'
-            ));
-        }
 
         // Sort headers by name.
         ksort($options['headers']);
@@ -208,21 +221,6 @@ class SigningHelper
             $value = is_array($value)
                 ? implode(',', array_map('trim', $value))
                 : trim($value);
-
-            // Linebreaks are not allowed in headers.
-            // Rather than strip, we throw because we don't want to change the expected value without the user knowing.
-            if (strpos($value, PHP_EOL) !== false) {
-                throw new \InvalidArgumentException(
-                    'Line endings are not allowed in header values. Replace line endings with a single space.'
-                );
-            }
-
-            // Invalid header names throw exception.
-            if (strpos($name, 'x-goog-') !== 0) {
-                throw new \InvalidArgumentException(
-                    'Header names must begin with `x-goog-`.'
-                );
-            }
 
             $headers[] = $name .':'. $value;
         }
@@ -265,14 +263,22 @@ class SigningHelper
             $query[] = 'generation=' . $generation;
         }
 
+        $resource = $this->modifyResourceForCname($options['cname'], $resource);
         return 'https://' . $options['cname'] . $resource . '?' . implode('&', $query);
     }
 
+    /**
+     * Fixes the user input options, filters and validates data.
+     *
+     * @param array $options Signed URL configuration options.
+     * @return array
+     * @throws \InvalidArgumentException
+     */
     private function normalizeOptions(array $options)
     {
         $options += [
             'method' => 'GET',
-            'cname' => self::DEFAULT_DOWNLOAD_URL,
+            'cname' => self::DEFAULT_DOWNLOAD_HOST,
             'contentMd5' => null,
             'contentType' => null,
             'headers' => [],
@@ -298,6 +304,38 @@ class SigningHelper
             );
         }
 
+        // Make sure disallowed headers are not included.
+        $illegalHeaders = [
+            'x-goog-encryption-key',
+            'x-goog-encryption-key-sha256'
+        ];
+
+        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $options['headers'])) {
+            throw new \InvalidArgumentException(sprintf(
+                '%s %s not allowed in Signed URL headers.',
+                implode(' and ', array_keys($illegal)),
+                count($illegal) === 1 ? 'is' : 'are'
+            ));
+        }
+
+        $headers = [];
+        foreach ($options['headers'] as $name => $value) {
+            // Linebreaks are not allowed in headers.
+            // Rather than strip, we throw because we don't want to change the expected value without the user knowing.
+            if (is_string($value) && strpos($value, PHP_EOL) !== false) {
+                throw new \InvalidArgumentException(
+                    'Line endings are not allowed in header values. Replace line endings with a single space.'
+                );
+            }
+
+            // Invalid header names throw exception.
+            if (strpos($name, 'x-goog-') !== 0) {
+                throw new \InvalidArgumentException(
+                    'Header names must begin with `x-goog-`.'
+                );
+            }
+        }
+
         // For backwards compatibility, strip protocol from cname.
         $cnameParts = explode('//', $options['cname']);
         if (count($cnameParts) > 1) {
@@ -307,5 +345,32 @@ class SigningHelper
         $options['cname'] = trim($options['cname'], '/');
 
         return $options;
+    }
+
+    /**
+     * Returns a resource formatted for use in a URI.
+     *
+     * If the cname is other than the default, will omit the bucket name.
+     *
+     * @param string $cname The cname provided by the user, or the default
+     *     value.
+     * @param string $resource The GCS resource path (i.e. /bucket/object).
+     * @return string
+     */
+    private function modifyResourceForCname($cname, $resource)
+    {
+        if ($cname !== self::DEFAULT_DOWNLOAD_HOST) {
+            $resourceParts = explode('/', trim($resource, '/'));
+            array_shift($resourceParts);
+
+            // Resource is a Bucket.
+            if (empty($resourceParts)) {
+                $resource = '/';
+            } else {
+                $resource = '/' . implode($resourceParts);
+            }
+        }
+
+        return $resource;
     }
 }
