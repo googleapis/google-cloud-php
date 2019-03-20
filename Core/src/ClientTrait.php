@@ -157,14 +157,14 @@ trait ClientTrait
      *
      * Process:
      * 1. If $config['projectId'] is set, use that.
-     * 2. If $config['keyFile'] is set, attempt to retrieve a project ID from
+     * 2. If an emulator is enabled, return a dummy value.
+     * 3. If $config['keyFile'] is set, attempt to retrieve a project ID from
      *    that.
-     * 3. Check `GOOGLE_CLOUD_PROJECT` environment variable.
-     * 4. Check `GCLOUD_PROJECT` environment variable.
-     * 5. If code is running on compute engine, try to get the project ID from
+     * 4. Check `GOOGLE_CLOUD_PROJECT` environment variable.
+     * 5. Check `GCLOUD_PROJECT` environment variable.
+     * 6. If code is running on compute engine, try to get the project ID from
      *    the metadata store.
-     * 6. If an emulator is enabled, return a dummy value.
-     * 4. Throw exception.
+     * 7. Throw exception.
      *
      * @param  array $config
      * @return string
@@ -183,6 +183,10 @@ trait ClientTrait
 
         if ($config['projectId']) {
             return $config['projectId'];
+        }
+
+        if ($config['hasEmulator']) {
+            return 'emulator-project';
         }
 
         if (isset($config['keyFile'])) {
@@ -224,10 +228,6 @@ trait ClientTrait
             if ($projectId) {
                 return $projectId;
             }
-        }
-
-        if ($config['hasEmulator']) {
-            return 'emulator-project';
         }
 
         if ($config['projectIdRequired']) {
