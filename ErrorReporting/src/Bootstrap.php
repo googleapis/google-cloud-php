@@ -131,6 +131,7 @@ class Bootstrap
             $version = self::$psrLogger->getMetadataProvider()->versionId();
             self::$psrLogger->error($message, [
                 'context' => [
+                    'httpRequest' => self::getHttpRequest(),
                     'reportLocation' => [
                         'filePath' => $ex->getFile(),
                         'lineNumber' => $ex->getLine(),
@@ -173,6 +174,7 @@ class Bootstrap
         $version = self::$psrLogger->getMetadataProvider()->versionId();
         $context = [
             'context' => [
+                'httpRequest' => self::getHttpRequest(),
                 'reportLocation' => [
                     'filePath' => $file,
                     'lineNumber' => $line,
@@ -241,6 +243,25 @@ class Bootstrap
                     break;
             }
         }
+    }
+
+    /**
+     * Get the HTTP request context.
+     */
+    private static function getHttpRequest()
+    {
+        // https://stackoverflow.com/a/6768831/358804
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+        $url = $protocol . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+        return [
+            'method' => $_SERVER['REQUEST_METHOD'],
+            'url' => $url,
+            'userAgent' => $_SERVER['HTTP_USER_AGENT'],
+            'referrer' => $_SERVER['HTTP_REFERER'],
+            'responseStatusCode' => http_response_code(),
+            'remoteIp' => $_SERVER['REMOTE_ADDR'],
+        ];
     }
 
     /**
