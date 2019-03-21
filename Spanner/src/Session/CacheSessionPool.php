@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Spanner\Session;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
