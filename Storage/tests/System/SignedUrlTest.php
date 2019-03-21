@@ -213,7 +213,7 @@ class SignedUrlTest extends StorageTestCase
 
         $res = $this->guzzle->request('GET', $url);
 
-        $this->assertEquals('attachment;filename="' . $saveAs . '"', $res->getHeaderLine('Content-Disposition'));
+        $this->assertEquals('attachment; filename="' . $saveAs . '"', $res->getHeaderLine('Content-Disposition'));
     }
 
     public function urlVersion()

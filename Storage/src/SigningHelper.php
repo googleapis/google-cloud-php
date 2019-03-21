@@ -100,7 +100,6 @@ class SigningHelper
         $requestDatestamp = $now->format('Ymd');
 
         $expireLimit = time() + 604800;
-        $tomorrow = time() + 62400;
         if ($this->expires > $expireLimit) {
             throw new \InvalidArgumentException(
                 'V4 Signed URLs may not have an expiration greater than seven days in the future.'
@@ -133,8 +132,8 @@ class SigningHelper
         if ($options['responseDisposition']) {
             $params['response-content-disposition'] = $options['responseDisposition'];
         } elseif ($options['saveAsName']) {
-            $params[] = 'response-content-disposition=attachment;filename='
-                . urlencode('"' . $options['saveAsName'] . '"');
+            $params['response-content-disposition'] = 'attachment; filename='
+                . '"' . $options['saveAsName'] . '"';
         }
 
         if ($generation) {
@@ -144,27 +143,30 @@ class SigningHelper
         // sort headers by name
         ksort($headers, SORT_NATURAL | SORT_FLAG_CASE);
 
+        // Canonical headers are a list, newline separated, of keys and values,
+        // comma separated.
+        // Signed headers are a list of keys, separated by a semicolon.
         $canonicalHeaders = [];
         $signedHeaders = [];
         foreach ($headers as $key => $val) {
-            if (is_array($val)) {
-                $val = implode(',', $val);
-            }
             $canonicalHeaders[] = sprintf('%s:%s', strtolower($key), strtolower($val));
             $signedHeaders[] = strtolower($key);
         }
         $canonicalHeaders = implode("\n", $canonicalHeaders) . "\n";
         $signedHeaders = implode(';', $signedHeaders);
 
+        // Add required query parameters.
         $params['X-Goog-Algorithm'] = $algo;
         $params['X-Goog-Credential'] = $credential;
         $params['X-Goog-Date'] = $requestTimestamp;
         $params['X-Goog-Expires'] = $this->expires - time();
         $params['X-Goog-SignedHeaders'] = $signedHeaders;
 
+        // Sort query string params by name.
         ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
 
-        $canonicalQueryString = http_build_query($params);
+        // Create a query string, encoding spaces as `%20` rather than `+`.
+        $canonicalQueryString = http_build_query($params, null, '&',  PHP_QUERY_RFC3986);
 
         $canonicalRequest = implode("\n", [
             $options['method'],
@@ -175,8 +177,10 @@ class SigningHelper
             'UNSIGNED-PAYLOAD'
         ]);
 
+        // Create a request hash to be signed.
         $requestHash = bin2hex(hash('sha256', $canonicalRequest, true));
 
+        // Construct the string to sign.
         $stringToSign = implode("\n", [
             $algo,
             $requestTimestamp,
@@ -184,10 +188,23 @@ class SigningHelper
             $requestHash
         ]);
 
-        $signature = bin2hex(base64_decode($this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl'])));
+        // Sign the string using the given credentials.
+        $signature = bin2hex(base64_decode($this->signer->signBlob(
+            $this->credentials,
+            $stringToSign,
+            $options['forceOpenssl']
+        )));
 
+        // Construct the modified resource name. If a custom cname is provided,
+        // this will remove the bucket name from the resource.
         $resource = $this->modifyResourceForCname($options['cname'], $resource);
-        return 'https://' . $options['cname'] . $resource . '?' . $canonicalQueryString . '&X-Goog-Signature='. $signature;
+        return sprintf(
+            'https://%s%s?%s&X-Goog-Signature=%s',
+            $options['cname'],
+            $resource,
+            $canonicalQueryString,
+            $signature
+        );
     }
 
     /**
@@ -217,16 +234,7 @@ class SigningHelper
         $headers = [];
         foreach ($options['headers'] as $name => $value) {
             $name = strtolower(trim($name));
-
-            $value = is_array($value)
-                ? implode(',', array_map('trim', $value))
-                : trim($value);
-
             $headers[] = $name .':'. $value;
-        }
-
-        if ($headers) {
-            $headers[] = '';
         }
 
         $toSign = [
@@ -234,37 +242,50 @@ class SigningHelper
             $options['contentMd5'],
             $options['contentType'],
             $this->expires,
-            implode("\n", $headers) . $resource,
         ];
+
+        // Push the headers onto the end of the signing string.
+        if ($headers) {
+            $toSign = array_merge($toSign, $headers);
+        }
+
+        $toSign[] = $resource;
 
         // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
         // in this case `\n` is required.
-        $string = implode("\n", $toSign);
-        $signature = $this->signer->signBlob($this->credentials, $string, $options['forceOpenssl']);
+        $stringToSign = implode("\n", $toSign);
+
+        // Sign the string using the provided credentials.
+        $signature = $this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl']);
+
+        // Signature is returned base64-encoded. URL-encode that.
         $encodedSignature = urlencode($signature);
 
-        $query = [];
-        $query[] = 'GoogleAccessId=' . $this->credentials->getClientEmail();
-        $query[] = 'Expires=' . $this->expires;
-        $query[] = 'Signature=' . $encodedSignature;
+        // Start with user-provided query params and add required parameters.
+        $params = $options['queryParams'];
+        $params['GoogleAccessId'] = $this->credentials->getClientEmail();
+        $params['Expires'] = $this->expires;
+        $params['Signature'] = $encodedSignature;
 
         if ($options['responseDisposition']) {
-            $query[] = 'response-content-disposition=' . urlencode($options['responseDisposition']);
+            $params['response-content-disposition'] = urlencode($options['responseDisposition']);
         } elseif ($options['saveAsName']) {
-            $query[] = 'response-content-disposition=attachment;filename='
+            $params['response-content-disposition'] = 'attachment; filename='
                 . urlencode('"' . $options['saveAsName'] . '"');
         }
 
         if ($options['responseType']) {
-            $query[] = 'response-content-type=' . urlencode($options['responseType']);
+            $params['response-content-type'] = urlencode($options['responseType']);
         }
 
         if ($generation) {
-            $query[] = 'generation=' . $generation;
+            $params['generation'] = $generation;
         }
 
+        $queryString = http_build_query($params, null, '&',  PHP_QUERY_RFC3986);
+
         $resource = $this->modifyResourceForCname($options['cname'], $resource);
-        return 'https://' . $options['cname'] . $resource . '?' . implode('&', $query);
+        return 'https://' . $options['cname'] . $resource . '?' . $queryString;
     }
 
     /**
@@ -304,20 +325,6 @@ class SigningHelper
             );
         }
 
-        // Make sure disallowed headers are not included.
-        $illegalHeaders = [
-            'x-goog-encryption-key',
-            'x-goog-encryption-key-sha256'
-        ];
-
-        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $options['headers'])) {
-            throw new \InvalidArgumentException(sprintf(
-                '%s %s not allowed in Signed URL headers.',
-                implode(' and ', array_keys($illegal)),
-                count($illegal) === 1 ? 'is' : 'are'
-            ));
-        }
-
         $headers = [];
         foreach ($options['headers'] as $name => $value) {
             // Linebreaks are not allowed in headers.
@@ -328,11 +335,9 @@ class SigningHelper
                 );
             }
 
-            // Invalid header names throw exception.
-            if (strpos($name, 'x-goog-') !== 0) {
-                throw new \InvalidArgumentException(
-                    'Header names must begin with `x-goog-`.'
-                );
+            // collapse arrays of values into a comma-separated list.
+            if (is_array($value)) {
+                $options['headers'][$name] = implode(',', array_map('trim', $value));
             }
         }
 

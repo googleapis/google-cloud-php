@@ -47,6 +47,11 @@ class StorageObject
     use EncryptionTrait;
 
     /**
+     * @deprecated
+     */
+    const DEFAULT_DOWNLOAD_URL = SigningHelper::DEFAULT_DOWNLOAD_HOST;
+
+    /**
      * @var Acl ACL for the object.
      */
     private $acl;
@@ -759,9 +764,6 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
-     *     @type string $method One of `GET`, `PUT` or `DELETE`.
-     *           **Defaults to** `GET`.
      *     @type string $cname The CNAME for the bucket, for instance
      *           `https://cdn.example.com`. **Defaults to**
      *           `https://storage.googleapis.com`.
@@ -769,33 +771,40 @@ class StorageObject
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
      *           and the value is an array of header values. Headers with multiple
      *           values may provide values as a simple array, or a
-     *           comma-separated string. Headers names MUST begin with `x-goog-`.
-     *     @type string $saveAsName The filename to prompt the user to save the
-     *           file as when the signed url is accessed. This is ignored if
-     *           `$options.responseDisposition` is set.
-     *     @type string $responseDisposition The
-     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
-     *           parameter of the signed url.
-     *     @type string $contentType If you provide this value, the client must
-     *           provide this HTTP header set to the same value.
-     *     @type string $responseType The `response-content-type` parameter of the
-     *           signed url. When the server contentType is `null`, this option
-     *           may be used to control the content type of the response.
+     *           comma-separated string. For a reference of allowed headers,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
+     *     @type string $method One of `GET`, `PUT` or `DELETE`.
+     *           **Defaults to** `GET`.
+     *     @type string $responseDisposition The
+     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
+     *           parameter of the signed url.
+     *     @type string $responseType The `response-content-type` parameter of the
+     *           signed url. When the server contentType is `null`, this option
+     *           may be used to control the content type of the response.
+     *     @type string $saveAsName The filename to prompt the user to save the
+     *           file as when the signed url is accessed. This is ignored if
+     *           `$options.responseDisposition` is set.
      *     @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
-     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
-     *           whether phpseclib is available. **Defaults to** `false`.
+     *     @type array $queryParams Additional query parameters to be included
+     *           as part of the signed URL query string. For allowed values,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
@@ -900,26 +909,45 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
-     *     @type string $contentType If you provide this value, the client must
-     *           provide this HTTP header set to the same value.
+     *     @type string $cname The CNAME for the bucket, for instance
+     *           `https://cdn.example.com`. **Defaults to**
+     *           `https://storage.googleapis.com`.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
      *           and the value is an array of header values. Headers with multiple
      *           values may provide values as a simple array, or a
-     *           comma-separated string. Headers names MUST begin with `x-goog-`.
+     *           comma-separated string. For a reference of allowed headers,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
-     *           whether phpseclib is available. **Defaults to** `false`.
+     *     @type string $responseDisposition The
+     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
+     *           parameter of the signed url.
+     *     @type string $responseType The `response-content-type` parameter of the
+     *           signed url. When the server contentType is `null`, this option
+     *           may be used to control the content type of the response.
+     *     @type string $saveAsName The filename to prompt the user to save the
+     *           file as when the signed url is accessed. This is ignored if
+     *           `$options.responseDisposition` is set.
+     *     @type string|array $scopes One or more authentication scopes to be
+     *           used with a key file. This option is ignored unless
+     *           `$options.keyFile` or `$options.keyFilePath` is set.
+     *     @type array $queryParams Additional query parameters to be included
+     *           as part of the signed URL query string. For allowed values,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
      * }
      * @return string
      */
@@ -970,28 +998,45 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
-     *     @type string $contentType If you provide this value, the client must
-     *           provide this HTTP header set to the same value.
-     *     @type string $origin Value of CORS header
-     *           "Access-Control-Allow-Origin". **Defaults to** `"*"`.
+     *     @type string $cname The CNAME for the bucket, for instance
+     *           `https://cdn.example.com`. **Defaults to**
+     *           `https://storage.googleapis.com`.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
      *           and the value is an array of header values. Headers with multiple
      *           values may provide values as a simple array, or a
-     *           comma-separated string. Headers names MUST begin with `x-goog-`.
+     *           comma-separated string. For a reference of allowed headers,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
-     *           whether phpseclib is available. **Defaults to** `false`.
+     *     @type string $responseDisposition The
+     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
+     *           parameter of the signed url.
+     *     @type string $responseType The `response-content-type` parameter of the
+     *           signed url. When the server contentType is `null`, this option
+     *           may be used to control the content type of the response.
+     *     @type string $saveAsName The filename to prompt the user to save the
+     *           file as when the signed url is accessed. This is ignored if
+     *           `$options.responseDisposition` is set.
+     *     @type string|array $scopes One or more authentication scopes to be
+     *           used with a key file. This option is ignored unless
+     *           `$options.keyFile` or `$options.keyFilePath` is set.
+     *     @type array $queryParams Additional query parameters to be included
+     *           as part of the signed URL query string. For allowed values,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
      * }
      * @return string
      */
