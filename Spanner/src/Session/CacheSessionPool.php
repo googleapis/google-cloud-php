@@ -651,17 +651,12 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function createSessions($count)
     {
-        $options = [];
-        if ($this->config['labels']) {
-            $options['labels'] = $this->config['labels'];
-        }
-
         $args = [
                 'database' => $this->database->name(),
                 'session' => [
                     'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
                 ]
-            ] + $options;
+            ];
 
         $promises = [];
 
