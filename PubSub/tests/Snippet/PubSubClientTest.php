@@ -63,6 +63,8 @@ class PubSubClientTest extends SnippetTestCase
         $res = $snippet->invoke('pubsub');
 
         $this->assertInstanceOf(PubSubClient::class, $res->returnVal());
+
+        putenv('PUBSUB_EMULATOR_HOST');
     }
 
     public function testCreateTopic()

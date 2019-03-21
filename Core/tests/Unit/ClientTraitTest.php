@@ -303,26 +303,26 @@ class ClientTraitTest extends TestCase
         ]]);
     }
 
+    public function testDetectProjectIdEmulatorWithProjectId()
+    {
+        $projectId = 'emulator-project';
+
+        $res = $this->impl->call('detectProjectId', [[
+            'hasEmulator' => true,
+            'projectId' => $projectId,
+        ]]);
+
+        $this->assertEquals($projectId, $res);
+    }
+
+
     public function testDetectProjectIdEmulator()
     {
         $projectId = 'emulator-project';
 
-        $originalEnv = getenv('GCLOUD_PROJECT');
-        putenv('GCLOUD_PROJECT');
-
-        $m = $this->prophesize(Metadata::class);
-        $m->getProjectId()->willReturn(false)->shouldBeCalled();
-
-        $trait = TestHelpers::impl(ClientTraitStubOnGce::class, ['metadata']);
-        $trait->___setProperty('metadata', $m);
-
-        $res = $trait->call('detectProjectId', [[
+        $res = $this->impl->call('detectProjectId', [[
             'hasEmulator' => true
         ]]);
-
-        if ($originalEnv) {
-            putenv('GCLOUD_PROJECT='. $originalEnv);
-        }
 
         $this->assertEquals($projectId, $res);
     }
