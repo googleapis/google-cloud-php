@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [Firestore.Commit][google.firestore.v1beta1.Firestore.Commit].
+ * The request for [Firestore.Commit][google.firestore.v1beta1.Firestore.Commit].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.CommitRequest</code>
  */

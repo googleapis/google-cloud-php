@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for
- * [Firestore.ListDocuments][google.firestore.v1beta1.Firestore.ListDocuments].
+ * The response for [Firestore.ListDocuments][google.firestore.v1beta1.Firestore.ListDocuments].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.ListDocumentsResponse</code>
  */

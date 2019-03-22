@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [Firestore.RunQuery][google.firestore.v1beta1.Firestore.RunQuery].
+ * The request for [Firestore.RunQuery][google.firestore.v1beta1.Firestore.RunQuery].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.RunQueryRequest</code>
  */

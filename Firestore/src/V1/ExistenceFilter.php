@@ -22,8 +22,7 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      */
     private $target_id = 0;
     /**
-     * The total count of documents that match
-     * [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
      *
@@ -40,8 +39,7 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
      *     @type int $target_id
      *           The target ID to which this filter applies.
      *     @type int $count
-     *           The total count of documents that match
-     *           [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     *           The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
      *           If different from the count of documents in the client that match, the
      *           client must manually determine which documents no longer match the target.
      * }
@@ -78,8 +76,7 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total count of documents that match
-     * [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
      *
@@ -92,8 +89,7 @@ class ExistenceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total count of documents that match
-     * [target_id][google.firestore.v1.ExistenceFilter.target_id].
+     * The total count of documents that match [target_id][google.firestore.v1.ExistenceFilter.target_id].
      * If different from the count of documents in the client that match, the
      * client must manually determine which documents no longer match the target.
      *
