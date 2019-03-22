@@ -27,7 +27,6 @@ use GuzzleHttp\Client;
  */
 class SignedUrlTest extends StorageTestCase
 {
-    const RANDOM_NAME = 'rand';
     const CONTENT = 'hello world!';
 
     private $guzzle;
@@ -52,6 +51,17 @@ class SignedUrlTest extends StorageTestCase
                     'headers' => [
                         'x-goog-foo' => 'bar',
                         'x-goog-a' => 'b'
+                    ]
+                ]
+            ], [
+                uniqid(self::TESTING_PREFIX),
+                [
+                    'headers' => [
+                        'x-goog-foo' => 'bar',
+                        'x-goog-a' => 'b'
+                    ],
+                    'queryParams' => [
+                        'generation' => 0
                     ]
                 ]
             ]
@@ -92,7 +102,7 @@ class SignedUrlTest extends StorageTestCase
     }
 
     /**
-     * @dataProvider urlVersion
+     * @dataProvider signingVersion
      * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
     public function testSignedUrlDelete($version)
@@ -121,7 +131,7 @@ class SignedUrlTest extends StorageTestCase
     }
 
     /**
-     * @dataProvider urlVersion
+     * @dataProvider signingVersion
      */
     public function testSignedUploadSession($version)
     {
@@ -131,7 +141,10 @@ class SignedUrlTest extends StorageTestCase
         ]);
 
         $this->guzzle->request('PUT', $url, [
-            'body' => self::CONTENT
+            'body' => self::CONTENT,
+            'headers' => [
+                'Origin' => 'https://google.com',
+            ]
         ]);
 
         $this->assertTrue($obj->exists());
@@ -139,7 +152,7 @@ class SignedUrlTest extends StorageTestCase
     }
 
     /**
-     * @dataProvider urlVersion
+     * @dataProvider signingVersion
      */
     public function testSignedUploadSessionOrigin($version)
     {
@@ -176,47 +189,55 @@ class SignedUrlTest extends StorageTestCase
     }
 
     /**
-     * @dataProvider urlVersion
+     * @dataProvider signingVersion
      */
     public function testSignedUrlContentType($version)
     {
+        $contentType = 'image/jpg';
+        $disposition = 'attachment;filename="image.jpg"';
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
 
         $obj->update([
             'contentType' => null
         ]);
 
-        $url = $obj->signedUrl(time()+2, [
-            'responseDisposition' => 'attachment;filename="image.jpg"',
-            'responseType' => 'image/jpg',
+        $url = $obj->signedUrl(time() + 2, [
+            'responseDisposition' => $disposition,
+            'responseType' => $contentType,
             'version' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
 
-        $this->assertEquals('image/jpg', $res->getHeaderLine('Content-Type'));
-        $this->assertEquals('attachment;filename="image.jpg"', $res->getHeaderLine('Content-Disposition'));
+        $expectedContentType = $version === 'v2'
+            ? urlencode($contentType)
+            : $contentType;
+
+        $this->assertEquals(200, $res->getStatusCode());
+        $this->assertEquals($expectedContentType, $res->getHeaderLine('Content-Type'));
+        $this->assertEquals($disposition, $res->getHeaderLine('Content-Disposition'));
     }
 
     /**
-     * @dataProvider urlVersion
+     * @dataProvider signingVersion
      */
     public function testSignedUrlWithSaveAsName($version)
     {
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
 
         $saveAs = 'foo bar';
-        $url = $obj->signedUrl(time()+2, [
+        $url = $obj->signedUrl(time() + 2, [
             'saveAsName' => $saveAs,
             'version' => $version
         ]);
 
         $res = $this->guzzle->request('GET', $url);
 
+        $this->assertEquals(200, $res->getStatusCode());
         $this->assertEquals('attachment; filename="' . $saveAs . '"', $res->getHeaderLine('Content-Disposition'));
     }
 
-    public function urlVersion()
+    public function signingVersion()
     {
         return [
             ['v2'],

@@ -30,17 +30,7 @@ class SigningHelper
 {
     const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
-    /**
-     * @var FetchAuthTokenCredential
-     */
-    private $credentials;
-
-    /**
-     * The expiration time, in seconds from epoch.
-     *
-     * @var int
-     */
-    private $expires;
+    const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
 
     /**
      * @var Signer
@@ -48,40 +38,22 @@ class SigningHelper
     private $signer;
 
     /**
-     * @param FetchAuthTokenInterface $credentials The currently authenticated
-     *        credentials.
-     * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
-     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
-     *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
-     *        UNIX timestamp as an integer.
+     *
+     * @param Signer $signer [optional] A code signer instance.
      */
-    public function __construct(FetchAuthTokenInterface $credentials, $expires)
+    public function __construct(Signer $signer = null)
     {
-        if ($expires instanceof Timestamp) {
-            $seconds = $expires->get()->format('U');
-        } elseif ($expires instanceof \DateTimeInterface) {
-            $seconds = $expires->format('U');
-        } elseif (is_numeric($expires)) {
-            $seconds = (int) $expires;
-        } else {
-            throw new \InvalidArgumentException('Invalid expiration.');
-        }
-
-        if ($seconds < time()) {
-            throw new \InvalidArgumentException('Expiration cannot be in the past.');
-        }
-
-        $this->credentials = $credentials;
-        $this->expires = $seconds;
-        $this->signer = new Signer;
+        $this->signer = $signer ?: new Signer;
     }
 
     /**
-     * Sign a storage URL using Google Signed URLs v4.
+     * Sign a URL using Google Signed URLs v2.
+     *
+     * This method will be deprecated in the future.
      *
      * @param string $resource The URI to the storage resource, preceded by a
      *     leading slash.
-     * @param string $generation The resource generation.
+     * @param string|null $generation The resource generation.
      * @param array $options Configuration options. See
      *     {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
      * @return string
@@ -91,8 +63,97 @@ class SigningHelper
      * @throws \RuntimeException If OpenSSL signing is required by user input
      *     and OpenSSL is not available.
      */
-    public function v4Sign($resource, $generation, array $options)
+    public function v2Sign(FetchAuthTokenInterface $credentials, $expires, $resource, $generation, array $options)
     {
+        $expires = $this->normalizeExpiration($expires);
+        $resource = $this->normalizeResource($resource);
+        $options = $this->normalizeOptions($options);
+
+        // Sort headers by name.
+        ksort($options['headers']);
+
+        $toSign = [
+            $options['method'],
+            $options['contentMd5'],
+            $options['contentType'],
+            $expires,
+        ];
+
+        $headers = [];
+        foreach ($options['headers'] as $name => $value) {
+            $name = strtolower(trim($name));
+            $headers[] = $name .':'. $value;
+        }
+
+        // Push the headers onto the end of the signing string.
+        if ($headers) {
+            $toSign = array_merge($toSign, $headers);
+        }
+
+        $toSign[] = $resource;
+
+        // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
+        // in this case `\n` is required.
+        $stringToSign = $this->createV2CanonicalRequest($toSign);
+
+        // Sign the string using the provided credentials.
+        $signature = $this->signer->signBlob($credentials, $stringToSign, $options['forceOpenssl']);
+
+        // Signature is returned base64-encoded. URL-encode that.
+        $encodedSignature = urlencode($signature);
+
+        // Start with user-provided query params and add required parameters.
+        $params = $options['queryParams'];
+        $params['GoogleAccessId'] = $credentials->getClientEmail();
+        $params['Expires'] = $expires;
+        $params['Signature'] = $encodedSignature;
+
+        if ($options['responseType']) {
+            $params['response-content-type'] = urlencode($options['responseType']);
+        }
+
+        if ($options['responseDisposition']) {
+            $params['response-content-disposition'] = $options['responseDisposition'];
+        } elseif ($options['saveAsName']) {
+            $params['response-content-disposition'] = 'attachment; filename='
+                . '"' . $options['saveAsName'] . '"';
+        }
+
+        if ($generation) {
+            $params['generation'] = $generation;
+        }
+
+        $queryString = http_build_query($params, null, '&', PHP_QUERY_RFC3986);
+
+        $resource = $this->modifyResourceForCname($options['cname'], $resource);
+        return 'https://' . $options['cname'] . $resource . '?' . $queryString;
+    }
+
+    /**
+     * Sign a storage URL using Google Signed URLs v4.
+     *
+     * @param FetchAuthTokenInterface $credentials The currently authenticated
+     *        credentials.
+     * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
+     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
+     *        UNIX timestamp as an integer.
+     * @param string $resource The URI to the storage resource, preceded by a
+     *        leading slash.
+     * @param string|null $generation The resource generation.
+     * @param array $options Configuration options. See
+     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
+     * @return string
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException If required data could not be gathered from
+     *        credentials.
+     * @throws \RuntimeException If OpenSSL signing is required by user input
+     *        and OpenSSL is not available.
+     */
+    public function v4Sign(FetchAuthTokenInterface $credentials, $expires, $resource, $generation, array $options)
+    {
+        $expires = $this->normalizeExpiration($expires);
+        $resource = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
 
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
@@ -100,14 +161,13 @@ class SigningHelper
         $requestDatestamp = $now->format('Ymd');
 
         $expireLimit = time() + 604800;
-        if ($this->expires > $expireLimit) {
+        if ($expires > $expireLimit) {
             throw new \InvalidArgumentException(
                 'V4 Signed URLs may not have an expiration greater than seven days in the future.'
             );
         }
 
-        $algo = 'GOOG4-RSA-SHA256';
-        $clientEmail = $this->credentials->getClientEmail();
+        $clientEmail = $credentials->getClientEmail();
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
         $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
 
@@ -156,33 +216,33 @@ class SigningHelper
         $signedHeaders = implode(';', $signedHeaders);
 
         // Add required query parameters.
-        $params['X-Goog-Algorithm'] = $algo;
+        $params['X-Goog-Algorithm'] = self::V4_ALGO_NAME;
         $params['X-Goog-Credential'] = $credential;
         $params['X-Goog-Date'] = $requestTimestamp;
-        $params['X-Goog-Expires'] = $this->expires - time();
+        $params['X-Goog-Expires'] = $expires - time();
         $params['X-Goog-SignedHeaders'] = $signedHeaders;
 
         // Sort query string params by name.
         ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
 
         // Create a query string, encoding spaces as `%20` rather than `+`.
-        $canonicalQueryString = http_build_query($params, null, '&',  PHP_QUERY_RFC3986);
+        $canonicalQueryString = http_build_query($params, null, '&', PHP_QUERY_RFC3986);
 
-        $canonicalRequest = implode("\n", [
+        $canonicalRequest = [
             $options['method'],
             $resource,
             $canonicalQueryString,
             $canonicalHeaders,
             $signedHeaders,
             'UNSIGNED-PAYLOAD'
-        ]);
+        ];
 
         // Create a request hash to be signed.
-        $requestHash = bin2hex(hash('sha256', $canonicalRequest, true));
+        $requestHash = $this->createV4CanonicalRequest($canonicalRequest);
 
         // Construct the string to sign.
         $stringToSign = implode("\n", [
-            $algo,
+            self::V4_ALGO_NAME,
             $requestTimestamp,
             $credentialScope,
             $requestHash
@@ -190,7 +250,7 @@ class SigningHelper
 
         // Sign the string using the given credentials.
         $signature = bin2hex(base64_decode($this->signer->signBlob(
-            $this->credentials,
+            $credentials,
             $stringToSign,
             $options['forceOpenssl']
         )));
@@ -208,84 +268,66 @@ class SigningHelper
     }
 
     /**
-     * Sign a URL using Google Signed URLs v2.
+     * Creates a canonical request hash for a V4 Signed URL.
      *
-     * This method will be deprecated in the future.
-     *
-     * @param string $resource The URI to the storage resource, preceded by a
-     *     leading slash.
-     * @param string $generation The resource generation.
-     * @param array $options Configuration options. See
-     *     {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
+     * @param array $canonicalRequest The canonical request, with each element
+     *        representing a line in the request.
      * @return string
-     * @throws \InvalidArgumentException
-     * @throws \RuntimeException If required data could not be gathered from
-     *     credentials.
-     * @throws \RuntimeException If OpenSSL signing is required by user input
-     *     and OpenSSL is not available.
      */
-    public function v2Sign($resource, $generation, array $options)
+    protected function createV4CanonicalRequest(array $canonicalRequest)
     {
-        $options = $this->normalizeOptions($options);
+        return bin2hex(hash('sha256', implode("\n", $canonicalRequest), true));
+    }
 
-        // Sort headers by name.
-        ksort($options['headers']);
+    /**
+     * Creates a canonical request for a V2 Signed URL.
+     *
+     * @param array $canonicalRequest The canonical request, with each element
+     *        representing a line in the request.
+     * @return string
+     */
+    protected function createV2CanonicalRequest(array $canonicalRequest)
+    {
+        return implode("\n", $canonicalRequest);
+    }
 
-        $headers = [];
-        foreach ($options['headers'] as $name => $value) {
-            $name = strtolower(trim($name));
-            $headers[] = $name .':'. $value;
+    /**
+     * Normalizes and validates an expiration.
+     *
+     * @param Timestamp|\DateTimeInterface|int $expires The expiration
+     * @return int
+     * @throws \InvalidArgumentException If an invalid value is given.
+     */
+    protected function normalizeExpiration($expires)
+    {
+        if ($expires instanceof Timestamp) {
+            $seconds = $expires->get()->format('U');
+        } elseif ($expires instanceof \DateTimeInterface) {
+            $seconds = $expires->format('U');
+        } elseif (is_numeric($expires)) {
+            $seconds = (int) $expires;
+        } else {
+            throw new \InvalidArgumentException('Invalid expiration.');
         }
 
-        $toSign = [
-            $options['method'],
-            $options['contentMd5'],
-            $options['contentType'],
-            $this->expires,
-        ];
+        return $seconds;
+    }
 
-        // Push the headers onto the end of the signing string.
-        if ($headers) {
-            $toSign = array_merge($toSign, $headers);
-        }
-
-        $toSign[] = $resource;
-
-        // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
-        // in this case `\n` is required.
-        $stringToSign = implode("\n", $toSign);
-
-        // Sign the string using the provided credentials.
-        $signature = $this->signer->signBlob($this->credentials, $stringToSign, $options['forceOpenssl']);
-
-        // Signature is returned base64-encoded. URL-encode that.
-        $encodedSignature = urlencode($signature);
-
-        // Start with user-provided query params and add required parameters.
-        $params = $options['queryParams'];
-        $params['GoogleAccessId'] = $this->credentials->getClientEmail();
-        $params['Expires'] = $this->expires;
-        $params['Signature'] = $encodedSignature;
-
-        if ($options['responseDisposition']) {
-            $params['response-content-disposition'] = urlencode($options['responseDisposition']);
-        } elseif ($options['saveAsName']) {
-            $params['response-content-disposition'] = 'attachment; filename='
-                . urlencode('"' . $options['saveAsName'] . '"');
-        }
-
-        if ($options['responseType']) {
-            $params['response-content-type'] = urlencode($options['responseType']);
-        }
-
-        if ($generation) {
-            $params['generation'] = $generation;
-        }
-
-        $queryString = http_build_query($params, null, '&',  PHP_QUERY_RFC3986);
-
-        $resource = $this->modifyResourceForCname($options['cname'], $resource);
-        return 'https://' . $options['cname'] . $resource . '?' . $queryString;
+    /**
+     * Normalizes and encodes the resource identifier.
+     *
+     * @param string $resource The resource identifier. In form
+     *        `[/]$bucket/$object]`.
+     * @return string The resource, with pieces encoded and prefixed with a
+     *        forward slash.
+     */
+    protected function normalizeResource($resource)
+    {
+        $pieces = explode('/', trim($resource, '/'));
+        array_walk($pieces, function (&$piece) {
+            $piece = rawurlencode($piece);
+        });
+        return '/' . implode('/', $pieces);
     }
 
     /**
@@ -295,7 +337,7 @@ class SigningHelper
      * @return array
      * @throws \InvalidArgumentException
      */
-    private function normalizeOptions(array $options)
+    protected function normalizeOptions(array $options)
     {
         $options += [
             'method' => 'GET',
@@ -324,6 +366,7 @@ class SigningHelper
                 'Invalid method. To create an upload URI, use StorageObject::signedUploadUrl().'
             );
         }
+        unset($options['allowPost']);
 
         $headers = [];
         foreach ($options['headers'] as $name => $value) {

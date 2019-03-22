@@ -46,6 +46,8 @@ class StorageObject
     use ArrayTrait;
     use EncryptionTrait;
 
+    const DEFAULT_URL_SIGNING_VERSION = 'v2';
+
     /**
      * @deprecated
      */
@@ -75,6 +77,11 @@ class StorageObject
      * @var array|null The object's metadata.
      */
     private $info;
+
+    /**
+     * @var SigningHelper
+     */
+    private $signingHelper;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
@@ -110,6 +117,7 @@ class StorageObject
             'userProject' => $this->pluck('requesterProjectId', $info, false)
         ];
         $this->acl = new Acl($this->connection, 'objectAccessControls', $this->identity);
+        $this->signingHelper = new SigningHelper;
     }
 
     /**
@@ -815,66 +823,61 @@ class StorageObject
      */
     public function signedUrl($expires, array $options = [])
     {
-        $options += [
-            'version' => 'v2',
-            'keyFile' => null,
-            'keyFilePath' => null,
-            'scopes' => null
-        ];
-
-        if ($options['keyFilePath']) {
-            if (!file_exists($options['keyFilePath'])) {
+        $keyFilePath = $this->pluck('keyFilePath', $options, false);
+        if ($keyFilePath) {
+            if (!file_exists($keyFilePath)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Keyfile path %s does not exist.',
-                    $options['keyFilePath']
+                    $keyFilePath
                 ));
             }
 
-            $options['keyFile'] = json_decode(file_get_contents($options['keyFilePath']), true);
+            $options['keyFile'] = json_decode(file_get_contents($keyFilePath), true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new \InvalidArgumentException(sprintf(
                     'Keyfile path %s does not contain valid json.',
-                    $options['keyFilePath']
+                    $keyFilePath
                 ));
             }
         }
 
         $rw = $this->connection->requestWrapper();
-        $scopes = $options['scopes'] ?: $rw->scopes();
-        $credentials = $options['keyFile']
-            ? CredentialsLoader::makeCredentials($scopes, $options['keyFile'])
-            : $rw->credentials();
 
-        $helper = new SigningHelper(
-            $credentials,
-            $expires
-        );
-
-        $objectPieces = explode('/', $this->identity['object']);
-        array_walk($objectPieces, function (&$piece) {
-            $piece = rawurlencode($piece);
-        });
-        $objectName = implode('/', $objectPieces);
+        $keyFile = $this->pluck('keyFile', $options, false);
+        if ($keyFile) {
+            $scopes = $this->pluck('scopes', $options, false) ?: $rw->scopes();
+            $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
+        } else {
+            $credentials = $rw->credentials();
+        }
 
         $resource = sprintf(
             '/%s/%s',
             $this->identity['bucket'],
-            $objectName
+            $this->identity['object']
         );
 
-        switch (strtolower($options['version'])) {
-            case "v2":
-                return $helper->v2Sign($resource, $this->identity['generation'], $options);
+        $version = $this->pluck('version', $options, false) ?: self::DEFAULT_URL_SIGNING_VERSION;
+        switch (strtolower($version)) {
+            case 'v2':
+                $method = 'v2Sign';
                 break;
 
-            case "v4":
-                return $helper->v4Sign($resource, $this->identity['generation'], $options);
+            case 'v4':
+                $method = 'v4Sign';
                 break;
 
             default:
                 throw new \InvalidArgumentException('Invalid signing version.');
-                break;
         }
+
+        return call_user_func_array([$this->signingHelper, $method], [
+            $credentials,
+            $expires,
+            $resource,
+            $this->identity['generation'],
+            $options
+        ]);
     }
 
     /**
@@ -954,15 +957,10 @@ class StorageObject
     public function signedUploadUrl($expires, array $options = [])
     {
         $options += [
-            'contentType' => null,
-            'contentMd5' => null,
+            'headers' => []
         ];
 
-        if (!isset($options['headers'])) {
-            $options['headers'] = [];
-        }
-
-        $options['headers']['x-goog-resumable'] = ['start'];
+        $options['headers']['x-goog-resumable'] = 'start';
 
         unset(
             $options['cname'],
@@ -998,9 +996,6 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $cname The CNAME for the bucket, for instance
-     *           `https://cdn.example.com`. **Defaults to**
-     *           `https://storage.googleapis.com`.
      *     @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
@@ -1021,15 +1016,8 @@ class StorageObject
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type string $responseDisposition The
-     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
-     *           parameter of the signed url.
-     *     @type string $responseType The `response-content-type` parameter of the
-     *           signed url. When the server contentType is `null`, this option
-     *           may be used to control the content type of the response.
-     *     @type string $saveAsName The filename to prompt the user to save the
-     *           file as when the signed url is accessed. This is ignored if
-     *           `$options.responseDisposition` is set.
+     *     @type string $origin Value of CORS header
+     *           "Access-Control-Allow-Origin". **Defaults to** `"*"`.
      *     @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.

@@ -17,26 +17,30 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
+ * @group storage-object
  */
 class StorageObjectTest extends TestCase
 {
@@ -359,6 +363,50 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($newObjectName, $copiedObject->info()['name']);
     }
 
+    public function testRenamesObjectWithDestinationBucket()
+    {
+        $sourceBucket = 'bucket';
+        $destinationBucket = 'bucket2';
+        $objectName = self::OBJECT;
+        $newObjectName = 'new-name.txt';
+        $acl = 'private';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
+        $this->connection->copyObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $objectName,
+                'destinationBucket' => $destinationBucket,
+                'destinationObject' => $newObjectName,
+                'destinationPredefinedAcl' => $acl,
+                'restOptions' => [
+                    'headers' => [
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => $key,
+                        'x-goog-encryption-key-sha256' => $hash,
+                    ]
+                ]
+            ])
+            ->willReturn([
+                'bucket' => $sourceBucket,
+                'name' => $newObjectName,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->connection->deleteObject(Argument::any())
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $object = new StorageObject($this->connection->reveal(), $objectName, $sourceBucket);
+        $copiedObject = $object->rename($newObjectName, [
+            'predefinedAcl' => $acl,
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash,
+            'destinationBucket' => $destinationBucket
+        ]);
+
+        $this->assertEquals($sourceBucket, $copiedObject->info()['bucket']);
+        $this->assertEquals($newObjectName, $copiedObject->info()['name']);
+    }
+
     public function testDownloadsAsString()
     {
         $key = base64_encode('abcd');
@@ -571,532 +619,6 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($expectedUri, $object->gcsUri());
     }
 
-    /**
-     * @group storage-signed-url
-     * @dataProvider signedUrlExpiration
-     */
-    public function testSignedUrl($exp, $seconds)
-    {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, 'bucket', 'foo');
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $contentType = $responseType = 'text/plain';
-        $digest = base64_encode(md5('hello world'));
-
-        $url = $object->signedUrl($exp, [
-            'keyFile' => $this->kf,
-            'headers' => [
-                'x-goog-foo' => ['bar', 'bar'],
-                'x-goog-bat' => 'baz'
-            ],
-            'contentType' => $contentType,
-            'responseDisposition' => 'foo',
-            'responseType' => $responseType,
-            'contentMd5' => $digest
-        ]);
-
-        $input = implode("\n", [
-            'GET',
-            $digest,
-            $contentType,
-            $seconds,
-            'x-goog-bat:baz',
-            'x-goog-foo:bar,bar',
-            '/bucket/object.txt'
-        ]);
-
-        $query = explode('?', $url)[1];
-        $pieces = explode('&', $query);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-        $this->assertContains('generation=foo', $pieces);
-        $this->assertContains('response-content-type='. urlencode($contentType), $pieces);
-        $this->assertContains('response-content-disposition=foo', $pieces);
-        $this->assertContains('response-content-type='. urlencode($responseType), $pieces);
-    }
-
-    public function signedUrlExpiration()
-    {
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-        $seconds = $ts->get()->format('U');
-
-        return [
-            [$ts, $seconds],
-            [$seconds, $seconds]
-        ];
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidExpirationType()
-    {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), 'object.txt', 'bucket', 'foo');
-        $object->signedUrl('foo', [
-            'keyFile' => $this->kf,
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @dataProvider signedUrlInvalidHeaders
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidHeader($header, $val = 'val')
-    {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), 'object.txt', 'bucket', 'foo');
-        $object->signedUrl(time()+1, [
-            'keyFile' => $this->kf,
-            'headers' => [
-                $header => $val
-            ]
-        ]);
-    }
-
-    public function signedUrlInvalidHeaders()
-    {
-        return [
-            ['x-goog-encryption-key'],
-            ['x-goog-encryption-key-sha256'],
-            ['foo'],
-            ['x-goog-test', 'test' . PHP_EOL .' test']
-        ];
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testSignedUrlWithSaveAsName()
-    {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $url = $object->signedUrl($ts, [
-            'keyFile' => $this->kf,
-            'saveAsName' => 'foo'
-        ]);
-
-        $input = implode("\n", [
-            'GET',
-            '',
-            '',
-            $seconds,
-            '/bucket/object.txt'
-        ]);
-
-        $query = explode('?', $url)[1];
-        $pieces = explode('&', $query);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-        $filename = urlencode('"foo"');
-        $this->assertContains('response-content-disposition=attachment;filename=' . $filename, $pieces);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testSignedUrlConnectionKeyfile()
-    {
-        $rw = $this->prophesize(RequestWrapper::class);
-        $rw->keyFile()->willReturn($this->kf);
-
-        $conn = $this->prophesize(Rest::class);
-        $conn->requestWrapper()->willReturn($rw->reveal());
-
-        $object = new StorageObjectSignatureStub($conn->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $url = $object->signedUrl($ts);
-
-        $input = implode("\n", [
-            'GET',
-            '',
-            '',
-            $seconds,
-            '/bucket/object.txt'
-        ]);
-
-        $query = explode('?', $url)[1];
-        $pieces = explode('&', $query);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testSignedUrlWithSpace()
-    {
-        $name = 'object object.txt';
-        $object = new StorageObjectSignatureStub(
-            $this->connection->reveal(),
-            $name,
-            self::BUCKET,
-            'foo'
-        );
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $contentType = $responseType = 'text/plain';
-        $digest = base64_encode(md5('hello world'));
-
-        $url = $object->signedUrl($ts, [
-            'keyFile' => $this->kf,
-            'contentType' => $contentType,
-            'responseDisposition' => 'foo',
-            'responseType' => $responseType,
-            'contentMd5' => $digest
-        ]);
-
-        $input = implode("\n", [
-            'GET',
-            $digest,
-            $contentType,
-            $seconds,
-            sprintf('/%s/%s', self::BUCKET, rawurlencode($name))
-        ]);
-
-        $parts = explode('?', $url);
-        $resource = $parts[0];
-        $query = $parts[1];
-        $pieces = explode('&', $query);
-
-        $resourceParts = explode('/', $resource);
-        $objName = end($resourceParts);
-
-        $this->assertEquals(rawurldecode($objName), $name);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-        $this->assertContains('generation=foo', $pieces);
-        $this->assertContains('response-content-type='. urlencode($contentType), $pieces);
-        $this->assertContains('response-content-disposition=foo', $pieces);
-        $this->assertContains('response-content-type='. urlencode($responseType), $pieces);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testSignedUploadUrl()
-    {
-        $object = new StorageObjectSignatureStub(
-            $this->connection->reveal(),
-            self::OBJECT,
-            'bucket',
-            'foo'
-        );
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $contentType = $responseType = 'text/plain';
-        $digest = base64_encode(md5('hello world'));
-
-        $url = $object->signedUploadUrl($ts, [
-            'keyFile' => $this->kf,
-            'contentType' => $contentType,
-            'contentMd5' => $digest
-        ]);
-
-        $input = implode("\n", [
-            'POST',
-            $digest,
-            $contentType,
-            $seconds,
-            'x-goog-resumable:start',
-            '/bucket/object.txt'
-        ]);
-
-        $query = explode('?', $url)[1];
-        $pieces = explode('&', $query);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testSignedUploadUrlNestedName()
-    {
-        $objectName = 'folder1/folder2/object.txt';
-        $object = new StorageObjectSignatureStub(
-            $this->connection->reveal(),
-            $objectName,
-            self::BUCKET,
-            'foo'
-        );
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $contentType = $responseType = 'text/plain';
-        $digest = base64_encode(md5('hello world'));
-
-        $url = $object->signedUploadUrl($ts, [
-            'keyFile' => $this->kf,
-            'headers' => [
-                'x-goog-foo' => ['bar', 'bar'],
-                'x-goog-bat' => 'baz'
-            ],
-            'contentType' => $contentType,
-            'contentMd5' => $digest
-        ]);
-
-        $input = implode("\n", [
-            'POST',
-            $digest,
-            $contentType,
-            $seconds,
-            'x-goog-bat:baz',
-            'x-goog-foo:bar,bar',
-            'x-goog-resumable:start',
-            sprintf('/%s/%s', self::BUCKET, $objectName)
-        ]);
-
-        $query = explode('?', $url)[1];
-        $pieces = explode('&', $query);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testBeginSignedUploadSession()
-    {
-        $ts = new Timestamp(new \DateTime('+1 minute'));
-
-        $seconds = $ts->get()->format('U');
-
-        $rw = $this->prophesize(RequestWrapper::class);
-        $test = $this;
-        $sessionUri = 'http://example.com';
-
-        $rw->send(Argument::type(RequestInterface::class), Argument::type('array'))
-            ->will(function ($args) use ($sessionUri, $test) {
-
-                $res = $test->prophesize(ResponseInterface::class);
-                $res->getHeaderLine('Location')
-                    ->willReturn($sessionUri);
-
-                return $res->reveal();
-            });
-
-        $this->connection->requestWrapper()
-            ->willReturn($rw->reveal());
-
-        $object = new StorageObjectSignatureStub(
-            $this->connection->reveal(),
-            self::OBJECT,
-            'bucket',
-            'foo'
-        );
-
-        $uri = $object->beginSignedUploadSession([
-            'keyFile' => $this->kf,
-        ]);
-
-        $this->assertEquals($sessionUri, $uri);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testBeginSignedUploadSessionWithOrigin()
-    {
-        $ts = new Timestamp(new \DateTime('+1 minute'));
-
-        $seconds = $ts->get()->format('U');
-
-        $rw = $this->prophesize(RequestWrapper::class);
-        $test = $this;
-        $sessionUri = 'http://example.com';
-
-        $rw->send(Argument::that(function ($arg) {
-            if (!($arg instanceof RequestInterface)) {
-                return false;
-            }
-
-            if ($arg->getHeaderLine('Origin') !== 'http://google.com') {
-                return false;
-            }
-
-            return true;
-        }), Argument::type('array'))
-            ->will(function ($args) use ($sessionUri, $test) {
-                $res = $test->prophesize(ResponseInterface::class);
-                $res->getHeaderLine('Location')
-                    ->willReturn($sessionUri);
-
-                return $res->reveal();
-            });
-
-        $this->connection->requestWrapper()
-            ->willReturn($rw->reveal());
-
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), 'object.txt', 'bucket', 'foo');
-
-        $uri = $object->beginSignedUploadSession([
-            'keyFile' => $this->kf,
-            'origin' => 'http://google.com'
-        ]);
-
-        $this->assertEquals($sessionUri, $uri);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidExpiration()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime('yesterday'));
-        $object->signedUrl($ts);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidMethod()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-        $object->signedUrl($ts, [
-            'method' => 'FOO'
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidMethodMissingAllowPostOption()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-        $object->signedUrl($ts, [
-            'method' => 'POST'
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidKeyFilePath()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $url = $object->signedUrl($ts, [
-            'keyFilePath' => __DIR__ .'/InfiniteMonkeysOnInfiniteKeyboardsWouldTypeThisStringGivenInfiniteTime.json',
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException InvalidArgumentException
-     */
-    public function testSignedUrlInvalidKeyFilePathData()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $url = $object->signedUrl($ts, [
-            'keyFilePath' => __FILE__,
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException RuntimeException
-     */
-    public function testSignedUrlInvalidKeyFileMissingPrivateKey()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $url = $object->signedUrl($ts, [
-            'keyFile' => ['client_email' => 'test@example.com'],
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     * @expectedException RuntimeException
-     */
-    public function testSignedUrlInvalidKeyFileMissingClientEmail()
-    {
-        $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $url = $object->signedUrl($ts, [
-            'keyFile' => ['private_key' => '-----BEGIN PRIVATE KEY-----'],
-        ]);
-    }
-
-    /**
-     * @group storage-signed-url
-     */
-    public function testSignedUrlCname()
-    {
-        $object = new StorageObjectSignatureStub($this->connection->reveal(), self::OBJECT, self::BUCKET);
-        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
-
-        $seconds = $ts->get()->format('U');
-
-        $url = $object->signedUrl($ts, [
-            'keyFile' => $this->kf,
-            'cname'   => 'https://cdn.example.com',
-        ]);
-
-        $input = implode("\n", [
-            'GET',
-            '',
-            '',
-            $seconds,
-            '/bucket/object.txt'
-        ]);
-
-        $parts = explode('?', $url);
-        $hostPath = $parts[0];
-        $query = $parts[1];
-        $pieces = explode('&', $query);
-
-        $signature = $this->getSignatureFromSplitUrl($pieces);
-
-        $this->assertTrue($object->___signatureIsCorrect($signature));
-        $this->assertEquals($object->input, $input);
-        $this->assertEquals('https://cdn.example.com/object.txt', $hostPath);
-    }
-
     public function testRequesterPays()
     {
         $this->connection->getObject(Argument::withEntry('userProject', 'foo'))
@@ -1115,29 +637,254 @@ class StorageObjectTest extends TestCase
         $object->reload();
     }
 
-    private function getSignatureFromSplitUrl(array $pieces)
+    /**
+     * @group storage-signed-url
+     * @dataProvider urlVersion
+     */
+    public function testSignedUrlVersions($version, $method)
     {
-        return trim(current(array_filter($pieces, function ($piece) {
-            return strpos($piece, 'Signature') !== false;
-        })), 'Signature=');
+        $expectedResource = sprintf('/%s/%s', self::BUCKET, self::OBJECT);
+        $expectedGeneration = 11111;
+        $expectedExpiration = time() + 10;
+        $return = 'signedUrl';
+
+        $object = $this->getStorageObjectForSigning(null, '', $expectedGeneration);
+
+        $signingHelper = $this->prophesize(SigningHelper::class);
+
+        $signingHelper->$method(
+            Argument::type(FetchAuthTokenInterface::class),
+            $expectedExpiration,
+            $expectedResource,
+            $expectedGeneration,
+            Argument::type('array')
+        )->shouldBeCalled()->willReturn($return);
+
+        $object->___setProperty('signingHelper', $signingHelper->reveal());
+
+        $opts = [];
+        if ($version) {
+            // test defaults to v2.
+            $opts['version'] = $version;
+        }
+
+        $res = $object->signedUrl($expectedExpiration, $opts);
+
+        $this->assertEquals($return, $res);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @group storage-signed-url
+     */
+    public function testInvalidSigningVersion()
+    {
+        $object = $this->getStorageObjectForSigning();
+        $object->signedUrl(time()+1, [
+            'version' => uniqid()
+        ]);
+    }
+
+    /**
+     * @group storage-signed-url
+     * @dataProvider signedUrlKeyfiles
+     */
+    public function testSignedUrlWithKeyFile($key, $value)
+    {
+        $expectedScope = 'foobar';
+        $object = $this->getStorageObjectForSigning(null, $expectedScope);
+
+        $signingHelper = $this->prophesize(SigningHelper::class);
+        $method = StorageObject::DEFAULT_URL_SIGNING_VERSION . 'Sign';
+        $signingHelper->$method(
+            Argument::type(ServiceAccountCredentials::class),
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any()
+        )->shouldBeCalled()->will(function ($args) {
+            return $args;
+        });
+
+        $object->___setProperty('signingHelper', $signingHelper->reveal());
+
+        $callArgs = $object->signedUrl(time() + 1, [
+            $key => $value
+        ]);
+
+        $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
+        $json = json_decode(file_get_contents($path), true);
+
+        $this->assertEquals('', $callArgs[0]->getClientEmail());
+    }
+
+    public function signedUrlKeyfiles()
+    {
+        $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
+        $json = json_decode(file_get_contents($path), true);
+
+        return [
+            ['keyFilePath', $path],
+            ['keyFile', $json]
+        ];
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @group storage-signed-url
+     */
+    public function testSignedUrlInvalidKeyFilePath()
+    {
+        $object = $this->getStorageObjectForSigning();
+        $object->signedUrl(time(), [
+            'keyFilePath' => __DIR__ . '/foo/bar/json.json'
+        ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @group storage-signed-url
+     */
+    public function testSignedUrlInvalidKeyFileData()
+    {
+        $file = tmpfile();
+        $path = stream_get_meta_data($file)['uri'];
+        fwrite($file, '{');
+
+        $object = $this->getStorageObjectForSigning();
+        $object->signedUrl(time(), [
+            'keyFilePath' => $path
+        ]);
+
+        fclose($file);
+    }
+
+    /**
+     * @group storage-signed-url
+     * @dataProvider urlVersion
+     */
+    public function testSignedUploadUrl($version, $method)
+    {
+        $expectedExpiration = time() + 1;
+        $return = 'signedUrl';
+
+        $signingHelper = $this->prophesize(SigningHelper::class);
+        $signingHelper->$method(
+            Argument::any(),
+            $expectedExpiration,
+            Argument::any(),
+            Argument::any(),
+            [
+                'method' => 'POST',
+                'allowPost' => true,
+                'headers' => [
+                    'x-goog-resumable' => 'start'
+                ]
+            ]
+        )->willReturn($return);
+
+        $object = $this->getStorageObjectForSigning();
+        $object->___setProperty('signingHelper', $signingHelper->reveal());
+
+        $opts = [
+            'cname' => 'example.com',
+            'saveAsName' => 'test.txt',
+            'responseDisposition' => 'test',
+            'responseType' => 'test'
+        ];
+
+        if ($version) {
+            $opts['version'] = $version;
+        }
+
+        $res = $object->signedUploadUrl($expectedExpiration, $opts);
+
+        $this->assertEquals($return, $res);
+    }
+
+    /**
+     * @group storage-signed-url
+     * @dataProvider urlVersion
+     */
+    public function testBeginSignedUploadSession($version, $method)
+    {
+        // do this first.
+        $object = $this->getStorageObjectForSigning();
+
+        $signedUri = 'http://example.com/a';
+        $sessionUri = 'http://example.com/b';
+
+        $res = $this->prophesize(ResponseInterface::class);
+        $res->getHeaderLine('Location')->willReturn($sessionUri);
+
+        $creds = $this->prophesize(FetchAuthTokenInterface::class);
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->scopes()->willReturn('');
+        $rw->credentials()->willReturn($creds->reveal());
+        $rw->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(function ($args) use ($res, $signedUri) {
+            if ((string) $args[0]->getUri() !== $signedUri) {
+                throw new \Exception('Incorrect Signed URI.');
+            }
+
+            return $res->reveal();
+        });
+
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+
+        $signingHelper = $this->prophesize(SigningHelper::class);
+        $signingHelper->$method(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any()
+        )->willReturn($signedUri);
+
+        $object->___setProperty('connection', $this->connection->reveal());
+        $object->___setProperty('signingHelper', $signingHelper->reveal());
+
+        $opts = [];
+        if ($version) {
+            $opts['version'] = $version;
+        }
+
+        $res = $object->beginSignedUploadSession($opts);
+        $this->assertEquals($sessionUri, $res);
+    }
+
+    public function urlVersion()
+    {
+        return [
+            [null, StorageObject::DEFAULT_URL_SIGNING_VERSION . 'Sign'],
+            ['v2', 'v2Sign'],
+            ['v4', 'v4Sign']
+        ];
+    }
+
+    private function getStorageObjectForSigning(
+        FetchAuthTokenInterface $credentials = null,
+        $scopes = '',
+        $generation = null
+    ) {
+        if ($credentials === null) {
+            $credentials = $this->prophesize(FetchAuthTokenInterface::class);
+            $credentials = $credentials->reveal();
+        }
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->scopes()->willReturn(is_array($scopes) ? $scopes : [$scopes]);
+        $rw->credentials()->willReturn($credentials);
+
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+
+        return TestHelpers::stub(StorageObject::class, [
+            $this->connection->reveal(),
+            self::OBJECT,
+            self::BUCKET,
+            $generation
+        ], ['signingHelper', 'connection']);
     }
 }
-
-//@codingStandardsIgnoreStart
-class StorageObjectSignatureStub extends StorageObject
-{
-    const SIGNATURE = 'foo';
-    public $input;
-
-    protected function signString($privateKey, $data, $forceOpenssl = false)
-    {
-        $this->input = $data;
-        return self::SIGNATURE;
-    }
-
-    public function ___signatureIsCorrect($signature)
-    {
-        return base64_decode(urldecode($signature)) === self::SIGNATURE;
-    }
-}
-//@codingStandardsIgnoreEnd
