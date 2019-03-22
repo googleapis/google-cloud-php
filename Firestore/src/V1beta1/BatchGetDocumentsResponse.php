@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The streamed response for
- * [Firestore.BatchGetDocuments][google.firestore.v1beta1.Firestore.BatchGetDocuments].
+ * The streamed response for [Firestore.BatchGetDocuments][google.firestore.v1beta1.Firestore.BatchGetDocuments].
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.BatchGetDocumentsResponse</code>
  */
@@ -19,8 +18,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The transaction that was started as part of this request.
      * Will only be set in the first response, and only if
-     * [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction]
-     * was set in the request.
+     * [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction] was set in the request.
      *
      * Generated from protobuf field <code>bytes transaction = 3;</code>
      */
@@ -50,8 +48,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
      *     @type string $transaction
      *           The transaction that was started as part of this request.
      *           Will only be set in the first response, and only if
-     *           [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction]
-     *           was set in the request.
+     *           [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction] was set in the request.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The time at which the document was read.
      *           This may be monotically increasing, in this case the previous documents in
@@ -121,8 +118,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The transaction that was started as part of this request.
      * Will only be set in the first response, and only if
-     * [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction]
-     * was set in the request.
+     * [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction] was set in the request.
      *
      * Generated from protobuf field <code>bytes transaction = 3;</code>
      * @return string
@@ -135,8 +131,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The transaction that was started as part of this request.
      * Will only be set in the first response, and only if
-     * [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction]
-     * was set in the request.
+     * [BatchGetDocumentsRequest.new_transaction][google.firestore.v1beta1.BatchGetDocumentsRequest.new_transaction] was set in the request.
      *
      * Generated from protobuf field <code>bytes transaction = 3;</code>
      * @param string $var

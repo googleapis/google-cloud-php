@@ -14,17 +14,17 @@ class Document
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Type\Latlng::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0a860a0a27676f6f676c652f6669726573746f72652f763162657461312f" .
             "646f63756d656e742e70726f746f1218676f6f676c652e6669726573746f" .
-            "72652e763162657461311a1c676f6f676c652f70726f746f6275662f7374" .
-            "727563742e70726f746f1a1f676f6f676c652f70726f746f6275662f7469" .
+            "72652e763162657461311a1f676f6f676c652f70726f746f6275662f7469" .
             "6d657374616d702e70726f746f1a18676f6f676c652f747970652f6c6174" .
-            "6c6e672e70726f746f228a020a08446f63756d656e74120c0a046e616d65" .
+            "6c6e672e70726f746f1a1c676f6f676c652f6170692f616e6e6f74617469" .
+            "6f6e732e70726f746f228a020a08446f63756d656e74120c0a046e616d65" .
             "180120012809123e0a066669656c647318022003280b322e2e676f6f676c" .
             "652e6669726573746f72652e763162657461312e446f63756d656e742e46" .
             "69656c6473456e747279122f0a0b6372656174655f74696d651803200128" .
