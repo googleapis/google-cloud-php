@@ -50,6 +50,9 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  *     @return array
  * }
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Landmarks extends AbstractFeature
 {

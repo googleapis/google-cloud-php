@@ -45,6 +45,8 @@ namespace Google\Cloud\Vision\Annotation;
  * }
  *
  * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#ImageProperties ImageProperties
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class ImageProperties extends AbstractFeature
 {
@@ -60,6 +62,10 @@ class ImageProperties extends AbstractFeature
     public function __construct(array $info)
     {
         $this->info = $info;
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

@@ -31,12 +31,19 @@ use Psr\Cache\CacheItemPoolInterface;
  * more information at the
  * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
  *
+ * Please note this client will be deprecated in our next release. In order
+ * to receive the latest features and updates, please take
+ * the time to familiarize yourself with {@see Google\Cloud\Vision\V1\ImageAnnotatorClient}.
+ *
  * Example:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
  * $vision = new VisionClient();
  * ```
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class VisionClient
 {
@@ -92,6 +99,10 @@ class VisionClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

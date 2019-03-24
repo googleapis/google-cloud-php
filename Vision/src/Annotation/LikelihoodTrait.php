@@ -21,6 +21,8 @@ use InvalidArgumentException;
 
 /**
  * Provide likelihood functionality to annotation features.
+ * @deprecated This trait is no longer supported and will be removed in a future
+ * release.
  */
 trait LikelihoodTrait
 {

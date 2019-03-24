@@ -19,6 +19,8 @@ namespace Google\Cloud\Vision\Annotation;
 
 /**
  * Define shared functionality for annotation features.
+ * @deprecated This interface is no longer supported and will be removed in a future
+ * release.
  */
 interface FeatureInterface
 {

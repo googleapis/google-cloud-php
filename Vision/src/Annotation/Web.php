@@ -38,6 +38,8 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
  * ```
  *
  * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#WebDetection WebDetection
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Web extends AbstractFeature
 {
@@ -101,6 +103,10 @@ class Web extends AbstractFeature
                 $this->pages[] = new WebPage($page);
             }
         }
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

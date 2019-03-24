@@ -171,6 +171,8 @@ use Google\Cloud\Core\CallTrait;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation
  * @codingStandardsIgnoreEnd
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Entity extends AbstractFeature
 {
@@ -194,5 +196,9 @@ class Entity extends AbstractFeature
     public function __construct(array $info)
     {
         $this->info = $info;
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 }
