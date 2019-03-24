@@ -52,6 +52,18 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 4;</code>
      */
     private $publish_time = null;
+    /**
+     * Identifies related messages for which publish order should be respected.
+     * If a `Subscription` has `enable_message_ordering` set to `true`, messages
+     * published with the same `ordering_key` value will be delivered to
+     * subscribers in the order in which they are received by the Pub/Sub system.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string ordering_key = 5;</code>
+     */
+    private $ordering_key = '';
 
     /**
      * Constructor.
@@ -73,6 +85,14 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      *           The time at which the message was published, populated by the server when
      *           it receives the `Publish` call. It must not be populated by the
      *           publisher in a `Publish` call.
+     *     @type string $ordering_key
+     *           Identifies related messages for which publish order should be respected.
+     *           If a `Subscription` has `enable_message_ordering` set to `true`, messages
+     *           published with the same `ordering_key` value will be delivered to
+     *           subscribers in the order in which they are received by the Pub/Sub system.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +212,44 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->publish_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies related messages for which publish order should be respected.
+     * If a `Subscription` has `enable_message_ordering` set to `true`, messages
+     * published with the same `ordering_key` value will be delivered to
+     * subscribers in the order in which they are received by the Pub/Sub system.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string ordering_key = 5;</code>
+     * @return string
+     */
+    public function getOrderingKey()
+    {
+        return $this->ordering_key;
+    }
+
+    /**
+     * Identifies related messages for which publish order should be respected.
+     * If a `Subscription` has `enable_message_ordering` set to `true`, messages
+     * published with the same `ordering_key` value will be delivered to
+     * subscribers in the order in which they are received by the Pub/Sub system.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string ordering_key = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderingKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ordering_key = $var;
 
         return $this;
     }

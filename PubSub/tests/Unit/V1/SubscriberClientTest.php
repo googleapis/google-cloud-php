@@ -90,11 +90,13 @@ class SubscriberClientTest extends GeneratedTest
         $topic2 = 'topic2-1139259102';
         $ackDeadlineSeconds = 2135351438;
         $retainAckedMessages = false;
+        $enableMessageOrdering = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic2);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
+        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -174,11 +176,13 @@ class SubscriberClientTest extends GeneratedTest
         $topic = 'topic110546223';
         $ackDeadlineSeconds = 2135351438;
         $retainAckedMessages = false;
+        $enableMessageOrdering = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
+        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -253,11 +257,13 @@ class SubscriberClientTest extends GeneratedTest
         $topic = 'topic110546223';
         $ackDeadlineSeconds2 = 921632575;
         $retainAckedMessages = false;
+        $enableMessageOrdering = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
         $expectedResponse->setAckDeadlineSeconds($ackDeadlineSeconds2);
         $expectedResponse->setRetainAckedMessages($retainAckedMessages);
+        $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $transport->addResponse($expectedResponse);
 
         // Mock request

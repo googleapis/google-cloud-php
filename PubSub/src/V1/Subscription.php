@@ -103,6 +103,18 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * If true, messages published with the same `ordering_key` in `PubsubMessage`
+     * will be delivered to the subscribers in the order in which they
+     * are received by the Pub/Sub system. Otherwise, they may be delivered in
+     * any order.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
+     */
+    private $enable_message_ordering = false;
+    /**
      * A policy that specifies the conditions for this subscription's expiration.
      * A subscription is considered active as long as any connected subscriber is
      * successfully consuming messages from the subscription or is issuing
@@ -182,6 +194,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      *           managing labels</a>.
+     *     @type bool $enable_message_ordering
+     *           If true, messages published with the same `ordering_key` in `PubsubMessage`
+     *           will be delivered to the subscribers in the order in which they
+     *           are received by the Pub/Sub system. Otherwise, they may be delivered in
+     *           any order.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      *     @type \Google\Cloud\PubSub\V1\ExpirationPolicy $expiration_policy
      *           A policy that specifies the conditions for this subscription's expiration.
      *           A subscription is considered active as long as any connected subscriber is
@@ -467,6 +487,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If true, messages published with the same `ordering_key` in `PubsubMessage`
+     * will be delivered to the subscribers in the order in which they
+     * are received by the Pub/Sub system. Otherwise, they may be delivered in
+     * any order.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
+     * @return bool
+     */
+    public function getEnableMessageOrdering()
+    {
+        return $this->enable_message_ordering;
+    }
+
+    /**
+     * If true, messages published with the same `ordering_key` in `PubsubMessage`
+     * will be delivered to the subscribers in the order in which they
+     * are received by the Pub/Sub system. Otherwise, they may be delivered in
+     * any order.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>bool enable_message_ordering = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableMessageOrdering($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_message_ordering = $var;
 
         return $this;
     }
