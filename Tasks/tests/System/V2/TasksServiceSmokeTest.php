@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\Cloud\Tasks\Tests\System\V2beta3;
+namespace Google\Cloud\Tasks\Tests\System\V2;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
