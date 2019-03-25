@@ -45,6 +45,7 @@ class TasksServiceSmokeTest extends SystemTestCase
         });
         sleep(120);
     }
+
     /**
      * @test
      */

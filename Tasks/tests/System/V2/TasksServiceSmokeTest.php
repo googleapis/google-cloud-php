@@ -38,6 +38,7 @@ class TasksServiceSmokeTest extends SystemTestCase
             $client->deleteQueue($queue->getName());
         });
     }
+
     /**
      * @test
      */

@@ -20,12 +20,8 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue;
 use Google\Cloud\Tasks\V2beta3\CloudTasksClient;
-use Google\Cloud\Tasks\V2beta3\LeaseDuration;
-use Google\Cloud\Tasks\V2beta3\PullMessage;
 use Google\Cloud\Tasks\V2beta3\Queue;
 use Google\Cloud\Tasks\V2beta3\Task;
-use Google\Cloud\Tasks\V2beta3\Task\View;
-use Google\Protobuf\Duration;
 
 /**
  * @group tasks
@@ -43,6 +39,7 @@ class TasksServiceSmokeTest extends SystemTestCase
             $client->deleteQueue($queue->getName());
         });
     }
+
     /**
      * @test
      */
