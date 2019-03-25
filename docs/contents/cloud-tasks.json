@@ -7,6 +7,10 @@
             "type": "tasks\/readme"
         },
         {
+            "title": "CloudTasksClient(v2)",
+            "type": "tasks/v2/cloudtasksclient"
+        },
+        {
             "title": "CloudTasksClient(v2beta2)",
             "type": "tasks/v2beta2/cloudtasksclient"
         },
