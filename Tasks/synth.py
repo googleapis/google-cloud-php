@@ -70,3 +70,11 @@ s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# Comment out initialization of \GPBMetadata\Google\Api\Resource until GA
+# common protos are available in google-cloud-php.
+# https://github.com/googleapis/google-cloud-php/pull/1732
+s.replace(
+    'metadata/V2/*.php',
+    r'\\GPBMetadata\\Google\\Api\\Resource',
+    r'//\\GPBMetadata\\Google\\Api\\Resource')
