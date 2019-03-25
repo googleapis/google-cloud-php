@@ -125,7 +125,7 @@ class SigningHelper
 
         $queryString = http_build_query($params, null, '&', PHP_QUERY_RFC3986);
 
-        $resource = $this->modifyResourceForCname($options['cname'], $resource);
+        $resource = $this->normalizeUriPath($options['cname'], $resource);
         return 'https://' . $options['cname'] . $resource . '?' . $queryString;
     }
 
@@ -257,7 +257,7 @@ class SigningHelper
 
         // Construct the modified resource name. If a custom cname is provided,
         // this will remove the bucket name from the resource.
-        $resource = $this->modifyResourceForCname($options['cname'], $resource);
+        $resource = $this->normalizeUriPath($options['cname'], $resource);
         return sprintf(
             'https://%s%s?%s&X-Goog-Signature=%s',
             $options['cname'],
@@ -405,7 +405,7 @@ class SigningHelper
      * @param string $resource The GCS resource path (i.e. /bucket/object).
      * @return string
      */
-    private function modifyResourceForCname($cname, $resource)
+    protected function normalizeUriPath($cname, $resource)
     {
         if ($cname !== self::DEFAULT_DOWNLOAD_HOST) {
             $resourceParts = explode('/', trim($resource, '/'));
@@ -415,7 +415,7 @@ class SigningHelper
             if (empty($resourceParts)) {
                 $resource = '/';
             } else {
-                $resource = '/' . implode($resourceParts);
+                $resource = '/' . implode('/', $resourceParts);
             }
         }
 

@@ -458,6 +458,24 @@ class SigningHelperTest extends TestCase
         );
     }
 
+    public function expirations()
+    {
+        $tenMins = (new \DateTimeImmutable)->modify('+10 minutes');
+
+        return [
+            [
+                new Timestamp($tenMins),
+                $tenMins->format('U')
+            ], [
+                $tenMins,
+                $tenMins->format('U')
+            ], [
+                time() + 10,
+                time() + 10
+            ]
+        ];
+    }
+
     /**
      * @expectedException InvalidArgumentException
      * @dataProvider urlMethods
@@ -496,7 +514,7 @@ class SigningHelperTest extends TestCase
             $this->$expectation($exception);
         }
 
-        $res = $this->helper->normalizeOptionsProxy($options);
+        $res = $this->helper->normalizeProxy('normalizeOptions', [$options]);
 
         if (!$exception) {
             $expectedKeys = array_keys($expected ?: $options);
@@ -550,21 +568,47 @@ class SigningHelperTest extends TestCase
         ];
     }
 
-    public function expirations()
+    /**
+     * @dataProvider resources
+     */
+    public function testNormalizeUriPath($resource, $cname, $expected)
     {
-        $tenMins = (new \DateTimeImmutable)->modify('+10 minutes');
+        $res = $this->helper->normalizeProxy('normalizeUriPath', [
+            $cname,
+            $resource
+        ]);
 
+        $this->assertEquals($expected, $res);
+    }
+
+    public function resources()
+    {
         return [
             [
-                new Timestamp($tenMins),
-                $tenMins->format('U')
+                '/bucket/object.txt',
+                SigningHelper::DEFAULT_DOWNLOAD_HOST,
+                '/bucket/object.txt'
             ], [
-                $tenMins,
-                $tenMins->format('U')
+                '/bucket/folder/object.txt',
+                SigningHelper::DEFAULT_DOWNLOAD_HOST,
+                '/bucket/folder/object.txt'
             ], [
-                time() + 10,
-                time() + 10
-            ]
+                '/bucket/object.txt',
+                'example.com',
+                '/object.txt'
+            ], [
+                '/bucket/folder/object.txt',
+                'example.com',
+                '/folder/object.txt'
+            ], [
+                '/bucket',
+                SigningHelper::DEFAULT_DOWNLOAD_HOST,
+                '/bucket'
+            ], [
+                '/bucket',
+                'example.com',
+                '/'
+            ],
         ];
     }
 
@@ -603,8 +647,8 @@ class SigningHelperStub extends SigningHelper
             : parent::createV2CanonicalRequest($request);
     }
 
-    public function normalizeOptionsProxy(array $request)
+    public function normalizeProxy($method, array $args)
     {
-        return parent::normalizeOptions($request);
+        return call_user_func_array("parent::$method", $args);
     }
 }
