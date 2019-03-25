@@ -40,19 +40,6 @@ class SigningHelper
     private $signer;
 
     /**
-     * A list of headers to omit from Signed URLs.
-     *
-     * Provide values as lowercase, as comparison will be performed against
-     * that case.
-     * @var array
-     */
-    private $omittedHeaders = [
-        'x-goog-encryption-key',
-        'x-goog-encryption-key-sha256',
-        'x-goog-encryption-algorithm'
-    ];
-
-    /**
      *
      * @param Signer $signer [optional] A code signer instance.
      */
