@@ -27,6 +27,7 @@ use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
+use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -862,6 +863,67 @@ class StorageObjectTest extends TestCase
             ['v2', 'v2Sign'],
             ['v4', 'v4Sign']
         ];
+    }
+
+    /**
+     * @dataProvider signedUrlConformanceCases
+     * @group storage-signed-url-conformance
+     */
+    public function testSignedUrlConformance(array $testdata, $skip = false)
+    {
+        if ($skip) {
+            $this->markTestSkipped('Skipped due to explicit omission.');
+        }
+
+        $client = new StorageClient([
+            'keyFilePath' => __DIR__ . '/data/signed-url-v4-service-account.json'
+        ]);
+
+        $object = $client->bucket($testdata['bucket'])->object($testdata['object']);
+
+        $instanceMethodName = $testdata['method'] === 'POST'
+            ? 'signedUploadUrl'
+            : 'signedUrl';
+
+        $generationTimestamp = \DateTimeImmutable::createFromFormat('Ymd\THis\Z', $testdata['timestamp']);
+        $expiration = $generationTimestamp->format('U') + $testdata['expiration'];
+
+        $expectedUrl = $testdata['expectedUrl'];
+        unset (
+            $testdata['expectedUrl'],
+            $testdata['bucket'],
+            $testdata['object'],
+            $testdata['expiration']
+        );
+
+        $signedUrl = $object->$instanceMethodName($expiration, $testdata + [
+            'version' => 'v4'
+        ]);
+
+        $this->assertEquals($expectedUrl, $signedUrl);
+    }
+
+    public function signedUrlConformanceCases()
+    {
+        $skipped = [
+            'List Objects'
+        ];
+
+        $cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+
+        // rekey with description for more useful error reporting.
+        $out = [];
+        foreach ($cases as $key => $case) {
+            $skip = false;
+            if (in_array($case['description'], $skipped)) {
+                $skip = true;
+            }
+
+            $out[$case['description']] = [$case, $skip];
+            unset($case['description']);
+        }
+
+        return $out;
     }
 
     private function getStorageObjectForSigning(

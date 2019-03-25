@@ -741,13 +741,19 @@ class StorageObject
      *
      * Example:
      * ```
-     * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')));
+     * $url = $object->signedUrl(new \DateTime('tomorrow'));
      * ```
      *
      * ```
      * // Create a signed URL allowing updates to the object.
-     * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')), [
+     * $url = $object->signedUrl(new \DateTime('tomorrow'), [
      *     'method' => 'PUT'
+     * ]);
+     * ```
+     *
+     * // Use Signed URLs v4
+     * $url = $object->signedUrl(new \DateTime('tomorrow'), [
+     *     'version' => 'v4'
      * ]);
      * ```
      *
@@ -760,7 +766,7 @@ class StorageObject
      * ]);
      *
      * $object = $storage->bucket('my-bucket')->object('my-object');
-     * $url = $object->signedUrl(time() + 3600);
+     * $url = $object->signedUrl(new \DateTime('tomorrow'));
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
@@ -783,13 +789,16 @@ class StorageObject
      *           provide this HTTP header set to the same value.
      *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $headers If these headers are used, the server will check
-     *           to make sure that the client provides matching values. Provide
-     *           headers as a key/value array, where the key is the header name,
-     *           and the value is an array of header values. Headers with multiple
-     *           values may provide values as a simple array, or a
-     *           comma-separated string. For a reference of allowed headers,
-     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *     @type array $headers If additional headers are provided, the server
+     *           will check to make sure that the client provides matching
+     *           values. Provide headers as a key/value array, where the key is
+     *           the header name, and the value is an array of header values.
+     *           Headers with multiple  values may provide values as a simple
+     *           array, or a comma-separated string. For a reference of allowed
+     *           headers, see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *           Header values will be trimmed of leading and trailing spaces,
+     *           multiple spaces within values will be collapsed to a single
+     *           space, and line breaks will be replaced by an empty string.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -901,8 +910,14 @@ class StorageObject
      *
      * Example:
      * ```
-     * $timestamp = new Timestamp(new \DateTime('tomorrow'));
-     * $url = $object->signedUploadUrl($timestamp);
+     * $url = $object->signedUploadUrl(new \DateTime('tomorrow'));
+     * ```
+     *
+     * ```
+     * // Use Signed URLs v4
+     * $url = $object->signedUploadUrl(new \DateTime('tomorrow'), [
+     *     'version' => 'v4'
+     * ]);
      * ```
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
@@ -923,13 +938,16 @@ class StorageObject
      *           provide this HTTP header set to the same value.
      *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $headers If these headers are used, the server will check
-     *           to make sure that the client provides matching values. Provide
-     *           headers as a key/value array, where the key is the header name,
-     *           and the value is an array of header values. Headers with multiple
-     *           values may provide values as a simple array, or a
-     *           comma-separated string. For a reference of allowed headers,
-     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *     @type array $headers If additional headers are provided, the server
+     *           will check to make sure that the client provides matching
+     *           values. Provide headers as a key/value array, where the key is
+     *           the header name, and the value is an array of header values.
+     *           Headers with multiple  values may provide values as a simple
+     *           array, or a comma-separated string. For a reference of allowed
+     *           headers, see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *           Header values will be trimmed of leading and trailing spaces,
+     *           multiple spaces within values will be collapsed to a single
+     *           space, and line breaks will be replaced by an empty string.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -991,6 +1009,13 @@ class StorageObject
      * $url = $object->beginSignedUploadSession();
      * ```
      *
+     * ```
+     * // Use Signed URLs v4
+     * $url = $object->beginSignedUploadSession([
+     *     'version' => 'v4'
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/storage/docs/xml-api/resumable-upload#practices Resumable Upload Best Practices
      *
      * @param array $options {
@@ -1004,13 +1029,16 @@ class StorageObject
      *           provide this HTTP header set to the same value.
      *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $headers If these headers are used, the server will check
-     *           to make sure that the client provides matching values. Provide
-     *           headers as a key/value array, where the key is the header name,
-     *           and the value is an array of header values. Headers with multiple
-     *           values may provide values as a simple array, or a
-     *           comma-separated string. For a reference of allowed headers,
-     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *     @type array $headers If additional headers are provided, the server
+     *           will check to make sure that the client provides matching
+     *           values. Provide headers as a key/value array, where the key is
+     *           the header name, and the value is an array of header values.
+     *           Headers with multiple  values may provide values as a simple
+     *           array, or a comma-separated string. For a reference of allowed
+     *           headers, see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *           Header values will be trimmed of leading and trailing spaces,
+     *           multiple spaces within values will be collapsed to a single
+     *           space, and line breaks will be replaced by an empty string.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.

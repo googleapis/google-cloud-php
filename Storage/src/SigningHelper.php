@@ -31,11 +31,26 @@ class SigningHelper
     const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
     const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
+    const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
+    const V4_DATESTAMP_FORMAT = 'Ymd';
 
     /**
      * @var Signer
      */
     private $signer;
+
+    /**
+     * A list of headers to omit from Signed URLs.
+     *
+     * Provide values as lowercase, as comparison will be performed against
+     * that case.
+     * @var array
+     */
+    private $omittedHeaders = [
+        'x-goog-encryption-key',
+        'x-goog-encryption-key-sha256',
+        'x-goog-encryption-algorithm'
+    ];
 
     /**
      *
@@ -68,9 +83,10 @@ class SigningHelper
         $expires = $this->normalizeExpiration($expires);
         $resource = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
+        $headers = $this->normalizeHeaders($options['headers']);
 
         // Sort headers by name.
-        ksort($options['headers']);
+        ksort($headers);
 
         $toSign = [
             $options['method'],
@@ -79,15 +95,14 @@ class SigningHelper
             $expires,
         ];
 
-        $headers = [];
-        foreach ($options['headers'] as $name => $value) {
-            $name = strtolower(trim($name));
-            $headers[] = $name .':'. $value;
+        $signedHeaders = [];
+        foreach ($headers as $name => $value) {
+            $signedHeaders[] = $name .':'. $value;
         }
 
         // Push the headers onto the end of the signing string.
-        if ($headers) {
-            $toSign = array_merge($toSign, $headers);
+        if ($signedHeaders) {
+            $toSign = array_merge($toSign, $signedHeaders);
         }
 
         $toSign[] = $resource;
@@ -156,11 +171,12 @@ class SigningHelper
         $resource = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
 
-        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
-        $requestTimestamp = $now->format('Ymd\THis\Z');
-        $requestDatestamp = $now->format('Ymd');
+        $time = $options['timestamp'];
+        $requestTimestamp = $time->format(self::V4_TIMESTAMP_FORMAT);
+        $requestDatestamp = $time->format(self::V4_DATESTAMP_FORMAT);
+        $timeSeconds = $time->format('U');
 
-        $expireLimit = time() + 604800;
+        $expireLimit = $timeSeconds + 604800;
         if ($expires > $expireLimit) {
             throw new \InvalidArgumentException(
                 'V4 Signed URLs may not have an expiration greater than seven days in the future.'
@@ -178,11 +194,11 @@ class SigningHelper
         ];
 
         if ($options['contentType']) {
-            $headers['Content-Type'] = $options['contentType'];
+            $headers['content-type'] = $options['contentType'];
         }
 
         if ($options['contentMd5']) {
-            $headers['Content-MD5'] = $options['contentMd5'];
+            $headers['content-md5'] = $options['contentMd5'];
         }
 
         if ($options['responseType']) {
@@ -200,6 +216,8 @@ class SigningHelper
             $params['generation'] = $generation;
         }
 
+        $headers = $this->normalizeHeaders($headers);
+
         // sort headers by name
         ksort($headers, SORT_NATURAL | SORT_FLAG_CASE);
 
@@ -209,17 +227,18 @@ class SigningHelper
         $canonicalHeaders = [];
         $signedHeaders = [];
         foreach ($headers as $key => $val) {
-            $canonicalHeaders[] = sprintf('%s:%s', strtolower($key), strtolower($val));
-            $signedHeaders[] = strtolower($key);
+            $canonicalHeaders[] = sprintf('%s:%s', $key, $val);
+            $signedHeaders[] = $key;
         }
         $canonicalHeaders = implode("\n", $canonicalHeaders) . "\n";
+
         $signedHeaders = implode(';', $signedHeaders);
 
         // Add required query parameters.
         $params['X-Goog-Algorithm'] = self::V4_ALGO_NAME;
         $params['X-Goog-Credential'] = $credential;
         $params['X-Goog-Date'] = $requestTimestamp;
-        $params['X-Goog-Expires'] = $expires - time();
+        $params['X-Goog-Expires'] = $expires - $timeSeconds;
         $params['X-Goog-SignedHeaders'] = $signedHeaders;
 
         // Sort query string params by name.
@@ -236,6 +255,8 @@ class SigningHelper
             $signedHeaders,
             'UNSIGNED-PAYLOAD'
         ];
+
+        // echo implode("\n", $canonicalRequest);exit;
 
         // Create a request hash to be signed.
         $requestHash = $this->createV4CanonicalRequest($canonicalRequest);
@@ -352,7 +373,8 @@ class SigningHelper
             'keyFilePath' => null,
             'allowPost' => false,
             'forceOpenssl' => false,
-            'queryParams' => []
+            'queryParams' => [],
+            'timestamp' => null
         ];
 
         $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];
@@ -368,22 +390,6 @@ class SigningHelper
         }
         unset($options['allowPost']);
 
-        $headers = [];
-        foreach ($options['headers'] as $name => $value) {
-            // Linebreaks are not allowed in headers.
-            // Rather than strip, we throw because we don't want to change the expected value without the user knowing.
-            if (is_string($value) && strpos($value, PHP_EOL) !== false) {
-                throw new \InvalidArgumentException(
-                    'Line endings are not allowed in header values. Replace line endings with a single space.'
-                );
-            }
-
-            // collapse arrays of values into a comma-separated list.
-            if (is_array($value)) {
-                $options['headers'][$name] = implode(',', array_map('trim', $value));
-            }
-        }
-
         // For backwards compatibility, strip protocol from cname.
         $cnameParts = explode('//', $options['cname']);
         if (count($cnameParts) > 1) {
@@ -392,7 +398,61 @@ class SigningHelper
 
         $options['cname'] = trim($options['cname'], '/');
 
+        // If a timestamp is provided, use it in place of `now` for v4 URLs only..
+        if ($options['timestamp']) {
+            if (!($options['timestamp'] instanceof \DateTimeInterface)) {
+                if (!is_string($options['timestamp'])) {
+                    throw new \InvalidArgumentException(
+                        'User-provided timestamps must be a string or instance of `\DateTimeInterface`.'
+                    );
+                }
+
+                $options['timestamp'] = \DateTimeImmutable::createFromFormat(
+                    self::V4_TIMESTAMP_FORMAT,
+                    $options['timestamp'],
+                    new \DateTimeZone('UTC')
+                );
+
+                if (!$options['timestamp']) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
+                        self::V4_TIMESTAMP_STRING .
+                        '`. Note that timestamps MUST be in GMT.'
+                    ));
+                }
+            }
+        } else {
+            $options['timestamp'] = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        }
+
         return $options;
+    }
+
+    protected function normalizeHeaders(array $headers)
+    {
+        $out = [];
+        foreach ($headers as $name => $value) {
+            $name = strtolower(trim($name));
+            // collapse arrays of values into a comma-separated list.
+            if (!is_array($value)) {
+                $value = [$value];
+            }
+
+            foreach ($value as &$headerValue) {
+                // strip trailing and leading spaces.
+                $headerValue = trim($headerValue);
+
+                // replace newlines with empty strings.
+                $headerValue = str_replace(PHP_EOL, "", $headerValue);
+
+                // collapse multiple whitespace chars to a single space.
+                $headerValue = preg_replace('/\s+/', ' ', $headerValue);
+            }
+
+            $out[$name] = implode(', ', $value);
+        }
+
+        return $out;
     }
 
     /**

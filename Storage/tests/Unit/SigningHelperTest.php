@@ -28,6 +28,7 @@ use Prophecy\Argument;
 /**
  * @group storage
  * @group storage-signing-helper
+ * @group storage-signed-url
  */
 class SigningHelperTest extends TestCase
 {
@@ -546,24 +547,41 @@ class SigningHelperTest extends TestCase
                 ['method' => 'Foo'], null, \InvalidArgumentException::class
             ], [
                 ['method' => 'POST'], null, \InvalidArgumentException::class
-            ], [
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider headers
+     */
+    public function testNormalizeHeaders(array $input, array $expected)
+    {
+        $res = $this->helper->normalizeProxy('normalizeHeaders', [$input]);
+
+        $this->assertEquals($expected, $res);
+    }
+
+    public function headers()
+    {
+        return [
+            [
                 [
-                    'headers' => [
-                        'x-goog-foo' => ['a', 'b'],
-                        'x-goog-bar' => 'a'
-                    ]
+                    'x-goog-foo' => ['a', 'b'],
+                    'x-goog-bar' => 'a',
+                    'X-goog-blah' => 'hi'
                 ], [
-                    'headers' => [
-                        'x-goog-foo' => 'a,b',
-                        'x-goog-bar' => 'a'
-                    ]
+                    'x-goog-foo' => 'a, b',
+                    'x-goog-bar' => 'a',
+                    'x-goog-blah' => 'hi'
                 ]
             ], [
                 [
-                    'headers' => [
-                        'x-goog-foo' => "test" . PHP_EOL . "test"
-                    ]
-                ], null, \InvalidArgumentException::class
+                    'x-goog-foo' => 'test' . PHP_EOL . 'test',
+                    'x-goog-bar' => ['test' . PHP_EOL . 'test', 'test' . PHP_EOL . 'test']
+                ], [
+                    'x-goog-foo' => 'testtest',
+                    'x-goog-bar' => 'testtest, testtest'
+                ]
             ]
         ];
     }
