@@ -42,6 +42,9 @@ use Google\Cloud\Vision\Annotation\Web;
  *
  * $annotation = $vision->annotate($image);
  * ```
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Annotation
 {
@@ -185,6 +188,10 @@ class Annotation
         if (isset($info['error'])) {
             $this->error = $info['error'];
         }
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

@@ -67,6 +67,8 @@ use Google\Cloud\Core\CallTrait;
  * }
  *
  * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#TextAnnotation TextAnnotation
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Document extends AbstractFeature
 {
@@ -78,5 +80,9 @@ class Document extends AbstractFeature
     public function __construct(array $info)
     {
         $this->info = $info;
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 }

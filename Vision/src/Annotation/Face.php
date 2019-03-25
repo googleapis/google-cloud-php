@@ -206,6 +206,9 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#faceannotation FaceAnnotation
  * @codingStandardsIgnoreEnd
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Face extends AbstractFeature
 {
@@ -230,6 +233,10 @@ class Face extends AbstractFeature
     {
         $this->info = $info;
         $this->landmarks = new Landmarks($info['landmarks']);
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

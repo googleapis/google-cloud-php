@@ -19,6 +19,8 @@ namespace Google\Cloud\Vision\Annotation;
 
 /**
  * Provide shared functionality for features
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 abstract class AbstractFeature implements FeatureInterface
 {

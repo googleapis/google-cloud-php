@@ -140,6 +140,9 @@ use InvalidArgumentException;
  *
  * @see https://cloud.google.com/vision/docs/best-practices Best Practices
  * @see https://cloud.google.com/vision/docs/pricing Pricing
+ *
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class Image
 {
@@ -253,6 +256,10 @@ class Image
                 'Image must be a string of bytes, a google storage object, a valid image URI, or a resource.'
             );
         }
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 
     /**

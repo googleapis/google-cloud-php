@@ -69,6 +69,8 @@ use Google\Cloud\Core\CallTrait;
  * }
  *
  * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#CropHint CropHint
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class CropHint extends AbstractFeature
 {
@@ -80,5 +82,9 @@ class CropHint extends AbstractFeature
     public function __construct(array $info)
     {
         $this->info = $info;
+
+        $class = get_class($this);
+        $err = "The class {$class} is no longer supported";
+        @trigger_error($err, E_USER_DEPRECATED);
     }
 }

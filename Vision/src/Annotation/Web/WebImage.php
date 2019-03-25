@@ -61,6 +61,8 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * }
  *
  * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#WebImage WebImage
+ * @deprecated This class is no longer supported and will be removed in a future
+ * release.
  */
 class WebImage extends AbstractFeature
 {
