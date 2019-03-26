@@ -21,53 +21,60 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICGenerator()
-common = gcp.CommonTemplates()
 
-# tasks has two product names, and a poorly named artman yaml
-v2beta2_library = gapic._generate_code(
-    'tasks', 'v2beta2', 'php',
-    config_path='artman_cloudtasks_v2beta2.yaml',
-    artman_output_name='google-cloud-tasks-v2beta2')
+for version in ['V2', 'V2beta2', 'V2beta3']:
+    lower_version = version.lower()
+    library = gapic.php_library(
+        service='tasks',
+        version=lower_version,
+        config_path=f'artman_cloudtasks_{lower_version}.yaml',
+        artman_output_name=f'google-cloud-tasks-{lower_version}')
 
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-s.copy(v2beta2_library / f'src/')
-s.copy(v2beta2_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata')
-s.copy(v2beta2_library / f'proto/src/Google/Cloud/Tasks', f'src')
-s.copy(v2beta2_library / f'tests')
+    # copy proto files to src also
+    s.move(library / f'proto/src/Google/Cloud/Tasks', f'src/')
+    s.move(library / f'tests/')
 
-v2beta3_library = gapic._generate_code(
-    'tasks', 'v2beta3', 'php',
-    config_path='artman_cloudtasks_v2beta3.yaml',
-    artman_output_name='google-cloud-tasks-v2beta3')
-
-s.copy(v2beta3_library / f'src/')
-s.copy(v2beta3_library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata')
-s.copy(v2beta3_library / f'proto/src/Google/Cloud/Tasks', f'src')
-s.copy(v2beta3_library / f'tests')
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata/')
 
 # fix year
 s.replace(
-    '**/*Client.php',
+    'src/V2beta*/**/*.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    'tests/*/V2beta*/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
-    'tests/**/*Test.php',
+    'src/V2/**/*.php',
     r'Copyright \d{4}',
-    r'Copyright 2018')
+    r'Copyright 2019')
+s.replace(
+    'tests/*/V2/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
 
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141
 s.replace(
-    'src/V2beta*/Gapic/CloudTasksGapicClient.php',
+    'src/*/Gapic/CloudTasksGapicClient.php',
     r'Task_View',
-    'Task\View')
+    r'Task\\View')
 
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# Comment out initialization of \GPBMetadata\Google\Api\Resource until GA
+# common protos are available in google-cloud-php.
+# https://github.com/googleapis/google-cloud-php/pull/1732
+s.replace(
+    'metadata/V2/*.php',
+    r'\\GPBMetadata\\Google\\Api\\Resource',
+    r'//\\GPBMetadata\\Google\\Api\\Resource')

@@ -40,9 +40,8 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue;
-use Google\Cloud\Tasks\V2beta3\CloudTasksClient;
-use Google\Cloud\Tasks\V2beta3\Queue;
+use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Queue;
 
 $client = new CloudTasksClient();
 
@@ -51,11 +50,10 @@ $location = 'us-central1';
 $queue = uniqid('example-queue-');
 $queueName = $client::queueName($project, $location, $queue);
 
-// Create an App Engine queue
+// Create a queue
 $locationName = $client::locationName($project, $location);
 $queue = new Queue([
-    'name' => $queueName,
-    'app_engine_http_queue' => new AppEngineHttpQueue()
+    'name' => $queueName
 ]);
 $queue->setName($queueName);
 $client->createQueue($locationName, $queue);
