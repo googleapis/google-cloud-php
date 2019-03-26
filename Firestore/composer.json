@@ -6,7 +6,7 @@
     "require": {
         "ext-grpc": "*",
         "google/cloud-core": "^1.26",
-        "google/gax": "^0.38.0",
+        "google/gax": "^1.0",
         "ramsey/uuid": "~3"
     },
     "require-dev": {
