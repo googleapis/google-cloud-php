@@ -6,7 +6,7 @@
   "homepage": "https://github.com/googleapis/google-cloud-php-common-protos",
   "license": "Apache-2.0",
   "require": {
-    "google/protobuf": "^3.6.1",
+    "google/protobuf": "^3.7.1",
     "google/common-protos": "^1.0"
   },
   "require-dev": {
