@@ -210,14 +210,12 @@ class RequestBuilderTest extends TestCase
 
     public function testMethodWithSpecialJsonMapping()
     {
-        if (extension_loaded('protobuf')) {
-            $this->markTestSkipped('This is currently broken for the protobuf extension');
-        }
-
         $bytesValue = (new BytesValue)
             ->setValue('\000');
         $durationValue = (new Duration)
-            ->setSeconds(9001);
+            ->setSeconds(9001)
+            ->setNanos(500000);
+
         $fieldMask = (new FieldMask)
             ->setPaths(['path1', 'path2']);
         $int64Value = (new Int64Value)
@@ -257,7 +255,7 @@ class RequestBuilderTest extends TestCase
         $query = Psr7\parse_query($uri->getQuery());
 
         $this->assertEquals('XDAwMA==', $query['bytesValue']);
-        $this->assertEquals('9001.000000000s', $query['durationValue']);
+        $this->assertEquals('9001.000500000s', $query['durationValue']);
         $this->assertEquals('path1,path2', $query['fieldMask']);
         $this->assertEquals(100, $query['int64Value']);
         $this->assertEquals(['val1', 'val2'], $query['listValue']);
@@ -269,10 +267,6 @@ class RequestBuilderTest extends TestCase
 
     public function testMethodWithoutPlaceholders()
     {
-        if (extension_loaded('protobuf')) {
-            $this->markTestSkipped('This is currently broken for the protobuf extension');
-        }
-
         $stringValue = (new StringValue)
             ->setValue('some-value');
 
