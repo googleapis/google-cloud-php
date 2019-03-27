@@ -33,26 +33,6 @@ return [
                     'totalPollTimeoutMillis' => '1200000',
                 ],
             ],
-            'ImportInstance' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Redis\V1\Instance',
-                    'metadataReturnType' => '\Google\Cloud\Redis\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '60000',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '360000',
-                    'totalPollTimeoutMillis' => '18000000',
-                ],
-            ],
-            'ExportInstance' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Redis\V1\Instance',
-                    'metadataReturnType' => '\Google\Cloud\Redis\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '60000',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '360000',
-                    'totalPollTimeoutMillis' => '18000000',
-                ],
-            ],
             'FailoverInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Redis\V1\Instance',
