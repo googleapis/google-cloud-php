@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.26",
-        "google/cloud-logging": "^1.4",
+        "google/cloud-logging": "^1.15",
         "google/gax": "^1.0",
         "google/cloud-common-protos": "^0.1",
         "psr/log": "^1.0"
