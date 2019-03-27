@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/gax": "^0.38.0",
+        "google/gax": "^1.0",
         "google/cloud-core": "^1.26"
     },
     "require-dev": {
