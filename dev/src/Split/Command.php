@@ -129,7 +129,7 @@ class Command extends GoogleCloudCommand
 
         $errors = [];
         foreach ($components as $component) {
-            $res = $this->processComponent($output, $github, $split, $component);
+            $res = $this->processComponent($output, $github, $split, $component, $splitBinaryPath, $parentTagSource);
             if (!$res) {
                 $errors[] = $component['id'];
             }
@@ -159,13 +159,17 @@ class Command extends GoogleCloudCommand
      * @param GitHub A GitHub API wrapper.
      * @param Split A Splitsh wrapper.
      * @param array $component The component data.
+     * @param string $splitBinaryPath The path to the splitsh binary.
+     * @param string $parentTagSource The URI to the parent tag.
      * @return bool
      */
     private function processComponent(
         OutputInterface $output,
         GitHub $github,
         Split $split,
-        array $component
+        array $component,
+        $splitBinaryPath,
+        $parentTagSource
     ) {
         $output->writeln('');
         $localVersion = current($this->componentManager->componentsVersion($component['id']));
@@ -187,7 +191,7 @@ class Command extends GoogleCloudCommand
             ));
 
             $output->writeln('<comment>[info]</comment> Skipping.');
-            return;
+            return true;
         }
 
         $output->writeln(sprintf(
