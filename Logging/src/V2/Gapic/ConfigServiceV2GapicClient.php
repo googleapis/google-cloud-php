@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -411,6 +412,13 @@ class ConfigServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListSinks',
             $optionalArgs,
@@ -460,6 +468,13 @@ class ConfigServiceV2GapicClient
     {
         $request = new GetSinkRequest();
         $request->setSinkName($sinkName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'sink_name' => $request->getSinkName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetSink',
@@ -533,6 +548,13 @@ class ConfigServiceV2GapicClient
         if (isset($optionalArgs['uniqueWriterIdentity'])) {
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateSink',
@@ -626,6 +648,13 @@ class ConfigServiceV2GapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'sink_name' => $request->getSinkName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateSink',
             LogSink::class,
@@ -675,6 +704,13 @@ class ConfigServiceV2GapicClient
     {
         $request = new DeleteSinkRequest();
         $request->setSinkName($sinkName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'sink_name' => $request->getSinkName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteSink',
@@ -754,6 +790,13 @@ class ConfigServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListExclusions',
             $optionalArgs,
@@ -803,6 +846,13 @@ class ConfigServiceV2GapicClient
     {
         $request = new GetExclusionRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetExclusion',
@@ -859,6 +909,13 @@ class ConfigServiceV2GapicClient
         $request = new CreateExclusionRequest();
         $request->setParent($parent);
         $request->setExclusion($exclusion);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateExclusion',
@@ -924,6 +981,13 @@ class ConfigServiceV2GapicClient
         $request->setExclusion($exclusion);
         $request->setUpdateMask($updateMask);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateExclusion',
             LogExclusion::class,
@@ -971,6 +1035,13 @@ class ConfigServiceV2GapicClient
     {
         $request = new DeleteExclusionRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteExclusion',
