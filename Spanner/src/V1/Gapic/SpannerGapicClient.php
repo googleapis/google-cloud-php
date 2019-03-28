@@ -31,6 +31,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -374,6 +375,13 @@ class SpannerGapicClient
             $request->setSession($optionalArgs['session']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateSession',
             Session::class,
@@ -418,6 +426,13 @@ class SpannerGapicClient
     {
         $request = new GetSessionRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetSession',
@@ -506,6 +521,13 @@ class SpannerGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListSessions',
             $optionalArgs,
@@ -548,6 +570,13 @@ class SpannerGapicClient
     {
         $request = new DeleteSessionRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteSession',
@@ -698,6 +727,13 @@ class SpannerGapicClient
             $request->setSeqno($optionalArgs['seqno']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'ExecuteSql',
             ResultSet::class,
@@ -840,6 +876,13 @@ class SpannerGapicClient
             $request->setSeqno($optionalArgs['seqno']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'ExecuteStreamingSql',
             PartialResultSet::class,
@@ -920,6 +963,13 @@ class SpannerGapicClient
         $request->setTransaction($transaction);
         $request->setStatements($statements);
         $request->setSeqno($seqno);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ExecuteBatchDml',
@@ -1043,6 +1093,13 @@ class SpannerGapicClient
             $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Read',
             ResultSet::class,
@@ -1157,6 +1214,13 @@ class SpannerGapicClient
             $request->setPartitionToken($optionalArgs['partitionToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'StreamingRead',
             PartialResultSet::class,
@@ -1207,6 +1271,13 @@ class SpannerGapicClient
         $request = new BeginTransactionRequest();
         $request->setSession($session);
         $request->setOptions($options);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'BeginTransaction',
@@ -1281,6 +1352,13 @@ class SpannerGapicClient
             $request->setSingleUseTransaction($optionalArgs['singleUseTransaction']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Commit',
             CommitResponse::class,
@@ -1332,6 +1410,13 @@ class SpannerGapicClient
         $request = new RollbackRequest();
         $request->setSession($session);
         $request->setTransactionId($transactionId);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'Rollback',
@@ -1442,6 +1527,13 @@ class SpannerGapicClient
             $request->setPartitionOptions($optionalArgs['partitionOptions']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'PartitionQuery',
             PartitionResponse::class,
@@ -1539,6 +1631,13 @@ class SpannerGapicClient
         if (isset($optionalArgs['partitionOptions'])) {
             $request->setPartitionOptions($optionalArgs['partitionOptions']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'PartitionRead',

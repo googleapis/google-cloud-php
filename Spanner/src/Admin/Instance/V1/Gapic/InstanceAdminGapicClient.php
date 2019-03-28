@@ -32,6 +32,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -469,6 +470,13 @@ class InstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListInstanceConfigs',
             $optionalArgs,
@@ -512,6 +520,13 @@ class InstanceAdminGapicClient
     {
         $request = new GetInstanceConfigRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetInstanceConfig',
@@ -610,6 +625,13 @@ class InstanceAdminGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListInstances',
             $optionalArgs,
@@ -653,6 +675,13 @@ class InstanceAdminGapicClient
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetInstance',
@@ -767,6 +796,13 @@ class InstanceAdminGapicClient
         $request->setParent($parent);
         $request->setInstanceId($instanceId);
         $request->setInstance($instance);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startOperationsCall(
             'CreateInstance',
@@ -889,6 +925,13 @@ class InstanceAdminGapicClient
         $request->setInstance($instance);
         $request->setFieldMask($fieldMask);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'instance.name' => $request->getInstance()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'UpdateInstance',
             $optionalArgs,
@@ -940,6 +983,13 @@ class InstanceAdminGapicClient
     {
         $request = new DeleteInstanceRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteInstance',
@@ -996,6 +1046,13 @@ class InstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
@@ -1044,6 +1101,13 @@ class InstanceAdminGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetIamPolicy',
@@ -1100,6 +1164,13 @@ class InstanceAdminGapicClient
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
         $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'TestIamPermissions',

@@ -32,6 +32,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -423,6 +424,13 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListDatabases',
             $optionalArgs,
@@ -517,6 +525,13 @@ class DatabaseAdminGapicClient
             $request->setExtraStatements($optionalArgs['extraStatements']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'CreateDatabase',
             $optionalArgs,
@@ -560,6 +575,13 @@ class DatabaseAdminGapicClient
     {
         $request = new GetDatabaseRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetDatabase',
@@ -665,6 +687,13 @@ class DatabaseAdminGapicClient
             $request->setOperationId($optionalArgs['operationId']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'UpdateDatabaseDdl',
             $optionalArgs,
@@ -705,6 +734,13 @@ class DatabaseAdminGapicClient
     {
         $request = new DropDatabaseRequest();
         $request->setDatabase($database);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DropDatabase',
@@ -750,6 +786,13 @@ class DatabaseAdminGapicClient
     {
         $request = new GetDatabaseDdlRequest();
         $request->setDatabase($database);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetDatabaseDdl',
@@ -806,6 +849,13 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
@@ -854,6 +904,13 @@ class DatabaseAdminGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetIamPolicy',
@@ -910,6 +967,13 @@ class DatabaseAdminGapicClient
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
         $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'TestIamPermissions',
