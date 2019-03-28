@@ -31,6 +31,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -445,6 +446,13 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetDocument',
             Document::class,
@@ -693,6 +701,13 @@ class FirestoreGapicClient
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'document.name' => $request->getDocument()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateDocument',
             Document::class,
@@ -740,6 +755,13 @@ class FirestoreGapicClient
         if (isset($optionalArgs['currentDocument'])) {
             $request->setCurrentDocument($optionalArgs['currentDocument']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteDocument',
@@ -822,6 +844,13 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'BatchGetDocuments',
             BatchGetDocumentsResponse::class,
@@ -872,6 +901,13 @@ class FirestoreGapicClient
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'BeginTransaction',
@@ -927,6 +963,13 @@ class FirestoreGapicClient
             $request->setTransaction($optionalArgs['transaction']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Commit',
             CommitResponse::class,
@@ -971,6 +1014,13 @@ class FirestoreGapicClient
         $request = new RollbackRequest();
         $request->setDatabase($database);
         $request->setTransaction($transaction);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'Rollback',
@@ -1045,6 +1095,13 @@ class FirestoreGapicClient
             $request->setReadTime($optionalArgs['readTime']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'RunQuery',
             RunQueryResponse::class,
@@ -1112,6 +1169,13 @@ class FirestoreGapicClient
      */
     public function write(array $optionalArgs = [])
     {
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Write',
             WriteResponse::class,
@@ -1179,6 +1243,13 @@ class FirestoreGapicClient
      */
     public function listen(array $optionalArgs = [])
     {
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Listen',
             ListenResponse::class,
@@ -1255,6 +1326,13 @@ class FirestoreGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
             'ListCollectionIds',
