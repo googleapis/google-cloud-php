@@ -31,6 +31,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -519,6 +520,13 @@ class SubscriberGapicClient
             $request->setExpirationPolicy($optionalArgs['expirationPolicy']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateSubscription',
             Subscription::class,
@@ -562,6 +570,13 @@ class SubscriberGapicClient
     {
         $request = new GetSubscriptionRequest();
         $request->setSubscription($subscription);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetSubscription',
@@ -615,6 +630,13 @@ class SubscriberGapicClient
         $request = new UpdateSubscriptionRequest();
         $request->setSubscription($subscription);
         $request->setUpdateMask($updateMask);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription.name' => $request->getSubscription()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'UpdateSubscription',
@@ -690,6 +712,13 @@ class SubscriberGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project' => $request->getProject(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListSubscriptions',
             $optionalArgs,
@@ -735,6 +764,13 @@ class SubscriberGapicClient
     {
         $request = new DeleteSubscriptionRequest();
         $request->setSubscription($subscription);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteSubscription',
@@ -795,6 +831,13 @@ class SubscriberGapicClient
         $request->setAckIds($ackIds);
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'ModifyAckDeadline',
             GPBEmpty::class,
@@ -846,6 +889,13 @@ class SubscriberGapicClient
         $request = new AcknowledgeRequest();
         $request->setSubscription($subscription);
         $request->setAckIds($ackIds);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'Acknowledge',
@@ -904,6 +954,13 @@ class SubscriberGapicClient
         if (isset($optionalArgs['returnImmediately'])) {
             $request->setReturnImmediately($optionalArgs['returnImmediately']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'Pull',
@@ -1035,6 +1092,13 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
         $request->setPushConfig($pushConfig);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'ModifyPushConfig',
             GPBEmpty::class,
@@ -1116,6 +1180,13 @@ class SubscriberGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project' => $request->getProject(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
             'ListSnapshots',
@@ -1204,6 +1275,13 @@ class SubscriberGapicClient
             $request->setLabels($optionalArgs['labels']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateSnapshot',
             Snapshot::class,
@@ -1267,6 +1345,13 @@ class SubscriberGapicClient
         $request->setSnapshot($snapshot);
         $request->setUpdateMask($updateMask);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'snapshot.name' => $request->getSnapshot()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateSnapshot',
             Snapshot::class,
@@ -1320,6 +1405,13 @@ class SubscriberGapicClient
     {
         $request = new DeleteSnapshotRequest();
         $request->setSnapshot($snapshot);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'snapshot' => $request->getSnapshot(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteSnapshot',
@@ -1396,6 +1488,13 @@ class SubscriberGapicClient
             $request->setSnapshot($optionalArgs['snapshot']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'subscription' => $request->getSubscription(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Seek',
             SeekResponse::class,
@@ -1448,6 +1547,13 @@ class SubscriberGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
@@ -1496,6 +1602,13 @@ class SubscriberGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetIamPolicy',
@@ -1551,6 +1664,13 @@ class SubscriberGapicClient
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
         $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'TestIamPermissions',
