@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -380,6 +381,13 @@ class SessionEntityTypesGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListSessionEntityTypes',
             $optionalArgs,
@@ -424,6 +432,13 @@ class SessionEntityTypesGapicClient
     {
         $request = new GetSessionEntityTypeRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetSessionEntityType',
@@ -471,6 +486,13 @@ class SessionEntityTypesGapicClient
         $request = new CreateSessionEntityTypeRequest();
         $request->setParent($parent);
         $request->setSessionEntityType($sessionEntityType);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateSessionEntityType',
@@ -522,6 +544,13 @@ class SessionEntityTypesGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session_entity_type.name' => $request->getSessionEntityType()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateSessionEntityType',
             SessionEntityType::class,
@@ -564,6 +593,13 @@ class SessionEntityTypesGapicClient
     {
         $request = new DeleteSessionEntityTypeRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteSessionEntityType',

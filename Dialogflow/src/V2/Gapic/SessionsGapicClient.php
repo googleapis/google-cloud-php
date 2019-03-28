@@ -31,6 +31,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -322,6 +323,13 @@ class SessionsGapicClient
         if (isset($optionalArgs['inputAudio'])) {
             $request->setInputAudio($optionalArgs['inputAudio']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'session' => $request->getSession(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DetectIntent',
