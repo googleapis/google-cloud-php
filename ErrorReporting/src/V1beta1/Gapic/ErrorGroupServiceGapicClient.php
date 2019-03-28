@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -292,6 +293,13 @@ class ErrorGroupServiceGapicClient
         $request = new GetGroupRequest();
         $request->setGroupName($groupName);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'group_name' => $request->getGroupName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetGroup',
             ErrorGroup::class,
@@ -335,6 +343,13 @@ class ErrorGroupServiceGapicClient
     {
         $request = new UpdateGroupRequest();
         $request->setGroup($group);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'group.name' => $request->getGroup()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'UpdateGroup',
