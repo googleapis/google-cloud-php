@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -640,6 +641,13 @@ class DlpServiceGapicClient
             $request->setInspectTemplateName($optionalArgs['inspectTemplateName']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'InspectContent',
             InspectContentResponse::class,
@@ -710,6 +718,13 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['byteItem'])) {
             $request->setByteItem($optionalArgs['byteItem']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'RedactImage',
@@ -798,6 +813,13 @@ class DlpServiceGapicClient
             $request->setDeidentifyTemplateName($optionalArgs['deidentifyTemplateName']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'DeidentifyContent',
             DeidentifyContentResponse::class,
@@ -885,6 +907,13 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['reidentifyTemplateName'])) {
             $request->setReidentifyTemplateName($optionalArgs['reidentifyTemplateName']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ReidentifyContent',
@@ -1000,6 +1029,13 @@ class DlpServiceGapicClient
             $request->setTemplateId($optionalArgs['templateId']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateInspectTemplate',
             InspectTemplate::class,
@@ -1056,6 +1092,13 @@ class DlpServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateInspectTemplate',
             InspectTemplate::class,
@@ -1103,6 +1146,13 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['name'])) {
             $request->setName($optionalArgs['name']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetInspectTemplate',
@@ -1196,6 +1246,13 @@ class DlpServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListInspectTemplates',
             $optionalArgs,
@@ -1239,6 +1296,13 @@ class DlpServiceGapicClient
     {
         $request = new DeleteInspectTemplateRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteInspectTemplate',
@@ -1300,6 +1364,13 @@ class DlpServiceGapicClient
             $request->setTemplateId($optionalArgs['templateId']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateDeidentifyTemplate',
             DeidentifyTemplate::class,
@@ -1357,6 +1428,13 @@ class DlpServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateDeidentifyTemplate',
             DeidentifyTemplate::class,
@@ -1403,6 +1481,13 @@ class DlpServiceGapicClient
     {
         $request = new GetDeidentifyTemplateRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetDeidentifyTemplate',
@@ -1497,6 +1582,13 @@ class DlpServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListDeidentifyTemplates',
             $optionalArgs,
@@ -1541,6 +1633,13 @@ class DlpServiceGapicClient
     {
         $request = new DeleteDeidentifyTemplateRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteDeidentifyTemplate',
@@ -1608,6 +1707,13 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateDlpJob',
@@ -1734,6 +1840,13 @@ class DlpServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListDlpJobs',
             $optionalArgs,
@@ -1778,6 +1891,13 @@ class DlpServiceGapicClient
     {
         $request = new GetDlpJobRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetDlpJob',
@@ -1824,6 +1944,13 @@ class DlpServiceGapicClient
         $request = new DeleteDlpJobRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'DeleteDlpJob',
             GPBEmpty::class,
@@ -1868,6 +1995,13 @@ class DlpServiceGapicClient
     {
         $request = new CancelDlpJobRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CancelDlpJob',
@@ -1990,6 +2124,13 @@ class DlpServiceGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListJobTriggers',
             $optionalArgs,
@@ -2035,6 +2176,13 @@ class DlpServiceGapicClient
         $request = new GetJobTriggerRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetJobTrigger',
             JobTrigger::class,
@@ -2077,6 +2225,13 @@ class DlpServiceGapicClient
     {
         $request = new DeleteJobTriggerRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteJobTrigger',
@@ -2132,6 +2287,13 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'UpdateJobTrigger',
@@ -2191,6 +2353,13 @@ class DlpServiceGapicClient
             $request->setTriggerId($optionalArgs['triggerId']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateJobTrigger',
             JobTrigger::class,
@@ -2249,6 +2418,13 @@ class DlpServiceGapicClient
         if (isset($optionalArgs['storedInfoTypeId'])) {
             $request->setStoredInfoTypeId($optionalArgs['storedInfoTypeId']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateStoredInfoType',
@@ -2310,6 +2486,13 @@ class DlpServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateStoredInfoType',
             StoredInfoType::class,
@@ -2356,6 +2539,13 @@ class DlpServiceGapicClient
     {
         $request = new GetStoredInfoTypeRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetStoredInfoType',
@@ -2451,6 +2641,13 @@ class DlpServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListStoredInfoTypes',
             $optionalArgs,
@@ -2495,6 +2692,13 @@ class DlpServiceGapicClient
     {
         $request = new DeleteStoredInfoTypeRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteStoredInfoType',
