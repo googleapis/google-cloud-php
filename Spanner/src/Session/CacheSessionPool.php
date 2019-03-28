@@ -25,6 +25,7 @@ use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
 use Grpc\UnaryCall;
 use Psr\Cache\CacheItemPoolInterface;
+use GuzzleHttp\Promise;
 
 /**
  * This session pool implementation accepts a PSR-6 compatible cache
@@ -651,11 +652,11 @@ class CacheSessionPool implements SessionPoolInterface
     private function createSessions($count)
     {
         $args = [
-                'database' => $this->database->name(),
-                'session' => [
-                    'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
-                ]
-            ];
+            'database' => $this->database->name(),
+            'session' => [
+                'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+            ]
+        ];
 
         $promises = [];
 
@@ -663,7 +664,7 @@ class CacheSessionPool implements SessionPoolInterface
             $promises[] = $this->database->connection()->createSessionAsync($args);
         }
 
-        $results = \GuzzleHttp\Promise\settle($promises)->wait();
+        $results = Promise\settle($promises)->wait();
 
         $sessions = [];
 

@@ -458,11 +458,15 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * Note: This should be removed once GAPIC exposes the ability to execute
+     * concurrent requests.
+     *
+     * @param array $args
      * @return PromiseInterface
+     * @experimental
      */
     public function createSessionAsync(array $args)
     {
-
         $database = $this->pluck('database', $args);
         $opts = $this->addResourcePrefixHeader([], $database);
         $opts['credentialsWrapper'] = $this->credentialsWrapper;
@@ -478,7 +482,7 @@ class Grpc implements ConnectionInterface
             $request->setSession($sessionMessage);
         }
 
-        $promise = $transport->startUnaryCall(
+        return $transport->startUnaryCall(
             new Call(
                 'google.spanner.v1.Spanner/CreateSession',
                 Session::class,
@@ -486,8 +490,6 @@ class Grpc implements ConnectionInterface
             ),
             $opts
         );
-
-        return $promise;
     }
 
     /**

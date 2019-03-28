@@ -675,7 +675,6 @@ class CacheSessionPoolTest extends TestCase
         $connection = $this->prophesize(Grpc::class);
         $promise = $this->prophesize(PromiseInterface::class);
 
-
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()

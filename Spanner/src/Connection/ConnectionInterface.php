@@ -125,7 +125,6 @@ interface ConnectionInterface
     public function createSession(array $args);
 
     /**
-     * @param $count
      * @param array $args
      * @return PromiseInterface[]
      */
