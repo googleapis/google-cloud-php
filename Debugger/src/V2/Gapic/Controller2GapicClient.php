@@ -29,6 +29,7 @@ namespace Google\Cloud\Debugger\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -306,6 +307,13 @@ class Controller2GapicClient
         if (isset($optionalArgs['successOnTimeout'])) {
             $request->setSuccessOnTimeout($optionalArgs['successOnTimeout']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'debuggee_id' => $request->getDebuggeeId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ListActiveBreakpoints',

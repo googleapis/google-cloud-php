@@ -29,6 +29,7 @@ namespace Google\Cloud\Debugger\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -229,6 +230,13 @@ class Debugger2GapicClient
         $request->setBreakpoint($breakpoint);
         $request->setClientVersion($clientVersion);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'debuggee_id' => $request->getDebuggeeId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetBreakpoint',
             SetBreakpointResponse::class,
@@ -405,6 +413,13 @@ class Debugger2GapicClient
         if (isset($optionalArgs['waitToken'])) {
             $request->setWaitToken($optionalArgs['waitToken']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'debuggee_id' => $request->getDebuggeeId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ListBreakpoints',
