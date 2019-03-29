@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Container\V1\Operation;
 
+use UnexpectedValueException;
+
 /**
  * Current status of the operation.
  *
@@ -41,6 +43,34 @@ class Status
      * Generated from protobuf enum <code>ABORTING = 4;</code>
      */
     const ABORTING = 4;
+
+    private static $valueToName = [
+        self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',
+        self::PENDING => 'PENDING',
+        self::RUNNING => 'RUNNING',
+        self::DONE => 'DONE',
+        self::ABORTING => 'ABORTING',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

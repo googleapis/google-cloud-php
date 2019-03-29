@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Container\V1\NodePool;
 
+use UnexpectedValueException;
+
 /**
  * The current status of the node pool instance.
  *
@@ -60,6 +62,36 @@ class Status
      * Generated from protobuf enum <code>ERROR = 6;</code>
      */
     const ERROR = 6;
+
+    private static $valueToName = [
+        self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',
+        self::PROVISIONING => 'PROVISIONING',
+        self::RUNNING => 'RUNNING',
+        self::RUNNING_WITH_ERROR => 'RUNNING_WITH_ERROR',
+        self::RECONCILING => 'RECONCILING',
+        self::STOPPING => 'STOPPING',
+        self::ERROR => 'ERROR',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
