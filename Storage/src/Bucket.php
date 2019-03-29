@@ -1315,11 +1315,9 @@ class Bucket
      */
     public function signedUrl($expires, array $options = [])
     {
-        // only instantiate once.
-        static $signingHelper = null;
-        if (!$signingHelper) {
-            $signingHelper = new SigningHelper;
-        }
+        // May be overridden for testing.
+        $signingHelper = $this->pluck('helper', $options, false)
+            ?: SigningHelper::getHelper();
 
         $resource = sprintf(
             '/%s',

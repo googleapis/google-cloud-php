@@ -660,9 +660,9 @@ class StorageObjectTest extends TestCase
             Argument::type('array')
         )->shouldBeCalled()->willReturn($return);
 
-        $object->___setProperty('signingHelper', $signingHelper->reveal());
-
-        $opts = [];
+        $opts = [
+            'helper' => $signingHelper->reveal()
+        ];
         if ($version) {
             // test defaults to v2.
             $opts['version'] = $version;
@@ -706,10 +706,9 @@ class StorageObjectTest extends TestCase
             return $args;
         });
 
-        $object->___setProperty('signingHelper', $signingHelper->reveal());
-
         $callArgs = $object->signedUrl(time() + 1, [
-            $key => $value
+            $key => $value,
+            'helper' => $signingHelper->reveal()
         ]);
 
         $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
@@ -784,13 +783,13 @@ class StorageObjectTest extends TestCase
         )->willReturn($return);
 
         $object = $this->getStorageObjectForSigning();
-        $object->___setProperty('signingHelper', $signingHelper->reveal());
 
         $opts = [
             'cname' => 'example.com',
             'saveAsName' => 'test.txt',
             'responseDisposition' => 'test',
-            'responseType' => 'test'
+            'responseType' => 'test',
+            'helper' => $signingHelper->reveal()
         ];
 
         if ($version) {
@@ -820,7 +819,7 @@ class StorageObjectTest extends TestCase
         $creds = $this->prophesize(SignBlobInterface::class);
         $rw = $this->prophesize(RequestWrapper::class);
         $rw->scopes()->willReturn('');
-        $rw->credentials()->willReturn($creds->reveal());
+        $rw->getCredentialsFetcher()->willReturn($creds->reveal());
         $rw->send(
             Argument::type(RequestInterface::class),
             Argument::type('array')
@@ -844,9 +843,10 @@ class StorageObjectTest extends TestCase
         )->willReturn($signedUri);
 
         $object->___setProperty('connection', $this->connection->reveal());
-        $object->___setProperty('signingHelper', $signingHelper->reveal());
 
-        $opts = [];
+        $opts = [
+            'helper' => $signingHelper->reveal()
+        ];
         if ($version) {
             $opts['version'] = $version;
         }
@@ -876,7 +876,7 @@ class StorageObjectTest extends TestCase
 
         $rw = $this->prophesize(RequestWrapper::class);
         $rw->scopes()->willReturn(is_array($scopes) ? $scopes : [$scopes]);
-        $rw->credentials()->willReturn($credentials);
+        $rw->getCredentialsFetcher()->willReturn($credentials);
 
         $this->connection->requestWrapper()->willReturn($rw->reveal());
 
@@ -885,6 +885,6 @@ class StorageObjectTest extends TestCase
             self::OBJECT,
             self::BUCKET,
             $generation
-        ], ['signingHelper', 'connection']);
+        ], ['connection']);
     }
 }

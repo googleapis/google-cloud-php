@@ -77,11 +77,6 @@ class StorageObject
     private $info;
 
     /**
-     * @var SigningHelper
-     */
-    private $signingHelper;
-
-    /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The object's name.
@@ -115,7 +110,6 @@ class StorageObject
             'userProject' => $this->pluck('requesterProjectId', $info, false)
         ];
         $this->acl = new Acl($this->connection, 'objectAccessControls', $this->identity);
-        $this->signingHelper = new SigningHelper;
     }
 
     /**
@@ -836,6 +830,10 @@ class StorageObject
      */
     public function signedUrl($expires, array $options = [])
     {
+        // May be overridden for testing.
+        $signingHelper = $this->pluck('helper', $options, false)
+            ?: SigningHelper::getHelper();
+
         $resource = sprintf(
             '/%s/%s',
             $this->identity['bucket'],
@@ -847,7 +845,7 @@ class StorageObject
             $this->pluck('version', $options, false)
         );
 
-        return call_user_func_array([$this->signingHelper, $method], [
+        return call_user_func_array([$signingHelper, $method], [
             $credentials,
             $expires,
             $resource,

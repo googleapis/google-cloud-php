@@ -37,6 +37,20 @@ class SigningHelper
     const V4_DATESTAMP_FORMAT = 'Ymd';
 
     /**
+     * Create or fetch a SigningHelper instance.
+     *
+     * @return SigningHelper
+     */
+    public static function getHelper()
+    {
+        static $helper;
+        if (!$helper) {
+            $helper = new static;
+        }
+
+        return $helper;
+    }
+    /**
      * Get the credentials for use with signing.
      *
      * @param ConnectionInterface $connection A Storage connection object.
@@ -81,7 +95,7 @@ class SigningHelper
 
             $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
         } else {
-            $credentials = $rw->credentials();
+            $credentials = $rw->getCredentialsFetcher();
         }
 
         if (!($credentials instanceof SignBlobInterface)) {
