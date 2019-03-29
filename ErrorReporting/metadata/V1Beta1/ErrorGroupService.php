@@ -50,7 +50,7 @@ class ErrorGroupService
             "2e4572726f725265706f7274696e672e56314265746131ca0223476f6f67" .
             "6c655c436c6f75645c4572726f725265706f7274696e675c563162657461" .
             "31620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

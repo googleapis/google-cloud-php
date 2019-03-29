@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange;
 
+use UnexpectedValueException;
+
 /**
  * The supported time ranges.
  *
@@ -52,6 +54,35 @@ class Period
      * Generated from protobuf enum <code>PERIOD_30_DAYS = 5;</code>
      */
     const PERIOD_30_DAYS = 5;
+
+    private static $valueToName = [
+        self::PERIOD_UNSPECIFIED => 'PERIOD_UNSPECIFIED',
+        self::PERIOD_1_HOUR => 'PERIOD_1_HOUR',
+        self::PERIOD_6_HOURS => 'PERIOD_6_HOURS',
+        self::PERIOD_1_DAY => 'PERIOD_1_DAY',
+        self::PERIOD_1_WEEK => 'PERIOD_1_WEEK',
+        self::PERIOD_30_DAYS => 'PERIOD_30_DAYS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
