@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dialogflow\V2\SessionEntityType;
 
+use UnexpectedValueException;
+
 /**
  * The types of modifications for a session entity type.
  *
@@ -35,6 +37,32 @@ class EntityOverrideMode
      * Generated from protobuf enum <code>ENTITY_OVERRIDE_MODE_SUPPLEMENT = 2;</code>
      */
     const ENTITY_OVERRIDE_MODE_SUPPLEMENT = 2;
+
+    private static $valueToName = [
+        self::ENTITY_OVERRIDE_MODE_UNSPECIFIED => 'ENTITY_OVERRIDE_MODE_UNSPECIFIED',
+        self::ENTITY_OVERRIDE_MODE_OVERRIDE => 'ENTITY_OVERRIDE_MODE_OVERRIDE',
+        self::ENTITY_OVERRIDE_MODE_SUPPLEMENT => 'ENTITY_OVERRIDE_MODE_SUPPLEMENT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

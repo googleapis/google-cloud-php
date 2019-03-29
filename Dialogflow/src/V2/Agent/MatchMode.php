@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dialogflow\V2\Agent;
 
+use UnexpectedValueException;
+
 /**
  * Match mode determines how intents are detected from user queries.
  *
@@ -31,6 +33,32 @@ class MatchMode
      * Generated from protobuf enum <code>MATCH_MODE_ML_ONLY = 2;</code>
      */
     const MATCH_MODE_ML_ONLY = 2;
+
+    private static $valueToName = [
+        self::MATCH_MODE_UNSPECIFIED => 'MATCH_MODE_UNSPECIFIED',
+        self::MATCH_MODE_HYBRID => 'MATCH_MODE_HYBRID',
+        self::MATCH_MODE_ML_ONLY => 'MATCH_MODE_ML_ONLY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

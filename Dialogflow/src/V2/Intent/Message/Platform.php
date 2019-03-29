@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
+use UnexpectedValueException;
+
 /**
  * Represents different platforms that a rich message can be intended for.
  *
@@ -125,6 +127,38 @@ class Platform
      * Generated from protobuf enum <code>ACTIONS_ON_GOOGLE = 8;</code>
      */
     const ACTIONS_ON_GOOGLE = 8;
+
+    private static $valueToName = [
+        self::PLATFORM_UNSPECIFIED => 'PLATFORM_UNSPECIFIED',
+        self::FACEBOOK => 'FACEBOOK',
+        self::SLACK => 'SLACK',
+        self::TELEGRAM => 'TELEGRAM',
+        self::KIK => 'KIK',
+        self::SKYPE => 'SKYPE',
+        self::LINE => 'LINE',
+        self::VIBER => 'VIBER',
+        self::ACTIONS_ON_GOOGLE => 'ACTIONS_ON_GOOGLE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
