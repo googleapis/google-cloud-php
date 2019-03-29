@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -369,6 +370,13 @@ class MetricsServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListLogMetrics',
             $optionalArgs,
@@ -413,6 +421,13 @@ class MetricsServiceV2GapicClient
     {
         $request = new GetLogMetricRequest();
         $request->setMetricName($metricName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetLogMetric',
@@ -464,6 +479,13 @@ class MetricsServiceV2GapicClient
         $request = new CreateLogMetricRequest();
         $request->setParent($parent);
         $request->setMetric($metric);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateLogMetric',
@@ -517,6 +539,13 @@ class MetricsServiceV2GapicClient
         $request->setMetricName($metricName);
         $request->setMetric($metric);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateLogMetric',
             LogMetric::class,
@@ -559,6 +588,13 @@ class MetricsServiceV2GapicClient
     {
         $request = new DeleteLogMetricRequest();
         $request->setMetricName($metricName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteLogMetric',
