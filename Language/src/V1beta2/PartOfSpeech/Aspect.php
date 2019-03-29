@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * The characteristic of a verb that expresses time flow during an event.
  *
@@ -35,6 +37,33 @@ class Aspect
      * Generated from protobuf enum <code>PROGRESSIVE = 3;</code>
      */
     const PROGRESSIVE = 3;
+
+    private static $valueToName = [
+        self::ASPECT_UNKNOWN => 'ASPECT_UNKNOWN',
+        self::PERFECTIVE => 'PERFECTIVE',
+        self::IMPERFECTIVE => 'IMPERFECTIVE',
+        self::PROGRESSIVE => 'PROGRESSIVE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * The distinction between the speaker, second person, third person, etc.
  *
@@ -41,6 +43,34 @@ class Person
      * Generated from protobuf enum <code>REFLEXIVE_PERSON = 4;</code>
      */
     const REFLEXIVE_PERSON = 4;
+
+    private static $valueToName = [
+        self::PERSON_UNKNOWN => 'PERSON_UNKNOWN',
+        self::FIRST => 'FIRST',
+        self::SECOND => 'SECOND',
+        self::THIRD => 'THIRD',
+        self::REFLEXIVE_PERSON => 'REFLEXIVE_PERSON',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

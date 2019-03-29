@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\EntityMention;
 
+use UnexpectedValueException;
+
 /**
  * The supported types of mentions.
  *
@@ -29,6 +31,32 @@ class Type
      * Generated from protobuf enum <code>COMMON = 2;</code>
      */
     const COMMON = 2;
+
+    private static $valueToName = [
+        self::TYPE_UNKNOWN => 'TYPE_UNKNOWN',
+        self::PROPER => 'PROPER',
+        self::COMMON => 'COMMON',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

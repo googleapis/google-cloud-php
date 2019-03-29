@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\DependencyEdge;
 
+use UnexpectedValueException;
+
 /**
  * The parse label enum for the token.
  *
@@ -509,6 +511,112 @@ class Label
      * Generated from protobuf enum <code>NCOMP = 82;</code>
      */
     const NCOMP = 82;
+
+    private static $valueToName = [
+        self::UNKNOWN => 'UNKNOWN',
+        self::ABBREV => 'ABBREV',
+        self::ACOMP => 'ACOMP',
+        self::ADVCL => 'ADVCL',
+        self::ADVMOD => 'ADVMOD',
+        self::AMOD => 'AMOD',
+        self::APPOS => 'APPOS',
+        self::ATTR => 'ATTR',
+        self::AUX => 'AUX',
+        self::AUXPASS => 'AUXPASS',
+        self::CC => 'CC',
+        self::CCOMP => 'CCOMP',
+        self::CONJ => 'CONJ',
+        self::CSUBJ => 'CSUBJ',
+        self::CSUBJPASS => 'CSUBJPASS',
+        self::DEP => 'DEP',
+        self::DET => 'DET',
+        self::DISCOURSE => 'DISCOURSE',
+        self::DOBJ => 'DOBJ',
+        self::EXPL => 'EXPL',
+        self::GOESWITH => 'GOESWITH',
+        self::IOBJ => 'IOBJ',
+        self::MARK => 'MARK',
+        self::MWE => 'MWE',
+        self::MWV => 'MWV',
+        self::NEG => 'NEG',
+        self::NN => 'NN',
+        self::NPADVMOD => 'NPADVMOD',
+        self::NSUBJ => 'NSUBJ',
+        self::NSUBJPASS => 'NSUBJPASS',
+        self::NUM => 'NUM',
+        self::NUMBER => 'NUMBER',
+        self::P => 'P',
+        self::PARATAXIS => 'PARATAXIS',
+        self::PARTMOD => 'PARTMOD',
+        self::PCOMP => 'PCOMP',
+        self::POBJ => 'POBJ',
+        self::POSS => 'POSS',
+        self::POSTNEG => 'POSTNEG',
+        self::PRECOMP => 'PRECOMP',
+        self::PRECONJ => 'PRECONJ',
+        self::PREDET => 'PREDET',
+        self::PREF => 'PREF',
+        self::PREP => 'PREP',
+        self::PRONL => 'PRONL',
+        self::PRT => 'PRT',
+        self::PS => 'PS',
+        self::QUANTMOD => 'QUANTMOD',
+        self::RCMOD => 'RCMOD',
+        self::RCMODREL => 'RCMODREL',
+        self::RDROP => 'RDROP',
+        self::REF => 'REF',
+        self::REMNANT => 'REMNANT',
+        self::REPARANDUM => 'REPARANDUM',
+        self::ROOT => 'ROOT',
+        self::SNUM => 'SNUM',
+        self::SUFF => 'SUFF',
+        self::TMOD => 'TMOD',
+        self::TOPIC => 'TOPIC',
+        self::VMOD => 'VMOD',
+        self::VOCATIVE => 'VOCATIVE',
+        self::XCOMP => 'XCOMP',
+        self::SUFFIX => 'SUFFIX',
+        self::TITLE => 'TITLE',
+        self::ADVPHMOD => 'ADVPHMOD',
+        self::AUXCAUS => 'AUXCAUS',
+        self::AUXVV => 'AUXVV',
+        self::DTMOD => 'DTMOD',
+        self::FOREIGN => 'FOREIGN',
+        self::KW => 'KW',
+        self::PBLIST => 'PBLIST',
+        self::NOMC => 'NOMC',
+        self::NOMCSUBJ => 'NOMCSUBJ',
+        self::NOMCSUBJPASS => 'NOMCSUBJPASS',
+        self::NUMC => 'NUMC',
+        self::COP => 'COP',
+        self::DISLOCATED => 'DISLOCATED',
+        self::ASP => 'ASP',
+        self::GMOD => 'GMOD',
+        self::GOBJ => 'GOBJ',
+        self::INFMOD => 'INFMOD',
+        self::MES => 'MES',
+        self::NCOMP => 'NCOMP',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
