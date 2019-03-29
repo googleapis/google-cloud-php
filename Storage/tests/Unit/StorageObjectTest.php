@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
@@ -654,7 +655,7 @@ class StorageObjectTest extends TestCase
         $signingHelper = $this->prophesize(SigningHelper::class);
 
         $signingHelper->$method(
-            Argument::type(FetchAuthTokenInterface::class),
+            Argument::type(SignBlobInterface::class),
             $expectedExpiration,
             $expectedResource,
             $expectedGeneration,
@@ -716,7 +717,7 @@ class StorageObjectTest extends TestCase
         $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
         $json = json_decode(file_get_contents($path), true);
 
-        $this->assertEquals('', $callArgs[0]->getClientEmail());
+        $this->assertEquals('', $callArgs[0]->getClientName());
     }
 
     public function signedUrlKeyfiles()
@@ -818,7 +819,7 @@ class StorageObjectTest extends TestCase
         $res = $this->prophesize(ResponseInterface::class);
         $res->getHeaderLine('Location')->willReturn($sessionUri);
 
-        $creds = $this->prophesize(FetchAuthTokenInterface::class);
+        $creds = $this->prophesize(SignBlobInterface::class);
         $rw = $this->prophesize(RequestWrapper::class);
         $rw->scopes()->willReturn('');
         $rw->credentials()->willReturn($creds->reveal());
@@ -867,6 +868,7 @@ class StorageObjectTest extends TestCase
 
     /**
      * @dataProvider signedUrlConformanceCases
+     * @group storage-signed-url
      * @group storage-signed-url-conformance
      */
     public function testSignedUrlConformance(array $testdata, $skip = false)
@@ -927,12 +929,12 @@ class StorageObjectTest extends TestCase
     }
 
     private function getStorageObjectForSigning(
-        FetchAuthTokenInterface $credentials = null,
+        SignBlobInterface $credentials = null,
         $scopes = '',
         $generation = null
     ) {
         if ($credentials === null) {
-            $credentials = $this->prophesize(FetchAuthTokenInterface::class);
+            $credentials = $this->prophesize(SignBlobInterface::class);
             $credentials = $credentials->reveal();
         }
 

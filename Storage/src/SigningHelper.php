@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Auth\FetchAuthTokenInterface;
-use Google\Auth\Signer;
+use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Timestamp;
 
 /**
@@ -35,37 +34,28 @@ class SigningHelper
     const V4_DATESTAMP_FORMAT = 'Ymd';
 
     /**
-     * @var Signer
-     */
-    private $signer;
-
-    /**
-     *
-     * @param Signer $signer [optional] A code signer instance.
-     */
-    public function __construct(Signer $signer = null)
-    {
-        $this->signer = $signer ?: new Signer;
-    }
-
-    /**
      * Sign a URL using Google Signed URLs v2.
      *
      * This method will be deprecated in the future.
      *
+     * @param SignBlobInterface $credentials A credentials instance which
+     *        supports signing strings.
+     * @param Timestamp|\DateTimeInterface|int $expires The signed URL
+     *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
-     *     leading slash.
+     *        leading slash.
      * @param string|null $generation The resource generation.
      * @param array $options Configuration options. See
-     *     {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
+     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
+     *        details.
      * @return string
      * @throws \InvalidArgumentException
      * @throws \RuntimeException If required data could not be gathered from
-     *     credentials.
+     *        credentials.
      * @throws \RuntimeException If OpenSSL signing is required by user input
-     *     and OpenSSL is not available.
+     *        and OpenSSL is not available.
      */
-    public function v2Sign(FetchAuthTokenInterface $credentials, $expires, $resource, $generation, array $options)
+    public function v2Sign(SignBlobInterface $credentials, $expires, $resource, $generation, array $options)
     {
         $expires = $this->normalizeExpiration($expires);
         $resource = $this->normalizeResource($resource);
@@ -99,14 +89,16 @@ class SigningHelper
         $stringToSign = $this->createV2CanonicalRequest($toSign);
 
         // Sign the string using the provided credentials.
-        $signature = $this->signer->signBlob($credentials, $stringToSign, $options['forceOpenssl']);
+        $signature = $credentials->signBlob($stringToSign, [
+            'forceOpenssl' => $options['forceOpenssl']
+        ]);
 
         // Signature is returned base64-encoded. URL-encode that.
         $encodedSignature = urlencode($signature);
 
         // Start with user-provided query params and add required parameters.
         $params = $options['queryParams'];
-        $params['GoogleAccessId'] = $credentials->getClientEmail();
+        $params['GoogleAccessId'] = $credentials->getClientName();
         $params['Expires'] = $expires;
         $params['Signature'] = $encodedSignature;
 
@@ -134,17 +126,16 @@ class SigningHelper
     /**
      * Sign a storage URL using Google Signed URLs v4.
      *
-     * @param FetchAuthTokenInterface $credentials The currently authenticated
-     *        credentials.
-     * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
-     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
-     *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
-     *        UNIX timestamp as an integer.
+     * @param SignBlobInterface $credentials A credentials instance which
+     *        supports signing strings.
+     * @param Timestamp|\DateTimeInterface|int $expires The signed URL
+     *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
      *        leading slash.
      * @param string|null $generation The resource generation.
      * @param array $options Configuration options. See
-     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for details.
+     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
+     *        details.
      * @return string
      * @throws \InvalidArgumentException
      * @throws \RuntimeException If required data could not be gathered from
@@ -152,7 +143,7 @@ class SigningHelper
      * @throws \RuntimeException If OpenSSL signing is required by user input
      *        and OpenSSL is not available.
      */
-    public function v4Sign(FetchAuthTokenInterface $credentials, $expires, $resource, $generation, array $options)
+    public function v4Sign(SignBlobInterface $credentials, $expires, $resource, $generation, array $options)
     {
         $expires = $this->normalizeExpiration($expires);
         $resource = $this->normalizeResource($resource);
@@ -170,7 +161,7 @@ class SigningHelper
             );
         }
 
-        $clientEmail = $credentials->getClientEmail();
+        $clientEmail = $credentials->getClientName();
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
         $credential = sprintf('%s/%s', $clientEmail, $credentialScope);
 
@@ -257,11 +248,9 @@ class SigningHelper
         ]);
 
         // Sign the string using the given credentials.
-        $signature = bin2hex(base64_decode($this->signer->signBlob(
-            $credentials,
-            $stringToSign,
-            $options['forceOpenssl']
-        )));
+        $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
+            'forceOpenssl' => $options['forceOpenssl']
+        ])));
 
         // Construct the modified resource name. If a custom cname is provided,
         // this will remove the bucket name from the resource.
@@ -403,7 +392,7 @@ class SigningHelper
                 if (!$options['timestamp']) {
                     throw new \InvalidArgumentException(sprintf(
                         'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
-                        self::V4_TIMESTAMP_STRING .
+                        self::V4_TIMESTAMP_FORMAT .
                         '`. Note that timestamps MUST be in GMT.'
                     ));
                 }

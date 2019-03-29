@@ -18,7 +18,6 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
-use Google\Auth\Signer;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\SigningHelper;
@@ -37,37 +36,26 @@ class SigningHelperTest extends TestCase
     const OBJECT = 'test-object';
     const GENERATION = 11111;
 
-    private $signer;
-
     private $helper;
 
     public function setUp()
     {
-        $this->signer = $this->prophesize(Signer::class);
-        $this->helper = TestHelpers::stub(SigningHelperStub::class, [
-            $this->signer->reveal()
-        ], [
-            'signer'
-        ]);
+        $this->helper = TestHelpers::stub(SigningHelperStub::class);
     }
 
     public function testV2Sign()
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $return = base64_encode('SIGNATURE');
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn($return);
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn($return);
 
         $url = $this->helper->v2Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -92,21 +80,17 @@ class SigningHelperTest extends TestCase
      */
     public function testV2SignParams($key, $value, $paramKey, $paramValue = null, $isOpt = true)
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $return = base64_encode('SIGNATURE');
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn($return);
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn($return);
 
         $url = $this->helper->v2Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -131,7 +115,7 @@ class SigningHelperTest extends TestCase
 
     public function testV2CanonicalRequestAndCname()
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $return = base64_encode('SIGNATURE');
@@ -143,13 +127,10 @@ class SigningHelperTest extends TestCase
             'x-goog-bar' => 'foo'
         ];
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn($return);
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn($return);
 
-        $this->helper->___setProperty('signer', $this->signer->reveal());
         $this->helper->createV2CanonicalRequest = function ($request) use (
             $contentMd5,
             $contentType,
@@ -172,7 +153,7 @@ class SigningHelperTest extends TestCase
         };
 
         $url = $this->helper->v2Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -190,7 +171,7 @@ class SigningHelperTest extends TestCase
 
     public function testV4Sign()
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $now = time();
         $expires = $now + 2;
         $expectedExpires = 2;
@@ -201,16 +182,12 @@ class SigningHelperTest extends TestCase
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn($return);
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn($return);
 
         $url = $this->helper->v4Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -234,7 +211,7 @@ class SigningHelperTest extends TestCase
 
     public function testV4SignCanonicalRequestAndCname()
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $contentType = 'text/plain';
@@ -249,13 +226,9 @@ class SigningHelperTest extends TestCase
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
         $credential = sprintf('%s/%s', self::CLIENT_EMAIL, $credentialScope);
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn('');
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn('');
 
         $this->helper->createV4CanonicalRequest = function ($request) use (
             $resource,
@@ -291,7 +264,7 @@ class SigningHelperTest extends TestCase
         };
 
         $url = $this->helper->v4Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -314,21 +287,17 @@ class SigningHelperTest extends TestCase
      */
     public function testV4CnameFix($cname, $expected = null)
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $return = base64_encode('SIGNATURE');
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn($return);
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn($return);
 
         $url = $this->helper->v4Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -346,21 +315,17 @@ class SigningHelperTest extends TestCase
      */
     public function testV2CnameFix($cname, $expected = null)
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $return = base64_encode('SIGNATURE');
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn($return);
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn($return);
 
         $url = $this->helper->v2Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -386,18 +351,14 @@ class SigningHelperTest extends TestCase
 
     public function testV4SignCanonicalRequestSaveAsName()
     {
-        $credentials = $this->createCredentials();
+        $credentials = $this->createCredentialsMock();
         $expires = time() + 2;
         $resource = $this->createResource();
         $saveAsName = 'test.txt';
 
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn('');
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn('');
 
         $this->helper->createV4CanonicalRequest = function ($request) use ($saveAsName) {
             parse_str($request[2], $query);
@@ -406,7 +367,7 @@ class SigningHelperTest extends TestCase
         };
 
         $this->helper->v4Sign(
-            $credentials,
+            $credentials->reveal(),
             $expires,
             $resource,
             self::GENERATION,
@@ -423,7 +384,7 @@ class SigningHelperTest extends TestCase
     {
         $expires = (new \DateTime)->modify('+20 days');
         $this->helper->v4Sign(
-            $this->createCredentials(),
+            $this->createCredentialsMock()->reveal(),
             $expires,
             '',
             null,
@@ -436,14 +397,10 @@ class SigningHelperTest extends TestCase
      */
     public function testExpirations($expiration, $expected)
     {
-
-        $this->signer->signBlob(
-            Argument::type(ServiceAccountCredentials::class),
-            Argument::type('string'),
-            false
-        )->shouldBeCalled()->willReturn('');
-
-        $this->helper->___setProperty('signer', $this->signer->reveal());
+        $credentials = $this->createCredentialsMock();
+        $credentials->signBlob(Argument::type('string'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn('');
 
         $this->helper->createV2CanonicalRequest = function ($request) use ($expected) {
             $this->assertEquals($expected, $request[3]);
@@ -451,7 +408,7 @@ class SigningHelperTest extends TestCase
         };
 
         $this->helper->v2Sign(
-            $this->createCredentials(),
+            $credentials->reveal(),
             $expiration,
             $this->createResource(),
             self::GENERATION,
@@ -484,7 +441,7 @@ class SigningHelperTest extends TestCase
     public function testInvalidExpiration($method)
     {
         $this->helper->$method(
-            $this->createCredentials(),
+            $this->createCredentialsMock()->reveal(),
             'foobar',
             $this->createResource(),
             self::GENERATION,
@@ -548,6 +505,28 @@ class SigningHelperTest extends TestCase
             ], [
                 ['method' => 'POST'], null, \InvalidArgumentException::class
             ]
+        ];
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @dataProvider invalidTimestamps
+     */
+    public function testNormalizeOptionsInvalidTimestamps($timestamp)
+    {
+        $this->helper->normalizeProxy('normalizeOptions', [
+            ['timestamp' => $timestamp]
+        ]);
+    }
+
+    public function invalidTimestamps()
+    {
+        return [
+            [(object) ['a' => 'b']],
+            [['a' => 'b']],
+            [123],
+            ['hello world'],
+            [date('Y-m-d')]
         ];
     }
 
@@ -630,12 +609,12 @@ class SigningHelperTest extends TestCase
         ];
     }
 
-    private function createCredentials()
+    private function createCredentialsMock()
     {
         $credentials = $this->prophesize(ServiceAccountCredentials::class);
-        $credentials->getClientEmail()->willReturn(self::CLIENT_EMAIL);
+        $credentials->getClientName()->willReturn(self::CLIENT_EMAIL);
 
-        return $credentials->reveal();
+        return $credentials;
     }
 
     private function createResource($bucket = null, $object = null)
