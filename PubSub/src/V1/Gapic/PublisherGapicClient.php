@@ -31,6 +31,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -355,6 +356,13 @@ class PublisherGapicClient
             $request->setMessageStoragePolicy($optionalArgs['messageStoragePolicy']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateTopic',
             Topic::class,
@@ -405,6 +413,13 @@ class PublisherGapicClient
         $request = new UpdateTopicRequest();
         $request->setTopic($topic);
         $request->setUpdateMask($updateMask);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'topic.name' => $request->getTopic()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'UpdateTopic',
@@ -457,6 +472,13 @@ class PublisherGapicClient
         $request->setTopic($topic);
         $request->setMessages($messages);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'topic' => $request->getTopic(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Publish',
             PublishResponse::class,
@@ -500,6 +522,13 @@ class PublisherGapicClient
     {
         $request = new GetTopicRequest();
         $request->setTopic($topic);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'topic' => $request->getTopic(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetTopic',
@@ -575,6 +604,13 @@ class PublisherGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project' => $request->getProject(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListTopics',
             $optionalArgs,
@@ -649,6 +685,13 @@ class PublisherGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'topic' => $request->getTopic(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListTopicSubscriptions',
             $optionalArgs,
@@ -694,6 +737,13 @@ class PublisherGapicClient
     {
         $request = new DeleteTopicRequest();
         $request->setTopic($topic);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'topic' => $request->getTopic(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'DeleteTopic',
@@ -747,6 +797,13 @@ class PublisherGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
@@ -795,6 +852,13 @@ class PublisherGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetIamPolicy',
@@ -850,6 +914,13 @@ class PublisherGapicClient
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
         $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'TestIamPermissions',
