@@ -246,7 +246,7 @@ class VideoIntelligence
             "642e566964656f496e74656c6c6967656e63652e5631ca0221476f6f676c" .
             "655c436c6f75645c566964656f496e74656c6c6967656e63655c56316206" .
             "70726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
