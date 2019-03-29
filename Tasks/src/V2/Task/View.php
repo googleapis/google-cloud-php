@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Tasks\V2\Task;
 
+use UnexpectedValueException;
+
 /**
  * The view specifies a subset of [Task][google.cloud.tasks.v2.Task] data.
  * When a task is returned in a response, not all
@@ -43,6 +45,32 @@ class View
      * Generated from protobuf enum <code>FULL = 2;</code>
      */
     const FULL = 2;
+
+    private static $valueToName = [
+        self::VIEW_UNSPECIFIED => 'VIEW_UNSPECIFIED',
+        self::BASIC => 'BASIC',
+        self::FULL => 'FULL',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
