@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
 
+use UnexpectedValueException;
+
 /**
  * A view for [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]s.
  * Controls the level of detail returned for
@@ -33,6 +35,31 @@ class CryptoKeyVersionView
      * Generated from protobuf enum <code>FULL = 1;</code>
      */
     const FULL = 1;
+
+    private static $valueToName = [
+        self::CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED => 'CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED',
+        self::FULL => 'FULL',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
