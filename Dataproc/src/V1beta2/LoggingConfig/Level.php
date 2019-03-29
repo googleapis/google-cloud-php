@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dataproc\V1beta2\LoggingConfig;
 
+use UnexpectedValueException;
+
 /**
  * The Log4j level for job execution. When running an
  * [Apache Hive](http://hive.apache.org/) job, Cloud
@@ -67,6 +69,38 @@ class Level
      * Generated from protobuf enum <code>OFF = 8;</code>
      */
     const OFF = 8;
+
+    private static $valueToName = [
+        self::LEVEL_UNSPECIFIED => 'LEVEL_UNSPECIFIED',
+        self::ALL => 'ALL',
+        self::TRACE => 'TRACE',
+        self::DEBUG => 'DEBUG',
+        self::INFO => 'INFO',
+        self::WARN => 'WARN',
+        self::ERROR => 'ERROR',
+        self::FATAL => 'FATAL',
+        self::OFF => 'OFF',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

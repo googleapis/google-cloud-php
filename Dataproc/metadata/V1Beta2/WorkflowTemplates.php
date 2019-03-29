@@ -243,7 +243,7 @@ class WorkflowTemplates
             "6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f" .
             "6461746170726f632f763162657461323b6461746170726f63620670726f" .
             "746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

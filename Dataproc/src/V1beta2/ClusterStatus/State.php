@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dataproc\V1beta2\ClusterStatus;
 
+use UnexpectedValueException;
+
 /**
  * The cluster state.
  *
@@ -47,6 +49,35 @@ class State
      * Generated from protobuf enum <code>UPDATING = 5;</code>
      */
     const UPDATING = 5;
+
+    private static $valueToName = [
+        self::UNKNOWN => 'UNKNOWN',
+        self::CREATING => 'CREATING',
+        self::RUNNING => 'RUNNING',
+        self::ERROR => 'ERROR',
+        self::DELETING => 'DELETING',
+        self::UPDATING => 'UPDATING',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
