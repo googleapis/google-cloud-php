@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\TextToSpeech\V1;
 
+use UnexpectedValueException;
+
 /**
  * Configuration to set up audio encoder. The encoding determines the output
  * audio format that we'd like.
@@ -40,5 +42,32 @@ class AudioEncoding
      * Generated from protobuf enum <code>OGG_OPUS = 3;</code>
      */
     const OGG_OPUS = 3;
+
+    private static $valueToName = [
+        self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
+        self::LINEAR16 => 'LINEAR16',
+        self::MP3 => 'MP3',
+        self::OGG_OPUS => 'OGG_OPUS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
