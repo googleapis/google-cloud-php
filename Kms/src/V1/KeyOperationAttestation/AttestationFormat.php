@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Kms\V1\KeyOperationAttestation;
 
+use UnexpectedValueException;
+
 /**
  * Attestion formats provided by the HSM.
  *
@@ -29,6 +31,32 @@ class AttestationFormat
      * Generated from protobuf enum <code>CAVIUM_V2_COMPRESSED = 4;</code>
      */
     const CAVIUM_V2_COMPRESSED = 4;
+
+    private static $valueToName = [
+        self::ATTESTATION_FORMAT_UNSPECIFIED => 'ATTESTATION_FORMAT_UNSPECIFIED',
+        self::CAVIUM_V1_COMPRESSED => 'CAVIUM_V1_COMPRESSED',
+        self::CAVIUM_V2_COMPRESSED => 'CAVIUM_V2_COMPRESSED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

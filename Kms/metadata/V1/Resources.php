@@ -112,7 +112,7 @@ class Resources
             "6c6f75642f6b6d732f76313b6b6d73f80101aa0213476f6f676c652e436c" .
             "6f75642e4b6d732e5631ca0213476f6f676c655c436c6f75645c4b6d735c" .
             "5631620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

@@ -233,7 +233,7 @@ class Service
             "6f676c65617069732f636c6f75642f6b6d732f76313b6b6d73f80101aa02" .
             "13476f6f676c652e436c6f75642e4b6d732e5631ca0213476f6f676c655c" .
             "436c6f75645c4b6d735c5631620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
