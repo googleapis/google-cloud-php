@@ -378,6 +378,20 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getMinValue()</code>
+
+     * For integer and double values specifies minimum allowed value.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
+     * @return float|null
+     */
+    public function getMinValueValue()
+    {
+        $wrapper = $this->getMinValue();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * For integer and double values specifies minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
@@ -393,6 +407,21 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
+
+     * For integer and double values specifies minimum allowed value.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
+     * @param float|null $var
+     * @return $this
+     */
+    public function setMinValueValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
+        return $this->setMinValue($wrappedVar);
+    }
+
+    /**
      * For integer and double values specifies maxminum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
@@ -401,6 +430,20 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     public function getMaxValue()
     {
         return $this->max_value;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getMaxValue()</code>
+
+     * For integer and double values specifies maxminum allowed value.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
+     * @return float|null
+     */
+    public function getMaxValueValue()
+    {
+        $wrapper = $this->getMaxValue();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -416,6 +459,21 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
         $this->max_value = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
+
+     * For integer and double values specifies maxminum allowed value.
+     *
+     * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
+     * @param float|null $var
+     * @return $this
+     */
+    public function setMaxValueValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
+        return $this->setMaxValue($wrappedVar);
     }
 
     /**

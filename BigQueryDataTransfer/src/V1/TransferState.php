@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
+use UnexpectedValueException;
+
 /**
  * Represents data transfer run state.
  *
@@ -48,5 +50,34 @@ class TransferState
      * Generated from protobuf enum <code>CANCELLED = 6;</code>
      */
     const CANCELLED = 6;
+
+    private static $valueToName = [
+        self::TRANSFER_STATE_UNSPECIFIED => 'TRANSFER_STATE_UNSPECIFIED',
+        self::PENDING => 'PENDING',
+        self::RUNNING => 'RUNNING',
+        self::SUCCEEDED => 'SUCCEEDED',
+        self::FAILED => 'FAILED',
+        self::CANCELLED => 'CANCELLED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

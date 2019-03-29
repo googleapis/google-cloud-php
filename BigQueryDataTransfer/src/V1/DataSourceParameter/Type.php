@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter;
 
+use UnexpectedValueException;
+
 /**
  * Parameter type.
  *
@@ -54,6 +56,36 @@ class Type
      * Generated from protobuf enum <code>PLUS_PAGE = 6;</code>
      */
     const PLUS_PAGE = 6;
+
+    private static $valueToName = [
+        self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
+        self::STRING => 'STRING',
+        self::INTEGER => 'INTEGER',
+        self::DOUBLE => 'DOUBLE',
+        self::BOOLEAN => 'BOOLEAN',
+        self::RECORD => 'RECORD',
+        self::PLUS_PAGE => 'PLUS_PAGE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
