@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2;
 
+use UnexpectedValueException;
+
 /**
  * Storage media types for persisting Bigtable data.
  *
@@ -29,5 +31,31 @@ class StorageType
      * Generated from protobuf enum <code>HDD = 2;</code>
      */
     const HDD = 2;
+
+    private static $valueToName = [
+        self::STORAGE_TYPE_UNSPECIFIED => 'STORAGE_TYPE_UNSPECIFIED',
+        self::SSD => 'SSD',
+        self::HDD => 'HDD',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

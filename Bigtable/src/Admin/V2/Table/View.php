@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2\Table;
 
+use UnexpectedValueException;
+
 /**
  * Defines a view over a table's fields.
  *
@@ -42,6 +44,34 @@ class View
      * Generated from protobuf enum <code>FULL = 4;</code>
      */
     const FULL = 4;
+
+    private static $valueToName = [
+        self::VIEW_UNSPECIFIED => 'VIEW_UNSPECIFIED',
+        self::NAME_ONLY => 'NAME_ONLY',
+        self::SCHEMA_VIEW => 'SCHEMA_VIEW',
+        self::REPLICATION_VIEW => 'REPLICATION_VIEW',
+        self::FULL => 'FULL',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
