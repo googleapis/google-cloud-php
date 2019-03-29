@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta2;
 
+use UnexpectedValueException;
+
 /**
  * Video annotation feature.
  *
@@ -41,5 +43,33 @@ class Feature
      * Generated from protobuf enum <code>FACE_DETECTION = 4;</code>
      */
     const FACE_DETECTION = 4;
+
+    private static $valueToName = [
+        self::FEATURE_UNSPECIFIED => 'FEATURE_UNSPECIFIED',
+        self::LABEL_DETECTION => 'LABEL_DETECTION',
+        self::SHOT_CHANGE_DETECTION => 'SHOT_CHANGE_DETECTION',
+        self::EXPLICIT_CONTENT_DETECTION => 'EXPLICIT_CONTENT_DETECTION',
+        self::FACE_DETECTION => 'FACE_DETECTION',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

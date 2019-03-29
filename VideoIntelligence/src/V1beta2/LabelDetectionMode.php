@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta2;
 
+use UnexpectedValueException;
+
 /**
  * Label detection mode.
  *
@@ -35,5 +37,32 @@ class LabelDetectionMode
      * Generated from protobuf enum <code>SHOT_AND_FRAME_MODE = 3;</code>
      */
     const SHOT_AND_FRAME_MODE = 3;
+
+    private static $valueToName = [
+        self::LABEL_DETECTION_MODE_UNSPECIFIED => 'LABEL_DETECTION_MODE_UNSPECIFIED',
+        self::SHOT_MODE => 'SHOT_MODE',
+        self::FRAME_MODE => 'FRAME_MODE',
+        self::SHOT_AND_FRAME_MODE => 'SHOT_AND_FRAME_MODE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
