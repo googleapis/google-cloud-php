@@ -318,6 +318,22 @@ class Variable extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getVarTableIndex()</code>
+
+     * Reference to a variable in the shared variable table. More than
+     * one variable can reference the same variable in the table. The
+     * `var_table_index` field is an index into `variable_table` in Breakpoint.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value var_table_index = 4;</code>
+     * @return int|null
+     */
+    public function getVarTableIndexValue()
+    {
+        $wrapper = $this->getVarTableIndex();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * Reference to a variable in the shared variable table. More than
      * one variable can reference the same variable in the table. The
      * `var_table_index` field is an index into `variable_table` in Breakpoint.
@@ -332,6 +348,23 @@ class Variable extends \Google\Protobuf\Internal\Message
         $this->var_table_index = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * Reference to a variable in the shared variable table. More than
+     * one variable can reference the same variable in the table. The
+     * `var_table_index` field is an index into `variable_table` in Breakpoint.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value var_table_index = 4;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setVarTableIndexValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
+        return $this->setVarTableIndex($wrappedVar);
     }
 
     /**

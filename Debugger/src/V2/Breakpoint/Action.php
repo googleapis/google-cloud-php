@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Debugger\V2\Breakpoint;
 
+use UnexpectedValueException;
+
 /**
  * Actions that can be taken when a breakpoint hits.
  * Agents should reject breakpoints with unsupported or unknown action values.
@@ -27,6 +29,31 @@ class Action
      * Generated from protobuf enum <code>LOG = 1;</code>
      */
     const LOG = 1;
+
+    private static $valueToName = [
+        self::CAPTURE => 'CAPTURE',
+        self::LOG => 'LOG',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
