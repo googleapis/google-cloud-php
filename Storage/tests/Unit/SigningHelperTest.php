@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\SigningHelper;
@@ -562,6 +563,33 @@ class SigningHelperTest extends TestCase
                     'x-goog-bar' => 'testtest, testtest'
                 ]
             ]
+        ];
+    }
+
+    /**
+     * @dataProvider v2InvalidHeaders
+     * @expectedException InvalidArgumentException
+     */
+    public function testV2InvalidHeaders($header)
+    {
+        $this->helper->v2Sign(
+            $this->prophesize(SignBlobInterface::class)->reveal(),
+            time() + 10,
+            '/foo/bar',
+            null,
+            [
+                'headers' => [
+                    $header => 'val'
+                ]
+            ]
+        );
+    }
+
+    public function v2InvalidHeaders()
+    {
+        return [
+            ['x-goog-encryption-key'],
+            ['x-goog-encryption-key-sha256']
         ];
     }
 

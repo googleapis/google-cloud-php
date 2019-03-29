@@ -355,8 +355,6 @@ class SigningHelper
             'UNSIGNED-PAYLOAD'
         ];
 
-        // echo implode("\n", $canonicalRequest);exit;
-
         // Create a request hash to be signed.
         $requestHash = $this->createV4CanonicalRequest($canonicalRequest);
 

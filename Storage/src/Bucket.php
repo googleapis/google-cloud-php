@@ -1246,6 +1246,18 @@ class Bucket
     /**
      * Create a Signed URL listing objects in this bucket.
      *
+     * Example:
+     * ```
+     * $url = $bucket->signedUrl(time() + 3600);
+     * ```
+     *
+     * ```
+     * // Use V4 Signing
+     * $url = $bucket->signedUrl(time() + 3600, [
+     *     'version' => 'v4'
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
      *
      * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
@@ -1276,29 +1288,23 @@ class Bucket
      *           Header values will be trimmed of leading and trailing spaces,
      *           multiple spaces within values will be collapsed to a single
      *           space, and line breaks will be replaced by an empty string.
+     *           V2 Signed URLs may not provide `x-goog-encryption-key` or
+     *           `x-goog-encryption-key-sha256` headers.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type string $method One of `GET`, `PUT` or `DELETE`.
-     *           **Defaults to** `GET`.
-     *     @type string $responseDisposition The
-     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
-     *           parameter of the signed url.
-     *     @type string $responseType The `response-content-type` parameter of the
-     *           signed url. When the server contentType is `null`, this option
-     *           may be used to control the content type of the response.
-     *     @type string $saveAsName The filename to prompt the user to save the
-     *           file as when the signed url is accessed. This is ignored if
-     *           `$options.responseDisposition` is set.
      *     @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". In the future, "v4" will
+     *           become the default option.  You may experience breaking changes
+     *           if you use longer than 7 day expiration times with v4. To
+     *           opt-in to the behavior choose "v4". **Defaults to** "v2".
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.

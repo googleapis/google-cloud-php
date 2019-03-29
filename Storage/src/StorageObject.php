@@ -797,6 +797,8 @@ class StorageObject
      *           Header values will be trimmed of leading and trailing spaces,
      *           multiple spaces within values will be collapsed to a single
      *           space, and line breaks will be replaced by an empty string.
+     *           V2 Signed URLs may not provide `x-goog-encryption-key` or
+     *           `x-goog-encryption-key-sha256` headers.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -913,6 +915,8 @@ class StorageObject
      *           Header values will be trimmed of leading and trailing spaces,
      *           multiple spaces within values will be collapsed to a single
      *           space, and line breaks will be replaced by an empty string.
+     *           V2 Signed URLs may not provide `x-goog-encryption-key` or
+     *           `x-goog-encryption-key-sha256` headers.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
@@ -1007,6 +1011,8 @@ class StorageObject
      *           Header values will be trimmed of leading and trailing spaces,
      *           multiple spaces within values will be collapsed to a single
      *           space, and line breaks will be replaced by an empty string.
+     *           V2 Signed URLs may not provide `x-goog-encryption-key` or
+     *           `x-goog-encryption-key-sha256` headers.
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
