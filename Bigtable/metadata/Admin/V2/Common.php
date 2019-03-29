@@ -29,7 +29,7 @@ class Common
             "61646d696eaa021e476f6f676c652e436c6f75642e4269677461626c652e" .
             "41646d696e2e5632ca021e476f6f676c655c436c6f75645c426967746162" .
             "6c655c41646d696e5c5632620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

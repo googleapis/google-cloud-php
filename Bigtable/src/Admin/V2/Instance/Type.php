@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2\Instance;
 
+use UnexpectedValueException;
+
 /**
  * The type of the instance.
  *
@@ -38,6 +40,32 @@ class Type
      * Generated from protobuf enum <code>DEVELOPMENT = 2;</code>
      */
     const DEVELOPMENT = 2;
+
+    private static $valueToName = [
+        self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
+        self::PRODUCTION => 'PRODUCTION',
+        self::DEVELOPMENT => 'DEVELOPMENT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

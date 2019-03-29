@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Bigtable\Admin\V2\Table\ClusterState;
 
+use UnexpectedValueException;
+
 /**
  * Table replication states.
  *
@@ -47,6 +49,34 @@ class ReplicationState
      * Generated from protobuf enum <code>READY = 4;</code>
      */
     const READY = 4;
+
+    private static $valueToName = [
+        self::STATE_NOT_KNOWN => 'STATE_NOT_KNOWN',
+        self::INITIALIZING => 'INITIALIZING',
+        self::PLANNED_MAINTENANCE => 'PLANNED_MAINTENANCE',
+        self::UNPLANNED_MAINTENANCE => 'UNPLANNED_MAINTENANCE',
+        self::READY => 'READY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

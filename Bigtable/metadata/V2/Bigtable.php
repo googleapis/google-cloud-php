@@ -123,7 +123,7 @@ class Bigtable
             "61626c65aa0218476f6f676c652e436c6f75642e4269677461626c652e56" .
             "32ca0218476f6f676c655c436c6f75645c4269677461626c655c56326206" .
             "70726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
