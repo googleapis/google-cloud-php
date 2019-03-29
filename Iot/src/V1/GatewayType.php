@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Iot\V1;
 
+use UnexpectedValueException;
+
 /**
  * Gateway type.
  *
@@ -29,5 +31,31 @@ class GatewayType
      * Generated from protobuf enum <code>NON_GATEWAY = 2;</code>
      */
     const NON_GATEWAY = 2;
+
+    private static $valueToName = [
+        self::GATEWAY_TYPE_UNSPECIFIED => 'GATEWAY_TYPE_UNSPECIFIED',
+        self::GATEWAY => 'GATEWAY',
+        self::NON_GATEWAY => 'NON_GATEWAY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

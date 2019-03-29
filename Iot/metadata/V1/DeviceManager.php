@@ -258,7 +258,7 @@ class DeviceManager
             "6963654d616e6167657250726f746f50015a36676f6f676c652e676f6c61" .
             "6e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f" .
             "75642f696f742f76313b696f74f80101620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

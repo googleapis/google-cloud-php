@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Iot\V1;
 
+use UnexpectedValueException;
+
 /**
  * The supported formats for the public key.
  *
@@ -53,5 +55,33 @@ class PublicKeyFormat
      * Generated from protobuf enum <code>ES256_X509_PEM = 4;</code>
      */
     const ES256_X509_PEM = 4;
+
+    private static $valueToName = [
+        self::UNSPECIFIED_PUBLIC_KEY_FORMAT => 'UNSPECIFIED_PUBLIC_KEY_FORMAT',
+        self::RSA_PEM => 'RSA_PEM',
+        self::RSA_X509_PEM => 'RSA_X509_PEM',
+        self::ES256_PEM => 'ES256_PEM',
+        self::ES256_X509_PEM => 'ES256_X509_PEM',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

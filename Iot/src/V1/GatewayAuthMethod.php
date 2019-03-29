@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Iot\V1;
 
+use UnexpectedValueException;
+
 /**
  * The gateway authorization/authentication method. This setting determines how
  * Cloud IoT Core authorizes/authenticate devices to access the gateway.
@@ -41,5 +43,32 @@ class GatewayAuthMethod
      * Generated from protobuf enum <code>ASSOCIATION_AND_DEVICE_AUTH_TOKEN = 3;</code>
      */
     const ASSOCIATION_AND_DEVICE_AUTH_TOKEN = 3;
+
+    private static $valueToName = [
+        self::GATEWAY_AUTH_METHOD_UNSPECIFIED => 'GATEWAY_AUTH_METHOD_UNSPECIFIED',
+        self::ASSOCIATION_ONLY => 'ASSOCIATION_ONLY',
+        self::DEVICE_AUTH_TOKEN_ONLY => 'DEVICE_AUTH_TOKEN_ONLY',
+        self::ASSOCIATION_AND_DEVICE_AUTH_TOKEN => 'ASSOCIATION_AND_DEVICE_AUTH_TOKEN',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

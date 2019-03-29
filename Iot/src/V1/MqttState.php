@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Iot\V1;
 
+use UnexpectedValueException;
+
 /**
  * Indicates whether an MQTT connection is enabled or disabled. See the field
  * description for details.
@@ -30,5 +32,31 @@ class MqttState
      * Generated from protobuf enum <code>MQTT_DISABLED = 2;</code>
      */
     const MQTT_DISABLED = 2;
+
+    private static $valueToName = [
+        self::MQTT_STATE_UNSPECIFIED => 'MQTT_STATE_UNSPECIFIED',
+        self::MQTT_ENABLED => 'MQTT_ENABLED',
+        self::MQTT_DISABLED => 'MQTT_DISABLED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
