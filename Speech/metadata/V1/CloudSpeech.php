@@ -131,7 +131,7 @@ class CloudSpeech
             "726f746f50015a3c676f6f676c652e676f6c616e672e6f72672f67656e70" .
             "726f746f2f676f6f676c65617069732f636c6f75642f7370656563682f76" .
             "313b737065656368f80101620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
