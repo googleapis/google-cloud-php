@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Iot\V1;
 
+use UnexpectedValueException;
+
 /**
  * **Beta Feature**
  * The logging verbosity for device activity. Specifies which events should be
@@ -46,5 +48,33 @@ class LogLevel
      * Generated from protobuf enum <code>DEBUG = 40;</code>
      */
     const DEBUG = 40;
+
+    private static $valueToName = [
+        self::LOG_LEVEL_UNSPECIFIED => 'LOG_LEVEL_UNSPECIFIED',
+        self::NONE => 'NONE',
+        self::ERROR => 'ERROR',
+        self::INFO => 'INFO',
+        self::DEBUG => 'DEBUG',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
