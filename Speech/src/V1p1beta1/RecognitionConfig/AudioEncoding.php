@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Speech\V1p1beta1\RecognitionConfig;
 
+use UnexpectedValueException;
+
 /**
  * The encoding of the audio data sent in the request.
  * All encodings support only 1 channel (mono) audio.
@@ -95,6 +97,37 @@ class AudioEncoding
      * Generated from protobuf enum <code>SPEEX_WITH_HEADER_BYTE = 7;</code>
      */
     const SPEEX_WITH_HEADER_BYTE = 7;
+
+    private static $valueToName = [
+        self::ENCODING_UNSPECIFIED => 'ENCODING_UNSPECIFIED',
+        self::LINEAR16 => 'LINEAR16',
+        self::FLAC => 'FLAC',
+        self::MULAW => 'MULAW',
+        self::AMR => 'AMR',
+        self::AMR_WB => 'AMR_WB',
+        self::OGG_OPUS => 'OGG_OPUS',
+        self::SPEEX_WITH_HEADER_BYTE => 'SPEEX_WITH_HEADER_BYTE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

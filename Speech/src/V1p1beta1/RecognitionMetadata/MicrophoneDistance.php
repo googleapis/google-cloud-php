@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Speech\V1p1beta1\RecognitionMetadata;
 
+use UnexpectedValueException;
+
 /**
  * Enumerates the types of capture settings describing an audio file.
  *
@@ -37,6 +39,33 @@ class MicrophoneDistance
      * Generated from protobuf enum <code>FARFIELD = 3;</code>
      */
     const FARFIELD = 3;
+
+    private static $valueToName = [
+        self::MICROPHONE_DISTANCE_UNSPECIFIED => 'MICROPHONE_DISTANCE_UNSPECIFIED',
+        self::NEARFIELD => 'NEARFIELD',
+        self::MIDFIELD => 'MIDFIELD',
+        self::FARFIELD => 'FARFIELD',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

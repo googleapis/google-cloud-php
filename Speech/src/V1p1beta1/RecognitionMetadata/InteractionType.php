@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Speech\V1p1beta1\RecognitionMetadata;
 
+use UnexpectedValueException;
+
 /**
  * Use case categories that the audio recognition request can be described
  * by.
@@ -73,6 +75,38 @@ class InteractionType
      * Generated from protobuf enum <code>DICTATION = 8;</code>
      */
     const DICTATION = 8;
+
+    private static $valueToName = [
+        self::INTERACTION_TYPE_UNSPECIFIED => 'INTERACTION_TYPE_UNSPECIFIED',
+        self::DISCUSSION => 'DISCUSSION',
+        self::PRESENTATION => 'PRESENTATION',
+        self::PHONE_CALL => 'PHONE_CALL',
+        self::VOICEMAIL => 'VOICEMAIL',
+        self::PROFESSIONALLY_PRODUCED => 'PROFESSIONALLY_PRODUCED',
+        self::VOICE_SEARCH => 'VOICE_SEARCH',
+        self::VOICE_COMMAND => 'VOICE_COMMAND',
+        self::DICTATION => 'DICTATION',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
