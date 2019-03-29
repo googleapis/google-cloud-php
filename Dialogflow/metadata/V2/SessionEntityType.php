@@ -98,7 +98,7 @@ class SessionEntityType
             "2f636c6f75642f6469616c6f67666c6f772f76323b6469616c6f67666c6f" .
             "77f80101a202024446aa021a476f6f676c652e436c6f75642e4469616c6f" .
             "67666c6f772e5632620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

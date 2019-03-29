@@ -159,7 +159,7 @@ class EntityType
             "69732f636c6f75642f6469616c6f67666c6f772f76323b6469616c6f6766" .
             "6c6f77f80101a202024446aa021a476f6f676c652e436c6f75642e446961" .
             "6c6f67666c6f772e5632620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

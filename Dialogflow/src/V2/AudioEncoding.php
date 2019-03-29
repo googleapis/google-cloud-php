@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dialogflow\V2;
 
+use UnexpectedValueException;
+
 /**
  * Audio encoding of the audio content sent in the conversational query request.
  * Refer to the [Cloud Speech API documentation](/speech/docs/basics) for more
@@ -79,5 +81,36 @@ class AudioEncoding
      * Generated from protobuf enum <code>AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE = 7;</code>
      */
     const AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE = 7;
+
+    private static $valueToName = [
+        self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
+        self::AUDIO_ENCODING_LINEAR_16 => 'AUDIO_ENCODING_LINEAR_16',
+        self::AUDIO_ENCODING_FLAC => 'AUDIO_ENCODING_FLAC',
+        self::AUDIO_ENCODING_MULAW => 'AUDIO_ENCODING_MULAW',
+        self::AUDIO_ENCODING_AMR => 'AUDIO_ENCODING_AMR',
+        self::AUDIO_ENCODING_AMR_WB => 'AUDIO_ENCODING_AMR_WB',
+        self::AUDIO_ENCODING_OGG_OPUS => 'AUDIO_ENCODING_OGG_OPUS',
+        self::AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE => 'AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
