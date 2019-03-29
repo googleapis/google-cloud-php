@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * Depending on the language, Form can be categorizing different forms of
  * verbs, adjectives, adverbs, etc. For example, categorizing inflected
@@ -86,6 +88,41 @@ class Form
      * Generated from protobuf enum <code>SPECIFIC = 11;</code>
      */
     const SPECIFIC = 11;
+
+    private static $valueToName = [
+        self::FORM_UNKNOWN => 'FORM_UNKNOWN',
+        self::ADNOMIAL => 'ADNOMIAL',
+        self::AUXILIARY => 'AUXILIARY',
+        self::COMPLEMENTIZER => 'COMPLEMENTIZER',
+        self::FINAL_ENDING => 'FINAL_ENDING',
+        self::GERUND => 'GERUND',
+        self::REALIS => 'REALIS',
+        self::IRREALIS => 'IRREALIS',
+        self::SHORT => 'SHORT',
+        self::LONG => 'LONG',
+        self::ORDER => 'ORDER',
+        self::SPECIFIC => 'SPECIFIC',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

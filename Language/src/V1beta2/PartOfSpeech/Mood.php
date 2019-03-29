@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * The grammatical feature of verbs, used for showing modality and attitude.
  *
@@ -53,6 +55,36 @@ class Mood
      * Generated from protobuf enum <code>SUBJUNCTIVE = 6;</code>
      */
     const SUBJUNCTIVE = 6;
+
+    private static $valueToName = [
+        self::MOOD_UNKNOWN => 'MOOD_UNKNOWN',
+        self::CONDITIONAL_MOOD => 'CONDITIONAL_MOOD',
+        self::IMPERATIVE => 'IMPERATIVE',
+        self::INDICATIVE => 'INDICATIVE',
+        self::INTERROGATIVE => 'INTERROGATIVE',
+        self::JUSSIVE => 'JUSSIVE',
+        self::SUBJUNCTIVE => 'SUBJUNCTIVE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

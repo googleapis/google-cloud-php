@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * Gender classes of nouns reflected in the behaviour of associated words.
  *
@@ -35,6 +37,33 @@ class Gender
      * Generated from protobuf enum <code>NEUTER = 3;</code>
      */
     const NEUTER = 3;
+
+    private static $valueToName = [
+        self::GENDER_UNKNOWN => 'GENDER_UNKNOWN',
+        self::FEMININE => 'FEMININE',
+        self::MASCULINE => 'MASCULINE',
+        self::NEUTER => 'NEUTER',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

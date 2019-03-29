@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * This category shows if the token is part of a proper name.
  *
@@ -29,6 +31,32 @@ class Proper
      * Generated from protobuf enum <code>NOT_PROPER = 2;</code>
      */
     const NOT_PROPER = 2;
+
+    private static $valueToName = [
+        self::PROPER_UNKNOWN => 'PROPER_UNKNOWN',
+        self::PROPER => 'PROPER',
+        self::NOT_PROPER => 'NOT_PROPER',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

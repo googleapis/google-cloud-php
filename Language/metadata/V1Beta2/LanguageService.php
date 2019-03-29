@@ -293,7 +293,7 @@ class LanguageService
             "672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f6c61" .
             "6e67756167652f763162657461323b6c616e6775616765620670726f746f" .
             "33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

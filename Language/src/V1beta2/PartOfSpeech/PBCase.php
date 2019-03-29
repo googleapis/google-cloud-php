@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\PartOfSpeech;
 
+use UnexpectedValueException;
+
 /**
  * The grammatical function performed by a noun or pronoun in a phrase,
  * clause, or sentence. In some languages, other parts of speech, such as
@@ -103,6 +105,44 @@ class PBCase
      * Generated from protobuf enum <code>VOCATIVE = 14;</code>
      */
     const VOCATIVE = 14;
+
+    private static $valueToName = [
+        self::CASE_UNKNOWN => 'CASE_UNKNOWN',
+        self::ACCUSATIVE => 'ACCUSATIVE',
+        self::ADVERBIAL => 'ADVERBIAL',
+        self::COMPLEMENTIVE => 'COMPLEMENTIVE',
+        self::DATIVE => 'DATIVE',
+        self::GENITIVE => 'GENITIVE',
+        self::INSTRUMENTAL => 'INSTRUMENTAL',
+        self::LOCATIVE => 'LOCATIVE',
+        self::NOMINATIVE => 'NOMINATIVE',
+        self::OBLIQUE => 'OBLIQUE',
+        self::PARTITIVE => 'PARTITIVE',
+        self::PREPOSITIONAL => 'PREPOSITIONAL',
+        self::REFLEXIVE_CASE => 'REFLEXIVE_CASE',
+        self::RELATIVE_CASE => 'RELATIVE_CASE',
+        self::VOCATIVE => 'VOCATIVE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Language\V1beta2\Entity;
 
+use UnexpectedValueException;
+
 /**
  * The type of the entity.
  *
@@ -59,6 +61,37 @@ class Type
      * Generated from protobuf enum <code>OTHER = 7;</code>
      */
     const OTHER = 7;
+
+    private static $valueToName = [
+        self::UNKNOWN => 'UNKNOWN',
+        self::PERSON => 'PERSON',
+        self::LOCATION => 'LOCATION',
+        self::ORGANIZATION => 'ORGANIZATION',
+        self::EVENT => 'EVENT',
+        self::WORK_OF_ART => 'WORK_OF_ART',
+        self::CONSUMER_GOOD => 'CONSUMER_GOOD',
+        self::OTHER => 'OTHER',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
