@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Container\V1\Operation;
 
+use UnexpectedValueException;
+
 /**
  * Operation type.
  *
@@ -113,6 +115,46 @@ class Type
      * Generated from protobuf enum <code>SET_MAINTENANCE_POLICY = 16;</code>
      */
     const SET_MAINTENANCE_POLICY = 16;
+
+    private static $valueToName = [
+        self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
+        self::CREATE_CLUSTER => 'CREATE_CLUSTER',
+        self::DELETE_CLUSTER => 'DELETE_CLUSTER',
+        self::UPGRADE_MASTER => 'UPGRADE_MASTER',
+        self::UPGRADE_NODES => 'UPGRADE_NODES',
+        self::REPAIR_CLUSTER => 'REPAIR_CLUSTER',
+        self::UPDATE_CLUSTER => 'UPDATE_CLUSTER',
+        self::CREATE_NODE_POOL => 'CREATE_NODE_POOL',
+        self::DELETE_NODE_POOL => 'DELETE_NODE_POOL',
+        self::SET_NODE_POOL_MANAGEMENT => 'SET_NODE_POOL_MANAGEMENT',
+        self::AUTO_REPAIR_NODES => 'AUTO_REPAIR_NODES',
+        self::AUTO_UPGRADE_NODES => 'AUTO_UPGRADE_NODES',
+        self::SET_LABELS => 'SET_LABELS',
+        self::SET_MASTER_AUTH => 'SET_MASTER_AUTH',
+        self::SET_NODE_POOL_SIZE => 'SET_NODE_POOL_SIZE',
+        self::SET_NETWORK_POLICY => 'SET_NETWORK_POLICY',
+        self::SET_MAINTENANCE_POLICY => 'SET_MAINTENANCE_POLICY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

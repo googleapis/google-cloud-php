@@ -637,7 +637,7 @@ class ClusterService
             "aa0219476f6f676c652e436c6f75642e436f6e7461696e65722e5631ca02" .
             "19476f6f676c655c436c6f75645c436f6e7461696e65725c563162067072" .
             "6f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
