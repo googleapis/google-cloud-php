@@ -57,7 +57,7 @@ class Task
             "746f50015a3a676f6f676c652e676f6c616e672e6f72672f67656e70726f" .
             "746f2f676f6f676c65617069732f636c6f75642f7461736b732f76323b74" .
             "61736b73620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

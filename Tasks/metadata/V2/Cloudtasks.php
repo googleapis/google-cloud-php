@@ -157,7 +157,7 @@ class Cloudtasks
             "676f6c616e672e6f72672f67656e70726f746f2f676f6f676c6561706973" .
             "2f636c6f75642f7461736b732f76323b7461736b73a202055441534b5362" .
             "0670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
