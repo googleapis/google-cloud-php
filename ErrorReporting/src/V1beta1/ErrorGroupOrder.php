@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
+use UnexpectedValueException;
+
 /**
  * A sorting order of error groups.
  *
@@ -42,5 +44,33 @@ class ErrorGroupOrder
      * Generated from protobuf enum <code>AFFECTED_USERS_DESC = 4;</code>
      */
     const AFFECTED_USERS_DESC = 4;
+
+    private static $valueToName = [
+        self::GROUP_ORDER_UNSPECIFIED => 'GROUP_ORDER_UNSPECIFIED',
+        self::COUNT_DESC => 'COUNT_DESC',
+        self::LAST_SEEN_DESC => 'LAST_SEEN_DESC',
+        self::CREATED_DESC => 'CREATED_DESC',
+        self::AFFECTED_USERS_DESC => 'AFFECTED_USERS_DESC',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

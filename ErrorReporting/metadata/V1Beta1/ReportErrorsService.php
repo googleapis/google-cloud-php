@@ -56,7 +56,7 @@ class ReportErrorsService
             "6f6f676c652e436c6f75642e4572726f725265706f7274696e672e563142" .
             "65746131ca0223476f6f676c655c436c6f75645c4572726f725265706f72" .
             "74696e675c56316265746131620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

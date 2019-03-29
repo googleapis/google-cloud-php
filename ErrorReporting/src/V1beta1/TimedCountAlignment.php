@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
+use UnexpectedValueException;
+
 /**
  * Specifies how the time periods of error group counts are aligned.
  *
@@ -39,5 +41,31 @@ class TimedCountAlignment
      * Generated from protobuf enum <code>ALIGNMENT_EQUAL_AT_END = 2;</code>
      */
     const ALIGNMENT_EQUAL_AT_END = 2;
+
+    private static $valueToName = [
+        self::ERROR_COUNT_ALIGNMENT_UNSPECIFIED => 'ERROR_COUNT_ALIGNMENT_UNSPECIFIED',
+        self::ALIGNMENT_EQUAL_ROUNDED => 'ALIGNMENT_EQUAL_ROUNDED',
+        self::ALIGNMENT_EQUAL_AT_END => 'ALIGNMENT_EQUAL_AT_END',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
