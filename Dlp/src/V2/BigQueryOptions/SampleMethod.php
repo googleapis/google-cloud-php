@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2\BigQueryOptions;
 
+use UnexpectedValueException;
+
 /**
  * How to sample rows if not all rows are scanned. Meaningful only when used
  * in conjunction with either rows_limit or rows_limit_percent. If not
@@ -29,6 +31,32 @@ class SampleMethod
      * Generated from protobuf enum <code>RANDOM_START = 2;</code>
      */
     const RANDOM_START = 2;
+
+    private static $valueToName = [
+        self::SAMPLE_METHOD_UNSPECIFIED => 'SAMPLE_METHOD_UNSPECIFIED',
+        self::TOP => 'TOP',
+        self::RANDOM_START => 'RANDOM_START',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

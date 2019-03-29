@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2;
 
+use UnexpectedValueException;
+
 /**
  * Type of the match which can be applied to different ways of matching, like
  * Dictionary, regular expression and intersecting with findings of another
@@ -46,5 +48,32 @@ class MatchingType
      * Generated from protobuf enum <code>MATCHING_TYPE_INVERSE_MATCH = 3;</code>
      */
     const MATCHING_TYPE_INVERSE_MATCH = 3;
+
+    private static $valueToName = [
+        self::MATCHING_TYPE_UNSPECIFIED => 'MATCHING_TYPE_UNSPECIFIED',
+        self::MATCHING_TYPE_FULL_MATCH => 'MATCHING_TYPE_FULL_MATCH',
+        self::MATCHING_TYPE_PARTIAL_MATCH => 'MATCHING_TYPE_PARTIAL_MATCH',
+        self::MATCHING_TYPE_INVERSE_MATCH => 'MATCHING_TYPE_INVERSE_MATCH',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

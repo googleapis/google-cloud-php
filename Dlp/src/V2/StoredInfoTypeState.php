@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2;
 
+use UnexpectedValueException;
+
 /**
  * State of a StoredInfoType version.
  *
@@ -42,5 +44,33 @@ class StoredInfoTypeState
      * Generated from protobuf enum <code>INVALID = 4;</code>
      */
     const INVALID = 4;
+
+    private static $valueToName = [
+        self::STORED_INFO_TYPE_STATE_UNSPECIFIED => 'STORED_INFO_TYPE_STATE_UNSPECIFIED',
+        self::PENDING => 'PENDING',
+        self::READY => 'READY',
+        self::FAILED => 'FAILED',
+        self::INVALID => 'INVALID',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
