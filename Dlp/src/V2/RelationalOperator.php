@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2;
 
+use UnexpectedValueException;
+
 /**
  * Operators available for comparing the value of fields.
  *
@@ -57,5 +59,36 @@ class RelationalOperator
      * Generated from protobuf enum <code>EXISTS = 7;</code>
      */
     const EXISTS = 7;
+
+    private static $valueToName = [
+        self::RELATIONAL_OPERATOR_UNSPECIFIED => 'RELATIONAL_OPERATOR_UNSPECIFIED',
+        self::EQUAL_TO => 'EQUAL_TO',
+        self::NOT_EQUAL_TO => 'NOT_EQUAL_TO',
+        self::GREATER_THAN => 'GREATER_THAN',
+        self::LESS_THAN => 'LESS_THAN',
+        self::GREATER_THAN_OR_EQUALS => 'GREATER_THAN_OR_EQUALS',
+        self::LESS_THAN_OR_EQUALS => 'LESS_THAN_OR_EQUALS',
+        self::EXISTS => 'EXISTS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

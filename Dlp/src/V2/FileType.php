@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2;
 
+use UnexpectedValueException;
+
 /**
  * Definitions of file type groups to scan.
  *
@@ -42,5 +44,32 @@ class FileType
      * Generated from protobuf enum <code>IMAGE = 3;</code>
      */
     const IMAGE = 3;
+
+    private static $valueToName = [
+        self::FILE_TYPE_UNSPECIFIED => 'FILE_TYPE_UNSPECIFIED',
+        self::BINARY_FILE => 'BINARY_FILE',
+        self::TEXT_FILE => 'TEXT_FILE',
+        self::IMAGE => 'IMAGE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2\TransformationSummary;
 
+use UnexpectedValueException;
+
 /**
  * Possible outcomes of transformations.
  *
@@ -23,6 +25,32 @@ class TransformationResultCode
      * Generated from protobuf enum <code>ERROR = 2;</code>
      */
     const ERROR = 2;
+
+    private static $valueToName = [
+        self::TRANSFORMATION_RESULT_CODE_UNSPECIFIED => 'TRANSFORMATION_RESULT_CODE_UNSPECIFIED',
+        self::SUCCESS => 'SUCCESS',
+        self::ERROR => 'ERROR',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

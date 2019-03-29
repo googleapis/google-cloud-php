@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2\ByteContentItem;
 
+use UnexpectedValueException;
+
 /**
  * Protobuf type <code>google.privacy.dlp.v2.ByteContentItem.BytesType</code>
  */
@@ -37,6 +39,36 @@ class BytesType
      * Generated from protobuf enum <code>TEXT_UTF8 = 5;</code>
      */
     const TEXT_UTF8 = 5;
+
+    private static $valueToName = [
+        self::BYTES_TYPE_UNSPECIFIED => 'BYTES_TYPE_UNSPECIFIED',
+        self::IMAGE => 'IMAGE',
+        self::IMAGE_JPEG => 'IMAGE_JPEG',
+        self::IMAGE_BMP => 'IMAGE_BMP',
+        self::IMAGE_PNG => 'IMAGE_PNG',
+        self::IMAGE_SVG => 'IMAGE_SVG',
+        self::TEXT_UTF8 => 'TEXT_UTF8',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2\DlpJob;
 
+use UnexpectedValueException;
+
 /**
  * Protobuf type <code>google.privacy.dlp.v2.DlpJob.JobState</code>
  */
@@ -43,6 +45,35 @@ class JobState
      * Generated from protobuf enum <code>FAILED = 5;</code>
      */
     const FAILED = 5;
+
+    private static $valueToName = [
+        self::JOB_STATE_UNSPECIFIED => 'JOB_STATE_UNSPECIFIED',
+        self::PENDING => 'PENDING',
+        self::RUNNING => 'RUNNING',
+        self::DONE => 'DONE',
+        self::CANCELED => 'CANCELED',
+        self::FAILED => 'FAILED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

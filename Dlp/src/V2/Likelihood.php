@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2;
 
+use UnexpectedValueException;
+
 /**
  * Categorization of results based on how likely they are to represent a match,
  * based on the number of elements they contain which imply a match.
@@ -44,5 +46,34 @@ class Likelihood
      * Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
      */
     const VERY_LIKELY = 5;
+
+    private static $valueToName = [
+        self::LIKELIHOOD_UNSPECIFIED => 'LIKELIHOOD_UNSPECIFIED',
+        self::VERY_UNLIKELY => 'VERY_UNLIKELY',
+        self::UNLIKELY => 'UNLIKELY',
+        self::POSSIBLE => 'POSSIBLE',
+        self::LIKELY => 'LIKELY',
+        self::VERY_LIKELY => 'VERY_LIKELY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

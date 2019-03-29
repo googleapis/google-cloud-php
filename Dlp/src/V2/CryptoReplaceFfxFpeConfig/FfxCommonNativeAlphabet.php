@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig;
 
+use UnexpectedValueException;
+
 /**
  * These are commonly used subsets of the alphabet that the FFX mode
  * natively supports. In the algorithm, the alphabet is selected using
@@ -41,6 +43,34 @@ class FfxCommonNativeAlphabet
      * Generated from protobuf enum <code>ALPHA_NUMERIC = 4;</code>
      */
     const ALPHA_NUMERIC = 4;
+
+    private static $valueToName = [
+        self::FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED => 'FFX_COMMON_NATIVE_ALPHABET_UNSPECIFIED',
+        self::NUMERIC => 'NUMERIC',
+        self::HEXADECIMAL => 'HEXADECIMAL',
+        self::UPPER_CASE_ALPHA_NUMERIC => 'UPPER_CASE_ALPHA_NUMERIC',
+        self::ALPHA_NUMERIC => 'ALPHA_NUMERIC',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

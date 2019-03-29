@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dlp\V2\JobTrigger;
 
+use UnexpectedValueException;
+
 /**
  * Whether the trigger is currently active. If PAUSED or CANCELLED, no jobs
  * will be created with this configuration. The service may automatically
@@ -36,6 +38,33 @@ class Status
      * Generated from protobuf enum <code>CANCELLED = 3;</code>
      */
     const CANCELLED = 3;
+
+    private static $valueToName = [
+        self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',
+        self::HEALTHY => 'HEALTHY',
+        self::PAUSED => 'PAUSED',
+        self::CANCELLED => 'CANCELLED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
