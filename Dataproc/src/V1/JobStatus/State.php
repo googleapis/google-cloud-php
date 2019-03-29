@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Dataproc\V1\JobStatus;
 
+use UnexpectedValueException;
+
 /**
  * The job state.
  *
@@ -75,6 +77,39 @@ class State
      * Generated from protobuf enum <code>ATTEMPT_FAILURE = 9;</code>
      */
     const ATTEMPT_FAILURE = 9;
+
+    private static $valueToName = [
+        self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
+        self::PENDING => 'PENDING',
+        self::SETUP_DONE => 'SETUP_DONE',
+        self::RUNNING => 'RUNNING',
+        self::CANCEL_PENDING => 'CANCEL_PENDING',
+        self::CANCEL_STARTED => 'CANCEL_STARTED',
+        self::CANCELLED => 'CANCELLED',
+        self::DONE => 'DONE',
+        self::ERROR => 'ERROR',
+        self::ATTEMPT_FAILURE => 'ATTEMPT_FAILURE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
