@@ -16,17 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Part extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The text corresponding to the example or template,
-     * if there are no annotations. For
-     * annotated examples, it is the text for one of the example's parts.
+     * Required. The text for this part.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
     private $text = '';
     /**
-     * Optional. The entity type name prefixed with `&#64;`. This field is
-     * required for the annotated part of the text and applies only to
-     * examples.
+     * Optional. The entity type name prefixed with `&#64;`.
+     * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2;</code>
      */
@@ -34,13 +31,16 @@ class Part extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The parameter name for the value extracted from the
      * annotated part of the example.
+     * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string alias = 3;</code>
      */
     private $alias = '';
     /**
-     * Optional. Indicates whether the text was manually annotated by the
-     * developer.
+     * Optional. Indicates whether the text was manually annotated.
+     * This field is set to true when the Dialogflow Console is used to
+     * manually annotate the part. When creating an annotated part with the
+     * API, you must set this to true.
      *
      * Generated from protobuf field <code>bool user_defined = 4;</code>
      */
@@ -53,19 +53,19 @@ class Part extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $text
-     *           Required. The text corresponding to the example or template,
-     *           if there are no annotations. For
-     *           annotated examples, it is the text for one of the example's parts.
+     *           Required. The text for this part.
      *     @type string $entity_type
-     *           Optional. The entity type name prefixed with `&#64;`. This field is
-     *           required for the annotated part of the text and applies only to
-     *           examples.
+     *           Optional. The entity type name prefixed with `&#64;`.
+     *           This field is required for annotated parts of the training phrase.
      *     @type string $alias
      *           Optional. The parameter name for the value extracted from the
      *           annotated part of the example.
+     *           This field is required for annotated parts of the training phrase.
      *     @type bool $user_defined
-     *           Optional. Indicates whether the text was manually annotated by the
-     *           developer.
+     *           Optional. Indicates whether the text was manually annotated.
+     *           This field is set to true when the Dialogflow Console is used to
+     *           manually annotate the part. When creating an annotated part with the
+     *           API, you must set this to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,9 +74,7 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The text corresponding to the example or template,
-     * if there are no annotations. For
-     * annotated examples, it is the text for one of the example's parts.
+     * Required. The text for this part.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @return string
@@ -87,9 +85,7 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The text corresponding to the example or template,
-     * if there are no annotations. For
-     * annotated examples, it is the text for one of the example's parts.
+     * Required. The text for this part.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @param string $var
@@ -104,9 +100,8 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The entity type name prefixed with `&#64;`. This field is
-     * required for the annotated part of the text and applies only to
-     * examples.
+     * Optional. The entity type name prefixed with `&#64;`.
+     * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2;</code>
      * @return string
@@ -117,9 +112,8 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The entity type name prefixed with `&#64;`. This field is
-     * required for the annotated part of the text and applies only to
-     * examples.
+     * Optional. The entity type name prefixed with `&#64;`.
+     * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2;</code>
      * @param string $var
@@ -136,6 +130,7 @@ class Part extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The parameter name for the value extracted from the
      * annotated part of the example.
+     * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string alias = 3;</code>
      * @return string
@@ -148,6 +143,7 @@ class Part extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The parameter name for the value extracted from the
      * annotated part of the example.
+     * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string alias = 3;</code>
      * @param string $var
@@ -162,8 +158,10 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether the text was manually annotated by the
-     * developer.
+     * Optional. Indicates whether the text was manually annotated.
+     * This field is set to true when the Dialogflow Console is used to
+     * manually annotate the part. When creating an annotated part with the
+     * API, you must set this to true.
      *
      * Generated from protobuf field <code>bool user_defined = 4;</code>
      * @return bool
@@ -174,8 +172,10 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates whether the text was manually annotated by the
-     * developer.
+     * Optional. Indicates whether the text was manually annotated.
+     * This field is set to true when the Dialogflow Console is used to
+     * manually annotate the part. When creating an annotated part with the
+     * API, you must set this to true.
      *
      * Generated from protobuf field <code>bool user_defined = 4;</code>
      * @param bool $var

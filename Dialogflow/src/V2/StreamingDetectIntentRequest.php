@@ -13,8 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * `StreamingDetectIntent` method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain `session`, `query_input` plus optionally
- *     `query_params` and/or `single_utterance`. The message must not contain
- *     `input_audio`.
+ *     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
  * 2.  If `query_input` was set to a streaming input audio config,
  *     all subsequent messages must contain only `input_audio`.
  *     Otherwise, finish the request stream.
@@ -27,7 +26,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the session the query is sent to.
      * Format of the session name:
      * `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
-     * caller to choose an appropriate <Session ID>. It can be a random number or
+     * caller to choose an appropriate `Session ID`. It can be a random number or
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 characters.
      *
@@ -64,6 +63,14 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $single_utterance = false;
     /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
+     */
+    private $output_audio_config = null;
+    /**
      * Optional. The input audio content to be recognized. Must be sent if
      * `query_input` was set to a streaming input audio config. The complete audio
      * over all streaming messages must not exceed 1 minute.
@@ -82,7 +89,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the session the query is sent to.
      *           Format of the session name:
      *           `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
-     *           caller to choose an appropriate <Session ID>. It can be a random number or
+     *           caller to choose an appropriate `Session ID`. It can be a random number or
      *           some type of user identifier (preferably hashed). The length of the session
      *           ID must not exceed 36 characters.
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
@@ -102,6 +109,10 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           client should close the stream and start a new request with a new stream as
      *           needed.
      *           This setting is ignored when `query_input` is a piece of text or an event.
+     *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
+     *           Optional. Instructs the speech synthesizer how to generate the output
+     *           audio. If this field is not set and agent-level speech synthesizer is not
+     *           configured, no output audio is generated.
      *     @type string $input_audio
      *           Optional. The input audio content to be recognized. Must be sent if
      *           `query_input` was set to a streaming input audio config. The complete audio
@@ -117,7 +128,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the session the query is sent to.
      * Format of the session name:
      * `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
-     * caller to choose an appropriate <Session ID>. It can be a random number or
+     * caller to choose an appropriate `Session ID`. It can be a random number or
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 characters.
      *
@@ -133,7 +144,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the session the query is sent to.
      * Format of the session name:
      * `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
-     * caller to choose an appropriate <Session ID>. It can be a random number or
+     * caller to choose an appropriate `Session ID`. It can be a random number or
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 characters.
      *
@@ -245,6 +256,36 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_utterance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
+     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
+     */
+    public function getOutputAudioConfig()
+    {
+        return $this->output_audio_config;
+    }
+
+    /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 5;</code>
+     * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
+     * @return $this
+     */
+    public function setOutputAudioConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\OutputAudioConfig::class);
+        $this->output_audio_config = $var;
 
         return $this;
     }

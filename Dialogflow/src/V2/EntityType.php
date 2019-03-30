@@ -18,16 +18,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class EntityType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically.
-     * The unique identifier of the entity type. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * The unique identifier of the entity type.
+     * Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Required. The name of the entity.
+     * Required. The name of the entity type.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -46,7 +46,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      */
     private $auto_expansion_mode = 0;
     /**
-     * Optional. The collection of entities associated with the entity type.
+     * Optional. The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
      */
@@ -59,19 +59,19 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required for all methods except `create` (`create` populates the name
-     *           automatically.
-     *           The unique identifier of the entity type. Format:
-     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *           The unique identifier of the entity type.
+     *           Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     *           [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *     @type string $display_name
-     *           Required. The name of the entity.
+     *           Required. The name of the entity type.
      *     @type int $kind
      *           Required. Indicates the kind of entity type.
      *     @type int $auto_expansion_mode
      *           Optional. Indicates whether the entity type can be automatically
      *           expanded.
      *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
-     *           Optional. The collection of entities associated with the entity type.
+     *           Optional. The collection of entity entries associated with the entity type.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,10 +80,10 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically.
-     * The unique identifier of the entity type. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * The unique identifier of the entity type.
+     * Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -94,10 +94,10 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically.
-     * The unique identifier of the entity type. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * The unique identifier of the entity type.
+     * Required for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType] and
+     * [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes] methods.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -112,7 +112,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entity.
+     * Required. The name of the entity type.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -123,7 +123,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entity.
+     * Required. The name of the entity type.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
@@ -192,7 +192,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of entities associated with the entity type.
+     * Optional. The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -203,7 +203,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of entities associated with the entity type.
+     * Optional. The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var

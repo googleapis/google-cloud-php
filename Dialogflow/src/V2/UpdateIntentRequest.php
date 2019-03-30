@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
+ * The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateIntentRequest</code>
  */
@@ -18,7 +17,6 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The intent to update.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 1;</code>
      */
@@ -26,9 +24,10 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intent`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
@@ -54,13 +53,13 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dialogflow\V2\Intent $intent
      *           Required. The intent to update.
-     *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $language_code
      *           Optional. The language of training phrases, parameters and rich messages
      *           defined in `intent`. If not specified, the agent's default language is
-     *           used. [More than a dozen
-     *           languages](https://dialogflow.com/docs/reference/language) are supported.
-     *           Note: languages must be enabled in the agent, before they can be used.
+     *           used. [Many
+     *           languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           are supported. Note: languages must be enabled in the agent before they can
+     *           be used.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The mask to control which fields get updated.
      *     @type int $intent_view
@@ -74,7 +73,6 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The intent to update.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 1;</code>
      * @return \Google\Cloud\Dialogflow\V2\Intent
@@ -86,7 +84,6 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The intent to update.
-     * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 1;</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent $var
@@ -103,9 +100,10 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intent`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @return string
@@ -118,9 +116,10 @@ class UpdateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intent`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @param string $var

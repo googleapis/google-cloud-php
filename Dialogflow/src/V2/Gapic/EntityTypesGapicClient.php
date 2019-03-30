@@ -55,7 +55,6 @@ use Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Struct;
 
 /**
  * Service Description: Entities are extracted from user input and represent parameters that are
@@ -81,11 +80,11 @@ use Google\Protobuf\Struct;
  *
  * *   **User** - entities that are built for an individual user such as
  *     favorites, preferences, playlists, and so on. A user entity is
- *     represented by the
- *     [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] type.
+ *     represented by the [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] type.
  *
  * For more information about entity types, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/entities).
+ * [Dialogflow
+ * documentation](https://cloud.google.com/dialogflow-enterprise/docs/entities-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -151,6 +150,7 @@ class EntityTypesGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     ];
     private static $projectAgentNameTemplate;
     private static $entityTypeNameTemplate;
@@ -414,9 +414,10 @@ class EntityTypesGapicClient
      *     @type string $languageCode
      *          Optional. The language to list entity synonyms for. If not specified,
      *          the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -489,9 +490,10 @@ class EntityTypesGapicClient
      *     @type string $languageCode
      *          Optional. The language to retrieve entity synonyms for. If not specified,
      *          the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -551,9 +553,10 @@ class EntityTypesGapicClient
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entity_type`. If not
      *          specified, the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -605,16 +608,16 @@ class EntityTypesGapicClient
      * ```
      *
      * @param EntityType $entityType   Required. The entity type to update.
-     *                                 Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      * @param array      $optionalArgs {
      *                                 Optional.
      *
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entity_type`. If not
      *          specified, the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -707,9 +710,7 @@ class EntityTypesGapicClient
     /**
      * Updates/Creates multiple entity types in the specified agent.
      *
-     * Operation <response:
-     * [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]>
      *
      * Sample code:
      * ```
@@ -761,13 +762,14 @@ class EntityTypesGapicClient
      *          EntityBatch type) or a JSON object. Note: The URI must start with
      *          "gs://".
      *     @type EntityTypeBatch $entityTypeBatchInline
-     *          The collection of entity type to update or create.
+     *          The collection of entity types to update or create.
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entity_types`. If not
      *          specified, the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -817,8 +819,7 @@ class EntityTypesGapicClient
     /**
      * Deletes entity types in the specified agent.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
      * ```
@@ -899,8 +900,7 @@ class EntityTypesGapicClient
     }
 
     /**
-     * Creates multiple new entities in the specified entity type (extends the
-     * existing collection of entries).
+     * Creates multiple new entities in the specified entity type.
      *
      * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
@@ -944,16 +944,17 @@ class EntityTypesGapicClient
      *
      * @param string              $parent       Required. The name of the entity type to create entities in. Format:
      *                                          `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param Entity[] $entities     Required. The collection of entities to create.
+     * @param Entity[] $entities     Required. The entities to create.
      * @param array               $optionalArgs {
      *                                          Optional.
      *
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entities`. If not
      *          specified, the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -991,11 +992,11 @@ class EntityTypesGapicClient
     }
 
     /**
-     * Updates entities in the specified entity type (replaces the existing
-     * collection of entries).
+     * Updates or creates multiple entities in the specified entity type. This
+     * method does not affect entities in the entity type that aren't explicitly
+     * specified in the request.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
      * ```
@@ -1035,18 +1036,19 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string              $parent       Required. The name of the entity type to update the entities in. Format:
-     *                                          `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
-     * @param Entity[] $entities     Required. The collection of new entities to replace the existing entities.
+     * @param string              $parent       Required. The name of the entity type to update or create entities in.
+     *                                          Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param Entity[] $entities     Required. The entities to update or create.
      * @param array               $optionalArgs {
      *                                          Optional.
      *
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entities`. If not
      *          specified, the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type FieldMask $updateMask
      *          Optional. The mask to control which fields get updated.
      *     @type RetrySettings|array $retrySettings
@@ -1091,8 +1093,7 @@ class EntityTypesGapicClient
     /**
      * Deletes entities in the specified entity type.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
      * ```
@@ -1143,9 +1144,10 @@ class EntityTypesGapicClient
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entities`. If not
      *          specified, the agent's default language is used.
-     *          [More than a dozen
-     *          languages](https://dialogflow.com/docs/reference/language) are supported.
-     *          Note: languages must be enabled in the agent, before they can be used.
+     *          [Many
+     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          are supported. Note: languages must be enabled in the agent before they can
+     *          be used.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

@@ -8,7 +8,9 @@ use UnexpectedValueException;
 
 /**
  * Audio encoding of the audio content sent in the conversational query request.
- * Refer to the [Cloud Speech API documentation](/speech/docs/basics) for more
+ * Refer to the
+ * [Cloud Speech API
+ * documentation](https://cloud.google.com/speech-to-text/docs/basics) for more
  * details.
  *
  * Protobuf type <code>google.cloud.dialogflow.v2.AudioEncoding</code>

@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an example or template that the agent is trained on.
+ * Represents an example that the agent is trained on.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.TrainingPhrase</code>
  */
 class TrainingPhrase extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique identifier of this training phrase.
+     * Output only. The unique identifier of this training phrase.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -28,15 +28,26 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Required. The collection of training phrase parts (can be annotated).
-     * Fields: `entity_type`, `alias` and `user_defined` should be populated
-     * only for the annotated parts of the training phrase.
+     * Required. The ordered list of training phrase parts.
+     * The parts are concatenated in order to form the training phrase.
+     * Note: The API does not automatically annotate training phrases like the
+     * Dialogflow Console does.
+     * Note: Do not forget to include whitespace at part boundaries,
+     * so the training phrase is well formatted when the parts are concatenated.
+     * If the training phrase does not need to be annotated with parameters,
+     * you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     * If you want to annotate the training phrase, you must create multiple
+     * parts, where the fields of each part are populated in one of two ways:
+     * -   `Part.text` is set to a part of the phrase that has no parameters.
+     * -   `Part.text` is set to a part of the phrase that you want to annotate,
+     *     and the `entity_type`, `alias`, and `user_defined` fields are all
+     *     set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3;</code>
      */
     private $parts;
     /**
-     * Optional. Indicates how many times this example or template was added to
+     * Optional. Indicates how many times this example was added to
      * the intent. Each time a developer adds an existing sample by editing an
      * intent or training, this counter is increased.
      *
@@ -51,15 +62,26 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique identifier of this training phrase.
+     *           Output only. The unique identifier of this training phrase.
      *     @type int $type
      *           Required. The type of the training phrase.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[]|\Google\Protobuf\Internal\RepeatedField $parts
-     *           Required. The collection of training phrase parts (can be annotated).
-     *           Fields: `entity_type`, `alias` and `user_defined` should be populated
-     *           only for the annotated parts of the training phrase.
+     *           Required. The ordered list of training phrase parts.
+     *           The parts are concatenated in order to form the training phrase.
+     *           Note: The API does not automatically annotate training phrases like the
+     *           Dialogflow Console does.
+     *           Note: Do not forget to include whitespace at part boundaries,
+     *           so the training phrase is well formatted when the parts are concatenated.
+     *           If the training phrase does not need to be annotated with parameters,
+     *           you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     *           If you want to annotate the training phrase, you must create multiple
+     *           parts, where the fields of each part are populated in one of two ways:
+     *           -   `Part.text` is set to a part of the phrase that has no parameters.
+     *           -   `Part.text` is set to a part of the phrase that you want to annotate,
+     *               and the `entity_type`, `alias`, and `user_defined` fields are all
+     *               set.
      *     @type int $times_added_count
-     *           Optional. Indicates how many times this example or template was added to
+     *           Optional. Indicates how many times this example was added to
      *           the intent. Each time a developer adds an existing sample by editing an
      *           intent or training, this counter is increased.
      * }
@@ -70,7 +92,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier of this training phrase.
+     * Output only. The unique identifier of this training phrase.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -81,7 +103,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique identifier of this training phrase.
+     * Output only. The unique identifier of this training phrase.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -122,9 +144,20 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection of training phrase parts (can be annotated).
-     * Fields: `entity_type`, `alias` and `user_defined` should be populated
-     * only for the annotated parts of the training phrase.
+     * Required. The ordered list of training phrase parts.
+     * The parts are concatenated in order to form the training phrase.
+     * Note: The API does not automatically annotate training phrases like the
+     * Dialogflow Console does.
+     * Note: Do not forget to include whitespace at part boundaries,
+     * so the training phrase is well formatted when the parts are concatenated.
+     * If the training phrase does not need to be annotated with parameters,
+     * you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     * If you want to annotate the training phrase, you must create multiple
+     * parts, where the fields of each part are populated in one of two ways:
+     * -   `Part.text` is set to a part of the phrase that has no parameters.
+     * -   `Part.text` is set to a part of the phrase that you want to annotate,
+     *     and the `entity_type`, `alias`, and `user_defined` fields are all
+     *     set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -135,9 +168,20 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection of training phrase parts (can be annotated).
-     * Fields: `entity_type`, `alias` and `user_defined` should be populated
-     * only for the annotated parts of the training phrase.
+     * Required. The ordered list of training phrase parts.
+     * The parts are concatenated in order to form the training phrase.
+     * Note: The API does not automatically annotate training phrases like the
+     * Dialogflow Console does.
+     * Note: Do not forget to include whitespace at part boundaries,
+     * so the training phrase is well formatted when the parts are concatenated.
+     * If the training phrase does not need to be annotated with parameters,
+     * you just need a single part with only the [Part.text][google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part.text] field set.
+     * If you want to annotate the training phrase, you must create multiple
+     * parts, where the fields of each part are populated in one of two ways:
+     * -   `Part.text` is set to a part of the phrase that has no parameters.
+     * -   `Part.text` is set to a part of the phrase that you want to annotate,
+     *     and the `entity_type`, `alias`, and `user_defined` fields are all
+     *     set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3;</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -152,7 +196,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates how many times this example or template was added to
+     * Optional. Indicates how many times this example was added to
      * the intent. Each time a developer adds an existing sample by editing an
      * intent or training, this counter is increased.
      *
@@ -165,7 +209,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicates how many times this example or template was added to
+     * Optional. Indicates how many times this example was added to
      * the intent. Each time a developer adds an existing sample by editing an
      * intent or training, this counter is increased.
      *

@@ -18,6 +18,8 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * The `Context ID` is always converted to lowercase, may only contain
+     * characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -25,7 +27,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of conversational query requests after which the
      * context expires. If set to `0` (the default) the context expires
-     * immediately. Contexts expire automatically after 10 minutes even if there
+     * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
      * Generated from protobuf field <code>int32 lifespan_count = 2;</code>
@@ -33,8 +35,9 @@ class Context extends \Google\Protobuf\Internal\Message
     private $lifespan_count = 0;
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for
-     * syntax.
+     * Refer to [this
+     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     * for syntax.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
      */
@@ -49,15 +52,18 @@ class Context extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The unique identifier of the context. Format:
      *           `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     *           The `Context ID` is always converted to lowercase, may only contain
+     *           characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *     @type int $lifespan_count
      *           Optional. The number of conversational query requests after which the
      *           context expires. If set to `0` (the default) the context expires
-     *           immediately. Contexts expire automatically after 10 minutes even if there
+     *           immediately. Contexts expire automatically after 20 minutes if there
      *           are no matching queries.
      *     @type \Google\Protobuf\Struct $parameters
      *           Optional. The collection of parameters associated with this context.
-     *           Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for
-     *           syntax.
+     *           Refer to [this
+     *           doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     *           for syntax.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,6 +74,8 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * The `Context ID` is always converted to lowercase, may only contain
+     * characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -80,6 +88,8 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of the context. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
+     * The `Context ID` is always converted to lowercase, may only contain
+     * characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -96,7 +106,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of conversational query requests after which the
      * context expires. If set to `0` (the default) the context expires
-     * immediately. Contexts expire automatically after 10 minutes even if there
+     * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
      * Generated from protobuf field <code>int32 lifespan_count = 2;</code>
@@ -110,7 +120,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of conversational query requests after which the
      * context expires. If set to `0` (the default) the context expires
-     * immediately. Contexts expire automatically after 10 minutes even if there
+     * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
      * Generated from protobuf field <code>int32 lifespan_count = 2;</code>
@@ -127,8 +137,9 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for
-     * syntax.
+     * Refer to [this
+     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     * for syntax.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
      * @return \Google\Protobuf\Struct
@@ -140,8 +151,9 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The collection of parameters associated with this context.
-     * Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for
-     * syntax.
+     * Refer to [this
+     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     * for syntax.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
      * @param \Google\Protobuf\Struct $var

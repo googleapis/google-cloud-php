@@ -18,7 +18,9 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of detectIntent request session.
      * Can be used to identify end-user inside webhook implementation.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
      *
      * Generated from protobuf field <code>string session = 4;</code>
      */
@@ -54,7 +56,9 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      *     @type string $session
      *           The unique identifier of detectIntent request session.
      *           Can be used to identify end-user inside webhook implementation.
-     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     *           Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     *           `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     *           ID>/sessions/<Session ID>`.
      *     @type string $response_id
      *           The unique identifier of the response. Contains the same value as
      *           `[Streaming]DetectIntentResponse.response_id`.
@@ -74,7 +78,9 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of detectIntent request session.
      * Can be used to identify end-user inside webhook implementation.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
      *
      * Generated from protobuf field <code>string session = 4;</code>
      * @return string
@@ -87,7 +93,9 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
     /**
      * The unique identifier of detectIntent request session.
      * Can be used to identify end-user inside webhook implementation.
-     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
+     * Format: `projects/<Project ID>/agent/sessions/<Session ID>`, or
+     * `projects/<Project ID>/agent/environments/<Environment ID>/users/<User
+     * ID>/sessions/<Session ID>`.
      *
      * Generated from protobuf field <code>string session = 4;</code>
      * @param string $var

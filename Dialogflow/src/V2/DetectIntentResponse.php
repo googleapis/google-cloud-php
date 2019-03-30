@@ -23,18 +23,35 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     private $response_id = '';
     /**
-     * The results of the conversational query or event processing.
+     * The selected results of the conversational query or event processing.
+     * See `alternative_query_results` for additional potential results.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 2;</code>
      */
     private $query_result = null;
     /**
-     * Specifies the status of the webhook request. `webhook_status`
-     * is never populated in webhook requests.
+     * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 3;</code>
      */
     private $webhook_status = null;
+    /**
+     * The audio data bytes encoded as specified in the request.
+     * Note: The output audio is generated based on the values of default platform
+     * text responses found in the `query_result.fulfillment_messages` field. If
+     * multiple default text responses exist, they will be concatenated when
+     * generating audio. If no default platform text responses exist, the
+     * generated audio content will be empty.
+     *
+     * Generated from protobuf field <code>bytes output_audio = 4;</code>
+     */
+    private $output_audio = '';
+    /**
+     * The config used by the speech synthesizer to generate the output audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
+     */
+    private $output_audio_config = null;
 
     /**
      * Constructor.
@@ -46,10 +63,19 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      *           The unique identifier of the response. It can be used to
      *           locate a response in the training example set or for reporting issues.
      *     @type \Google\Cloud\Dialogflow\V2\QueryResult $query_result
-     *           The results of the conversational query or event processing.
+     *           The selected results of the conversational query or event processing.
+     *           See `alternative_query_results` for additional potential results.
      *     @type \Google\Rpc\Status $webhook_status
-     *           Specifies the status of the webhook request. `webhook_status`
-     *           is never populated in webhook requests.
+     *           Specifies the status of the webhook request.
+     *     @type string $output_audio
+     *           The audio data bytes encoded as specified in the request.
+     *           Note: The output audio is generated based on the values of default platform
+     *           text responses found in the `query_result.fulfillment_messages` field. If
+     *           multiple default text responses exist, they will be concatenated when
+     *           generating audio. If no default platform text responses exist, the
+     *           generated audio content will be empty.
+     *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
+     *           The config used by the speech synthesizer to generate the output audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +112,8 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The results of the conversational query or event processing.
+     * The selected results of the conversational query or event processing.
+     * See `alternative_query_results` for additional potential results.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 2;</code>
      * @return \Google\Cloud\Dialogflow\V2\QueryResult
@@ -97,7 +124,8 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The results of the conversational query or event processing.
+     * The selected results of the conversational query or event processing.
+     * See `alternative_query_results` for additional potential results.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 2;</code>
      * @param \Google\Cloud\Dialogflow\V2\QueryResult $var
@@ -112,8 +140,7 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the status of the webhook request. `webhook_status`
-     * is never populated in webhook requests.
+     * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 3;</code>
      * @return \Google\Rpc\Status
@@ -124,8 +151,7 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the status of the webhook request. `webhook_status`
-     * is never populated in webhook requests.
+     * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 3;</code>
      * @param \Google\Rpc\Status $var
@@ -135,6 +161,68 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->webhook_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The audio data bytes encoded as specified in the request.
+     * Note: The output audio is generated based on the values of default platform
+     * text responses found in the `query_result.fulfillment_messages` field. If
+     * multiple default text responses exist, they will be concatenated when
+     * generating audio. If no default platform text responses exist, the
+     * generated audio content will be empty.
+     *
+     * Generated from protobuf field <code>bytes output_audio = 4;</code>
+     * @return string
+     */
+    public function getOutputAudio()
+    {
+        return $this->output_audio;
+    }
+
+    /**
+     * The audio data bytes encoded as specified in the request.
+     * Note: The output audio is generated based on the values of default platform
+     * text responses found in the `query_result.fulfillment_messages` field. If
+     * multiple default text responses exist, they will be concatenated when
+     * generating audio. If no default platform text responses exist, the
+     * generated audio content will be empty.
+     *
+     * Generated from protobuf field <code>bytes output_audio = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOutputAudio($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->output_audio = $var;
+
+        return $this;
+    }
+
+    /**
+     * The config used by the speech synthesizer to generate the output audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
+     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
+     */
+    public function getOutputAudioConfig()
+    {
+        return $this->output_audio_config;
+    }
+
+    /**
+     * The config used by the speech synthesizer to generate the output audio.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
+     * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
+     * @return $this
+     */
+    public function setOutputAudioConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\OutputAudioConfig::class);
+        $this->output_audio_config = $var;
 
         return $this;
     }

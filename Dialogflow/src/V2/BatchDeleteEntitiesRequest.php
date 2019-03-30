@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities].
+ * The request message for [EntityTypes.BatchDeleteEntities][google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntities].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchDeleteEntitiesRequest</code>
  */
@@ -34,9 +33,10 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
      * specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      */
@@ -58,9 +58,10 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           Optional. The language of entity synonyms defined in `entities`. If not
      *           specified, the agent's default language is used.
-     *           [More than a dozen
-     *           languages](https://dialogflow.com/docs/reference/language) are supported.
-     *           Note: languages must be enabled in the agent, before they can be used.
+     *           [Many
+     *           languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           are supported. Note: languages must be enabled in the agent before they can
+     *           be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -129,9 +130,10 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
      * specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @return string
@@ -144,9 +146,10 @@ class BatchDeleteEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
      * specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @param string $var

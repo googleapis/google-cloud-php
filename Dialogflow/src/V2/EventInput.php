@@ -10,10 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Events allow for matching intents by event name instead of the natural
- * language input. For instance, input `<event: { name: “welcome_event”,
- * parameters: { name: “Sam” } }>` can trigger a personalized welcome response.
+ * language input. For instance, input `<event: { name: "welcome_event",
+ * parameters: { name: "Sam" } }>` can trigger a personalized welcome response.
  * The parameter `name` may be used by the agent in the response:
- * `“Hello #welcome_event.name! What can I do for you today?”`.
+ * `"Hello #welcome_event.name! What can I do for you today?"`.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.EventInput</code>
  */
@@ -33,9 +33,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
     private $parameters = null;
     /**
      * Required. The language of this query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      */
@@ -53,9 +53,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *           Optional. The collection of parameters associated with the event.
      *     @type string $language_code
      *           Required. The language of this query. See [Language
-     *           Support](https://dialogflow.com/docs/languages) for a list of the
-     *           currently supported language codes. Note that queries in the same session
-     *           do not necessarily need to specify the same language.
+     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           for a list of the currently supported language codes. Note that queries in
+     *           the same session do not necessarily need to specify the same language.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,9 +117,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @return string
@@ -131,9 +131,9 @@ class EventInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @param string $var

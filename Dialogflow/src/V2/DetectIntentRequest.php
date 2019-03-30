@@ -42,6 +42,14 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_input = null;
     /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
+     */
+    private $output_audio_config = null;
+    /**
      * Optional. The natural language speech audio to be processed. This field
      * should be populated iff `query_input` is set to an input audio config.
      * A single request can contain up to 1 minute of speech audio data.
@@ -70,6 +78,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *               which instructs the speech recognizer how to process the speech audio,
      *           2.  a conversational query in the form of text, or
      *           3.  an event that specifies which intent to trigger.
+     *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
+     *           Optional. Instructs the speech synthesizer how to generate the output
+     *           audio. If this field is not set and agent-level speech synthesizer is not
+     *           configured, no output audio is generated.
      *     @type string $input_audio
      *           Optional. The natural language speech audio to be processed. This field
      *           should be populated iff `query_input` is set to an input audio config.
@@ -171,6 +183,36 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\QueryInput::class);
         $this->query_input = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
+     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
+     */
+    public function getOutputAudioConfig()
+    {
+        return $this->output_audio_config;
+    }
+
+    /**
+     * Optional. Instructs the speech synthesizer how to generate the output
+     * audio. If this field is not set and agent-level speech synthesizer is not
+     * configured, no output audio is generated.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 4;</code>
+     * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
+     * @return $this
+     */
+    public function setOutputAudioConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\OutputAudioConfig::class);
+        $this->output_audio_config = $var;
 
         return $this;
     }

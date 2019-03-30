@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType].
+ * The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.GetEntityTypeRequest</code>
  */
@@ -26,9 +25,10 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language to retrieve entity synonyms for. If not specified,
      * the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
@@ -46,9 +46,10 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           Optional. The language to retrieve entity synonyms for. If not specified,
      *           the agent's default language is used.
-     *           [More than a dozen
-     *           languages](https://dialogflow.com/docs/reference/language) are supported.
-     *           Note: languages must be enabled in the agent, before they can be used.
+     *           [Many
+     *           languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           are supported. Note: languages must be enabled in the agent before they can
+     *           be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,9 +88,10 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language to retrieve entity synonyms for. If not specified,
      * the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @return string
@@ -102,9 +104,10 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language to retrieve entity synonyms for. If not specified,
      * the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @param string $var

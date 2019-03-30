@@ -48,6 +48,20 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 4;</code>
      */
     private $webhook_status = null;
+    /**
+     * The audio data bytes encoded as specified in the request.
+     *
+     * Generated from protobuf field <code>bytes output_audio = 5;</code>
+     */
+    private $output_audio = '';
+    /**
+     * Instructs the speech synthesizer how to generate the output audio. This
+     * field is populated from the agent-level speech synthesizer configuration,
+     * if enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
+     */
+    private $output_audio_config = null;
 
     /**
      * Constructor.
@@ -64,6 +78,12 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      *           The result of the conversational query or event processing.
      *     @type \Google\Rpc\Status $webhook_status
      *           Specifies the status of the webhook request.
+     *     @type string $output_audio
+     *           The audio data bytes encoded as specified in the request.
+     *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
+     *           Instructs the speech synthesizer how to generate the output audio. This
+     *           field is populated from the agent-level speech synthesizer configuration,
+     *           if enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +193,62 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->webhook_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The audio data bytes encoded as specified in the request.
+     *
+     * Generated from protobuf field <code>bytes output_audio = 5;</code>
+     * @return string
+     */
+    public function getOutputAudio()
+    {
+        return $this->output_audio;
+    }
+
+    /**
+     * The audio data bytes encoded as specified in the request.
+     *
+     * Generated from protobuf field <code>bytes output_audio = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOutputAudio($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->output_audio = $var;
+
+        return $this;
+    }
+
+    /**
+     * Instructs the speech synthesizer how to generate the output audio. This
+     * field is populated from the agent-level speech synthesizer configuration,
+     * if enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
+     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
+     */
+    public function getOutputAudioConfig()
+    {
+        return $this->output_audio_config;
+    }
+
+    /**
+     * Instructs the speech synthesizer how to generate the output audio. This
+     * field is populated from the agent-level speech synthesizer configuration,
+     * if enabled.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
+     * @param \Google\Cloud\Dialogflow\V2\OutputAudioConfig $var
+     * @return $this
+     */
+    public function setOutputAudioConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\OutputAudioConfig::class);
+        $this->output_audio_config = $var;
 
         return $this;
     }

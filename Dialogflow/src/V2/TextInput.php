@@ -17,16 +17,16 @@ class TextInput extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The UTF-8 encoded natural language text to be processed.
-     * Text length must not exceed 256 bytes.
+     * Text length must not exceed 256 characters.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      */
     private $text = '';
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
@@ -40,12 +40,12 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           Required. The UTF-8 encoded natural language text to be processed.
-     *           Text length must not exceed 256 bytes.
+     *           Text length must not exceed 256 characters.
      *     @type string $language_code
      *           Required. The language of this conversational query. See [Language
-     *           Support](https://dialogflow.com/docs/languages) for a list of the
-     *           currently supported language codes. Note that queries in the same session
-     *           do not necessarily need to specify the same language.
+     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           for a list of the currently supported language codes. Note that queries in
+     *           the same session do not necessarily need to specify the same language.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,7 +55,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The UTF-8 encoded natural language text to be processed.
-     * Text length must not exceed 256 bytes.
+     * Text length must not exceed 256 characters.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @return string
@@ -67,7 +67,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The UTF-8 encoded natural language text to be processed.
-     * Text length must not exceed 256 bytes.
+     * Text length must not exceed 256 characters.
      *
      * Generated from protobuf field <code>string text = 1;</code>
      * @param string $var
@@ -83,9 +83,9 @@ class TextInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @return string
@@ -97,9 +97,9 @@ class TextInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @param string $var

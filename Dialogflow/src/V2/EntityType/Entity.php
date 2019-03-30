@@ -9,26 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Optional. Represents an entity.
+ * An **entity entry** for an associated entity type.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.EntityType.Entity</code>
  */
 class Entity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
+     * Required. The primary value associated with this entity entry.
+     * For example, if the entity type is *vegetable*, the value could be
+     * *scallions*.
      * For `KIND_MAP` entity types:
-     *   A canonical name to be used in place of synonyms.
+     * *   A canonical value to be used in place of synonyms.
      * For `KIND_LIST` entity types:
-     *   A string that can contain references to other entity types (with or
-     *   without aliases).
+     * *   A string that can contain references to other entity types (with or
+     *     without aliases).
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
     private $value = '';
     /**
-     * Required. A collection of synonyms. For `KIND_LIST` entity types this
-     * must contain exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type
+     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
+     * onions*.
+     * For `KIND_LIST` entity types:
+     * *   This collection must contain exactly one synonym equal to `value`.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2;</code>
      */
@@ -41,15 +46,20 @@ class Entity extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $value
-     *           Required.
+     *           Required. The primary value associated with this entity entry.
+     *           For example, if the entity type is *vegetable*, the value could be
+     *           *scallions*.
      *           For `KIND_MAP` entity types:
-     *             A canonical name to be used in place of synonyms.
+     *           *   A canonical value to be used in place of synonyms.
      *           For `KIND_LIST` entity types:
-     *             A string that can contain references to other entity types (with or
-     *             without aliases).
+     *           *   A string that can contain references to other entity types (with or
+     *               without aliases).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $synonyms
-     *           Required. A collection of synonyms. For `KIND_LIST` entity types this
-     *           must contain exactly one synonym equal to `value`.
+     *           Required. A collection of value synonyms. For example, if the entity type
+     *           is *vegetable*, and `value` is *scallions*, a synonym could be *green
+     *           onions*.
+     *           For `KIND_LIST` entity types:
+     *           *   This collection must contain exactly one synonym equal to `value`.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,12 +68,14 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
+     * Required. The primary value associated with this entity entry.
+     * For example, if the entity type is *vegetable*, the value could be
+     * *scallions*.
      * For `KIND_MAP` entity types:
-     *   A canonical name to be used in place of synonyms.
+     * *   A canonical value to be used in place of synonyms.
      * For `KIND_LIST` entity types:
-     *   A string that can contain references to other entity types (with or
-     *   without aliases).
+     * *   A string that can contain references to other entity types (with or
+     *     without aliases).
      *
      * Generated from protobuf field <code>string value = 1;</code>
      * @return string
@@ -74,12 +86,14 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
+     * Required. The primary value associated with this entity entry.
+     * For example, if the entity type is *vegetable*, the value could be
+     * *scallions*.
      * For `KIND_MAP` entity types:
-     *   A canonical name to be used in place of synonyms.
+     * *   A canonical value to be used in place of synonyms.
      * For `KIND_LIST` entity types:
-     *   A string that can contain references to other entity types (with or
-     *   without aliases).
+     * *   A string that can contain references to other entity types (with or
+     *     without aliases).
      *
      * Generated from protobuf field <code>string value = 1;</code>
      * @param string $var
@@ -94,8 +108,11 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A collection of synonyms. For `KIND_LIST` entity types this
-     * must contain exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type
+     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
+     * onions*.
+     * For `KIND_LIST` entity types:
+     * *   This collection must contain exactly one synonym equal to `value`.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -106,8 +123,11 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A collection of synonyms. For `KIND_LIST` entity types this
-     * must contain exactly one synonym equal to `value`.
+     * Required. A collection of value synonyms. For example, if the entity type
+     * is *vegetable*, and `value` is *scallions*, a synonym could be *green
+     * onions*.
+     * For `KIND_LIST` entity types:
+     * *   This collection must contain exactly one synonym equal to `value`.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//
 namespace Google\Cloud\Dialogflow\V2;
 
 /**
@@ -28,14 +29,15 @@ namespace Google\Cloud\Dialogflow\V2;
  *
  * You can include contexts as input parameters of a
  * [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent])
- * request, or as output contexts included in the returned intent. Contexts
- * expire when an intent is matched, after the number of `DetectIntent` requests
- * specified by the `lifespan_count` parameter, or after 10 minutes if no
- * intents are matched for a `DetectIntent` request.
+ * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) request,
+ * or as output contexts included in the returned intent.
+ * Contexts expire when an intent is matched, after the number of `DetectIntent`
+ * requests specified by the `lifespan_count` parameter, or after 20 minutes
+ * if no intents are matched for a `DetectIntent` request.
  *
  * For more information about contexts, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/contexts).
+ * [Dialogflow
+ * documentation](https://cloud.google.com/dialogflow-enterprise/docs/contexts-overview).
  */
 class ContextsGrpcClient extends \Grpc\BaseStub {
 
@@ -78,6 +80,8 @@ class ContextsGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a context.
+     *
+     * If the specified context already exists, overrides the context.
      * @param \Google\Cloud\Dialogflow\V2\CreateContextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

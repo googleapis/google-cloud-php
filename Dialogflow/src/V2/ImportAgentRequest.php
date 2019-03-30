@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
+ * The request message for [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ImportAgentRequest</code>
  */
@@ -40,16 +39,17 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $agent_content
      *           The agent to import.
      *           Example for how to import an agent via the command line:
-     *           curl \
-     *             'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:import\
+     *           <pre>curl \
+     *             'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
      *              -X POST \
-     *              -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+     *              -H 'Authorization: Bearer '$(gcloud auth application-default
+     *              print-access-token) \
      *              -H 'Accept: application/json' \
      *              -H 'Content-Type: application/json' \
      *              --compressed \
      *              --data-binary "{
-     *                 'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-     *              }"
+     *                 'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *              }"</pre>
      * }
      */
     public function __construct($data = NULL) {
@@ -116,16 +116,17 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The agent to import.
      * Example for how to import an agent via the command line:
-     * curl \
-     *   'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:import\
+     * <pre>curl \
+     *   'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
      *    -X POST \
-     *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+     *    -H 'Authorization: Bearer '$(gcloud auth application-default
+     *    print-access-token) \
      *    -H 'Accept: application/json' \
      *    -H 'Content-Type: application/json' \
      *    --compressed \
      *    --data-binary "{
-     *       'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-     *    }"
+     *       'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *    }"</pre>
      *
      * Generated from protobuf field <code>bytes agent_content = 3;</code>
      * @return string
@@ -138,16 +139,17 @@ class ImportAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The agent to import.
      * Example for how to import an agent via the command line:
-     * curl \
-     *   'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:import\
+     * <pre>curl \
+     *   'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
      *    -X POST \
-     *    -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+     *    -H 'Authorization: Bearer '$(gcloud auth application-default
+     *    print-access-token) \
      *    -H 'Accept: application/json' \
      *    -H 'Content-Type: application/json' \
      *    --compressed \
      *    --data-binary "{
-     *       'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-     *    }"
+     *       'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *    }"</pre>
      *
      * Generated from protobuf field <code>bytes agent_content = 3;</code>
      * @param string $var

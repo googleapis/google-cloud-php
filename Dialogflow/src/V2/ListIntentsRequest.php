@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].
+ * The request message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.ListIntentsRequest</code>
  */
@@ -26,9 +25,10 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language to list training phrases, parameters and rich
      * messages for. If not specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      */
@@ -65,9 +65,10 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           Optional. The language to list training phrases, parameters and rich
      *           messages for. If not specified, the agent's default language is used.
-     *           [More than a dozen
-     *           languages](https://dialogflow.com/docs/reference/language) are supported.
-     *           Note: languages must be enabled in the agent before they can be used.
+     *           [Many
+     *           languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           are supported. Note: languages must be enabled in the agent before they can
+     *           be used.
      *     @type int $intent_view
      *           Optional. The resource view to apply to the returned intent.
      *     @type int $page_size
@@ -113,9 +114,10 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language to list training phrases, parameters and rich
      * messages for. If not specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @return string
@@ -128,9 +130,10 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language to list training phrases, parameters and rich
      * messages for. If not specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 2;</code>
      * @param string $var
