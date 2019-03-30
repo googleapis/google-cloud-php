@@ -519,6 +519,23 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getSameProcessAsParentSpan()</code>
+
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * @return bool|null
+     */
+    public function getSameProcessAsParentSpanValue()
+    {
+        $wrapper = $this->getSameProcessAsParentSpan();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * (Optional) Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
      * Stackdriver Trace is unable to take advantage of this helpful
@@ -537,6 +554,24 @@ class Span extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * (Optional) Set this parameter to indicate whether this span is in
+     * the same process as its parent. If you do not set this parameter,
+     * Stackdriver Trace is unable to take advantage of this helpful
+     * information.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setSameProcessAsParentSpanValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setSameProcessAsParentSpan($wrappedVar);
+    }
+
+    /**
      * An optional number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
@@ -546,6 +581,21 @@ class Span extends \Google\Protobuf\Internal\Message
     public function getChildSpanCount()
     {
         return $this->child_span_count;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getChildSpanCount()</code>
+
+     * An optional number of child spans that were generated while this span
+     * was active. If set, allows implementation to detect missing child spans.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * @return int|null
+     */
+    public function getChildSpanCountValue()
+    {
+        $wrapper = $this->getChildSpanCount();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -562,6 +612,22 @@ class Span extends \Google\Protobuf\Internal\Message
         $this->child_span_count = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * An optional number of child spans that were generated while this span
+     * was active. If set, allows implementation to detect missing child spans.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setChildSpanCountValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
+        return $this->setChildSpanCount($wrappedVar);
     }
 
 }
