@@ -33,6 +33,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\TimePartConfig $time_part_config
      *     @type \Google\Cloud\Dlp\V2\CryptoHashConfig $crypto_hash_config
      *     @type \Google\Cloud\Dlp\V2\DateShiftConfig $date_shift_config
+     *     @type \Google\Cloud\Dlp\V2\CryptoDeterministicConfig $crypto_deterministic_config
      * }
      */
     public function __construct($data = NULL) {
@@ -256,6 +257,28 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DateShiftConfig::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoDeterministicConfig crypto_deterministic_config = 12;</code>
+     * @return \Google\Cloud\Dlp\V2\CryptoDeterministicConfig
+     */
+    public function getCryptoDeterministicConfig()
+    {
+        return $this->readOneof(12);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoDeterministicConfig crypto_deterministic_config = 12;</code>
+     * @param \Google\Cloud\Dlp\V2\CryptoDeterministicConfig $var
+     * @return $this
+     */
+    public function setCryptoDeterministicConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CryptoDeterministicConfig::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

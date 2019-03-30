@@ -26,7 +26,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * The job id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string job_id = 4;</code>
@@ -47,7 +47,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $job_id
      *           The job id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
-     *           expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
      * }
      */
@@ -129,7 +129,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * The job id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string job_id = 4;</code>
@@ -143,7 +143,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * The job id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string job_id = 4;</code>

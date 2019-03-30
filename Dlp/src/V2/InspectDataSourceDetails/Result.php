@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * All result fields mentioned below are updated while the job is processing.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectDataSourceDetails.Result</code>
  */
 class Result extends \Google\Protobuf\Internal\Message

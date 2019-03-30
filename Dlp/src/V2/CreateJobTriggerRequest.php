@@ -30,7 +30,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>
@@ -50,7 +50,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_id
      *           The trigger id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
-     *           expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
      * }
      */
@@ -114,7 +114,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>
@@ -128,7 +128,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>

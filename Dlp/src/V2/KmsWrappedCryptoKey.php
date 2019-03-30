@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Include to use an existing data crypto key wrapped by KMS.
+ * The wrapped key must be a 128/192/256 bit key.
  * Authorization requires the following IAM permissions when sending a request
  * to perform a crypto transformation using a kms-wrapped crypto key:
  * dlp.kms.encrypt
