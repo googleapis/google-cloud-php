@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Spanner\V1\PlanNode;
 
+use UnexpectedValueException;
+
 /**
  * The kind of [PlanNode][google.spanner.v1.PlanNode]. Distinguishes between
  * the two different kinds of nodes that can appear in a query plan.
@@ -35,6 +37,32 @@ class Kind
      * Generated from protobuf enum <code>SCALAR = 2;</code>
      */
     const SCALAR = 2;
+
+    private static $valueToName = [
+        self::KIND_UNSPECIFIED => 'KIND_UNSPECIFIED',
+        self::RELATIONAL => 'RELATIONAL',
+        self::SCALAR => 'SCALAR',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -150,7 +150,7 @@ class SpannerInstanceAdmin
             "646d696e2e496e7374616e63652e5631ca0226476f6f676c655c436c6f75" .
             "645c5370616e6e65725c41646d696e5c496e7374616e63655c5631620670" .
             "726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

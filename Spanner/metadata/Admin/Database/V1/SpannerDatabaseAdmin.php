@@ -118,7 +118,7 @@ class SpannerDatabaseAdmin
             "476f6f676c652e436c6f75642e5370616e6e65722e41646d696e2e446174" .
             "61626173652e5631ca0226476f6f676c655c436c6f75645c5370616e6e65" .
             "725c41646d696e5c44617461626173655c5631620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
