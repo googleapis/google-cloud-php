@@ -88,7 +88,7 @@ class LoggingMetrics
             "67696e672f76323b6c6f6767696e67f80101aa0217476f6f676c652e436c" .
             "6f75642e4c6f6767696e672e5632ca0217476f6f676c655c436c6f75645c" .
             "4c6f6767696e675c5632620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Logging\V2\LogSink;
 
+use UnexpectedValueException;
+
 /**
  * Available log entry formats. Log entries can be written to
  * Logging in either format and can be exported in either format.
@@ -31,6 +33,32 @@ class VersionFormat
      * Generated from protobuf enum <code>V1 = 2;</code>
      */
     const V1 = 2;
+
+    private static $valueToName = [
+        self::VERSION_FORMAT_UNSPECIFIED => 'VERSION_FORMAT_UNSPECIFIED',
+        self::V2 => 'V2',
+        self::V1 => 'V1',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
