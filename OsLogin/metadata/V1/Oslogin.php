@@ -92,7 +92,7 @@ class Oslogin
             "3b6f736c6f67696eaa0217476f6f676c652e436c6f75642e4f734c6f6769" .
             "6e2e5631ca0217476f6f676c655c436c6f75645c4f734c6f67696e5c5631" .
             "620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
