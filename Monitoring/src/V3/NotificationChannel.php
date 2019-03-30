@@ -446,6 +446,25 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getEnabled()</code>
+
+     * Whether notifications are forwarded to the described channel. This makes
+     * it possible to disable delivery of notifications to a particular channel
+     * without removing the channel from all alerting policies that reference
+     * the channel. This is a more convenient approach when the change is
+     * temporary and you want to receive notifications from the same set
+     * of alerting policies on the channel at some point in the future.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
+     * @return bool|null
+     */
+    public function getEnabledValue()
+    {
+        $wrapper = $this->getEnabled();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * Whether notifications are forwarded to the described channel. This makes
      * it possible to disable delivery of notifications to a particular channel
      * without removing the channel from all alerting policies that reference
@@ -463,6 +482,26 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
         $this->enabled = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Whether notifications are forwarded to the described channel. This makes
+     * it possible to disable delivery of notifications to a particular channel
+     * without removing the channel from all alerting policies that reference
+     * the channel. This is a more convenient approach when the change is
+     * temporary and you want to receive notifications from the same set
+     * of alerting policies on the channel at some point in the future.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnabledValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setEnabled($wrappedVar);
     }
 
 }

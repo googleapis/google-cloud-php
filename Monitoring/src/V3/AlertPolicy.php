@@ -404,6 +404,24 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getEnabled()</code>
+
+     * Whether or not the policy is enabled. On write, the default interpretation
+     * if unset is that the policy is enabled. On read, clients should not make
+     * any assumption about the state if it has not been populated. The
+     * field should always be populated on List and Get operations, unless
+     * a field projection has been specified that strips it out.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
+     * @return bool|null
+     */
+    public function getEnabledValue()
+    {
+        $wrapper = $this->getEnabled();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * Whether or not the policy is enabled. On write, the default interpretation
      * if unset is that the policy is enabled. On read, clients should not make
      * any assumption about the state if it has not been populated. The
@@ -420,6 +438,25 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
         $this->enabled = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Whether or not the policy is enabled. On write, the default interpretation
+     * if unset is that the policy is enabled. On read, clients should not make
+     * any assumption about the state if it has not been populated. The
+     * field should always be populated on List and Get operations, unless
+     * a field projection has been specified that strips it out.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnabledValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setEnabled($wrappedVar);
     }
 
     /**

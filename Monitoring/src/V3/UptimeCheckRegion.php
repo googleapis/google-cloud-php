@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
+use UnexpectedValueException;
+
 /**
  * The regions from which an uptime check can be run.
  *
@@ -44,5 +46,33 @@ class UptimeCheckRegion
      * Generated from protobuf enum <code>ASIA_PACIFIC = 4;</code>
      */
     const ASIA_PACIFIC = 4;
+
+    private static $valueToName = [
+        self::REGION_UNSPECIFIED => 'REGION_UNSPECIFIED',
+        self::USA => 'USA',
+        self::EUROPE => 'EUROPE',
+        self::SOUTH_AMERICA => 'SOUTH_AMERICA',
+        self::ASIA_PACIFIC => 'ASIA_PACIFIC',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

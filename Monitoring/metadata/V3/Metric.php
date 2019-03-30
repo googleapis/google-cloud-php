@@ -47,7 +47,7 @@ class Metric
             "6f72696e67aa021a476f6f676c652e436c6f75642e4d6f6e69746f72696e" .
             "672e5633ca021a476f6f676c655c436c6f75645c4d6f6e69746f72696e67" .
             "5c5633620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

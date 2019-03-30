@@ -81,7 +81,7 @@ class Uptime
             "76333b6d6f6e69746f72696e67aa021a476f6f676c652e436c6f75642e4d" .
             "6f6e69746f72696e672e5633ca021a476f6f676c655c436c6f75645c4d6f" .
             "6e69746f72696e675c5633620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
