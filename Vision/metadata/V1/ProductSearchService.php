@@ -240,7 +240,7 @@ class ProductSearchService
             "652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c656170" .
             "69732f636c6f75642f766973696f6e2f76313b766973696f6ef80101a202" .
             "044743564e620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

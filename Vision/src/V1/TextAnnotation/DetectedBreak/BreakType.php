@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak;
 
+use UnexpectedValueException;
+
 /**
  * Enum to denote the type of break found. New line, space etc.
  *
@@ -48,6 +50,35 @@ class BreakType
      * Generated from protobuf enum <code>LINE_BREAK = 5;</code>
      */
     const LINE_BREAK = 5;
+
+    private static $valueToName = [
+        self::UNKNOWN => 'UNKNOWN',
+        self::SPACE => 'SPACE',
+        self::SURE_SPACE => 'SURE_SPACE',
+        self::EOL_SURE_SPACE => 'EOL_SURE_SPACE',
+        self::HYPHEN => 'HYPHEN',
+        self::LINE_BREAK => 'LINE_BREAK',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

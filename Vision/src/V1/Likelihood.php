@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Vision\V1;
 
+use UnexpectedValueException;
+
 /**
  * A bucketized representation of likelihood, which is intended to give clients
  * highly stable results across model upgrades.
@@ -48,5 +50,34 @@ class Likelihood
      * Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
      */
     const VERY_LIKELY = 5;
+
+    private static $valueToName = [
+        self::UNKNOWN => 'UNKNOWN',
+        self::VERY_UNLIKELY => 'VERY_UNLIKELY',
+        self::UNLIKELY => 'UNLIKELY',
+        self::POSSIBLE => 'POSSIBLE',
+        self::LIKELY => 'LIKELY',
+        self::VERY_LIKELY => 'VERY_LIKELY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

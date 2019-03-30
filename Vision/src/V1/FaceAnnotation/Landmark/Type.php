@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Vision\V1\FaceAnnotation\Landmark;
 
+use UnexpectedValueException;
+
 /**
  * Face landmark (feature) type.
  * Left and right are defined from the vantage of the viewer of the image
@@ -224,6 +226,64 @@ class Type
      * Generated from protobuf enum <code>CHIN_RIGHT_GONION = 34;</code>
      */
     const CHIN_RIGHT_GONION = 34;
+
+    private static $valueToName = [
+        self::UNKNOWN_LANDMARK => 'UNKNOWN_LANDMARK',
+        self::LEFT_EYE => 'LEFT_EYE',
+        self::RIGHT_EYE => 'RIGHT_EYE',
+        self::LEFT_OF_LEFT_EYEBROW => 'LEFT_OF_LEFT_EYEBROW',
+        self::RIGHT_OF_LEFT_EYEBROW => 'RIGHT_OF_LEFT_EYEBROW',
+        self::LEFT_OF_RIGHT_EYEBROW => 'LEFT_OF_RIGHT_EYEBROW',
+        self::RIGHT_OF_RIGHT_EYEBROW => 'RIGHT_OF_RIGHT_EYEBROW',
+        self::MIDPOINT_BETWEEN_EYES => 'MIDPOINT_BETWEEN_EYES',
+        self::NOSE_TIP => 'NOSE_TIP',
+        self::UPPER_LIP => 'UPPER_LIP',
+        self::LOWER_LIP => 'LOWER_LIP',
+        self::MOUTH_LEFT => 'MOUTH_LEFT',
+        self::MOUTH_RIGHT => 'MOUTH_RIGHT',
+        self::MOUTH_CENTER => 'MOUTH_CENTER',
+        self::NOSE_BOTTOM_RIGHT => 'NOSE_BOTTOM_RIGHT',
+        self::NOSE_BOTTOM_LEFT => 'NOSE_BOTTOM_LEFT',
+        self::NOSE_BOTTOM_CENTER => 'NOSE_BOTTOM_CENTER',
+        self::LEFT_EYE_TOP_BOUNDARY => 'LEFT_EYE_TOP_BOUNDARY',
+        self::LEFT_EYE_RIGHT_CORNER => 'LEFT_EYE_RIGHT_CORNER',
+        self::LEFT_EYE_BOTTOM_BOUNDARY => 'LEFT_EYE_BOTTOM_BOUNDARY',
+        self::LEFT_EYE_LEFT_CORNER => 'LEFT_EYE_LEFT_CORNER',
+        self::RIGHT_EYE_TOP_BOUNDARY => 'RIGHT_EYE_TOP_BOUNDARY',
+        self::RIGHT_EYE_RIGHT_CORNER => 'RIGHT_EYE_RIGHT_CORNER',
+        self::RIGHT_EYE_BOTTOM_BOUNDARY => 'RIGHT_EYE_BOTTOM_BOUNDARY',
+        self::RIGHT_EYE_LEFT_CORNER => 'RIGHT_EYE_LEFT_CORNER',
+        self::LEFT_EYEBROW_UPPER_MIDPOINT => 'LEFT_EYEBROW_UPPER_MIDPOINT',
+        self::RIGHT_EYEBROW_UPPER_MIDPOINT => 'RIGHT_EYEBROW_UPPER_MIDPOINT',
+        self::LEFT_EAR_TRAGION => 'LEFT_EAR_TRAGION',
+        self::RIGHT_EAR_TRAGION => 'RIGHT_EAR_TRAGION',
+        self::LEFT_EYE_PUPIL => 'LEFT_EYE_PUPIL',
+        self::RIGHT_EYE_PUPIL => 'RIGHT_EYE_PUPIL',
+        self::FOREHEAD_GLABELLA => 'FOREHEAD_GLABELLA',
+        self::CHIN_GNATHION => 'CHIN_GNATHION',
+        self::CHIN_LEFT_GONION => 'CHIN_LEFT_GONION',
+        self::CHIN_RIGHT_GONION => 'CHIN_RIGHT_GONION',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

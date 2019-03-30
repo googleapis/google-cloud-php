@@ -285,7 +285,7 @@ class ImageAnnotator
             "676f6c616e672e6f72672f67656e70726f746f2f676f6f676c6561706973" .
             "2f636c6f75642f766973696f6e2f76313b766973696f6ef80101a2020447" .
             "43564e620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

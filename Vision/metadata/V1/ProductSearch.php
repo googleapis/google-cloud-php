@@ -51,7 +51,7 @@ class ProductSearch
             "746f50015a3c676f6f676c652e676f6c616e672e6f72672f67656e70726f" .
             "746f2f676f6f676c65617069732f636c6f75642f766973696f6e2f76313b" .
             "766973696f6ef80101a202044743564e620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
