@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Redis\V1beta1\Instance;
 
+use UnexpectedValueException;
+
 /**
  * Available service tiers to choose from
  *
@@ -29,6 +31,32 @@ class Tier
      * Generated from protobuf enum <code>STANDARD_HA = 3;</code>
      */
     const STANDARD_HA = 3;
+
+    private static $valueToName = [
+        self::TIER_UNSPECIFIED => 'TIER_UNSPECIFIED',
+        self::BASIC => 'BASIC',
+        self::STANDARD_HA => 'STANDARD_HA',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

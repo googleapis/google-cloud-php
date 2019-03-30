@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Redis\V1\FailoverInstanceRequest;
 
+use UnexpectedValueException;
+
 /**
  * Protobuf type <code>google.cloud.redis.v1.FailoverInstanceRequest.DataProtectionMode</code>
  */
@@ -28,6 +30,32 @@ class DataProtectionMode
      * Generated from protobuf enum <code>FORCE_DATA_LOSS = 2;</code>
      */
     const FORCE_DATA_LOSS = 2;
+
+    private static $valueToName = [
+        self::DATA_PROTECTION_MODE_UNSPECIFIED => 'DATA_PROTECTION_MODE_UNSPECIFIED',
+        self::LIMITED_DATA_LOSS => 'LIMITED_DATA_LOSS',
+        self::FORCE_DATA_LOSS => 'FORCE_DATA_LOSS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
