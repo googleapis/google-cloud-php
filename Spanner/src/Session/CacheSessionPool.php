@@ -246,18 +246,14 @@ class CacheSessionPool implements SessionPoolInterface
 
         // Create a session if needed.
         if ($toCreate) {
-            $createdSessions = [];
-            $exception = null;
+            $createdSessions = $this->createSessions(count($toCreate));
+            $sessionsCreated = count($createdSessions) > 0;
 
-            try {
-                $createdSessions = $this->createSessions(count($toCreate));
-            } catch (\Exception $exception) {
-            }
 
             $session = $this->config['lock']->synchronize(function () use (
                 $toCreate,
                 $createdSessions,
-                $exception
+                $sessionsCreated
             ) {
                 $session = null;
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -270,7 +266,7 @@ class CacheSessionPool implements SessionPoolInterface
                     unset($data['toCreate'][$id]);
                 }
 
-                if (!$exception) {
+                if ($sessionsCreated) {
                     $session = array_shift($data['queue']);
                     $data['inUse'][$session['name']] = $session + [
                         'lastActive' => $this->time()
@@ -285,10 +281,6 @@ class CacheSessionPool implements SessionPoolInterface
 
                 return $session;
             });
-
-            if ($exception) {
-                throw $exception;
-            }
         }
 
         if ($session) {

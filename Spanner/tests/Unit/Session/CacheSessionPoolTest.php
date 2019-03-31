@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
@@ -668,7 +669,7 @@ class CacheSessionPoolTest extends TestCase
         ];
     }
 
-    private function getDatabase($shouldCreateThrowException = false, $willDeleteSessions = false)
+    private function getDatabase($shouldCreateFails = false, $willDeleteSessions = false)
     {
         $database = $this->prophesize(Database::class);
         $session = $this->prophesize(Session::class);
@@ -706,22 +707,21 @@ class CacheSessionPoolTest extends TestCase
         $database->name()
             ->willReturn(self::DATABASE_NAME);
 
-        if ($shouldCreateThrowException) {
-            $connection->createSessionAsync()->willThrow(new \Exception());
-        } else {
-            $test = $this;
-            $connection->createSessionAsync(Argument::any())
-                ->will(function ($args, $mock, $method) use ($test) {
-                    $methodCalls = $mock->findProphecyMethodCalls(
-                        $method->getMethodName(),
-                        new ArgumentsWildcard($args)
-                    );
+        $createdSession = $this->prophesize(\Google\Cloud\Spanner\V1\Session::class);
+        $connection->createSessionAsync(Argument::any())
+            ->will(function ($args, $mock, $method) use ($createdSession, $shouldCreateFails) {
+                if ($shouldCreateFails) {
+                    return new RejectedPromise("error");
+                }
 
-                    $createdSession = $test->prophesize(\Google\Cloud\Spanner\V1\Session::class);
-                    $createdSession->getName()->willReturn('session' . count($methodCalls));
-                    return $createdSession->reveal();
-                });
-        }
+                $methodCalls = $mock->findProphecyMethodCalls(
+                    $method->getMethodName(),
+                    new ArgumentsWildcard($args)
+                );
+
+                $createdSession->getName()->willReturn('session' . count($methodCalls));
+                return $createdSession->reveal();
+            });
 
         return $database->reveal();
     }
