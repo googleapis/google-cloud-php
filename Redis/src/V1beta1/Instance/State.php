@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Redis\V1beta1\Instance;
 
+use UnexpectedValueException;
+
 /**
  * Represents the different states of a Redis instance.
  *
@@ -56,6 +58,36 @@ class State
      * Generated from protobuf enum <code>MAINTENANCE = 6;</code>
      */
     const MAINTENANCE = 6;
+
+    private static $valueToName = [
+        self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
+        self::CREATING => 'CREATING',
+        self::READY => 'READY',
+        self::UPDATING => 'UPDATING',
+        self::DELETING => 'DELETING',
+        self::REPAIRING => 'REPAIRING',
+        self::MAINTENANCE => 'MAINTENANCE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
