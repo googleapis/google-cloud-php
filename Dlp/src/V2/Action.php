@@ -31,7 +31,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $publish_summary_to_cscc
      *           Publish summary to Cloud Security Command Center (Alpha).
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
-     *           Enable email notification to project owners and editors on job‘s
+     *           Enable email notification to project owners and editors on job's
      *           completion/failure.
      * }
      */
@@ -119,7 +119,7 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable email notification to project owners and editors on job‘s
+     * Enable email notification to project owners and editors on job's
      * completion/failure.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
@@ -131,7 +131,7 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable email notification to project owners and editors on job‘s
+     * Enable email notification to project owners and editors on job's
      * completion/failure.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>

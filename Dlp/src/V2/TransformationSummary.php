@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Summary of a single tranformation.
+ * Summary of a single transformation.
  * Only one of 'transformation', 'field_transformation', or 'record_suppress'
  * will be set.
  *

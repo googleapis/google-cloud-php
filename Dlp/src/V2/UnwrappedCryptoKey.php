@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The AES 128/192/256 bit key. [required]
+     * A 128/192/256 bit key. [required]
      *
      * Generated from protobuf field <code>bytes key = 1;</code>
      */
@@ -30,7 +30,7 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *           The AES 128/192/256 bit key. [required]
+     *           A 128/192/256 bit key. [required]
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The AES 128/192/256 bit key. [required]
+     * A 128/192/256 bit key. [required]
      *
      * Generated from protobuf field <code>bytes key = 1;</code>
      * @return string
@@ -50,7 +50,7 @@ class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The AES 128/192/256 bit key. [required]
+     * A 128/192/256 bit key. [required]
      *
      * Generated from protobuf field <code>bytes key = 1;</code>
      * @param string $var

@@ -1004,7 +1004,7 @@ class DlpServiceGapicClient
      *     @type string $templateId
      *          The template id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1339,7 +1339,7 @@ class DlpServiceGapicClient
      *     @type string $templateId
      *          The template id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1680,7 +1680,7 @@ class DlpServiceGapicClient
      *     @type string $jobId
      *          The job id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -2328,7 +2328,7 @@ class DlpServiceGapicClient
      *     @type string $triggerId
      *          The trigger id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -2394,7 +2394,7 @@ class DlpServiceGapicClient
      *     @type string $storedInfoTypeId
      *          The storedInfoType ID can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
