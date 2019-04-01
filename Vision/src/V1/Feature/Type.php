@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Vision\V1\Feature;
 
+use UnexpectedValueException;
+
 /**
  * Type of Google Cloud Vision API feature to be extracted.
  *
@@ -94,6 +96,42 @@ class Type
      * Generated from protobuf enum <code>OBJECT_LOCALIZATION = 19;</code>
      */
     const OBJECT_LOCALIZATION = 19;
+
+    private static $valueToName = [
+        self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
+        self::FACE_DETECTION => 'FACE_DETECTION',
+        self::LANDMARK_DETECTION => 'LANDMARK_DETECTION',
+        self::LOGO_DETECTION => 'LOGO_DETECTION',
+        self::LABEL_DETECTION => 'LABEL_DETECTION',
+        self::TEXT_DETECTION => 'TEXT_DETECTION',
+        self::DOCUMENT_TEXT_DETECTION => 'DOCUMENT_TEXT_DETECTION',
+        self::SAFE_SEARCH_DETECTION => 'SAFE_SEARCH_DETECTION',
+        self::IMAGE_PROPERTIES => 'IMAGE_PROPERTIES',
+        self::CROP_HINTS => 'CROP_HINTS',
+        self::WEB_DETECTION => 'WEB_DETECTION',
+        self::PRODUCT_SEARCH => 'PRODUCT_SEARCH',
+        self::OBJECT_LOCALIZATION => 'OBJECT_LOCALIZATION',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

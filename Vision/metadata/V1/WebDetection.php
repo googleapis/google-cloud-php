@@ -52,7 +52,7 @@ class WebDetection
             "6e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f" .
             "75642f766973696f6e2f76313b766973696f6ef80101a202044743564e62" .
             "0670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
