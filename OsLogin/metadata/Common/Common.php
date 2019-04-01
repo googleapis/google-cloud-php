@@ -33,7 +33,7 @@ class Common
             "2f6f736c6f67696e2f636f6d6d6f6e3b636f6d6d6f6eaa021b476f6f676c" .
             "652e436c6f75642e4f734c6f67696e2e436f6d6d6f6eca021b476f6f676c" .
             "655c436c6f75645c4f734c6f67696e5c436f6d6d6f6e620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
