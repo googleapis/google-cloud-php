@@ -56,7 +56,7 @@ class Transaction
             "70616e6e6572aa0217476f6f676c652e436c6f75642e5370616e6e65722e" .
             "5631ca0217476f6f676c655c436c6f75645c5370616e6e65725c56316206" .
             "70726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

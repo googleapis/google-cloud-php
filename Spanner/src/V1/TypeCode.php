@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Spanner\V1;
 
+use UnexpectedValueException;
+
 /**
  * `TypeCode` is used as part of [Type][google.spanner.v1.Type] to
  * indicate the type of a Cloud Spanner value.
@@ -87,5 +89,38 @@ class TypeCode
      * Generated from protobuf enum <code>STRUCT = 9;</code>
      */
     const STRUCT = 9;
+
+    private static $valueToName = [
+        self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
+        self::BOOL => 'BOOL',
+        self::INT64 => 'INT64',
+        self::FLOAT64 => 'FLOAT64',
+        self::TIMESTAMP => 'TIMESTAMP',
+        self::DATE => 'DATE',
+        self::STRING => 'STRING',
+        self::BYTES => 'BYTES',
+        self::PBARRAY => 'PBARRAY',
+        self::STRUCT => 'STRUCT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

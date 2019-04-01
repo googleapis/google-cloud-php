@@ -49,7 +49,7 @@ class QueryPlan
             "70616e6e65722f76313b7370616e6e6572aa0217476f6f676c652e436c6f" .
             "75642e5370616e6e65722e5631ca0217476f6f676c655c436c6f75645c53" .
             "70616e6e65725c5631620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

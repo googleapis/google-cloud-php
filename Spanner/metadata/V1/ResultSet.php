@@ -55,7 +55,7 @@ class ResultSet
             "7370616e6e65722f76313b7370616e6e6572f80101aa0217476f6f676c65" .
             "2e436c6f75642e5370616e6e65722e5631ca0217476f6f676c655c436c6f" .
             "75645c5370616e6e65725c5631620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }
