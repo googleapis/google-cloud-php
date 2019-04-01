@@ -769,30 +769,58 @@ $ composer require google/cloud-dataproc
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Language\LanguageClient;
+use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
+use Google\Cloud\Language\V1\Document;
+use Google\Cloud\Language\V1\Document\Type;
+use Google\Cloud\Language\V1\Entity\Type as EntityType;
+use Google\Cloud\Language\V1\LanguageServiceClient;
+use Google\Cloud\Language\V1\PartOfSpeech\Tag;
 
-$language = new LanguageClient();
+$client = new LanguageServiceClient([
+    'credentials' => '/Users/dsupplee/Downloads/gcloud.json'
+]);
 
-// Analyze a sentence.
-$annotation = $language->annotateText('Greetings from Michigan!');
+$document = new Document([
+    'content' => 'Greetings from Michigan!',
+    'type' => Type::PLAIN_TEXT
+]);
+$features = new Features([
+    'extract_document_sentiment' => true,
+    'extract_entities' => true,
+    'extract_syntax' => true
+]);
+
+// Annotate the document.
+$response = $client->annotateText($document, $features);
 
 // Check the sentiment.
-if ($annotation->sentiment() > 0) {
-    echo "This is a positive message.\n";
+$sentimentScore = $response->getDocumentSentiment()
+    ->getScore();
+
+if ($sentimentScore > 0) {
+    echo 'This is a positive message.' . PHP_EOL;
 }
 
 // Detect entities.
-$entities = $annotation->entitiesByType('LOCATION');
-
-foreach ($entities as $entity) {
-    echo $entity['name'] . "\n";
+foreach ($response->getEntities() as $entity) {
+    printf(
+        '[%s] %s',
+        EntityType::name($entity->getType()),
+        $entity->getName()
+    );
+    echo PHP_EOL;
 }
 
 // Parse the syntax.
-$tokens = $annotation->tokensByTag('NOUN');
+foreach ($response->getTokens() as $token) {
+    $speechTag = Tag::name($token->getPartOfSpeech()->getTag());
 
-foreach ($tokens as $token) {
-    echo $token['text']['content'] . "\n";
+    printf(
+        '[%s] %s',
+        $speechTag,
+        $token->getText()->getContent()
+    );
+    echo PHP_EOL;
 }
 ```
 
