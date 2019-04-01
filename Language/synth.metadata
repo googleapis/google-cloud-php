@@ -1,5 +1,5 @@
 {
-  "updateTime": "2019-03-29T10:01:35.811232Z",
+  "updateTime": "2019-04-01T15:42:20.685206Z",
   "sources": [
     {
       "generator": {
@@ -12,12 +12,22 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "37386f1ebcaed51bcb7d15d00124d22c38606e45",
-        "internalRef": "240841842"
+        "sha": "396a61102a4ca1e08194a6a52026d2d17834bc66",
+        "internalRef": "241317525"
       }
     }
   ],
   "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "language",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/language/artman_language_v1.yaml"
+      }
+    },
     {
       "client": {
         "source": "googleapis",
