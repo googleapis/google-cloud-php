@@ -29,7 +29,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     private $query_text = '';
     /**
      * The language that was triggered during intent detection.
-     * See [Language Support](https://dialogflow.com/docs/reference/language)
+     * See [Language
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
@@ -40,10 +41,10 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that confidence
      * was not set.
-     * You should not rely on this field as it isn't guaranteed to be accurate, or
-     * even set. In particular this field isn't set in Webhook calls and for
-     * StreamingDetectIntent since the streaming endpoint has separate confidence
-     * estimates per portion of the audio in StreamingRecognitionResult.
+     * This field is not guaranteed to be accurate or set. In particular this
+     * field isn't set for StreamingDetectIntent since the streaming endpoint has
+     * separate confidence estimates per portion of the audio in
+     * StreamingRecognitionResult.
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>
      */
@@ -72,6 +73,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     private $all_required_params_present = false;
     /**
      * The text to be pronounced to the user or shown on the screen.
+     * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
      * Generated from protobuf field <code>string fulfillment_text = 6;</code>
      */
@@ -116,17 +118,27 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The intent detection confidence. Values range from 0.0
      * (completely uncertain) to 1.0 (completely certain).
+     * If there are `multiple knowledge_answers` messages, this value is set to
+     * the greatest `knowledgeAnswers.match_confidence` value in the list.
      *
      * Generated from protobuf field <code>float intent_detection_confidence = 12;</code>
      */
     private $intent_detection_confidence = 0.0;
     /**
-     * The free-form diagnostic info. For example, this field
-     * could contain webhook call latency.
+     * The free-form diagnostic info. For example, this field could contain
+     * webhook call latency. The string keys of the Struct's fields map can change
+     * without notice.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      */
     private $diagnostic_info = null;
+    /**
+     * The sentiment analysis result, which depends on the
+     * `sentiment_analysis_request_config` specified in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisResult sentiment_analysis_result = 17;</code>
+     */
+    private $sentiment_analysis_result = null;
 
     /**
      * Constructor.
@@ -144,17 +156,18 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           - If an event was provided as input, `query_text` is not set.
      *     @type string $language_code
      *           The language that was triggered during intent detection.
-     *           See [Language Support](https://dialogflow.com/docs/reference/language)
+     *           See [Language
+     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
      *           for a list of the currently supported language codes.
      *     @type float $speech_recognition_confidence
      *           The Speech recognition confidence between 0.0 and 1.0. A higher number
      *           indicates an estimated greater likelihood that the recognized words are
      *           correct. The default of 0.0 is a sentinel value indicating that confidence
      *           was not set.
-     *           You should not rely on this field as it isn't guaranteed to be accurate, or
-     *           even set. In particular this field isn't set in Webhook calls and for
-     *           StreamingDetectIntent since the streaming endpoint has separate confidence
-     *           estimates per portion of the audio in StreamingRecognitionResult.
+     *           This field is not guaranteed to be accurate or set. In particular this
+     *           field isn't set for StreamingDetectIntent since the streaming endpoint has
+     *           separate confidence estimates per portion of the audio in
+     *           StreamingRecognitionResult.
      *     @type string $action
      *           The action name from the matched intent.
      *     @type \Google\Protobuf\Struct $parameters
@@ -167,6 +180,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *              matched intent doesn't contain any required parameters.
      *     @type string $fulfillment_text
      *           The text to be pronounced to the user or shown on the screen.
+     *           Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
      *           The collection of rich messages to present to the user.
      *     @type string $webhook_source
@@ -187,9 +201,15 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type float $intent_detection_confidence
      *           The intent detection confidence. Values range from 0.0
      *           (completely uncertain) to 1.0 (completely certain).
+     *           If there are `multiple knowledge_answers` messages, this value is set to
+     *           the greatest `knowledgeAnswers.match_confidence` value in the list.
      *     @type \Google\Protobuf\Struct $diagnostic_info
-     *           The free-form diagnostic info. For example, this field
-     *           could contain webhook call latency.
+     *           The free-form diagnostic info. For example, this field could contain
+     *           webhook call latency. The string keys of the Struct's fields map can change
+     *           without notice.
+     *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult $sentiment_analysis_result
+     *           The sentiment analysis result, which depends on the
+     *           `sentiment_analysis_request_config` specified in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,7 +257,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The language that was triggered during intent detection.
-     * See [Language Support](https://dialogflow.com/docs/reference/language)
+     * See [Language
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
@@ -250,7 +271,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The language that was triggered during intent detection.
-     * See [Language Support](https://dialogflow.com/docs/reference/language)
+     * See [Language
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
@@ -270,10 +292,10 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that confidence
      * was not set.
-     * You should not rely on this field as it isn't guaranteed to be accurate, or
-     * even set. In particular this field isn't set in Webhook calls and for
-     * StreamingDetectIntent since the streaming endpoint has separate confidence
-     * estimates per portion of the audio in StreamingRecognitionResult.
+     * This field is not guaranteed to be accurate or set. In particular this
+     * field isn't set for StreamingDetectIntent since the streaming endpoint has
+     * separate confidence estimates per portion of the audio in
+     * StreamingRecognitionResult.
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>
      * @return float
@@ -288,10 +310,10 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * indicates an estimated greater likelihood that the recognized words are
      * correct. The default of 0.0 is a sentinel value indicating that confidence
      * was not set.
-     * You should not rely on this field as it isn't guaranteed to be accurate, or
-     * even set. In particular this field isn't set in Webhook calls and for
-     * StreamingDetectIntent since the streaming endpoint has separate confidence
-     * estimates per portion of the audio in StreamingRecognitionResult.
+     * This field is not guaranteed to be accurate or set. In particular this
+     * field isn't set for StreamingDetectIntent since the streaming endpoint has
+     * separate confidence estimates per portion of the audio in
+     * StreamingRecognitionResult.
      *
      * Generated from protobuf field <code>float speech_recognition_confidence = 2;</code>
      * @param float $var
@@ -393,6 +415,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The text to be pronounced to the user or shown on the screen.
+     * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
      * Generated from protobuf field <code>string fulfillment_text = 6;</code>
      * @return string
@@ -404,6 +427,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The text to be pronounced to the user or shown on the screen.
+     * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
      * Generated from protobuf field <code>string fulfillment_text = 6;</code>
      * @param string $var
@@ -564,6 +588,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The intent detection confidence. Values range from 0.0
      * (completely uncertain) to 1.0 (completely certain).
+     * If there are `multiple knowledge_answers` messages, this value is set to
+     * the greatest `knowledgeAnswers.match_confidence` value in the list.
      *
      * Generated from protobuf field <code>float intent_detection_confidence = 12;</code>
      * @return float
@@ -576,6 +602,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The intent detection confidence. Values range from 0.0
      * (completely uncertain) to 1.0 (completely certain).
+     * If there are `multiple knowledge_answers` messages, this value is set to
+     * the greatest `knowledgeAnswers.match_confidence` value in the list.
      *
      * Generated from protobuf field <code>float intent_detection_confidence = 12;</code>
      * @param float $var
@@ -590,8 +618,9 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The free-form diagnostic info. For example, this field
-     * could contain webhook call latency.
+     * The free-form diagnostic info. For example, this field could contain
+     * webhook call latency. The string keys of the Struct's fields map can change
+     * without notice.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      * @return \Google\Protobuf\Struct
@@ -602,8 +631,9 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The free-form diagnostic info. For example, this field
-     * could contain webhook call latency.
+     * The free-form diagnostic info. For example, this field could contain
+     * webhook call latency. The string keys of the Struct's fields map can change
+     * without notice.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
      * @param \Google\Protobuf\Struct $var
@@ -613,6 +643,34 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->diagnostic_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The sentiment analysis result, which depends on the
+     * `sentiment_analysis_request_config` specified in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisResult sentiment_analysis_result = 17;</code>
+     * @return \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult
+     */
+    public function getSentimentAnalysisResult()
+    {
+        return $this->sentiment_analysis_result;
+    }
+
+    /**
+     * The sentiment analysis result, which depends on the
+     * `sentiment_analysis_request_config` specified in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisResult sentiment_analysis_result = 17;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult $var
+     * @return $this
+     */
+    public function setSentimentAnalysisResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult::class);
+        $this->sentiment_analysis_result = $var;
 
         return $this;
     }

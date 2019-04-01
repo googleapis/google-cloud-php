@@ -29,8 +29,12 @@ class Type
     /**
      * Templates are not annotated with entity types, but they can contain
      * &#64;-prefixed entity type names as substrings.
+     * Template mode has been deprecated. Example mode is the only supported
+     * way to create new training phrases. If you have existing training
+     * phrases that you've created in template mode, those will continue to
+     * work.
      *
-     * Generated from protobuf enum <code>TEMPLATE = 2;</code>
+     * Generated from protobuf enum <code>TEMPLATE = 2 [deprecated = true];</code>
      */
     const TEMPLATE = 2;
 

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for
- * [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
+ * The request message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchUpdateIntentsRequest</code>
  */
@@ -26,9 +25,10 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intents`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 4;</code>
      */
@@ -65,9 +65,10 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           Optional. The language of training phrases, parameters and rich messages
      *           defined in `intents`. If not specified, the agent's default language is
-     *           used. [More than a dozen
-     *           languages](https://dialogflow.com/docs/reference/language) are supported.
-     *           Note: languages must be enabled in the agent, before they can be used.
+     *           used. [Many
+     *           languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           are supported. Note: languages must be enabled in the agent before they can
+     *           be used.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The mask to control which fields get updated.
      *     @type int $intent_view
@@ -166,9 +167,10 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intents`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 4;</code>
      * @return string
@@ -181,9 +183,10 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of training phrases, parameters and rich messages
      * defined in `intents`. If not specified, the agent's default language is
-     * used. [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * used. [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 4;</code>
      * @param string $var

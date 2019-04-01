@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+//
 namespace Google\Cloud\Dialogflow\V2;
 
 /**
@@ -24,30 +25,29 @@ namespace Google\Cloud\Dialogflow\V2;
  * in your app, product, or service to determine user intent and respond to the
  * user in a natural way.
  *
- * After you create an agent, you can add
- * [Intents][google.cloud.dialogflow.v2.Intents],
- * [Contexts][google.cloud.dialogflow.v2.Contexts], [Entity
- * Types][google.cloud.dialogflow.v2.EntityTypes],
- * [Webhooks][google.cloud.dialogflow.v2.WebhookRequest], and so on to manage
- * the flow of a conversation and match user input to predefined intents and
- * actions.
+ * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2.Intents], [Contexts][google.cloud.dialogflow.v2.Contexts],
+ * [Entity Types][google.cloud.dialogflow.v2.EntityTypes], [Webhooks][google.cloud.dialogflow.v2.WebhookRequest], and so on to
+ * manage the flow of a conversation and match user input to predefined intents
+ * and actions.
  *
  * You can create an agent using both Dialogflow Standard Edition and
  * Dialogflow Enterprise Edition. For details, see
- * [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+ * [Dialogflow
+ * Editions](https://cloud.google.com/dialogflow-enterprise/docs/editions).
  *
  * You can save your agent for backup or versioning by exporting the agent by
- * using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent]
- * method. You can import a saved agent by using the
- * [ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent] method.
+ * using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent] method. You can import a saved
+ * agent by using the [ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent] method.
  *
  * Dialogflow provides several
- * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
- * conversation scenarios such as determining a date and time, converting
- * currency, and so on.
+ * [prebuilt
+ * agents](https://cloud.google.com/dialogflow-enterprise/docs/agents-prebuilt)
+ * for common conversation scenarios such as determining a date and time,
+ * converting currency, and so on.
  *
  * For more information about agents, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/agents).
+ * [Dialogflow
+ * documentation](https://cloud.google.com/dialogflow-enterprise/docs/agents-overview).
  */
 class AgentsGrpcClient extends \Grpc\BaseStub {
 
@@ -97,8 +97,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Trains the specified agent.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      * @param \Google\Cloud\Dialogflow\V2\TrainAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -114,9 +113,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Exports the specified agent to a ZIP file.
      *
-     * Operation <response:
-     * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]>
      * @param \Google\Cloud\Dialogflow\V2\ExportAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -136,8 +133,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * Intents and entity types with the same name are replaced with the new
      * versions from ImportAgentRequest.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      * @param \Google\Cloud\Dialogflow\V2\ImportAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -156,8 +152,7 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
      * Replaces the current agent version with a new one. All the intents and
      * entity types in the older version are deleted.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      * @param \Google\Cloud\Dialogflow\V2\RestoreAgentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

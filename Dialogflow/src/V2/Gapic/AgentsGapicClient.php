@@ -47,7 +47,6 @@ use Google\Cloud\Dialogflow\V2\SearchAgentsRequest;
 use Google\Cloud\Dialogflow\V2\SearchAgentsResponse;
 use Google\Cloud\Dialogflow\V2\TrainAgentRequest;
 use Google\LongRunning\Operation;
-use Google\Protobuf\Struct;
 
 /**
  * Service Description: Agents are best described as Natural Language Understanding (NLU) modules
@@ -55,30 +54,29 @@ use Google\Protobuf\Struct;
  * in your app, product, or service to determine user intent and respond to the
  * user in a natural way.
  *
- * After you create an agent, you can add
- * [Intents][google.cloud.dialogflow.v2.Intents],
- * [Contexts][google.cloud.dialogflow.v2.Contexts], [Entity
- * Types][google.cloud.dialogflow.v2.EntityTypes],
- * [Webhooks][google.cloud.dialogflow.v2.WebhookRequest], and so on to manage
- * the flow of a conversation and match user input to predefined intents and
- * actions.
+ * After you create an agent, you can add [Intents][google.cloud.dialogflow.v2.Intents], [Contexts][google.cloud.dialogflow.v2.Contexts],
+ * [Entity Types][google.cloud.dialogflow.v2.EntityTypes], [Webhooks][google.cloud.dialogflow.v2.WebhookRequest], and so on to
+ * manage the flow of a conversation and match user input to predefined intents
+ * and actions.
  *
  * You can create an agent using both Dialogflow Standard Edition and
  * Dialogflow Enterprise Edition. For details, see
- * [Dialogflow Editions](https://cloud.google.com/dialogflow-enterprise/docs/editions).
+ * [Dialogflow
+ * Editions](https://cloud.google.com/dialogflow-enterprise/docs/editions).
  *
  * You can save your agent for backup or versioning by exporting the agent by
- * using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent]
- * method. You can import a saved agent by using the
- * [ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent] method.
+ * using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent] method. You can import a saved
+ * agent by using the [ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent] method.
  *
  * Dialogflow provides several
- * [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common
- * conversation scenarios such as determining a date and time, converting
- * currency, and so on.
+ * [prebuilt
+ * agents](https://cloud.google.com/dialogflow-enterprise/docs/agents-prebuilt)
+ * for common conversation scenarios such as determining a date and time,
+ * converting currency, and so on.
  *
  * For more information about agents, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/agents).
+ * [Dialogflow
+ * documentation](https://cloud.google.com/dialogflow-enterprise/docs/agents-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -129,6 +127,7 @@ class AgentsGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     ];
     private static $projectNameTemplate;
     private static $pathTemplateMap;
@@ -466,8 +465,7 @@ class AgentsGapicClient
     /**
      * Trains the specified agent.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
      * ```
@@ -546,9 +544,7 @@ class AgentsGapicClient
     /**
      * Exports the specified agent to a ZIP file.
      *
-     * Operation <response:
-     * [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]>
      *
      * Sample code:
      * ```
@@ -595,9 +591,11 @@ class AgentsGapicClient
      *                             Optional.
      *
      *     @type string $agentUri
-     *          Optional. The Google Cloud Storage URI to export the agent to.
-     *          Note: The URI must start with
-     *          "gs://". If left unspecified, the serialized agent is returned inline.
+     *          Optional. The
+     *          [Google Cloud Storage](https://cloud.google.com/storage/docs/)
+     *          URI to export the agent to.
+     *          The format of this URI must be `gs://<bucket-name>/<object-name>`.
+     *          If left unspecified, the serialized agent is returned inline.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -640,8 +638,7 @@ class AgentsGapicClient
      * Intents and entity types with the same name are replaced with the new
      * versions from ImportAgentRequest.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
      * ```
@@ -692,17 +689,17 @@ class AgentsGapicClient
      *          The agent to import.
      *
      *          Example for how to import an agent via the command line:
-     *
-     *          curl \
-     *            'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:import\
+     *          <pre>curl \
+     *            'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
      *             -X POST \
-     *             -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+     *             -H 'Authorization: Bearer '$(gcloud auth application-default
+     *             print-access-token) \
      *             -H 'Accept: application/json' \
      *             -H 'Content-Type: application/json' \
      *             --compressed \
      *             --data-binary "{
-     *                'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-     *             }"
+     *                'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *             }"</pre>
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -747,8 +744,7 @@ class AgentsGapicClient
      * Replaces the current agent version with a new one. All the intents and
      * entity types in the older version are deleted.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [google.protobuf.Struct][google.protobuf.Struct]>
+     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
      *
      * Sample code:
      * ```
@@ -799,17 +795,17 @@ class AgentsGapicClient
      *          The agent to restore.
      *
      *          Example for how to restore an agent via the command line:
-     *
-     *          curl \
-     *            'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:restore\
+     *          <pre>curl \
+     *            'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
      *             -X POST \
-     *             -H 'Authorization: Bearer '$(gcloud auth print-access-token) \
+     *             -H 'Authorization: Bearer '$(gcloud auth application-default
+     *             print-access-token) \
      *             -H 'Accept: application/json' \
      *             -H 'Content-Type: application/json' \
      *             --compressed \
      *             --data-binary "{
-     *                 'agentContent': '$(cat <agent zip file> | base64 -w 0)'
-     *             }" \
+     *                 'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
+     *             }"</pre>
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

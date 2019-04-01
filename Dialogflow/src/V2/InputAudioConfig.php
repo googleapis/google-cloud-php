@@ -23,8 +23,10 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     private $audio_encoding = 0;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
-     * details.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     * more details.
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -32,9 +34,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      */
@@ -42,7 +44,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of phrase hints which are used to boost accuracy
      * of speech recognition.
-     * Refer to [Cloud Speech API documentation](/speech/docs/basics#phrase-hints)
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
@@ -59,18 +63,22 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Required. Audio encoding of the audio content to process.
      *     @type int $sample_rate_hertz
      *           Required. Sample rate (in Hertz) of the audio content sent in the query.
-     *           Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
-     *           details.
+     *           Refer to
+     *           [Cloud Speech API
+     *           documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     *           more details.
      *     @type string $language_code
      *           Required. The language of the supplied audio. Dialogflow does not do
      *           translations. See [Language
-     *           Support](https://dialogflow.com/docs/languages) for a list of the
-     *           currently supported language codes. Note that queries in the same session
-     *           do not necessarily need to specify the same language.
+     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           for a list of the currently supported language codes. Note that queries in
+     *           the same session do not necessarily need to specify the same language.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_hints
      *           Optional. The collection of phrase hints which are used to boost accuracy
      *           of speech recognition.
-     *           Refer to [Cloud Speech API documentation](/speech/docs/basics#phrase-hints)
+     *           Refer to
+     *           [Cloud Speech API
+     *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      *           for more details.
      * }
      */
@@ -107,8 +115,10 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
-     * details.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     * more details.
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -120,8 +130,10 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query.
-     * Refer to [Cloud Speech API documentation](/speech/docs/basics) for more
-     * details.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics) for
+     * more details.
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -138,9 +150,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @return string
@@ -153,9 +165,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://dialogflow.com/docs/languages) for a list of the
-     * currently supported language codes. Note that queries in the same session
-     * do not necessarily need to specify the same language.
+     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * for a list of the currently supported language codes. Note that queries in
+     * the same session do not necessarily need to specify the same language.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @param string $var
@@ -172,7 +184,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of phrase hints which are used to boost accuracy
      * of speech recognition.
-     * Refer to [Cloud Speech API documentation](/speech/docs/basics#phrase-hints)
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
@@ -186,7 +200,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of phrase hints which are used to boost accuracy
      * of speech recognition.
-     * Refer to [Cloud Speech API documentation](/speech/docs/basics#phrase-hints)
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>

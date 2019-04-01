@@ -18,9 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Intent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically.
      * The unique identifier of this intent.
+     * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -33,14 +33,16 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Required. Indicates whether webhooks are enabled for the intent.
+     * Optional. Indicates whether webhooks are enabled for the intent.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6;</code>
      */
     private $webhook_state = 0;
     /**
      * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. Zero or negative numbers mean that the intent is disabled.
+     * priorities. If this is zero or unspecified, we use the default
+     * priority 500000.
+     * Negative numbers mean that the intent is disabled.
      *
      * Generated from protobuf field <code>int32 priority = 3;</code>
      */
@@ -77,7 +79,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $events;
     /**
-     * Optional. The collection of examples/templates that the agent is
+     * Optional. The collection of examples that the agent is
      * trained on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
@@ -85,6 +87,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     private $training_phrases;
     /**
      * Optional. The name of the action associated with the intent.
+     * Note: The action name must not contain whitespaces.
      *
      * Generated from protobuf field <code>string action = 10;</code>
      */
@@ -127,16 +130,19 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $default_response_platforms;
     /**
-     * The unique identifier of the root intent in the chain of followup intents.
-     * It identifies the correct followup intents chain for this intent.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
      */
     private $root_followup_intent_name = '';
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents.
+     * Read-only after creation. The unique identifier of the parent intent in the
+     * chain of followup intents. You can set this field when creating an intent,
+     * for example with [CreateIntent][] or [BatchUpdateIntents][], in order to
+     * make this intent a followup intent.
      * It identifies the parent followup intent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -144,8 +150,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $parent_followup_intent_name = '';
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent as
+     * a direct or indirect parent. We populate this field only in the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
      */
@@ -158,17 +164,19 @@ class Intent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required for all methods except `create` (`create` populates the name
-     *           automatically.
      *           The unique identifier of this intent.
+     *           Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     *           methods.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $display_name
      *           Required. The name of this intent.
      *     @type int $webhook_state
-     *           Required. Indicates whether webhooks are enabled for the intent.
+     *           Optional. Indicates whether webhooks are enabled for the intent.
      *     @type int $priority
      *           Optional. The priority of this intent. Higher numbers represent higher
-     *           priorities. Zero or negative numbers mean that the intent is disabled.
+     *           priorities. If this is zero or unspecified, we use the default
+     *           priority 500000.
+     *           Negative numbers mean that the intent is disabled.
      *     @type bool $is_fallback
      *           Optional. Indicates whether this is a fallback intent.
      *     @type bool $ml_disabled
@@ -185,10 +193,11 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           If the collection of input contexts is not empty, all of the contexts must
      *           be present in the active user session for an event to trigger this intent.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[]|\Google\Protobuf\Internal\RepeatedField $training_phrases
-     *           Optional. The collection of examples/templates that the agent is
+     *           Optional. The collection of examples that the agent is
      *           trained on.
      *     @type string $action
      *           Optional. The name of the action associated with the intent.
+     *           Note: The action name must not contain whitespaces.
      *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
      *           Optional. The collection of contexts that are activated when the intent
      *           is matched. Context messages in this collection should not set the
@@ -207,17 +216,20 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Optional. The list of platforms for which the first response will be
      *           taken from among the messages assigned to the DEFAULT_PLATFORM.
      *     @type string $root_followup_intent_name
-     *           The unique identifier of the root intent in the chain of followup intents.
-     *           It identifies the correct followup intents chain for this intent.
+     *           Read-only. The unique identifier of the root intent in the chain of
+     *           followup intents. It identifies the correct followup intents chain for
+     *           this intent. We populate this field only in the output.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $parent_followup_intent_name
-     *           The unique identifier of the parent intent in the chain of followup
-     *           intents.
+     *           Read-only after creation. The unique identifier of the parent intent in the
+     *           chain of followup intents. You can set this field when creating an intent,
+     *           for example with [CreateIntent][] or [BatchUpdateIntents][], in order to
+     *           make this intent a followup intent.
      *           It identifies the parent followup intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $followup_intent_info
-     *           Optional. Collection of information about all followup intents that have
-     *           name of this intent as a root_name.
+     *           Read-only. Information about all followup intents that have this intent as
+     *           a direct or indirect parent. We populate this field only in the output.
      * }
      */
     public function __construct($data = NULL) {
@@ -226,9 +238,9 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically.
      * The unique identifier of this intent.
+     * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -240,9 +252,9 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for all methods except `create` (`create` populates the name
-     * automatically.
      * The unique identifier of this intent.
+     * Required for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent] and [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents]
+     * methods.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -284,7 +296,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates whether webhooks are enabled for the intent.
+     * Optional. Indicates whether webhooks are enabled for the intent.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6;</code>
      * @return int
@@ -295,7 +307,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates whether webhooks are enabled for the intent.
+     * Optional. Indicates whether webhooks are enabled for the intent.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6;</code>
      * @param int $var
@@ -311,7 +323,9 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. Zero or negative numbers mean that the intent is disabled.
+     * priorities. If this is zero or unspecified, we use the default
+     * priority 500000.
+     * Negative numbers mean that the intent is disabled.
      *
      * Generated from protobuf field <code>int32 priority = 3;</code>
      * @return int
@@ -323,7 +337,9 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The priority of this intent. Higher numbers represent higher
-     * priorities. Zero or negative numbers mean that the intent is disabled.
+     * priorities. If this is zero or unspecified, we use the default
+     * priority 500000.
+     * Negative numbers mean that the intent is disabled.
      *
      * Generated from protobuf field <code>int32 priority = 3;</code>
      * @param int $var
@@ -456,7 +472,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of examples/templates that the agent is
+     * Optional. The collection of examples that the agent is
      * trained on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
@@ -468,7 +484,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of examples/templates that the agent is
+     * Optional. The collection of examples that the agent is
      * trained on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
@@ -485,6 +501,7 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The name of the action associated with the intent.
+     * Note: The action name must not contain whitespaces.
      *
      * Generated from protobuf field <code>string action = 10;</code>
      * @return string
@@ -496,6 +513,7 @@ class Intent extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The name of the action associated with the intent.
+     * Note: The action name must not contain whitespaces.
      *
      * Generated from protobuf field <code>string action = 10;</code>
      * @param string $var
@@ -654,8 +672,9 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of the root intent in the chain of followup intents.
-     * It identifies the correct followup intents chain for this intent.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
@@ -667,8 +686,9 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of the root intent in the chain of followup intents.
-     * It identifies the correct followup intents chain for this intent.
+     * Read-only. The unique identifier of the root intent in the chain of
+     * followup intents. It identifies the correct followup intents chain for
+     * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
@@ -684,8 +704,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents.
+     * Read-only after creation. The unique identifier of the parent intent in the
+     * chain of followup intents. You can set this field when creating an intent,
+     * for example with [CreateIntent][] or [BatchUpdateIntents][], in order to
+     * make this intent a followup intent.
      * It identifies the parent followup intent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -698,8 +720,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of the parent intent in the chain of followup
-     * intents.
+     * Read-only after creation. The unique identifier of the parent intent in the
+     * chain of followup intents. You can set this field when creating an intent,
+     * for example with [CreateIntent][] or [BatchUpdateIntents][], in order to
+     * make this intent a followup intent.
      * It identifies the parent followup intent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
@@ -716,8 +740,8 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent as
+     * a direct or indirect parent. We populate this field only in the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -728,8 +752,8 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Collection of information about all followup intents that have
-     * name of this intent as a root_name.
+     * Read-only. Information about all followup intents that have this intent as
+     * a direct or indirect parent. We populate this field only in the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $var

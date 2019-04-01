@@ -23,7 +23,7 @@ class FollowupIntentInfo extends \Google\Protobuf\Internal\Message
      */
     private $followup_intent_name = '';
     /**
-     * The unique identifier of the followup intent parent.
+     * The unique identifier of the followup intent's parent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>
@@ -40,7 +40,7 @@ class FollowupIntentInfo extends \Google\Protobuf\Internal\Message
      *           The unique identifier of the followup intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type string $parent_followup_intent_name
-     *           The unique identifier of the followup intent parent.
+     *           The unique identifier of the followup intent's parent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      * }
      */
@@ -78,7 +78,7 @@ class FollowupIntentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of the followup intent parent.
+     * The unique identifier of the followup intent's parent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>
@@ -90,7 +90,7 @@ class FollowupIntentInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The unique identifier of the followup intent parent.
+     * The unique identifier of the followup intent's parent.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
      * Generated from protobuf field <code>string parent_followup_intent_name = 2;</code>

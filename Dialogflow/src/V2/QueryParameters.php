@@ -45,9 +45,9 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     private $reset_contexts = false;
     /**
-     * Optional. The collection of session entity types to replace or extend
-     * developer entities with for this query only. The entity synonyms apply
-     * to all languages.
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
      */
@@ -59,6 +59,13 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 6;</code>
      */
     private $payload = null;
+    /**
+     * Optional. Configures the type of sentiment analysis to perform. If not
+     * provided, sentiment analysis is not performed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
+     */
+    private $sentiment_analysis_request_config = null;
 
     /**
      * Constructor.
@@ -80,12 +87,15 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies whether to delete all contexts in the current session
      *           before the new ones are activated.
      *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $session_entity_types
-     *           Optional. The collection of session entity types to replace or extend
-     *           developer entities with for this query only. The entity synonyms apply
-     *           to all languages.
+     *           Optional. Additional session entity types to replace or extend developer
+     *           entity types with. The entity synonyms apply to all languages and persist
+     *           for the session of this query.
      *     @type \Google\Protobuf\Struct $payload
      *           Optional. This field can be used to pass custom data into the webhook
      *           associated with the agent. Arbitrary JSON objects are supported.
+     *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig $sentiment_analysis_request_config
+     *           Optional. Configures the type of sentiment analysis to perform. If not
+     *           provided, sentiment analysis is not performed.
      * }
      */
     public function __construct($data = NULL) {
@@ -208,9 +218,9 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of session entity types to replace or extend
-     * developer entities with for this query only. The entity synonyms apply
-     * to all languages.
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -221,9 +231,9 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of session entity types to replace or extend
-     * developer entities with for this query only. The entity synonyms apply
-     * to all languages.
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
      * @param \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -261,6 +271,34 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->payload = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configures the type of sentiment analysis to perform. If not
+     * provided, sentiment analysis is not performed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
+     * @return \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig
+     */
+    public function getSentimentAnalysisRequestConfig()
+    {
+        return $this->sentiment_analysis_request_config;
+    }
+
+    /**
+     * Optional. Configures the type of sentiment analysis to perform. If not
+     * provided, sentiment analysis is not performed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig $var
+     * @return $this
+     */
+    public function setSentimentAnalysisRequestConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig::class);
+        $this->sentiment_analysis_request_config = $var;
 
         return $this;
     }

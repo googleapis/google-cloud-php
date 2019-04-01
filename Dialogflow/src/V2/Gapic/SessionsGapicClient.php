@@ -38,6 +38,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\DetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\DetectIntentResponse;
+use Google\Cloud\Dialogflow\V2\OutputAudioConfig;
 use Google\Cloud\Dialogflow\V2\QueryInput;
 use Google\Cloud\Dialogflow\V2\QueryParameters;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentRequest;
@@ -45,10 +46,9 @@ use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
 
 /**
  * Service Description: A session represents an interaction with a user. You retrieve user input
- * and pass it to the
- * [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
- * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent])
- * method to determine user intent and respond.
+ * and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
+ * [StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
+ * user intent and respond.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -100,6 +100,7 @@ class SessionsGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     ];
     private static $sessionNameTemplate;
     private static $pathTemplateMap;
@@ -296,6 +297,10 @@ class SessionsGapicClient
      *
      *     @type QueryParameters $queryParams
      *          Optional. The parameters of this query.
+     *     @type OutputAudioConfig $outputAudioConfig
+     *          Optional. Instructs the speech synthesizer how to generate the output
+     *          audio. If this field is not set and agent-level speech synthesizer is not
+     *          configured, no output audio is generated.
      *     @type string $inputAudio
      *          Optional. The natural language speech audio to be processed. This field
      *          should be populated iff `query_input` is set to an input audio config.
@@ -319,6 +324,9 @@ class SessionsGapicClient
         $request->setQueryInput($queryInput);
         if (isset($optionalArgs['queryParams'])) {
             $request->setQueryParams($optionalArgs['queryParams']);
+        }
+        if (isset($optionalArgs['outputAudioConfig'])) {
+            $request->setOutputAudioConfig($optionalArgs['outputAudioConfig']);
         }
         if (isset($optionalArgs['inputAudio'])) {
             $request->setInputAudio($optionalArgs['inputAudio']);

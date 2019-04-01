@@ -76,8 +76,10 @@ class SessionsClientTest extends GeneratedTest
 
         // Mock response
         $responseId = 'responseId1847552473';
+        $outputAudio = '24';
         $expectedResponse = new DetectIntentResponse();
         $expectedResponse->setResponseId($responseId);
+        $expectedResponse->setOutputAudio($outputAudio);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -154,16 +156,22 @@ class SessionsClientTest extends GeneratedTest
 
         // Mock response
         $responseId = 'responseId1847552473';
+        $outputAudio = '24';
         $expectedResponse = new StreamingDetectIntentResponse();
         $expectedResponse->setResponseId($responseId);
+        $expectedResponse->setOutputAudio($outputAudio);
         $transport->addResponse($expectedResponse);
         $responseId2 = 'responseId21676436300';
+        $outputAudio2 = '-53';
         $expectedResponse2 = new StreamingDetectIntentResponse();
         $expectedResponse2->setResponseId($responseId2);
+        $expectedResponse2->setOutputAudio($outputAudio2);
         $transport->addResponse($expectedResponse2);
         $responseId3 = 'responseId31676436301';
+        $outputAudio3 = '-52';
         $expectedResponse3 = new StreamingDetectIntentResponse();
         $expectedResponse3->setResponseId($responseId3);
+        $expectedResponse3->setOutputAudio($outputAudio3);
         $transport->addResponse($expectedResponse3);
 
         // Mock request

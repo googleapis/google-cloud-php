@@ -9,22 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for
- * [EntityTypes.BatchCreateEntities][google.cloud.dialogflow.v2.EntityTypes.BatchCreateEntities].
+ * The request message for [EntityTypes.BatchUpdateEntities][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntities].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.BatchUpdateEntitiesRequest</code>
  */
 class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the entity type to update the entities in. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to update or create entities in.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * Required. The collection of new entities to replace the existing entities.
+     * Required. The entities to update or create.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
      */
@@ -32,9 +31,10 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
      * specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      */
@@ -53,16 +53,17 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the entity type to update the entities in. Format:
-     *           `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     *           Required. The name of the entity type to update or create entities in.
+     *           Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
-     *           Required. The collection of new entities to replace the existing entities.
+     *           Required. The entities to update or create.
      *     @type string $language_code
      *           Optional. The language of entity synonyms defined in `entities`. If not
      *           specified, the agent's default language is used.
-     *           [More than a dozen
-     *           languages](https://dialogflow.com/docs/reference/language) are supported.
-     *           Note: languages must be enabled in the agent, before they can be used.
+     *           [Many
+     *           languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           are supported. Note: languages must be enabled in the agent before they can
+     *           be used.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The mask to control which fields get updated.
      * }
@@ -73,8 +74,8 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entity type to update the entities in. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to update or create entities in.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -85,8 +86,8 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entity type to update the entities in. Format:
-     * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * Required. The name of the entity type to update or create entities in.
+     * Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -101,7 +102,7 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection of new entities to replace the existing entities.
+     * Required. The entities to update or create.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -112,7 +113,7 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The collection of new entities to replace the existing entities.
+     * Required. The entities to update or create.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -129,9 +130,10 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
      * specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @return string
@@ -144,9 +146,10 @@ class BatchUpdateEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The language of entity synonyms defined in `entities`. If not
      * specified, the agent's default language is used.
-     * [More than a dozen
-     * languages](https://dialogflow.com/docs/reference/language) are supported.
-     * Note: languages must be enabled in the agent, before they can be used.
+     * [Many
+     * languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * are supported. Note: languages must be enabled in the agent before they can
+     * be used.
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @param string $var

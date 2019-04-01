@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\Dialogflow\V2;
 
@@ -30,7 +31,8 @@ namespace Google\Cloud\Dialogflow\V2;
  * entity type at the session level.
  *
  * For more information about entity types, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/entities).
+ * [Dialogflow
+ * documentation](https://cloud.google.com/dialogflow-enterprise/docs/entities-overview).
  */
 class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
 
@@ -73,6 +75,9 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a session entity type.
+     *
+     * If the specified session entity type already exists, overrides the session
+     * entity type.
      * @param \Google\Cloud\Dialogflow\V2\CreateSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

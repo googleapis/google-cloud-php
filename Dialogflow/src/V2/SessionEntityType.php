@@ -23,6 +23,8 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
+     * `<Entity Type Display Name>` must be the display name of an existing entity
+     * type in the same agent that will be overridden or supplemented.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -52,6 +54,8 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      *           Required. The unique identifier of this session entity type. Format:
      *           `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      *           Display Name>`.
+     *           `<Entity Type Display Name>` must be the display name of an existing entity
+     *           type in the same agent that will be overridden or supplemented.
      *     @type int $entity_override_mode
      *           Required. Indicates whether the additional data should override or
      *           supplement the developer entity type definition.
@@ -69,6 +73,8 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
+     * `<Entity Type Display Name>` must be the display name of an existing entity
+     * type in the same agent that will be overridden or supplemented.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -82,6 +88,8 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. The unique identifier of this session entity type. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
+     * `<Entity Type Display Name>` must be the display name of an existing entity
+     * type in the same agent that will be overridden or supplemented.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

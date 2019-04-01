@@ -57,7 +57,8 @@ use Google\Protobuf\GPBEmpty;
  * entity type at the session level.
  *
  * For more information about entity types, see the
- * [Dialogflow documentation](https://dialogflow.com/docs/entities).
+ * [Dialogflow
+ * documentation](https://cloud.google.com/dialogflow-enterprise/docs/entities-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -123,6 +124,7 @@ class SessionEntityTypesGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dialogflow',
     ];
     private static $sessionNameTemplate;
     private static $sessionEntityTypeNameTemplate;
@@ -450,6 +452,9 @@ class SessionEntityTypesGapicClient
 
     /**
      * Creates a session entity type.
+     *
+     * If the specified session entity type already exists, overrides the session
+     * entity type.
      *
      * Sample code:
      * ```
