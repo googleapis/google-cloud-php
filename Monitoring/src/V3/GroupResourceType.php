@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
+use UnexpectedValueException;
+
 /**
  * The supported resource types that can be used as values of
  * `group_resource.resource_type`.
@@ -34,5 +36,31 @@ class GroupResourceType
      * Generated from protobuf enum <code>AWS_ELB_LOAD_BALANCER = 2;</code>
      */
     const AWS_ELB_LOAD_BALANCER = 2;
+
+    private static $valueToName = [
+        self::RESOURCE_TYPE_UNSPECIFIED => 'RESOURCE_TYPE_UNSPECIFIED',
+        self::INSTANCE => 'INSTANCE',
+        self::AWS_ELB_LOAD_BALANCER => 'AWS_ELB_LOAD_BALANCER',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

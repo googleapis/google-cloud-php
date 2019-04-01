@@ -25,7 +25,7 @@ class SpanContext
             "696e67aa021a476f6f676c652e436c6f75642e4d6f6e69746f72696e672e" .
             "5633ca021a476f6f676c655c436c6f75645c4d6f6e69746f72696e675c56" .
             "33620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

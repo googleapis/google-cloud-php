@@ -27,7 +27,7 @@ class Group
             "1a476f6f676c652e436c6f75642e4d6f6e69746f72696e672e5633ca021a" .
             "476f6f676c655c436c6f75645c4d6f6e69746f72696e675c563362067072" .
             "6f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

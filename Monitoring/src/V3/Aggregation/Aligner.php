@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Monitoring\V3\Aggregation;
 
+use UnexpectedValueException;
+
 /**
  * The Aligner describes how to bring the data points in a single
  * time series into temporal alignment.
@@ -215,6 +217,48 @@ class Aligner
      * Generated from protobuf enum <code>ALIGN_PERCENT_CHANGE = 23;</code>
      */
     const ALIGN_PERCENT_CHANGE = 23;
+
+    private static $valueToName = [
+        self::ALIGN_NONE => 'ALIGN_NONE',
+        self::ALIGN_DELTA => 'ALIGN_DELTA',
+        self::ALIGN_RATE => 'ALIGN_RATE',
+        self::ALIGN_INTERPOLATE => 'ALIGN_INTERPOLATE',
+        self::ALIGN_NEXT_OLDER => 'ALIGN_NEXT_OLDER',
+        self::ALIGN_MIN => 'ALIGN_MIN',
+        self::ALIGN_MAX => 'ALIGN_MAX',
+        self::ALIGN_MEAN => 'ALIGN_MEAN',
+        self::ALIGN_COUNT => 'ALIGN_COUNT',
+        self::ALIGN_SUM => 'ALIGN_SUM',
+        self::ALIGN_STDDEV => 'ALIGN_STDDEV',
+        self::ALIGN_COUNT_TRUE => 'ALIGN_COUNT_TRUE',
+        self::ALIGN_COUNT_FALSE => 'ALIGN_COUNT_FALSE',
+        self::ALIGN_FRACTION_TRUE => 'ALIGN_FRACTION_TRUE',
+        self::ALIGN_PERCENTILE_99 => 'ALIGN_PERCENTILE_99',
+        self::ALIGN_PERCENTILE_95 => 'ALIGN_PERCENTILE_95',
+        self::ALIGN_PERCENTILE_50 => 'ALIGN_PERCENTILE_50',
+        self::ALIGN_PERCENTILE_05 => 'ALIGN_PERCENTILE_05',
+        self::ALIGN_PERCENT_CHANGE => 'ALIGN_PERCENT_CHANGE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

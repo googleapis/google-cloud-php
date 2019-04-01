@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Monitoring\V3\Aggregation;
 
+use UnexpectedValueException;
+
 /**
  * A Reducer describes how to aggregate data points from multiple
  * time series into a single time series.
@@ -138,6 +140,43 @@ class Reducer
      * Generated from protobuf enum <code>REDUCE_PERCENTILE_05 = 12;</code>
      */
     const REDUCE_PERCENTILE_05 = 12;
+
+    private static $valueToName = [
+        self::REDUCE_NONE => 'REDUCE_NONE',
+        self::REDUCE_MEAN => 'REDUCE_MEAN',
+        self::REDUCE_MIN => 'REDUCE_MIN',
+        self::REDUCE_MAX => 'REDUCE_MAX',
+        self::REDUCE_SUM => 'REDUCE_SUM',
+        self::REDUCE_STDDEV => 'REDUCE_STDDEV',
+        self::REDUCE_COUNT => 'REDUCE_COUNT',
+        self::REDUCE_COUNT_TRUE => 'REDUCE_COUNT_TRUE',
+        self::REDUCE_COUNT_FALSE => 'REDUCE_COUNT_FALSE',
+        self::REDUCE_FRACTION_TRUE => 'REDUCE_FRACTION_TRUE',
+        self::REDUCE_PERCENTILE_99 => 'REDUCE_PERCENTILE_99',
+        self::REDUCE_PERCENTILE_95 => 'REDUCE_PERCENTILE_95',
+        self::REDUCE_PERCENTILE_50 => 'REDUCE_PERCENTILE_50',
+        self::REDUCE_PERCENTILE_05 => 'REDUCE_PERCENTILE_05',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

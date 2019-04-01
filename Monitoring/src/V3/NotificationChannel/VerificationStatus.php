@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Monitoring\V3\NotificationChannel;
 
+use UnexpectedValueException;
+
 /**
  * Indicates whether the channel has been verified or not. It is illegal
  * to specify this field in a
@@ -41,6 +43,32 @@ class VerificationStatus
      * Generated from protobuf enum <code>VERIFIED = 2;</code>
      */
     const VERIFIED = 2;
+
+    private static $valueToName = [
+        self::VERIFICATION_STATUS_UNSPECIFIED => 'VERIFICATION_STATUS_UNSPECIFIED',
+        self::UNVERIFIED => 'UNVERIFIED',
+        self::VERIFIED => 'VERIFIED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

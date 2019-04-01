@@ -27,7 +27,7 @@ class DroppedLabels
             "746f50015a3e676f6f676c652e676f6c616e672e6f72672f67656e70726f" .
             "746f2f676f6f676c65617069732f6d6f6e69746f72696e672f76333b6d6f" .
             "6e69746f72696e67620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

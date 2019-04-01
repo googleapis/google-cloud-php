@@ -28,7 +28,7 @@ class MutationRecord
             "6e67aa021a476f6f676c652e436c6f75642e4d6f6e69746f72696e672e56" .
             "33ca021a476f6f676c655c436c6f75645c4d6f6e69746f72696e675c5633" .
             "620670726f746f33"
-        ));
+        ), true);
 
         static::$is_initialized = true;
     }

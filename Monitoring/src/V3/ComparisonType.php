@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
+use UnexpectedValueException;
+
 /**
  * Specifies an ordering relationship on two arguments, here called left and
  * right.
@@ -54,5 +56,35 @@ class ComparisonType
      * Generated from protobuf enum <code>COMPARISON_NE = 6;</code>
      */
     const COMPARISON_NE = 6;
+
+    private static $valueToName = [
+        self::COMPARISON_UNSPECIFIED => 'COMPARISON_UNSPECIFIED',
+        self::COMPARISON_GT => 'COMPARISON_GT',
+        self::COMPARISON_GE => 'COMPARISON_GE',
+        self::COMPARISON_LT => 'COMPARISON_LT',
+        self::COMPARISON_LE => 'COMPARISON_LE',
+        self::COMPARISON_EQ => 'COMPARISON_EQ',
+        self::COMPARISON_NE => 'COMPARISON_NE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
