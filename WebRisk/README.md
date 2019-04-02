@@ -51,7 +51,7 @@ $response = $webrisk->searchUris($uri, [
 $threats = $response->getThreat();
 if ($threats) {
     echo $uri . ' has the following threats:' . PHP_EOL;
-    foreach ($threats->getThreatType() as $threat) {
+    foreach ($threats->getThreatTypes() as $threat) {
         echo ThreatType::name($threat) . PHP_EOL;
     }
 }
