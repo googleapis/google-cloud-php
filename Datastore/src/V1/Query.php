@@ -51,7 +51,8 @@ class Query extends \Google\Protobuf\Internal\Message
     /**
      * A starting point for the query results. Query cursors are
      * returned in query result batches and
-     * [can only be used to continue the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * [can only be used to continue the same
+     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *
      * Generated from protobuf field <code>bytes start_cursor = 7;</code>
      */
@@ -59,7 +60,8 @@ class Query extends \Google\Protobuf\Internal\Message
     /**
      * An ending point for the query results. Query cursors are
      * returned in query result batches and
-     * [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * [can only be used to limit the same
+     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *
      * Generated from protobuf field <code>bytes end_cursor = 8;</code>
      */
@@ -103,11 +105,13 @@ class Query extends \Google\Protobuf\Internal\Message
      *     @type string $start_cursor
      *           A starting point for the query results. Query cursors are
      *           returned in query result batches and
-     *           [can only be used to continue the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     *           [can only be used to continue the same
+     *           query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *     @type string $end_cursor
      *           An ending point for the query results. Query cursors are
      *           returned in query result batches and
-     *           [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     *           [can only be used to limit the same
+     *           query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *     @type int $offset
      *           The number of results to skip. Applies before limit, but after all other
      *           constraints. Optional. Must be >= 0 if specified.
@@ -262,7 +266,8 @@ class Query extends \Google\Protobuf\Internal\Message
     /**
      * A starting point for the query results. Query cursors are
      * returned in query result batches and
-     * [can only be used to continue the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * [can only be used to continue the same
+     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *
      * Generated from protobuf field <code>bytes start_cursor = 7;</code>
      * @return string
@@ -275,7 +280,8 @@ class Query extends \Google\Protobuf\Internal\Message
     /**
      * A starting point for the query results. Query cursors are
      * returned in query result batches and
-     * [can only be used to continue the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * [can only be used to continue the same
+     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *
      * Generated from protobuf field <code>bytes start_cursor = 7;</code>
      * @param string $var
@@ -292,7 +298,8 @@ class Query extends \Google\Protobuf\Internal\Message
     /**
      * An ending point for the query results. Query cursors are
      * returned in query result batches and
-     * [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * [can only be used to limit the same
+     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *
      * Generated from protobuf field <code>bytes end_cursor = 8;</code>
      * @return string
@@ -305,7 +312,8 @@ class Query extends \Google\Protobuf\Internal\Message
     /**
      * An ending point for the query results. Query cursors are
      * returned in query result batches and
-     * [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
+     * [can only be used to limit the same
+     * query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
      *
      * Generated from protobuf field <code>bytes end_cursor = 8;</code>
      * @param string $var
@@ -362,6 +370,23 @@ class Query extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getLimit()</code>
+
+     * The maximum number of results to return. Applies after all other
+     * constraints. Optional.
+     * Unspecified is interpreted as no limit.
+     * Must be >= 0 if specified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 12;</code>
+     * @return int|null
+     */
+    public function getLimitValue()
+    {
+        $wrapper = $this->getLimit();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * The maximum number of results to return. Applies after all other
      * constraints. Optional.
      * Unspecified is interpreted as no limit.
@@ -377,6 +402,24 @@ class Query extends \Google\Protobuf\Internal\Message
         $this->limit = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * The maximum number of results to return. Applies after all other
+     * constraints. Optional.
+     * Unspecified is interpreted as no limit.
+     * Must be >= 0 if specified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 12;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setLimitValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
+        return $this->setLimit($wrappedVar);
     }
 
 }

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Datastore\V1\ReadOptions;
 
+use UnexpectedValueException;
+
 /**
  * The possible values for read consistencies.
  *
@@ -29,6 +31,32 @@ class ReadConsistency
      * Generated from protobuf enum <code>EVENTUAL = 2;</code>
      */
     const EVENTUAL = 2;
+
+    private static $valueToName = [
+        self::READ_CONSISTENCY_UNSPECIFIED => 'READ_CONSISTENCY_UNSPECIFIED',
+        self::STRONG => 'STRONG',
+        self::EVENTUAL => 'EVENTUAL',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

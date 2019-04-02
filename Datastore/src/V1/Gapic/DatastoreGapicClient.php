@@ -29,6 +29,7 @@ namespace Google\Cloud\Datastore\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -232,6 +233,13 @@ class DatastoreGapicClient
             $request->setReadOptions($optionalArgs['readOptions']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Lookup',
             LookupResponse::class,
@@ -296,6 +304,13 @@ class DatastoreGapicClient
             $request->setGqlQuery($optionalArgs['gqlQuery']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'RunQuery',
             RunQueryResponse::class,
@@ -343,6 +358,13 @@ class DatastoreGapicClient
         if (isset($optionalArgs['transactionOptions'])) {
             $request->setTransactionOptions($optionalArgs['transactionOptions']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'BeginTransaction',
@@ -414,6 +436,13 @@ class DatastoreGapicClient
             $request->setTransaction($optionalArgs['transaction']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Commit',
             CommitResponse::class,
@@ -460,6 +489,13 @@ class DatastoreGapicClient
         $request = new RollbackRequest();
         $request->setProjectId($projectId);
         $request->setTransaction($transaction);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'Rollback',
@@ -508,6 +544,13 @@ class DatastoreGapicClient
         $request = new AllocateIdsRequest();
         $request->setProjectId($projectId);
         $request->setKeys($keys);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'AllocateIds',
@@ -561,6 +604,13 @@ class DatastoreGapicClient
         if (isset($optionalArgs['databaseId'])) {
             $request->setDatabaseId($optionalArgs['databaseId']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'ReserveIds',
