@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\CompleteQueryRequest;
 
+use UnexpectedValueException;
+
 /**
  * Enum to specify the scope of completion.
  *
@@ -30,6 +32,32 @@ class CompletionScope
      * Generated from protobuf enum <code>PUBLIC = 2;</code>
      */
     const PBPUBLIC = 2;
+
+    private static $valueToName = [
+        self::COMPLETION_SCOPE_UNSPECIFIED => 'COMPLETION_SCOPE_UNSPECIFIED',
+        self::TENANT => 'TENANT',
+        self::PBPUBLIC => 'PBPUBLIC',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

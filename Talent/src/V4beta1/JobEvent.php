@@ -18,18 +18,21 @@ class JobEvent extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     * The type of the event (see
+     * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
      */
     private $type = 0;
     /**
      * Required.
-     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     * For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     * this field contains the identifiers of all jobs shown to the job seeker.
-     * If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     * identifier of the viewed job.
+     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     * this event. For example, if this is an
+     * [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     * event, this field contains the identifiers of all jobs shown to the job
+     * seeker. If this was a
+     * [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     * field contains the identifier of the viewed job.
      *
      * Generated from protobuf field <code>repeated string jobs = 2;</code>
      */
@@ -43,14 +46,17 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Required.
-     *           The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     *           The type of the event (see
+     *           [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required.
-     *           The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     *           For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     *           this field contains the identifiers of all jobs shown to the job seeker.
-     *           If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     *           identifier of the viewed job.
+     *           The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     *           this event. For example, if this is an
+     *           [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     *           event, this field contains the identifiers of all jobs shown to the job
+     *           seeker. If this was a
+     *           [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     *           field contains the identifier of the viewed job.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +66,8 @@ class JobEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     * The type of the event (see
+     * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
      * @return int
@@ -72,7 +79,8 @@ class JobEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     * The type of the event (see
+     * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
      * @param int $var
@@ -88,11 +96,13 @@ class JobEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     * For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     * this field contains the identifiers of all jobs shown to the job seeker.
-     * If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     * identifier of the viewed job.
+     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     * this event. For example, if this is an
+     * [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     * event, this field contains the identifiers of all jobs shown to the job
+     * seeker. If this was a
+     * [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     * field contains the identifier of the viewed job.
      *
      * Generated from protobuf field <code>repeated string jobs = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -104,11 +114,13 @@ class JobEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     * For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     * this field contains the identifiers of all jobs shown to the job seeker.
-     * If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     * identifier of the viewed job.
+     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     * this event. For example, if this is an
+     * [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     * event, this field contains the identifiers of all jobs shown to the job
+     * seeker. If this was a
+     * [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     * field contains the identifier of the viewed job.
      *
      * Generated from protobuf field <code>repeated string jobs = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\ProfileEvent;
 
+use UnexpectedValueException;
+
 /**
  * The enum represents types of client events for a candidate profile.
  *
@@ -35,52 +37,33 @@ class ProfileEventType
      * Generated from protobuf enum <code>BOOKMARK = 3;</code>
      */
     const BOOKMARK = 3;
-    /**
-     * Comment added to the profile.
-     *
-     * Generated from protobuf enum <code>COMMENT_ADDED = 4;</code>
-     */
-    const COMMENT_ADDED = 4;
-    /**
-     * Email sent regarding the profile.
-     *
-     * Generated from protobuf enum <code>EMAIL_SENT = 5;</code>
-     */
-    const EMAIL_SENT = 5;
-    /**
-     * The resume of the profile is viewed.
-     *
-     * Generated from protobuf enum <code>RESUME_VIEWED = 6;</code>
-     */
-    const RESUME_VIEWED = 6;
-    /**
-     * The profile is added to a job.
-     *
-     * Generated from protobuf enum <code>ADD_TO_JOB = 7;</code>
-     */
-    const ADD_TO_JOB = 7;
-    /**
-     * The recruiter explicitly highlights that a given profile is interesting
-     * enough for later review or is a good result for the search.
-     *
-     * Generated from protobuf enum <code>POSITIVE_REACTION_TO_PROFILE = 8;</code>
-     */
-    const POSITIVE_REACTION_TO_PROFILE = 8;
-    /**
-     * The recruiter explicitly highlights that a given profile is not
-     * interesting enough for later review or is not a good result for the
-     * search.
-     *
-     * Generated from protobuf enum <code>NEGATIVE_REACTION_TO_PROFILE = 9;</code>
-     */
-    const NEGATIVE_REACTION_TO_PROFILE = 9;
-    /**
-     * The candidate is interesting enough to set up an initial screen with the
-     * recruiter. This step may be skipped based on the interview process.
-     *
-     * Generated from protobuf enum <code>SCREEN = 10;</code>
-     */
-    const SCREEN = 10;
+
+    private static $valueToName = [
+        self::PROFILE_EVENT_TYPE_UNSPECIFIED => 'PROFILE_EVENT_TYPE_UNSPECIFIED',
+        self::IMPRESSION => 'IMPRESSION',
+        self::VIEW => 'VIEW',
+        self::BOOKMARK => 'BOOKMARK',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

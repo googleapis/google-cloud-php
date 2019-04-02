@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * An enum that represents the required experience level required for the job.
  *
@@ -49,5 +51,34 @@ class JobLevel
      * Generated from protobuf enum <code>EXECUTIVE = 5;</code>
      */
     const EXECUTIVE = 5;
+
+    private static $valueToName = [
+        self::JOB_LEVEL_UNSPECIFIED => 'JOB_LEVEL_UNSPECIFIED',
+        self::ENTRY_LEVEL => 'ENTRY_LEVEL',
+        self::EXPERIENCED => 'EXPERIENCED',
+        self::MANAGER => 'MANAGER',
+        self::DIRECTOR => 'DIRECTOR',
+        self::EXECUTIVE => 'EXECUTIVE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

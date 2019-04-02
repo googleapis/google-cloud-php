@@ -5,30 +5,17 @@ return [
         'google.cloud.talent.v4beta1.Completion' => [
             'CompleteQuery' => [
                 'method' => 'get',
-                'uriTemplate' => '/v4beta1/{name=projects/*}:complete',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v3p1beta1/{name=projects/*/operations/*}',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}:complete',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v4beta1/{name=projects/*/operations/*}',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}:complete',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],

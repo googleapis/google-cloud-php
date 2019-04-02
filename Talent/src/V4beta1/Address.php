@@ -26,9 +26,9 @@ class Address extends \Google\Protobuf\Internal\Message
      * Optional.
      * Indicates if it's the person's current address.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      */
-    private $is_current = null;
+    private $current = null;
     protected $address;
 
     /**
@@ -50,7 +50,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           Structured address that contains street address, city, state, country,
      *           etc.
-     *     @type \Google\Protobuf\BoolValue $is_current
+     *     @type \Google\Protobuf\BoolValue $current
      *           Optional.
      *           Indicates if it's the person's current address.
      * }
@@ -156,28 +156,59 @@ class Address extends \Google\Protobuf\Internal\Message
      * Optional.
      * Indicates if it's the person's current address.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @return \Google\Protobuf\BoolValue
      */
-    public function getIsCurrent()
+    public function getCurrent()
     {
-        return $this->is_current;
+        return $this->current;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getCurrent()</code>
+
+     * Optional.
+     * Indicates if it's the person's current address.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
+     * @return bool|null
+     */
+    public function getCurrentValue()
+    {
+        $wrapper = $this->getCurrent();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
      * Optional.
      * Indicates if it's the person's current address.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @param \Google\Protobuf\BoolValue $var
      * @return $this
      */
-    public function setIsCurrent($var)
+    public function setCurrent($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
-        $this->is_current = $var;
+        $this->current = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional.
+     * Indicates if it's the person's current address.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setCurrentValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setCurrent($wrappedVar);
     }
 
     /**

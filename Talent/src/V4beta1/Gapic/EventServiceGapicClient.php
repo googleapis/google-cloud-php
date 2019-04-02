@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -46,7 +47,7 @@ use Google\Cloud\Talent\V4beta1\CreateClientEventRequest;
  * ```
  * $eventServiceClient = new EventServiceClient();
  * try {
- *     $formattedParent = $eventServiceClient->projectName('[PROJECT]');
+ *     $formattedParent = $eventServiceClient->tenantName('[PROJECT]', '[TENANT]');
  *     $clientEvent = new ClientEvent();
  *     $response = $eventServiceClient->createClientEvent($formattedParent, $clientEvent);
  * } finally {
@@ -92,7 +93,7 @@ class EventServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
-    private static $projectNameTemplate;
+    private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -114,20 +115,20 @@ class EventServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getTenantNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$tenantNameTemplate) {
+            self::$tenantNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$tenantNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
+                'tenant' => self::getTenantNameTemplate(),
             ];
         }
 
@@ -136,17 +137,19 @@ class EventServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a tenant resource.
      *
      * @param string $project
+     * @param string $tenant
      *
-     * @return string The formatted project resource.
+     * @return string The formatted tenant resource.
      * @experimental
      */
-    public static function projectName($project)
+    public static function tenantName($project, $tenant)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getTenantNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
         ]);
     }
 
@@ -154,7 +157,7 @@ class EventServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}.
+     * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -255,14 +258,14 @@ class EventServiceGapicClient
      * [self service
      * tools](https://console.cloud.google.com/talent-solution/overview).
      * [Learn
-     * more](https://cloud.google.com/talent-solution/job-search/docs/management-tools)
+     * more](https://cloud.google.com/talent-solution/docs/management-tools)
      * about self service tools.
      *
      * Sample code:
      * ```
      * $eventServiceClient = new EventServiceClient();
      * try {
-     *     $formattedParent = $eventServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $eventServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $clientEvent = new ClientEvent();
      *     $response = $eventServiceClient->createClientEvent($formattedParent, $clientEvent);
      * } finally {
@@ -270,7 +273,15 @@ class EventServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent      Parent project name.
+     * @param string $parent Required.
+     *
+     * Resource name of the tenant under which the event is created.
+     *
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     *
+     * Tenant id is optional and a default tenant is created if unspecified, for
+     * example, "projects/api-test-project".
      * @param ClientEvent $clientEvent Required.
      *
      * Events issued when end user interacts with customer's application that
@@ -295,6 +306,13 @@ class EventServiceGapicClient
         $request = new CreateClientEventRequest();
         $request->setParent($parent);
         $request->setClientEvent($clientEvent);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CreateClientEvent',

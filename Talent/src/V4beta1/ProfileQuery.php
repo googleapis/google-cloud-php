@@ -29,8 +29,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * search against.
      * If a location filter isn't specified, profiles fitting the other search
      * criteria are retrieved regardless of where they're located.
-     * If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
-     * profiles from that location.
+     * If
+     * [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
+     * is specified, the result doesn't contain profiles from that location.
      * For example, search for profiles with addresses in "New York City".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 2;</code>
@@ -42,8 +43,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a job title isn't specified, profiles with any titles are retrieved.
      * If multiple values are specified, profiles are retrieved with any of the
      * specified job titles.
-     * If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
-     * profiles with the job titles.
+     * If
+     * [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
+     * is specified, the result won't contain profiles with the job titles.
      * For example, search for profiles with a job title "Product Manager".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobTitleFilter job_title_filters = 3;</code>
@@ -56,8 +58,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple employer filters are specified, profiles with any matching
      * employers are retrieved.
-     * If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
-     * profiles that match the employers.
+     * If
+     * [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
+     * is specified, the result won't contain profiles that match the employers.
      * For example, search for profiles that have working experience at "Google
      * LLC".
      *
@@ -71,8 +74,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple education filters are specified, profiles that match any
      * education filters are retrieved.
-     * If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
-     * profiles that match the educations.
+     * If
+     * [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
+     * is specified, the result won't contain profiles that match the educations.
      * For example, search for profiles with a master degree.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationFilter education_filters = 5;</code>
@@ -84,8 +88,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a skill filter isn't specified, profiles with any skills are retrieved.
      * If multiple skill filters are specified, profiles that match any skill
      * filters are retrieved.
-     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
-     * that match the skills.
+     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
+     * is specified, the result won't contain profiles that match the skills.
      * For example, search for profiles that have "Java" and "Python" in skill
      * list.
      *
@@ -130,12 +134,12 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     private $application_date_filters;
     /**
      * Optional.
-     * The application outcome reason filters specify the reasons for outcome of
+     * The application outcome notes filters specify the notes for the outcome of
      * the job application.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter application_outcome_reason_filters = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter application_outcome_notes_filters = 11;</code>
      */
-    private $application_outcome_reason_filters;
+    private $application_outcome_notes_filters;
     /**
      * Optional.
      * The application last stage filters specify the last stage of job
@@ -161,11 +165,15 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a structured syntax to match against the
-     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
+     * that are marked as `filterable`.
      * The syntax for this expression is a subset of Google SQL syntax.
-     * Supported operators are: =, != where the left of the operator is a custom
-     * field key and the right of the operator is a string (surrounded by quotes)
-     * value.
+     * String custom attributes: supported operators are =, != where the left of
+     * the operator is a custom field key and the right of the operator is a
+     * string (surrounded by quotes) value.
+     * Numeric custom attributes: Supported operators are '>', '<' or '='
+     * operators where the left of the operator is a custom field key and the
+     * right of the operator is a numeric value.
      * Supported functions are LOWER(<field_name>) to
      * perform case insensitive match and EMPTY(<field_name>) to filter on the
      * existence of a key.
@@ -196,8 +204,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           search against.
      *           If a location filter isn't specified, profiles fitting the other search
      *           criteria are retrieved regardless of where they're located.
-     *           If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
-     *           profiles from that location.
+     *           If
+     *           [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
+     *           is specified, the result doesn't contain profiles from that location.
      *           For example, search for profiles with addresses in "New York City".
      *     @type \Google\Cloud\Talent\V4beta1\JobTitleFilter[]|\Google\Protobuf\Internal\RepeatedField $job_title_filters
      *           Optional.
@@ -205,8 +214,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           If a job title isn't specified, profiles with any titles are retrieved.
      *           If multiple values are specified, profiles are retrieved with any of the
      *           specified job titles.
-     *           If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
-     *           profiles with the job titles.
+     *           If
+     *           [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
+     *           is specified, the result won't contain profiles with the job titles.
      *           For example, search for profiles with a job title "Product Manager".
      *     @type \Google\Cloud\Talent\V4beta1\EmployerFilter[]|\Google\Protobuf\Internal\RepeatedField $employer_filters
      *           Optional.
@@ -215,8 +225,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           retrieved.
      *           If multiple employer filters are specified, profiles with any matching
      *           employers are retrieved.
-     *           If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
-     *           profiles that match the employers.
+     *           If
+     *           [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
+     *           is specified, the result won't contain profiles that match the employers.
      *           For example, search for profiles that have working experience at "Google
      *           LLC".
      *     @type \Google\Cloud\Talent\V4beta1\EducationFilter[]|\Google\Protobuf\Internal\RepeatedField $education_filters
@@ -226,8 +237,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           retrieved.
      *           If multiple education filters are specified, profiles that match any
      *           education filters are retrieved.
-     *           If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
-     *           profiles that match the educations.
+     *           If
+     *           [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
+     *           is specified, the result won't contain profiles that match the educations.
      *           For example, search for profiles with a master degree.
      *     @type \Google\Cloud\Talent\V4beta1\SkillFilter[]|\Google\Protobuf\Internal\RepeatedField $skill_filters
      *           Optional.
@@ -235,8 +247,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           If a skill filter isn't specified, profiles with any skills are retrieved.
      *           If multiple skill filters are specified, profiles that match any skill
      *           filters are retrieved.
-     *           If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
-     *           that match the skills.
+     *           If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
+     *           is specified, the result won't contain profiles that match the skills.
      *           For example, search for profiles that have "Java" and "Python" in skill
      *           list.
      *     @type \Google\Cloud\Talent\V4beta1\WorkExperienceFilter[]|\Google\Protobuf\Internal\RepeatedField $work_experience_filter
@@ -259,9 +271,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\ApplicationDateFilter[]|\Google\Protobuf\Internal\RepeatedField $application_date_filters
      *           Optional.
      *           The application date filters specify application date ranges to match on.
-     *     @type \Google\Cloud\Talent\V4beta1\ApplicationOutcomeReasonFilter[]|\Google\Protobuf\Internal\RepeatedField $application_outcome_reason_filters
+     *     @type \Google\Cloud\Talent\V4beta1\ApplicationOutcomeNotesFilter[]|\Google\Protobuf\Internal\RepeatedField $application_outcome_notes_filters
      *           Optional.
-     *           The application outcome reason filters specify the reasons for outcome of
+     *           The application outcome notes filters specify the notes for the outcome of
      *           the job application.
      *     @type \Google\Cloud\Talent\V4beta1\ApplicationLastStageFilter[]|\Google\Protobuf\Internal\RepeatedField $application_last_stage_filters
      *           Optional.
@@ -276,11 +288,15 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *     @type string $custom_field_filter
      *           Optional.
      *           This filter specifies a structured syntax to match against the
-     *           [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
+     *           [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
+     *           that are marked as `filterable`.
      *           The syntax for this expression is a subset of Google SQL syntax.
-     *           Supported operators are: =, != where the left of the operator is a custom
-     *           field key and the right of the operator is a string (surrounded by quotes)
-     *           value.
+     *           String custom attributes: supported operators are =, != where the left of
+     *           the operator is a custom field key and the right of the operator is a
+     *           string (surrounded by quotes) value.
+     *           Numeric custom attributes: Supported operators are '>', '<' or '='
+     *           operators where the left of the operator is a custom field key and the
+     *           right of the operator is a numeric value.
      *           Supported functions are LOWER(<field_name>) to
      *           perform case insensitive match and EMPTY(<field_name>) to filter on the
      *           existence of a key.
@@ -333,8 +349,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * search against.
      * If a location filter isn't specified, profiles fitting the other search
      * criteria are retrieved regardless of where they're located.
-     * If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
-     * profiles from that location.
+     * If
+     * [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
+     * is specified, the result doesn't contain profiles from that location.
      * For example, search for profiles with addresses in "New York City".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 2;</code>
@@ -351,8 +368,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * search against.
      * If a location filter isn't specified, profiles fitting the other search
      * criteria are retrieved regardless of where they're located.
-     * If [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated] is specified, the result doesn't contain
-     * profiles from that location.
+     * If
+     * [LocationFilter.negated][google.cloud.talent.v4beta1.LocationFilter.negated]
+     * is specified, the result doesn't contain profiles from that location.
      * For example, search for profiles with addresses in "New York City".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 2;</code>
@@ -373,8 +391,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a job title isn't specified, profiles with any titles are retrieved.
      * If multiple values are specified, profiles are retrieved with any of the
      * specified job titles.
-     * If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
-     * profiles with the job titles.
+     * If
+     * [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
+     * is specified, the result won't contain profiles with the job titles.
      * For example, search for profiles with a job title "Product Manager".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobTitleFilter job_title_filters = 3;</code>
@@ -391,8 +410,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a job title isn't specified, profiles with any titles are retrieved.
      * If multiple values are specified, profiles are retrieved with any of the
      * specified job titles.
-     * If [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated] is specified, the result won't contain
-     * profiles with the job titles.
+     * If
+     * [JobTitleFilter.negated][google.cloud.talent.v4beta1.JobTitleFilter.negated]
+     * is specified, the result won't contain profiles with the job titles.
      * For example, search for profiles with a job title "Product Manager".
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobTitleFilter job_title_filters = 3;</code>
@@ -414,8 +434,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple employer filters are specified, profiles with any matching
      * employers are retrieved.
-     * If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
-     * profiles that match the employers.
+     * If
+     * [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
+     * is specified, the result won't contain profiles that match the employers.
      * For example, search for profiles that have working experience at "Google
      * LLC".
      *
@@ -434,8 +455,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple employer filters are specified, profiles with any matching
      * employers are retrieved.
-     * If [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated] is specified, the result won't contain
-     * profiles that match the employers.
+     * If
+     * [EmployerFilter.negated][google.cloud.talent.v4beta1.EmployerFilter.negated]
+     * is specified, the result won't contain profiles that match the employers.
      * For example, search for profiles that have working experience at "Google
      * LLC".
      *
@@ -458,8 +480,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple education filters are specified, profiles that match any
      * education filters are retrieved.
-     * If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
-     * profiles that match the educations.
+     * If
+     * [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
+     * is specified, the result won't contain profiles that match the educations.
      * For example, search for profiles with a master degree.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationFilter education_filters = 5;</code>
@@ -477,8 +500,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * retrieved.
      * If multiple education filters are specified, profiles that match any
      * education filters are retrieved.
-     * If [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated] is specified, the result won't contain
-     * profiles that match the educations.
+     * If
+     * [EducationFilter.negated][google.cloud.talent.v4beta1.EducationFilter.negated]
+     * is specified, the result won't contain profiles that match the educations.
      * For example, search for profiles with a master degree.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationFilter education_filters = 5;</code>
@@ -499,8 +523,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a skill filter isn't specified, profiles with any skills are retrieved.
      * If multiple skill filters are specified, profiles that match any skill
      * filters are retrieved.
-     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
-     * that match the skills.
+     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
+     * is specified, the result won't contain profiles that match the skills.
      * For example, search for profiles that have "Java" and "Python" in skill
      * list.
      *
@@ -518,8 +542,8 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * If a skill filter isn't specified, profiles with any skills are retrieved.
      * If multiple skill filters are specified, profiles that match any skill
      * filters are retrieved.
-     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated] is specified, the result won't contain profiles
-     * that match the skills.
+     * If [SkillFilter.negated][google.cloud.talent.v4beta1.SkillFilter.negated]
+     * is specified, the result won't contain profiles that match the skills.
      * For example, search for profiles that have "Java" and "Python" in skill
      * list.
      *
@@ -620,6 +644,21 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getHirableFilter()</code>
+
+     * Optional.
+     * The hirable filter specifies the profile's hirable status to match on.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue hirable_filter = 9;</code>
+     * @return bool|null
+     */
+    public function getHirableFilterValue()
+    {
+        $wrapper = $this->getHirableFilter();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * Optional.
      * The hirable filter specifies the profile's hirable status to match on.
      *
@@ -633,6 +672,22 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
         $this->hirable_filter = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional.
+     * The hirable filter specifies the profile's hirable status to match on.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue hirable_filter = 9;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setHirableFilterValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setHirableFilter($wrappedVar);
     }
 
     /**
@@ -665,30 +720,30 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * The application outcome reason filters specify the reasons for outcome of
+     * The application outcome notes filters specify the notes for the outcome of
      * the job application.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter application_outcome_reason_filters = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter application_outcome_notes_filters = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getApplicationOutcomeReasonFilters()
+    public function getApplicationOutcomeNotesFilters()
     {
-        return $this->application_outcome_reason_filters;
+        return $this->application_outcome_notes_filters;
     }
 
     /**
      * Optional.
-     * The application outcome reason filters specify the reasons for outcome of
+     * The application outcome notes filters specify the notes for the outcome of
      * the job application.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter application_outcome_reason_filters = 11;</code>
-     * @param \Google\Cloud\Talent\V4beta1\ApplicationOutcomeReasonFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter application_outcome_notes_filters = 11;</code>
+     * @param \Google\Cloud\Talent\V4beta1\ApplicationOutcomeNotesFilter[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setApplicationOutcomeReasonFilters($var)
+    public function setApplicationOutcomeNotesFilters($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4beta1\ApplicationOutcomeReasonFilter::class);
-        $this->application_outcome_reason_filters = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4beta1\ApplicationOutcomeNotesFilter::class);
+        $this->application_outcome_notes_filters = $arr;
 
         return $this;
     }
@@ -782,11 +837,15 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a structured syntax to match against the
-     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
+     * that are marked as `filterable`.
      * The syntax for this expression is a subset of Google SQL syntax.
-     * Supported operators are: =, != where the left of the operator is a custom
-     * field key and the right of the operator is a string (surrounded by quotes)
-     * value.
+     * String custom attributes: supported operators are =, != where the left of
+     * the operator is a custom field key and the right of the operator is a
+     * string (surrounded by quotes) value.
+     * Numeric custom attributes: Supported operators are '>', '<' or '='
+     * operators where the left of the operator is a custom field key and the
+     * right of the operator is a numeric value.
      * Supported functions are LOWER(<field_name>) to
      * perform case insensitive match and EMPTY(<field_name>) to filter on the
      * existence of a key.
@@ -808,11 +867,15 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a structured syntax to match against the
-     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes] that are marked as `filterable`.
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes]
+     * that are marked as `filterable`.
      * The syntax for this expression is a subset of Google SQL syntax.
-     * Supported operators are: =, != where the left of the operator is a custom
-     * field key and the right of the operator is a string (surrounded by quotes)
-     * value.
+     * String custom attributes: supported operators are =, != where the left of
+     * the operator is a custom field key and the right of the operator is a
+     * string (surrounded by quotes) value.
+     * Numeric custom attributes: Supported operators are '>', '<' or '='
+     * operators where the left of the operator is a custom field key and the
+     * right of the operator is a numeric value.
      * Supported functions are LOWER(<field_name>) to
      * perform case insensitive match and EMPTY(<field_name>) to filter on the
      * existence of a key.

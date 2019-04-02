@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * List companies for which the client has ACL visibility.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ListCompaniesRequest</code>
@@ -18,9 +17,11 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * Resource name of the project under which the company is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * Resource name of the tenant under which the company is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -44,8 +45,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional.
      * Set to true if the companies requested must have open jobs.
      * Defaults to false.
-     * If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     * only those with open jobs are returned.
+     * If true, at most
+     * [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     * companies are fetched, among which only those with open jobs are returned.
      *
      * Generated from protobuf field <code>bool require_open_jobs = 4;</code>
      */
@@ -59,9 +61,11 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required.
-     *           Resource name of the project under which the company is created.
-     *           The format is "projects/{project_id}", for example,
-     *           "projects/api-test-project".
+     *           Resource name of the tenant under which the company is created.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/api-test-project/tenant/foo".
+     *           Tenant id is optional and the default tenant is used if unspecified, for
+     *           example, "projects/api-test-project".
      *     @type string $page_token
      *           Optional.
      *           The starting indicator from which to return results.
@@ -73,8 +77,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           Set to true if the companies requested must have open jobs.
      *           Defaults to false.
-     *           If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     *           only those with open jobs are returned.
+     *           If true, at most
+     *           [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     *           companies are fetched, among which only those with open jobs are returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,9 +89,11 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * Resource name of the project under which the company is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * Resource name of the tenant under which the company is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -98,9 +105,11 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * Resource name of the project under which the company is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * Resource name of the tenant under which the company is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -176,8 +185,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional.
      * Set to true if the companies requested must have open jobs.
      * Defaults to false.
-     * If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     * only those with open jobs are returned.
+     * If true, at most
+     * [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     * companies are fetched, among which only those with open jobs are returned.
      *
      * Generated from protobuf field <code>bool require_open_jobs = 4;</code>
      * @return bool
@@ -191,8 +201,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional.
      * Set to true if the companies requested must have open jobs.
      * Defaults to false.
-     * If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     * only those with open jobs are returned.
+     * If true, at most
+     * [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     * companies are fetched, among which only those with open jobs are returned.
      *
      * Generated from protobuf field <code>bool require_open_jobs = 4;</code>
      * @param bool $var

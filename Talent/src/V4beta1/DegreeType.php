@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * Educational degree level defined in International Standard Classification
  * of Education (ISCED).
@@ -90,5 +92,37 @@ class DegreeType
      * Generated from protobuf enum <code>DOCTORAL_OR_EQUIVALENT = 8;</code>
      */
     const DOCTORAL_OR_EQUIVALENT = 8;
+
+    private static $valueToName = [
+        self::DEGREE_TYPE_UNSPECIFIED => 'DEGREE_TYPE_UNSPECIFIED',
+        self::PRIMARY_EDUCATION => 'PRIMARY_EDUCATION',
+        self::LOWER_SECONDARY_EDUCATION => 'LOWER_SECONDARY_EDUCATION',
+        self::UPPER_SECONDARY_EDUCATION => 'UPPER_SECONDARY_EDUCATION',
+        self::ADULT_REMEDIAL_EDUCATION => 'ADULT_REMEDIAL_EDUCATION',
+        self::ASSOCIATES_OR_EQUIVALENT => 'ASSOCIATES_OR_EQUIVALENT',
+        self::BACHELORS_OR_EQUIVALENT => 'BACHELORS_OR_EQUIVALENT',
+        self::MASTERS_OR_EQUIVALENT => 'MASTERS_OR_EQUIVALENT',
+        self::DOCTORAL_OR_EQUIVALENT => 'DOCTORAL_OR_EQUIVALENT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

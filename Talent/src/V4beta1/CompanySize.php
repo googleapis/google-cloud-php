@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * An enum that represents the size of the company.
  *
@@ -59,5 +61,36 @@ class CompanySize
      * Generated from protobuf enum <code>GIANT = 7;</code>
      */
     const GIANT = 7;
+
+    private static $valueToName = [
+        self::COMPANY_SIZE_UNSPECIFIED => 'COMPANY_SIZE_UNSPECIFIED',
+        self::MINI => 'MINI',
+        self::SMALL => 'SMALL',
+        self::SMEDIUM => 'SMEDIUM',
+        self::MEDIUM => 'MEDIUM',
+        self::BIG => 'BIG',
+        self::BIGGER => 'BIGGER',
+        self::GIANT => 'GIANT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

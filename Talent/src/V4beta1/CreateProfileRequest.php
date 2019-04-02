@@ -17,9 +17,9 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The name of the company this profile belongs to.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The name of the tenant this profile belongs to.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -40,9 +40,9 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required.
-     *           The name of the company this profile belongs to.
-     *           The format is "projects/{project_id}/companies/{company_id}", for example,
-     *           "projects/api-test-project/companies/foo".
+     *           The name of the tenant this profile belongs to.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/api-test-project/tenants/foo".
      *     @type \Google\Cloud\Talent\V4beta1\Profile $profile
      *           Required.
      *           The profile to be created.
@@ -55,9 +55,9 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The name of the company this profile belongs to.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The name of the tenant this profile belongs to.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -69,9 +69,9 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The name of the company this profile belongs to.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The name of the tenant this profile belongs to.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

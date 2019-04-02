@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * Input only.
  * Option for HTML content sanitization on user input fields, for example, job
@@ -33,5 +35,31 @@ class HtmlSanitization
      * Generated from protobuf enum <code>SIMPLE_FORMATTING_ONLY = 2;</code>
      */
     const SIMPLE_FORMATTING_ONLY = 2;
+
+    private static $valueToName = [
+        self::HTML_SANITIZATION_UNSPECIFIED => 'HTML_SANITIZATION_UNSPECIFIED',
+        self::HTML_SANITIZATION_DISABLED => 'HTML_SANITIZATION_DISABLED',
+        self::SIMPLE_FORMATTING_ONLY => 'SIMPLE_FORMATTING_ONLY',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

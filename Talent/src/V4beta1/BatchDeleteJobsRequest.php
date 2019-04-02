@@ -18,9 +18,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The resource name of the project under which the job is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -47,9 +49,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required.
-     *           The resource name of the project under which the job is created.
-     *           The format is "projects/{project_id}", for example,
-     *           "projects/api-test-project".
+     *           The resource name of the tenant under which the job is created.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/api-test-project/tenant/foo".
+     *           Tenant id is optional and the default tenant is used if unspecified, for
+     *           example, "projects/api-test-project".
      *     @type string $filter
      *           Required.
      *           The filter string specifies the jobs to be deleted.
@@ -68,9 +72,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the project under which the job is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -82,9 +88,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the project under which the job is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

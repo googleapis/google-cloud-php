@@ -33,7 +33,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group jobs
+ * @group talent
  * @group gapic
  */
 class CompletionClientTest extends GeneratedTest
@@ -75,11 +75,11 @@ class CompletionClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $query = 'query107944136';
         $pageSize = 883849137;
 
-        $response = $client->completeQuery($formattedName, $query, $pageSize);
+        $response = $client->completeQuery($formattedParent, $query, $pageSize);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -87,9 +87,9 @@ class CompletionClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.Completion/CompleteQuery', $actualFuncCall);
 
-        $actualValue = $actualRequestObject->getName();
+        $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
 
         $this->assertProtobufEquals($query, $actualValue);
@@ -123,12 +123,12 @@ class CompletionClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $query = 'query107944136';
         $pageSize = 883849137;
 
         try {
-            $client->completeQuery($formattedName, $query, $pageSize);
+            $client->completeQuery($formattedParent, $query, $pageSize);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

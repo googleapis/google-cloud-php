@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -59,7 +60,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $profileServiceClient = new ProfileServiceClient();
  * try {
- *     $formattedParent = $profileServiceClient->companyName('[PROJECT]', '[COMPANY]');
+ *     $formattedParent = $profileServiceClient->tenantName('[PROJECT]', '[TENANT]');
  *     // Iterate over pages of elements
  *     $pagedResponse = $profileServiceClient->listProfiles($formattedParent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -119,7 +120,7 @@ class ProfileServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
-    private static $companyNameTemplate;
+    private static $tenantNameTemplate;
     private static $profileNameTemplate;
     private static $pathTemplateMap;
 
@@ -142,19 +143,19 @@ class ProfileServiceGapicClient
         ];
     }
 
-    private static function getCompanyNameTemplate()
+    private static function getTenantNameTemplate()
     {
-        if (null == self::$companyNameTemplate) {
-            self::$companyNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+        if (null == self::$tenantNameTemplate) {
+            self::$tenantNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}');
         }
 
-        return self::$companyNameTemplate;
+        return self::$tenantNameTemplate;
     }
 
     private static function getProfileNameTemplate()
     {
         if (null == self::$profileNameTemplate) {
-            self::$profileNameTemplate = new PathTemplate('projects/{project}/companies/{company}/profiles/{profile}');
+            self::$profileNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/profiles/{profile}');
         }
 
         return self::$profileNameTemplate;
@@ -164,7 +165,7 @@ class ProfileServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'company' => self::getCompanyNameTemplate(),
+                'tenant' => self::getTenantNameTemplate(),
                 'profile' => self::getProfileNameTemplate(),
             ];
         }
@@ -174,19 +175,19 @@ class ProfileServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a company resource.
+     * a tenant resource.
      *
      * @param string $project
-     * @param string $company
+     * @param string $tenant
      *
-     * @return string The formatted company resource.
+     * @return string The formatted tenant resource.
      * @experimental
      */
-    public static function companyName($project, $company)
+    public static function tenantName($project, $tenant)
     {
-        return self::getCompanyNameTemplate()->render([
+        return self::getTenantNameTemplate()->render([
             'project' => $project,
-            'company' => $company,
+            'tenant' => $tenant,
         ]);
     }
 
@@ -195,17 +196,17 @@ class ProfileServiceGapicClient
      * a profile resource.
      *
      * @param string $project
-     * @param string $company
+     * @param string $tenant
      * @param string $profile
      *
      * @return string The formatted profile resource.
      * @experimental
      */
-    public static function profileName($project, $company, $profile)
+    public static function profileName($project, $tenant, $profile)
     {
         return self::getProfileNameTemplate()->render([
             'project' => $project,
-            'company' => $company,
+            'tenant' => $tenant,
             'profile' => $profile,
         ]);
     }
@@ -214,8 +215,8 @@ class ProfileServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - company: projects/{project}/companies/{company}
-     * - profile: projects/{project}/companies/{company}/profiles/{profile}.
+     * - tenant: projects/{project}/tenants/{tenant}
+     * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -317,7 +318,7 @@ class ProfileServiceGapicClient
      * ```
      * $profileServiceClient = new ProfileServiceClient();
      * try {
-     *     $formattedParent = $profileServiceClient->companyName('[PROJECT]', '[COMPANY]');
+     *     $formattedParent = $profileServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $profileServiceClient->listProfiles($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -341,10 +342,10 @@ class ProfileServiceGapicClient
      *
      * @param string $parent Required.
      *
-     * The resource name of the company under which the job is created.
+     * The resource name of the tenant under which the job is created.
      *
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -357,7 +358,7 @@ class ProfileServiceGapicClient
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type FieldMask $fieldMask
+     *     @type FieldMask $readMask
      *          Optional.
      *
      *          A field mask to specify the profile fields to be listed in response.
@@ -388,9 +389,16 @@ class ProfileServiceGapicClient
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
-        if (isset($optionalArgs['fieldMask'])) {
-            $request->setFieldMask($optionalArgs['fieldMask']);
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
             'ListProfiles',
@@ -407,7 +415,7 @@ class ProfileServiceGapicClient
      * ```
      * $profileServiceClient = new ProfileServiceClient();
      * try {
-     *     $formattedParent = $profileServiceClient->companyName('[PROJECT]', '[COMPANY]');
+     *     $formattedParent = $profileServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $profile = new Profile();
      *     $response = $profileServiceClient->createProfile($formattedParent, $profile);
      * } finally {
@@ -417,10 +425,10 @@ class ProfileServiceGapicClient
      *
      * @param string $parent Required.
      *
-     * The name of the company this profile belongs to.
+     * The name of the tenant this profile belongs to.
      *
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      * @param Profile $profile Required.
      *
      * The profile to be created.
@@ -445,6 +453,13 @@ class ProfileServiceGapicClient
         $request->setParent($parent);
         $request->setProfile($profile);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateProfile',
             Profile::class,
@@ -460,7 +475,7 @@ class ProfileServiceGapicClient
      * ```
      * $profileServiceClient = new ProfileServiceClient();
      * try {
-     *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[COMPANY]', '[PROFILE]');
+     *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
      *     $response = $profileServiceClient->getProfile($formattedName);
      * } finally {
      *     $profileServiceClient->close();
@@ -472,8 +487,8 @@ class ProfileServiceGapicClient
      * Resource name of the profile to get.
      *
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -493,6 +508,13 @@ class ProfileServiceGapicClient
     {
         $request = new GetProfileRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetProfile',
@@ -551,7 +573,6 @@ class ProfileServiceGapicClient
      *          * publications
      *          * patents
      *          * certifications
-     *          * jobApplications
      *          * recruitingNotes
      *          * customAttributes
      *     @type RetrySettings|array $retrySettings
@@ -574,6 +595,13 @@ class ProfileServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'profile.name' => $request->getProfile()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateProfile',
             Profile::class,
@@ -584,12 +612,14 @@ class ProfileServiceGapicClient
 
     /**
      * Deletes the specified profile.
+     * Prerequisite: The profile has no associated applications or assignments
+     * associated.
      *
      * Sample code:
      * ```
      * $profileServiceClient = new ProfileServiceClient();
      * try {
-     *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[COMPANY]', '[PROFILE]');
+     *     $formattedName = $profileServiceClient->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
      *     $profileServiceClient->deleteProfile($formattedName);
      * } finally {
      *     $profileServiceClient->close();
@@ -601,8 +631,8 @@ class ProfileServiceGapicClient
      * Resource name of the profile to be deleted.
      *
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -621,6 +651,13 @@ class ProfileServiceGapicClient
         $request = new DeleteProfileRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'DeleteProfile',
             GPBEmpty::class,
@@ -630,18 +667,20 @@ class ProfileServiceGapicClient
     }
 
     /**
-     * Searches for profiles within a company.
+     * Searches for profiles within a tenant.
      *
      * For example, search by raw queries "software engineer in Mountain View" or
      * search by structured filters (location filter, education filter, etc.).
      *
-     * See [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] for more information.
+     * See
+     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
+     * for more information.
      *
      * Sample code:
      * ```
      * $profileServiceClient = new ProfileServiceClient();
      * try {
-     *     $formattedParent = $profileServiceClient->companyName('[PROJECT]', '[COMPANY]');
+     *     $formattedParent = $profileServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $requestMetadata = new RequestMetadata();
      *     // Iterate over pages of elements
      *     $pagedResponse = $profileServiceClient->searchProfiles($formattedParent, $requestMetadata);
@@ -666,10 +705,10 @@ class ProfileServiceGapicClient
      *
      * @param string $parent Required.
      *
-     * The resource name of the company to search within.
+     * The resource name of the tenant to search within.
      *
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      * @param RequestMetadata $requestMetadata Required.
      *
      * The meta information collected about the profile search user. This is used
@@ -681,7 +720,8 @@ class ProfileServiceGapicClient
      *     @type ProfileQuery $profileQuery
      *          Optional.
      *
-     *          Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     *          Search query to execute. See
+     *          [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -695,7 +735,9 @@ class ProfileServiceGapicClient
      *          Optional.
      *
      *          An integer that specifies the current offset (that is, starting result) in
-     *          search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
+     *          search results. This field is only considered if
+     *          [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     *          is unset.
      *
      *          The maximum allowed value is 5000. Otherwise an error is thrown.
      *
@@ -741,7 +783,8 @@ class ProfileServiceGapicClient
      *          Optional.
      *
      *          A list of expressions specifies histogram requests against matching
-     *          profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *          profiles for
+     *          [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      *          The expression syntax looks like a function definition with optional
      *          parameters.
@@ -789,24 +832,34 @@ class ProfileServiceGapicClient
      *          * institution: The school name. For example, "MIT",
      *          "University of California, Berkeley"
      *          * degree: Highest education degree in ISCED code. Each value in degree
-     *          covers specific level of education, without any expansion to upper nor
+     *          covers a specific level of education, without any expansion to upper nor
      *          lower levels of education degree.
      *          * experience_in_months: experience in months. 0 means 0 month to 1 month
      *          (exclusive).
      *          * application_date: The application date specifies application start dates.
-     *          See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
-     *          * application_outcome_reason: The application outcome reason specifies the
-     *          outcome reasons of job application.
-     *          See [ApplicationOutcomeReasonFilter][google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter] for more details.
+     *          See
+     *          [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
+     *          for more details.
+     *          * application_outcome_notes: The application outcome reason specifies the
+     *          reasons behind the outcome of the job application.
+     *          See
+     *          [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
+     *          for more details.
      *          * application_last_stage: The application last stage specifies the last
      *          stage of job application.
-     *          See [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter] for more details.
+     *          See
+     *          [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter]
+     *          for more details.
      *          * application_job_title: The application job title specifies the job
      *          applied for in the application.
-     *          See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
+     *          See
+     *          [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
+     *          for more details.
      *          * application_status: The application status specifies the status of job
      *          application.
-     *          See [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter] for more details.
+     *          See
+     *          [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter]
+     *          for more details.
      *          * hirable_status: Hirable status specifies the profile's hirable status.
      *          * string_custom_attribute: String custom attributes. Values can be accessed
      *          via square bracket notation like string_custom_attribute["key1"].
@@ -862,6 +915,13 @@ class ProfileServiceGapicClient
         if (isset($optionalArgs['histogramQueries'])) {
             $request->setHistogramQueries($optionalArgs['histogramQueries']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
             'SearchProfiles',

@@ -33,7 +33,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group jobs
+ * @group talent
  * @group gapic
  */
 class EventServiceClientTest extends GeneratedTest
@@ -73,15 +73,15 @@ class EventServiceClientTest extends GeneratedTest
         // Mock response
         $requestId = 'requestId37109963';
         $eventId = 'eventId278118624';
-        $parentEventId = 'parentEventId-436467499';
+        $eventNotes = 'eventNotes445073628';
         $expectedResponse = new ClientEvent();
         $expectedResponse->setRequestId($requestId);
         $expectedResponse->setEventId($eventId);
-        $expectedResponse->setParentEventId($parentEventId);
+        $expectedResponse->setEventNotes($eventNotes);
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $clientEvent = new ClientEvent();
 
         $response = $client->createClientEvent($formattedParent, $clientEvent);
@@ -125,7 +125,7 @@ class EventServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $clientEvent = new ClientEvent();
 
         try {

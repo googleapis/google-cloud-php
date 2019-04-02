@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\CompensationFilter;
 
+use UnexpectedValueException;
+
 /**
  * Specify the type of filtering.
  *
@@ -20,10 +22,13 @@ class FilterType
     /**
      * Filter by `base compensation entry's` unit. A job is a match if and
      * only if the job contains a base CompensationEntry and the base
-     * CompensationEntry's unit matches provided [units][google.cloud.talent.v4beta1.CompensationFilter.units].
-     * Populate one or more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
-     * See [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry] for definition of
-     * base compensation entry.
+     * CompensationEntry's unit matches provided
+     * [units][google.cloud.talent.v4beta1.CompensationFilter.units]. Populate
+     * one or more
+     * [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * See
+     * [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
+     * for definition of base compensation entry.
      *
      * Generated from protobuf enum <code>UNIT_ONLY = 1;</code>
      */
@@ -33,27 +38,62 @@ class FilterType
      * is a match if and only if the job contains a base CompensationEntry, and
      * the base entry's unit matches provided [compensation_units][] and amount
      * or range overlaps with provided [compensation_range][].
-     * See [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry] for definition of
-     * base compensation entry.
-     * Set exactly one [units][google.cloud.talent.v4beta1.CompensationFilter.units] and populate [range][google.cloud.talent.v4beta1.CompensationFilter.range].
+     * See
+     * [CompensationInfo.CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
+     * for definition of base compensation entry.
+     * Set exactly one
+     * [units][google.cloud.talent.v4beta1.CompensationFilter.units] and
+     * populate [range][google.cloud.talent.v4beta1.CompensationFilter.range].
      *
      * Generated from protobuf enum <code>UNIT_AND_AMOUNT = 2;</code>
      */
     const UNIT_AND_AMOUNT = 2;
     /**
      * Filter by annualized base compensation amount and `base compensation
-     * entry's` unit. Populate [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * entry's` unit. Populate
+     * [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or
+     * more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
      *
      * Generated from protobuf enum <code>ANNUALIZED_BASE_AMOUNT = 3;</code>
      */
     const ANNUALIZED_BASE_AMOUNT = 3;
     /**
      * Filter by annualized total compensation amount and `base compensation
-     * entry's` unit . Populate [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
+     * entry's` unit . Populate
+     * [range][google.cloud.talent.v4beta1.CompensationFilter.range] and zero or
+     * more [units][google.cloud.talent.v4beta1.CompensationFilter.units].
      *
      * Generated from protobuf enum <code>ANNUALIZED_TOTAL_AMOUNT = 4;</code>
      */
     const ANNUALIZED_TOTAL_AMOUNT = 4;
+
+    private static $valueToName = [
+        self::FILTER_TYPE_UNSPECIFIED => 'FILTER_TYPE_UNSPECIFIED',
+        self::UNIT_ONLY => 'UNIT_ONLY',
+        self::UNIT_AND_AMOUNT => 'UNIT_AND_AMOUNT',
+        self::ANNUALIZED_BASE_AMOUNT => 'ANNUALIZED_BASE_AMOUNT',
+        self::ANNUALIZED_TOTAL_AMOUNT => 'ANNUALIZED_TOTAL_AMOUNT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

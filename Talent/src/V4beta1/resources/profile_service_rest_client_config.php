@@ -5,7 +5,7 @@ return [
         'google.cloud.talent.v4beta1.ProfileService' => [
             'ListProfiles' => [
                 'method' => 'get',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/companies/*}/profiles',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/profiles',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -16,7 +16,7 @@ return [
             ],
             'CreateProfile' => [
                 'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/companies/*}/profiles',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/profiles',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -28,7 +28,7 @@ return [
             ],
             'GetProfile' => [
                 'method' => 'get',
-                'uriTemplate' => '/v4beta1/{name=projects/*/companies/*/profiles/*}',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -39,7 +39,7 @@ return [
             ],
             'UpdateProfile' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v4beta1/{profile.name=projects/*/companies/*/profiles/*}',
+                'uriTemplate' => '/v4beta1/{profile.name=projects/*/tenants/*/profiles/*}',
                 'body' => '*',
                 'placeholders' => [
                     'profile.name' => [
@@ -52,7 +52,7 @@ return [
             ],
             'DeleteProfile' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/companies/*/profiles/*}',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -63,31 +63,12 @@ return [
             ],
             'SearchProfiles' => [
                 'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/companies/*}:search',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}:search',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v3p1beta1/{name=projects/*/operations/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v4beta1/{name=projects/*/operations/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],

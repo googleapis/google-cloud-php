@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * An enum that represents who has view access to the resource.
  *
@@ -37,5 +39,32 @@ class Visibility
      * Generated from protobuf enum <code>SHARED_WITH_PUBLIC = 3;</code>
      */
     const SHARED_WITH_PUBLIC = 3;
+
+    private static $valueToName = [
+        self::VISIBILITY_UNSPECIFIED => 'VISIBILITY_UNSPECIFIED',
+        self::ACCOUNT_ONLY => 'ACCOUNT_ONLY',
+        self::SHARED_WITH_GOOGLE => 'SHARED_WITH_GOOGLE',
+        self::SHARED_WITH_PUBLIC => 'SHARED_WITH_PUBLIC',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

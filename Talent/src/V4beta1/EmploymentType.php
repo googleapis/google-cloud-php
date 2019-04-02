@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * An enum that represents the employment type of a job.
  *
@@ -42,7 +44,8 @@ class EmploymentType
      * The job is offered as a contracted position with the understanding
      * that it's converted into a full-time position at the end of the
      * contract. Jobs of this type are also returned by a search for
-     * [EmploymentType.CONTRACTOR][google.cloud.talent.v4beta1.EmploymentType.CONTRACTOR] jobs.
+     * [EmploymentType.CONTRACTOR][google.cloud.talent.v4beta1.EmploymentType.CONTRACTOR]
+     * jobs.
      *
      * Generated from protobuf enum <code>CONTRACT_TO_HIRE = 4;</code>
      */
@@ -90,5 +93,39 @@ class EmploymentType
      * Generated from protobuf enum <code>OTHER_EMPLOYMENT_TYPE = 10;</code>
      */
     const OTHER_EMPLOYMENT_TYPE = 10;
+
+    private static $valueToName = [
+        self::EMPLOYMENT_TYPE_UNSPECIFIED => 'EMPLOYMENT_TYPE_UNSPECIFIED',
+        self::FULL_TIME => 'FULL_TIME',
+        self::PART_TIME => 'PART_TIME',
+        self::CONTRACTOR => 'CONTRACTOR',
+        self::CONTRACT_TO_HIRE => 'CONTRACT_TO_HIRE',
+        self::TEMPORARY => 'TEMPORARY',
+        self::INTERN => 'INTERN',
+        self::VOLUNTEER => 'VOLUNTEER',
+        self::PER_DIEM => 'PER_DIEM',
+        self::FLY_IN_FLY_OUT => 'FLY_IN_FLY_OUT',
+        self::OTHER_EMPLOYMENT_TYPE => 'OTHER_EMPLOYMENT_TYPE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

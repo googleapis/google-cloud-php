@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Input only.
- * Filter on status of Application.
+ * Filter on state of Application.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ApplicationStatusFilter</code>
  */
@@ -18,17 +18,19 @@ class ApplicationStatusFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * User entered or selected application status. The API does an exact match
-     * between the application status specified in this filter and the
-     * [JobApplication.status][] in profiles.
+     * User entered or selected application state. The API does an exact match
+     * between the application state specified in this filter and the
+     * [Application.state][google.cloud.talent.v4beta1.Application.state] in
+     * profiles.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobApplication.ApplicationStatus application_status = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState application_state = 1;</code>
      */
-    private $application_status = 0;
+    private $application_state = 0;
     /**
      * Optional.
-     * If true, The API excludes all candidates with any [JobApplication.status][]
-     * matching the status specified in the filter.
+     * If true, The API excludes all candidates with any
+     * [Application.state][google.cloud.talent.v4beta1.Application.state] matching
+     * the state specified in the filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      */
@@ -40,15 +42,17 @@ class ApplicationStatusFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $application_status
+     *     @type int $application_state
      *           Required.
-     *           User entered or selected application status. The API does an exact match
-     *           between the application status specified in this filter and the
-     *           [JobApplication.status][] in profiles.
+     *           User entered or selected application state. The API does an exact match
+     *           between the application state specified in this filter and the
+     *           [Application.state][google.cloud.talent.v4beta1.Application.state] in
+     *           profiles.
      *     @type bool $negated
      *           Optional.
-     *           If true, The API excludes all candidates with any [JobApplication.status][]
-     *           matching the status specified in the filter.
+     *           If true, The API excludes all candidates with any
+     *           [Application.state][google.cloud.talent.v4beta1.Application.state] matching
+     *           the state specified in the filter.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,40 +62,43 @@ class ApplicationStatusFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * User entered or selected application status. The API does an exact match
-     * between the application status specified in this filter and the
-     * [JobApplication.status][] in profiles.
+     * User entered or selected application state. The API does an exact match
+     * between the application state specified in this filter and the
+     * [Application.state][google.cloud.talent.v4beta1.Application.state] in
+     * profiles.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobApplication.ApplicationStatus application_status = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState application_state = 1;</code>
      * @return int
      */
-    public function getApplicationStatus()
+    public function getApplicationState()
     {
-        return $this->application_status;
+        return $this->application_state;
     }
 
     /**
      * Required.
-     * User entered or selected application status. The API does an exact match
-     * between the application status specified in this filter and the
-     * [JobApplication.status][] in profiles.
+     * User entered or selected application state. The API does an exact match
+     * between the application state specified in this filter and the
+     * [Application.state][google.cloud.talent.v4beta1.Application.state] in
+     * profiles.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobApplication.ApplicationStatus application_status = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState application_state = 1;</code>
      * @param int $var
      * @return $this
      */
-    public function setApplicationStatus($var)
+    public function setApplicationState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\JobApplication_ApplicationStatus::class);
-        $this->application_status = $var;
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Application_ApplicationState::class);
+        $this->application_state = $var;
 
         return $this;
     }
 
     /**
      * Optional.
-     * If true, The API excludes all candidates with any [JobApplication.status][]
-     * matching the status specified in the filter.
+     * If true, The API excludes all candidates with any
+     * [Application.state][google.cloud.talent.v4beta1.Application.state] matching
+     * the state specified in the filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      * @return bool
@@ -103,8 +110,9 @@ class ApplicationStatusFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * If true, The API excludes all candidates with any [JobApplication.status][]
-     * matching the status specified in the filter.
+     * If true, The API excludes all candidates with any
+     * [Application.state][google.cloud.talent.v4beta1.Application.state] matching
+     * the state specified in the filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
      * @param bool $var

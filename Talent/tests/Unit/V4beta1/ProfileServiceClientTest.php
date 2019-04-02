@@ -38,7 +38,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group jobs
+ * @group talent
  * @group gapic
  */
 class ProfileServiceClientTest extends GeneratedTest
@@ -85,7 +85,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
 
         $response = $client->listProfiles($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -128,7 +128,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
 
         try {
             $client->listProfiles($formattedParent);
@@ -175,7 +175,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $profile = new Profile();
 
         $response = $client->createProfile($formattedParent, $profile);
@@ -219,7 +219,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $profile = new Profile();
 
         try {
@@ -267,7 +267,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->profileName('[PROJECT]', '[COMPANY]', '[PROFILE]');
+        $formattedName = $client->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
 
         $response = $client->getProfile($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -307,7 +307,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->profileName('[PROJECT]', '[COMPANY]', '[PROFILE]');
+        $formattedName = $client->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
 
         try {
             $client->getProfile($formattedName);
@@ -425,7 +425,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->profileName('[PROJECT]', '[COMPANY]', '[PROFILE]');
+        $formattedName = $client->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
 
         $client->deleteProfile($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -464,7 +464,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->profileName('[PROJECT]', '[COMPANY]', '[PROFILE]');
+        $formattedName = $client->profileName('[PROJECT]', '[TENANT]', '[PROFILE]');
 
         try {
             $client->deleteProfile($formattedName);
@@ -502,7 +502,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $requestMetadata = new RequestMetadata();
 
         $response = $client->searchProfiles($formattedParent, $requestMetadata);
@@ -549,7 +549,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $requestMetadata = new RequestMetadata();
 
         try {

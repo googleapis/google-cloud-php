@@ -20,7 +20,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      * Required.
      * The method of transportation for which to calculate the commute time.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteFilter.CommuteMethod commute_method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1;</code>
      */
     private $commute_method = 0;
     /**
@@ -95,7 +95,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      * Required.
      * The method of transportation for which to calculate the commute time.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteFilter.CommuteMethod commute_method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1;</code>
      * @return int
      */
     public function getCommuteMethod()
@@ -107,13 +107,13 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      * Required.
      * The method of transportation for which to calculate the commute time.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteFilter.CommuteMethod commute_method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1;</code>
      * @param int $var
      * @return $this
      */
     public function setCommuteMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CommuteFilter_CommuteMethod::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\CommuteMethod::class);
         $this->commute_method = $var;
 
         return $this;
