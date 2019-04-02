@@ -353,6 +353,22 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getLimit()</code>
+
+     * The maximum number of results to return.
+     * Applies after all other constraints.
+     * Must be >= 0 if specified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 5;</code>
+     * @return int|null
+     */
+    public function getLimitValue()
+    {
+        $wrapper = $this->getLimit();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * The maximum number of results to return.
      * Applies after all other constraints.
      * Must be >= 0 if specified.
@@ -367,6 +383,23 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
         $this->limit = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * The maximum number of results to return.
+     * Applies after all other constraints.
+     * Must be >= 0 if specified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 5;</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setLimitValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
+        return $this->setLimit($wrappedVar);
     }
 
 }
