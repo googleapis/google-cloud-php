@@ -17,9 +17,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The resource name of the company under which the job is created.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -27,8 +27,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
-     * continue the list.
+     * Please set the value to
+     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
+     * to continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
@@ -48,9 +49,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      * Valid values are:
      * * name
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 4;</code>
      */
-    private $field_mask = null;
+    private $read_mask = null;
 
     /**
      * Constructor.
@@ -60,19 +61,20 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required.
-     *           The resource name of the company under which the job is created.
-     *           The format is "projects/{project_id}/companies/{company_id}", for example,
-     *           "projects/api-test-project/companies/foo".
+     *           The resource name of the tenant under which the job is created.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/api-test-project/tenants/foo".
      *     @type string $page_token
      *           Optional.
      *           The token that specifies the current offset (that is, starting result).
-     *           Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
-     *           continue the list.
+     *           Please set the value to
+     *           [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
+     *           to continue the list.
      *     @type int $page_size
      *           Optional.
      *           The maximum number of profiles to be returned, at most 100.
      *           Default is 100 unless a positive number smaller than 100 is specified.
-     *     @type \Google\Protobuf\FieldMask $field_mask
+     *     @type \Google\Protobuf\FieldMask $read_mask
      *           Optional.
      *           A field mask to specify the profile fields to be listed in response.
      *           All fields are listed if it is unset.
@@ -87,9 +89,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the company under which the job is created.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -101,9 +103,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the company under which the job is created.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -120,8 +122,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
-     * continue the list.
+     * Please set the value to
+     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
+     * to continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -134,8 +137,9 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
-     * continue the list.
+     * Please set the value to
+     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
+     * to continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var
@@ -186,12 +190,12 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      * Valid values are:
      * * name
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 4;</code>
      * @return \Google\Protobuf\FieldMask
      */
-    public function getFieldMask()
+    public function getReadMask()
     {
-        return $this->field_mask;
+        return $this->read_mask;
     }
 
     /**
@@ -201,14 +205,14 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      * Valid values are:
      * * name
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 4;</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
-    public function setFieldMask($var)
+    public function setReadMask($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
-        $this->field_mask = $var;
+        $this->read_mask = $var;
 
         return $this;
     }

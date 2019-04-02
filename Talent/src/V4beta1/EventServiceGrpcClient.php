@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ class EventServiceGrpcClient extends \Grpc\BaseStub {
      * [self service
      * tools](https://console.cloud.google.com/talent-solution/overview).
      * [Learn
-     * more](https://cloud.google.com/talent-solution/job-search/docs/management-tools)
+     * more](https://cloud.google.com/talent-solution/docs/management-tools)
      * about self service tools.
      * @param \Google\Cloud\Talent\V4beta1\CreateClientEventRequest $argument input argument
      * @param array $metadata metadata

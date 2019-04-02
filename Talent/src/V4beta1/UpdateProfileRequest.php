@@ -47,7 +47,6 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * * publications
      * * patents
      * * certifications
-     * * jobApplications
      * * recruitingNotes
      * * customAttributes
      *
@@ -89,7 +88,6 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *           * publications
      *           * patents
      *           * certifications
-     *           * jobApplications
      *           * recruitingNotes
      *           * customAttributes
      * }
@@ -152,7 +150,6 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * * publications
      * * patents
      * * certifications
-     * * jobApplications
      * * recruitingNotes
      * * customAttributes
      *
@@ -189,7 +186,6 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * * publications
      * * patents
      * * certifications
-     * * jobApplications
      * * recruitingNotes
      * * customAttributes
      *

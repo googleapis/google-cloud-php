@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\Location;
 
+use UnexpectedValueException;
+
 /**
  * An enum which represents the type of a location.
  *
@@ -81,6 +83,40 @@ class LocationType
      * Generated from protobuf enum <code>STREET_ADDRESS = 10;</code>
      */
     const STREET_ADDRESS = 10;
+
+    private static $valueToName = [
+        self::LOCATION_TYPE_UNSPECIFIED => 'LOCATION_TYPE_UNSPECIFIED',
+        self::COUNTRY => 'COUNTRY',
+        self::ADMINISTRATIVE_AREA => 'ADMINISTRATIVE_AREA',
+        self::SUB_ADMINISTRATIVE_AREA => 'SUB_ADMINISTRATIVE_AREA',
+        self::LOCALITY => 'LOCALITY',
+        self::POSTAL_CODE => 'POSTAL_CODE',
+        self::SUB_LOCALITY => 'SUB_LOCALITY',
+        self::SUB_LOCALITY_1 => 'SUB_LOCALITY_1',
+        self::SUB_LOCALITY_2 => 'SUB_LOCALITY_2',
+        self::NEIGHBORHOOD => 'NEIGHBORHOOD',
+        self::STREET_ADDRESS => 'STREET_ADDRESS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -4,8 +4,11 @@
 
 namespace Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo;
 
+use UnexpectedValueException;
+
 /**
- * The importance level for [CustomRankingInfo.ranking_expression][google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ranking_expression].
+ * The importance level for
+ * [CustomRankingInfo.ranking_expression][google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ranking_expression].
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel</code>
  */
@@ -65,6 +68,36 @@ class ImportanceLevel
      * Generated from protobuf enum <code>EXTREME = 6;</code>
      */
     const EXTREME = 6;
+
+    private static $valueToName = [
+        self::IMPORTANCE_LEVEL_UNSPECIFIED => 'IMPORTANCE_LEVEL_UNSPECIFIED',
+        self::NONE => 'NONE',
+        self::LOW => 'LOW',
+        self::MILD => 'MILD',
+        self::MEDIUM => 'MEDIUM',
+        self::HIGH => 'HIGH',
+        self::EXTREME => 'EXTREME',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

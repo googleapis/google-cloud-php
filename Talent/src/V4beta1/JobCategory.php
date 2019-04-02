@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * An enum that represents the categorization or primary focus of specific
  * role. This value is different than the "industry" associated with a role,
@@ -200,5 +202,59 @@ class JobCategory
      * Generated from protobuf enum <code>TRANSPORTATION_AND_LOGISTICS = 30;</code>
      */
     const TRANSPORTATION_AND_LOGISTICS = 30;
+
+    private static $valueToName = [
+        self::JOB_CATEGORY_UNSPECIFIED => 'JOB_CATEGORY_UNSPECIFIED',
+        self::ACCOUNTING_AND_FINANCE => 'ACCOUNTING_AND_FINANCE',
+        self::ADMINISTRATIVE_AND_OFFICE => 'ADMINISTRATIVE_AND_OFFICE',
+        self::ADVERTISING_AND_MARKETING => 'ADVERTISING_AND_MARKETING',
+        self::ANIMAL_CARE => 'ANIMAL_CARE',
+        self::ART_FASHION_AND_DESIGN => 'ART_FASHION_AND_DESIGN',
+        self::BUSINESS_OPERATIONS => 'BUSINESS_OPERATIONS',
+        self::CLEANING_AND_FACILITIES => 'CLEANING_AND_FACILITIES',
+        self::COMPUTER_AND_IT => 'COMPUTER_AND_IT',
+        self::CONSTRUCTION => 'CONSTRUCTION',
+        self::CUSTOMER_SERVICE => 'CUSTOMER_SERVICE',
+        self::EDUCATION => 'EDUCATION',
+        self::ENTERTAINMENT_AND_TRAVEL => 'ENTERTAINMENT_AND_TRAVEL',
+        self::FARMING_AND_OUTDOORS => 'FARMING_AND_OUTDOORS',
+        self::HEALTHCARE => 'HEALTHCARE',
+        self::HUMAN_RESOURCES => 'HUMAN_RESOURCES',
+        self::INSTALLATION_MAINTENANCE_AND_REPAIR => 'INSTALLATION_MAINTENANCE_AND_REPAIR',
+        self::LEGAL => 'LEGAL',
+        self::MANAGEMENT => 'MANAGEMENT',
+        self::MANUFACTURING_AND_WAREHOUSE => 'MANUFACTURING_AND_WAREHOUSE',
+        self::MEDIA_COMMUNICATIONS_AND_WRITING => 'MEDIA_COMMUNICATIONS_AND_WRITING',
+        self::OIL_GAS_AND_MINING => 'OIL_GAS_AND_MINING',
+        self::PERSONAL_CARE_AND_SERVICES => 'PERSONAL_CARE_AND_SERVICES',
+        self::PROTECTIVE_SERVICES => 'PROTECTIVE_SERVICES',
+        self::REAL_ESTATE => 'REAL_ESTATE',
+        self::RESTAURANT_AND_HOSPITALITY => 'RESTAURANT_AND_HOSPITALITY',
+        self::SALES_AND_RETAIL => 'SALES_AND_RETAIL',
+        self::SCIENCE_AND_ENGINEERING => 'SCIENCE_AND_ENGINEERING',
+        self::SOCIAL_SERVICES_AND_NON_PROFIT => 'SOCIAL_SERVICES_AND_NON_PROFIT',
+        self::SPORTS_FITNESS_AND_RECREATION => 'SPORTS_FITNESS_AND_RECREATION',
+        self::TRANSPORTATION_AND_LOGISTICS => 'TRANSPORTATION_AND_LOGISTICS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

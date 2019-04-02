@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1;
 
+use UnexpectedValueException;
+
 /**
  * An enum that represents employee benefits included with the job.
  *
@@ -89,5 +91,40 @@ class JobBenefit
      * Generated from protobuf enum <code>VISION = 11;</code>
      */
     const VISION = 11;
+
+    private static $valueToName = [
+        self::JOB_BENEFIT_UNSPECIFIED => 'JOB_BENEFIT_UNSPECIFIED',
+        self::CHILD_CARE => 'CHILD_CARE',
+        self::DENTAL => 'DENTAL',
+        self::DOMESTIC_PARTNER => 'DOMESTIC_PARTNER',
+        self::FLEXIBLE_HOURS => 'FLEXIBLE_HOURS',
+        self::MEDICAL => 'MEDICAL',
+        self::LIFE_INSURANCE => 'LIFE_INSURANCE',
+        self::PARENTAL_LEAVE => 'PARENTAL_LEAVE',
+        self::RETIREMENT_PLAN => 'RETIREMENT_PLAN',
+        self::SICK_DAYS => 'SICK_DAYS',
+        self::VACATION => 'VACATION',
+        self::VISION => 'VISION',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

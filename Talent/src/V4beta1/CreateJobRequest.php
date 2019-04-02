@@ -18,9 +18,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The resource name of the project under which the job is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and a default tenant is created if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -41,9 +43,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required.
-     *           The resource name of the project under which the job is created.
-     *           The format is "projects/{project_id}", for example,
-     *           "projects/api-test-project".
+     *           The resource name of the tenant under which the job is created.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/api-test-project/tenant/foo".
+     *           Tenant id is optional and a default tenant is created if unspecified, for
+     *           example, "projects/api-test-project".
      *     @type \Google\Cloud\Talent\V4beta1\Job $job
      *           Required.
      *           The Job to be created.
@@ -56,9 +60,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the project under which the job is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and a default tenant is created if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -70,9 +76,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the project under which the job is created.
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     * Tenant id is optional and a default tenant is created if unspecified, for
+     * example, "projects/api-test-project".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

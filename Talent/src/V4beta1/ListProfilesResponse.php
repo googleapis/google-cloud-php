@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListProfilesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Profiles for the specific company.
+     * Profiles for the specific tenant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Profile profiles = 1;</code>
      */
@@ -36,7 +36,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Profile[]|\Google\Protobuf\Internal\RepeatedField $profiles
-     *           Profiles for the specific company.
+     *           Profiles for the specific tenant.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. This is empty if there are no
      *           more results.
@@ -48,7 +48,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profiles for the specific company.
+     * Profiles for the specific tenant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Profile profiles = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -59,7 +59,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Profiles for the specific company.
+     * Profiles for the specific tenant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Profile profiles = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\Profile[]|\Google\Protobuf\Internal\RepeatedField $var

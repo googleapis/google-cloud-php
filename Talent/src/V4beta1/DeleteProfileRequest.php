@@ -19,8 +19,8 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
      * Required.
      * Resource name of the profile to be deleted.
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -36,8 +36,8 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
      *           Required.
      *           Resource name of the profile to be deleted.
      *           The format is
-     *           "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     *           for example, "projects/api-test-project/companies/foo/profiles/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
      * }
      */
     public function __construct($data = NULL) {
@@ -49,8 +49,8 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
      * Required.
      * Resource name of the profile to be deleted.
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -64,8 +64,8 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
      * Required.
      * Resource name of the profile to be deleted.
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

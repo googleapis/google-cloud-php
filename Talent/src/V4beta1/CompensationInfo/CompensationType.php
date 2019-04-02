@@ -4,20 +4,33 @@
 
 namespace Google\Cloud\Talent\V4beta1\CompensationInfo;
 
+use UnexpectedValueException;
+
 /**
  * The type of compensation.
  * For compensation amounts specified in non-monetary amounts,
- * describe the compensation scheme in the [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description].
+ * describe the compensation scheme in the
+ * [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description].
  * For example, tipping format is described in
- * [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description] (for example, “expect 15-20% tips based
- * on customer bill.”) and an estimate of the tips provided in
- * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount] or [CompensationEntry.range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range] ($10 per hour).
- * For example, equity is described in [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description]
- * (for example, “1% - 2% equity vesting over 4 years, 1 year cliff”) and
- * value estimated in [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount] or
- * [CompensationEntry.range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range]. If no value estimate is possible, units are
- * [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED] and then further
- * clarified in [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description] field.
+ * [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description]
+ * (for example, "expect 15-20% tips based on customer bill.") and an estimate
+ * of the tips provided in
+ * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
+ * or
+ * [CompensationEntry.range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range]
+ * ($10 per hour).
+ * For example, equity is described in
+ * [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description]
+ * (for example, "1% - 2% equity vesting over 4 years, 1 year cliff") and
+ * value estimated in
+ * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
+ * or
+ * [CompensationEntry.range][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.range].
+ * If no value estimate is possible, units are
+ * [CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit.COMPENSATION_UNIT_UNSPECIFIED]
+ * and then further clarified in
+ * [CompensationEntry.description][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.description]
+ * field.
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.CompensationInfo.CompensationType</code>
  */
@@ -80,6 +93,38 @@ class CompensationType
      * Generated from protobuf enum <code>OTHER_COMPENSATION_TYPE = 8;</code>
      */
     const OTHER_COMPENSATION_TYPE = 8;
+
+    private static $valueToName = [
+        self::COMPENSATION_TYPE_UNSPECIFIED => 'COMPENSATION_TYPE_UNSPECIFIED',
+        self::BASE => 'BASE',
+        self::BONUS => 'BONUS',
+        self::SIGNING_BONUS => 'SIGNING_BONUS',
+        self::EQUITY => 'EQUITY',
+        self::PROFIT_SHARING => 'PROFIT_SHARING',
+        self::COMMISSIONS => 'COMMISSIONS',
+        self::TIPS => 'TIPS',
+        self::OTHER_COMPENSATION_TYPE => 'OTHER_COMPENSATION_TYPE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

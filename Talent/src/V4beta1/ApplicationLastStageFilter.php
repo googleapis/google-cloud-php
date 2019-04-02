@@ -20,7 +20,7 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
      * Required.
      * User entered or selected last stage the candidate reached in the
      * application. The API does an exact match on the
-     * [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] in profiles.
+     * [Application.last_stage][] in profiles.
      *
      * Generated from protobuf field <code>string last_stage = 1;</code>
      */
@@ -28,7 +28,7 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * If true, The API excludes all candidates with any
-     * [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] matching the last stage specified in the
+     * [Application.last_stage][] matching the last stage specified in the
      * filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
@@ -45,11 +45,11 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
      *           Required.
      *           User entered or selected last stage the candidate reached in the
      *           application. The API does an exact match on the
-     *           [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] in profiles.
+     *           [Application.last_stage][] in profiles.
      *     @type bool $negated
      *           Optional.
      *           If true, The API excludes all candidates with any
-     *           [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] matching the last stage specified in the
+     *           [Application.last_stage][] matching the last stage specified in the
      *           filter.
      * }
      */
@@ -62,7 +62,7 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
      * Required.
      * User entered or selected last stage the candidate reached in the
      * application. The API does an exact match on the
-     * [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] in profiles.
+     * [Application.last_stage][] in profiles.
      *
      * Generated from protobuf field <code>string last_stage = 1;</code>
      * @return string
@@ -76,7 +76,7 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
      * Required.
      * User entered or selected last stage the candidate reached in the
      * application. The API does an exact match on the
-     * [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] in profiles.
+     * [Application.last_stage][] in profiles.
      *
      * Generated from protobuf field <code>string last_stage = 1;</code>
      * @param string $var
@@ -93,7 +93,7 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * If true, The API excludes all candidates with any
-     * [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] matching the last stage specified in the
+     * [Application.last_stage][] matching the last stage specified in the
      * filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>
@@ -107,7 +107,7 @@ class ApplicationLastStageFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * If true, The API excludes all candidates with any
-     * [JobApplication.last_stage][google.cloud.talent.v4beta1.JobApplication.last_stage] matching the last stage specified in the
+     * [Application.last_stage][] matching the last stage specified in the
      * filter.
      *
      * Generated from protobuf field <code>bool negated = 2;</code>

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 namespace Google\Cloud\Talent\V4beta1;
 
 /**
- * A service handles company management, including CRUD and job enumeration.
+ * A service that handles company management, including CRUD and enumeration.
  */
 class CompanyServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -62,9 +62,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates specified company. Company names can't be updated. To update a
-     * company name, delete the company and all jobs associated with it, and only
-     * then re-create them.
+     * Updates specified company.
      * @param \Google\Cloud\Talent\V4beta1\UpdateCompanyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -93,7 +91,7 @@ class CompanyServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all companies associated with the service account.
+     * Lists all companies associated with the project.
      * @param \Google\Cloud\Talent\V4beta1\ListCompaniesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

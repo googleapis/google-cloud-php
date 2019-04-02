@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\CompleteQueryRequest;
 
+use UnexpectedValueException;
+
 /**
  * Enum to specify auto-completion topics.
  *
@@ -35,6 +37,33 @@ class CompletionType
      * Generated from protobuf enum <code>COMBINED = 3;</code>
      */
     const COMBINED = 3;
+
+    private static $valueToName = [
+        self::COMPLETION_TYPE_UNSPECIFIED => 'COMPLETION_TYPE_UNSPECIFIED',
+        self::JOB_TITLE => 'JOB_TITLE',
+        self::COMPANY_NAME => 'COMPANY_NAME',
+        self::COMBINED => 'COMBINED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\SearchJobsRequest;
 
+use UnexpectedValueException;
+
 /**
  * A string-represented enumeration of the job search mode. The service
  * operate differently for different modes of service.
@@ -35,6 +37,32 @@ class SearchMode
      * Generated from protobuf enum <code>FEATURED_JOB_SEARCH = 2;</code>
      */
     const FEATURED_JOB_SEARCH = 2;
+
+    private static $valueToName = [
+        self::SEARCH_MODE_UNSPECIFIED => 'SEARCH_MODE_UNSPECIFIED',
+        self::JOB_SEARCH => 'JOB_SEARCH',
+        self::FEATURED_JOB_SEARCH => 'FEATURED_JOB_SEARCH',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

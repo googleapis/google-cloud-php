@@ -10,8 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A resource that represents the profile for a job candidate (also referred to
- * as a "single-source profile"). A profile belongs to a [Company][google.cloud.talent.v4beta1.Company], which is
- * the company/organization that owns the profile.
+ * as a "single-source profile"). A profile belongs to a
+ * [Company][google.cloud.talent.v4beta1.Company], which is the
+ * company/organization that owns the profile.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.Profile</code>
  */
@@ -21,8 +22,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Required during profile update.
      * Resource name assigned to a profile by the API.
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -57,16 +58,21 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * The cluster id of the profile to associate with other profile(s) for the
      * same candidate.
-     * A random UUID is assigned if [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To ensure
-     * global uniqueness, customized [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported. If
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there must be at least one other profile with the
-     * same system generated [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an error is thrown.
+     * A random UUID is assigned if
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To
+     * ensure global uniqueness, customized
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported.
+     * If [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there
+     * must be at least one other profile with the same system generated
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an
+     * error is thrown.
      * This is used to link multiple profiles to the same candidate. For example,
      * a client has a candidate with two profiles, where one was created recently
      * and the other one was created 5 years ago. These two profiles may be very
      * different. The clients can create the first profile and get a generated
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
-     * indicating these two profiles are referring to the same candidate.
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
+     * when the second profile is created, indicating these two profiles are
+     * referring to the same candidate.
      *
      * Generated from protobuf field <code>string group_id = 5;</code>
      */
@@ -97,14 +103,20 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The profile contents in HR-XML format.
      * See http://schemas.liquid-technologies.com/hr-xml/2007-04-15/ for more
      * information about Human Resources XML.
-     * Users can create a profile with only [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For example,
-     * the API parses the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and creates a profile with all
-     * structured fields populated, for example. [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
-     * [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An error is thrown if the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't
-     * be parsed.
-     * If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is provided during profile creation or update,
-     * any other structured data provided in the profile is ignored. The
-     * API populates these fields by parsing the HR-XML.
+     * Users can create a profile with only
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For
+     * example, the API parses the
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and
+     * creates a profile with all structured fields populated, for example.
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
+     * [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An
+     * error is thrown if the
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't be
+     * parsed.
+     * If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is
+     * provided during profile creation or update, any other structured data
+     * provided in the profile is ignored. The API populates these fields by
+     * parsing the HR-XML.
      *
      * Generated from protobuf field <code>string resume_hrxml = 10;</code>
      */
@@ -147,8 +159,12 @@ class Profile extends \Google\Protobuf\Internal\Message
     private $personal_uris;
     /**
      * Optional.
-     * Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
+     * Available contact information besides
+     * [addresses][google.cloud.talent.v4beta1.Profile.addresses],
+     * [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
+     * [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
+     * example, Hang-out, Skype.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AdditionalContactInfo additional_contact_info = 16;</code>
      */
@@ -163,8 +179,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * change is.
      * For example, only job title is changed from "software engineer" to "senior
      * software engineer".
-     * * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
-     * possible. If not, it's inferred from user inputs.
+     * * Provide
+     * [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
+     * for the current employment if possible. If not, it's inferred from user
+     * inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentRecord employment_records = 17;</code>
      */
@@ -178,8 +196,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * * List each education type separately, no matter how minor the change is.
      * For example, the profile contains the education experience from the same
      * school but different degrees.
-     * * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
-     * possible. If not, it's inferred from user inputs.
+     * * Provide
+     * [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
+     * for the current education if possible. If not, it's inferred from user
+     * inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationRecord education_records = 18;</code>
      */
@@ -196,7 +216,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * The individual or collaborative activities which the candidate has
      * participated in, for example, open-source projects, class assignments that
-     * aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * aren't listed in
+     * [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Activity activities = 20;</code>
      */
@@ -223,37 +244,35 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     private $certifications;
     /**
-     * Optional.
-     * The job applications of the candidate.
+     * Output only. The resource names of the candidate's applications.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobApplication job_applications = 24;</code>
+     * Generated from protobuf field <code>repeated string applications = 47;</code>
      */
-    private $job_applications;
+    private $applications;
     /**
-     * Optional.
-     * The recruiting notes added for the candidate.
-     * For example, the recruiter can add some unstructured comments for this
-     * candidate like "this candidate also has experiences in volunteer work".
+     * Output only. The resource names of the candidate's assignments.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.RecruitingNote recruiting_notes = 25;</code>
+     * Generated from protobuf field <code>repeated string assignments = 48;</code>
      */
-    private $recruiting_notes;
+    private $assignments;
     /**
      * Optional.
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
-     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
+     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
+     * details.
      * At most 100 filterable and at most 100 unfilterable keys are supported. If
-     * limit is exceeded, an error is thrown.
+     * limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
+     * by default. These are filterable when the `filterable` flag is set to
+     * `true`.
      * Numeric custom attributes: each key can only map to one numeric value,
-     * otherwise an error is thrown.
+     * otherwise an error is thrown. Client can also filter on numeric custom
+     * attributes using '>', '<' or '=' operators.
      * String custom attributes: each key can map up to 50 string values. For
      * filterable string value, each value has a byte size of no more than 256B.
      * For unfilterable string values, the maximum byte size of a single key is
      * 64B. An error is thrown for any request exceeding the limit.
      * The maximum total byte size is 10KB.
-     * Currently filterable numeric custom attributes are not supported, and
-     * they automatically set to unfilterable.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.talent.v4beta1.CustomAttribute> custom_attributes = 26;</code>
      */
@@ -282,8 +301,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           Required during profile update.
      *           Resource name assigned to a profile by the API.
      *           The format is
-     *           "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     *           for example, "projects/api-test-project/companies/foo/profiles/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *     @type string $external_id
      *           Optional.
      *           Profile's id in client system if available.
@@ -302,16 +321,21 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           The cluster id of the profile to associate with other profile(s) for the
      *           same candidate.
-     *           A random UUID is assigned if [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To ensure
-     *           global uniqueness, customized [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported. If
-     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there must be at least one other profile with the
-     *           same system generated [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an error is thrown.
+     *           A random UUID is assigned if
+     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To
+     *           ensure global uniqueness, customized
+     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported.
+     *           If [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there
+     *           must be at least one other profile with the same system generated
+     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an
+     *           error is thrown.
      *           This is used to link multiple profiles to the same candidate. For example,
      *           a client has a candidate with two profiles, where one was created recently
      *           and the other one was created 5 years ago. These two profiles may be very
      *           different. The clients can create the first profile and get a generated
-     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
-     *           indicating these two profiles are referring to the same candidate.
+     *           [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
+     *           when the second profile is created, indicating these two profiles are
+     *           referring to the same candidate.
      *     @type \Google\Protobuf\BoolValue $is_hirable
      *           Optional.
      *           Indicates the hirable status of the candidate.
@@ -326,14 +350,20 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           The profile contents in HR-XML format.
      *           See http://schemas.liquid-technologies.com/hr-xml/2007-04-15/ for more
      *           information about Human Resources XML.
-     *           Users can create a profile with only [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For example,
-     *           the API parses the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and creates a profile with all
-     *           structured fields populated, for example. [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
-     *           [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An error is thrown if the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't
-     *           be parsed.
-     *           If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is provided during profile creation or update,
-     *           any other structured data provided in the profile is ignored. The
-     *           API populates these fields by parsing the HR-XML.
+     *           Users can create a profile with only
+     *           [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For
+     *           example, the API parses the
+     *           [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and
+     *           creates a profile with all structured fields populated, for example.
+     *           [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
+     *           [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An
+     *           error is thrown if the
+     *           [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't be
+     *           parsed.
+     *           If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is
+     *           provided during profile creation or update, any other structured data
+     *           provided in the profile is ignored. The API populates these fields by
+     *           parsing the HR-XML.
      *     @type \Google\Cloud\Talent\V4beta1\PersonName[]|\Google\Protobuf\Internal\RepeatedField $person_names
      *           Optional.
      *           The names of the candidate this profile references.
@@ -352,8 +382,12 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           The candidate's personal URIs.
      *     @type \Google\Cloud\Talent\V4beta1\AdditionalContactInfo[]|\Google\Protobuf\Internal\RepeatedField $additional_contact_info
      *           Optional.
-     *           Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     *           [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
+     *           Available contact information besides
+     *           [addresses][google.cloud.talent.v4beta1.Profile.addresses],
+     *           [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     *           [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
+     *           [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
+     *           example, Hang-out, Skype.
      *     @type \Google\Cloud\Talent\V4beta1\EmploymentRecord[]|\Google\Protobuf\Internal\RepeatedField $employment_records
      *           Optional.
      *           The employment history records of the candidate. It's highly recommended
@@ -364,8 +398,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           change is.
      *           For example, only job title is changed from "software engineer" to "senior
      *           software engineer".
-     *           * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
-     *           possible. If not, it's inferred from user inputs.
+     *           * Provide
+     *           [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
+     *           for the current employment if possible. If not, it's inferred from user
+     *           inputs.
      *     @type \Google\Cloud\Talent\V4beta1\EducationRecord[]|\Google\Protobuf\Internal\RepeatedField $education_records
      *           Optional.
      *           The education history record of the candidate. It's highly recommended to
@@ -375,8 +411,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           * List each education type separately, no matter how minor the change is.
      *           For example, the profile contains the education experience from the same
      *           school but different degrees.
-     *           * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
-     *           possible. If not, it's inferred from user inputs.
+     *           * Provide
+     *           [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
+     *           for the current education if possible. If not, it's inferred from user
+     *           inputs.
      *     @type \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $skills
      *           Optional.
      *           The skill set of the candidate. It's highly recommended to provide as
@@ -385,7 +423,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           The individual or collaborative activities which the candidate has
      *           participated in, for example, open-source projects, class assignments that
-     *           aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     *           aren't listed in
+     *           [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *     @type \Google\Cloud\Talent\V4beta1\Publication[]|\Google\Protobuf\Internal\RepeatedField $publications
      *           Optional.
      *           The publications published by the candidate.
@@ -395,30 +434,28 @@ class Profile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\Certification[]|\Google\Protobuf\Internal\RepeatedField $certifications
      *           Optional.
      *           The certifications acquired by the candidate.
-     *     @type \Google\Cloud\Talent\V4beta1\JobApplication[]|\Google\Protobuf\Internal\RepeatedField $job_applications
-     *           Optional.
-     *           The job applications of the candidate.
-     *     @type \Google\Cloud\Talent\V4beta1\RecruitingNote[]|\Google\Protobuf\Internal\RepeatedField $recruiting_notes
-     *           Optional.
-     *           The recruiting notes added for the candidate.
-     *           For example, the recruiter can add some unstructured comments for this
-     *           candidate like "this candidate also has experiences in volunteer work".
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $applications
+     *           Output only. The resource names of the candidate's applications.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $assignments
+     *           Output only. The resource names of the candidate's assignments.
      *     @type array|\Google\Protobuf\Internal\MapField $custom_attributes
      *           Optional.
      *           A map of fields to hold both filterable and non-filterable custom profile
      *           attributes that aren't covered by the provided structured fields. See
-     *           [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
+     *           [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
+     *           details.
      *           At most 100 filterable and at most 100 unfilterable keys are supported. If
-     *           limit is exceeded, an error is thrown.
+     *           limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
+     *           by default. These are filterable when the `filterable` flag is set to
+     *           `true`.
      *           Numeric custom attributes: each key can only map to one numeric value,
-     *           otherwise an error is thrown.
+     *           otherwise an error is thrown. Client can also filter on numeric custom
+     *           attributes using '>', '<' or '=' operators.
      *           String custom attributes: each key can map up to 50 string values. For
      *           filterable string value, each value has a byte size of no more than 256B.
      *           For unfilterable string values, the maximum byte size of a single key is
      *           64B. An error is thrown for any request exceeding the limit.
      *           The maximum total byte size is 10KB.
-     *           Currently filterable numeric custom attributes are not supported, and
-     *           they automatically set to unfilterable.
      *     @type bool $processed
      *           Output only. Indicates if the profile is fully processed and searchable.
      *     @type string $keyword_snippet
@@ -435,8 +472,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Required during profile update.
      * Resource name assigned to a profile by the API.
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -450,8 +487,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Required during profile update.
      * Resource name assigned to a profile by the API.
      * The format is
-     * "projects/{project_id}/companies/{company_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/companies/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -563,16 +600,21 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * The cluster id of the profile to associate with other profile(s) for the
      * same candidate.
-     * A random UUID is assigned if [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To ensure
-     * global uniqueness, customized [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported. If
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there must be at least one other profile with the
-     * same system generated [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an error is thrown.
+     * A random UUID is assigned if
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To
+     * ensure global uniqueness, customized
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported.
+     * If [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there
+     * must be at least one other profile with the same system generated
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an
+     * error is thrown.
      * This is used to link multiple profiles to the same candidate. For example,
      * a client has a candidate with two profiles, where one was created recently
      * and the other one was created 5 years ago. These two profiles may be very
      * different. The clients can create the first profile and get a generated
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
-     * indicating these two profiles are referring to the same candidate.
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
+     * when the second profile is created, indicating these two profiles are
+     * referring to the same candidate.
      *
      * Generated from protobuf field <code>string group_id = 5;</code>
      * @return string
@@ -586,16 +628,21 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * The cluster id of the profile to associate with other profile(s) for the
      * same candidate.
-     * A random UUID is assigned if [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To ensure
-     * global uniqueness, customized [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported. If
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there must be at least one other profile with the
-     * same system generated [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an error is thrown.
+     * A random UUID is assigned if
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't provided. To
+     * ensure global uniqueness, customized
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id] isn't supported.
+     * If [group_id][google.cloud.talent.v4beta1.Profile.group_id] is set, there
+     * must be at least one other profile with the same system generated
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], otherwise an
+     * error is thrown.
      * This is used to link multiple profiles to the same candidate. For example,
      * a client has a candidate with two profiles, where one was created recently
      * and the other one was created 5 years ago. These two profiles may be very
      * different. The clients can create the first profile and get a generated
-     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it when the second profile is created,
-     * indicating these two profiles are referring to the same candidate.
+     * [group_id][google.cloud.talent.v4beta1.Profile.group_id], and assign it
+     * when the second profile is created, indicating these two profiles are
+     * referring to the same candidate.
      *
      * Generated from protobuf field <code>string group_id = 5;</code>
      * @param string $var
@@ -622,6 +669,21 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getIsHirable()</code>
+
+     * Optional.
+     * Indicates the hirable status of the candidate.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_hirable = 6;</code>
+     * @return bool|null
+     */
+    public function getIsHirableValue()
+    {
+        $wrapper = $this->getIsHirable();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * Optional.
      * Indicates the hirable status of the candidate.
      *
@@ -635,6 +697,22 @@ class Profile extends \Google\Protobuf\Internal\Message
         $this->is_hirable = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional.
+     * Indicates the hirable status of the candidate.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_hirable = 6;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setIsHirableValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setIsHirable($wrappedVar);
     }
 
     /**
@@ -698,14 +776,20 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The profile contents in HR-XML format.
      * See http://schemas.liquid-technologies.com/hr-xml/2007-04-15/ for more
      * information about Human Resources XML.
-     * Users can create a profile with only [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For example,
-     * the API parses the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and creates a profile with all
-     * structured fields populated, for example. [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
-     * [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An error is thrown if the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't
-     * be parsed.
-     * If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is provided during profile creation or update,
-     * any other structured data provided in the profile is ignored. The
-     * API populates these fields by parsing the HR-XML.
+     * Users can create a profile with only
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For
+     * example, the API parses the
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and
+     * creates a profile with all structured fields populated, for example.
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
+     * [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An
+     * error is thrown if the
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't be
+     * parsed.
+     * If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is
+     * provided during profile creation or update, any other structured data
+     * provided in the profile is ignored. The API populates these fields by
+     * parsing the HR-XML.
      *
      * Generated from protobuf field <code>string resume_hrxml = 10;</code>
      * @return string
@@ -720,14 +804,20 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The profile contents in HR-XML format.
      * See http://schemas.liquid-technologies.com/hr-xml/2007-04-15/ for more
      * information about Human Resources XML.
-     * Users can create a profile with only [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For example,
-     * the API parses the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and creates a profile with all
-     * structured fields populated, for example. [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
-     * [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An error is thrown if the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't
-     * be parsed.
-     * If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is provided during profile creation or update,
-     * any other structured data provided in the profile is ignored. The
-     * API populates these fields by parsing the HR-XML.
+     * Users can create a profile with only
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] field. For
+     * example, the API parses the
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] and
+     * creates a profile with all structured fields populated, for example.
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord],
+     * [EducationRecord][google.cloud.talent.v4beta1.EducationRecord], etc. An
+     * error is thrown if the
+     * [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] can't be
+     * parsed.
+     * If the [resume_hrxml][google.cloud.talent.v4beta1.Profile.resume_hrxml] is
+     * provided during profile creation or update, any other structured data
+     * provided in the profile is ignored. The API populates these fields by
+     * parsing the HR-XML.
      *
      * Generated from protobuf field <code>string resume_hrxml = 10;</code>
      * @param string $var
@@ -885,8 +975,12 @@ class Profile extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
+     * Available contact information besides
+     * [addresses][google.cloud.talent.v4beta1.Profile.addresses],
+     * [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
+     * [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
+     * example, Hang-out, Skype.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AdditionalContactInfo additional_contact_info = 16;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -898,8 +992,12 @@ class Profile extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * Available contact information besides [addresses][google.cloud.talent.v4beta1.Profile.addresses], [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
-     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For example, Hang-out, Skype.
+     * Available contact information besides
+     * [addresses][google.cloud.talent.v4beta1.Profile.addresses],
+     * [email_addresses][google.cloud.talent.v4beta1.Profile.email_addresses],
+     * [phone_numbers][google.cloud.talent.v4beta1.Profile.phone_numbers] and
+     * [personal_uris][google.cloud.talent.v4beta1.Profile.personal_uris]. For
+     * example, Hang-out, Skype.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AdditionalContactInfo additional_contact_info = 16;</code>
      * @param \Google\Cloud\Talent\V4beta1\AdditionalContactInfo[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -923,8 +1021,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * change is.
      * For example, only job title is changed from "software engineer" to "senior
      * software engineer".
-     * * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
-     * possible. If not, it's inferred from user inputs.
+     * * Provide
+     * [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
+     * for the current employment if possible. If not, it's inferred from user
+     * inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentRecord employment_records = 17;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -944,8 +1044,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * change is.
      * For example, only job title is changed from "software engineer" to "senior
      * software engineer".
-     * * Provide [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current] for the current employment if
-     * possible. If not, it's inferred from user inputs.
+     * * Provide
+     * [EmploymentRecord.is_current][google.cloud.talent.v4beta1.EmploymentRecord.is_current]
+     * for the current employment if possible. If not, it's inferred from user
+     * inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentRecord employment_records = 17;</code>
      * @param \Google\Cloud\Talent\V4beta1\EmploymentRecord[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -968,8 +1070,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * * List each education type separately, no matter how minor the change is.
      * For example, the profile contains the education experience from the same
      * school but different degrees.
-     * * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
-     * possible. If not, it's inferred from user inputs.
+     * * Provide
+     * [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
+     * for the current education if possible. If not, it's inferred from user
+     * inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationRecord education_records = 18;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -988,8 +1092,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      * * List each education type separately, no matter how minor the change is.
      * For example, the profile contains the education experience from the same
      * school but different degrees.
-     * * Provide [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current] for the current education if
-     * possible. If not, it's inferred from user inputs.
+     * * Provide
+     * [EducationRecord.is_current][google.cloud.talent.v4beta1.EducationRecord.is_current]
+     * for the current education if possible. If not, it's inferred from user
+     * inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EducationRecord education_records = 18;</code>
      * @param \Google\Cloud\Talent\V4beta1\EducationRecord[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1037,7 +1143,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * The individual or collaborative activities which the candidate has
      * participated in, for example, open-source projects, class assignments that
-     * aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * aren't listed in
+     * [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Activity activities = 20;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1051,7 +1158,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * The individual or collaborative activities which the candidate has
      * participated in, for example, open-source projects, class assignments that
-     * aren't listed in [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
+     * aren't listed in
+     * [employment_records][google.cloud.talent.v4beta1.Profile.employment_records].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Activity activities = 20;</code>
      * @param \Google\Cloud\Talent\V4beta1\Activity[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1150,61 +1258,53 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The job applications of the candidate.
+     * Output only. The resource names of the candidate's applications.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobApplication job_applications = 24;</code>
+     * Generated from protobuf field <code>repeated string applications = 47;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getJobApplications()
+    public function getApplications()
     {
-        return $this->job_applications;
+        return $this->applications;
     }
 
     /**
-     * Optional.
-     * The job applications of the candidate.
+     * Output only. The resource names of the candidate's applications.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobApplication job_applications = 24;</code>
-     * @param \Google\Cloud\Talent\V4beta1\JobApplication[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string applications = 47;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setJobApplications($var)
+    public function setApplications($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4beta1\JobApplication::class);
-        $this->job_applications = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->applications = $arr;
 
         return $this;
     }
 
     /**
-     * Optional.
-     * The recruiting notes added for the candidate.
-     * For example, the recruiter can add some unstructured comments for this
-     * candidate like "this candidate also has experiences in volunteer work".
+     * Output only. The resource names of the candidate's assignments.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.RecruitingNote recruiting_notes = 25;</code>
+     * Generated from protobuf field <code>repeated string assignments = 48;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getRecruitingNotes()
+    public function getAssignments()
     {
-        return $this->recruiting_notes;
+        return $this->assignments;
     }
 
     /**
-     * Optional.
-     * The recruiting notes added for the candidate.
-     * For example, the recruiter can add some unstructured comments for this
-     * candidate like "this candidate also has experiences in volunteer work".
+     * Output only. The resource names of the candidate's assignments.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.RecruitingNote recruiting_notes = 25;</code>
-     * @param \Google\Cloud\Talent\V4beta1\RecruitingNote[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string assignments = 48;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setRecruitingNotes($var)
+    public function setAssignments($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4beta1\RecruitingNote::class);
-        $this->recruiting_notes = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->assignments = $arr;
 
         return $this;
     }
@@ -1213,18 +1313,20 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
-     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
+     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
+     * details.
      * At most 100 filterable and at most 100 unfilterable keys are supported. If
-     * limit is exceeded, an error is thrown.
+     * limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
+     * by default. These are filterable when the `filterable` flag is set to
+     * `true`.
      * Numeric custom attributes: each key can only map to one numeric value,
-     * otherwise an error is thrown.
+     * otherwise an error is thrown. Client can also filter on numeric custom
+     * attributes using '>', '<' or '=' operators.
      * String custom attributes: each key can map up to 50 string values. For
      * filterable string value, each value has a byte size of no more than 256B.
      * For unfilterable string values, the maximum byte size of a single key is
      * 64B. An error is thrown for any request exceeding the limit.
      * The maximum total byte size is 10KB.
-     * Currently filterable numeric custom attributes are not supported, and
-     * they automatically set to unfilterable.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.talent.v4beta1.CustomAttribute> custom_attributes = 26;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -1238,18 +1340,20 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Optional.
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
-     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more details.
+     * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
+     * details.
      * At most 100 filterable and at most 100 unfilterable keys are supported. If
-     * limit is exceeded, an error is thrown.
+     * limit is exceeded, an error is thrown. Custom attributes are `unfilterable`
+     * by default. These are filterable when the `filterable` flag is set to
+     * `true`.
      * Numeric custom attributes: each key can only map to one numeric value,
-     * otherwise an error is thrown.
+     * otherwise an error is thrown. Client can also filter on numeric custom
+     * attributes using '>', '<' or '=' operators.
      * String custom attributes: each key can map up to 50 string values. For
      * filterable string value, each value has a byte size of no more than 256B.
      * For unfilterable string values, the maximum byte size of a single key is
      * 64B. An error is thrown for any request exceeding the limit.
      * The maximum total byte size is 10KB.
-     * Currently filterable numeric custom attributes are not supported, and
-     * they automatically set to unfilterable.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.talent.v4beta1.CustomAttribute> custom_attributes = 26;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

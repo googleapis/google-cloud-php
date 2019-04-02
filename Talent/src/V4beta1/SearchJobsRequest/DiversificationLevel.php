@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\SearchJobsRequest;
 
+use UnexpectedValueException;
+
 /**
  * Controls whether highly similar jobs are returned next to each other in
  * the search results. Jobs are identified as highly similar based on
@@ -38,6 +40,32 @@ class DiversificationLevel
      * Generated from protobuf enum <code>SIMPLE = 2;</code>
      */
     const SIMPLE = 2;
+
+    private static $valueToName = [
+        self::DIVERSIFICATION_LEVEL_UNSPECIFIED => 'DIVERSIFICATION_LEVEL_UNSPECIFIED',
+        self::DISABLED => 'DISABLED',
+        self::SIMPLE => 'SIMPLE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class TimestampRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Begin of the period.
+     * Begin of the period (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
     /**
-     * End of the period.
+     * End of the period (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
@@ -35,9 +35,9 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Begin of the period.
+     *           Begin of the period (inclusive).
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           End of the period.
+     *           End of the period (exclusive).
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Begin of the period.
+     * Begin of the period (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
@@ -57,7 +57,7 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Begin of the period.
+     * Begin of the period (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -72,7 +72,7 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End of the period.
+     * End of the period (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -83,7 +83,7 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End of the period.
+     * End of the period (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

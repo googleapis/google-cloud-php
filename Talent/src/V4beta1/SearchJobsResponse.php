@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchJobsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * The Job entities that match the specified
+     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
      */
@@ -93,7 +94,8 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob[]|\Google\Protobuf\Internal\RepeatedField $matching_jobs
-     *           The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     *           The Job entities that match the specified
+     *           [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQueryResult[]|\Google\Protobuf\Internal\RepeatedField $histogram_query_results
      *           The histogram results that match with specified
      *           [SearchJobsRequest.histogram_queries][google.cloud.talent.v4beta1.SearchJobsRequest.histogram_queries].
@@ -133,7 +135,8 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * The Job entities that match the specified
+     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -144,7 +147,8 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * The Job entities that match the specified
+     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob[]|\Google\Protobuf\Internal\RepeatedField $var

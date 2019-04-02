@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -46,10 +47,10 @@ use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
  * ```
  * $completionClient = new CompletionClient();
  * try {
- *     $formattedName = $completionClient->projectName('[PROJECT]');
+ *     $formattedParent = $completionClient->tenantName('[PROJECT]', '[TENANT]');
  *     $query = '';
  *     $pageSize = 0;
- *     $response = $completionClient->completeQuery($formattedName, $query, $pageSize);
+ *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);
  * } finally {
  *     $completionClient->close();
  * }
@@ -93,7 +94,7 @@ class CompletionGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
-    private static $projectNameTemplate;
+    private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -115,20 +116,20 @@ class CompletionGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getTenantNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$tenantNameTemplate) {
+            self::$tenantNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$tenantNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
+                'tenant' => self::getTenantNameTemplate(),
             ];
         }
 
@@ -137,17 +138,19 @@ class CompletionGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a tenant resource.
      *
      * @param string $project
+     * @param string $tenant
      *
-     * @return string The formatted project resource.
+     * @return string The formatted tenant resource.
      * @experimental
      */
-    public static function projectName($project)
+    public static function tenantName($project, $tenant)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getTenantNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
         ]);
     }
 
@@ -155,7 +158,7 @@ class CompletionGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}.
+     * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -258,21 +261,24 @@ class CompletionGapicClient
      * ```
      * $completionClient = new CompletionClient();
      * try {
-     *     $formattedName = $completionClient->projectName('[PROJECT]');
+     *     $formattedParent = $completionClient->tenantName('[PROJECT]', '[TENANT]');
      *     $query = '';
      *     $pageSize = 0;
-     *     $response = $completionClient->completeQuery($formattedName, $query, $pageSize);
+     *     $response = $completionClient->completeQuery($formattedParent, $query, $pageSize);
      * } finally {
      *     $completionClient->close();
      * }
      * ```
      *
-     * @param string $name Required.
+     * @param string $parent Required.
      *
-     * Resource name of project the completion is performed within.
+     * Resource name of tenant the completion is performed within.
      *
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     *
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      * @param string $query Required.
      *
      * The query used to generate suggestions.
@@ -294,34 +300,49 @@ class CompletionGapicClient
      *          For more information, see
      *          [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *
-     *          For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *          For
+     *          [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
+     *          type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
-     *          For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
-     *          only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
-     *          returned.
+     *          For
+     *          [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
+     *          type, only companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
-     *          For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *          For
+     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
+     *          type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          or companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
      *          The maximum number of allowed characters is 255.
-     *     @type string $companyName
+     *     @type string $company
      *          Optional.
      *
      *          If provided, restricts completion to specified company.
      *
-     *          The format is "projects/{project_id}/companies/{company_id}", for example,
-     *          "projects/api-test-project/companies/foo".
+     *          The format is
+     *          "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     *          example, "projects/api-test-project/tenants/foo/companies/bar".
+     *
+     *          Tenant id is optional and the default tenant is used if unspecified, for
+     *          example, "projects/api-test-project/companies/bar".
      *     @type int $scope
      *          Optional.
      *
-     *          The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *          The scope of the completion. The defaults is
+     *          [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionScope}
      *     @type int $type
      *          Optional.
      *
-     *          The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *          The completion topic. The default is
+     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -335,17 +356,17 @@ class CompletionGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function completeQuery($name, $query, $pageSize, array $optionalArgs = [])
+    public function completeQuery($parent, $query, $pageSize, array $optionalArgs = [])
     {
         $request = new CompleteQueryRequest();
-        $request->setName($name);
+        $request->setParent($parent);
         $request->setQuery($query);
         $request->setPageSize($pageSize);
         if (isset($optionalArgs['languageCodes'])) {
             $request->setLanguageCodes($optionalArgs['languageCodes']);
         }
-        if (isset($optionalArgs['companyName'])) {
-            $request->setCompanyName($optionalArgs['companyName']);
+        if (isset($optionalArgs['company'])) {
+            $request->setCompany($optionalArgs['company']);
         }
         if (isset($optionalArgs['scope'])) {
             $request->setScope($optionalArgs['scope']);
@@ -353,6 +374,13 @@ class CompletionGapicClient
         if (isset($optionalArgs['type'])) {
             $request->setType($optionalArgs['type']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'CompleteQuery',

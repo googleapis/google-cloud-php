@@ -30,6 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -45,7 +46,7 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: A service handles company management, including CRUD and job enumeration.
+ * Service Description: A service that handles company management, including CRUD and enumeration.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -53,7 +54,7 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $companyServiceClient = new CompanyServiceClient();
  * try {
- *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
+ *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
  *     $company = new Company();
  *     $response = $companyServiceClient->createCompany($formattedParent, $company);
  * } finally {
@@ -99,8 +100,8 @@ class CompanyServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
-    private static $projectNameTemplate;
-    private static $companyNameTemplate;
+    private static $tenantNameTemplate;
+    private static $companyOldNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -122,30 +123,30 @@ class CompanyServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getTenantNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$tenantNameTemplate) {
+            self::$tenantNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$tenantNameTemplate;
     }
 
-    private static function getCompanyNameTemplate()
+    private static function getCompanyOldNameTemplate()
     {
-        if (null == self::$companyNameTemplate) {
-            self::$companyNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+        if (null == self::$companyOldNameTemplate) {
+            self::$companyOldNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
         }
 
-        return self::$companyNameTemplate;
+        return self::$companyOldNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-                'company' => self::getCompanyNameTemplate(),
+                'tenant' => self::getTenantNameTemplate(),
+                'companyOld' => self::getCompanyOldNameTemplate(),
             ];
         }
 
@@ -154,33 +155,35 @@ class CompanyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a tenant resource.
      *
      * @param string $project
+     * @param string $tenant
      *
-     * @return string The formatted project resource.
+     * @return string The formatted tenant resource.
      * @experimental
      */
-    public static function projectName($project)
+    public static function tenantName($project, $tenant)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getTenantNameTemplate()->render([
             'project' => $project,
+            'tenant' => $tenant,
         ]);
     }
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a company resource.
+     * a company_old resource.
      *
      * @param string $project
      * @param string $company
      *
-     * @return string The formatted company resource.
+     * @return string The formatted company_old resource.
      * @experimental
      */
-    public static function companyName($project, $company)
+    public static function companyOldName($project, $company)
     {
-        return self::getCompanyNameTemplate()->render([
+        return self::getCompanyOldNameTemplate()->render([
             'project' => $project,
             'company' => $company,
         ]);
@@ -190,8 +193,8 @@ class CompanyServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
-     * - company: projects/{project}/companies/{company}.
+     * - tenant: projects/{project}/tenants/{tenant}
+     * - companyOld: projects/{project}/companies/{company}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -293,7 +296,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     $company = new Company();
      *     $response = $companyServiceClient->createCompany($formattedParent, $company);
      * } finally {
@@ -303,10 +306,13 @@ class CompanyServiceGapicClient
      *
      * @param string $parent Required.
      *
-     * Resource name of the project under which the company is created.
+     * Resource name of the tenant under which the company is created.
      *
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     *
+     * Tenant id is optional and a default tenant is created if unspecified, for
+     * example, "projects/api-test-project".
      * @param Company $company Required.
      *
      * The company to be created.
@@ -331,6 +337,13 @@ class CompanyServiceGapicClient
         $request->setParent($parent);
         $request->setCompany($company);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateCompany',
             Company::class,
@@ -346,7 +359,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->companyOldName('[PROJECT]', '[COMPANY]');
      *     $response = $companyServiceClient->getCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
@@ -357,8 +370,12 @@ class CompanyServiceGapicClient
      *
      * The resource name of the company to be retrieved.
      *
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     * example, "projects/api-test-project/tenants/foo/companies/bar".
+     *
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project/companies/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -379,6 +396,13 @@ class CompanyServiceGapicClient
         $request = new GetCompanyRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetCompany',
             Company::class,
@@ -388,9 +412,7 @@ class CompanyServiceGapicClient
     }
 
     /**
-     * Updates specified company. Company names can't be updated. To update a
-     * company name, delete the company and all jobs associated with it, and only
-     * then re-create them.
+     * Updates specified company.
      *
      * Sample code:
      * ```
@@ -413,11 +435,15 @@ class CompanyServiceGapicClient
      *          Optional but strongly recommended for the best service
      *          experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     *          If
+     *          [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     *          is provided, only the specified fields in
+     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     *          updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the company fields to be updated. Only
-     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     *          supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -438,6 +464,13 @@ class CompanyServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'company.name' => $request->getCompany()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateCompany',
             Company::class,
@@ -454,7 +487,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->companyOldName('[PROJECT]', '[COMPANY]');
      *     $companyServiceClient->deleteCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
@@ -465,8 +498,12 @@ class CompanyServiceGapicClient
      *
      * The resource name of the company to be deleted.
      *
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
+     * example, "projects/api-test-project/tenants/foo/companies/bar".
+     *
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project/companies/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -485,6 +522,13 @@ class CompanyServiceGapicClient
         $request = new DeleteCompanyRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'DeleteCompany',
             GPBEmpty::class,
@@ -494,13 +538,13 @@ class CompanyServiceGapicClient
     }
 
     /**
-     * Lists all companies associated with the service account.
+     * Lists all companies associated with the project.
      *
      * Sample code:
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedParent = $companyServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $companyServiceClient->tenantName('[PROJECT]', '[TENANT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $companyServiceClient->listCompanies($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -524,10 +568,13 @@ class CompanyServiceGapicClient
      *
      * @param string $parent Required.
      *
-     * Resource name of the project under which the company is created.
+     * Resource name of the tenant under which the company is created.
      *
-     * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenant/foo".
+     *
+     * Tenant id is optional and the default tenant is used if unspecified, for
+     * example, "projects/api-test-project".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -547,8 +594,9 @@ class CompanyServiceGapicClient
      *
      *          Defaults to false.
      *
-     *          If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     *          only those with open jobs are returned.
+     *          If true, at most
+     *          [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     *          companies are fetched, among which only those with open jobs are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -574,6 +622,13 @@ class CompanyServiceGapicClient
         if (isset($optionalArgs['requireOpenJobs'])) {
             $request->setRequireOpenJobs($optionalArgs['requireOpenJobs']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
             'ListCompanies',

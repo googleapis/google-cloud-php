@@ -16,8 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     * be specified.
+     * Optional but exactly one of
+     * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     * must be specified.
      * This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or
      * `CASE_INSENSITIVE_MATCH`) search.
      * For filterable `string_value`s, a maximum total number of 200 values
@@ -30,11 +32,15 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $string_values;
     /**
-     * Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     * be specified.
+     * Optional but exactly one of
+     * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     * must be specified.
      * This field is used to perform number range search.
      * (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`.
-     * Currently at most 1 [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is supported.
+     * Currently at most 1
+     * [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is
+     * supported.
      *
      * Generated from protobuf field <code>repeated int64 long_values = 2;</code>
      */
@@ -56,8 +62,10 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $string_values
-     *           Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     *           be specified.
+     *           Optional but exactly one of
+     *           [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     *           or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     *           must be specified.
      *           This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or
      *           `CASE_INSENSITIVE_MATCH`) search.
      *           For filterable `string_value`s, a maximum total number of 200 values
@@ -66,11 +74,15 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           unfilterable `string_values` is 50KB.
      *           Empty string isn't allowed.
      *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $long_values
-     *           Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     *           be specified.
+     *           Optional but exactly one of
+     *           [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     *           or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     *           must be specified.
      *           This field is used to perform number range search.
      *           (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`.
-     *           Currently at most 1 [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is supported.
+     *           Currently at most 1
+     *           [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is
+     *           supported.
      *     @type bool $filterable
      *           Optional.
      *           If the `filterable` flag is true, custom field values are searchable.
@@ -84,8 +96,10 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     * be specified.
+     * Optional but exactly one of
+     * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     * must be specified.
      * This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or
      * `CASE_INSENSITIVE_MATCH`) search.
      * For filterable `string_value`s, a maximum total number of 200 values
@@ -103,8 +117,10 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     * be specified.
+     * Optional but exactly one of
+     * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     * must be specified.
      * This field is used to perform a string match (`CASE_SENSITIVE_MATCH` or
      * `CASE_INSENSITIVE_MATCH`) search.
      * For filterable `string_value`s, a maximum total number of 200 values
@@ -126,11 +142,15 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     * be specified.
+     * Optional but exactly one of
+     * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     * must be specified.
      * This field is used to perform number range search.
      * (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`.
-     * Currently at most 1 [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is supported.
+     * Currently at most 1
+     * [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is
+     * supported.
      *
      * Generated from protobuf field <code>repeated int64 long_values = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -141,11 +161,15 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values] or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] must
-     * be specified.
+     * Optional but exactly one of
+     * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
+     * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
+     * must be specified.
      * This field is used to perform number range search.
      * (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`.
-     * Currently at most 1 [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is supported.
+     * Currently at most 1
+     * [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is
+     * supported.
      *
      * Generated from protobuf field <code>repeated int64 long_values = 2;</code>
      * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var

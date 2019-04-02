@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Talent\V4beta1\CompensationInfo;
 
+use UnexpectedValueException;
+
 /**
  * Pay frequency.
  *
@@ -59,6 +61,37 @@ class CompensationUnit
      * Generated from protobuf enum <code>OTHER_COMPENSATION_UNIT = 7;</code>
      */
     const OTHER_COMPENSATION_UNIT = 7;
+
+    private static $valueToName = [
+        self::COMPENSATION_UNIT_UNSPECIFIED => 'COMPENSATION_UNIT_UNSPECIFIED',
+        self::HOURLY => 'HOURLY',
+        self::DAILY => 'DAILY',
+        self::WEEKLY => 'WEEKLY',
+        self::MONTHLY => 'MONTHLY',
+        self::YEARLY => 'YEARLY',
+        self::ONE_TIME => 'ONE_TIME',
+        self::OTHER_COMPENSATION_UNIT => 'OTHER_COMPENSATION_UNIT',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

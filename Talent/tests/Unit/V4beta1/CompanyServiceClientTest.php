@@ -35,7 +35,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group jobs
+ * @group talent
  * @group gapic
  */
 class CompanyServiceClientTest extends GeneratedTest
@@ -97,7 +97,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $company = new Company();
 
         $response = $client->createCompany($formattedParent, $company);
@@ -141,7 +141,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
         $company = new Company();
 
         try {
@@ -193,7 +193,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->companyOldName('[PROJECT]', '[COMPANY]');
 
         $response = $client->getCompany($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -233,7 +233,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->companyOldName('[PROJECT]', '[COMPANY]');
 
         try {
             $client->getCompany($formattedName);
@@ -355,7 +355,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->companyOldName('[PROJECT]', '[COMPANY]');
 
         $client->deleteCompany($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -394,7 +394,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->companyName('[PROJECT]', '[COMPANY]');
+        $formattedName = $client->companyOldName('[PROJECT]', '[COMPANY]');
 
         try {
             $client->deleteCompany($formattedName);
@@ -430,7 +430,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
 
         $response = $client->listCompanies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -473,7 +473,7 @@ class CompanyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
 
         try {
             $client->listCompanies($formattedParent);

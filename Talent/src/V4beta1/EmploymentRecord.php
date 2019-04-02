@@ -84,11 +84,11 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     private $job_description = '';
     /**
      * Optional.
-     * If it's a supervised position.
+     * If it is a supervisor position.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervised_position = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      */
-    private $is_supervised_position = null;
+    private $is_supervisor = null;
     /**
      * Optional.
      * If this employment is self-employed.
@@ -104,25 +104,31 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     private $is_current = null;
     /**
-     * Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
-     * to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
-     * search query.
+     * Output only. The job title snippet shows how the
+     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
+     * related to a search query. It's empty if the
+     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string job_title_snippet = 11;</code>
      */
     private $job_title_snippet = '';
     /**
-     * Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
-     * related to the search query.
+     * Output only. The job description snippet shows how the
+     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * is related to a search query. It's empty if the
+     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string job_description_snippet = 12;</code>
      */
     private $job_description_snippet = '';
     /**
-     * Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
-     * related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
-     * related to the search query.
+     * Output only. The employer name snippet shows how the
+     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     * is related to a search query. It's empty if the
+     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
      */
@@ -173,9 +179,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           The description of job content.
      *           Number of characters allowed is 100,000.
-     *     @type \Google\Protobuf\BoolValue $is_supervised_position
+     *     @type \Google\Protobuf\BoolValue $is_supervisor
      *           Optional.
-     *           If it's a supervised position.
+     *           If it is a supervisor position.
      *     @type \Google\Protobuf\BoolValue $is_self_employed
      *           Optional.
      *           If this employment is self-employed.
@@ -183,17 +189,23 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           If this employment is current.
      *     @type string $job_title_snippet
-     *           Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
-     *           to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
-     *           search query.
+     *           Output only. The job title snippet shows how the
+     *           [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
+     *           related to a search query. It's empty if the
+     *           [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
+     *           related to the search query.
      *     @type string $job_description_snippet
-     *           Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     *           is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
-     *           related to the search query.
+     *           Output only. The job description snippet shows how the
+     *           [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     *           is related to a search query. It's empty if the
+     *           [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     *           isn't related to the search query.
      *     @type string $employer_name_snippet
-     *           Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
-     *           related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
-     *           related to the search query.
+     *           Output only. The employer name snippet shows how the
+     *           [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     *           is related to a search query. It's empty if the
+     *           [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     *           isn't related to the search query.
      * }
      */
     public function __construct($data = NULL) {
@@ -435,30 +447,61 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * If it's a supervised position.
+     * If it is a supervisor position.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervised_position = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @return \Google\Protobuf\BoolValue
      */
-    public function getIsSupervisedPosition()
+    public function getIsSupervisor()
     {
-        return $this->is_supervised_position;
+        return $this->is_supervisor;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getIsSupervisor()</code>
+
+     * Optional.
+     * If it is a supervisor position.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
+     * @return bool|null
+     */
+    public function getIsSupervisorValue()
+    {
+        $wrapper = $this->getIsSupervisor();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
      * Optional.
-     * If it's a supervised position.
+     * If it is a supervisor position.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervised_position = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @param \Google\Protobuf\BoolValue $var
      * @return $this
      */
-    public function setIsSupervisedPosition($var)
+    public function setIsSupervisor($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
-        $this->is_supervised_position = $var;
+        $this->is_supervisor = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional.
+     * If it is a supervisor position.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setIsSupervisorValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setIsSupervisor($wrappedVar);
     }
 
     /**
@@ -471,6 +514,21 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     public function getIsSelfEmployed()
     {
         return $this->is_self_employed;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getIsSelfEmployed()</code>
+
+     * Optional.
+     * If this employment is self-employed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
+     * @return bool|null
+     */
+    public function getIsSelfEmployedValue()
+    {
+        $wrapper = $this->getIsSelfEmployed();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -490,6 +548,22 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional.
+     * If this employment is self-employed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setIsSelfEmployedValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setIsSelfEmployed($wrappedVar);
+    }
+
+    /**
      * Optional.
      * If this employment is current.
      *
@@ -499,6 +573,21 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     public function getIsCurrent()
     {
         return $this->is_current;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getIsCurrent()</code>
+
+     * Optional.
+     * If this employment is current.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
+     * @return bool|null
+     */
+    public function getIsCurrentValue()
+    {
+        $wrapper = $this->getIsCurrent();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -518,9 +607,27 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
-     * to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
-     * search query.
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional.
+     * If this employment is current.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setIsCurrentValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
+        return $this->setIsCurrent($wrappedVar);
+    }
+
+    /**
+     * Output only. The job title snippet shows how the
+     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
+     * related to a search query. It's empty if the
+     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string job_title_snippet = 11;</code>
      * @return string
@@ -531,9 +638,11 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
-     * to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
-     * search query.
+     * Output only. The job title snippet shows how the
+     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
+     * related to a search query. It's empty if the
+     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string job_title_snippet = 11;</code>
      * @param string $var
@@ -548,9 +657,11 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
-     * related to the search query.
+     * Output only. The job description snippet shows how the
+     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * is related to a search query. It's empty if the
+     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string job_description_snippet = 12;</code>
      * @return string
@@ -561,9 +672,11 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
-     * related to the search query.
+     * Output only. The job description snippet shows how the
+     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * is related to a search query. It's empty if the
+     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string job_description_snippet = 12;</code>
      * @param string $var
@@ -578,9 +691,11 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
-     * related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
-     * related to the search query.
+     * Output only. The employer name snippet shows how the
+     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     * is related to a search query. It's empty if the
+     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
      * @return string
@@ -591,9 +706,11 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
-     * related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
-     * related to the search query.
+     * Output only. The employer name snippet shows how the
+     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     * is related to a search query. It's empty if the
+     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
      * @param string $var

@@ -17,9 +17,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The resource name of the company to search within.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The resource name of the tenant to search within.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -35,7 +35,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     private $request_metadata = null;
     /**
      * Optional.
-     * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     * Search query to execute. See
+     * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      */
@@ -54,10 +55,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The pageToken, similar to offset enables users of the API to paginate
      * through the search results. To retrieve the first page of results, set the
      * pageToken to empty. The search response includes a
-     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
-     * used to populate the pageToken field for the next page of results. Using
-     * pageToken instead of offset increases the performance of the API,
-     * especially compared to larger offset values.
+     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
+     * field that can be used to populate the pageToken field for the next page of
+     * results. Using pageToken instead of offset increases the performance of the
+     * API, especially compared to larger offset values.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
@@ -65,7 +66,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * An integer that specifies the current offset (that is, starting result) in
-     * search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
+     * search results. This field is only considered if
+     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     * is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
      * For example, 0 means to search from the first profile, and 10 means to
      * search from the 11th profile. This can be used for pagination, for example
@@ -118,7 +121,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * A list of expressions specifies histogram requests against matching
-     * profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * profiles for
+     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      * The expression syntax looks like a function definition with optional
      * parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
@@ -156,24 +160,34 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * * institution: The school name. For example, "MIT",
      * "University of California, Berkeley"
      * * degree: Highest education degree in ISCED code. Each value in degree
-     * covers specific level of education, without any expansion to upper nor
+     * covers a specific level of education, without any expansion to upper nor
      * lower levels of education degree.
      * * experience_in_months: experience in months. 0 means 0 month to 1 month
      * (exclusive).
      * * application_date: The application date specifies application start dates.
-     * See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
-     * * application_outcome_reason: The application outcome reason specifies the
-     * outcome reasons of job application.
-     * See [ApplicationOutcomeReasonFilter][google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter] for more details.
+     * See
+     * [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
+     * for more details.
+     * * application_outcome_notes: The application outcome reason specifies the
+     * reasons behind the outcome of the job application.
+     * See
+     * [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
+     * for more details.
      * * application_last_stage: The application last stage specifies the last
      * stage of job application.
-     * See [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter] for more details.
+     * See
+     * [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter]
+     * for more details.
      * * application_job_title: The application job title specifies the job
      * applied for in the application.
-     * See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
+     * See
+     * [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
+     * for more details.
      * * application_status: The application status specifies the status of job
      * application.
-     * See [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter] for more details.
+     * See
+     * [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter]
+     * for more details.
      * * hirable_status: Hirable status specifies the profile's hirable status.
      * * string_custom_attribute: String custom attributes. Values can be accessed
      * via square bracket notation like string_custom_attribute["key1"].
@@ -199,9 +213,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required.
-     *           The resource name of the company to search within.
-     *           The format is "projects/{project_id}/companies/{company_id}", for example,
-     *           "projects/api-test-project/companies/foo".
+     *           The resource name of the tenant to search within.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     *           "projects/api-test-project/tenants/foo".
      *     @type \Google\Cloud\Talent\V4beta1\RequestMetadata $request_metadata
      *           Required.
      *           The meta information collected about the profile search user. This is used
@@ -209,7 +223,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           users, and must be precise and consistent.
      *     @type \Google\Cloud\Talent\V4beta1\ProfileQuery $profile_query
      *           Optional.
-     *           Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     *           Search query to execute. See
+     *           [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $page_size
      *           Optional.
      *           A limit on the number of profiles returned in the search results.
@@ -220,14 +235,16 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           The pageToken, similar to offset enables users of the API to paginate
      *           through the search results. To retrieve the first page of results, set the
      *           pageToken to empty. The search response includes a
-     *           [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
-     *           used to populate the pageToken field for the next page of results. Using
-     *           pageToken instead of offset increases the performance of the API,
-     *           especially compared to larger offset values.
+     *           [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
+     *           field that can be used to populate the pageToken field for the next page of
+     *           results. Using pageToken instead of offset increases the performance of the
+     *           API, especially compared to larger offset values.
      *     @type int $offset
      *           Optional.
      *           An integer that specifies the current offset (that is, starting result) in
-     *           search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
+     *           search results. This field is only considered if
+     *           [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     *           is unset.
      *           The maximum allowed value is 5000. Otherwise an error is thrown.
      *           For example, 0 means to search from the first profile, and 10 means to
      *           search from the 11th profile. This can be used for pagination, for example
@@ -264,7 +281,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $histogram_queries
      *           Optional.
      *           A list of expressions specifies histogram requests against matching
-     *           profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *           profiles for
+     *           [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *           The expression syntax looks like a function definition with optional
      *           parameters.
      *           Function syntax: function_name(histogram_facet[, list of buckets])
@@ -302,24 +320,34 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           * institution: The school name. For example, "MIT",
      *           "University of California, Berkeley"
      *           * degree: Highest education degree in ISCED code. Each value in degree
-     *           covers specific level of education, without any expansion to upper nor
+     *           covers a specific level of education, without any expansion to upper nor
      *           lower levels of education degree.
      *           * experience_in_months: experience in months. 0 means 0 month to 1 month
      *           (exclusive).
      *           * application_date: The application date specifies application start dates.
-     *           See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
-     *           * application_outcome_reason: The application outcome reason specifies the
-     *           outcome reasons of job application.
-     *           See [ApplicationOutcomeReasonFilter][google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter] for more details.
+     *           See
+     *           [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
+     *           for more details.
+     *           * application_outcome_notes: The application outcome reason specifies the
+     *           reasons behind the outcome of the job application.
+     *           See
+     *           [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
+     *           for more details.
      *           * application_last_stage: The application last stage specifies the last
      *           stage of job application.
-     *           See [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter] for more details.
+     *           See
+     *           [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter]
+     *           for more details.
      *           * application_job_title: The application job title specifies the job
      *           applied for in the application.
-     *           See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
+     *           See
+     *           [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
+     *           for more details.
      *           * application_status: The application status specifies the status of job
      *           application.
-     *           See [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter] for more details.
+     *           See
+     *           [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter]
+     *           for more details.
      *           * hirable_status: Hirable status specifies the profile's hirable status.
      *           * string_custom_attribute: String custom attributes. Values can be accessed
      *           via square bracket notation like string_custom_attribute["key1"].
@@ -341,9 +369,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the company to search within.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The resource name of the tenant to search within.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -355,9 +383,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The resource name of the company to search within.
-     * The format is "projects/{project_id}/companies/{company_id}", for example,
-     * "projects/api-test-project/companies/foo".
+     * The resource name of the tenant to search within.
+     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
+     * "projects/api-test-project/tenants/foo".
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
@@ -405,7 +433,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     * Search query to execute. See
+     * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      * @return \Google\Cloud\Talent\V4beta1\ProfileQuery
@@ -417,7 +446,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     * Search query to execute. See
+     * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      * @param \Google\Cloud\Talent\V4beta1\ProfileQuery $var
@@ -468,10 +498,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The pageToken, similar to offset enables users of the API to paginate
      * through the search results. To retrieve the first page of results, set the
      * pageToken to empty. The search response includes a
-     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
-     * used to populate the pageToken field for the next page of results. Using
-     * pageToken instead of offset increases the performance of the API,
-     * especially compared to larger offset values.
+     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
+     * field that can be used to populate the pageToken field for the next page of
+     * results. Using pageToken instead of offset increases the performance of the
+     * API, especially compared to larger offset values.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
@@ -486,10 +516,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * The pageToken, similar to offset enables users of the API to paginate
      * through the search results. To retrieve the first page of results, set the
      * pageToken to empty. The search response includes a
-     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token] field that can be
-     * used to populate the pageToken field for the next page of results. Using
-     * pageToken instead of offset increases the performance of the API,
-     * especially compared to larger offset values.
+     * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
+     * field that can be used to populate the pageToken field for the next page of
+     * results. Using pageToken instead of offset increases the performance of the
+     * API, especially compared to larger offset values.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var
@@ -506,7 +536,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * An integer that specifies the current offset (that is, starting result) in
-     * search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
+     * search results. This field is only considered if
+     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     * is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
      * For example, 0 means to search from the first profile, and 10 means to
      * search from the 11th profile. This can be used for pagination, for example
@@ -523,7 +555,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * An integer that specifies the current offset (that is, starting result) in
-     * search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
+     * search results. This field is only considered if
+     * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     * is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
      * For example, 0 means to search from the first profile, and 10 means to
      * search from the 11th profile. This can be used for pagination, for example
@@ -668,7 +702,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * A list of expressions specifies histogram requests against matching
-     * profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * profiles for
+     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      * The expression syntax looks like a function definition with optional
      * parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
@@ -706,24 +741,34 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * * institution: The school name. For example, "MIT",
      * "University of California, Berkeley"
      * * degree: Highest education degree in ISCED code. Each value in degree
-     * covers specific level of education, without any expansion to upper nor
+     * covers a specific level of education, without any expansion to upper nor
      * lower levels of education degree.
      * * experience_in_months: experience in months. 0 means 0 month to 1 month
      * (exclusive).
      * * application_date: The application date specifies application start dates.
-     * See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
-     * * application_outcome_reason: The application outcome reason specifies the
-     * outcome reasons of job application.
-     * See [ApplicationOutcomeReasonFilter][google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter] for more details.
+     * See
+     * [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
+     * for more details.
+     * * application_outcome_notes: The application outcome reason specifies the
+     * reasons behind the outcome of the job application.
+     * See
+     * [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
+     * for more details.
      * * application_last_stage: The application last stage specifies the last
      * stage of job application.
-     * See [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter] for more details.
+     * See
+     * [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter]
+     * for more details.
      * * application_job_title: The application job title specifies the job
      * applied for in the application.
-     * See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
+     * See
+     * [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
+     * for more details.
      * * application_status: The application status specifies the status of job
      * application.
-     * See [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter] for more details.
+     * See
+     * [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter]
+     * for more details.
      * * hirable_status: Hirable status specifies the profile's hirable status.
      * * string_custom_attribute: String custom attributes. Values can be accessed
      * via square bracket notation like string_custom_attribute["key1"].
@@ -748,7 +793,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * A list of expressions specifies histogram requests against matching
-     * profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     * profiles for
+     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      * The expression syntax looks like a function definition with optional
      * parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
@@ -786,24 +832,34 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * * institution: The school name. For example, "MIT",
      * "University of California, Berkeley"
      * * degree: Highest education degree in ISCED code. Each value in degree
-     * covers specific level of education, without any expansion to upper nor
+     * covers a specific level of education, without any expansion to upper nor
      * lower levels of education degree.
      * * experience_in_months: experience in months. 0 means 0 month to 1 month
      * (exclusive).
      * * application_date: The application date specifies application start dates.
-     * See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
-     * * application_outcome_reason: The application outcome reason specifies the
-     * outcome reasons of job application.
-     * See [ApplicationOutcomeReasonFilter][google.cloud.talent.v4beta1.ApplicationOutcomeReasonFilter] for more details.
+     * See
+     * [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
+     * for more details.
+     * * application_outcome_notes: The application outcome reason specifies the
+     * reasons behind the outcome of the job application.
+     * See
+     * [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
+     * for more details.
      * * application_last_stage: The application last stage specifies the last
      * stage of job application.
-     * See [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter] for more details.
+     * See
+     * [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter]
+     * for more details.
      * * application_job_title: The application job title specifies the job
      * applied for in the application.
-     * See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
+     * See
+     * [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
+     * for more details.
      * * application_status: The application status specifies the status of job
      * application.
-     * See [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter] for more details.
+     * See
+     * [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter]
+     * for more details.
      * * hirable_status: Hirable status specifies the profile's hirable status.
      * * string_custom_attribute: String custom attributes. Values can be accessed
      * via square bracket notation like string_custom_attribute["key1"].

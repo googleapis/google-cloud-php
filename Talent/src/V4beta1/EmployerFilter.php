@@ -25,8 +25,11 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     private $employer = '';
     /**
      * Optional.
-     * Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     * Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     * Define set of
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     * against.
+     * Defaults to
+     * [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode mode = 2;</code>
      */
@@ -51,8 +54,11 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
      *           The name of the employer, for example "Google", "Alphabet".
      *     @type int $mode
      *           Optional.
-     *           Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     *           Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     *           Define set of
+     *           [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     *           against.
+     *           Defaults to
+     *           [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *     @type bool $negated
      *           Optional.
      *           Whether to apply negation to the filter so profiles matching the filter
@@ -94,8 +100,11 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     * Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     * Define set of
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     * against.
+     * Defaults to
+     * [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode mode = 2;</code>
      * @return int
@@ -107,8 +116,11 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     * Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     * Define set of
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     * against.
+     * Defaults to
+     * [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode mode = 2;</code>
      * @param int $var

@@ -25,7 +25,8 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
+     * with this client event.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      */
@@ -37,9 +38,9 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      * The job ID should be consistent with the
      * [JobApplication.job.requisition_id][] in the profile.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>repeated string jobs = 6;</code>
      */
-    private $job_id = '';
+    private $jobs;
 
     /**
      * Constructor.
@@ -52,8 +53,9 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      *           Type of event.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $profiles
      *           Required.
-     *           The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
-     *     @type string $job_id
+     *           The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
+     *           with this client event.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Optional.
      *           The job ID associated with this client event if there is one. Leave it
      *           empty if the event isn't associated with a job.
@@ -96,7 +98,8 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
+     * with this client event.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -108,7 +111,8 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
+     * with this client event.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -129,12 +133,12 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      * The job ID should be consistent with the
      * [JobApplication.job.requisition_id][] in the profile.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
-     * @return string
+     * Generated from protobuf field <code>repeated string jobs = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getJobId()
+    public function getJobs()
     {
-        return $this->job_id;
+        return $this->jobs;
     }
 
     /**
@@ -144,14 +148,14 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      * The job ID should be consistent with the
      * [JobApplication.job.requisition_id][] in the profile.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
-     * @param string $var
+     * Generated from protobuf field <code>repeated string jobs = 6;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setJobId($var)
+    public function setJobs($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->job_id = $var;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->jobs = $arr;
 
         return $this;
     }

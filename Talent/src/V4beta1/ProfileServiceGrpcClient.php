@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -92,6 +92,8 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes the specified profile.
+     * Prerequisite: The profile has no associated applications or assignments
+     * associated.
      * @param \Google\Cloud\Talent\V4beta1\DeleteProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -105,12 +107,14 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Searches for profiles within a company.
+     * Searches for profiles within a tenant.
      *
      * For example, search by raw queries "software engineer in Mountain View" or
      * search by structured filters (location filter, education filter, etc.).
      *
-     * See [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] for more information.
+     * See
+     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
+     * for more information.
      * @param \Google\Cloud\Talent\V4beta1\SearchProfilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
