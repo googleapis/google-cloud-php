@@ -5,6 +5,19 @@
         {
             "title": "Overview",
             "type": "securitycenter\/readme"
+        },
+        {
+            "title": "v1beta1",
+            "type": "securitycenter\/v1\/readme",
+            "nav": [
+                {
+                    "title": "SecurityCenterClient",
+                    "type": "securitycenter\/v1\/securitycenterclient"
+                }
+            ],
+            "patterns": [
+                "securitycenter\/v1\/\\w{1,}"
+            ]
         }
     ],
     "pattern": "securitycenter\/\\w{1,}"

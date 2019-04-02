@@ -34,6 +34,17 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
+use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Source;
+
+$security = new SecurityCenterClient();
+$parent = SecurityCenterClient::organizationName('[YOUR ORGANIZATION]');
+$source = new Source([
+    'name' => SecurityCenterClient::sourceName('[YOUR ORGANIZATION]', '[YOUR SOURCE]'),
+    'displayName' => '[YOUR SOURCE]'
+]);
+
+$res = $security->createSource($parent, $source);
 ```
 
 ### Version
