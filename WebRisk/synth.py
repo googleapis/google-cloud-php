@@ -25,8 +25,8 @@ gapic = gcp.GAPICGenerator()
 common = gcp.CommonTemplates()
 
 library = gapic.php_library(
-    service='talent',
-    version='v4beta1',
+    service='webrish',
+    version='v1beta1',
     config_path='/google/cloud/webrisk/artman_webrisk.yaml',
     artman_output_name='google-cloud-webrisk-v1beta1')
 
