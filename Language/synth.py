@@ -21,39 +21,45 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICGenerator()
-common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='language',
-    version='v1beta2',
-    artman_output_name='google-cloud-language-v1beta2')
+for version in ['V1', 'V1beta2']:
+    lower_version = version.lower()
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    library = gapic.php_library(
+        service='language',
+        version=lower_version,
+        artman_output_name=f'google-cloud-language-{lower_version}')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Language', 'src/')
-s.move(library / 'tests/')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Language', 'metadata/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/Language', 'src/')
+    s.move(library / 'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Language', 'metadata/')
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    'src/V1beta2/**/*.php',
     r'Copyright \d{4}',
     'Copyright 2017')
 s.replace(
-    '**/V1beta2/LanguageServiceClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-s.replace(
-    'tests/**/V1beta2/*Test.php',
+    'tests/*/V1beta2/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+s.replace(
+    'src/V1/**/*.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
+s.replace(
+    'tests/*/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
 
 # Use new namespaces
 s.replace(
-    'src/V1beta2/Gapic/LanguageServiceGapicClient.php',
+    'src/*/Gapic/LanguageServiceGapicClient.php',
     r'AnnotateTextRequest_Features',
-    'AnnotateTextRequest\Features')
+    r'AnnotateTextRequest\\Features')

@@ -1,16 +1,16 @@
-# Cloud Natural Language V1beta2 generated client for PHP
+# Cloud Natural Language V1 generated client for PHP
 
 ### Sample
 
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
-use Google\Cloud\Language\V1beta2\Document;
-use Google\Cloud\Language\V1beta2\Document\Type;
-use Google\Cloud\Language\V1beta2\Entity\Type as EntityType;
-use Google\Cloud\Language\V1beta2\LanguageServiceClient;
-use Google\Cloud\Language\V1beta2\PartOfSpeech\Tag;
+use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
+use Google\Cloud\Language\V1\Document;
+use Google\Cloud\Language\V1\Document\Type;
+use Google\Cloud\Language\V1\Entity\Type as EntityType;
+use Google\Cloud\Language\V1\LanguageServiceClient;
+use Google\Cloud\Language\V1\PartOfSpeech\Tag;
 
 $client = new LanguageServiceClient([
     'credentials' => '/Users/dsupplee/Downloads/gcloud.json'
