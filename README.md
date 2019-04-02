@@ -49,6 +49,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud Security Command Center](#google-cloud-security-command-center-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
+* [Google Cloud Web Risk](#google-cloud-web-risk-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -1412,6 +1413,44 @@ $debuggee->register();
 
 ```
 $ composer require google/cloud-debugger
+```
+
+## Google Cloud Web Risk (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/webrisk/readme)
+- [Official Documentation](https://cloud.google.com/web-risk/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\WebRisk\V1beta1\ThreatType;
+use Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client;
+
+$webrisk = new WebRiskServiceV1Beta1Client();
+
+$uri = 'http://testsafebrowsing.appspot.com/s/malware.html';
+$response = $webrisk->searchUris($uri, [
+    ThreatType::MALWARE,
+    ThreatType::SOCIAL_ENGINEERING
+]);
+
+$threats = $response->getThreat();
+if ($threats) {
+    echo $uri . ' has the following threats:' . PHP_EOL;
+    foreach ($threats->getThreatTypes() as $threat) {
+        echo ThreatType::name($threat) . PHP_EOL;
+    }
+}
+```
+
+#### google/cloud-web-risk
+
+[Google Cloud Web Risk](https://github.com/googleapis/google-cloud-php-web-risk) can be installed separately by requiring the [`google/cloud-web-risk`](https://packagist.org/packages/google/cloud-web-risk) composer package:
+
+```
+$ composer require google/cloud-web-risk
 ```
 
 ## Google Stackdriver Trace (Alpha)

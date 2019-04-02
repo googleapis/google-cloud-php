@@ -1,0 +1,24 @@
+{
+    "title": "WebRisk",
+    "defaultService": "webrisk\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "webrisk\/readme"
+        },
+        {
+            "title": "v1beta1",
+            "type": "webrisk\/v1beta1\/readme",
+            "nav": [
+                {
+                    "title": "WebRiskServiceV1Beta1Client",
+                    "type": "webrisk\/v1beta1\/webriskservicev1beta1client"
+                }
+            ],
+            "patterns": [
+                "webrisk\/v1beta1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "webrisk\/\\w{1,}"
+}

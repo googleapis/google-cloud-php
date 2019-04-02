@@ -1371,6 +1371,14 @@
                 "v0.1.0",
                 "master"
             ]
+        },
+        {
+            "id": "cloud-web-risk",
+            "name": "google/cloud-web-risk",
+            "defaultService": "webrisk/readme",
+            "versions": [
+                "master"
+            ]
         }
     ],
     "content": "json",
