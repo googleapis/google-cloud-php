@@ -1,0 +1,11 @@
+{
+    "title": "SecurityCenter",
+    "defaultService": "securitycenter\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "securitycenter\/readme"
+        }
+    ],
+    "pattern": "securitycenter\/\\w{1,}"
+}
