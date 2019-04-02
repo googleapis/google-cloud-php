@@ -79,7 +79,7 @@ class Report
         $r = $overallOpCount / $duration;
         $this->report("[OVERALL] Throughput (Ops/sec), $r \n");
 
-        foreach($oppCounts as $opKey => $intOpCounts) {
+        foreach ($oppCounts as $opKey => $intOpCounts) {
             $strUpperOp = strtoupper($opKey);
             $this->report("[$strUpperOp], Operations: $intOpCounts. \n");
 

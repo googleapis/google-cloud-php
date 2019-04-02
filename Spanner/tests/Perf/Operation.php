@@ -136,7 +136,8 @@ class Operation
      * @param array $operation
      * @return void
      */
-    private function runOperation($database, $table, $operation) {
+    private function runOperation($database, $table, $operation)
+    {
         $key = $this->keys[array_rand($this->keys)];
         switch ($operation) {
             case 'read':
@@ -166,7 +167,7 @@ class Operation
      */
     private function performRead($database, $table, $key)
     {
-	    $startTime = microtime(true);
+        $startTime = microtime(true);
 
         // Kind of assuming that id is ubiquitous...
         $results = $database->execute('SELECT * FROM ' . $table . ' where id = @id', [
