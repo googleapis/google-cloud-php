@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/protectionlevel","type":"","title":"Google\\Cloud\\Kms\\V1\\ProtectionLevel","name":"ProtectionLevel","description":"<p>[ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how\ncryptographic operations are performed.<\/p>\n<p>Protobuf type <code>google.cloud.kms.v1.ProtectionLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

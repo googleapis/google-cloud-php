@@ -1,0 +1,1 @@
+{"id":"errorreporting\/v1beta1\/errorgrouporder","type":"","title":"Google\\Cloud\\ErrorReporting\\V1beta1\\ErrorGroupOrder","name":"ErrorGroupOrder","description":"<p>A sorting order of error groups.<\/p>\n<p>Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder<\/code><\/p>","examples":[],"resources":[],"methods":[]}
