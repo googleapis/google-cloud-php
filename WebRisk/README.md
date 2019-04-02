@@ -37,14 +37,24 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ### Sample
 
 ```php
-use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints;
 use Google\Cloud\WebRisk\V1beta1\ThreatType;
 use Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client;
 
-$webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
-$threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-$constraints = new Constraints();
-$response = $webRiskServiceV1Beta1Client->computeThreatListDiff($threatType, $constraints);
+$webrisk = new WebRiskServiceV1Beta1Client();
+
+$uri = 'http://testsafebrowsing.appspot.com/s/malware.html';
+$response = $webrisk->searchUris($uri, [
+    ThreatType::MALWARE,
+    ThreatType::SOCIAL_ENGINEERING
+]);
+
+$threats = $response->getThreat();
+if ($threats) {
+    echo $uri . ' has the following threats:' . PHP_EOL;
+    foreach ($threats->getThreatType() as $threat) {
+        echo ThreatType::name($threat) . PHP_EOL;
+    }
+}
 ```
 
 ### Version

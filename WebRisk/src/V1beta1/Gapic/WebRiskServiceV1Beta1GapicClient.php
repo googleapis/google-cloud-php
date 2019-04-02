@@ -90,6 +90,7 @@ class WebRiskServiceV1Beta1GapicClient
      * The default scopes required by the service.
      */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
     ];
 
     private static function getClientDefaults()
