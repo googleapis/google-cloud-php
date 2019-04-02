@@ -11,6 +11,10 @@
             "type": "talent\/v4beta1\/readme",
             "nav": [
                 {
+                    "title": "ApplicationServiceClient",
+                    "type": "talent\/v4beta1\/applicationserviceclient"
+                },
+                {
                     "title": "CompanyServiceClient",
                     "type": "talent\/v4beta1\/companyserviceclient"
                 },
@@ -33,6 +37,10 @@
                 {
                     "title": "ResumeServiceClient",
                     "type": "talent\/v4beta1\/resumeserviceclient"
+                },
+                {
+                    "title": "TenantServiceClient",
+                    "type": "talent\/v4beta1\/tenantserviceclient"
                 }
             ],
             "patterns": [
