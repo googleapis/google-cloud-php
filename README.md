@@ -46,6 +46,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud BigQuery Data Transfer](#google-cloud-bigquery-data-transfer-alpha) (Alpha)
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
+* [Google Cloud Security Command Center](#google-cloud-security-command-center-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
@@ -1259,6 +1260,37 @@ foreach ($response->iterateAllElements() as $instance) {
 
 ```
 $ composer require google/cloud-redis
+```
+
+## Google Cloud Security Command Center (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/securitycenter/securitycenterclient)
+- [Official Documentation](https://cloud.google.com/security-command-center/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Source;
+
+$security = new SecurityCenterClient();
+$parent = SecurityCenterClient::organizationName('[YOUR ORGANIZATION]');
+$source = new Source([
+    'name' => SecurityCenterClient::sourceName('[YOUR ORGANIZATION]', '[YOUR SOURCE]'),
+    'displayName' => '[YOUR SOURCE]'
+]);
+
+$res = $security->createSource($parent, $source);
+```
+
+#### google/cloud-security-center
+
+[Google Cloud Security Command Center](https://github.com/googleapis/google-cloud-php-security-center) can be installed separately by requiring the [`google/cloud-security-center`](https://packagist.org/packages/google/cloud-security-center) composer package:
+
+```
+$ composer require google/cloud-security-center
 ```
 
 ## Google Cloud Speech (Alpha)

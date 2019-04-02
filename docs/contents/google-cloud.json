@@ -30,6 +30,7 @@
         "cloud-pubsub",
         "cloud-redis",
         "cloud-scheduler",
+        "cloud-security-center",
         "cloud-spanner",
         "cloud-speech",
         "cloud-storage",
