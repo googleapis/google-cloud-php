@@ -6,7 +6,7 @@ To execute spanner performance tests, make sure Composer dependencies are instal
 * Configure Application Default Credentials.
 * Call the script from the command line:
 
-````
+```
 php ycsb.php --operationcount=50 \
              --instance=<instance> \
              --database=<database> \
