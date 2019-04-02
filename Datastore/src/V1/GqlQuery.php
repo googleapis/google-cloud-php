@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [GQL query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
+ * A [GQL
+ * query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
  *
  * Generated from protobuf message <code>google.datastore.v1.GqlQuery</code>
  */

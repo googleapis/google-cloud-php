@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Datastore\V1\CommitRequest;
 
+use UnexpectedValueException;
+
 /**
  * The modes available for commits.
  *
@@ -19,7 +21,8 @@ class Mode
     const MODE_UNSPECIFIED = 0;
     /**
      * Transactional: The mutations are either all applied, or none are applied.
-     * Learn about transactions [here](https://cloud.google.com/datastore/docs/concepts/transactions).
+     * Learn about transactions
+     * [here](https://cloud.google.com/datastore/docs/concepts/transactions).
      *
      * Generated from protobuf enum <code>TRANSACTIONAL = 1;</code>
      */
@@ -30,6 +33,32 @@ class Mode
      * Generated from protobuf enum <code>NON_TRANSACTIONAL = 2;</code>
      */
     const NON_TRANSACTIONAL = 2;
+
+    private static $valueToName = [
+        self::MODE_UNSPECIFIED => 'MODE_UNSPECIFIED',
+        self::TRANSACTIONAL => 'TRANSACTIONAL',
+        self::NON_TRANSACTIONAL => 'NON_TRANSACTIONAL',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

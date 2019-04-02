@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\Datastore\V1\QueryResultBatch;
 
+use UnexpectedValueException;
+
 /**
  * The possible values for the `more_results` field.
  *
@@ -42,6 +44,34 @@ class MoreResultsType
      * Generated from protobuf enum <code>NO_MORE_RESULTS = 3;</code>
      */
     const NO_MORE_RESULTS = 3;
+
+    private static $valueToName = [
+        self::MORE_RESULTS_TYPE_UNSPECIFIED => 'MORE_RESULTS_TYPE_UNSPECIFIED',
+        self::NOT_FINISHED => 'NOT_FINISHED',
+        self::MORE_RESULTS_AFTER_LIMIT => 'MORE_RESULTS_AFTER_LIMIT',
+        self::MORE_RESULTS_AFTER_CURSOR => 'MORE_RESULTS_AFTER_CURSOR',
+        self::NO_MORE_RESULTS => 'NO_MORE_RESULTS',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

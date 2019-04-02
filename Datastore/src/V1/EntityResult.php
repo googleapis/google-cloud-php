@@ -24,11 +24,11 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
-     * This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     * results.
-     * For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     * is the version of the snapshot that was used to look up the entity, and it
-     * is always set except for eventually consistent reads.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     * `LookupResponse`, this is the version of the snapshot that was used to look
+     * up the entity, and it is always set except for eventually consistent reads.
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      */
@@ -52,11 +52,11 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      *     @type int|string $version
      *           The version of the entity, a strictly positive number that monotonically
      *           increases with changes to the entity.
-     *           This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     *           results.
-     *           For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     *           is the version of the snapshot that was used to look up the entity, and it
-     *           is always set except for eventually consistent reads.
+     *           This field is set for
+     *           [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     *           For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     *           `LookupResponse`, this is the version of the snapshot that was used to look
+     *           up the entity, and it is always set except for eventually consistent reads.
      *     @type string $cursor
      *           A cursor that points to the position after the result entity.
      *           Set only when the `EntityResult` is part of a `QueryResultBatch` message.
@@ -96,11 +96,11 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
-     * This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     * results.
-     * For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     * is the version of the snapshot that was used to look up the entity, and it
-     * is always set except for eventually consistent reads.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     * `LookupResponse`, this is the version of the snapshot that was used to look
+     * up the entity, and it is always set except for eventually consistent reads.
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      * @return int|string
@@ -113,11 +113,11 @@ class EntityResult extends \Google\Protobuf\Internal\Message
     /**
      * The version of the entity, a strictly positive number that monotonically
      * increases with changes to the entity.
-     * This field is set for [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity
-     * results.
-     * For [missing][google.datastore.v1.LookupResponse.missing] entities in `LookupResponse`, this
-     * is the version of the snapshot that was used to look up the entity, and it
-     * is always set except for eventually consistent reads.
+     * This field is set for
+     * [`FULL`][google.datastore.v1.EntityResult.ResultType.FULL] entity results.
+     * For [missing][google.datastore.v1.LookupResponse.missing] entities in
+     * `LookupResponse`, this is the version of the snapshot that was used to look
+     * up the entity, and it is always set except for eventually consistent reads.
      *
      * Generated from protobuf field <code>int64 version = 4;</code>
      * @param int|string $var

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+ * The request for
+ * [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
  *
  * Generated from protobuf message <code>google.datastore.v1.BeginTransactionRequest</code>
  */
