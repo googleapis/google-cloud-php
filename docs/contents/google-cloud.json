@@ -39,6 +39,7 @@
         "cloud-trace",
         "cloud-translate",
         "cloud-videointelligence",
-        "cloud-vision"
+        "cloud-vision",
+        "cloud-web-risk"
     ]
 }

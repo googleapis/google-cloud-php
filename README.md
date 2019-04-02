@@ -48,6 +48,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
+* [Google Cloud Web Risk](#google-cloud-web-risk-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -1352,6 +1353,34 @@ $debuggee->register();
 
 ```
 $ composer require google/cloud-debugger
+```
+
+## Google Cloud Web Risk (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/webrisk/readme)
+- [Official Documentation](https://cloud.google.com/web-risk/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints;
+use Google\Cloud\WebRisk\V1beta1\ThreatType;
+use Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client;
+
+$webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+$threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
+$constraints = new Constraints();
+$response = $webRiskServiceV1Beta1Client->computeThreatListDiff($threatType, $constraints);
+```
+
+#### google/cloud-web-risk
+
+[Google Cloud Web Risk](https://github.com/googleapis/google-cloud-php-web-risk) can be installed separately by requiring the [`google/cloud-web-risk`](https://packagist.org/packages/google/cloud-web-risk) composer package:
+
+```
+$ composer require google/cloud-web-risk
 ```
 
 ## Google Stackdriver Trace (Alpha)
