@@ -989,6 +989,14 @@
             ]
         },
         {
+            "id": "cloud-security-center",
+            "name": "google/cloud-security-center",
+            "defaultService": "securitycenter/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-spanner",
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
