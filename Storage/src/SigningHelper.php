@@ -123,21 +123,6 @@ class SigningHelper
      */
     public static function getSigningMethodName($version)
     {
-        //@codeCoverageIgnoreStart
-        if ($version === null && self::DEFAULT_URL_SIGNING_VERSION === 'v2') {
-            // raise a little notice to poke users towards v4.
-            @trigger_error(
-                'You have chosen to generate a Signed URL using the default ' .
-                'v2 signing implementation. In the future, v4 Signed URLs ' .
-                'will be the default. You may experience breaking changes ' .
-                'if you use expirations greater than 7 days in the future.' .
-                'To opt-in to the new behavior, specify `$options.version='.
-                '`v4`',
-                E_USER_DEPRECATED
-            );
-        }
-        //@codeCoverageIgnoreEnd
-
         $version = $version ?: self::DEFAULT_URL_SIGNING_VERSION;
         switch (strtolower($version)) {
             case 'v2':
