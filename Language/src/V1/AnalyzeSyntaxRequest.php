@@ -18,7 +18,7 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
     /**
      * Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
     /**
@@ -48,7 +48,7 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
     /**
      * Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Language\V1\Document
      */
     public function getDocument()
@@ -59,7 +59,7 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
     /**
      * Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Language\V1\Document $var
      * @return $this
      */

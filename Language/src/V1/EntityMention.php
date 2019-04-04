@@ -30,9 +30,9 @@ class EntityMention extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
-     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     * is set to true, this field will contain the sentiment expressed for this
-     * mention of the entity in the provided document.
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the sentiment expressed for this mention of
+     * the entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 3;</code>
      */
@@ -50,9 +50,9 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      *           The type of the entity mention.
      *     @type \Google\Cloud\Language\V1\Sentiment $sentiment
      *           For calls to [AnalyzeEntitySentiment][] or if
-     *           [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     *           is set to true, this field will contain the sentiment expressed for this
-     *           mention of the entity in the provided document.
+     *           [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     *           true, this field will contain the sentiment expressed for this mention of
+     *           the entity in the provided document.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,9 +114,9 @@ class EntityMention extends \Google\Protobuf\Internal\Message
 
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
-     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     * is set to true, this field will contain the sentiment expressed for this
-     * mention of the entity in the provided document.
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the sentiment expressed for this mention of
+     * the entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 3;</code>
      * @return \Google\Cloud\Language\V1\Sentiment
@@ -128,9 +128,9 @@ class EntityMention extends \Google\Protobuf\Internal\Message
 
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
-     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     * is set to true, this field will contain the sentiment expressed for this
-     * mention of the entity in the provided document.
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the sentiment expressed for this mention of
+     * the entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 3;</code>
      * @param \Google\Cloud\Language\V1\Sentiment $var
