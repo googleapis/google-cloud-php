@@ -15,7 +15,7 @@ jobs:
       env: PROTOBUF_C_EXT=true
     - php: '7.2'
       install:
-      - travis_retry pecl install protobuf-3.7.0
+      - travis_retry pecl install protobuf-3.6.1
       script:
       - ./dev/sh/test-composer-conflict.sh
     - stage: 'deploy'
