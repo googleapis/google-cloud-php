@@ -21,7 +21,7 @@
         "sami/sami": "*"
     },
     "conflict": {
-        "ext-protobuf": "<3.7.1"
+        "ext-protobuf": "<3.7.0"
     },
     "autoload": {
         "psr-4": {
