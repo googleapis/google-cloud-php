@@ -65,10 +65,8 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Finds entities, similar to
-     * [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities]
-     * in the text and analyzes sentiment associated with each entity and its
-     * mentions.
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
      * @param \Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

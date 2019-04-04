@@ -31,8 +31,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * Metadata associated with the entity.
-     * Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
-     * available. The associated keys are "wikipedia_url" and "mid", respectively.
+     * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
+     * and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     * associated with other entity types, see the Type table below.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
      */
@@ -56,9 +57,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     private $mentions;
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
-     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     * is set to true, this field will contain the aggregate sentiment expressed
-     * for this entity in the provided document.
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
      */
@@ -76,8 +77,9 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           The entity type.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Metadata associated with the entity.
-     *           Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
-     *           available. The associated keys are "wikipedia_url" and "mid", respectively.
+     *           For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
+     *           and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     *           associated with other entity types, see the Type table below.
      *     @type float $salience
      *           The salience score associated with the entity in the [0, 1.0] range.
      *           The salience score for an entity provides information about the
@@ -89,9 +91,9 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           supports proper noun mentions.
      *     @type \Google\Cloud\Language\V1\Sentiment $sentiment
      *           For calls to [AnalyzeEntitySentiment][] or if
-     *           [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     *           is set to true, this field will contain the aggregate sentiment expressed
-     *           for this entity in the provided document.
+     *           [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     *           true, this field will contain the aggregate sentiment expressed for this
+     *           entity in the provided document.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,8 +155,9 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Metadata associated with the entity.
-     * Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
-     * available. The associated keys are "wikipedia_url" and "mid", respectively.
+     * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
+     * and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     * associated with other entity types, see the Type table below.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -166,8 +169,9 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Metadata associated with the entity.
-     * Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
-     * available. The associated keys are "wikipedia_url" and "mid", respectively.
+     * For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`)
+     * and Knowledge Graph MID (`mid`), if they are available. For the metadata
+     * associated with other entity types, see the Type table below.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -245,9 +249,9 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
-     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     * is set to true, this field will contain the aggregate sentiment expressed
-     * for this entity in the provided document.
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
      * @return \Google\Cloud\Language\V1\Sentiment
@@ -259,9 +263,9 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * For calls to [AnalyzeEntitySentiment][] or if
-     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment]
-     * is set to true, this field will contain the aggregate sentiment expressed
-     * for this entity in the provided document.
+     * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
+     * true, this field will contain the aggregate sentiment expressed for this
+     * entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 6;</code>
      * @param \Google\Cloud\Language\V1\Sentiment $var
