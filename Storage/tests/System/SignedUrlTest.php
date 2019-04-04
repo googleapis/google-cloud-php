@@ -242,10 +242,6 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testBucketUrlSigning($version)
     {
-        if ($version === 'v4') {
-            $this->markTestSkipped('Waiting for bugfix (ETA: 4/3/19)');
-        }
-
         $url = self::$bucket->signedUrl(time() + 2, [
             'version' => $version
         ]);

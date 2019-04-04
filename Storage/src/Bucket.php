@@ -1301,10 +1301,7 @@ class Bucket
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". In the future, "v4" will
-     *           become the default option.  You may experience breaking changes
-     *           if you use longer than 7 day expiration times with v4. To
-     *           opt-in to the behavior choose "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". *Defaults to** "v2".
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
