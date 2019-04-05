@@ -157,8 +157,10 @@ class CloudTasksClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $logSamplingRatio = -1.25350193E8;
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
+        $expectedResponse->setLogSamplingRatio($logSamplingRatio);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -230,8 +232,10 @@ class CloudTasksClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
+        $logSamplingRatio = -1.25350193E8;
         $expectedResponse = new Queue();
         $expectedResponse->setName($name);
+        $expectedResponse->setLogSamplingRatio($logSamplingRatio);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -308,8 +312,10 @@ class CloudTasksClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
+        $logSamplingRatio = -1.25350193E8;
         $expectedResponse = new Queue();
         $expectedResponse->setName($name);
+        $expectedResponse->setLogSamplingRatio($logSamplingRatio);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -451,8 +457,10 @@ class CloudTasksClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $logSamplingRatio = -1.25350193E8;
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
+        $expectedResponse->setLogSamplingRatio($logSamplingRatio);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -524,8 +532,10 @@ class CloudTasksClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $logSamplingRatio = -1.25350193E8;
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
+        $expectedResponse->setLogSamplingRatio($logSamplingRatio);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -597,8 +607,10 @@ class CloudTasksClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $logSamplingRatio = -1.25350193E8;
         $expectedResponse = new Queue();
         $expectedResponse->setName($name2);
+        $expectedResponse->setLogSamplingRatio($logSamplingRatio);
         $transport->addResponse($expectedResponse);
 
         // Mock request

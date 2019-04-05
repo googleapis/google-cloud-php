@@ -12,15 +12,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * HTTP request.
  * Warning: This is an [alpha](https://cloud.google.com/terms/launch-stages)
  * feature. If you haven't already joined, you can [use this form to sign
- * up](https://docs.google.com/forms/d/e/1FAIpQLSfc4uEy9CBHKYUSdnY1hdhKDCX7julVZHy3imOiR-XrU7bUNQ/viewform?usp=sf_link).
+ * up](https://docs.google.com/forms/d/e/1FAIpQLSfc4uEy9CBHKYUSdnY1hdhKDCX7julVZHy3imOiR-XrU7bUNQ/viewform).
  * The task will be pushed to the worker as an HTTP request. If the worker
  * or the redirected worker acknowledges the task by returning a successful HTTP
  * response code ([`200` - `299`]), the task will removed from the queue. If
  * any other HTTP response code is returned or no response is received, the
  * task will be retried according to the following:
  * * User-specified throttling: [retry configuration][Queue.RetryConfig],
- *   [rate limits][Queue.RateLimits], and the [queue's
- *   state][google.cloud.tasks.v2beta3.Queue.state].
+ *   [rate limits][Queue.RateLimits], and the [queue's state][google.cloud.tasks.v2beta3.Queue.state].
  * * System throttling: To prevent the worker from overloading, Cloud Tasks may
  *   temporarily reduce the queue's effective rate. User-specified settings
  *   will not be changed.
@@ -87,13 +86,13 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
-     * PUT, or PATCH. It is an error to set body on a task with an incompatible
-     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
+     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      */
     private $body = '';
+    protected $authorization_header;
 
     /**
      * Constructor.
@@ -136,9 +135,22 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *     @type string $body
      *           HTTP request body.
      *           A request body is allowed only if the
-     *           [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
-     *           PUT, or PATCH. It is an error to set body on a task with an incompatible
-     *           [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     *           [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
+     *           error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     *     @type \Google\Cloud\Tasks\V2beta3\OAuthToken $oauth_token
+     *           If specified, an
+     *           [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
+     *           will be generated and attached as an `Authorization` header in the HTTP
+     *           request.
+     *           This type of authorization should be used when sending requests to a GCP
+     *           endpoint.
+     *     @type \Google\Cloud\Tasks\V2beta3\OidcToken $oidc_token
+     *           If specified, an
+     *           [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     *           token will be generated and attached as an `Authorization` header in the
+     *           HTTP request.
+     *           This type of authorization should be used when sending requests to third
+     *           party endpoints.
      * }
      */
     public function __construct($data = NULL) {
@@ -279,9 +291,8 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
-     * PUT, or PATCH. It is an error to set body on a task with an incompatible
-     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
+     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      * @return string
@@ -294,9 +305,8 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * HTTP request body.
      * A request body is allowed only if the
-     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST,
-     * PUT, or PATCH. It is an error to set body on a task with an incompatible
-     * [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
+     * [HTTP method][google.cloud.tasks.v2beta3.HttpRequest.http_method] is POST, PUT, or PATCH. It is an
+     * error to set body on a task with an incompatible [HttpMethod][google.cloud.tasks.v2beta3.HttpMethod].
      *
      * Generated from protobuf field <code>bytes body = 4;</code>
      * @param string $var
@@ -308,6 +318,86 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
         $this->body = $var;
 
         return $this;
+    }
+
+    /**
+     * If specified, an
+     * [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
+     * will be generated and attached as an `Authorization` header in the HTTP
+     * request.
+     * This type of authorization should be used when sending requests to a GCP
+     * endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.OAuthToken oauth_token = 5;</code>
+     * @return \Google\Cloud\Tasks\V2beta3\OAuthToken
+     */
+    public function getOauthToken()
+    {
+        return $this->readOneof(5);
+    }
+
+    /**
+     * If specified, an
+     * [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
+     * will be generated and attached as an `Authorization` header in the HTTP
+     * request.
+     * This type of authorization should be used when sending requests to a GCP
+     * endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.OAuthToken oauth_token = 5;</code>
+     * @param \Google\Cloud\Tasks\V2beta3\OAuthToken $var
+     * @return $this
+     */
+    public function setOauthToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\OAuthToken::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * If specified, an
+     * [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     * token will be generated and attached as an `Authorization` header in the
+     * HTTP request.
+     * This type of authorization should be used when sending requests to third
+     * party endpoints.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.OidcToken oidc_token = 6;</code>
+     * @return \Google\Cloud\Tasks\V2beta3\OidcToken
+     */
+    public function getOidcToken()
+    {
+        return $this->readOneof(6);
+    }
+
+    /**
+     * If specified, an
+     * [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     * token will be generated and attached as an `Authorization` header in the
+     * HTTP request.
+     * This type of authorization should be used when sending requests to third
+     * party endpoints.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.OidcToken oidc_token = 6;</code>
+     * @param \Google\Cloud\Tasks\V2beta3\OidcToken $var
+     * @return $this
+     */
+    public function setOidcToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\OidcToken::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorizationHeader()
+    {
+        return $this->whichOneof("authorization_header");
     }
 
 }

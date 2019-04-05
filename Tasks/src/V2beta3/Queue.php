@@ -18,9 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Queue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Caller-specified and required in
-     * [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue], after
-     * which it becomes output only.
+     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue],
+     * after which it becomes output only.
      * The queue name.
      * The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -41,24 +40,21 @@ class Queue extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Rate limits for task dispatches.
-     * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
-     * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are related
-     * because they both control task attempts. However they control task attempts
-     * in different ways:
-     * * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the
-     * total rate of
+     * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are
+     * related because they both control task attempts. However they control task
+     * attempts in different ways:
+     * * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the total rate of
      *   dispatches from a queue (i.e. all traffic dispatched from the
      *   queue, regardless of whether the dispatch is from a first
      *   attempt or a retry).
-     * * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     * what happens to
+     * * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls what happens to
      *   particular a task after its first attempt fails. That is,
-     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     *   task retries (the second attempt, third attempt, etc).
+     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls task retries (the
+     *   second attempt, third attempt, etc).
      * The queue's actual dispatch rate is the result of:
      * * Number of tasks in the queue
-     * * User-specified throttling: [rate limits][Queue.RateLimits]
-     *   [retry configuration][Queue.RetryConfig], and the
+     * * User-specified throttling: [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits],
+     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config], and the
      *   [queue's state][google.cloud.tasks.v2beta3.Queue.state].
      * * System throttling due to `429` (Too Many Requests) or `503` (Service
      *   Unavailable) responses from the worker, high error rates, or to smooth
@@ -85,22 +81,19 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Output only. The state of the queue.
      * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
-     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
-     * uploading
+     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
-     * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be
-     * used to change `state`.
+     * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.State state = 6;</code>
      */
     private $state = 0;
     /**
      * Output only. The last time this queue was purged.
-     * All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time]
-     * before this time were purged.
-     * A queue can be purged using
-     * [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the [App
-     * Engine Task Queue SDK, or the Cloud
+     * All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time] before this time
+     * were purged.
+     * A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the
+     * [App Engine Task Queue SDK, or the Cloud
      * Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge
      * time will be unset if the queue has never been purged.
@@ -108,6 +101,15 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 7;</code>
      */
     private $purge_time = null;
+    /**
+     * Specifies the fraction of operations to write to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/).
+     * This field may contain any value between 0.0 and 1.0, inclusive.
+     * 0.0 is the default and means that no operations are logged.
+     *
+     * Generated from protobuf field <code>double log_sampling_ratio = 10;</code>
+     */
+    private $log_sampling_ratio = 0.0;
     protected $queue_type;
 
     /**
@@ -117,9 +119,8 @@ class Queue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Caller-specified and required in
-     *           [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue], after
-     *           which it becomes output only.
+     *           Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue],
+     *           after which it becomes output only.
      *           The queue name.
      *           The queue name must have the following format:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -135,31 +136,26 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or
      *             hyphens (-). The maximum length is 100 characters.
      *     @type \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue $app_engine_http_queue
-     *           [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue]
-     *           settings apply only to [App Engine
-     *           tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
-     *           [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by
-     *           this proto.
+     *           [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
+     *           [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
+     *           [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *     @type \Google\Cloud\Tasks\V2beta3\RateLimits $rate_limits
      *           Rate limits for task dispatches.
-     *           [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
-     *           [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are related
-     *           because they both control task attempts. However they control task attempts
-     *           in different ways:
-     *           * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the
-     *           total rate of
+     *           [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are
+     *           related because they both control task attempts. However they control task
+     *           attempts in different ways:
+     *           * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the total rate of
      *             dispatches from a queue (i.e. all traffic dispatched from the
      *             queue, regardless of whether the dispatch is from a first
      *             attempt or a retry).
-     *           * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     *           what happens to
+     *           * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls what happens to
      *             particular a task after its first attempt fails. That is,
-     *             [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     *             task retries (the second attempt, third attempt, etc).
+     *             [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls task retries (the
+     *             second attempt, third attempt, etc).
      *           The queue's actual dispatch rate is the result of:
      *           * Number of tasks in the queue
-     *           * User-specified throttling: [rate limits][Queue.RateLimits]
-     *             [retry configuration][Queue.RetryConfig], and the
+     *           * User-specified throttling: [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits],
+     *             [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config], and the
      *             [queue's state][google.cloud.tasks.v2beta3.Queue.state].
      *           * System throttling due to `429` (Too Many Requests) or `503` (Service
      *             Unavailable) responses from the worker, high error rates, or to smooth
@@ -178,21 +174,23 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           Output only. The state of the queue.
      *           `state` can only be changed by called
      *           [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
-     *           [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
-     *           uploading
+     *           [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      *           [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
-     *           [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be
-     *           used to change `state`.
+     *           [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *     @type \Google\Protobuf\Timestamp $purge_time
      *           Output only. The last time this queue was purged.
-     *           All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time]
-     *           before this time were purged.
-     *           A queue can be purged using
-     *           [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the [App
-     *           Engine Task Queue SDK, or the Cloud
+     *           All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time] before this time
+     *           were purged.
+     *           A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the
+     *           [App Engine Task Queue SDK, or the Cloud
      *           Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      *           Purge time will be truncated to the nearest microsecond. Purge
      *           time will be unset if the queue has never been purged.
+     *     @type float $log_sampling_ratio
+     *           Specifies the fraction of operations to write to
+     *           [Stackdriver Logging](https://cloud.google.com/logging/docs/).
+     *           This field may contain any value between 0.0 and 1.0, inclusive.
+     *           0.0 is the default and means that no operations are logged.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,9 +199,8 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Caller-specified and required in
-     * [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue], after
-     * which it becomes output only.
+     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue],
+     * after which it becomes output only.
      * The queue name.
      * The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -228,9 +225,8 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Caller-specified and required in
-     * [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue], after
-     * which it becomes output only.
+     * Caller-specified and required in [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue],
+     * after which it becomes output only.
      * The queue name.
      * The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -259,11 +255,9 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue]
-     * settings apply only to [App Engine
-     * tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
-     * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by
-     * this proto.
+     * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
+     * [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
+     * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpQueue app_engine_http_queue = 3;</code>
      * @return \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue
@@ -274,11 +268,9 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue]
-     * settings apply only to [App Engine
-     * tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
-     * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by
-     * this proto.
+     * [AppEngineHttpQueue][google.cloud.tasks.v2beta3.AppEngineHttpQueue] settings apply only to
+     * [App Engine tasks][google.cloud.tasks.v2beta3.AppEngineHttpRequest] in this queue.
+     * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpQueue app_engine_http_queue = 3;</code>
      * @param \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue $var
@@ -294,24 +286,21 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Rate limits for task dispatches.
-     * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
-     * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are related
-     * because they both control task attempts. However they control task attempts
-     * in different ways:
-     * * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the
-     * total rate of
+     * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are
+     * related because they both control task attempts. However they control task
+     * attempts in different ways:
+     * * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the total rate of
      *   dispatches from a queue (i.e. all traffic dispatched from the
      *   queue, regardless of whether the dispatch is from a first
      *   attempt or a retry).
-     * * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     * what happens to
+     * * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls what happens to
      *   particular a task after its first attempt fails. That is,
-     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     *   task retries (the second attempt, third attempt, etc).
+     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls task retries (the
+     *   second attempt, third attempt, etc).
      * The queue's actual dispatch rate is the result of:
      * * Number of tasks in the queue
-     * * User-specified throttling: [rate limits][Queue.RateLimits]
-     *   [retry configuration][Queue.RetryConfig], and the
+     * * User-specified throttling: [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits],
+     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config], and the
      *   [queue's state][google.cloud.tasks.v2beta3.Queue.state].
      * * System throttling due to `429` (Too Many Requests) or `503` (Service
      *   Unavailable) responses from the worker, high error rates, or to smooth
@@ -327,24 +316,21 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Rate limits for task dispatches.
-     * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and
-     * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are related
-     * because they both control task attempts. However they control task attempts
-     * in different ways:
-     * * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the
-     * total rate of
+     * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] and [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] are
+     * related because they both control task attempts. However they control task
+     * attempts in different ways:
+     * * [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits] controls the total rate of
      *   dispatches from a queue (i.e. all traffic dispatched from the
      *   queue, regardless of whether the dispatch is from a first
      *   attempt or a retry).
-     * * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     * what happens to
+     * * [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls what happens to
      *   particular a task after its first attempt fails. That is,
-     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls
-     *   task retries (the second attempt, third attempt, etc).
+     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config] controls task retries (the
+     *   second attempt, third attempt, etc).
      * The queue's actual dispatch rate is the result of:
      * * Number of tasks in the queue
-     * * User-specified throttling: [rate limits][Queue.RateLimits]
-     *   [retry configuration][Queue.RetryConfig], and the
+     * * User-specified throttling: [rate_limits][google.cloud.tasks.v2beta3.Queue.rate_limits],
+     *   [retry_config][google.cloud.tasks.v2beta3.Queue.retry_config], and the
      *   [queue's state][google.cloud.tasks.v2beta3.Queue.state].
      * * System throttling due to `429` (Too Many Requests) or `503` (Service
      *   Unavailable) responses from the worker, high error rates, or to smooth
@@ -408,11 +394,9 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Output only. The state of the queue.
      * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
-     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
-     * uploading
+     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
-     * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be
-     * used to change `state`.
+     * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.State state = 6;</code>
      * @return int
@@ -426,11 +410,9 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Output only. The state of the queue.
      * `state` can only be changed by called
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
-     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or
-     * uploading
+     * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
-     * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be
-     * used to change `state`.
+     * [UpdateQueue][google.cloud.tasks.v2beta3.CloudTasks.UpdateQueue] cannot be used to change `state`.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.State state = 6;</code>
      * @param int $var
@@ -446,11 +428,10 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The last time this queue was purged.
-     * All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time]
-     * before this time were purged.
-     * A queue can be purged using
-     * [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the [App
-     * Engine Task Queue SDK, or the Cloud
+     * All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time] before this time
+     * were purged.
+     * A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the
+     * [App Engine Task Queue SDK, or the Cloud
      * Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge
      * time will be unset if the queue has never been purged.
@@ -465,11 +446,10 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The last time this queue was purged.
-     * All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time]
-     * before this time were purged.
-     * A queue can be purged using
-     * [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the [App
-     * Engine Task Queue SDK, or the Cloud
+     * All tasks that were [created][google.cloud.tasks.v2beta3.Task.create_time] before this time
+     * were purged.
+     * A queue can be purged using [PurgeQueue][google.cloud.tasks.v2beta3.CloudTasks.PurgeQueue], the
+     * [App Engine Task Queue SDK, or the Cloud
      * Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      * Purge time will be truncated to the nearest microsecond. Purge
      * time will be unset if the queue has never been purged.
@@ -482,6 +462,38 @@ class Queue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->purge_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the fraction of operations to write to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/).
+     * This field may contain any value between 0.0 and 1.0, inclusive.
+     * 0.0 is the default and means that no operations are logged.
+     *
+     * Generated from protobuf field <code>double log_sampling_ratio = 10;</code>
+     * @return float
+     */
+    public function getLogSamplingRatio()
+    {
+        return $this->log_sampling_ratio;
+    }
+
+    /**
+     * Specifies the fraction of operations to write to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/).
+     * This field may contain any value between 0.0 and 1.0, inclusive.
+     * 0.0 is the default and means that no operations are logged.
+     *
+     * Generated from protobuf field <code>double log_sampling_ratio = 10;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setLogSamplingRatio($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->log_sampling_ratio = $var;
 
         return $this;
     }

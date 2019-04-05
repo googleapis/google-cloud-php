@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue].
+ * Request message for [CreateQueue][google.cloud.tasks.v2beta3.CloudTasks.CreateQueue].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.CreateQueueRequest</code>
  */
@@ -30,8 +29,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * The queue to create.
-     * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as
-     * an existing queue.
+     * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2;</code>
      */
@@ -53,8 +51,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Tasks\V2beta3\Queue $queue
      *           Required.
      *           The queue to create.
-     *           [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as
-     *           an existing queue.
+     *           [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,8 +98,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * The queue to create.
-     * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as
-     * an existing queue.
+     * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2;</code>
      * @return \Google\Cloud\Tasks\V2beta3\Queue
@@ -115,8 +111,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * The queue to create.
-     * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as
-     * an existing queue.
+     * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2;</code>
      * @param \Google\Cloud\Tasks\V2beta3\Queue $var
