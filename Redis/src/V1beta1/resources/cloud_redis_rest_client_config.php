@@ -61,11 +61,34 @@ return [
                     ],
                 ],
             ],
+            'FailoverInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/instances/*}:failover',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -77,6 +100,17 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

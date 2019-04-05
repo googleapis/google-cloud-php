@@ -20,7 +20,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * location using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * Note: Redis instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users get to choose which
+     * location_id here refers to a GCP region; however, users may choose which
      * specific zone (or collection of zones for cross-zone instances) an instance
      * should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
@@ -44,7 +44,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The zone where the instance will be provisioned. If not provided,
      * the service will choose a zone for the instance. For STANDARD_HA tier,
      * instances will be created across two zones for protection against zonal
-     * failures. if [alternative_location_id] is also provided, it must be
+     * failures. If [alternative_location_id] is also provided, it must be
      * different from [location_id].
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
@@ -60,7 +60,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $alternative_location_id = '';
     /**
      * Optional. The version of Redis software.
-     * If not provided, latest supported version will be used.
+     * If not provided, latest supported version will be used. Updating the
+     * version will perform an upgrade/downgrade to the new version. Currently,
+     * the supported values are:
+     *  *   `REDIS_4_0` for Redis 4.0 compatibility
+     *  *   `REDIS_3_2` for Redis 3.2 compatibility (default)
      *
      * Generated from protobuf field <code>string redis_version = 7;</code>
      */
@@ -69,30 +73,30 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The CIDR range of internal addresses that are reserved for this
      * instance. If not provided, the service will choose an unused /29 block,
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
-     * and non-overlapping with existing subnets in a network.
+     * and non-overlapping with existing subnets in an authorized network.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 9;</code>
      */
     private $reserved_ip_range = '';
     /**
-     * Output only. Hostname or IP address of the exposed redis endpoint used by
+     * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
      * Generated from protobuf field <code>string host = 10;</code>
      */
     private $host = '';
     /**
-     * Output only. The port number of the exposed redis endpoint.
+     * Output only. The port number of the exposed Redis endpoint.
      *
      * Generated from protobuf field <code>int32 port = 11;</code>
      */
     private $port = 0;
     /**
-     * Output only. The current zone where the Redis endpoint is placed. In
-     * single zone deployments, this will always be the same as [location_id]
-     * provided by the user at creation time. In cross-zone instances (only
-     * applicable in STANDARD_HA tier), this can be either [location_id] or
-     * [alternative_location_id] and can change on a failover event.
+     * Output only. The current zone where the Redis endpoint is placed. For Basic
+     * Tier instances, this will always be the same as the [location_id]
+     * provided by the user at creation time. For Standard Tier instances,
+     * this can be either [location_id] or [alternative_location_id] and can
+     * change after a failover event.
      *
      * Generated from protobuf field <code>string current_location_id = 12;</code>
      */
@@ -120,8 +124,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:
-     *  * maxmemory-policy
-     *  * notify-keyspace-events
+     *  Redis 3.2 and above:
+     *  *   maxmemory-policy
+     *  *   notify-keyspace-events
+     *  Redis 4.0 and above:
+     *  *   activedefrag
+     *  *   lfu-log-factor
+     *  *   lfu-decay-time
      *
      * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
      */
@@ -133,7 +142,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $tier = 0;
     /**
-     * Required. Redis memory size in GB.
+     * Required. Redis memory size in GiB.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 18;</code>
      */
@@ -159,7 +168,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           location using the form:
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      *           Note: Redis instances are managed and addressed at regional level so
-     *           location_id here refers to a GCP region; however, users get to choose which
+     *           location_id here refers to a GCP region; however, users may choose which
      *           specific zone (or collection of zones for cross-zone instances) an instance
      *           should be provisioned in. Refer to [location_id] and
      *           [alternative_location_id] fields for more details.
@@ -171,7 +180,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. The zone where the instance will be provisioned. If not provided,
      *           the service will choose a zone for the instance. For STANDARD_HA tier,
      *           instances will be created across two zones for protection against zonal
-     *           failures. if [alternative_location_id] is also provided, it must be
+     *           failures. If [alternative_location_id] is also provided, it must be
      *           different from [location_id].
      *     @type string $alternative_location_id
      *           Optional. Only applicable to STANDARD_HA tier which protects the instance
@@ -179,23 +188,27 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           must be a different zone from the one provided in [location_id].
      *     @type string $redis_version
      *           Optional. The version of Redis software.
-     *           If not provided, latest supported version will be used.
+     *           If not provided, latest supported version will be used. Updating the
+     *           version will perform an upgrade/downgrade to the new version. Currently,
+     *           the supported values are:
+     *            *   `REDIS_4_0` for Redis 4.0 compatibility
+     *            *   `REDIS_3_2` for Redis 3.2 compatibility (default)
      *     @type string $reserved_ip_range
      *           Optional. The CIDR range of internal addresses that are reserved for this
      *           instance. If not provided, the service will choose an unused /29 block,
      *           for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
-     *           and non-overlapping with existing subnets in a network.
+     *           and non-overlapping with existing subnets in an authorized network.
      *     @type string $host
-     *           Output only. Hostname or IP address of the exposed redis endpoint used by
+     *           Output only. Hostname or IP address of the exposed Redis endpoint used by
      *           clients to connect to the service.
      *     @type int $port
-     *           Output only. The port number of the exposed redis endpoint.
+     *           Output only. The port number of the exposed Redis endpoint.
      *     @type string $current_location_id
-     *           Output only. The current zone where the Redis endpoint is placed. In
-     *           single zone deployments, this will always be the same as [location_id]
-     *           provided by the user at creation time. In cross-zone instances (only
-     *           applicable in STANDARD_HA tier), this can be either [location_id] or
-     *           [alternative_location_id] and can change on a failover event.
+     *           Output only. The current zone where the Redis endpoint is placed. For Basic
+     *           Tier instances, this will always be the same as the [location_id]
+     *           provided by the user at creation time. For Standard Tier instances,
+     *           this can be either [location_id] or [alternative_location_id] and can
+     *           change after a failover event.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the instance was created.
      *     @type int $state
@@ -207,12 +220,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Redis configuration parameters, according to
      *           http://redis.io/topics/config. Currently, the only supported parameters
      *           are:
-     *            * maxmemory-policy
-     *            * notify-keyspace-events
+     *            Redis 3.2 and above:
+     *            *   maxmemory-policy
+     *            *   notify-keyspace-events
+     *            Redis 4.0 and above:
+     *            *   activedefrag
+     *            *   lfu-log-factor
+     *            *   lfu-decay-time
      *     @type int $tier
      *           Required. The service tier of the instance.
      *     @type int $memory_size_gb
-     *           Required. Redis memory size in GB.
+     *           Required. Redis memory size in GiB.
      *     @type string $authorized_network
      *           Optional. The full name of the Google Compute Engine
      *           [network](/compute/docs/networks-and-firewalls#networks) to which the
@@ -230,7 +248,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * location using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * Note: Redis instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users get to choose which
+     * location_id here refers to a GCP region; however, users may choose which
      * specific zone (or collection of zones for cross-zone instances) an instance
      * should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
@@ -248,7 +266,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * location using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * Note: Redis instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users get to choose which
+     * location_id here refers to a GCP region; however, users may choose which
      * specific zone (or collection of zones for cross-zone instances) an instance
      * should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
@@ -321,7 +339,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The zone where the instance will be provisioned. If not provided,
      * the service will choose a zone for the instance. For STANDARD_HA tier,
      * instances will be created across two zones for protection against zonal
-     * failures. if [alternative_location_id] is also provided, it must be
+     * failures. If [alternative_location_id] is also provided, it must be
      * different from [location_id].
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
@@ -336,7 +354,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The zone where the instance will be provisioned. If not provided,
      * the service will choose a zone for the instance. For STANDARD_HA tier,
      * instances will be created across two zones for protection against zonal
-     * failures. if [alternative_location_id] is also provided, it must be
+     * failures. If [alternative_location_id] is also provided, it must be
      * different from [location_id].
      *
      * Generated from protobuf field <code>string location_id = 4;</code>
@@ -383,7 +401,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The version of Redis software.
-     * If not provided, latest supported version will be used.
+     * If not provided, latest supported version will be used. Updating the
+     * version will perform an upgrade/downgrade to the new version. Currently,
+     * the supported values are:
+     *  *   `REDIS_4_0` for Redis 4.0 compatibility
+     *  *   `REDIS_3_2` for Redis 3.2 compatibility (default)
      *
      * Generated from protobuf field <code>string redis_version = 7;</code>
      * @return string
@@ -395,7 +417,11 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The version of Redis software.
-     * If not provided, latest supported version will be used.
+     * If not provided, latest supported version will be used. Updating the
+     * version will perform an upgrade/downgrade to the new version. Currently,
+     * the supported values are:
+     *  *   `REDIS_4_0` for Redis 4.0 compatibility
+     *  *   `REDIS_3_2` for Redis 3.2 compatibility (default)
      *
      * Generated from protobuf field <code>string redis_version = 7;</code>
      * @param string $var
@@ -413,7 +439,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The CIDR range of internal addresses that are reserved for this
      * instance. If not provided, the service will choose an unused /29 block,
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
-     * and non-overlapping with existing subnets in a network.
+     * and non-overlapping with existing subnets in an authorized network.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 9;</code>
      * @return string
@@ -427,7 +453,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The CIDR range of internal addresses that are reserved for this
      * instance. If not provided, the service will choose an unused /29 block,
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
-     * and non-overlapping with existing subnets in a network.
+     * and non-overlapping with existing subnets in an authorized network.
      *
      * Generated from protobuf field <code>string reserved_ip_range = 9;</code>
      * @param string $var
@@ -442,7 +468,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Hostname or IP address of the exposed redis endpoint used by
+     * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
      * Generated from protobuf field <code>string host = 10;</code>
@@ -454,7 +480,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Hostname or IP address of the exposed redis endpoint used by
+     * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
      * Generated from protobuf field <code>string host = 10;</code>
@@ -470,7 +496,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The port number of the exposed redis endpoint.
+     * Output only. The port number of the exposed Redis endpoint.
      *
      * Generated from protobuf field <code>int32 port = 11;</code>
      * @return int
@@ -481,7 +507,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The port number of the exposed redis endpoint.
+     * Output only. The port number of the exposed Redis endpoint.
      *
      * Generated from protobuf field <code>int32 port = 11;</code>
      * @param int $var
@@ -496,11 +522,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current zone where the Redis endpoint is placed. In
-     * single zone deployments, this will always be the same as [location_id]
-     * provided by the user at creation time. In cross-zone instances (only
-     * applicable in STANDARD_HA tier), this can be either [location_id] or
-     * [alternative_location_id] and can change on a failover event.
+     * Output only. The current zone where the Redis endpoint is placed. For Basic
+     * Tier instances, this will always be the same as the [location_id]
+     * provided by the user at creation time. For Standard Tier instances,
+     * this can be either [location_id] or [alternative_location_id] and can
+     * change after a failover event.
      *
      * Generated from protobuf field <code>string current_location_id = 12;</code>
      * @return string
@@ -511,11 +537,11 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current zone where the Redis endpoint is placed. In
-     * single zone deployments, this will always be the same as [location_id]
-     * provided by the user at creation time. In cross-zone instances (only
-     * applicable in STANDARD_HA tier), this can be either [location_id] or
-     * [alternative_location_id] and can change on a failover event.
+     * Output only. The current zone where the Redis endpoint is placed. For Basic
+     * Tier instances, this will always be the same as the [location_id]
+     * provided by the user at creation time. For Standard Tier instances,
+     * this can be either [location_id] or [alternative_location_id] and can
+     * change after a failover event.
      *
      * Generated from protobuf field <code>string current_location_id = 12;</code>
      * @param string $var
@@ -613,8 +639,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:
-     *  * maxmemory-policy
-     *  * notify-keyspace-events
+     *  Redis 3.2 and above:
+     *  *   maxmemory-policy
+     *  *   notify-keyspace-events
+     *  Redis 4.0 and above:
+     *  *   activedefrag
+     *  *   lfu-log-factor
+     *  *   lfu-decay-time
      *
      * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -628,8 +659,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:
-     *  * maxmemory-policy
-     *  * notify-keyspace-events
+     *  Redis 3.2 and above:
+     *  *   maxmemory-policy
+     *  *   notify-keyspace-events
+     *  Redis 4.0 and above:
+     *  *   activedefrag
+     *  *   lfu-log-factor
+     *  *   lfu-decay-time
      *
      * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -670,7 +706,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Redis memory size in GB.
+     * Required. Redis memory size in GiB.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 18;</code>
      * @return int
@@ -681,7 +717,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Redis memory size in GB.
+     * Required. Redis memory size in GiB.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 18;</code>
      * @param int $var

@@ -37,6 +37,12 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
+    /**
+     * Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -57,6 +63,8 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Locations that could not be reached.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,6 +138,32 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Locations that could not be reached.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }
