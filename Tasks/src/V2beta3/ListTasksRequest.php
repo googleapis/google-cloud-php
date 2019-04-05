@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing tasks using
- * [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks].
+ * Request message for listing tasks using [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.ListTasksRequest</code>
  */
@@ -25,17 +24,16 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The response_view specifies which subset of the
-     * [Task][google.cloud.tasks.v2beta3.Task] will be returned.
-     * By default response_view is
-     * [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
-     * retrieved by default because some data, such as payloads, might be
-     * desirable to return only when needed because of its large size or because
-     * of the sensitivity of data that it contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
-     * requires `cloudtasks.tasks.fullView` [Google
-     * IAM](https://cloud.google.com/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta3.Task] resource.
+     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
+     * returned.
+     * By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
+     * information is retrieved by default because some data, such as
+     * payloads, might be desirable to return only when needed because
+     * of its large size or because of the sensitivity of data that it
+     * contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View response_view = 2;</code>
      */
@@ -45,8 +43,8 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * The maximum page size is 1000. If unspecified, the page size will
      * be the maximum. Fewer tasks than requested might be returned,
      * even if more tasks exist; use
-     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     * in the response to determine if more tasks exist.
+     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] in the
+     * response to determine if more tasks exist.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
@@ -55,9 +53,9 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * A token identifying the page of results to return.
      * To request the first page results, page_token must be empty. To
      * request the next page of results, page_token must be the value of
-     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     * returned from the previous call to
-     * [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks] method.
+     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] returned
+     * from the previous call to [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks]
+     * method.
      * The page token is valid for only 2 hours.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
@@ -75,31 +73,30 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      *           The queue name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     @type int $response_view
-     *           The response_view specifies which subset of the
-     *           [Task][google.cloud.tasks.v2beta3.Task] will be returned.
-     *           By default response_view is
-     *           [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
-     *           retrieved by default because some data, such as payloads, might be
-     *           desirable to return only when needed because of its large size or because
-     *           of the sensitivity of data that it contains.
-     *           Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
-     *           requires `cloudtasks.tasks.fullView` [Google
-     *           IAM](https://cloud.google.com/iam/) permission on the
-     *           [Task][google.cloud.tasks.v2beta3.Task] resource.
+     *           The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
+     *           returned.
+     *           By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
+     *           information is retrieved by default because some data, such as
+     *           payloads, might be desirable to return only when needed because
+     *           of its large size or because of the sensitivity of data that it
+     *           contains.
+     *           Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
+     *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     *           permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
      *     @type int $page_size
      *           Requested page size. Fewer tasks than requested might be returned.
      *           The maximum page size is 1000. If unspecified, the page size will
      *           be the maximum. Fewer tasks than requested might be returned,
      *           even if more tasks exist; use
-     *           [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     *           in the response to determine if more tasks exist.
+     *           [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] in the
+     *           response to determine if more tasks exist.
      *     @type string $page_token
      *           A token identifying the page of results to return.
      *           To request the first page results, page_token must be empty. To
      *           request the next page of results, page_token must be the value of
-     *           [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     *           returned from the previous call to
-     *           [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks] method.
+     *           [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] returned
+     *           from the previous call to [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks]
+     *           method.
      *           The page token is valid for only 2 hours.
      * }
      */
@@ -139,17 +136,16 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the
-     * [Task][google.cloud.tasks.v2beta3.Task] will be returned.
-     * By default response_view is
-     * [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
-     * retrieved by default because some data, such as payloads, might be
-     * desirable to return only when needed because of its large size or because
-     * of the sensitivity of data that it contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
-     * requires `cloudtasks.tasks.fullView` [Google
-     * IAM](https://cloud.google.com/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta3.Task] resource.
+     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
+     * returned.
+     * By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
+     * information is retrieved by default because some data, such as
+     * payloads, might be desirable to return only when needed because
+     * of its large size or because of the sensitivity of data that it
+     * contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View response_view = 2;</code>
      * @return int
@@ -160,17 +156,16 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The response_view specifies which subset of the
-     * [Task][google.cloud.tasks.v2beta3.Task] will be returned.
-     * By default response_view is
-     * [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all information is
-     * retrieved by default because some data, such as payloads, might be
-     * desirable to return only when needed because of its large size or because
-     * of the sensitivity of data that it contains.
-     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL]
-     * requires `cloudtasks.tasks.fullView` [Google
-     * IAM](https://cloud.google.com/iam/) permission on the
-     * [Task][google.cloud.tasks.v2beta3.Task] resource.
+     * The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
+     * returned.
+     * By default response_view is [BASIC][google.cloud.tasks.v2beta3.Task.View.BASIC]; not all
+     * information is retrieved by default because some data, such as
+     * payloads, might be desirable to return only when needed because
+     * of its large size or because of the sensitivity of data that it
+     * contains.
+     * Authorization for [FULL][google.cloud.tasks.v2beta3.Task.View.FULL] requires
+     * `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
+     * permission on the [Task][google.cloud.tasks.v2beta3.Task] resource.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task.View response_view = 2;</code>
      * @param int $var
@@ -189,8 +184,8 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * The maximum page size is 1000. If unspecified, the page size will
      * be the maximum. Fewer tasks than requested might be returned,
      * even if more tasks exist; use
-     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     * in the response to determine if more tasks exist.
+     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] in the
+     * response to determine if more tasks exist.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -205,8 +200,8 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * The maximum page size is 1000. If unspecified, the page size will
      * be the maximum. Fewer tasks than requested might be returned,
      * even if more tasks exist; use
-     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     * in the response to determine if more tasks exist.
+     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] in the
+     * response to determine if more tasks exist.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
@@ -224,9 +219,9 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * A token identifying the page of results to return.
      * To request the first page results, page_token must be empty. To
      * request the next page of results, page_token must be the value of
-     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     * returned from the previous call to
-     * [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks] method.
+     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] returned
+     * from the previous call to [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks]
+     * method.
      * The page token is valid for only 2 hours.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
@@ -241,9 +236,9 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      * A token identifying the page of results to return.
      * To request the first page results, page_token must be empty. To
      * request the next page of results, page_token must be the value of
-     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token]
-     * returned from the previous call to
-     * [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks] method.
+     * [next_page_token][google.cloud.tasks.v2beta3.ListTasksResponse.next_page_token] returned
+     * from the previous call to [ListTasks][google.cloud.tasks.v2beta3.CloudTasks.ListTasks]
+     * method.
      * The page token is valid for only 2 hours.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
