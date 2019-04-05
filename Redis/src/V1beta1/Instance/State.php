@@ -46,8 +46,7 @@ class State
      */
     const DELETING = 4;
     /**
-     * Redis instance is being repaired and may be unusable. Details can be
-     * found in the `status_message` field.
+     * Redis instance is being repaired and may be unusable.
      *
      * Generated from protobuf enum <code>REPAIRING = 5;</code>
      */
@@ -58,6 +57,18 @@ class State
      * Generated from protobuf enum <code>MAINTENANCE = 6;</code>
      */
     const MAINTENANCE = 6;
+    /**
+     * Redis instance is importing data (availability may be affected).
+     *
+     * Generated from protobuf enum <code>IMPORTING = 8;</code>
+     */
+    const IMPORTING = 8;
+    /**
+     * Redis instance is failing over (availability may be affected).
+     *
+     * Generated from protobuf enum <code>FAILING_OVER = 10;</code>
+     */
+    const FAILING_OVER = 10;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -67,6 +78,8 @@ class State
         self::DELETING => 'DELETING',
         self::REPAIRING => 'REPAIRING',
         self::MAINTENANCE => 'MAINTENANCE',
+        self::IMPORTING => 'IMPORTING',
+        self::FAILING_OVER => 'FAILING_OVER',
     ];
 
     public static function name($value)

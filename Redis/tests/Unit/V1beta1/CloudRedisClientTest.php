@@ -28,6 +28,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Redis\V1beta1\FailoverInstanceRequest_DataProtectionMode;
 use Google\Cloud\Redis\V1beta1\Instance;
 use Google\Cloud\Redis\V1beta1\Instance_Tier;
 use Google\Cloud\Redis\V1beta1\ListInstancesResponse;
@@ -723,6 +724,173 @@ class CloudRedisClientTest extends GeneratedTest
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function failoverInstanceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/failoverInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $locationId = 'locationId552319461';
+        $alternativeLocationId = 'alternativeLocationId-718920621';
+        $redisVersion = 'redisVersion-685310444';
+        $reservedIpRange = 'reservedIpRange-1082940580';
+        $host = 'host3208616';
+        $port = 3446913;
+        $currentLocationId = 'currentLocationId1312712735';
+        $statusMessage = 'statusMessage-239442758';
+        $memorySizeGb = 34199707;
+        $authorizedNetwork = 'authorizedNetwork-1733809270';
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setAlternativeLocationId($alternativeLocationId);
+        $expectedResponse->setRedisVersion($redisVersion);
+        $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setHost($host);
+        $expectedResponse->setPort($port);
+        $expectedResponse->setCurrentLocationId($currentLocationId);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setMemorySizeGb($memorySizeGb);
+        $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/failoverInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $dataProtectionMode = FailoverInstanceRequest_DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
+
+        $response = $client->failoverInstance($formattedName, $dataProtectionMode);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/FailoverInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getDataProtectionMode();
+
+        $this->assertProtobufEquals($dataProtectionMode, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/failoverInstanceTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function failoverInstanceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/failoverInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $dataProtectionMode = FailoverInstanceRequest_DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
+
+        $response = $client->failoverInstance($formattedName, $dataProtectionMode);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/failoverInstanceTest');
 
         try {
             $response->pollUntilComplete([

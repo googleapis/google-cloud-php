@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\Redis\V1beta1;
 
@@ -84,7 +85,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates a Redis instance based on the specified tier and memory size.
      *
-     * By default, the instance is peered to the project's
+     * By default, the instance is accessible from the project's
      * [default network](/compute/docs/networks-and-firewalls#networks).
      *
      * The creation is executed asynchronously and callers may check the returned
@@ -119,6 +120,21 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     public function UpdateInstance(\Google\Cloud\Redis\V1beta1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/UpdateInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Failover the master role to current replica node against a specific
+     * STANDARD tier redis instance.
+     * @param \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function FailoverInstance(\Google\Cloud\Redis\V1beta1\FailoverInstanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/FailoverInstance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

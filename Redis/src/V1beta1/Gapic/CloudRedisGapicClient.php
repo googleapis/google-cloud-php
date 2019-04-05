@@ -39,6 +39,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Redis\V1beta1\CreateInstanceRequest;
 use Google\Cloud\Redis\V1beta1\DeleteInstanceRequest;
+use Google\Cloud\Redis\V1beta1\FailoverInstanceRequest;
+use Google\Cloud\Redis\V1beta1\FailoverInstanceRequest_DataProtectionMode;
 use Google\Cloud\Redis\V1beta1\GetInstanceRequest;
 use Google\Cloud\Redis\V1beta1\Instance;
 use Google\Cloud\Redis\V1beta1\ListInstancesRequest;
@@ -503,7 +505,7 @@ class CloudRedisGapicClient
     /**
      * Creates a Redis instance based on the specified tier and memory size.
      *
-     * By default, the instance is peered to the project's
+     * By default, the instance is accessible from the project's
      * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
      *
      * The creation is executed asynchronously and callers may check the returned
@@ -663,17 +665,18 @@ class CloudRedisGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Mask of fields to update. At least one path must be supplied in
-     *                                this field. The elements of the repeated paths field may only include these
-     *                                fields from [Instance][CloudRedis.Instance]:
-     *                                * `display_name`
-     *                                * `labels`
-     *                                * `memory_size_gb`
-     *                                * `redis_config`
-     * @param Instance  $instance     Required. Update description.
-     *                                Only fields specified in update_mask are updated.
-     * @param array     $optionalArgs {
-     *                                Optional.
+     * @param FieldMask $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                              this field. The elements of the repeated paths field may only include these
+     *                              fields from [Instance][google.cloud.redis.v1beta1.Instance]:
+     *
+     *  *   `displayName`
+     *  *   `labels`
+     *  *   `memorySizeGb`
+     *  *   `redisConfig`
+     * @param Instance $instance     Required. Update description.
+     *                               Only fields specified in update_mask are updated.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -781,6 +784,92 @@ class CloudRedisGapicClient
 
         return $this->startOperationsCall(
             'DeleteInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Failover the master role to current replica node against a specific
+     * STANDARD tier redis instance.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new CloudRedisClient();
+     * try {
+     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $dataProtectionMode = FailoverInstanceRequest_DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'failoverInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string $name               Required. Redis instance resource name using the form:
+     *                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                                   where `location_id` refers to a GCP region
+     * @param int    $dataProtectionMode Optional. Available data protection modes that the user can choose. If it's
+     *                                   unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
+     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest_DataProtectionMode}
+     * @param array  $optionalArgs       {
+     *                                   Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function failoverInstance($name, $dataProtectionMode, array $optionalArgs = [])
+    {
+        $request = new FailoverInstanceRequest();
+        $request->setName($name);
+        $request->setDataProtectionMode($dataProtectionMode);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'FailoverInstance',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
