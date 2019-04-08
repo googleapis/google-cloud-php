@@ -19,6 +19,9 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\RetryDeciderTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -60,8 +63,21 @@ class RetryDeciderTraitTest extends TestCase
         $rateLimitExceededMessage = '{"error": {"errors": [{"reason": "rateLimitExceeded"}]}}';
         $userRateLimitExceededMessage = '{"error": {"errors": [{"reason": "userRateLimitExceeded"}]}}';
         $notAGoodMessage = '{"error": {"errors": [{"reason": "notAGoodReason"}]}}';
+        $rateLimitExceededResponse = new Response(400, [], $rateLimitExceededMessage);
+        $notAGoodMessageResponse = new Response(400, [], $notAGoodMessage);
+        $request = new Request('GET', 'https://www.example.com');
 
         return [
+            [
+                RequestException::create($request, $rateLimitExceededResponse),
+                true,
+                true
+            ],
+            [
+                RequestException::create($request, $notAGoodMessageResponse),
+                true,
+                false
+            ],
             [new \Exception('', 400), true, false],
             [new \Exception('', 500), true, true],
             [new \Exception('', 502), true, true],

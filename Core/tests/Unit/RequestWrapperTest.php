@@ -430,6 +430,40 @@ class RequestWrapperTest extends TestCase
         $this->assertEquals(1, $actualAttempts);
     }
 
+    public function testRestCalcDelayFunctionIsProperlySet()
+    {
+        $hasTriggeredException = false;
+        $actualDelay = 0;
+        $expectedDelay = 100;
+        $requestWrapper = new RequestWrapper([
+            'retries' => 1,
+            'httpHandler' => function () {
+                throw new \Exception;
+            },
+            'restRetryFunction' => function () {
+                return true;
+            },
+            'restDelayFunction' => function ($delay) use (&$actualDelay) {
+                $actualDelay = $delay;
+            },
+            'restCalcDelayFunction' => function () use ($expectedDelay) {
+                return $expectedDelay;
+            },
+            'shouldSignRequest' => false
+        ]);
+
+        try {
+            $requestWrapper->send(
+                new Request('GET', 'http://www.example.com')
+            );
+        } catch (\Exception $ex) {
+            $hasTriggeredException = true;
+        }
+
+        $this->assertTrue($hasTriggeredException);
+        $this->assertEquals($expectedDelay, $actualDelay);
+    }
+
     public function testDisablesRequestSigningWithAnonymousCredentials()
     {
         $headers = [];

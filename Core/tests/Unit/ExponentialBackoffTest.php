@@ -112,6 +112,31 @@ class ExponentialBackoffTest extends TestCase
         $this->assertEquals(1, $actualAttempts);
     }
 
+    public function testSetsCalculateDelayFunction()
+    {
+        $backoff = new ExponentialBackoff();
+        $hasTriggeredException = false;
+        $actualDelayAmount = 0;
+        $expectedDelayAmount = 100;
+        $backoff->setDelayFunction(function ($delay) use (&$actualDelayAmount) {
+            $actualDelayAmount = $delay;
+        });
+        $backoff->setCalcDelayFunction(function () use ($expectedDelayAmount) {
+            return $expectedDelayAmount;
+        });
+
+        try {
+            $backoff->execute(function () {
+                throw new \Exception();
+            });
+        } catch (\Exception $ex) {
+            $hasTriggeredException = true;
+        }
+
+        $this->assertTrue($hasTriggeredException);
+        $this->assertEquals($expectedDelayAmount, $actualDelayAmount);
+    }
+
     /**
      * @dataProvider delayProvider
      */

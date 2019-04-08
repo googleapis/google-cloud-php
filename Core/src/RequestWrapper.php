@@ -34,7 +34,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class RequestWrapper
 {
-    use JsonTrait;
     use RequestWrapperTrait;
     use RetryDeciderTrait;
 
@@ -82,16 +81,15 @@ class RequestWrapper
     private $retryFunction;
 
     /**
+     * @var callable Executes a delay.
+     */
+    private $delayFunction;
+
+    /**
      * @var callable|null Sets the conditions for determining how long to wait
      * between attempts to retry.
      */
-    private $restDelayFunction;
-
-    /**
-     * @var callable Sets the conditions for determining how long to wait
-     * between attempts to retry.
-     */
-    private $delayFunction;
+    private $calcDelayFunction;
 
     /**
      * @param array $config [optional] {
@@ -115,9 +113,14 @@ class RequestWrapper
      *     @type array $restOptions HTTP client specific configuration options.
      *     @type bool $shouldSignRequest Whether to enable request signing.
      *     @type callable $restRetryFunction Sets the conditions for whether or
-     *           not a request should attempt to retry.
-     *     @type callable $restDelayFunction Sets the conditions for determining
-     *           how long to wait between attempts to retry.
+     *           not a request should attempt to retry. Function signature should
+     *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restDelayFunction Executes a delay, defaults to
+     *           utilizing `usleep`. Function signature should match:
+     *           `function (int $delay) : void`.
+     *     @type callable $restCalcDelayFunction Sets the conditions for
+     *           determining how long to wait between attempts to retry. Function
+     *           signature should match: `function (int $attempt) : int`.
      * }
      */
     public function __construct(array $config = [])
@@ -132,7 +135,8 @@ class RequestWrapper
             'shouldSignRequest' => true,
             'componentVersion' => null,
             'restRetryFunction' => null,
-            'restDelayFunction' => null
+            'restDelayFunction' => null,
+            'restCalcDelayFunction' => null
         ];
 
         $this->componentVersion = $config['componentVersion'];
@@ -143,6 +147,7 @@ class RequestWrapper
         $this->delayFunction = $config['restDelayFunction'] ?: function ($delay) {
             usleep($delay);
         };
+        $this->calcDelayFunction = $config['restCalcDelayFunction'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
         $this->asyncHttpHandler = $config['asyncHttpHandler'] ?: $this->buildDefaultAsyncHandler();
@@ -164,9 +169,14 @@ class RequestWrapper
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type callable $restRetryFunction Sets the conditions for whether or
-     *           not a request should attempt to retry.
-     *     @type callable $restDelayFunction Sets the conditions for determining
-     *           how long to wait between attempts to retry.
+     *           not a request should attempt to retry. Function signature should
+     *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restDelayFunction Executes a delay, defaults to
+     *           utilizing `usleep`. Function signature should match:
+     *           `function (int $delay) : void`.
+     *     @type callable $restCalcDelayFunction Sets the conditions for
+     *           determining how long to wait between attempts to retry. Function
+     *           signature should match: `function (int $attempt) : int`.
      *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface
@@ -174,11 +184,18 @@ class RequestWrapper
     public function send(RequestInterface $request, array $options = [])
     {
         $retryOptions = $this->getRetryOptions($options);
-        $backoff = $this->configureBackoff(
+        $backoff = new ExponentialBackoff(
             $retryOptions['retries'],
-            $retryOptions['retryFunction'],
-            $retryOptions['delayFunction']
+            $retryOptions['retryFunction']
         );
+
+        if ($retryOptions['delayFunction']) {
+            $backoff->setDelayFunction($retryOptions['delayFunction']);
+        }
+
+        if ($retryOptions['calcDelayFunction']) {
+            $backoff->setCalcDelayFunction($retryOptions['calcDelayFunction']);
+        }
 
         try {
             return $backoff->execute($this->httpHandler, [
@@ -202,9 +219,14 @@ class RequestWrapper
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type callable $restRetryFunction Sets the conditions for whether or
-     *           not a request should attempt to retry.
-     *     @type callable $restDelayFunction Sets the conditions for determining
-     *           how long to wait between attempts to retry.
+     *           not a request should attempt to retry. Function signature should
+     *           match: `function (\Exception $ex) : bool`.
+     *     @type callable $restDelayFunction Executes a delay, defaults to
+     *           utilizing `usleep`. Function signature should match:
+     *           `function (int $delay) : void`.
+     *     @type callable $restCalcDelayFunction Sets the conditions for
+     *           determining how long to wait between attempts to retry. Function
+     *           signature should match: `function (int $attempt) : int`.
      *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return PromiseInterface<ResponseInterface>
@@ -221,6 +243,9 @@ class RequestWrapper
         $fn = function ($retryAttempt) use (&$fn, $request, $options) {
             $asyncHttpHandler = $this->asyncHttpHandler;
             $retryOptions = $this->getRetryOptions($options);
+            if (!$retryOptions['calcDelayFunction']) {
+                $retryOptions['calcDelayFunction'] = [ExponentialBackoff::class, 'calculateDelay'];
+            }
 
             return $asyncHttpHandler(
                 $this->applyHeaders($request),
@@ -232,7 +257,8 @@ class RequestWrapper
                     throw $this->convertToGoogleException($ex);
                 }
 
-                $retryOptions['delayFunction'](ExponentialBackoff::calculateDelay($retryAttempt));
+                $delay = $retryOptions['calcDelayFunction']($retryAttempt);
+                $retryOptions['delayFunction']($delay);
                 $retryAttempt++;
 
                 return $fn($retryAttempt);
@@ -339,13 +365,14 @@ class RequestWrapper
     /**
      * Gets the exception message.
      *
+     * @access private
      * @param \Exception $ex
      * @return string
      */
     private function getExceptionMessage(\Exception $ex)
     {
         if ($ex instanceof RequestException && $ex->hasResponse()) {
-            $res = (string) $ex->getResponse()->getBody();
+            return (string) $ex->getResponse()->getBody();
 
             try {
                 $this->jsonDecode($res);
@@ -356,25 +383,6 @@ class RequestWrapper
         }
 
         return $ex->getMessage();
-    }
-
-    /**
-     * Configures an exponential backoff implementation.
-     *
-     * @param int $retries
-     * @param callable $retryFunction
-     * @param callable $delayFunction
-     * @return ExponentialBackoff
-     */
-    private function configureBackoff($retries, callable $retryFunction, callable $delayFunction)
-    {
-        $backoff = new ExponentialBackoff($retries, $retryFunction);
-
-        if ($delayFunction) {
-            $backoff->setDelayFunction($delayFunction);
-        }
-
-        return $backoff;
     }
 
     /**
@@ -416,7 +424,10 @@ class RequestWrapper
                 : $this->retryFunction,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']
-                : $this->delayFunction
+                : $this->delayFunction,
+            'calcDelayFunction' => isset($options['restCalcDelayFunction'])
+                ? $options['restCalcDelayFunction']
+                : $this->calcDelayFunction
         ];
     }
 
