@@ -41,8 +41,10 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class LanguageClient
 {
-    use ClientTrait;
-    use RetryDeciderTrait;
+    use ClientTrait, RetryDeciderTrait {
+        ClientTrait::jsonEncode insteadof RetryDeciderTrait;
+        ClientTrait::jsonDecode insteadof RetryDeciderTrait;
+    }
 
     const VERSION = '0.18.0';
 

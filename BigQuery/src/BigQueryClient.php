@@ -46,8 +46,10 @@ use Psr\Http\Message\StreamInterface;
 class BigQueryClient
 {
     use ArrayTrait;
-    use ClientTrait;
-    use RetryDeciderTrait;
+    use ClientTrait, RetryDeciderTrait {
+        ClientTrait::jsonEncode insteadof RetryDeciderTrait;
+        ClientTrait::jsonDecode insteadof RetryDeciderTrait;
+    }
 
     const VERSION = '1.5.0';
 
@@ -124,7 +126,7 @@ class BigQueryClient
             'projectIdRequired' => true,
             'returnInt64AsObject' => false,
             'restRetryFunction' => $this->getRetryFunction(),
-            'restDelayFunction' => function ($attempt) {
+            'restCalcDelayFunction' => function ($attempt) {
                 return min(
                     mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
                     self::MAX_DELAY_MICROSECONDS
