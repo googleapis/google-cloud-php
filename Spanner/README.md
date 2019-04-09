@@ -92,7 +92,7 @@ $sessionPool = new CacheSessionPool(
     ]
 );
 
-$database = $client->connect(
+$database = $spanner->connect(
     'my-instance',
     'my-db',
     [
