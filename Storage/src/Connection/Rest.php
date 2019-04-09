@@ -421,6 +421,7 @@ class Rest implements ConnectionInterface
             'restOptions' => null,
             'retries' => null,
             'restRetryFunction' => null,
+            'restCalcDelayFunction' => null,
             'restDelayFunction' => null
         ]);
 

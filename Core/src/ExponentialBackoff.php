@@ -30,7 +30,7 @@ class ExponentialBackoff
     private $retries;
 
     /**
-     * @var callable
+     * @var callable|null
      */
     private $retryFunction;
 
@@ -38,6 +38,11 @@ class ExponentialBackoff
      * @var callable
      */
     private $delayFunction;
+
+    /**
+     * @var callable|null
+     */
+    private $calcDelayFunction;
 
     /**
      * @param int $retries [optional] Number of retries for a failed request.
@@ -66,6 +71,7 @@ class ExponentialBackoff
     public function execute(callable $function, array $arguments = [])
     {
         $delayFunction = $this->delayFunction;
+        $calcDelayFunction = $this->calcDelayFunction ?: [$this, 'calculateDelay'];
         $retryAttempt = 0;
         $exception = null;
 
@@ -83,7 +89,7 @@ class ExponentialBackoff
                     break;
                 }
 
-                $delayFunction($this->calculateDelay($retryAttempt));
+                $delayFunction($calcDelayFunction($retryAttempt));
                 $retryAttempt++;
             }
         }
@@ -92,12 +98,26 @@ class ExponentialBackoff
     }
 
     /**
+     * If not set, defaults to using `usleep`.
+     *
      * @param callable $delayFunction
      * @return void
      */
     public function setDelayFunction(callable $delayFunction)
     {
         $this->delayFunction = $delayFunction;
+    }
+
+    /**
+     * If not set, defaults to using
+     * {@see Google\Cloud\Core\ExponentialBackoff::calculateDelay()}.
+     *
+     * @param callable $calcDelayFunction
+     * @return void
+     */
+    public function setCalcDelayFunction(callable $calcDelayFunction)
+    {
+        $this->calcDelayFunction = $calcDelayFunction;
     }
 
     /**
