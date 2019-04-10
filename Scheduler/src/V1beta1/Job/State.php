@@ -41,11 +41,9 @@ class State
      */
     const DISABLED = 3;
     /**
-     * The job state resulting from a failed
-     * [CloudScheduler.UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob]
+     * The job state resulting from a failed [CloudScheduler.UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob]
      * operation. To recover a job from this state, retry
-     * [CloudScheduler.UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob]
-     * until a successful response is received.
+     * [CloudScheduler.UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob] until a successful response is received.
      *
      * Generated from protobuf enum <code>UPDATE_FAILED = 4;</code>
      */

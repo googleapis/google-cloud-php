@@ -79,14 +79,13 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
     /**
      * Updates a job.
      *
-     * If successful, the updated [Job][google.cloud.scheduler.v1beta1.Job] is
-     * returned. If the job does not exist, `NOT_FOUND` is returned.
+     * If successful, the updated [Job][google.cloud.scheduler.v1beta1.Job] is returned. If the job does
+     * not exist, `NOT_FOUND` is returned.
      *
      * If UpdateJob does not successfully return, it is possible for the
-     * job to be in an
-     * [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1beta1.Job.State.UPDATE_FAILED]
-     * state. A job in this state may not be executed. If this happens, retry the
-     * UpdateJob request until a successful response is received.
+     * job to be in an [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1beta1.Job.State.UPDATE_FAILED] state. A job in this state may
+     * not be executed. If this happens, retry the UpdateJob request
+     * until a successful response is received.
      * @param \Google\Cloud\Scheduler\V1beta1\UpdateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -117,14 +116,10 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * Pauses a job.
      *
      * If a job is paused then the system will stop executing the job
-     * until it is re-enabled via
-     * [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
-     * state of the job is stored in
-     * [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it will be set
-     * to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A
-     * job must be in
-     * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED] to be
-     * paused.
+     * until it is re-enabled via [ResumeJob][google.cloud.scheduler.v1beta1.CloudScheduler.ResumeJob]. The
+     * state of the job is stored in [state][google.cloud.scheduler.v1beta1.Job.state]; if paused it
+     * will be set to [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. A job must be in [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]
+     * to be paused.
      * @param \Google\Cloud\Scheduler\V1beta1\PauseJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -140,15 +135,10 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
     /**
      * Resume a job.
      *
-     * This method reenables a job after it has been
-     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
-     * state of a job is stored in
-     * [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this
-     * method it will be set to
-     * [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A
-     * job must be in
-     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be
-     * resumed.
+     * This method reenables a job after it has been [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED]. The
+     * state of a job is stored in [Job.state][google.cloud.scheduler.v1beta1.Job.state]; after calling this method it
+     * will be set to [Job.State.ENABLED][google.cloud.scheduler.v1beta1.Job.State.ENABLED]. A job must be in
+     * [Job.State.PAUSED][google.cloud.scheduler.v1beta1.Job.State.PAUSED] to be resumed.
      * @param \Google\Cloud\Scheduler\V1beta1\ResumeJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

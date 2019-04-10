@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [GetJob][google.cloud.scheduler.v1beta1.CloudScheduler.GetJob].
+ * Request message for [GetJob][google.cloud.scheduler.v1beta1.CloudScheduler.GetJob].
  *
  * Generated from protobuf message <code>google.cloud.scheduler.v1beta1.GetJobRequest</code>
  */
