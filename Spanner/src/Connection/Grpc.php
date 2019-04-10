@@ -461,9 +461,11 @@ class Grpc implements ConnectionInterface
      * Note: This should be removed once GAPIC exposes the ability to execute
      * concurrent requests.
      *
+     * @access private
+     * @experimental
      * @param array $args
      * @return PromiseInterface
-     * @experimental
+     * @throws \Google\ApiCore\ValidationException
      */
     public function createSessionAsync(array $args)
     {
