@@ -17,6 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Job extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob], after
+     * which it becomes output only.
      * The job name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
@@ -35,6 +37,8 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob] or
+     * [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      * A human-readable description for the job. This string must not contain
      * more than 500 characters.
      *
@@ -42,8 +46,12 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required.
+     * Required, except when used with [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      * Describes the schedule on which the job will be executed.
+     * The schedule can be either of the following types:
+     * * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
+     * * English-like
+     * [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      * As a general rule, execution `n + 1` of a job will not begin
      * until execution `n` has finished. Cloud Scheduler will never
      * allow two simultaneously outstanding executions. For example,
@@ -52,24 +60,18 @@ class Job extends \Google\Protobuf\Internal\Message
      * execution will not start until `16:15`.
      * A scheduled start time will be delayed if the previous
      * execution has not ended when its scheduled time occurs.
-     * If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] >
-     * 0 and a job attempt fails, the job will be tried a total of
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] > 0 and a job attempt fails,
+     * the job will be tried a total of [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
      * times, with exponential backoff, until the next scheduled start
      * time.
-     * The schedule can be either of the following types:
-     * * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
-     * * English-like
-     * [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      */
     private $schedule = '';
     /**
      * Specifies the time zone to be used in interpreting
-     * [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this
-     * field must be a time zone name from the [tz
-     * database](http://en.wikipedia.org/wiki/Tz_database).
+     * [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this field must be a time
+     * zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database).
      * Note that some time zones include a provision for
      * daylight savings time. The rules for daylight saving time are
      * determined by the chosen tz. For UTC use the string "utc". If a
@@ -117,6 +119,21 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.RetryConfig retry_config = 19;</code>
      */
     private $retry_config = null;
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as a
+     * `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according
+     * to the [RetryConfig][google.cloud.scheduler.v1beta1.RetryConfig].
+     * The allowed duration for this deadline is:
+     * * For [HTTP targets][google.cloud.scheduler.v1beta1.Job.http_target], between 15 seconds and 30 minutes.
+     * * For [App Engine HTTP targets][google.cloud.scheduler.v1beta1.Job.app_engine_http_target], between 15
+     *   seconds and 24 hours.
+     * * For [PubSub targets][google.cloud.scheduler.v1beta1.Job.pubsub_target], this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
+     */
+    private $attempt_deadline = null;
     protected $target;
 
     /**
@@ -126,6 +143,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
+     *           Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob], after
+     *           which it becomes output only.
      *           The job name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *           * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
@@ -140,6 +159,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]),
      *              hyphens (-), or underscores (_). The maximum length is 500 characters.
      *     @type string $description
+     *           Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob] or
+     *           [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      *           A human-readable description for the job. This string must not contain
      *           more than 500 characters.
      *     @type \Google\Cloud\Scheduler\V1beta1\PubsubTarget $pubsub_target
@@ -149,8 +170,12 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Scheduler\V1beta1\HttpTarget $http_target
      *           HTTP target.
      *     @type string $schedule
-     *           Required.
+     *           Required, except when used with [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      *           Describes the schedule on which the job will be executed.
+     *           The schedule can be either of the following types:
+     *           * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
+     *           * English-like
+     *           [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      *           As a general rule, execution `n + 1` of a job will not begin
      *           until execution `n` has finished. Cloud Scheduler will never
      *           allow two simultaneously outstanding executions. For example,
@@ -159,20 +184,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *           execution will not start until `16:15`.
      *           A scheduled start time will be delayed if the previous
      *           execution has not ended when its scheduled time occurs.
-     *           If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] >
-     *           0 and a job attempt fails, the job will be tried a total of
-     *           [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     *           If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] > 0 and a job attempt fails,
+     *           the job will be tried a total of [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
      *           times, with exponential backoff, until the next scheduled start
      *           time.
-     *           The schedule can be either of the following types:
-     *           * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
-     *           * English-like
-     *           [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      *     @type string $time_zone
      *           Specifies the time zone to be used in interpreting
-     *           [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this
-     *           field must be a time zone name from the [tz
-     *           database](http://en.wikipedia.org/wiki/Tz_database).
+     *           [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this field must be a time
+     *           zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database).
      *           Note that some time zones include a provision for
      *           daylight savings time. The rules for daylight saving time are
      *           determined by the chosen tz. For UTC use the string "utc". If a
@@ -192,6 +211,17 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The time the last job attempt started.
      *     @type \Google\Cloud\Scheduler\V1beta1\RetryConfig $retry_config
      *           Settings that determine the retry behavior.
+     *     @type \Google\Protobuf\Duration $attempt_deadline
+     *           The deadline for job attempts. If the request handler does not respond by
+     *           this deadline then the request is cancelled and the attempt is marked as a
+     *           `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     *           execution logs. Cloud Scheduler will retry the job according
+     *           to the [RetryConfig][google.cloud.scheduler.v1beta1.RetryConfig].
+     *           The allowed duration for this deadline is:
+     *           * For [HTTP targets][google.cloud.scheduler.v1beta1.Job.http_target], between 15 seconds and 30 minutes.
+     *           * For [App Engine HTTP targets][google.cloud.scheduler.v1beta1.Job.app_engine_http_target], between 15
+     *             seconds and 24 hours.
+     *           * For [PubSub targets][google.cloud.scheduler.v1beta1.Job.pubsub_target], this field is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -200,6 +230,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob], after
+     * which it becomes output only.
      * The job name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
@@ -223,6 +255,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob], after
+     * which it becomes output only.
      * The job name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),
@@ -250,6 +284,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob] or
+     * [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      * A human-readable description for the job. This string must not contain
      * more than 500 characters.
      *
@@ -262,6 +298,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optionally caller-specified in [CreateJob][google.cloud.scheduler.v1beta1.CloudScheduler.CreateJob] or
+     * [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      * A human-readable description for the job. This string must not contain
      * more than 500 characters.
      *
@@ -356,8 +394,12 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
+     * Required, except when used with [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      * Describes the schedule on which the job will be executed.
+     * The schedule can be either of the following types:
+     * * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
+     * * English-like
+     * [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      * As a general rule, execution `n + 1` of a job will not begin
      * until execution `n` has finished. Cloud Scheduler will never
      * allow two simultaneously outstanding executions. For example,
@@ -366,15 +408,10 @@ class Job extends \Google\Protobuf\Internal\Message
      * execution will not start until `16:15`.
      * A scheduled start time will be delayed if the previous
      * execution has not ended when its scheduled time occurs.
-     * If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] >
-     * 0 and a job attempt fails, the job will be tried a total of
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] > 0 and a job attempt fails,
+     * the job will be tried a total of [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
      * times, with exponential backoff, until the next scheduled start
      * time.
-     * The schedule can be either of the following types:
-     * * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
-     * * English-like
-     * [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      * @return string
@@ -385,8 +422,12 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
+     * Required, except when used with [UpdateJob][google.cloud.scheduler.v1beta1.CloudScheduler.UpdateJob].
      * Describes the schedule on which the job will be executed.
+     * The schedule can be either of the following types:
+     * * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
+     * * English-like
+     * [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      * As a general rule, execution `n + 1` of a job will not begin
      * until execution `n` has finished. Cloud Scheduler will never
      * allow two simultaneously outstanding executions. For example,
@@ -395,15 +436,10 @@ class Job extends \Google\Protobuf\Internal\Message
      * execution will not start until `16:15`.
      * A scheduled start time will be delayed if the previous
      * execution has not ended when its scheduled time occurs.
-     * If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] >
-     * 0 and a job attempt fails, the job will be tried a total of
-     * [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
+     * If [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count] > 0 and a job attempt fails,
+     * the job will be tried a total of [retry_count][google.cloud.scheduler.v1beta1.RetryConfig.retry_count]
      * times, with exponential backoff, until the next scheduled start
      * time.
-     * The schedule can be either of the following types:
-     * * [Crontab](http://en.wikipedia.org/wiki/Cron#Overview)
-     * * English-like
-     * [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules)
      *
      * Generated from protobuf field <code>string schedule = 20;</code>
      * @param string $var
@@ -419,9 +455,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the time zone to be used in interpreting
-     * [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this
-     * field must be a time zone name from the [tz
-     * database](http://en.wikipedia.org/wiki/Tz_database).
+     * [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this field must be a time
+     * zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database).
      * Note that some time zones include a provision for
      * daylight savings time. The rules for daylight saving time are
      * determined by the chosen tz. For UTC use the string "utc". If a
@@ -438,9 +473,8 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the time zone to be used in interpreting
-     * [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this
-     * field must be a time zone name from the [tz
-     * database](http://en.wikipedia.org/wiki/Tz_database).
+     * [schedule][google.cloud.scheduler.v1beta1.Job.schedule]. The value of this field must be a time
+     * zone name from the [tz database](http://en.wikipedia.org/wiki/Tz_database).
      * Note that some time zones include a provision for
      * daylight savings time. The rules for daylight saving time are
      * determined by the chosen tz. For UTC use the string "utc". If a
@@ -615,6 +649,50 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Scheduler\V1beta1\RetryConfig::class);
         $this->retry_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as a
+     * `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according
+     * to the [RetryConfig][google.cloud.scheduler.v1beta1.RetryConfig].
+     * The allowed duration for this deadline is:
+     * * For [HTTP targets][google.cloud.scheduler.v1beta1.Job.http_target], between 15 seconds and 30 minutes.
+     * * For [App Engine HTTP targets][google.cloud.scheduler.v1beta1.Job.app_engine_http_target], between 15
+     *   seconds and 24 hours.
+     * * For [PubSub targets][google.cloud.scheduler.v1beta1.Job.pubsub_target], this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getAttemptDeadline()
+    {
+        return $this->attempt_deadline;
+    }
+
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as a
+     * `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according
+     * to the [RetryConfig][google.cloud.scheduler.v1beta1.RetryConfig].
+     * The allowed duration for this deadline is:
+     * * For [HTTP targets][google.cloud.scheduler.v1beta1.Job.http_target], between 15 seconds and 30 minutes.
+     * * For [App Engine HTTP targets][google.cloud.scheduler.v1beta1.Job.app_engine_http_target], between 15
+     *   seconds and 24 hours.
+     * * For [PubSub targets][google.cloud.scheduler.v1beta1.Job.pubsub_target], this field is ignored.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setAttemptDeadline($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->attempt_deadline = $var;
 
         return $this;
     }
