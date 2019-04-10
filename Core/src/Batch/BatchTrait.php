@@ -93,7 +93,7 @@ trait BatchTrait
         } catch (\Exception $e) {
             if ($this->debugOutput) {
                 fwrite(
-                    $this->debugOutputResource ?: STDERR,
+                    $this->debugOutputResource,
                     $e->getMessage() . PHP_EOL . PHP_EOL
                     . $e->getTraceAsString() . PHP_EOL
                 );
@@ -104,7 +104,7 @@ trait BatchTrait
         $end = microtime(true);
         if ($this->debugOutput) {
             fwrite(
-                $this->debugOutputResource ?: STDERR,
+                $this->debugOutputResource,
                 sprintf(
                     '%f seconds for %s: %d items' . PHP_EOL,
                     $end - $start,
@@ -113,7 +113,7 @@ trait BatchTrait
                 )
             );
             fwrite(
-                $this->debugOutputResource ?: STDERR,
+                $this->debugOutputResource,
                 sprintf(
                     'memory used: %d' . PHP_EOL,
                     memory_get_usage()
@@ -137,10 +137,11 @@ trait BatchTrait
      *     Configuration options.
      *
      *     @type resource $debugOutputResource A resource to output debug output
-     *           to.
+     *           to. **Defaults to** `php://stderr`.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           Please note debug output currently only applies in CLI based
-     *           applications. **Defaults to** `false`.
+     *           Please note that unless a debug output resource is configured
+     *           this setting will only apply to CLI based applications.
+     *           **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
@@ -184,7 +185,7 @@ trait BatchTrait
         $this->identifier = $options['identifier'];
         $this->debugOutputResource = isset($options['debugOutputResource'])
             ? $options['debugOutputResource']
-            : null;
+            : fopen('php://stderr', 'w');
         $this->debugOutput = isset($options['debugOutput'])
             ? $options['debugOutput']
             : false;
