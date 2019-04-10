@@ -49,7 +49,7 @@ class SignedUrlConformanceTest extends TestCase
         $expiration = $generationTimestamp->format('U') + $testdata['expiration'];
 
         $expectedUrl = $testdata['expectedUrl'];
-        unset (
+        unset(
             $testdata['expectedUrl'],
             $testdata['bucket'],
             $testdata['object'],
