@@ -43,29 +43,6 @@ class Report
         }
     }
 
-    public function average(array $input)
-    {
-        return count($input) > 0
-            ? array_sum($input) / count($input)
-            : 0;
-    }
-
-    public function standardDeviation(array $input)
-    {
-        $mean = $this->average($input);
-        foreach ($input as &$val) {
-            $val = pow($val - $mean, 2);
-        }
-        return sqrt($this->average($input));
-    }
-
-    public function percentile(array $input, $pct)
-    {
-        sort($input);
-        $i = floor($pct * count($input));
-        return isset($input[$i]) ? $input[$i] : 0;
-    }
-
     public function aggregateMetrics(array $latency, $duration)
     {
         $overallOpCount = 0;
@@ -76,40 +53,83 @@ class Report
             $overallOpCount += $oppCounts[$opKey];
         }
 
-        $r = $overallOpCount / $duration;
-        $this->report("[OVERALL] Throughput (Ops/sec), $r \n");
+        $this->report(sprintf(
+            '[OVERALL] Throughput (Ops/sec), %s' . PHP_EOL,
+            $overallOpCount / $duration
+        ));
 
+        $template = '[%s], %s: %s.' . PHP_EOL;
         foreach ($oppCounts as $opKey => $intOpCounts) {
             $strUpperOp = strtoupper($opKey);
-            $this->report("[$strUpperOp], Operations: $intOpCounts. \n");
 
-            $r = $this->average($latency[$opKey])*1000;
-            $this->report("[$strUpperOp], AverageLatency(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                'Operations',
+                $intOpCounts
+            ));
 
-            $r = $this->standardDeviation($latency[$opKey])*1000;
-            $this->report("[$strUpperOp], LatencyVariance(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                'AverageLatency(us)',
+                $this->average($latency[$opKey])
+            ));
 
-            $r = $latency[$opKey]
-                ? min($latency[$opKey])*1000
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                'LatencyVariance(us)',
+                $this->standardDeviation($latency[$opKey])
+            ));
+
+            $minLatency = $latency[$opKey]
+                ? min($latency[$opKey])
                 : 0;
-            $this->report("[$strUpperOp], MinLatency(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                'MinLatency(us)',
+                $minLatency
+            ));
 
-            $r = $latency[$opKey]
-                ? max($latency[$opKey])*1000
+            $maxLatency = $latency[$opKey]
+                ? max($latency[$opKey])
                 : 0;
-            $this->report("[$strUpperOp], MaxLatency(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                'MaxLatency(us)',
+                $maxLatency
+            ));
 
-            $r = $this->percentile($latency[$opKey], 0.50)*1000;
-            $this->report("[$strUpperOp], 50thPercentile(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                '50thPercentile(us)',
+                $this->percentile($latency[$opKey], 0.50)
+            ));
 
-            $r = $this->percentile($latency[$opKey], 0.95)*1000;
-            $this->report("[$strUpperOp], 95thPercentile(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                '95thPercentile(us)',
+                $this->percentile($latency[$opKey], 0.95)
+            ));
 
-            $r = $this->percentile($latency[$opKey], 0.99)*1000;
-            $this->report("[$strUpperOp], 99thPercentile(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                '99thPercentile(us)',
+                $this->percentile($latency[$opKey], 0.99)
+            ));
 
-            $r = $this->percentile($latency[$opKey], 0.999)*1000;
-            $this->report("[$strUpperOp], 99.9thPercentile(us) $r \n");
+            $this->report(sprintf(
+                $template,
+                $strUpperOp,
+                '99.9thPercentile(us)',
+                $this->percentile($latency[$opKey], 0.999)
+            ));
         }
     }
 
@@ -118,5 +138,33 @@ class Report
         if ($this->sapi !== 'cli') {
             echo $this->message;
         }
+    }
+
+    private function average(array $input)
+    {
+        $val = count($input) > 0
+            ? array_sum($input) / count($input)
+            : 0;
+
+        return $val * 1000;
+    }
+
+    private function standardDeviation(array $input)
+    {
+        $mean = $this->average($input);
+        foreach ($input as &$val) {
+            $val = pow($val - $mean, 2);
+        }
+        return sqrt($this->average($input)) * 1000;
+    }
+
+    private function percentile(array $input, $pct)
+    {
+        sort($input);
+        $i = floor($pct * count($input));
+
+        $val = isset($input[$i]) ? $input[$i] : 0;
+
+        return $val * 1000;
     }
 }

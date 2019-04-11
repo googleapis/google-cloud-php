@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Perf;
 
-use Google\Cloud\Spanner\Database;
-
 class Operation
 {
     /**
@@ -32,7 +30,7 @@ class Operation
     private $parameters;
 
     /**
-     * float
+     * @var float
      */
     private $totalWeight;
 
@@ -52,7 +50,7 @@ class Operation
     private $latency;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $keys;
 
@@ -80,6 +78,11 @@ class Operation
         $this->latency = $latency;
     }
 
+    /**
+     * Load keys for executing operations.
+     *
+     * @return float
+     */
     public function load()
     {
         $this->keys = [];
@@ -87,7 +90,7 @@ class Operation
         $startTime = microtime(true);
         $snapshot = $this->database->snapshot();
 
-        // Kind of assuming that id is always name of PK in whatever table you choose
+        // The table must have a primary key called `id`.
         $results = $snapshot->execute('SELECT id FROM ' . $this->parameters['table']);
         foreach ($results as $row) {
             $this->keys[] = $row['id'];
@@ -99,7 +102,7 @@ class Operation
     /**
      * Run a single thread of the workload
      *
-     * @return void
+     * @return array
      */
     public function run()
     {
@@ -134,27 +137,21 @@ class Operation
      * @param string $database
      * @param string $table
      * @param array $operation
-     * @return void
+     * @return float
      */
     private function runOperation($database, $table, $operation)
     {
         $key = $this->keys[array_rand($this->keys)];
         switch ($operation) {
             case 'read':
-                $optime = $this->performRead($database, $table, $key);
-                break;
+                return $this->performRead($database, $table, $key);
             case 'update':
-                $optime = $this->update($database, $table, $key);
-                break;
+                return $this->update($database, $table, $key);
             case 'insert':
-                $optime = $this->insert($database, $table);
-                break;
+                return $this->insert($database, $table);
             case 'scan':
-                $optime = $this->scan($database, $table, $key);
-                break;
+                return $this->scan($database, $table, $key);
         }
-
-        return $optime;
     }
 
     /**
@@ -169,16 +166,11 @@ class Operation
     {
         $startTime = microtime(true);
 
-        // Kind of assuming that id is ubiquitous...
-        $results = $database->execute('SELECT * FROM ' . $table . ' where id = @id', [
+        iterator_to_array($database->execute('SELECT * FROM ' . $table . ' where id = @id', [
             'parameters' => [
                 'id' => $key
             ]
-        ]);
-
-        foreach ($results as $row) {
-            $key = $row;
-        }
+        ])->rows());
 
         return microtime(true) - $startTime;
     }
@@ -197,10 +189,10 @@ class Operation
         $field = rand(0, 9);
         $startTime = microtime(true);
 
-        $operation = $database->transaction(['singleUse' => false])
+        $database->transaction(['singleUse' => false])
             ->update($table, [
                 'id' => $key,
-                'field' . $field => $this->randString(false, 100)
+                'field' . $field => $this->randString(100)
             ])->commit();
 
         return microtime(true) - $startTime;
@@ -215,19 +207,19 @@ class Operation
      */
     private function insert($database, $table)
     {
-        $batch = [];  //array of $arrFields
+        $batch = [];
         $fields = [];
-        $fields['id'] = 'user4' . $this->randString(true, 17);
+        $fields['id'] = 'user4' . $this->randString(17, true);
 
         for ($f = 0; $f < 10; $f++) {
-            $fields['field' . $f] = $this->randString(false, 100);
+            $fields['field' . $f] = $this->randString(100);
         }
 
         $batch[] = $fields;
         array_multisort($batch);
 
         $startTime = microtime(true);
-        $operation = $database->transaction(['singleUse' => true])
+        $database->transaction(['singleUse' => true])
             ->insertBatch($table, $batch)
             ->commit();
 
@@ -248,20 +240,18 @@ class Operation
         return 0.0;
     }
 
-    private function randString($num, $len)
+    private function randString($length, $numbersOnly = false)
     {
-        $strRand = "";
-        if ($num == true) {
-            $characters = '0123456789';
-        } else {
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        }
+        $characters = $numbersOnly
+            ? '0123456789'
+            : '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
         $charlen = strlen($characters);
-        for ($i = 0; $i < $len; $i++) {
-            $strRand .= $characters[rand(0, $charlen - 1)];
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charlen - 1)];
         }
 
-        return $strRand;
+        return $randomString;
     }
 }

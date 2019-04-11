@@ -19,21 +19,21 @@ namespace Google\Cloud\Spanner\Tests\Perf;
 
 class Config
 {
-    private $sapi;
-
-    private $parameters = [
-        "operationcount",
-        "instance",
-        "database",
-        "table",
-        "workload",
-    ];
-
     public static $operations = [
         'readproportion',
         'updateproportion',
         'scanproportion',
         'insertproportion'
+    ];
+
+    private $sapi;
+
+    private $parameters = [
+        'operationcount',
+        'instance',
+        'database',
+        'table',
+        'workload',
     ];
 
     private function __construct($sapi)
@@ -49,23 +49,18 @@ class Config
 
     public function parseInputParams()
     {
-        switch ($this->sapi) {
-            case 'cli':
-                return $this->parseCliInputParams();
-                break;
-            case 'default':
-                return $this->parseQueryStringInputParams();
-                break;
-        }
+        return $this->sapi === 'cli'
+            ? $this->parseCliInputParams()
+            : $this->parseQueryStringInputParams();
     }
 
     private function parseCliInputParams()
     {
-        $parameters = getopt("", array_map(function ($paramName) {
+        $parameters = getopt('', array_map(function ($paramName) {
             return $paramName . ':';
         }, $this->parameters));
 
-        return $this->loadWorkloadFile($parameters, $parameters['workload']);
+        return $this->loadWorkloadFile($parameters);
     }
 
     private function parseQueryStringInputParams()
@@ -73,23 +68,24 @@ class Config
         $parameters = [];
         foreach ($this->parameters as $param) {
             if (!isset($_GET[$param])) {
-                throw new \RuntimeException('Missing '. $param);
+                throw new \RuntimeException('Missing ' . $param);
             }
 
             $parameters[$param] = $_GET[$param];
         }
 
-        return $this->loadWorkloadFile($parameters, $parameters['workload']);
+        return $this->loadWorkloadFile($parameters);
     }
 
-    private function loadWorkloadFile(array $parameters, $path)
+    private function loadWorkloadFile(array $parameters)
     {
+        $path = $parameters['workload'];
         if (!file_exists($path)) {
             throw new \RuntimeException('Unable to load file from ' . $path);
         }
 
         foreach (explode(PHP_EOL, file_get_contents($path)) as $line) {
-            $parts = explode("=", $line);
+            $parts = explode('=', $line);
             $key = trim($parts[0]);
 
             if (in_array($key, self::$operations)) {
