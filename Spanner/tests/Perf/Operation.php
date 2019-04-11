@@ -81,13 +81,12 @@ class Operation
     /**
      * Load keys for executing operations.
      *
-     * @return float
+     * @return void
      */
     public function load()
     {
         $this->keys = [];
 
-        $startTime = microtime(true);
         $snapshot = $this->database->snapshot();
 
         // The table must have a primary key called `id`.
@@ -95,8 +94,6 @@ class Operation
         foreach ($results as $row) {
             $this->keys[] = $row['id'];
         }
-
-        return microtime(true) - $startTime;
     }
 
     /**
@@ -150,7 +147,8 @@ class Operation
             case 'insert':
                 return $this->insert($database, $table);
             case 'scan':
-                return $this->scan($database, $table, $key);
+                trigger_error('Scan is not implemented.', E_USER_NOTICE);
+                return 0.0;
         }
     }
 
@@ -224,20 +222,6 @@ class Operation
             ->commit();
 
         return microtime(true) - $startTime;
-    }
-
-    /**
-     * Not Implemented.
-     *
-     * @param string $database
-     * @param string $table
-     * @param string $key
-     * @return float
-     */
-    private function scan($database, $table, $key)
-    {
-        // not implemented.
-        return 0.0;
     }
 
     private function randString($length, $numbersOnly = false)
