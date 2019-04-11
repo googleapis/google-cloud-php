@@ -1,4 +1,4 @@
-# Cloud Spanner YCSB
+# Cloud Spanner Yahoo! Cloud System Benchmark (YCSB)
 
 To execute spanner performance tests, make sure Composer dependencies are installed at either a component or library level.
 
