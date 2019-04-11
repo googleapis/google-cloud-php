@@ -81,12 +81,13 @@ class Operation
     /**
      * Load keys for executing operations.
      *
-     * @return void
+     * @return float
      */
     public function load()
     {
         $this->keys = [];
 
+        $startTime = microtime(true);
         $snapshot = $this->database->snapshot();
 
         // The table must have a primary key called `id`.
@@ -94,6 +95,8 @@ class Operation
         foreach ($results as $row) {
             $this->keys[] = $row['id'];
         }
+
+        return microtime(true) - $startTime;
     }
 
     /**

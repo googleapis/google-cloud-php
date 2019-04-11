@@ -80,12 +80,11 @@ foreach (Config::$operations as $operation) {
 $timeStart = microtime(true);
 
 $testOp = new Operation($database, $parameters, $totalWeight, $weights, $operations, $latency);
-$testOp->load();
+$loadTime = $testOp->load();
 $latency = $testOp->run();
 
 $timeEnd = microtime(true) - $timeStart;
 
-// Unfortunately, latencies not stored and reported like in the original script.
-// aggregateMetrics(latency, (end - start) * 1000.0, parameters['num_bucket']);
-$report->report("[OVERALL] Operation run time: $timeEnd s\n");
+$report->report('[OVERALL] Operation run time: ' . $timeEnd . PHP_EOL);
+$report->report('[OVERALL] Load time: ' . $loadTime . PHP_EOL);
 $report->aggregateMetrics($latency, $timeEnd);
