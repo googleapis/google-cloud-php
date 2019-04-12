@@ -479,8 +479,9 @@ class Grpc implements ConnectionInterface
         ]);
 
         $session = $this->pluck('session', $args, false);
+
         if ($session) {
-            $sessionMessage = $this->serializer->decodeMessage(new Session, $session);
+            $sessionMessage = new Session($session);
             $request->setSession($sessionMessage);
         }
 
