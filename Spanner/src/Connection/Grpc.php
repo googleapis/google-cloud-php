@@ -465,7 +465,6 @@ class Grpc implements ConnectionInterface
      * @experimental
      * @param array $args
      * @return PromiseInterface
-     * @throws \Google\ApiCore\ValidationException
      */
     public function createSessionAsync(array $args)
     {
