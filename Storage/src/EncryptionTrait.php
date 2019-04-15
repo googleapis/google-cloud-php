@@ -17,9 +17,6 @@
 
 namespace Google\Cloud\Storage;
 
-use InvalidArgumentException;
-use phpseclib\Crypt\RSA;
-
 /**
  * Trait which provides helper methods for customer-supplied encryption.
  */
@@ -109,39 +106,5 @@ trait EncryptionTrait
         }
 
         return [];
-    }
-
-    /**
-     * Sign a string using a given private key.
-     *
-     * @param string $privateKey The private key to use to sign the data.
-     * @param string $data The data to sign.
-     * @param bool $forceOpenssl If true, OpenSSL will be used regardless of
-     *        whether phpseclib is available. **Defaults to** `false`.
-     * @return string The signature
-     */
-    protected function signString($privateKey, $data, $forceOpenssl = false)
-    {
-        $signature = '';
-
-        openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
-        return $signature;
-
-        if (class_exists(RSA::class) && !$forceOpenssl) {
-            $rsa = new RSA;
-            $rsa->loadKey($privateKey);
-            $rsa->setSignatureMode(RSA::SIGNATURE_PKCS1);
-            $rsa->setHash('sha256');
-
-            $signature = $rsa->sign($data);
-        } elseif (extension_loaded('openssl')) {
-            openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
-        } else {
-            // @codeCoverageIgnoreStart
-            throw new \RuntimeException('OpenSSL is not installed.');
-        }
-        // @codeCoverageIgnoreEnd
-
-        return $signature;
     }
 }

@@ -50,8 +50,13 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
+<<<<<<< HEAD
         "google/gax": "^1.0",
         "google/common-protos": "^1.0"
+=======
+        "google/gax": "dev-master",
+        "google/auth": "dev-iam"
+>>>>>>> af678dc36... WIP
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
@@ -244,5 +249,14 @@
                 "ServiceBuilder.php"
             ]
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/jdp/Projects/gcp/google-auth-library-php"
+        }, {
+            "type": "path",
+            "url": "/Users/jdp/Projects/gcp/gax-php"
+        }
+    ]
 }

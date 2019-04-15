@@ -128,6 +128,16 @@ trait RequestWrapperTrait
     }
 
     /**
+     * Get the scopes
+     *
+     * @return array
+     */
+    public function scopes()
+    {
+        return $this->scopes;
+    }
+
+    /**
      * Gets the credentials fetcher and sets up caching. Precedence is as
      * follows:
      *

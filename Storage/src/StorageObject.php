@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
@@ -732,6 +733,7 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
+     *     @type string $version One of "v2" or "v4". **Defaults to** "v4".
      *     @type string $method One of `GET`, `PUT` or `DELETE`.
      *           **Defaults to** `GET`.
      *     @type string $cname The CNAME for the bucket, for instance
@@ -776,61 +778,81 @@ class StorageObject
     public function signedUrl($expires, array $options = [])
     {
         $options += [
-            'method' => 'GET',
-            'headers' => [],
+            'cname' => self::DEFAULT_DOWNLOAD_URL,
+            'version' => 'v2',
             'keyFile' => null,
-            'keyFilePath' => null,
-            'signingVersion' => 'V2',
-            'allowPost' => false,
-            'forceOpenssl' => false,
+            'keyFilePath' => null
         ];
 
-        if ($expires instanceof Timestamp) {
-            $seconds = $expires->get()->format('U');
-        } elseif ($expires instanceof \DateTimeInterface) {
-            $seconds = $expires->format('U');
-        } elseif (is_numeric($expires)) {
-            $seconds = (int) $expires;
-        } else {
-            throw new \InvalidArgumentException('Invalid expiration.');
+        if ($options['keyFilePath']) {
+            if (!file_exists($options['keyFilePath'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not exist.',
+                    $options['keyFilePath']
+                ));
+            }
+
+            $options['keyFile'] = json_decode(file_get_contents($options['keyFilePath']), true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not contain valid json.',
+                    $options['keyFilePath']
+                ));
+            }
         }
 
-        if ($seconds < time()) {
-            throw new \InvalidArgumentException('Expiration cannot be in the past.');
+        $rw = $this->connection->requestWrapper();
+        $credentials = $options['keyFile']
+            ? CredentialsLoader::makeCredentials($rw->scopes(), $options['keyFile'])
+            : $rw->getCredentialsFetcher();
+
+        $keyFile = $options['keyFile'] ?: $rw->keyFile();
+
+        $helper = new SigningHelper(
+            $credentials,
+            $keyFile,
+            $expires
+        );
+
+        $objectPieces = explode('/', $this->identity['object']);
+        array_walk($objectPieces, function (&$piece) {
+            $piece = rawurlencode($piece);
+        });
+        $objectName = implode('/', $objectPieces);
+
+        $resource = sprintf(
+            '/%s/%s',
+            $this->identity['bucket'],
+            $objectName
+        );
+
+        $options['cname'] = trim($options['cname'], '/');
+
+        // If a custom cname is used, then the resource is simply the objectName
+        if ($options['cname'] !== self::DEFAULT_DOWNLOAD_URL) {
+            $resource = '/' . $objectName;
         }
 
-        $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];
-        $options['method'] = strtoupper($options['method']);
-        if (!in_array($options['method'], $allowedMethods)) {
-            throw new \InvalidArgumentException('$options.method must be one of `GET`, `PUT` or `DELETE`.');
-        }
+        $uri = $options['cname'] . $resource;
 
-        if ($options['method'] === 'POST' && !$options['allowPost']) {
-            throw new \InvalidArgumentException(
-                'Invalid method. To create an upload URI, use StorageObject::signedUploadUrl().'
-            );
-        }
-
-        // expiration note:
-        // v2 uses absolute expiration
-        // v4 uses seconds from now.
-
-        $options['signingVersion'] = strtoupper($options['signingVersion']);
-        switch ($options['signingVersion']) {
-            case 'V2':
-                $url = $this->signUrlV2($seconds, $options);
+        switch (strtolower($options['version'])) {
+            case "v2":
+                return $helper->v2Sign($uri, $resource, $this->identity['generation'], $options);
                 break;
 
-            case 'V4':
-                $url = $this->signUrlV4($seconds - time(), $options);
+            case "v4":
+                return $helper->v4Sign($this->identity, $options);
                 break;
 
             default:
-                throw new \InvalidArgumentException('$options.signingVersion must be either `V2` or `V4`.');
+                throw new \InvalidArgumentException('Invalid signing version.');
                 break;
         }
+    }
 
-        return $url;
+    private function signedUrlV2($expires, array $options)
+    {
+
     }
 
     /**
