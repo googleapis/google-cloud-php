@@ -20,6 +20,7 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Rest;
+use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 
 /**
@@ -429,11 +430,7 @@ class Operation
             'className' => Entity::class,
             'namespaceId' => $this->namespaceId
         ];
-        $request = $options + $this->readOptions($options) + [
-            'projectId' => $this->projectId,
-            'partitionId' => $this->partitionId($this->projectId, $options['namespaceId']),
-            $query->queryKey() => $query->queryObject()
-        ];
+
         $iteratorConfig = [
             'itemsKey' => 'batch.entityResults',
             'resultTokenKey' => 'query.startCursor',
@@ -447,13 +444,42 @@ class Operation
             }
         ];
 
+        $runQueryObj = clone $query;
+        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options) {
+            $args += [
+                'query' => []
+            ];
+
+            // The iterator provides the startCursor for subsequent pages as an argument.
+            $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+            $request = [
+                'projectId' => $this->projectId,
+                'partitionId' => $this->partitionId($this->projectId, $options['namespaceId']),
+                $runQueryObj->queryKey() => $requestQueryArr
+            ] + $this->readOptions($options) + $options;
+
+            $res = $this->connection->runQuery($request);
+
+            // When executing a GQL Query, the server will compute a query object
+            // and return it with the first response batch.
+            // Automatic pagination with GQL is accomplished by requesting
+            // subsequent pages with this query object, and discarding the GQL
+            // query. This is done by replacing the GQL object with a Query
+            // instance prior to the next iteration of the page.
+            if (isset($res['query'])) {
+                $runQueryObj = new Query($this->entityMapper, $res['query']);
+            }
+
+            return $res;
+        };
+
         return new EntityIterator(
             new EntityPageIterator(
                 function (array $entityResult) use ($options) {
                     return $this->mapEntityResult($entityResult, $options['className']);
                 },
-                [$this->connection, 'runQuery'],
-                $request,
+                $runQueryFn,
+                [],
                 $iteratorConfig
             )
         );

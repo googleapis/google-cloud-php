@@ -192,7 +192,7 @@ class GqlQuery implements QueryInterface
      */
     public function canPaginate()
     {
-        return false;
+        return true;
     }
 
     /**
