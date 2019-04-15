@@ -36,6 +36,28 @@ class EncryptionTraitTest extends TestCase
         $this->impl = TestHelpers::impl(EncryptionTrait::class);
     }
 
+    public function testSignString()
+    {
+        $testString = 'hello world';
+
+        list($pkey, $pub) = $this->getKeyPair();
+
+        $res = $this->impl->call('signString', [$pkey, $testString]);
+
+        $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
+    }
+
+    public function testSignStringWithOpenSsl()
+    {
+        $testString = 'hello world';
+
+        list($pkey, $pub) = $this->getKeyPair();
+
+        $res = $this->impl->call('signString', [$pkey, $testString, true]);
+
+        $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
+    }
+
     /**
      * @dataProvider encryptionProvider
      */

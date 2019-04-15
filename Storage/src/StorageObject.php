@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
@@ -725,9 +724,9 @@ class StorageObject
      *
      * Additionally, signing using IAM requires different scopes. When creating
      * an instance of {@see Google\Cloud\Storage\StorageClient}, provide the
-     * `https://www.googleapis.com/auth/cloud-platform` scope, as demonstrated
-     * in the example below. This scope may be used entirely in place of the
-     * scopes provided in `StorageClient`.
+     * `https://www.googleapis.com/auth/cloud-platform` scopein `$options.scopes`.
+     * This scope may be used entirely in place of the scopes provided in
+     * {@see Google\Cloud\Storage\StorageClient}.
      *
      * App Engine and Compute Engine will attempt to sign URLs using IAM.
      *
@@ -743,22 +742,11 @@ class StorageObject
      * ]);
      * ```
      *
+     * ```
      * // Use Signed URLs v4
      * $url = $object->signedUrl(new \DateTime('tomorrow'), [
      *     'version' => 'v4'
      * ]);
-     * ```
-     *
-     * ```
-     * // Use the correct scope to sign a URL using IAM.
-     * use Google\Cloud\Storage\StorageClient;
-     *
-     * $storage = new StorageClient([
-     *     'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
-     * ]);
-     *
-     * $object = $storage->bucket('my-bucket')->object('my-object');
-     * $url = $object->signedUrl(new \DateTime('tomorrow'));
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs

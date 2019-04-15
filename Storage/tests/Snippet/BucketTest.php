@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\Storage\Tests\Snippet;
 
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\MultipartUploader;
@@ -41,6 +44,8 @@ use Prophecy\Argument;
  */
 class BucketTest extends SnippetTestCase
 {
+    use KeyPairGenerateTrait;
+
     const BUCKET = 'my-bucket';
     const PROJECT_ID = 'my-project';
     const NOTIFICATION_ID = '1234';
@@ -628,6 +633,67 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals($effectiveTime . PHP_EOL . $isLocked, $res->output());
+    }
+
+    public function testSignedUrl()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'signedUrl');
+        $snippet->addLocal('bucket', $this->bucket);
+        $snippet->addUse(Timestamp::class);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $creds = $this->prophesize(ServiceAccountCredentials::class);
+        $creds->signBlob(Argument::any(), Argument::any())->willReturn('foo');
+        $creds->getClientName()->willReturn($kf['client_email']);
+        $rw->getCredentialsFetcher()->willReturn($creds->reveal());
+
+        $conn = $this->prophesize(Rest::class);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        $this->bucket->___setProperty('connection', $conn->reveal());
+
+        $res = $snippet->invoke('url');
+        $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal());
+        $this->assertContains('Expires=', $res->returnVal());
+        $this->assertContains('Signature=', $res->returnVal());
+    }
+
+    public function testSignedUrlV4()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'signedUrl', 1);
+        $snippet->addLocal('bucket', $this->bucket);
+        $snippet->addUse(Timestamp::class);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $creds = $this->prophesize(ServiceAccountCredentials::class);
+        $creds->signBlob(Argument::any(), Argument::any())->willReturn('foo');
+        $creds->getClientName()->willReturn($kf['client_email']);
+        $rw->getCredentialsFetcher()->willReturn($creds->reveal());
+
+        $conn = $this->prophesize(Rest::class);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        $this->bucket->___setProperty('connection', $conn->reveal());
+
+        $res = $snippet->invoke('url');
+        $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal());
+        $this->assertContains('X-Goog-Signature=', $res->returnVal());
     }
 
     private function assertSnippetBuildsNotification($snippet, $expectedArgs)
