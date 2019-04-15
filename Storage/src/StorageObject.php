@@ -46,8 +46,6 @@ class StorageObject
     use ArrayTrait;
     use EncryptionTrait;
 
-    const DEFAULT_URL_SIGNING_VERSION = 'v2';
-
     /**
      * @deprecated
      */
@@ -724,8 +722,8 @@ class StorageObject
      * understand the [documentation](https://cloud.google.com/storage/docs/access-control/signed-urls).
      *
      * In cases where a keyfile is available, signing is accomplished in the
-     * client using your Service Account private key. In cases where this is not
-     * possible, signing is accomplished using
+     * client using your Service Account private key. In Google Compute Engine,
+     * signing is accomplished using
      * [IAM signBlob](https://cloud.google.com/iam/credentials/reference/rest/v1/projects.serviceAccounts/signBlob).
      * Signing using IAM requires that your service account be granted the
      * `iam.serviceAccounts.signBlob` permission, part of the "Service Account
@@ -821,64 +819,31 @@ class StorageObject
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". In the future, "v4" will
+     *           become the default option.  You may experience breaking changes
+     *           if you use longer than 7 day expiration times with v4. To
+     *           opt-in to the behavior choose "v4". **Defaults to** "v2".
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
      * @throws \InvalidArgumentException If the given `$options.method` is not valid.
      * @throws \InvalidArgumentException If the given `$options.keyFilePath` is not valid.
      * @throws \InvalidArgumentException If the given custom headers are invalid.
-     * @throws \RuntimeException If the keyfile does not contain the required information.
+     * @throws \InvalidArgumentException If the keyfile does not contain the required information.
+     * @throws \RuntimeException If the credentials provided cannot be used for signing strings.
      */
     public function signedUrl($expires, array $options = [])
     {
-        $keyFilePath = $this->pluck('keyFilePath', $options, false);
-        if ($keyFilePath) {
-            if (!file_exists($keyFilePath)) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not exist.',
-                    $keyFilePath
-                ));
-            }
-
-            $options['keyFile'] = json_decode(file_get_contents($keyFilePath), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not contain valid json.',
-                    $keyFilePath
-                ));
-            }
-        }
-
-        $rw = $this->connection->requestWrapper();
-
-        $keyFile = $this->pluck('keyFile', $options, false);
-        if ($keyFile) {
-            $scopes = $this->pluck('scopes', $options, false) ?: $rw->scopes();
-            $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
-        } else {
-            $credentials = $rw->credentials();
-        }
-
         $resource = sprintf(
             '/%s/%s',
             $this->identity['bucket'],
             $this->identity['object']
         );
 
-        $version = $this->pluck('version', $options, false) ?: self::DEFAULT_URL_SIGNING_VERSION;
-        switch (strtolower($version)) {
-            case 'v2':
-                $method = 'v2Sign';
-                break;
-
-            case 'v4':
-                $method = 'v4Sign';
-                break;
-
-            default:
-                throw new \InvalidArgumentException('Invalid signing version.');
-        }
+        list ($credentials, $options) = SigningHelper::getSigningCredentials($this->connection, $options);
+        $method = SigningHelper::getSigningMethodName(
+            $this->pluck('version', $options, false)
+        );
 
         return call_user_func_array([$this->signingHelper, $method], [
             $credentials,
@@ -968,7 +933,10 @@ class StorageObject
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". In the future, "v4" will
+     *           become the default option.  You may experience breaking changes
+     *           if you use longer than 7 day expiration times with v4. To
+     *           opt-in to the behavior choose "v4". **Defaults to** "v2".
      * }
      * @return string
      */

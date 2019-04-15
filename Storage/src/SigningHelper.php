@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Auth\CredentialsLoader;
 use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 
 /**
  * Provides common methods for signing storage URLs.
@@ -27,11 +29,117 @@ use Google\Cloud\Core\Timestamp;
  */
 class SigningHelper
 {
+    const DEFAULT_URL_SIGNING_VERSION = 'v2';
     const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
     const V4_ALGO_NAME = 'GOOG4-RSA-SHA256';
     const V4_TIMESTAMP_FORMAT = 'Ymd\THis\Z';
     const V4_DATESTAMP_FORMAT = 'Ymd';
+
+    /**
+     * Get the credentials for use with signing.
+     *
+     * @param ConnectionInterface $connection A Storage connection object.
+     * @param array $options Configuration options.
+     * @return array A list containing a credentials object at index 0 and the
+     *        modified options at index 1.
+     * @throws \RuntimeException If the credentials type is not valid for signing.
+     * @throws \InvalidArgumentException If a keyfile is given and is not valid.
+     */
+    public static function getSigningCredentials(ConnectionInterface $connection, array $options)
+    {
+        $keyFilePath = isset($options['keyFilePath'])
+            ? $options['keyFilePath']
+            : null;
+
+        if ($keyFilePath) {
+            if (!file_exists($keyFilePath)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not exist.',
+                    $keyFilePath
+                ));
+            }
+
+            $options['keyFile'] = json_decode(file_get_contents($keyFilePath), true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not contain valid json.',
+                    $keyFilePath
+                ));
+            }
+        }
+
+        $rw = $connection->requestWrapper();
+
+        $keyFile = isset($options['keyFile'])
+            ? $options['keyFile']
+            : null;
+        if ($keyFile) {
+            $scopes = isset($options['scopes'])
+                ? $options['scopes']
+                : $rw->scopes();
+
+            $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
+        } else {
+            $credentials = $rw->credentials();
+        }
+
+        if (!($credentials instanceof SignBlobInterface)) {
+            throw new \RuntimeException(sprintf(
+                'Credentials object is of type `%s` and is not valid for signing.',
+                get_class($credentials)
+            ));
+        }
+
+        unset(
+            $options['keyFilePath'],
+            $options['keyFile'],
+            $options['scopes']
+        );
+
+        return [$credentials, $options];
+    }
+
+    /**
+     * Determine the method name to be used for signing.
+     *
+     * @param string|null $version The version name.
+     * @return string
+     * @throws \InvalidArgumentException If the version is not in the valid options.
+     */
+    public static function getSigningMethodName($version)
+    {
+        //@codeCoverageIgnoreStart
+        if ($version === null && self::DEFAULT_URL_SIGNING_VERSION === 'v2') {
+            // raise a little notice to poke users towards v4.
+            @trigger_error(
+                'You have chosen to generate a Signed URL using the default ' .
+                'v2 signing implementation. In the future, v4 Signed URLs ' .
+                'will be the default. You may experience breaking changes ' .
+                'if you use expirations greater than 7 days in the future.' .
+                'To opt-in to the new behavior, specify `$options.version='.
+                '`v4`',
+                E_USER_DEPRECATED
+            );
+        }
+        //@codeCoverageIgnoreEnd
+
+        $version = $version ?: self::DEFAULT_URL_SIGNING_VERSION;
+        switch (strtolower($version)) {
+            case 'v2':
+                $method = 'v2Sign';
+                break;
+
+            case 'v4':
+                $method = 'v4Sign';
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Invalid signing version.');
+        }
+
+        return $method;
+    }
 
     /**
      * Sign a URL using Google Signed URLs v2.
@@ -61,6 +169,19 @@ class SigningHelper
         $resource = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
         $headers = $this->normalizeHeaders($options['headers']);
+
+        // Make sure disallowed headers are not included.
+        $illegalHeaders = [
+            'x-goog-encryption-key',
+            'x-goog-encryption-key-sha256'
+        ];
+        if ($illegal = array_intersect_key(array_flip($illegalHeaders), $headers)) {
+            throw new \InvalidArgumentException(sprintf(
+                '%s %s not allowed in Signed URL headers.',
+                implode(' and ', array_keys($illegal)),
+                count($illegal) === 1 ? 'is' : 'are'
+            ));
+        }
 
         // Sort headers by name.
         ksort($headers);

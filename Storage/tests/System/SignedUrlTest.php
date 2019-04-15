@@ -237,6 +237,19 @@ class SignedUrlTest extends StorageTestCase
         $this->assertEquals('attachment; filename="' . $saveAs . '"', $res->getHeaderLine('Content-Disposition'));
     }
 
+    /**
+     * @dataProvider signingVersion
+     */
+    public function testBucketUrlSigning($version)
+    {
+        $url = self::$bucket->signedUrl(time() + 2, [
+            'version' => $version
+        ]);
+
+        $res = $this->guzzle->request('GET', $url);
+        $this->assertEquals(200, $res->getStatusCode());
+    }
+
     public function signingVersion()
     {
         return [

@@ -64,4 +64,15 @@ class AnonymousCredentials implements FetchAuthTokenInterface
     {
         return $this->token;
     }
+
+    /**
+     * Returns the client name, in this case an empty string.
+     *
+     * @param callable $httpHandler
+     * @return string
+     */
+    public function getClientName(callable $httpHandler = null)
+    {
+        return '';
+    }
 }
