@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\KeySet;
@@ -51,6 +52,7 @@ use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Grpc\UnaryCall;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -453,6 +455,43 @@ class Grpc implements ConnectionInterface
             $databaseName,
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
+    }
+
+    /**
+     * Note: This should be removed once GAPIC exposes the ability to execute
+     * concurrent requests.
+     *
+     * @access private
+     * @experimental
+     * @param array $args
+     * @return PromiseInterface
+     */
+    public function createSessionAsync(array $args)
+    {
+        $database = $this->pluck('database', $args);
+        $opts = $this->addResourcePrefixHeader([], $database);
+        $opts['credentialsWrapper'] = $this->credentialsWrapper;
+        $transport = $this->spannerClient->getTransport();
+
+        $request = new CreateSessionRequest([
+            'database' => $database
+        ]);
+
+        $session = $this->pluck('session', $args, false);
+
+        if ($session) {
+            $sessionMessage = new Session($session);
+            $request->setSession($sessionMessage);
+        }
+
+        return $transport->startUnaryCall(
+            new Call(
+                'google.spanner.v1.Spanner/CreateSession',
+                Session::class,
+                $request
+            ),
+            $opts
+        );
     }
 
     /**

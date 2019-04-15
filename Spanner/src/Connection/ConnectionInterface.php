@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
+use GuzzleHttp\Promise\PromiseInterface;
+
 /**
  * Describes a connection to the Cloud Spanner API
  */
@@ -121,6 +123,12 @@ interface ConnectionInterface
      * @param array $args
      */
     public function createSession(array $args);
+
+    /**
+     * @param array $args
+     * @return PromiseInterface[]
+     */
+    public function createSessionAsync(array $args);
 
     /**
      * @param array $args

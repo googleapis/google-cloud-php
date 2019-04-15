@@ -25,6 +25,7 @@ use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
 use Grpc\UnaryCall;
 use Psr\Cache\CacheItemPoolInterface;
+use GuzzleHttp\Promise;
 
 /**
  * This session pool implementation accepts a PSR-6 compatible cache
@@ -245,18 +246,13 @@ class CacheSessionPool implements SessionPoolInterface
 
         // Create a session if needed.
         if ($toCreate) {
-            $createdSessions = [];
-            $exception = null;
-
-            try {
-                $createdSessions = $this->createSessions(count($toCreate));
-            } catch (\Exception $exception) {
-            }
+            $createdSessions = $this->createSessions(count($toCreate));
+            $hasCreatedSessions = count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
                 $toCreate,
                 $createdSessions,
-                $exception
+                $hasCreatedSessions
             ) {
                 $session = null;
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -269,7 +265,7 @@ class CacheSessionPool implements SessionPoolInterface
                     unset($data['toCreate'][$id]);
                 }
 
-                if (!$exception) {
+                if ($hasCreatedSessions) {
                     $session = array_shift($data['queue']);
                     $data['inUse'][$session['name']] = $session + [
                         'lastActive' => $this->time()
@@ -284,10 +280,6 @@ class CacheSessionPool implements SessionPoolInterface
 
                 return $session;
             });
-
-            if ($exception) {
-                throw $exception;
-            }
         }
 
         if ($session) {
@@ -650,18 +642,31 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function createSessions($count)
     {
-        $sessions = [];
+        $args = [
+            'database' => $this->database->name(),
+            'session' => [
+                'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+            ]
+        ];
+
+        $promises = [];
 
         for ($i = 0; $i < $count; $i++) {
-            $options = [];
-            if ($this->config['labels']) {
-                $options['labels'] = $this->config['labels'];
-            }
+            $promises[] = $this->database->connection()->createSessionAsync($args);
+        }
 
-            $sessions[] = [
-                'name' => $this->database->createSession($options)->name(),
-                'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
-            ];
+        $results = Promise\settle($promises)->wait();
+
+        $sessions = [];
+
+        foreach ($results as $result) {
+            if ($result['state'] === 'fulfilled') {
+                $name = $result['value']->getName();
+                $sessions[] = [
+                    'name' => $name,
+                    'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                ];
+            }
         }
 
         return $sessions;
