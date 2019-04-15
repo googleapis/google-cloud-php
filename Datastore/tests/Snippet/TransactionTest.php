@@ -372,7 +372,11 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'runQuery');
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
-        $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryObject()->willReturn([]);
+        $query->queryKey()->willReturn('query');
+        $snippet->addLocal('query', $query->reveal());
 
         $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
             ->shouldBeCalled()

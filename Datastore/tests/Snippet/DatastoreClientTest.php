@@ -625,7 +625,11 @@ class DatastoreClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'runQuery');
         $snippet->addLocal('datastore', $this->client);
-        $snippet->addLocal('query', $this->prophesize(QueryInterface::class)->reveal());
+
+        $query = $this->prophesize(QueryInterface::class);
+        $query->queryObject()->willReturn([]);
+        $query->queryKey()->willReturn('query');
+        $snippet->addLocal('query', $query->reveal());
 
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalled()
