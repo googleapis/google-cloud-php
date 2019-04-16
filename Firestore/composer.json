@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "ext-grpc": "*",
-        "google/cloud-core": "^1.26",
+        "google/cloud-core": "^1.27",
         "google/gax": "^1.0",
         "ramsey/uuid": "~3"
     },

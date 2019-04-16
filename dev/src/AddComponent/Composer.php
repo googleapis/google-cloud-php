@@ -75,7 +75,7 @@ class Composer
      */
     private $defaultDevDeps = [
         "phpunit/phpunit" => "^4.8|^5.0",
-        "google/cloud-core" => "^1.14",
+        "google/cloud-core" => "^1.27",
         "phpdocumentor/reflection" => "^3.0"
     ];
 
