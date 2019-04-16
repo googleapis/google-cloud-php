@@ -19,8 +19,10 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -56,7 +58,7 @@ class SigningHelperTest extends TestCase
             ->willReturn($return);
 
         $url = $this->helper->v2Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -91,7 +93,7 @@ class SigningHelperTest extends TestCase
             ->willReturn($return);
 
         $url = $this->helper->v2Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -154,7 +156,7 @@ class SigningHelperTest extends TestCase
         };
 
         $url = $this->helper->v2Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -188,7 +190,7 @@ class SigningHelperTest extends TestCase
             ->willReturn($return);
 
         $url = $this->helper->v4Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -265,7 +267,7 @@ class SigningHelperTest extends TestCase
         };
 
         $url = $this->helper->v4Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -298,7 +300,7 @@ class SigningHelperTest extends TestCase
             ->willReturn($return);
 
         $url = $this->helper->v4Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -326,7 +328,7 @@ class SigningHelperTest extends TestCase
             ->willReturn($return);
 
         $url = $this->helper->v2Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -368,7 +370,7 @@ class SigningHelperTest extends TestCase
         };
 
         $this->helper->v4Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expires,
             $resource,
             self::GENERATION,
@@ -385,7 +387,7 @@ class SigningHelperTest extends TestCase
     {
         $expires = (new \DateTime)->modify('+20 days');
         $this->helper->v4Sign(
-            $this->createCredentialsMock()->reveal(),
+            $this->mockConnection($this->createCredentialsMock()->reveal()),
             $expires,
             '',
             null,
@@ -409,7 +411,7 @@ class SigningHelperTest extends TestCase
         };
 
         $this->helper->v2Sign(
-            $credentials->reveal(),
+            $this->mockConnection($credentials->reveal()),
             $expiration,
             $this->createResource(),
             self::GENERATION,
@@ -442,7 +444,7 @@ class SigningHelperTest extends TestCase
     public function testInvalidExpiration($method)
     {
         $this->helper->$method(
-            $this->createCredentialsMock()->reveal(),
+            $this->mockConnection($this->createCredentialsMock()->reveal()),
             'foobar',
             $this->createResource(),
             self::GENERATION,
@@ -573,7 +575,7 @@ class SigningHelperTest extends TestCase
     public function testV2InvalidHeaders($header)
     {
         $this->helper->v2Sign(
-            $this->prophesize(SignBlobInterface::class)->reveal(),
+            $this->mockConnection($this->prophesize(SignBlobInterface::class)->reveal()),
             time() + 10,
             '/foo/bar',
             null,
@@ -649,6 +651,16 @@ class SigningHelperTest extends TestCase
     {
         return sprintf('/%s/%s', $bucket ?: self::BUCKET, $object ?: self::OBJECT);
     }
+
+    private function mockConnection($credentials)
+    {
+        $conn = $this->prophesize(Rest::class);
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->getCredentialsFetcher()->willReturn($credentials);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        return $conn->reveal();
+    }
 }
 
 //@codingStandardsIgnoreStart
@@ -658,22 +670,37 @@ class SigningHelperStub extends SigningHelper
 
     public $createV2CanonicalRequest;
 
-    protected function createV4CanonicalRequest(array $request)
+    private function createV4CanonicalRequest(array $request)
     {
+        $callPrivate = $this->callPrivate('createV4CanonicalRequest', [$request]);
         return $this->createV4CanonicalRequest
             ? call_user_func($this->createV4CanonicalRequest, $request)
-            : parent::createV4CanonicalRequest($request);
+            : \Closure::bind($callPrivate, null, new SigningHelper);
     }
 
-    protected function createV2CanonicalRequest(array $request)
+    private function createV2CanonicalRequest(array $request)
     {
+        $callPrivate = $this->callPrivate('createV2CanonicalRequest', [$request]);
         return $this->createV2CanonicalRequest
             ? call_user_func($this->createV2CanonicalRequest, $request)
-            : parent::createV2CanonicalRequest($request);
+            : \Closure::bind($callPrivate, null, new SigningHelper);
     }
 
     public function normalizeProxy($method, array $args)
     {
-        return call_user_func_array("parent::$method", $args);
+        $parent = new SigningHelper;
+        $cb = function () use ($method) {
+            return call_user_func_array([$this, $method], func_get_args()[0]);
+        };
+
+        $callPrivate = $cb->bindTo($parent, SigningHelper::class);
+        return $callPrivate($args);
+    }
+
+    private function callPrivate($method, array $args)
+    {
+        return function (SigningHelper $helper) use ($method, $args) {
+            return $helper->$method($args);
+        };
     }
 }

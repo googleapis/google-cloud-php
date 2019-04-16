@@ -209,12 +209,8 @@ class SignedUrlTest extends StorageTestCase
 
         $res = $this->guzzle->request('GET', $url);
 
-        $expectedContentType = $version === 'v2'
-            ? urlencode($contentType)
-            : $contentType;
-
         $this->assertEquals(200, $res->getStatusCode());
-        $this->assertEquals($expectedContentType, $res->getHeaderLine('Content-Type'));
+        $this->assertEquals($contentType, $res->getHeaderLine('Content-Type'));
         $this->assertEquals($disposition, $res->getHeaderLine('Content-Disposition'));
     }
 

@@ -1322,10 +1322,8 @@ class Bucket
             $this->identity['bucket']
         );
 
-        list($credentials, $options) = SigningHelper::getSigningCredentials($this->connection, $options);
-
         return $signingHelper->sign(
-            $credentials,
+            $this->connection,
             $expires,
             $resource,
             null,

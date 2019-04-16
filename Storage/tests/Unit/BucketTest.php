@@ -28,6 +28,7 @@ use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
@@ -594,7 +595,7 @@ class BucketTest extends TestCase
         $signingHelper = $this->prophesize(SigningHelper::class);
 
         $signingHelper->sign(
-            Argument::type(SignBlobInterface::class),
+            Argument::type(ConnectionInterface::class),
             $expectedExpiration,
             $expectedResource,
             null,

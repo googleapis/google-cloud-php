@@ -825,10 +825,8 @@ class StorageObject
             $this->identity['object']
         );
 
-        list ($credentials, $options) = SigningHelper::getSigningCredentials($this->connection, $options);
-
         return $signingHelper->sign(
-            $credentials,
+            $this->connection,
             $expires,
             $resource,
             $this->identity['generation'],

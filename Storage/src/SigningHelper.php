@@ -55,68 +55,10 @@ class SigningHelper
     }
 
     /**
-     * Get the credentials for use with signing.
-     *
-     * @param ConnectionInterface $connection A Storage connection object.
-     * @param array $options Configuration options.
-     * @return array A list containing a credentials object at index 0 and the
-     *        modified options at index 1.
-     * @throws \RuntimeException If the credentials type is not valid for signing.
-     * @throws \InvalidArgumentException If a keyfile is given and is not valid.
-     */
-    public static function getSigningCredentials(ConnectionInterface $connection, array $options)
-    {
-        $keyFilePath = isset($options['keyFilePath'])
-            ? $options['keyFilePath']
-            : null;
-
-        if ($keyFilePath) {
-            if (!file_exists($keyFilePath)) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not exist.',
-                    $keyFilePath
-                ));
-            }
-
-            $options['keyFile'] = self::jsonDecode(file_get_contents($keyFilePath), true);
-        }
-
-        $rw = $connection->requestWrapper();
-
-        $keyFile = isset($options['keyFile'])
-            ? $options['keyFile']
-            : null;
-        if ($keyFile) {
-            $scopes = isset($options['scopes'])
-                ? $options['scopes']
-                : $rw->scopes();
-
-            $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
-        } else {
-            $credentials = $rw->getCredentialsFetcher();
-        }
-
-        if (!($credentials instanceof SignBlobInterface)) {
-            throw new \RuntimeException(sprintf(
-                'Credentials object is of type `%s` and is not valid for signing.',
-                get_class($credentials)
-            ));
-        }
-
-        unset(
-            $options['keyFilePath'],
-            $options['keyFile'],
-            $options['scopes']
-        );
-
-        return [$credentials, $options];
-    }
-
-    /**
      * Sign using the version inferred from `$options.version`.
      *
-     * @param SignBlobInterface $credentials A credentials instance which
-     *        supports signing strings.
+     * @param ConnectionInterface $connection A connection to the Cloud Storage
+     *        API.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -132,7 +74,7 @@ class SigningHelper
      * @throws \RuntimeException If OpenSSL signing is required by user input
      *        and OpenSSL is not available.
      */
-    public function sign(SignBlobInterface $credentials, $expires, $resource, $generation, array $options)
+    public function sign(ConnectionInterface $connection, $expires, $resource, $generation, array $options)
     {
         $version = isset($options['version'])
             ? $options['version']
@@ -161,8 +103,8 @@ class SigningHelper
      *
      * This method will be deprecated in the future.
      *
-     * @param SignBlobInterface $credentials A credentials instance which
-     *        supports signing strings.
+     * @param ConnectionInterface $connection A connection to the Cloud Storage
+     *        API.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -178,8 +120,10 @@ class SigningHelper
      * @throws \RuntimeException If OpenSSL signing is required by user input
      *        and OpenSSL is not available.
      */
-    public function v2Sign(SignBlobInterface $credentials, $expires, $resource, $generation, array $options)
+    public function v2Sign(ConnectionInterface $connection, $expires, $resource, $generation, array $options)
     {
+        list($credentials, $options) = $this->getSigningCredentials($connection, $options);
+
         $expires = $this->normalizeExpiration($expires);
         $resource = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
@@ -243,8 +187,8 @@ class SigningHelper
     /**
      * Sign a storage URL using Google Signed URLs v4.
      *
-     * @param SignBlobInterface $credentials A credentials instance which
-     *        supports signing strings.
+     * @param ConnectionInterface $connection A connection to the Cloud Storage
+     *        API.
      * @param Timestamp|\DateTimeInterface|int $expires The signed URL
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
@@ -260,8 +204,10 @@ class SigningHelper
      * @throws \RuntimeException If OpenSSL signing is required by user input
      *        and OpenSSL is not available.
      */
-    public function v4Sign(SignBlobInterface $credentials, $expires, $resource, $generation, array $options)
+    public function v4Sign(ConnectionInterface $connection, $expires, $resource, $generation, array $options)
     {
+        list($credentials, $options) = $this->getSigningCredentials($connection, $options);
+
         $expires = $this->normalizeExpiration($expires);
         $resource = $this->normalizeResource($resource);
         $options = $this->normalizeOptions($options);
@@ -374,7 +320,7 @@ class SigningHelper
      *        representing a line in the request.
      * @return string
      */
-    protected function createV4CanonicalRequest(array $canonicalRequest)
+    private function createV4CanonicalRequest(array $canonicalRequest)
     {
         return bin2hex(hash('sha256', implode("\n", $canonicalRequest), true));
     }
@@ -389,7 +335,7 @@ class SigningHelper
      *        representing a line in the request.
      * @return string
      */
-    protected function createV2CanonicalRequest(array $canonicalRequest)
+    private function createV2CanonicalRequest(array $canonicalRequest)
     {
         return implode("\n", $canonicalRequest);
     }
@@ -401,7 +347,7 @@ class SigningHelper
      * @return int
      * @throws \InvalidArgumentException If an invalid value is given.
      */
-    protected function normalizeExpiration($expires)
+    private function normalizeExpiration($expires)
     {
         if ($expires instanceof Timestamp) {
             $seconds = $expires->get()->format('U');
@@ -424,7 +370,7 @@ class SigningHelper
      * @return string The resource, with pieces encoded and prefixed with a
      *        forward slash.
      */
-    protected function normalizeResource($resource)
+    private function normalizeResource($resource)
     {
         $pieces = explode('/', trim($resource, '/'));
         array_walk($pieces, function (&$piece) {
@@ -440,7 +386,7 @@ class SigningHelper
      * @return array
      * @throws \InvalidArgumentException
      */
-    protected function normalizeOptions(array $options)
+    private function normalizeOptions(array $options)
     {
         $options += [
             'method' => 'GET',
@@ -481,6 +427,7 @@ class SigningHelper
         $options['cname'] = trim($options['cname'], '/');
 
         // If a timestamp is provided, use it in place of `now` for v4 URLs only..
+        // This option exists for testing purposes, and should not generally be provided by users.
         if ($options['timestamp']) {
             if (!($options['timestamp'] instanceof \DateTimeInterface)) {
                 if (!is_string($options['timestamp'])) {
@@ -520,7 +467,7 @@ class SigningHelper
      * @param array $headers Input headers
      * @return array
      */
-    protected function normalizeHeaders(array $headers)
+    private function normalizeHeaders(array $headers)
     {
         $out = [];
         foreach ($headers as $name => $value) {
@@ -557,7 +504,7 @@ class SigningHelper
      * @param string $resource The GCS resource path (i.e. /bucket/object).
      * @return string
      */
-    protected function normalizeUriPath($cname, $resource)
+    private function normalizeUriPath($cname, $resource)
     {
         if ($cname !== self::DEFAULT_DOWNLOAD_HOST) {
             $resourceParts = explode('/', trim($resource, '/'));
@@ -572,6 +519,64 @@ class SigningHelper
         }
 
         return $resource;
+    }
+
+    /**
+     * Get the credentials for use with signing.
+     *
+     * @param ConnectionInterface $connection A Storage connection object.
+     * @param array $options Configuration options.
+     * @return array A list containing a credentials object at index 0 and the
+     *        modified options at index 1.
+     * @throws \RuntimeException If the credentials type is not valid for signing.
+     * @throws \InvalidArgumentException If a keyfile is given and is not valid.
+     */
+    private function getSigningCredentials(ConnectionInterface $connection, array $options)
+    {
+        $keyFilePath = isset($options['keyFilePath'])
+            ? $options['keyFilePath']
+            : null;
+
+        if ($keyFilePath) {
+            if (!file_exists($keyFilePath)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not exist.',
+                    $keyFilePath
+                ));
+            }
+
+            $options['keyFile'] = self::jsonDecode(file_get_contents($keyFilePath), true);
+        }
+
+        $rw = $connection->requestWrapper();
+
+        $keyFile = isset($options['keyFile'])
+            ? $options['keyFile']
+            : null;
+        if ($keyFile) {
+            $scopes = isset($options['scopes'])
+                ? $options['scopes']
+                : $rw->scopes();
+
+            $credentials = CredentialsLoader::makeCredentials($scopes, $keyFile);
+        } else {
+            $credentials = $rw->getCredentialsFetcher();
+        }
+
+        if (!($credentials instanceof SignBlobInterface)) {
+            throw new \RuntimeException(sprintf(
+                'Credentials object is of type `%s` and is not valid for signing.',
+                get_class($credentials)
+            ));
+        }
+
+        unset(
+            $options['keyFilePath'],
+            $options['keyFile'],
+            $options['scopes']
+        );
+
+        return [$credentials, $options];
     }
 
     /**

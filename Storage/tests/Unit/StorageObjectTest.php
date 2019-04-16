@@ -25,6 +25,7 @@ use Google\Cloud\Core\Testing\KeyPairGenerateTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
@@ -653,7 +654,7 @@ class StorageObjectTest extends TestCase
         $signingHelper = $this->prophesize(SigningHelper::class);
 
         $signingHelper->sign(
-            Argument::type(SignBlobInterface::class),
+            Argument::type(ConnectionInterface::class),
             $expectedExpiration,
             $expectedResource,
             $expectedGeneration,
@@ -697,7 +698,7 @@ class StorageObjectTest extends TestCase
         $signingHelper = $this->prophesize(SigningHelper::class);
         $method = SigningHelper::DEFAULT_URL_SIGNING_VERSION . 'Sign';
         $signingHelper->sign(
-            Argument::type(ServiceAccountCredentials::class),
+            Argument::type(ConnectionInterface::class),
             Argument::any(),
             Argument::any(),
             Argument::any(),
@@ -714,7 +715,7 @@ class StorageObjectTest extends TestCase
         $path = \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE();
         $json = json_decode(file_get_contents($path), true);
 
-        $this->assertEquals('', $callArgs[0]->getClientName());
+        $this->assertEquals('', $callArgs[0]->requestWrapper()->getCredentialsFetcher()->getClientName());
     }
 
     public function signedUrlKeyfiles()
