@@ -593,12 +593,12 @@ class BucketTest extends TestCase
 
         $signingHelper = $this->prophesize(SigningHelper::class);
 
-        $signingHelper->$method(
+        $signingHelper->sign(
             Argument::type(SignBlobInterface::class),
             $expectedExpiration,
             $expectedResource,
             null,
-            Argument::type('array')
+            $version ? Argument::withEntry('version', $version) : Argument::type('array')
         )->shouldBeCalled()->willReturn($return);
 
         $opts = [

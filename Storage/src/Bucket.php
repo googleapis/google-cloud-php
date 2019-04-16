@@ -1330,7 +1330,7 @@ class Bucket
             $resource,
             null,
             $options
-        ];
+        );
     }
 
     /**

@@ -108,7 +108,7 @@ class SigningHelperTest extends TestCase
     public function v2Params()
     {
         return [
-            ['responseType', 'text/plain', 'response-content-type', urlencode('text/plain')],
+            ['responseType', 'text/plain', 'response-content-type', 'text/plain'],
             ['responseDisposition', 'dispo', 'response-content-disposition'],
             ['saveAsName', 'test.txt', 'response-content-disposition', 'attachment; filename="test.txt"']
         ];

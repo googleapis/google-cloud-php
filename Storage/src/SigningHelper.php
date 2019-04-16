@@ -232,7 +232,7 @@ class SigningHelper
         $params['Expires'] = $expires;
         $params['Signature'] = $signature;
 
-        $params = $this->addCommonParams($params, $generation, $options);
+        $params = $this->addCommonParams($generation, $params, $options);
 
         $queryString = $this->buildQueryString($params);
 
@@ -296,7 +296,7 @@ class SigningHelper
             $headers['content-md5'] = $options['contentMd5'];
         }
 
-        $params = $this->addCommonParams($params, $generation, $options);
+        $params = $this->addCommonParams($generation, $params, $options);
 
         $headers = $this->normalizeHeaders($headers);
 

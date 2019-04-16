@@ -652,12 +652,12 @@ class StorageObjectTest extends TestCase
 
         $signingHelper = $this->prophesize(SigningHelper::class);
 
-        $signingHelper->$method(
+        $signingHelper->sign(
             Argument::type(SignBlobInterface::class),
             $expectedExpiration,
             $expectedResource,
             $expectedGeneration,
-            Argument::type('array')
+            $version ? Argument::withEntry('version', $version) : Argument::type('array')
         )->shouldBeCalled()->willReturn($return);
 
         $opts = [
@@ -696,7 +696,7 @@ class StorageObjectTest extends TestCase
 
         $signingHelper = $this->prophesize(SigningHelper::class);
         $method = SigningHelper::DEFAULT_URL_SIGNING_VERSION . 'Sign';
-        $signingHelper->$method(
+        $signingHelper->sign(
             Argument::type(ServiceAccountCredentials::class),
             Argument::any(),
             Argument::any(),
@@ -768,18 +768,19 @@ class StorageObjectTest extends TestCase
         $return = 'signedUrl';
 
         $signingHelper = $this->prophesize(SigningHelper::class);
-        $signingHelper->$method(
+        $signingHelper->sign(
             Argument::any(),
             $expectedExpiration,
             Argument::any(),
             Argument::any(),
-            [
-                'method' => 'POST',
-                'allowPost' => true,
-                'headers' => [
+            Argument::allOf(
+                Argument::withEntry('method', 'POST'),
+                Argument::withEntry('allowPost', true),
+                Argument::withEntry('headers', [
                     'x-goog-resumable' => 'start'
-                ]
-            ]
+                ]),
+                $version ? Argument::withEntry('version', $version) : Argument::not(false)
+            )
         )->willReturn($return);
 
         $object = $this->getStorageObjectForSigning();
@@ -834,12 +835,12 @@ class StorageObjectTest extends TestCase
         $this->connection->requestWrapper()->willReturn($rw->reveal());
 
         $signingHelper = $this->prophesize(SigningHelper::class);
-        $signingHelper->$method(
+        $signingHelper->sign(
             Argument::any(),
             Argument::any(),
             Argument::any(),
             Argument::any(),
-            Argument::any()
+            $version ? Argument::withEntry('version', $version) : Argument::any()
         )->willReturn($signedUri);
 
         $object->___setProperty('connection', $this->connection->reveal());
