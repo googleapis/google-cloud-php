@@ -17,20 +17,25 @@
 
 namespace Google\Cloud\Storage\Tests\Unit;
 
+use Google\Auth\SignBlobInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\Notification;
+use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group storage
@@ -573,5 +578,71 @@ class BucketTest extends TestCase
             [1],
             [null]
         ];
+    }
+
+    /**
+     * @group storage-signed-url
+     * @dataProvider urlVersion
+     */
+    public function testSignedUrlVersions($version, $method)
+    {
+        $expectedResource = sprintf('/%s', self::BUCKET_NAME);
+        $expectedExpiration = time() + 10;
+        $return = 'signedUrl';
+
+        $bucket = $this->getBucketForSigning();
+
+        $signingHelper = $this->prophesize(SigningHelper::class);
+
+        $signingHelper->sign(
+            Argument::type(ConnectionInterface::class),
+            $expectedExpiration,
+            $expectedResource,
+            null,
+            $version ? Argument::withEntry('version', $version) : Argument::type('array')
+        )->shouldBeCalled()->willReturn($return);
+
+        $opts = [
+            'helper' => $signingHelper->reveal()
+        ];
+        if ($version) {
+            // test defaults to v2.
+            $opts['version'] = $version;
+        }
+
+        $res = $bucket->signedUrl($expectedExpiration, $opts);
+
+        $this->assertEquals($return, $res);
+    }
+
+    public function urlVersion()
+    {
+        return [
+            [null, SigningHelper::DEFAULT_URL_SIGNING_VERSION . 'Sign'],
+            ['v2', 'v2Sign'],
+            ['v4', 'v4Sign']
+        ];
+    }
+
+    private function getBucketForSigning(
+        SignBlobInterface $credentials = null,
+        $scopes = ''
+    ) {
+        if ($credentials === null) {
+            $credentials = $this->prophesize(SignBlobInterface::class);
+            $credentials = $credentials->reveal();
+        }
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->scopes()->willReturn(is_array($scopes) ? $scopes : [$scopes]);
+        $rw->getCredentialsFetcher()->willReturn($credentials);
+
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
+
+        return TestHelpers::stub(Bucket::class, [
+            $this->connection->reveal(),
+            self::BUCKET_NAME,
+        ], ['connection']);
     }
 }

@@ -32,7 +32,7 @@ trait JsonTrait
      * @return mixed
      * @throws \InvalidArgumentException
      */
-    private function jsonDecode($json, $assoc = false, $depth = 512, $options = 0)
+    private static function jsonDecode($json, $assoc = false, $depth = 512, $options = 0)
     {
         $data = json_decode($json, $assoc, $depth, $options);
 
@@ -53,7 +53,7 @@ trait JsonTrait
      * @return string
      * @throws \InvalidArgumentException
      */
-    private function jsonEncode($value, $options = 0, $depth = 512)
+    private static function jsonEncode($value, $options = 0, $depth = 512)
     {
         $json = json_encode($value, $options, $depth);
 

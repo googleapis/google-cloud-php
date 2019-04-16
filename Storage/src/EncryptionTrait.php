@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Storage;
 
-use InvalidArgumentException;
 use phpseclib\Crypt\RSA;
 
 /**
@@ -113,6 +112,10 @@ trait EncryptionTrait
 
     /**
      * Sign a string using a given private key.
+     *
+     * @deprecated Please use the {@see Google\Auth\SignBlobInterface::signBlob()}
+     *        and implementations for signing strings.
+     *        This method will be removed in a future release.
      *
      * @param string $privateKey The private key to use to sign the data.
      * @param string $data The data to sign.

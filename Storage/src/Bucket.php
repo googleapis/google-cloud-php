@@ -24,11 +24,13 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
+use Google\Cloud\Storage\SigningHelper;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -1239,6 +1241,93 @@ class Bucket
 
         return $this->info = $this->connection->lockRetentionPolicy(
             $options + $this->identity
+        );
+    }
+
+    /**
+     * Create a Signed URL listing objects in this bucket.
+     *
+     * Example:
+     * ```
+     * $url = $bucket->signedUrl(time() + 3600);
+     * ```
+     *
+     * ```
+     * // Use V4 Signing
+     * $url = $bucket->signedUrl(time() + 3600, [
+     *     'version' => 'v4'
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/access-control/signed-urls Signed URLs
+     *
+     * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
+     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
+     *        UNIX timestamp as an integer.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type string $cname The CNAME for the bucket, for instance
+     *           `https://cdn.example.com`. **Defaults to**
+     *           `https://storage.googleapis.com`.
+     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     *           provide this, the client must provide this HTTP header with
+     *           this same value in its request. If provided, take care to
+     *           always provide this value as a base64 encoded string.
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
+     *     @type array $headers If additional headers are provided, the server
+     *           will check to make sure that the client provides matching
+     *           values. Provide headers as a key/value array, where the key is
+     *           the header name, and the value is an array of header values.
+     *           Headers with multiple values may provide values as a simple
+     *           array, or a comma-separated string. For a reference of allowed
+     *           headers, see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
+     *           Header values will be trimmed of leading and trailing spaces,
+     *           multiple spaces within values will be collapsed to a single
+     *           space, and line breaks will be replaced by an empty string.
+     *           V2 Signed URLs may not provide `x-goog-encryption-key` or
+     *           `x-goog-encryption-key-sha256` headers.
+     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     *           which the client was constructed. If `$options.keyFilePath` is
+     *           set, this option is ignored.
+     *     @type string $keyFilePath A path to a valid keyfile to use in place
+     *           of the keyfile with which the client was constructed.
+     *     @type string|array $scopes One or more authentication scopes to be
+     *           used with a key file. This option is ignored unless
+     *           `$options.keyFile` or `$options.keyFilePath` is set.
+     *     @type array $queryParams Additional query parameters to be included
+     *           as part of the signed URL query string. For allowed values,
+     *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
+     *     @type string $version One of "v2" or "v4". *Defaults to** `"v2"`.
+     * }
+     * @return string
+     * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
+     * @throws \InvalidArgumentException If the given `$options.method` is not valid.
+     * @throws \InvalidArgumentException If the given `$options.keyFilePath` is not valid.
+     * @throws \InvalidArgumentException If the given custom headers are invalid.
+     * @throws \RuntimeException If the keyfile does not contain the required information.
+     */
+    public function signedUrl($expires, array $options = [])
+    {
+        // May be overridden for testing.
+        $signingHelper = $this->pluck('helper', $options, false)
+            ?: SigningHelper::getHelper();
+
+        $resource = sprintf(
+            '/%s',
+            $this->identity['bucket']
+        );
+
+        return $signingHelper->sign(
+            $this->connection,
+            $expires,
+            $resource,
+            null,
+            $options
         );
     }
 
