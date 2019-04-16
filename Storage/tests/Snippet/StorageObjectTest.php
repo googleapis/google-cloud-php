@@ -604,6 +604,8 @@ class StorageObjectTest extends SnippetTestCase
 
     public function signedUploadSessionSnippet()
     {
+        self::setUpBeforeClass();
+
         return [
             [$this->snippetFromMethod(StorageObject::class, 'beginSignedUploadSession')],
             [$this->snippetFromMethod(StorageObject::class, 'beginSignedUploadSession', 1)],
