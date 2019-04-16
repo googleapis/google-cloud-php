@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/clusterstatus\/state","type":"","title":"Google\\Cloud\\Dataproc\\V1\\ClusterStatus\\State","name":"State","description":"<p>The cluster state.<\/p>\n<p>Protobuf type <code>google.cloud.dataproc.v1.ClusterStatus.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
