@@ -803,7 +803,7 @@ class StorageObject
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
@@ -826,17 +826,14 @@ class StorageObject
         );
 
         list ($credentials, $options) = SigningHelper::getSigningCredentials($this->connection, $options);
-        $method = SigningHelper::getSigningMethodName(
-            $this->pluck('version', $options, false)
-        );
 
-        return call_user_func_array([$signingHelper, $method], [
+        return $signingHelper->sign(
             $credentials,
             $expires,
             $resource,
             $this->identity['generation'],
             $options
-        ]);
+        );
     }
 
     /**
@@ -920,7 +917,7 @@ class StorageObject
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      * }
      * @return string
      */
@@ -1006,7 +1003,7 @@ class StorageObject
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      * }
      * @return string
      */

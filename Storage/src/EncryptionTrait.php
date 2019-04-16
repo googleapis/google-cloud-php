@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Storage;
 
+use phpseclib\Crypt\RSA;
+
 /**
  * Trait which provides helper methods for customer-supplied encryption.
  */
@@ -111,7 +113,8 @@ trait EncryptionTrait
     /**
      * Sign a string using a given private key.
      *
-     * @deprecated Please use the `signBlob` methods on `google/auth` credentials instead.
+     * @deprecated Please use the {@see Google\Auth\SignBlobInterface::signBlob()}
+     *        and implementations for signing strings.
      *        This method will be removed in a future release.
      *
      * @param string $privateKey The private key to use to sign the data.

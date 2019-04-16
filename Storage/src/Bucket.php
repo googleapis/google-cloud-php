@@ -24,6 +24,7 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\PubSub\Topic;
@@ -1282,7 +1283,7 @@ class Bucket
      *           will check to make sure that the client provides matching
      *           values. Provide headers as a key/value array, where the key is
      *           the header name, and the value is an array of header values.
-     *           Headers with multiple  values may provide values as a simple
+     *           Headers with multiple values may provide values as a simple
      *           array, or a comma-separated string. For a reference of allowed
      *           headers, see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers).
      *           Header values will be trimmed of leading and trailing spaces,
@@ -1293,7 +1294,7 @@ class Bucket
      *     @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
-     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     *     @type string $keyFilePath A path to a valid keyfile to use in place
      *           of the keyfile with which the client was constructed.
      *     @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
@@ -1301,7 +1302,7 @@ class Bucket
      *     @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". *Defaults to** "v2".
+     *     @type string $version One of "v2" or "v4". *Defaults to** `"v2"`.
      * }
      * @return string
      * @throws \InvalidArgumentException If the given expiration is invalid or in the past.
@@ -1321,18 +1322,15 @@ class Bucket
             $this->identity['bucket']
         );
 
-        list ($credentials, $options) = SigningHelper::getSigningCredentials($this->connection, $options);
-        $method = SigningHelper::getSigningMethodName(
-            $this->pluck('version', $options, false)
-        );
+        list($credentials, $options) = SigningHelper::getSigningCredentials($this->connection, $options);
 
-        return call_user_func_array([$signingHelper, $method], [
+        return $signingHelper->sign(
             $credentials,
             $expires,
             $resource,
             null,
             $options
-        ]);
+        ];
     }
 
     /**

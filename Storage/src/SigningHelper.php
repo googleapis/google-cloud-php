@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Auth\CredentialsLoader;
 use Google\Auth\SignBlobInterface;
+use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 
@@ -29,6 +30,8 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
  */
 class SigningHelper
 {
+    use JsonTrait;
+
     const DEFAULT_URL_SIGNING_VERSION = 'v2';
     const DEFAULT_DOWNLOAD_HOST = 'storage.googleapis.com';
 
@@ -50,6 +53,7 @@ class SigningHelper
 
         return $helper;
     }
+
     /**
      * Get the credentials for use with signing.
      *
@@ -74,13 +78,7 @@ class SigningHelper
                 ));
             }
 
-            $options['keyFile'] = json_decode(file_get_contents($keyFilePath), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Keyfile path %s does not contain valid json.',
-                    $keyFilePath
-                ));
-            }
+            $options['keyFile'] = self::jsonDecode(file_get_contents($keyFilePath), true);
         }
 
         $rw = $connection->requestWrapper();
@@ -115,15 +113,33 @@ class SigningHelper
     }
 
     /**
-     * Determine the method name to be used for signing.
+     * Sign using the version inferred from `$options.version`.
      *
-     * @param string|null $version The version name.
+     * @param SignBlobInterface $credentials A credentials instance which
+     *        supports signing strings.
+     * @param Timestamp|\DateTimeInterface|int $expires The signed URL
+     *        expiration.
+     * @param string $resource The URI to the storage resource, preceded by a
+     *        leading slash.
+     * @param int|null $generation The resource generation.
+     * @param array $options Configuration options. See
+     *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
+     *        details.
      * @return string
-     * @throws \InvalidArgumentException If the version is not in the valid options.
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException If required data could not be gathered from
+     *        credentials.
+     * @throws \RuntimeException If OpenSSL signing is required by user input
+     *        and OpenSSL is not available.
      */
-    public static function getSigningMethodName($version)
+    public function sign(SignBlobInterface $credentials, $expires, $resource, $generation, array $options)
     {
-        $version = $version ?: self::DEFAULT_URL_SIGNING_VERSION;
+        $version = isset($options['version'])
+            ? $options['version']
+            : self::DEFAULT_URL_SIGNING_VERSION;
+
+        unset($options['version']);
+
         switch (strtolower($version)) {
             case 'v2':
                 $method = 'v2Sign';
@@ -137,7 +153,7 @@ class SigningHelper
                 throw new \InvalidArgumentException('Invalid signing version.');
         }
 
-        return $method;
+        return call_user_func_array([$this, $method], func_get_args());
     }
 
     /**
@@ -151,7 +167,7 @@ class SigningHelper
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
      *        leading slash.
-     * @param string|null $generation The resource generation.
+     * @param int|null $generation The resource generation.
      * @param array $options Configuration options. See
      *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
      *        details.
@@ -204,40 +220,21 @@ class SigningHelper
 
         $toSign[] = $resource;
 
-        // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
-        // in this case `\n` is required.
         $stringToSign = $this->createV2CanonicalRequest($toSign);
 
-        // Sign the string using the provided credentials.
         $signature = $credentials->signBlob($stringToSign, [
             'forceOpenssl' => $options['forceOpenssl']
         ]);
-
-        // Signature is returned base64-encoded. URL-encode that.
-        $encodedSignature = urlencode($signature);
 
         // Start with user-provided query params and add required parameters.
         $params = $options['queryParams'];
         $params['GoogleAccessId'] = $credentials->getClientName();
         $params['Expires'] = $expires;
-        $params['Signature'] = $encodedSignature;
+        $params['Signature'] = $signature;
 
-        if ($options['responseType']) {
-            $params['response-content-type'] = urlencode($options['responseType']);
-        }
+        $params = $this->addCommonParams($params, $generation, $options);
 
-        if ($options['responseDisposition']) {
-            $params['response-content-disposition'] = $options['responseDisposition'];
-        } elseif ($options['saveAsName']) {
-            $params['response-content-disposition'] = 'attachment; filename='
-                . '"' . $options['saveAsName'] . '"';
-        }
-
-        if ($generation) {
-            $params['generation'] = $generation;
-        }
-
-        $queryString = http_build_query($params, null, '&', PHP_QUERY_RFC3986);
+        $queryString = $this->buildQueryString($params);
 
         $resource = $this->normalizeUriPath($options['cname'], $resource);
         return 'https://' . $options['cname'] . $resource . '?' . $queryString;
@@ -252,7 +249,7 @@ class SigningHelper
      *        expiration.
      * @param string $resource The URI to the storage resource, preceded by a
      *        leading slash.
-     * @param string|null $generation The resource generation.
+     * @param int|null $generation The resource generation.
      * @param array $options Configuration options. See
      *        {@see Google\Cloud\Storage\StorageObject::signedUrl()} for
      *        details.
@@ -299,20 +296,7 @@ class SigningHelper
             $headers['content-md5'] = $options['contentMd5'];
         }
 
-        if ($options['responseType']) {
-            $params['response-content-type'] = $options['responseType'];
-        }
-
-        if ($options['responseDisposition']) {
-            $params['response-content-disposition'] = $options['responseDisposition'];
-        } elseif ($options['saveAsName']) {
-            $params['response-content-disposition'] = 'attachment; filename='
-                . '"' . $options['saveAsName'] . '"';
-        }
-
-        if ($generation) {
-            $params['generation'] = $generation;
-        }
+        $params = $this->addCommonParams($params, $generation, $options);
 
         $headers = $this->normalizeHeaders($headers);
 
@@ -342,8 +326,7 @@ class SigningHelper
         // Sort query string params by name.
         ksort($params, SORT_NATURAL | SORT_FLAG_CASE);
 
-        // Create a query string, encoding spaces as `%20` rather than `+`.
-        $canonicalQueryString = http_build_query($params, null, '&', PHP_QUERY_RFC3986);
+        $canonicalQueryString = $this->buildQueryString($params);
 
         $canonicalRequest = [
             $options['method'],
@@ -354,7 +337,6 @@ class SigningHelper
             'UNSIGNED-PAYLOAD'
         ];
 
-        // Create a request hash to be signed.
         $requestHash = $this->createV4CanonicalRequest($canonicalRequest);
 
         // Construct the string to sign.
@@ -365,7 +347,6 @@ class SigningHelper
             $requestHash
         ]);
 
-        // Sign the string using the given credentials.
         $signature = bin2hex(base64_decode($credentials->signBlob($stringToSign, [
             'forceOpenssl' => $options['forceOpenssl']
         ])));
@@ -373,6 +354,7 @@ class SigningHelper
         // Construct the modified resource name. If a custom cname is provided,
         // this will remove the bucket name from the resource.
         $resource = $this->normalizeUriPath($options['cname'], $resource);
+
         return sprintf(
             'https://%s%s?%s&X-Goog-Signature=%s',
             $options['cname'],
@@ -385,6 +367,9 @@ class SigningHelper
     /**
      * Creates a canonical request hash for a V4 Signed URL.
      *
+     * NOTE: While in most cases `PHP_EOL` is preferable to a system-specific
+     * character, in this case `\n` is required.
+     *
      * @param array $canonicalRequest The canonical request, with each element
      *        representing a line in the request.
      * @return string
@@ -396,6 +381,9 @@ class SigningHelper
 
     /**
      * Creates a canonical request for a V2 Signed URL.
+     *
+     * NOTE: While in most cases `PHP_EOL` is preferable to a system-specific
+     * character, in this case `\n` is required.
      *
      * @param array $canonicalRequest The canonical request, with each element
      *        representing a line in the request.
@@ -432,7 +420,7 @@ class SigningHelper
      * Normalizes and encodes the resource identifier.
      *
      * @param string $resource The resource identifier. In form
-     *        `[/]$bucket/$object]`.
+     *        `[/]$bucket/$object`.
      * @return string The resource, with pieces encoded and prefixed with a
      *        forward slash.
      */
@@ -508,11 +496,11 @@ class SigningHelper
                 );
 
                 if (!$options['timestamp']) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \InvalidArgumentException(
                         'Given timestamp string is in an invalid format. Provide timestamp formatted as follows: `' .
                         self::V4_TIMESTAMP_FORMAT .
-                        '`. Note that timestamps MUST be in GMT.'
-                    ));
+                        '`. Note that timestamps MUST be in UTC.'
+                    );
                 }
             }
         } else {
@@ -522,6 +510,16 @@ class SigningHelper
         return $options;
     }
 
+    /**
+     * Cleans and normalizes header values.
+     *
+     * Arrays of values are collapsed into a comma-separated list, trailing and
+     * leading spaces are removed, newlines are replaced by empty strings, and
+     * multiple whitespace chars are replaced by a single space.
+     *
+     * @param array $headers Input headers
+     * @return array
+     */
     protected function normalizeHeaders(array $headers)
     {
         $out = [];
@@ -537,7 +535,7 @@ class SigningHelper
                 $headerValue = trim($headerValue);
 
                 // replace newlines with empty strings.
-                $headerValue = str_replace(PHP_EOL, "", $headerValue);
+                $headerValue = str_replace(PHP_EOL, '', $headerValue);
 
                 // collapse multiple whitespace chars to a single space.
                 $headerValue = preg_replace('/\s+/', ' ', $headerValue);
@@ -574,5 +572,44 @@ class SigningHelper
         }
 
         return $resource;
+    }
+
+    /**
+     * Add parameters common to all signed URL versions.
+     *
+     * @param int|null $generation
+     * @param array $params
+     * @param array $options
+     * @return array
+     */
+    private function addCommonParams($generation, array $params, array $options)
+    {
+        if ($options['responseType']) {
+            $params['response-content-type'] = $options['responseType'];
+        }
+
+        if ($options['responseDisposition']) {
+            $params['response-content-disposition'] = $options['responseDisposition'];
+        } elseif ($options['saveAsName']) {
+            $params['response-content-disposition'] = 'attachment; filename='
+                . '"' . $options['saveAsName'] . '"';
+        }
+
+        if ($generation) {
+            $params['generation'] = $generation;
+        }
+
+        return $params;
+    }
+
+    /**
+     * Create a query string from an array, encoding spaces as `%20` rather than `+`.
+     *
+     * @param array $input
+     * @return string
+     */
+    private function buildQueryString(array $input)
+    {
+        return http_build_query($input, null, '&', PHP_QUERY_RFC3986);
     }
 }
