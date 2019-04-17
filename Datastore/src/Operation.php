@@ -22,6 +22,7 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 
 /**
  * Run lookups and queries and commit changes.
@@ -437,7 +438,13 @@ class Operation
             'nextResultTokenKey' => 'batch.endCursor',
             'setNextResultTokenCondition' => function ($res) use ($query) {
                 if (isset($res['batch']['moreResults'])) {
-                    return $query->canPaginate() && $res['batch']['moreResults'] === 'NOT_FINISHED';
+                    $moreResultsType = $res['batch']['moreResults'];
+                    // Transform gRPC enum to string
+                    if (is_numeric($moreResultsType)) {
+                        $moreResultsType = MoreResultsType::name($moreResultsType);
+                    }
+
+                    return $query->canPaginate() && $moreResultsType === 'NOT_FINISHED';
                 }
 
                 return false;

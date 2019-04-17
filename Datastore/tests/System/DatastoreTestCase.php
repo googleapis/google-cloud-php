@@ -83,8 +83,8 @@ class DatastoreTestCase extends TestCase
         self::setupBeforeClass();
 
         return [
-            [self::$restClient],
-            [self::$grpcClient]
+            'restClient' => [self::$restClient],
+            'grpcClient' => [self::$grpcClient]
         ];
     }
 }
