@@ -75,3 +75,35 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2019')
+
+# Firestore Admin also lives here
+admin_library = gapic.php_library(
+    service='firestore-admin',
+    version='v1',
+    config_path='/google/firestore/admin/artman_firestore_v1.yaml',
+    artman_output_name='google-cloud-firestore-admin-v1')
+
+# copy all src except handwritten partial veneers
+s.move(admin_library / f'src/V1/Gapic', 'src/Admin/V1/Gapic')
+s.move(admin_library / f'src/V1/resources', f'src/Admin/V1/resources')
+
+# copy proto files to src also
+s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Firestore')
+
+# copy GPBMetadata file to metadata
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
+
+# fix year
+s.replace(
+    'src/Admin/V1/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')
+s.replace(
+    'src/Admin/V1/FirestoreAdminGrpcClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')
+s.replace(
+    'tests/Unit/Firestore/V1/FirestoreAdminClientTest.php',
+    r'Copyright \d{4}',
+    'Copyright 2019')
