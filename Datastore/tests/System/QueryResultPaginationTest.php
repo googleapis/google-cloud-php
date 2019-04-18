@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\System;
 
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Datastore\Query\QueryInterface;
 
 /**
  * @group datastore
@@ -75,11 +76,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     {
         $q = $client->gqlQuery('SELECT * FROM ' . self::$kind);
 
-        $res = $client->runQuery($q);
-
-        $count = count(iterator_to_array($res));
-
-        $this->assertEquals(self::$expectedTotal, $count);
+        $this->assertQueryCount(self::$expectedTotal, $client, $q);
     }
 
     /**
@@ -89,11 +86,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     {
         $q = $client->query()->kind(self::$kind);
 
-        $res = $client->runQuery($q);
-
-        $count = count(iterator_to_array($res));
-
-        $this->assertEquals(self::$expectedTotal, $count);
+        $this->assertQueryCount(self::$expectedTotal, $client, $q);
     }
 
     /**
@@ -103,11 +96,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     {
         $q = $client->gqlQuery('SELECT * FROM ' . self::$kind);
 
-        $res = $client->runQuery($q);
-
-        $count = count(iterator_to_array($res->iterateByPage()));
-
-        $this->assertGreaterThan(1, $count);
+        $this->assertQueryPageCount(self::$expectedTotal, $client, $q);
     }
 
     /**
@@ -117,10 +106,30 @@ class QueryResultPaginationTest extends DatastoreTestCase
     {
         $q = $client->query()->kind(self::$kind);
 
-        $res = $client->runQuery($q);
+        $this->assertQueryPageCount(self::$expectedTotal, $client, $q);
+    }
 
-        $count = count(iterator_to_array($res->iterateByPage()));
+    private function assertQueryCount($expected, DatastoreClient $client, QueryInterface $query)
+    {
+        $res = $client->runQuery($query);
 
-        $this->assertGreaterThan(1, $count);
+        $count = count(iterator_to_array($res));
+
+        $this->assertEquals($expected, $count);
+    }
+
+    private function assertQueryPageCount($expected, DatastoreClient $client, QueryInterface $query)
+    {
+        $res = $client->runQuery($query);
+
+        $pages = 0;
+        $totalRows = 0;
+        foreach ($res->iterateByPage() as $page) {
+            $totalRows += count($page);
+            $pages++;
+        }
+
+        $this->assertGreaterThan(1, $pages);
+        $this->assertEquals($expected, $totalRows);
     }
 }
