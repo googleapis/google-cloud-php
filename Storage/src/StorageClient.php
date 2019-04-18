@@ -238,6 +238,7 @@ class StorageClient
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/insert Buckets insert API documentation.
      *
      * @param string $name Name of the bucket to be created.
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -308,8 +309,13 @@ class StorageClient
      *     @type bool $iamConfiguration.bucketPolicyOnly.enabled If set and
      *           true, access checks only use bucket-level IAM policies or
      *           above. When enabled, requests attempting to view or manipulate
-     *           ACLs will fail with error code 400.
+     *           ACLs will fail with error code 400. **NOTE**: Before using
+     *           Bucket Policy Only, please review the
+     *           [feature documentation](https://cloud.google.com/storage/docs/bucket-policy-only),
+     *           as well as
+     *           [Should You Use Bucket Policy Only](https://cloud.google.com/storage/docs/bucket-policy-only#should-you-use)
      * }
+     * @codingStandardsIgnoreEnd
      * @return Bucket
      * @throws GoogleException When a project ID has not been detected.
      */
