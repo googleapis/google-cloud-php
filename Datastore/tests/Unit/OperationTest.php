@@ -24,6 +24,8 @@ use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -473,32 +475,42 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(Entity::class, $arr[0]);
     }
 
-    public function testRunQueryPaged()
+    /**
+     * @dataProvider queries
+     */
+    public function testRunQueryPaged($query)
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
         $this->connection->runQuery(Argument::type('array'))
             ->will(function ($args, $mock) use ($queryResult) {
                 // The 2nd call will return the 2nd page of results!
-                $mock->runQuery(Argument::type('array'))
-                    ->willReturn($queryResult['paged'][1]);
+                $mock->runQuery(Argument::that(function ($arg) use ($queryResult) {
+                    return $arg['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
+                }))->willReturn($queryResult['paged'][1]);
+
                 return $queryResult['paged'][0];
             });
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $q = $this->prophesize(QueryInterface::class);
-        $q->queryKey()->shouldBeCalled()->willReturn('query');
-        $q->queryObject()->shouldBeCalled()->willReturn([]);
-        $q->canPaginate()->willReturn(true);
-        $q->start(Argument::any())->willReturn(null);
-
-        $res = $this->operation->runQuery($q->reveal());
+        $res = $this->operation->runQuery($query);
 
         $this->assertInstanceOf(EntityIterator::class, $res);
 
         $arr = iterator_to_array($res);
         $this->assertCount(3, $arr);
         $this->assertInstanceOf(Entity::class, $arr[0]);
+    }
+
+    public function queries()
+    {
+        $em = $this->prophesize(EntityMapper::class);
+        $query = new Query($em->reveal());
+        $gql = new GqlQuery($em->reveal(), 'SELECT 1');
+        return [
+            [$query],
+            [$gql]
+        ];
     }
 
     public function testRunQueryNoResults()

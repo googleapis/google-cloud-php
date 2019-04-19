@@ -82,10 +82,10 @@ class GqlQueryTest extends TestCase
         $this->assertTrue($res['allowLiterals']);
     }
 
-    public function testCanPaginateReturnsFalse()
+    public function testCanPaginateReturnsTrue()
     {
         $query = new GqlQuery($this->mapper, 'SELECT * FROM foo');
-        $this->assertFalse($query->canPaginate());
+        $this->assertTrue($query->canPaginate());
     }
 
     public function testQueryKeyIsCorrect()

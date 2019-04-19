@@ -47,6 +47,9 @@
   },
   "paged": [
     {
+      "query": {
+        "kind": ["Person"]
+      },
       "batch": {
         "entityResults": [
           {
