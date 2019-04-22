@@ -27,9 +27,11 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
+use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Implementation of the
@@ -309,6 +311,10 @@ class Rest implements ConnectionInterface
             $args['metadata']['md5Hash'] = base64_encode(Psr7\hash($args['data'], 'md5', true));
         }
 
+        if ($args['validate'] && !isset($args['metadata']['crc32c'])) {
+            $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
+        }
+
         $args['metadata']['name'] = $args['name'];
         unset($args['name']);
         $args['contentType'] = isset($args['metadata']['contentType'])
@@ -438,5 +444,31 @@ class Rest implements ConnectionInterface
             new Request('GET', Psr7\uri_for($uri)),
             $requestOptions
         ];
+    }
+
+    /**
+     * Generate a CRC32c checksum from a stream.
+     *
+     * @param StreamInterface $data
+     * @return string
+     */
+    private function crcFromStream(StreamInterface $data)
+    {
+        $pos = $data->tell();
+
+        if ($pos > 0) {
+            $data->rewind();
+        }
+
+        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
+
+        $data->rewind();
+        while (!$data->eof()) {
+            $crc32c->update($data->read(1048576));
+        }
+
+        $data->seek($pos);
+
+        return base64_encode($crc32c->hash(true));
     }
 }

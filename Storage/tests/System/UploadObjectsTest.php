@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7;
 
 /**
@@ -123,5 +124,24 @@ class UploadObjectsTest extends StorageTestCase
         if ($this->testFileSize == $this->totalStoredBytes) {
             $this->assertEquals(filesize(__DIR__ . '/data/5mb.txt'), $this->totalStoredBytes);
         }
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testCrc32ChecksumFails()
+    {
+        $path = __DIR__ . '/data/5mb.txt';
+
+        $crc32 = CRC32::create(CRC32::CASTAGNOLI);
+        $crc32->update('foobar');
+        $badChecksum = base64_encode($crc32->hash(true));
+
+        self::$bucket->upload($path, [
+            'name' => uniqid(),
+            'metadata' => [
+                'crc32c' => $badChecksum
+            ]
+        ]);
     }
 }

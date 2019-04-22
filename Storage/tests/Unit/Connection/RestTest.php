@@ -24,16 +24,17 @@ use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
+use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Rize\UriTemplate;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
@@ -233,6 +234,7 @@ class RestTest extends TestCase
         $this->assertEquals($expectedContentType, $contentType);
 
         foreach ($expectedMetadata as $key => $value) {
+
             $this->assertEquals($value, $metadata[$key]);
         }
     }
@@ -242,6 +244,10 @@ class RestTest extends TestCase
         $tempFile = Psr7\stream_for(fopen('php://temp', 'r+'));
         $tempFile->write(str_repeat('0', 5000001));
         $logoFile = Psr7\stream_for(fopen(__DIR__ . '/../data/logo.svg', 'r'));
+
+        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
+        $crc32c->update((string) $logoFile);
+        $crcHash = base64_encode($crc32c->hash(true));
 
         return [
             [
@@ -311,6 +317,31 @@ class RestTest extends TestCase
                     'metadata' => [
                         'here' => 'wego'
                     ]
+                ]
+            ],
+            [
+                [
+                    'data' => $logoFile,
+                    'name' => 'logo.svg',
+                ],
+                MultipartUploader::class,
+                'image/svg+xml',
+                [
+                    'name' => 'logo.svg',
+                    'crc32c' => $crcHash
+                ]
+            ],
+            [
+                [
+                    'data' => $logoFile,
+                    'name' => 'logo.svg',
+                    'resumable' => true
+                ],
+                ResumableUploader::class,
+                'image/svg+xml',
+                [
+                    'name' => 'logo.svg',
+                    'crc32c' => $crcHash
                 ]
             ]
         ];

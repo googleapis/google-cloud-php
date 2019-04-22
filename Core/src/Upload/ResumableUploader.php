@@ -176,9 +176,15 @@ class ResumableUploader extends AbstractUploader
             try {
                 $response = $this->requestWrapper->send($request, $this->requestOptions);
             } catch (GoogleException $ex) {
+                $msg = json_decode($ex->getMessage, true) ?: $ex->getMessage();
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $msg['resumeUri'] = $this->resumeUri;
+                    $msg = json_encode($msg);
+                }
                 throw new GoogleException(
-                    "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
-                    $ex->getCode()
+                    $msg,
+                    $ex->getCode(),
+                    $ex
                 );
             }
 

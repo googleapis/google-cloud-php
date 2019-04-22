@@ -232,9 +232,9 @@ class Bucket
      *     @type bool $resumable Indicates whether or not the upload will be
      *           performed in a resumable fashion.
      *     @type bool $validate Indicates whether or not validation will be
-     *           applied using md5 hashing functionality. If true and the
-     *           calculated hash does not match that of the upstream server the
-     *           upload will be rejected.
+     *           applied using md5 and crc32 hashing functionality. If true and
+     *           the calculated hash does not match that of the upstream server
+     *           the upload will be rejected.
      *     @type int $chunkSize If provided the upload will be done in chunks.
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
