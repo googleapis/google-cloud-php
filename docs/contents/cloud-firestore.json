@@ -47,7 +47,7 @@
             "type": "firestore/v1/firestoreclient"
         }, {
             "title": "FirestoreAdminClient",
-            "type": "firestore/admin/v1/firestoreclient"
+            "type": "firestore/admin/v1/firestoreadminclient"
         }]
     }, {
         "title": "v1beta1",
