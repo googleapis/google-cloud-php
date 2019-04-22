@@ -39,14 +39,16 @@
         "title": "v1",
         "type": "firestore/v1/readme",
         "patterns": [
-            "firestore/v1/\\w{1,}"
+          "firestore/v1/\\w{1,}",
+          "firestore/admin/v1/\\w{1,}"
         ],
-        "nav": [
-            {
-                "title": "FirestoreClient",
-                "type": "firestore/v1/firestoreclient"
-            }
-        ]
+        "nav": [{
+            "title": "FirestoreClient",
+            "type": "firestore/v1/firestoreclient"
+        }, {
+            "title": "FirestoreAdminClient",
+            "type": "firestore/admin/v1/firestoreclient"
+        }]
     }, {
         "title": "v1beta1",
         "type": "firestore/v1beta1/readme",
