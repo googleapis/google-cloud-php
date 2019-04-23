@@ -131,8 +131,8 @@ class CloudRedisGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $locationNameTemplate;
     private static $instanceNameTemplate;
+    private static $locationNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -156,15 +156,6 @@ class CloudRedisGapicClient
         ];
     }
 
-    private static function getLocationNameTemplate()
-    {
-        if (null == self::$locationNameTemplate) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
-        }
-
-        return self::$locationNameTemplate;
-    }
-
     private static function getInstanceNameTemplate()
     {
         if (null == self::$instanceNameTemplate) {
@@ -174,34 +165,25 @@ class CloudRedisGapicClient
         return self::$instanceNameTemplate;
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (null == self::$locationNameTemplate) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'location' => self::getLocationNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location resource.
-     *
-     * @param string $project
-     * @param string $location
-     *
-     * @return string The formatted location resource.
-     * @experimental
-     */
-    public static function locationName($project, $location)
-    {
-        return self::getLocationNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-        ]);
     }
 
     /**
@@ -225,11 +207,29 @@ class CloudRedisGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - location: projects/{project}/locations/{location}
-     * - instance: projects/{project}/locations/{location}/instances/{instance}.
+     * - instance: projects/{project}/locations/{location}/instances/{instance}
+     * - location: projects/{project}/locations/{location}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
