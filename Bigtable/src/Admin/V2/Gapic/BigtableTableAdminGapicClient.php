@@ -129,8 +129,8 @@ class BigtableTableAdminGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
-    private static $instanceNameTemplate;
     private static $clusterNameTemplate;
+    private static $instanceNameTemplate;
     private static $snapshotNameTemplate;
     private static $tableNameTemplate;
     private static $pathTemplateMap;
@@ -156,15 +156,6 @@ class BigtableTableAdminGapicClient
         ];
     }
 
-    private static function getInstanceNameTemplate()
-    {
-        if (null == self::$instanceNameTemplate) {
-            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
-        }
-
-        return self::$instanceNameTemplate;
-    }
-
     private static function getClusterNameTemplate()
     {
         if (null == self::$clusterNameTemplate) {
@@ -172,6 +163,15 @@ class BigtableTableAdminGapicClient
         }
 
         return self::$clusterNameTemplate;
+    }
+
+    private static function getInstanceNameTemplate()
+    {
+        if (null == self::$instanceNameTemplate) {
+            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
+        }
+
+        return self::$instanceNameTemplate;
     }
 
     private static function getSnapshotNameTemplate()
@@ -196,32 +196,14 @@ class BigtableTableAdminGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'instance' => self::getInstanceNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
+                'instance' => self::getInstanceNameTemplate(),
                 'snapshot' => self::getSnapshotNameTemplate(),
                 'table' => self::getTableNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
-     *
-     * @param string $project
-     * @param string $instance
-     *
-     * @return string The formatted instance resource.
-     * @experimental
-     */
-    public static function instanceName($project, $instance)
-    {
-        return self::getInstanceNameTemplate()->render([
-            'project' => $project,
-            'instance' => $instance,
-        ]);
     }
 
     /**
@@ -241,6 +223,24 @@ class BigtableTableAdminGapicClient
             'project' => $project,
             'instance' => $instance,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
+     */
+    public static function instanceName($project, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
         ]);
     }
 
@@ -290,8 +290,8 @@ class BigtableTableAdminGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - instance: projects/{project}/instances/{instance}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
+     * - instance: projects/{project}/instances/{instance}
      * - snapshot: projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}
      * - table: projects/{project}/instances/{instance}/tables/{table}.
      *
