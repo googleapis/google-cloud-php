@@ -125,9 +125,9 @@ class DeviceManagerGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloudiot',
     ];
+    private static $deviceNameTemplate;
     private static $locationNameTemplate;
     private static $registryNameTemplate;
-    private static $deviceNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -149,6 +149,15 @@ class DeviceManagerGapicClient
         ];
     }
 
+    private static function getDeviceNameTemplate()
+    {
+        if (null == self::$deviceNameTemplate) {
+            self::$deviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}/devices/{device}');
+        }
+
+        return self::$deviceNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (null == self::$locationNameTemplate) {
@@ -167,26 +176,39 @@ class DeviceManagerGapicClient
         return self::$registryNameTemplate;
     }
 
-    private static function getDeviceNameTemplate()
-    {
-        if (null == self::$deviceNameTemplate) {
-            self::$deviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}/devices/{device}');
-        }
-
-        return self::$deviceNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'device' => self::getDeviceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'registry' => self::getRegistryNameTemplate(),
-                'device' => self::getDeviceNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a device resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $registry
+     * @param string $device
+     *
+     * @return string The formatted device resource.
+     * @experimental
+     */
+    public static function deviceName($project, $location, $registry, $device)
+    {
+        return self::getDeviceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'registry' => $registry,
+            'device' => $device,
+        ]);
     }
 
     /**
@@ -228,34 +250,12 @@ class DeviceManagerGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a device resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $registry
-     * @param string $device
-     *
-     * @return string The formatted device resource.
-     * @experimental
-     */
-    public static function deviceName($project, $location, $registry, $device)
-    {
-        return self::getDeviceNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'registry' => $registry,
-            'device' => $device,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - device: projects/{project}/locations/{location}/registries/{registry}/devices/{device}
      * - location: projects/{project}/locations/{location}
-     * - registry: projects/{project}/locations/{location}/registries/{registry}
-     * - device: projects/{project}/locations/{location}/registries/{registry}/devices/{device}.
+     * - registry: projects/{project}/locations/{location}/registries/{registry}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
