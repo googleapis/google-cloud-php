@@ -153,9 +153,9 @@ class IntentsGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
     ];
-    private static $projectAgentNameTemplate;
-    private static $intentNameTemplate;
     private static $agentNameTemplate;
+    private static $intentNameTemplate;
+    private static $projectAgentNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -179,13 +179,13 @@ class IntentsGapicClient
         ];
     }
 
-    private static function getProjectAgentNameTemplate()
+    private static function getAgentNameTemplate()
     {
-        if (null == self::$projectAgentNameTemplate) {
-            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        if (null == self::$agentNameTemplate) {
+            self::$agentNameTemplate = new PathTemplate('projects/{project}/agents/{agent}');
         }
 
-        return self::$projectAgentNameTemplate;
+        return self::$agentNameTemplate;
     }
 
     private static function getIntentNameTemplate()
@@ -197,22 +197,22 @@ class IntentsGapicClient
         return self::$intentNameTemplate;
     }
 
-    private static function getAgentNameTemplate()
+    private static function getProjectAgentNameTemplate()
     {
-        if (null == self::$agentNameTemplate) {
-            self::$agentNameTemplate = new PathTemplate('projects/{project}/agents/{agent}');
+        if (null == self::$projectAgentNameTemplate) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
         }
 
-        return self::$agentNameTemplate;
+        return self::$projectAgentNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'projectAgent' => self::getProjectAgentNameTemplate(),
-                'intent' => self::getIntentNameTemplate(),
                 'agent' => self::getAgentNameTemplate(),
+                'intent' => self::getIntentNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
             ];
         }
 
@@ -221,17 +221,19 @@ class IntentsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project_agent resource.
+     * a agent resource.
      *
      * @param string $project
+     * @param string $agent
      *
-     * @return string The formatted project_agent resource.
+     * @return string The formatted agent resource.
      * @experimental
      */
-    public static function projectAgentName($project)
+    public static function agentName($project, $agent)
     {
-        return self::getProjectAgentNameTemplate()->render([
+        return self::getAgentNameTemplate()->render([
             'project' => $project,
+            'agent' => $agent,
         ]);
     }
 
@@ -255,19 +257,17 @@ class IntentsGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a agent resource.
+     * a project_agent resource.
      *
      * @param string $project
-     * @param string $agent
      *
-     * @return string The formatted agent resource.
+     * @return string The formatted project_agent resource.
      * @experimental
      */
-    public static function agentName($project, $agent)
+    public static function projectAgentName($project)
     {
-        return self::getAgentNameTemplate()->render([
+        return self::getProjectAgentNameTemplate()->render([
             'project' => $project,
-            'agent' => $agent,
         ]);
     }
 
@@ -275,9 +275,9 @@ class IntentsGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - projectAgent: projects/{project}/agent
+     * - agent: projects/{project}/agents/{agent}
      * - intent: projects/{project}/agent/intents/{intent}
-     * - agent: projects/{project}/agents/{agent}.
+     * - projectAgent: projects/{project}/agent.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
