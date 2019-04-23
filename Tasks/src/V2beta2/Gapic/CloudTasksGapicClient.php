@@ -136,8 +136,8 @@ class CloudTasksGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $projectNameTemplate;
     private static $locationNameTemplate;
+    private static $projectNameTemplate;
     private static $queueNameTemplate;
     private static $taskNameTemplate;
     private static $pathTemplateMap;
@@ -161,15 +161,6 @@ class CloudTasksGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getLocationNameTemplate()
     {
         if (null == self::$locationNameTemplate) {
@@ -177,6 +168,15 @@ class CloudTasksGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
     }
 
     private static function getQueueNameTemplate()
@@ -201,30 +201,14 @@ class CloudTasksGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'queue' => self::getQueueNameTemplate(),
                 'task' => self::getTaskNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -242,6 +226,22 @@ class CloudTasksGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
         ]);
     }
 
@@ -291,8 +291,8 @@ class CloudTasksGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
      * - location: projects/{project}/locations/{location}
+     * - project: projects/{project}
      * - queue: projects/{project}/locations/{location}/queues/{queue}
      * - task: projects/{project}/locations/{location}/queues/{queue}/tasks/{task}.
      *
