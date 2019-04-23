@@ -153,15 +153,15 @@ class DlpServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $dlpJobNameTemplate;
     private static $organizationNameTemplate;
     private static $organizationDeidentifyTemplateNameTemplate;
-    private static $projectDeidentifyTemplateNameTemplate;
     private static $organizationInspectTemplateNameTemplate;
+    private static $organizationStoredInfoTypeNameTemplate;
+    private static $projectNameTemplate;
+    private static $projectDeidentifyTemplateNameTemplate;
     private static $projectInspectTemplateNameTemplate;
     private static $projectJobTriggerNameTemplate;
-    private static $projectNameTemplate;
-    private static $dlpJobNameTemplate;
-    private static $organizationStoredInfoTypeNameTemplate;
     private static $projectStoredInfoTypeNameTemplate;
     private static $pathTemplateMap;
 
@@ -184,6 +184,15 @@ class DlpServiceGapicClient
         ];
     }
 
+    private static function getDlpJobNameTemplate()
+    {
+        if (null == self::$dlpJobNameTemplate) {
+            self::$dlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
+        }
+
+        return self::$dlpJobNameTemplate;
+    }
+
     private static function getOrganizationNameTemplate()
     {
         if (null == self::$organizationNameTemplate) {
@@ -202,15 +211,6 @@ class DlpServiceGapicClient
         return self::$organizationDeidentifyTemplateNameTemplate;
     }
 
-    private static function getProjectDeidentifyTemplateNameTemplate()
-    {
-        if (null == self::$projectDeidentifyTemplateNameTemplate) {
-            self::$projectDeidentifyTemplateNameTemplate = new PathTemplate('projects/{project}/deidentifyTemplates/{deidentify_template}');
-        }
-
-        return self::$projectDeidentifyTemplateNameTemplate;
-    }
-
     private static function getOrganizationInspectTemplateNameTemplate()
     {
         if (null == self::$organizationInspectTemplateNameTemplate) {
@@ -218,6 +218,33 @@ class DlpServiceGapicClient
         }
 
         return self::$organizationInspectTemplateNameTemplate;
+    }
+
+    private static function getOrganizationStoredInfoTypeNameTemplate()
+    {
+        if (null == self::$organizationStoredInfoTypeNameTemplate) {
+            self::$organizationStoredInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/storedInfoTypes/{stored_info_type}');
+        }
+
+        return self::$organizationStoredInfoTypeNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getProjectDeidentifyTemplateNameTemplate()
+    {
+        if (null == self::$projectDeidentifyTemplateNameTemplate) {
+            self::$projectDeidentifyTemplateNameTemplate = new PathTemplate('projects/{project}/deidentifyTemplates/{deidentify_template}');
+        }
+
+        return self::$projectDeidentifyTemplateNameTemplate;
     }
 
     private static function getProjectInspectTemplateNameTemplate()
@@ -238,33 +265,6 @@ class DlpServiceGapicClient
         return self::$projectJobTriggerNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
-    private static function getDlpJobNameTemplate()
-    {
-        if (null == self::$dlpJobNameTemplate) {
-            self::$dlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
-        }
-
-        return self::$dlpJobNameTemplate;
-    }
-
-    private static function getOrganizationStoredInfoTypeNameTemplate()
-    {
-        if (null == self::$organizationStoredInfoTypeNameTemplate) {
-            self::$organizationStoredInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/storedInfoTypes/{stored_info_type}');
-        }
-
-        return self::$organizationStoredInfoTypeNameTemplate;
-    }
-
     private static function getProjectStoredInfoTypeNameTemplate()
     {
         if (null == self::$projectStoredInfoTypeNameTemplate) {
@@ -278,20 +278,38 @@ class DlpServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'dlpJob' => self::getDlpJobNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationDeidentifyTemplate' => self::getOrganizationDeidentifyTemplateNameTemplate(),
-                'projectDeidentifyTemplate' => self::getProjectDeidentifyTemplateNameTemplate(),
                 'organizationInspectTemplate' => self::getOrganizationInspectTemplateNameTemplate(),
+                'organizationStoredInfoType' => self::getOrganizationStoredInfoTypeNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+                'projectDeidentifyTemplate' => self::getProjectDeidentifyTemplateNameTemplate(),
                 'projectInspectTemplate' => self::getProjectInspectTemplateNameTemplate(),
                 'projectJobTrigger' => self::getProjectJobTriggerNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
-                'dlpJob' => self::getDlpJobNameTemplate(),
-                'organizationStoredInfoType' => self::getOrganizationStoredInfoTypeNameTemplate(),
                 'projectStoredInfoType' => self::getProjectStoredInfoTypeNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a dlp_job resource.
+     *
+     * @param string $project
+     * @param string $dlpJob
+     *
+     * @return string The formatted dlp_job resource.
+     * @experimental
+     */
+    public static function dlpJobName($project, $dlpJob)
+    {
+        return self::getDlpJobNameTemplate()->render([
+            'project' => $project,
+            'dlp_job' => $dlpJob,
+        ]);
     }
 
     /**
@@ -330,24 +348,6 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project_deidentify_template resource.
-     *
-     * @param string $project
-     * @param string $deidentifyTemplate
-     *
-     * @return string The formatted project_deidentify_template resource.
-     * @experimental
-     */
-    public static function projectDeidentifyTemplateName($project, $deidentifyTemplate)
-    {
-        return self::getProjectDeidentifyTemplateNameTemplate()->render([
-            'project' => $project,
-            'deidentify_template' => $deidentifyTemplate,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a organization_inspect_template resource.
      *
      * @param string $organization
@@ -361,6 +361,58 @@ class DlpServiceGapicClient
         return self::getOrganizationInspectTemplateNameTemplate()->render([
             'organization' => $organization,
             'inspect_template' => $inspectTemplate,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_stored_info_type resource.
+     *
+     * @param string $organization
+     * @param string $storedInfoType
+     *
+     * @return string The formatted organization_stored_info_type resource.
+     * @experimental
+     */
+    public static function organizationStoredInfoTypeName($organization, $storedInfoType)
+    {
+        return self::getOrganizationStoredInfoTypeNameTemplate()->render([
+            'organization' => $organization,
+            'stored_info_type' => $storedInfoType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_deidentify_template resource.
+     *
+     * @param string $project
+     * @param string $deidentifyTemplate
+     *
+     * @return string The formatted project_deidentify_template resource.
+     * @experimental
+     */
+    public static function projectDeidentifyTemplateName($project, $deidentifyTemplate)
+    {
+        return self::getProjectDeidentifyTemplateNameTemplate()->render([
+            'project' => $project,
+            'deidentify_template' => $deidentifyTemplate,
         ]);
     }
 
@@ -402,58 +454,6 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a dlp_job resource.
-     *
-     * @param string $project
-     * @param string $dlpJob
-     *
-     * @return string The formatted dlp_job resource.
-     * @experimental
-     */
-    public static function dlpJobName($project, $dlpJob)
-    {
-        return self::getDlpJobNameTemplate()->render([
-            'project' => $project,
-            'dlp_job' => $dlpJob,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a organization_stored_info_type resource.
-     *
-     * @param string $organization
-     * @param string $storedInfoType
-     *
-     * @return string The formatted organization_stored_info_type resource.
-     * @experimental
-     */
-    public static function organizationStoredInfoTypeName($organization, $storedInfoType)
-    {
-        return self::getOrganizationStoredInfoTypeNameTemplate()->render([
-            'organization' => $organization,
-            'stored_info_type' => $storedInfoType,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a project_stored_info_type resource.
      *
      * @param string $project
@@ -474,15 +474,15 @@ class DlpServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - organization: organizations/{organization}
      * - organizationDeidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
-     * - projectDeidentifyTemplate: projects/{project}/deidentifyTemplates/{deidentify_template}
      * - organizationInspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
+     * - organizationStoredInfoType: organizations/{organization}/storedInfoTypes/{stored_info_type}
+     * - project: projects/{project}
+     * - projectDeidentifyTemplate: projects/{project}/deidentifyTemplates/{deidentify_template}
      * - projectInspectTemplate: projects/{project}/inspectTemplates/{inspect_template}
      * - projectJobTrigger: projects/{project}/jobTriggers/{job_trigger}
-     * - project: projects/{project}
-     * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
-     * - organizationStoredInfoType: organizations/{organization}/storedInfoTypes/{stored_info_type}
      * - projectStoredInfoType: projects/{project}/storedInfoTypes/{stored_info_type}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
