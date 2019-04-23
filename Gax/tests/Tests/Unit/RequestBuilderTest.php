@@ -67,7 +67,7 @@ class RequestBuilderTest extends TestCase
         $nestedMessage->setName('nested/foo');
         $message->setNestedMessage($nestedMessage);
 
-        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithBody', $message);
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithBodyAndUrlPlaceholder', $message);
         $uri = $request->getUri();
 
         $this->assertEmpty($uri->getQuery());
@@ -94,6 +94,51 @@ class RequestBuilderTest extends TestCase
         $this->assertEquals(
             ['name' => 'nested/foo'],
             json_decode($request->getBody(), true)
+        );
+    }
+
+    public function testMethodWithScalarBody()
+    {
+        $message = new MockRequestBody();
+        $message->setName('foo');
+
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithScalarBody', $message);
+
+        $this->assertEquals(
+            '"foo"',
+            (string) $request->getBody()
+        );
+    }
+
+    public function testMethodWithEmptyMessageInBody()
+    {
+        $message = new MockRequestBody();
+        $nestedMessage = new MockRequestBody();
+        $message->setNestedMessage($nestedMessage);
+
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithBody', $message);
+
+        $this->assertEquals(
+            '{"nestedMessage":{}}',
+            $request->getBody()
+        );
+    }
+
+    public function testMethodWithEmptyMessageInNestedMessageBody()
+    {
+        $message = new MockRequestBody();
+        $message->setName('message/foo');
+        $nestedMessage = new MockRequestBody();
+        $message->setNestedMessage($nestedMessage);
+        $emptyMessage = new MockRequestBody();
+        $nestedMessage->setNestedMessage($emptyMessage);
+
+
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithNestedMessageAsBody', $message);
+
+        $this->assertEquals(
+            '{"nestedMessage":{}}',
+            $request->getBody()
         );
     }
 

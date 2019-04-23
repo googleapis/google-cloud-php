@@ -3,6 +3,11 @@
 return [
     'interfaces' => [
         'test.interface.v1.api' => [
+            'MethodWithBody' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/foo',
+                'body' => '*',
+            ],
             'MethodWithUrlPlaceholder' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=message/**}',
@@ -14,7 +19,7 @@ return [
                     ],
                 ],
             ],
-            'MethodWithBody' => [
+            'MethodWithBodyAndUrlPlaceholder' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=message/**}',
                 'body' => '*',
@@ -37,6 +42,11 @@ return [
                         ]
                     ],
                 ],
+            ],
+            'MethodWithScalarBody' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/foo',
+                'body' => 'name',
             ],
             'MethodWithNestedUrlPlaceholder' => [
                 'method' => 'get',
