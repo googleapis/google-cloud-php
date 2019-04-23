@@ -124,9 +124,9 @@ class AlertPolicyServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
-    private static $projectNameTemplate;
     private static $alertPolicyNameTemplate;
     private static $alertPolicyConditionNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -148,15 +148,6 @@ class AlertPolicyServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getAlertPolicyNameTemplate()
     {
         if (null == self::$alertPolicyNameTemplate) {
@@ -175,33 +166,26 @@ class AlertPolicyServiceGapicClient
         return self::$alertPolicyConditionNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
                 'alertPolicy' => self::getAlertPolicyNameTemplate(),
                 'alertPolicyCondition' => self::getAlertPolicyConditionNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -243,12 +227,28 @@ class AlertPolicyServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
      * - alertPolicy: projects/{project}/alertPolicies/{alert_policy}
-     * - alertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}.
+     * - alertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
