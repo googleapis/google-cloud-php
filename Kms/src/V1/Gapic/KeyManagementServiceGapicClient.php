@@ -152,11 +152,11 @@ class KeyManagementServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $keyRingNameTemplate;
-    private static $cryptoKeyPathNameTemplate;
-    private static $locationNameTemplate;
     private static $cryptoKeyNameTemplate;
+    private static $cryptoKeyPathNameTemplate;
     private static $cryptoKeyVersionNameTemplate;
+    private static $keyRingNameTemplate;
+    private static $locationNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -178,13 +178,13 @@ class KeyManagementServiceGapicClient
         ];
     }
 
-    private static function getKeyRingNameTemplate()
+    private static function getCryptoKeyNameTemplate()
     {
-        if (null == self::$keyRingNameTemplate) {
-            self::$keyRingNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}');
+        if (null == self::$cryptoKeyNameTemplate) {
+            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
         }
 
-        return self::$keyRingNameTemplate;
+        return self::$cryptoKeyNameTemplate;
     }
 
     private static function getCryptoKeyPathNameTemplate()
@@ -196,24 +196,6 @@ class KeyManagementServiceGapicClient
         return self::$cryptoKeyPathNameTemplate;
     }
 
-    private static function getLocationNameTemplate()
-    {
-        if (null == self::$locationNameTemplate) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
-        }
-
-        return self::$locationNameTemplate;
-    }
-
-    private static function getCryptoKeyNameTemplate()
-    {
-        if (null == self::$cryptoKeyNameTemplate) {
-            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
-        }
-
-        return self::$cryptoKeyNameTemplate;
-    }
-
     private static function getCryptoKeyVersionNameTemplate()
     {
         if (null == self::$cryptoKeyVersionNameTemplate) {
@@ -223,15 +205,33 @@ class KeyManagementServiceGapicClient
         return self::$cryptoKeyVersionNameTemplate;
     }
 
+    private static function getKeyRingNameTemplate()
+    {
+        if (null == self::$keyRingNameTemplate) {
+            self::$keyRingNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}');
+        }
+
+        return self::$keyRingNameTemplate;
+    }
+
+    private static function getLocationNameTemplate()
+    {
+        if (null == self::$locationNameTemplate) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'keyRing' => self::getKeyRingNameTemplate(),
-                'cryptoKeyPath' => self::getCryptoKeyPathNameTemplate(),
-                'location' => self::getLocationNameTemplate(),
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'cryptoKeyPath' => self::getCryptoKeyPathNameTemplate(),
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
+                'keyRing' => self::getKeyRingNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
             ];
         }
 
@@ -240,21 +240,23 @@ class KeyManagementServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a key_ring resource.
+     * a crypto_key resource.
      *
      * @param string $project
      * @param string $location
      * @param string $keyRing
+     * @param string $cryptoKey
      *
-     * @return string The formatted key_ring resource.
+     * @return string The formatted crypto_key resource.
      * @experimental
      */
-    public static function keyRingName($project, $location, $keyRing)
+    public static function cryptoKeyName($project, $location, $keyRing, $cryptoKey)
     {
-        return self::getKeyRingNameTemplate()->render([
+        return self::getCryptoKeyNameTemplate()->render([
             'project' => $project,
             'location' => $location,
             'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -277,46 +279,6 @@ class KeyManagementServiceGapicClient
             'location' => $location,
             'key_ring' => $keyRing,
             'crypto_key_path' => $cryptoKeyPath,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location resource.
-     *
-     * @param string $project
-     * @param string $location
-     *
-     * @return string The formatted location resource.
-     * @experimental
-     */
-    public static function locationName($project, $location)
-    {
-        return self::getLocationNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a crypto_key resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $keyRing
-     * @param string $cryptoKey
-     *
-     * @return string The formatted crypto_key resource.
-     * @experimental
-     */
-    public static function cryptoKeyName($project, $location, $keyRing, $cryptoKey)
-    {
-        return self::getCryptoKeyNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'key_ring' => $keyRing,
-            'crypto_key' => $cryptoKey,
         ]);
     }
 
@@ -345,14 +307,52 @@ class KeyManagementServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a key_ring resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     *
+     * @return string The formatted key_ring resource.
+     * @experimental
+     */
+    public static function keyRingName($project, $location, $keyRing)
+    {
+        return self::getKeyRingNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
-     * - cryptoKeyPath: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}
-     * - location: projects/{project}/locations/{location}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
-     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}.
+     * - cryptoKeyPath: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
+     * - location: projects/{project}/locations/{location}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
