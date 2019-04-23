@@ -140,8 +140,8 @@ class ProductSearchGapicClient
         'https://www.googleapis.com/auth/cloud-vision',
     ];
     private static $locationNameTemplate;
-    private static $productSetNameTemplate;
     private static $productNameTemplate;
+    private static $productSetNameTemplate;
     private static $referenceImageNameTemplate;
     private static $pathTemplateMap;
 
@@ -175,15 +175,6 @@ class ProductSearchGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getProductSetNameTemplate()
-    {
-        if (null == self::$productSetNameTemplate) {
-            self::$productSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/productSets/{product_set}');
-        }
-
-        return self::$productSetNameTemplate;
-    }
-
     private static function getProductNameTemplate()
     {
         if (null == self::$productNameTemplate) {
@@ -191,6 +182,15 @@ class ProductSearchGapicClient
         }
 
         return self::$productNameTemplate;
+    }
+
+    private static function getProductSetNameTemplate()
+    {
+        if (null == self::$productSetNameTemplate) {
+            self::$productSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/productSets/{product_set}');
+        }
+
+        return self::$productSetNameTemplate;
     }
 
     private static function getReferenceImageNameTemplate()
@@ -207,8 +207,8 @@ class ProductSearchGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
-                'productSet' => self::getProductSetNameTemplate(),
                 'product' => self::getProductNameTemplate(),
+                'productSet' => self::getProductSetNameTemplate(),
                 'referenceImage' => self::getReferenceImageNameTemplate(),
             ];
         }
@@ -236,26 +236,6 @@ class ProductSearchGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a product_set resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $productSet
-     *
-     * @return string The formatted product_set resource.
-     * @experimental
-     */
-    public static function productSetName($project, $location, $productSet)
-    {
-        return self::getProductSetNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'product_set' => $productSet,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
      * a product resource.
      *
      * @param string $project
@@ -271,6 +251,26 @@ class ProductSearchGapicClient
             'project' => $project,
             'location' => $location,
             'product' => $product,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a product_set resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $productSet
+     *
+     * @return string The formatted product_set resource.
+     * @experimental
+     */
+    public static function productSetName($project, $location, $productSet)
+    {
+        return self::getProductSetNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'product_set' => $productSet,
         ]);
     }
 
@@ -301,8 +301,8 @@ class ProductSearchGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
-     * - productSet: projects/{project}/locations/{location}/productSets/{product_set}
      * - product: projects/{project}/locations/{location}/products/{product}
+     * - productSet: projects/{project}/locations/{location}/productSets/{product_set}
      * - referenceImage: projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -1424,8 +1424,8 @@ class ProductSearchGapicClient
      * $productSearchClient = new ProductSearchClient();
      * try {
      *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $product = '';
-     *     $productSearchClient->addProductToProductSet($formattedName, $product);
+     *     $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+     *     $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
      * } finally {
      *     $productSearchClient->close();
      * }
@@ -1485,8 +1485,8 @@ class ProductSearchGapicClient
      * $productSearchClient = new ProductSearchClient();
      * try {
      *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $product = '';
-     *     $productSearchClient->removeProductFromProductSet($formattedName, $product);
+     *     $formattedProduct = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+     *     $productSearchClient->removeProductFromProductSet($formattedName, $formattedProduct);
      * } finally {
      *     $productSearchClient->close();
      * }

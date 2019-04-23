@@ -1164,9 +1164,9 @@ class ProductSearchClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        $product = 'product-309474065';
+        $formattedProduct = $client->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
 
-        $client->addProductToProductSet($formattedName, $product);
+        $client->addProductToProductSet($formattedName, $formattedProduct);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1178,7 +1178,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getProduct();
 
-        $this->assertProtobufEquals($product, $actualValue);
+        $this->assertProtobufEquals($formattedProduct, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1207,10 +1207,10 @@ class ProductSearchClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        $product = 'product-309474065';
+        $formattedProduct = $client->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
 
         try {
-            $client->addProductToProductSet($formattedName, $product);
+            $client->addProductToProductSet($formattedName, $formattedProduct);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1239,9 +1239,9 @@ class ProductSearchClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        $product = 'product-309474065';
+        $formattedProduct = $client->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
 
-        $client->removeProductFromProductSet($formattedName, $product);
+        $client->removeProductFromProductSet($formattedName, $formattedProduct);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1253,7 +1253,7 @@ class ProductSearchClientTest extends GeneratedTest
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getProduct();
 
-        $this->assertProtobufEquals($product, $actualValue);
+        $this->assertProtobufEquals($formattedProduct, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1282,10 +1282,10 @@ class ProductSearchClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-        $product = 'product-309474065';
+        $formattedProduct = $client->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
 
         try {
-            $client->removeProductFromProductSet($formattedName, $product);
+            $client->removeProductFromProductSet($formattedName, $formattedProduct);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
