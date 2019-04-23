@@ -106,9 +106,9 @@ class OsLoginServiceGapicClient
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/compute.readonly',
     ];
-    private static $userNameTemplate;
-    private static $projectNameTemplate;
     private static $fingerprintNameTemplate;
+    private static $projectNameTemplate;
+    private static $userNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -130,13 +130,13 @@ class OsLoginServiceGapicClient
         ];
     }
 
-    private static function getUserNameTemplate()
+    private static function getFingerprintNameTemplate()
     {
-        if (null == self::$userNameTemplate) {
-            self::$userNameTemplate = new PathTemplate('users/{user}');
+        if (null == self::$fingerprintNameTemplate) {
+            self::$fingerprintNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
         }
 
-        return self::$userNameTemplate;
+        return self::$fingerprintNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -148,22 +148,22 @@ class OsLoginServiceGapicClient
         return self::$projectNameTemplate;
     }
 
-    private static function getFingerprintNameTemplate()
+    private static function getUserNameTemplate()
     {
-        if (null == self::$fingerprintNameTemplate) {
-            self::$fingerprintNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
+        if (null == self::$userNameTemplate) {
+            self::$userNameTemplate = new PathTemplate('users/{user}');
         }
 
-        return self::$fingerprintNameTemplate;
+        return self::$userNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'user' => self::getUserNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
                 'fingerprint' => self::getFingerprintNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+                'user' => self::getUserNameTemplate(),
             ];
         }
 
@@ -172,17 +172,19 @@ class OsLoginServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a user resource.
+     * a fingerprint resource.
      *
      * @param string $user
+     * @param string $fingerprint
      *
-     * @return string The formatted user resource.
+     * @return string The formatted fingerprint resource.
      * @experimental
      */
-    public static function userName($user)
+    public static function fingerprintName($user, $fingerprint)
     {
-        return self::getUserNameTemplate()->render([
+        return self::getFingerprintNameTemplate()->render([
             'user' => $user,
+            'fingerprint' => $fingerprint,
         ]);
     }
 
@@ -206,19 +208,17 @@ class OsLoginServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a fingerprint resource.
+     * a user resource.
      *
      * @param string $user
-     * @param string $fingerprint
      *
-     * @return string The formatted fingerprint resource.
+     * @return string The formatted user resource.
      * @experimental
      */
-    public static function fingerprintName($user, $fingerprint)
+    public static function userName($user)
     {
-        return self::getFingerprintNameTemplate()->render([
+        return self::getUserNameTemplate()->render([
             'user' => $user,
-            'fingerprint' => $fingerprint,
         ]);
     }
 
@@ -226,9 +226,9 @@ class OsLoginServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - user: users/{user}
+     * - fingerprint: users/{user}/sshPublicKeys/{fingerprint}
      * - project: users/{user}/projects/{project}
-     * - fingerprint: users/{user}/sshPublicKeys/{fingerprint}.
+     * - user: users/{user}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
