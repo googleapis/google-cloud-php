@@ -175,13 +175,12 @@ class SigningHelperTest extends TestCase
     public function testV4Sign()
     {
         $credentials = $this->createCredentialsMock();
-        $now = time();
-        $expires = $now + 2;
+        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $expires = $now->format('U') + 2;
         $expectedExpires = 2;
         $resource = $this->createResource();
         $return = base64_encode('SIGNATURE');
 
-        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
 
@@ -215,7 +214,8 @@ class SigningHelperTest extends TestCase
     public function testV4SignCanonicalRequestAndCname()
     {
         $credentials = $this->createCredentialsMock();
-        $expires = time() + 2;
+        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $expires = $now->format('U') + 2;
         $resource = $this->createResource();
         $contentType = 'text/plain';
         $contentMd5 = 'md5-string';
@@ -223,7 +223,6 @@ class SigningHelperTest extends TestCase
         $responseDisposition = 'dispo';
         $cname = 'foo.bar.com';
 
-        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $requestTimestamp = $now->format('Ymd\THis\Z');
         $requestDatestamp = $now->format('Ymd');
         $credentialScope = sprintf('%s/auto/storage/goog4_request', $requestDatestamp);
