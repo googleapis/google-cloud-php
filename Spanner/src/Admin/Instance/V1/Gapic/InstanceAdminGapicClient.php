@@ -148,9 +148,9 @@ class InstanceAdminGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/spanner.admin',
     ];
-    private static $projectNameTemplate;
-    private static $instanceConfigNameTemplate;
     private static $instanceNameTemplate;
+    private static $instanceConfigNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -174,13 +174,13 @@ class InstanceAdminGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getInstanceNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$instanceNameTemplate) {
+            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$instanceNameTemplate;
     }
 
     private static function getInstanceConfigNameTemplate()
@@ -192,22 +192,22 @@ class InstanceAdminGapicClient
         return self::$instanceConfigNameTemplate;
     }
 
-    private static function getInstanceNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (null == self::$instanceNameTemplate) {
-            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$instanceNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-                'instanceConfig' => self::getInstanceConfigNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
+                'instanceConfig' => self::getInstanceConfigNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
@@ -216,17 +216,19 @@ class InstanceAdminGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a instance resource.
      *
      * @param string $project
+     * @param string $instance
      *
-     * @return string The formatted project resource.
+     * @return string The formatted instance resource.
      * @experimental
      */
-    public static function projectName($project)
+    public static function instanceName($project, $instance)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getInstanceNameTemplate()->render([
             'project' => $project,
+            'instance' => $instance,
         ]);
     }
 
@@ -250,19 +252,17 @@ class InstanceAdminGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
+     * a project resource.
      *
      * @param string $project
-     * @param string $instance
      *
-     * @return string The formatted instance resource.
+     * @return string The formatted project resource.
      * @experimental
      */
-    public static function instanceName($project, $instance)
+    public static function projectName($project)
     {
-        return self::getInstanceNameTemplate()->render([
+        return self::getProjectNameTemplate()->render([
             'project' => $project,
-            'instance' => $instance,
         ]);
     }
 
@@ -270,9 +270,9 @@ class InstanceAdminGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
+     * - instance: projects/{project}/instances/{instance}
      * - instanceConfig: projects/{project}/instanceConfigs/{instance_config}
-     * - instance: projects/{project}/instances/{instance}.
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the

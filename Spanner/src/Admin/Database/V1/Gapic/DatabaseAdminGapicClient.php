@@ -129,8 +129,8 @@ class DatabaseAdminGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/spanner.admin',
     ];
-    private static $instanceNameTemplate;
     private static $databaseNameTemplate;
+    private static $instanceNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -154,15 +154,6 @@ class DatabaseAdminGapicClient
         ];
     }
 
-    private static function getInstanceNameTemplate()
-    {
-        if (null == self::$instanceNameTemplate) {
-            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
-        }
-
-        return self::$instanceNameTemplate;
-    }
-
     private static function getDatabaseNameTemplate()
     {
         if (null == self::$databaseNameTemplate) {
@@ -172,34 +163,25 @@ class DatabaseAdminGapicClient
         return self::$databaseNameTemplate;
     }
 
+    private static function getInstanceNameTemplate()
+    {
+        if (null == self::$instanceNameTemplate) {
+            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
+        }
+
+        return self::$instanceNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'instance' => self::getInstanceNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
+                'instance' => self::getInstanceNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
-     *
-     * @param string $project
-     * @param string $instance
-     *
-     * @return string The formatted instance resource.
-     * @experimental
-     */
-    public static function instanceName($project, $instance)
-    {
-        return self::getInstanceNameTemplate()->render([
-            'project' => $project,
-            'instance' => $instance,
-        ]);
     }
 
     /**
@@ -223,11 +205,29 @@ class DatabaseAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
+     */
+    public static function instanceName($project, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - instance: projects/{project}/instances/{instance}
-     * - database: projects/{project}/instances/{instance}/databases/{database}.
+     * - database: projects/{project}/instances/{instance}/databases/{database}
+     * - instance: projects/{project}/instances/{instance}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
