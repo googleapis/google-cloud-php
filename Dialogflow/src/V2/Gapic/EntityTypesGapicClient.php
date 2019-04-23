@@ -152,8 +152,8 @@ class EntityTypesGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
     ];
-    private static $projectAgentNameTemplate;
     private static $entityTypeNameTemplate;
+    private static $projectAgentNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -177,15 +177,6 @@ class EntityTypesGapicClient
         ];
     }
 
-    private static function getProjectAgentNameTemplate()
-    {
-        if (null == self::$projectAgentNameTemplate) {
-            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
-        }
-
-        return self::$projectAgentNameTemplate;
-    }
-
     private static function getEntityTypeNameTemplate()
     {
         if (null == self::$entityTypeNameTemplate) {
@@ -195,32 +186,25 @@ class EntityTypesGapicClient
         return self::$entityTypeNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (null == self::$projectAgentNameTemplate) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'projectAgent' => self::getProjectAgentNameTemplate(),
                 'entityType' => self::getEntityTypeNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project_agent resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project_agent resource.
-     * @experimental
-     */
-    public static function projectAgentName($project)
-    {
-        return self::getProjectAgentNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -242,11 +226,27 @@ class EntityTypesGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     * @experimental
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - projectAgent: projects/{project}/agent
-     * - entityType: projects/{project}/agent/entityTypes/{entity_type}.
+     * - entityType: projects/{project}/agent/entityTypes/{entity_type}
+     * - projectAgent: projects/{project}/agent.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the

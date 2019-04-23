@@ -132,8 +132,8 @@ class ContextsGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
     ];
-    private static $sessionNameTemplate;
     private static $contextNameTemplate;
+    private static $sessionNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -155,15 +155,6 @@ class ContextsGapicClient
         ];
     }
 
-    private static function getSessionNameTemplate()
-    {
-        if (null == self::$sessionNameTemplate) {
-            self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
-        }
-
-        return self::$sessionNameTemplate;
-    }
-
     private static function getContextNameTemplate()
     {
         if (null == self::$contextNameTemplate) {
@@ -173,34 +164,25 @@ class ContextsGapicClient
         return self::$contextNameTemplate;
     }
 
+    private static function getSessionNameTemplate()
+    {
+        if (null == self::$sessionNameTemplate) {
+            self::$sessionNameTemplate = new PathTemplate('projects/{project}/agent/sessions/{session}');
+        }
+
+        return self::$sessionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'session' => self::getSessionNameTemplate(),
                 'context' => self::getContextNameTemplate(),
+                'session' => self::getSessionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a session resource.
-     *
-     * @param string $project
-     * @param string $session
-     *
-     * @return string The formatted session resource.
-     * @experimental
-     */
-    public static function sessionName($project, $session)
-    {
-        return self::getSessionNameTemplate()->render([
-            'project' => $project,
-            'session' => $session,
-        ]);
     }
 
     /**
@@ -224,11 +206,29 @@ class ContextsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a session resource.
+     *
+     * @param string $project
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     * @experimental
+     */
+    public static function sessionName($project, $session)
+    {
+        return self::getSessionNameTemplate()->render([
+            'project' => $project,
+            'session' => $session,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - session: projects/{project}/agent/sessions/{session}
-     * - context: projects/{project}/agent/sessions/{session}/contexts/{context}.
+     * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
+     * - session: projects/{project}/agent/sessions/{session}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
