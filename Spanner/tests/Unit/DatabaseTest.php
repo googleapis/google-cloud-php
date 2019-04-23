@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -852,6 +853,40 @@ class DatabaseTest extends TestCase
 
         $res = $this->database->execute($sql);
         $rows = iterator_to_array($res->rows());
+    }
+
+    public function testExecuteSingleUseMaxStaleness()
+    {
+        $this->database->___setProperty('sessionPool', null);
+        $this->database->___setProperty('session', $this->session);
+        $sql = 'SELECT * FROM Table';
+
+        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
+        $this->connection->executeStreamingSql(Argument::withEntry('session', $sessName))
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator());
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->execute($sql, [
+            'maxStaleness' => new Duration(10, 0)
+        ]);
+        $rows = iterator_to_array($res->rows());
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testExecuteBeginMaxStalenessFails()
+    {
+        $this->database->___setProperty('sessionPool', null);
+        $this->database->___setProperty('session', $this->session);
+        $sql = 'SELECT * FROM Table';
+
+        $this->database->execute($sql, [
+            'begin' => true,
+            'maxStaleness' => new Duration(10, 0)
+        ]);
     }
 
     public function testExecutePartitionedUpdate()

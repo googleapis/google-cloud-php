@@ -83,7 +83,17 @@ trait TransactionConfigurationTrait
         $context = $this->pluck('transactionType', $options);
         $id = $this->pluck('transactionId', $options);
 
-        if (!is_null($id)) {
+        $begin = $this->pluck('begin', $options);
+        if ($id === null) {
+            if ($begin) {
+                $type = 'begin';
+            } else {
+                $type = 'singleUseTransaction';
+                $options['singleUse'] = true;
+            }
+        }
+
+        if ($id !== null) {
             $type = 'transactionId';
             $transactionOptions = $id;
         } elseif ($context === SessionPoolInterface::CONTEXT_READ) {
@@ -95,11 +105,6 @@ trait TransactionConfigurationTrait
                 'Invalid transaction context %s',
                 $context
             ));
-        }
-
-        $begin = $this->pluck('begin', $options);
-        if (is_null($type)) {
-            $type = ($begin) ? 'begin' : 'singleUseTransaction';
         }
 
         return [$transactionOptions, $type, $context];
