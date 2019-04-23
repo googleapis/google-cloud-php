@@ -126,9 +126,9 @@ class MetricServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
-    private static $projectNameTemplate;
     private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -150,15 +150,6 @@ class MetricServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getMetricDescriptorNameTemplate()
     {
         if (null == self::$metricDescriptorNameTemplate) {
@@ -177,33 +168,26 @@ class MetricServiceGapicClient
         return self::$monitoredResourceDescriptorNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
                 'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
                 'monitoredResourceDescriptor' => self::getMonitoredResourceDescriptorNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -243,12 +227,28 @@ class MetricServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
      * - metricDescriptor: projects/{project}/metricDescriptors/{metric_descriptor=**}
-     * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}.
+     * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the

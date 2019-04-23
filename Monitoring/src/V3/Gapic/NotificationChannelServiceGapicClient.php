@@ -121,9 +121,9 @@ class NotificationChannelServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
-    private static $projectNameTemplate;
     private static $notificationChannelNameTemplate;
     private static $notificationChannelDescriptorNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -145,15 +145,6 @@ class NotificationChannelServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getNotificationChannelNameTemplate()
     {
         if (null == self::$notificationChannelNameTemplate) {
@@ -172,33 +163,26 @@ class NotificationChannelServiceGapicClient
         return self::$notificationChannelDescriptorNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
                 'notificationChannel' => self::getNotificationChannelNameTemplate(),
                 'notificationChannelDescriptor' => self::getNotificationChannelDescriptorNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
     }
 
     /**
@@ -238,12 +222,28 @@ class NotificationChannelServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
      * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
-     * - notificationChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}.
+     * - notificationChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
