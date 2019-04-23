@@ -136,10 +136,10 @@ class FirestoreGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
     ];
-    private static $databaseRootNameTemplate;
-    private static $documentRootNameTemplate;
-    private static $documentPathNameTemplate;
     private static $anyPathNameTemplate;
+    private static $databaseRootNameTemplate;
+    private static $documentPathNameTemplate;
+    private static $documentRootNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -161,6 +161,15 @@ class FirestoreGapicClient
         ];
     }
 
+    private static function getAnyPathNameTemplate()
+    {
+        if (null == self::$anyPathNameTemplate) {
+            self::$anyPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{any_path=**}');
+        }
+
+        return self::$anyPathNameTemplate;
+    }
+
     private static function getDatabaseRootNameTemplate()
     {
         if (null == self::$databaseRootNameTemplate) {
@@ -168,15 +177,6 @@ class FirestoreGapicClient
         }
 
         return self::$databaseRootNameTemplate;
-    }
-
-    private static function getDocumentRootNameTemplate()
-    {
-        if (null == self::$documentRootNameTemplate) {
-            self::$documentRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents');
-        }
-
-        return self::$documentRootNameTemplate;
     }
 
     private static function getDocumentPathNameTemplate()
@@ -188,27 +188,49 @@ class FirestoreGapicClient
         return self::$documentPathNameTemplate;
     }
 
-    private static function getAnyPathNameTemplate()
+    private static function getDocumentRootNameTemplate()
     {
-        if (null == self::$anyPathNameTemplate) {
-            self::$anyPathNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents/{document}/{any_path=**}');
+        if (null == self::$documentRootNameTemplate) {
+            self::$documentRootNameTemplate = new PathTemplate('projects/{project}/databases/{database}/documents');
         }
 
-        return self::$anyPathNameTemplate;
+        return self::$documentRootNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'databaseRoot' => self::getDatabaseRootNameTemplate(),
-                'documentRoot' => self::getDocumentRootNameTemplate(),
-                'documentPath' => self::getDocumentPathNameTemplate(),
                 'anyPath' => self::getAnyPathNameTemplate(),
+                'databaseRoot' => self::getDatabaseRootNameTemplate(),
+                'documentPath' => self::getDocumentPathNameTemplate(),
+                'documentRoot' => self::getDocumentRootNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a any_path resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $document
+     * @param string $anyPath
+     *
+     * @return string The formatted any_path resource.
+     * @experimental
+     */
+    public static function anyPathName($project, $database, $document, $anyPath)
+    {
+        return self::getAnyPathNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'document' => $document,
+            'any_path' => $anyPath,
+        ]);
     }
 
     /**
@@ -224,24 +246,6 @@ class FirestoreGapicClient
     public static function databaseRootName($project, $database)
     {
         return self::getDatabaseRootNameTemplate()->render([
-            'project' => $project,
-            'database' => $database,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a document_root resource.
-     *
-     * @param string $project
-     * @param string $database
-     *
-     * @return string The formatted document_root resource.
-     * @experimental
-     */
-    public static function documentRootName($project, $database)
-    {
-        return self::getDocumentRootNameTemplate()->render([
             'project' => $project,
             'database' => $database,
         ]);
@@ -269,23 +273,19 @@ class FirestoreGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a any_path resource.
+     * a document_root resource.
      *
      * @param string $project
      * @param string $database
-     * @param string $document
-     * @param string $anyPath
      *
-     * @return string The formatted any_path resource.
+     * @return string The formatted document_root resource.
      * @experimental
      */
-    public static function anyPathName($project, $database, $document, $anyPath)
+    public static function documentRootName($project, $database)
     {
-        return self::getAnyPathNameTemplate()->render([
+        return self::getDocumentRootNameTemplate()->render([
             'project' => $project,
             'database' => $database,
-            'document' => $document,
-            'any_path' => $anyPath,
         ]);
     }
 
@@ -293,10 +293,10 @@ class FirestoreGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - anyPath: projects/{project}/databases/{database}/documents/{document}/{any_path=**}
      * - databaseRoot: projects/{project}/databases/{database}
-     * - documentRoot: projects/{project}/databases/{database}/documents
      * - documentPath: projects/{project}/databases/{database}/documents/{document_path=**}
-     * - anyPath: projects/{project}/databases/{database}/documents/{document}/{any_path=**}.
+     * - documentRoot: projects/{project}/databases/{database}/documents.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
