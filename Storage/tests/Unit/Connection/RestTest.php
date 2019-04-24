@@ -234,7 +234,6 @@ class RestTest extends TestCase
         $this->assertEquals($expectedContentType, $contentType);
 
         foreach ($expectedMetadata as $key => $value) {
-
             $this->assertEquals($value, $metadata[$key]);
         }
     }

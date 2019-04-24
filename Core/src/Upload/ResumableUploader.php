@@ -185,7 +185,7 @@ class ResumableUploader extends AbstractUploader
                     "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
                     $ex->getCode(),
                     null,
-                    json_decode($ex->getMessage(), true)
+                    json_decode($ex->getMessage(), true) ?: []
                 );
             }
 
