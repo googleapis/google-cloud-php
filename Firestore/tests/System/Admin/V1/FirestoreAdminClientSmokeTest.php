@@ -18,25 +18,25 @@
 namespace Google\Cloud\Firestore\Tests\System\Admin\V1;
 
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Firestore\Tests\System\FirestoreTestCase;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient;
 use Google\Cloud\Firestore\FirestoreClient;
 
 /**
  * @group firestore
  * @group firestore-admin
+ * @group gapic
  *
  * This smoke test case currently only invokes ListIndexes API call.
  * 
  */
-class FirestoreAdminClientSmokeTest extends FirestoreTestCase
+class FirestoreAdminClientSmokeTest extends SystemTestCase
 {
     protected static $adminClient;
-    private static $hasAdminSetup = false;
+    private static $hasSetup = false;
 
     public static function setupBeforeClass() {
-        parent::setupBeforeClass();
-        if (self::$hasAdminSetup) {
+        if (self::$hasSetup) {
             return;
         }
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
@@ -49,7 +49,7 @@ class FirestoreAdminClientSmokeTest extends FirestoreTestCase
         $parentName = self::$adminClient->parentName(
             getenv('PROJECT_ID'),
             FirestoreClient::DEFAULT_DATABASE,
-            self::$collection->id()
+            uniqid('system-test')
         );
         $resp = self::$adminClient->listIndexes($parentName);
         $this->assertInstanceOf(PagedListResponse::class, $resp);
