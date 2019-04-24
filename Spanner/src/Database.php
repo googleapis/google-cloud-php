@@ -1347,17 +1347,16 @@ class Database
      */
     public function execute($sql, array $options = [])
     {
-        $session = $this->pluck('session', $options, false);
-        if (!$session) {
-            $session = $this->selectSession(
+        $session = $this->pluck('session', $options, false)
+            ?: $this->selectSession(
                 SessionPoolInterface::CONTEXT_READ,
                 $this->pluck('sessionOptions', $options, false) ?: []
             );
-        }
 
-        list($transactionOptions, $context) = $this->transactionSelector($options);
-        $options['transaction'] = $transactionOptions;
-        $options['transactionContext'] = $context;
+        list(
+            $options['transaction'],
+            $options['transactionContext']
+        ) = $this->transactionSelector($options);
 
         try {
             return $this->operation->execute($session, $sql, $options);
