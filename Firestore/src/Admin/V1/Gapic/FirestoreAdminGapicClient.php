@@ -109,9 +109,9 @@ class FirestoreAdminGapicClient
         'https://www.googleapis.com/auth/datastore',
     ];
     private static $databaseNameTemplate;
-    private static $parentNameTemplate;
-    private static $indexNameTemplate;
     private static $fieldNameTemplate;
+    private static $indexNameTemplate;
+    private static $parentNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -142,13 +142,13 @@ class FirestoreAdminGapicClient
         return self::$databaseNameTemplate;
     }
 
-    private static function getParentNameTemplate()
+    private static function getFieldNameTemplate()
     {
-        if (null == self::$parentNameTemplate) {
-            self::$parentNameTemplate = new PathTemplate('projects/{project}/databases/{database}/collectionGroups/{collection_id}');
+        if (null == self::$fieldNameTemplate) {
+            self::$fieldNameTemplate = new PathTemplate('projects/{project}/databases/{database}/collectionGroups/{collection_id}/fields/{field_id}');
         }
 
-        return self::$parentNameTemplate;
+        return self::$fieldNameTemplate;
     }
 
     private static function getIndexNameTemplate()
@@ -160,13 +160,13 @@ class FirestoreAdminGapicClient
         return self::$indexNameTemplate;
     }
 
-    private static function getFieldNameTemplate()
+    private static function getParentNameTemplate()
     {
-        if (null == self::$fieldNameTemplate) {
-            self::$fieldNameTemplate = new PathTemplate('projects/{project}/databases/{database}/collectionGroups/{collection_id}/fields/{field_id}');
+        if (null == self::$parentNameTemplate) {
+            self::$parentNameTemplate = new PathTemplate('projects/{project}/databases/{database}/collectionGroups/{collection_id}');
         }
 
-        return self::$fieldNameTemplate;
+        return self::$parentNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -174,9 +174,9 @@ class FirestoreAdminGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'database' => self::getDatabaseNameTemplate(),
-                'parent' => self::getParentNameTemplate(),
-                'index' => self::getIndexNameTemplate(),
                 'field' => self::getFieldNameTemplate(),
+                'index' => self::getIndexNameTemplate(),
+                'parent' => self::getParentNameTemplate(),
             ];
         }
 
@@ -203,21 +203,23 @@ class FirestoreAdminGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a parent resource.
+     * a field resource.
      *
      * @param string $project
      * @param string $database
      * @param string $collectionId
+     * @param string $fieldId
      *
-     * @return string The formatted parent resource.
+     * @return string The formatted field resource.
      * @experimental
      */
-    public static function parentName($project, $database, $collectionId)
+    public static function fieldName($project, $database, $collectionId, $fieldId)
     {
-        return self::getParentNameTemplate()->render([
+        return self::getFieldNameTemplate()->render([
             'project' => $project,
             'database' => $database,
             'collection_id' => $collectionId,
+            'field_id' => $fieldId,
         ]);
     }
 
@@ -245,23 +247,21 @@ class FirestoreAdminGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a field resource.
+     * a parent resource.
      *
      * @param string $project
      * @param string $database
      * @param string $collectionId
-     * @param string $fieldId
      *
-     * @return string The formatted field resource.
+     * @return string The formatted parent resource.
      * @experimental
      */
-    public static function fieldName($project, $database, $collectionId, $fieldId)
+    public static function parentName($project, $database, $collectionId)
     {
-        return self::getFieldNameTemplate()->render([
+        return self::getParentNameTemplate()->render([
             'project' => $project,
             'database' => $database,
             'collection_id' => $collectionId,
-            'field_id' => $fieldId,
         ]);
     }
 
@@ -270,9 +270,9 @@ class FirestoreAdminGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - database: projects/{project}/databases/{database}
-     * - parent: projects/{project}/databases/{database}/collectionGroups/{collection_id}
+     * - field: projects/{project}/databases/{database}/collectionGroups/{collection_id}/fields/{field_id}
      * - index: projects/{project}/databases/{database}/collectionGroups/{collection_id}/indexes/{index_id}
-     * - field: projects/{project}/databases/{database}/collectionGroups/{collection_id}/fields/{field_id}.
+     * - parent: projects/{project}/databases/{database}/collectionGroups/{collection_id}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
