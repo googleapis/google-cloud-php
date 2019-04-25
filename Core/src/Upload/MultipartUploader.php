@@ -50,8 +50,12 @@ class MultipartUploader extends AbstractUploader
 
         $headers = [
             'Content-Type' => 'multipart/related; boundary=boundary',
-            'Content-Length' => $multipartStream->getSize()
         ];
+
+        $size = $multipartStream->getSize();
+        if ($size !== null) {
+            $headers['Content-Length'] = $size;
+        }
 
         return $this->jsonDecode(
             $this->requestWrapper->send(
