@@ -166,6 +166,7 @@ class Grpc implements ConnectionInterface
             ? $config['gapicSpannerClient']
             : new SpannerClient($grpcConfig);
 
+        //@codeCoverageIgnoreStart
         if (isset($config['gapicSpannerInstanceAdminClient'])) {
             $this->instanceAdminClient = $config['gapicSpannerInstanceAdminClient'];
         }
@@ -173,40 +174,9 @@ class Grpc implements ConnectionInterface
         if (isset($config['gapicSpannerDatabaseAdminClient'])) {
             $this->databaseAdminClient = $config['gapicSpannerDatabaseAdminClient'];
         }
+        //@codeCoverageIgnoreEnd
 
         $this->grpcConfig = $grpcConfig;
-    }
-
-    /**
-     * Allow lazy instantiation of the instance admin client.
-     *
-     * @return InstanceAdminClient
-     */
-    private function getInstanceAdminClient()
-    {
-        if ($this->instanceAdminClient) {
-            return $this->instanceAdminClient;
-        }
-
-        $this->instanceAdminClient = new InstanceAdminClient($this->grpcConfig);
-
-        return $this->instanceAdminClient;
-    }
-
-    /**
-     * Allow lazy instantiation of the database admin client.
-     *
-     * @return DatabaseAdminClient
-     */
-    private function getDatabaseAdminClient()
-    {
-        if ($this->databaseAdminClient) {
-            return $this->databaseAdminClient;
-        }
-
-        $this->databaseAdminClient = new DatabaseAdminClient($this->grpcConfig);
-
-        return $this->databaseAdminClient;
     }
 
     /**
@@ -1060,5 +1030,41 @@ class Grpc implements ConnectionInterface
         ];
 
         return $args;
+    }
+
+    /**
+     * Allow lazy instantiation of the instance admin client.
+     *
+     * @return InstanceAdminClient
+     */
+    private function getInstanceAdminClient()
+    {
+        //@codeCoverageIgnoreStart
+        if ($this->instanceAdminClient) {
+            return $this->instanceAdminClient;
+        }
+        //@codeCoverageIgnoreEnd
+
+        $this->instanceAdminClient = new InstanceAdminClient($this->grpcConfig);
+
+        return $this->instanceAdminClient;
+    }
+
+    /**
+     * Allow lazy instantiation of the database admin client.
+     *
+     * @return DatabaseAdminClient
+     */
+    private function getDatabaseAdminClient()
+    {
+        //@codeCoverageIgnoreStart
+        if ($this->databaseAdminClient) {
+            return $this->databaseAdminClient;
+        }
+        //@codeCoverageIgnoreEnd
+
+        $this->databaseAdminClient = new DatabaseAdminClient($this->grpcConfig);
+
+        return $this->databaseAdminClient;
     }
 }
