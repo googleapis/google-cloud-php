@@ -117,10 +117,10 @@ class DataTransferServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $projectDataSourceNameTemplate;
     private static $projectNameTemplate;
-    private static $projectTransferConfigNameTemplate;
+    private static $projectDataSourceNameTemplate;
     private static $projectRunNameTemplate;
+    private static $projectTransferConfigNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -142,15 +142,6 @@ class DataTransferServiceGapicClient
         ];
     }
 
-    private static function getProjectDataSourceNameTemplate()
-    {
-        if (null == self::$projectDataSourceNameTemplate) {
-            self::$projectDataSourceNameTemplate = new PathTemplate('projects/{project}/dataSources/{data_source}');
-        }
-
-        return self::$projectDataSourceNameTemplate;
-    }
-
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -160,13 +151,13 @@ class DataTransferServiceGapicClient
         return self::$projectNameTemplate;
     }
 
-    private static function getProjectTransferConfigNameTemplate()
+    private static function getProjectDataSourceNameTemplate()
     {
-        if (null == self::$projectTransferConfigNameTemplate) {
-            self::$projectTransferConfigNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}');
+        if (null == self::$projectDataSourceNameTemplate) {
+            self::$projectDataSourceNameTemplate = new PathTemplate('projects/{project}/dataSources/{data_source}');
         }
 
-        return self::$projectTransferConfigNameTemplate;
+        return self::$projectDataSourceNameTemplate;
     }
 
     private static function getProjectRunNameTemplate()
@@ -178,36 +169,27 @@ class DataTransferServiceGapicClient
         return self::$projectRunNameTemplate;
     }
 
+    private static function getProjectTransferConfigNameTemplate()
+    {
+        if (null == self::$projectTransferConfigNameTemplate) {
+            self::$projectTransferConfigNameTemplate = new PathTemplate('projects/{project}/transferConfigs/{transfer_config}');
+        }
+
+        return self::$projectTransferConfigNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'projectDataSource' => self::getProjectDataSourceNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
-                'projectTransferConfig' => self::getProjectTransferConfigNameTemplate(),
+                'projectDataSource' => self::getProjectDataSourceNameTemplate(),
                 'projectRun' => self::getProjectRunNameTemplate(),
+                'projectTransferConfig' => self::getProjectTransferConfigNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project_data_source resource.
-     *
-     * @param string $project
-     * @param string $dataSource
-     *
-     * @return string The formatted project_data_source resource.
-     * @experimental
-     */
-    public static function projectDataSourceName($project, $dataSource)
-    {
-        return self::getProjectDataSourceNameTemplate()->render([
-            'project' => $project,
-            'data_source' => $dataSource,
-        ]);
     }
 
     /**
@@ -228,19 +210,19 @@ class DataTransferServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project_transfer_config resource.
+     * a project_data_source resource.
      *
      * @param string $project
-     * @param string $transferConfig
+     * @param string $dataSource
      *
-     * @return string The formatted project_transfer_config resource.
+     * @return string The formatted project_data_source resource.
      * @experimental
      */
-    public static function projectTransferConfigName($project, $transferConfig)
+    public static function projectDataSourceName($project, $dataSource)
     {
-        return self::getProjectTransferConfigNameTemplate()->render([
+        return self::getProjectDataSourceNameTemplate()->render([
             'project' => $project,
-            'transfer_config' => $transferConfig,
+            'data_source' => $dataSource,
         ]);
     }
 
@@ -265,13 +247,31 @@ class DataTransferServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_transfer_config resource.
+     *
+     * @param string $project
+     * @param string $transferConfig
+     *
+     * @return string The formatted project_transfer_config resource.
+     * @experimental
+     */
+    public static function projectTransferConfigName($project, $transferConfig)
+    {
+        return self::getProjectTransferConfigNameTemplate()->render([
+            'project' => $project,
+            'transfer_config' => $transferConfig,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - projectDataSource: projects/{project}/dataSources/{data_source}
      * - project: projects/{project}
-     * - projectTransferConfig: projects/{project}/transferConfigs/{transfer_config}
-     * - projectRun: projects/{project}/transferConfigs/{transfer_config}/runs/{run}.
+     * - projectDataSource: projects/{project}/dataSources/{data_source}
+     * - projectRun: projects/{project}/transferConfigs/{transfer_config}/runs/{run}
+     * - projectTransferConfig: projects/{project}/transferConfigs/{transfer_config}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
