@@ -126,10 +126,10 @@ class SubscriberGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/pubsub',
     ];
-    private static $subscriptionNameTemplate;
-    private static $topicNameTemplate;
     private static $projectNameTemplate;
     private static $snapshotNameTemplate;
+    private static $subscriptionNameTemplate;
+    private static $topicNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -151,24 +151,6 @@ class SubscriberGapicClient
         ];
     }
 
-    private static function getSubscriptionNameTemplate()
-    {
-        if (null == self::$subscriptionNameTemplate) {
-            self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
-        }
-
-        return self::$subscriptionNameTemplate;
-    }
-
-    private static function getTopicNameTemplate()
-    {
-        if (null == self::$topicNameTemplate) {
-            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
-        }
-
-        return self::$topicNameTemplate;
-    }
-
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -187,18 +169,70 @@ class SubscriberGapicClient
         return self::$snapshotNameTemplate;
     }
 
+    private static function getSubscriptionNameTemplate()
+    {
+        if (null == self::$subscriptionNameTemplate) {
+            self::$subscriptionNameTemplate = new PathTemplate('projects/{project}/subscriptions/{subscription}');
+        }
+
+        return self::$subscriptionNameTemplate;
+    }
+
+    private static function getTopicNameTemplate()
+    {
+        if (null == self::$topicNameTemplate) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'subscription' => self::getSubscriptionNameTemplate(),
-                'topic' => self::getTopicNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'snapshot' => self::getSnapshotNameTemplate(),
+                'subscription' => self::getSubscriptionNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     * @experimental
+     */
+    public static function snapshotName($project, $snapshot)
+    {
+        return self::getSnapshotNameTemplate()->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
+        ]);
     }
 
     /**
@@ -238,47 +272,13 @@ class SubscriberGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a snapshot resource.
-     *
-     * @param string $project
-     * @param string $snapshot
-     *
-     * @return string The formatted snapshot resource.
-     * @experimental
-     */
-    public static function snapshotName($project, $snapshot)
-    {
-        return self::getSnapshotNameTemplate()->render([
-            'project' => $project,
-            'snapshot' => $snapshot,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - subscription: projects/{project}/subscriptions/{subscription}
-     * - topic: projects/{project}/topics/{topic}
      * - project: projects/{project}
-     * - snapshot: projects/{project}/snapshots/{snapshot}.
+     * - snapshot: projects/{project}/snapshots/{snapshot}
+     * - subscription: projects/{project}/subscriptions/{subscription}
+     * - topic: projects/{project}/topics/{topic}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
