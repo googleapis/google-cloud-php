@@ -125,9 +125,9 @@ class ConfigServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
+    private static $exclusionNameTemplate;
     private static $projectNameTemplate;
     private static $sinkNameTemplate;
-    private static $exclusionNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -149,6 +149,15 @@ class ConfigServiceV2GapicClient
         ];
     }
 
+    private static function getExclusionNameTemplate()
+    {
+        if (null == self::$exclusionNameTemplate) {
+            self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
+        }
+
+        return self::$exclusionNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -167,26 +176,35 @@ class ConfigServiceV2GapicClient
         return self::$sinkNameTemplate;
     }
 
-    private static function getExclusionNameTemplate()
-    {
-        if (null == self::$exclusionNameTemplate) {
-            self::$exclusionNameTemplate = new PathTemplate('projects/{project}/exclusions/{exclusion}');
-        }
-
-        return self::$exclusionNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'exclusion' => self::getExclusionNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'sink' => self::getSinkNameTemplate(),
-                'exclusion' => self::getExclusionNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a exclusion resource.
+     *
+     * @param string $project
+     * @param string $exclusion
+     *
+     * @return string The formatted exclusion resource.
+     * @experimental
+     */
+    public static function exclusionName($project, $exclusion)
+    {
+        return self::getExclusionNameTemplate()->render([
+            'project' => $project,
+            'exclusion' => $exclusion,
+        ]);
     }
 
     /**
@@ -224,30 +242,12 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a exclusion resource.
-     *
-     * @param string $project
-     * @param string $exclusion
-     *
-     * @return string The formatted exclusion resource.
-     * @experimental
-     */
-    public static function exclusionName($project, $exclusion)
-    {
-        return self::getExclusionNameTemplate()->render([
-            'project' => $project,
-            'exclusion' => $exclusion,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - exclusion: projects/{project}/exclusions/{exclusion}
      * - project: projects/{project}
-     * - sink: projects/{project}/sinks/{sink}
-     * - exclusion: projects/{project}/exclusions/{exclusion}.
+     * - sink: projects/{project}/sinks/{sink}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
