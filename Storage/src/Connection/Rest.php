@@ -307,11 +307,9 @@ class Rest implements ConnectionInterface
         }
 
         // @todo add support for rolling hash
-        if ($args['validate'] && !isset($args['metadata']['md5Hash'])) {
+        if (($args['validate'] === true || $args['validate'] === 'md5') && !isset($args['metadata']['md5Hash'])) {
             $args['metadata']['md5Hash'] = base64_encode(Psr7\hash($args['data'], 'md5', true));
-        }
-
-        if ($args['validate'] && !isset($args['metadata']['crc32c'])) {
+        } elseif ($args['validate'] === 'crc32' && !isset($args['metadata']['crc32c'])) {
             $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
         }
 

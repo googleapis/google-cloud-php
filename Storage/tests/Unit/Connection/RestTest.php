@@ -205,7 +205,8 @@ class RestTest extends TestCase
         array $options,
         $expectedUploaderType,
         $expectedContentType,
-        array $expectedMetadata
+        array $expectedMetadata,
+        array $metadataDoesNotHave = []
     ) {
         $actualRequest = null;
         $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
@@ -236,6 +237,13 @@ class RestTest extends TestCase
         foreach ($expectedMetadata as $key => $value) {
             $this->assertEquals($value, $metadata[$key]);
         }
+
+        if ($metadataDoesNotHave) {
+            $metadataKeys = array_keys($metadata);
+            foreach ($metadataDoesNotHave as $key) {
+                $this->assertArrayNotHasKey($key, $metadataKeys);
+            }
+        }
     }
 
     public function insertObjectProvider()
@@ -261,7 +269,8 @@ class RestTest extends TestCase
                 [
                     'md5Hash' => base64_encode(Psr7\hash($tempFile, 'md5', true)),
                     'name' => 'file.txt'
-                ]
+                ],
+                ['crc32c']
             ],
             [
                 [
@@ -272,7 +281,8 @@ class RestTest extends TestCase
                 'image/svg+xml',
                 [
                     'name' => 'logo.svg'
-                ]
+                ],
+                ['md5Hash', 'crc32c']
             ],
             [
                 [
@@ -294,7 +304,8 @@ class RestTest extends TestCase
                     'metadata' => [
                         'here' => 'wego'
                     ]
-                ]
+                ],
+                ['md5Hash', 'crc32c']
             ],
             [
                 [
@@ -316,32 +327,37 @@ class RestTest extends TestCase
                     'metadata' => [
                         'here' => 'wego'
                     ]
-                ]
+                ],
+                ['md5Hash', 'crc32c']
             ],
             [
                 [
                     'data' => $logoFile,
                     'name' => 'logo.svg',
+                    'validate' => 'crc32'
                 ],
                 MultipartUploader::class,
                 'image/svg+xml',
                 [
                     'name' => 'logo.svg',
                     'crc32c' => $crcHash
-                ]
+                ],
+                ['md5Hash']
             ],
             [
                 [
                     'data' => $logoFile,
                     'name' => 'logo.svg',
-                    'resumable' => true
+                    'resumable' => true,
+                    'validate' => 'crc32'
                 ],
                 ResumableUploader::class,
                 'image/svg+xml',
                 [
                     'name' => 'logo.svg',
                     'crc32c' => $crcHash
-                ]
+                ],
+                ['md5Hash']
             ]
         ];
     }

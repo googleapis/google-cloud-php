@@ -231,10 +231,15 @@ class Bucket
      *           of type string or null.
      *     @type bool $resumable Indicates whether or not the upload will be
      *           performed in a resumable fashion.
-     *     @type bool $validate Indicates whether or not validation will be
-     *           applied using md5 and crc32 hashing functionality. If true and
-     *           the calculated hash does not match that of the upstream server
-     *           the upload will be rejected.
+     *     @type bool|string $validate Indicates whether or not validation will
+     *           be applied using md5 or crc32 hashing functionality. If
+     *           enabled, and the calculated hash does not match that of the
+     *           upstream server, the upload will be rejected. Provide `true` or
+     *           `md5` for md5 hashing, `crc32` for crc32 hashing, or `false` to
+     *           disable. Please note that crc32 may have negative performance
+     *           implications in older versions of PHP. Installation of the
+     *           `crc32c` PHP extension is strongly advised for best
+     *           performance. **Defaults to** `true` (md5).
      *     @type int $chunkSize If provided the upload will be done in chunks.
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
