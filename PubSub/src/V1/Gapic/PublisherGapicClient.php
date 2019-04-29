@@ -111,8 +111,8 @@ class PublisherGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/pubsub',
     ];
-    private static $topicNameTemplate;
     private static $projectNameTemplate;
+    private static $topicNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -134,15 +134,6 @@ class PublisherGapicClient
         ];
     }
 
-    private static function getTopicNameTemplate()
-    {
-        if (null == self::$topicNameTemplate) {
-            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
-        }
-
-        return self::$topicNameTemplate;
-    }
-
     private static function getProjectNameTemplate()
     {
         if (null == self::$projectNameTemplate) {
@@ -152,16 +143,41 @@ class PublisherGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getTopicNameTemplate()
+    {
+        if (null == self::$topicNameTemplate) {
+            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        }
+
+        return self::$topicNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'topic' => self::getTopicNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'topic' => self::getTopicNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -183,27 +199,11 @@ class PublisherGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - topic: projects/{project}/topics/{topic}
-     * - project: projects/{project}.
+     * - project: projects/{project}
+     * - topic: projects/{project}/topics/{topic}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
