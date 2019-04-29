@@ -193,7 +193,9 @@ class SigningHelperTest extends TestCase
             $expires,
             $resource,
             self::GENERATION,
-            []
+            [
+                'timestamp' => $now
+            ]
         );
 
         $parts = parse_url($url);
@@ -275,7 +277,8 @@ class SigningHelperTest extends TestCase
                 'contentMd5' => $contentMd5,
                 'responseType' => $responseType,
                 'responseDisposition' => $responseDisposition,
-                'cname' => $cname
+                'cname' => $cname,
+                'timestamp' => $now
             ]
         );
 
