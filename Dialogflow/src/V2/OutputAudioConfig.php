@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Instructs the speech synthesizer how to generate the output audio content.
+ * Instructs the speech synthesizer on how to generate the output audio content.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.OutputAudioConfig</code>
  */
