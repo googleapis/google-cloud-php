@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/tasks/v2/cloudtasks.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Tasks\V2\Gapic;
@@ -96,8 +94,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class CloudTasksGapicClient
 {
@@ -212,7 +208,6 @@ class CloudTasksGapicClient
      * @param string $location
      *
      * @return string The formatted location resource.
-     * @experimental
      */
     public static function locationName($project, $location)
     {
@@ -229,7 +224,6 @@ class CloudTasksGapicClient
      * @param string $project
      *
      * @return string The formatted project resource.
-     * @experimental
      */
     public static function projectName($project)
     {
@@ -247,7 +241,6 @@ class CloudTasksGapicClient
      * @param string $queue
      *
      * @return string The formatted queue resource.
-     * @experimental
      */
     public static function queueName($project, $location, $queue)
     {
@@ -268,7 +261,6 @@ class CloudTasksGapicClient
      * @param string $task
      *
      * @return string The formatted task resource.
-     * @experimental
      */
     public static function taskName($project, $location, $queue, $task)
     {
@@ -300,7 +292,6 @@ class CloudTasksGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -374,7 +365,6 @@ class CloudTasksGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -450,7 +440,6 @@ class CloudTasksGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listQueues($parent, array $optionalArgs = [])
     {
@@ -512,7 +501,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Queue
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getQueue($name, array $optionalArgs = [])
     {
@@ -585,7 +573,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Queue
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createQueue($parent, $queue, array $optionalArgs = [])
     {
@@ -661,7 +648,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Queue
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateQueue($queue, array $optionalArgs = [])
     {
@@ -726,7 +712,6 @@ class CloudTasksGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteQueue($name, array $optionalArgs = [])
     {
@@ -784,7 +769,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Queue
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function purgeQueue($name, array $optionalArgs = [])
     {
@@ -843,7 +827,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Queue
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function pauseQueue($name, array $optionalArgs = [])
     {
@@ -907,7 +890,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Queue
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function resumeQueue($name, array $optionalArgs = [])
     {
@@ -967,7 +949,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getIamPolicy($resource, array $optionalArgs = [])
     {
@@ -1034,7 +1015,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
@@ -1098,7 +1078,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
@@ -1198,7 +1177,6 @@ class CloudTasksGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listTasks($parent, array $optionalArgs = [])
     {
@@ -1274,7 +1252,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Task
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getTask($name, array $optionalArgs = [])
     {
@@ -1387,7 +1364,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Task
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createTask($parent, $task, array $optionalArgs = [])
     {
@@ -1446,7 +1422,6 @@ class CloudTasksGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteTask($name, array $optionalArgs = [])
     {
@@ -1536,7 +1511,6 @@ class CloudTasksGapicClient
      * @return \Google\Cloud\Tasks\V2\Task
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function runTask($name, array $optionalArgs = [])
     {

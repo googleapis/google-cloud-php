@@ -20,6 +20,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Cloud KMS](#google-cloud-kms-ga) (GA)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
+* [Google Cloud Tasks](#google-cloud-tasks-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-ga) (GA)
 * [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
@@ -34,7 +35,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
 * [Google Cloud Scheduler](#google-cloud-scheduler-beta) (Beta)
-* [Google Cloud Tasks](#google-cloud-tasks-beta) (Beta)
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
@@ -431,6 +431,60 @@ $contents = file_get_contents('gs://my_bucket/file_backup.txt');
 
 ```
 $ composer require google/cloud-storage
+```
+
+## Google Cloud Tasks (GA)
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/tasks/readme)
+
+#### Preview
+
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Queue;
+
+$client = new CloudTasksClient();
+
+$project = 'example-project';
+$location = 'us-central1';
+$queue = uniqid('example-queue-');
+$queueName = $client::queueName($project, $location, $queue);
+
+// Create a queue
+$locationName = $client::locationName($project, $location);
+$queue = new Queue([
+    'name' => $queueName
+]);
+$queue->setName($queueName);
+$client->createQueue($locationName, $queue);
+
+echo "$queueName created." . PHP_EOL;
+
+// List queues
+echo 'Listing the queues' . PHP_EOL;
+$resp = $client->listQueues($locationName);
+foreach ($resp->iterateAllElements() as $q) {
+    echo $q->getName() . PHP_EOL;
+}
+
+// Delete the queue
+$client->deleteQueue($queueName);
+```
+
+#### Removal of pull queue
+
+The past version (V2beta2) supported pull queues, but we removed the
+pull queue support from V2/V2beta3. For more details, read
+[our documentation](https://cloud.google.com/tasks/docs/alpha-to-beta#pull)
+about the removal.
+
+#### google/cloud-tasks
+
+[Google Cloud Tasks](https://github.com/googleapis/google-cloud-php-tasks) can be installed separately by requiring the [`google/cloud-tasks`](https://packagist.org/packages/google/cloud-tasks) composer package:
+
+```
+$ composer require google/cloud-tasks
 ```
 
 ## Google Cloud Translation (GA)
@@ -880,60 +934,6 @@ $jobs = $schedulerClient->listJobs($formattedName);
 
 ```
 $ composer require google/cloud-scheduler
-```
-
-## Google Cloud Tasks (Beta)
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/tasks/readme)
-
-#### Preview
-
-```php
-require_once __DIR__ . '/vendor/autoload.php';
-
-use Google\Cloud\Tasks\V2\CloudTasksClient;
-use Google\Cloud\Tasks\V2\Queue;
-
-$client = new CloudTasksClient();
-
-$project = 'example-project';
-$location = 'us-central1';
-$queue = uniqid('example-queue-');
-$queueName = $client::queueName($project, $location, $queue);
-
-// Create a queue
-$locationName = $client::locationName($project, $location);
-$queue = new Queue([
-    'name' => $queueName
-]);
-$queue->setName($queueName);
-$client->createQueue($locationName, $queue);
-
-echo "$queueName created." . PHP_EOL;
-
-// List queues
-echo 'Listing the queues' . PHP_EOL;
-$resp = $client->listQueues($locationName);
-foreach ($resp->iterateAllElements() as $q) {
-    echo $q->getName() . PHP_EOL;
-}
-
-// Delete the queue
-$client->deleteQueue($queueName);
-```
-
-#### Removal of pull queue
-
-The past version (V2beta2) supported pull queues, but we removed the
-pull queue support from V2beta3. For more details, read
-[our documentation](https://cloud.google.com/tasks/docs/alpha-to-beta#pull)
-about the removal.
-
-#### google/cloud-tasks
-
-[Google Cloud Tasks](https://github.com/googleapis/google-cloud-php-tasks) can be installed separately by requiring the [`google/cloud-tasks`](https://packagist.org/packages/google/cloud-tasks) composer package:
-
-```
-$ composer require google/cloud-tasks
 ```
 
 ## Google Cloud Text-to-Speech (Beta)
