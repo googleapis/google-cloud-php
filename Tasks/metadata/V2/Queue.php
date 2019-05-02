@@ -15,7 +15,7 @@ class Queue
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        //\GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Tasks\V2\Target::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
