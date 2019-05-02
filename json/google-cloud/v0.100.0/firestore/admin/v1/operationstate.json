@@ -1,0 +1,1 @@
+{"id":"firestore\/admin\/v1\/operationstate","type":"","title":"Google\\Cloud\\Firestore\\Admin\\V1\\OperationState","name":"OperationState","description":"<p>Describes the state of the operation.<\/p>\n<p>Protobuf type <code>google.firestore.admin.v1.OperationState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
