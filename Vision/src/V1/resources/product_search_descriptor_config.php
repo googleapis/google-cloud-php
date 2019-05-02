@@ -13,6 +13,16 @@ return [
                     'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
+            'ListProductSets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getProductSets',
+                ],
+            ],
             'ListProducts' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -31,16 +41,6 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getReferenceImages',
-                ],
-            ],
-            'ListProductSets' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getProductSets',
                 ],
             ],
             'ListProductsInProductSet' => [

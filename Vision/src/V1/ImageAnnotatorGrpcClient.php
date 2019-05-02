@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -46,6 +46,48 @@ class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages',
         $argument,
         ['\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Service that performs image detection and annotation for a batch of files.
+     * Now only "application/pdf", "image/tiff" and "image/gif" are supported.
+     *
+     * This service will extract at most 5 (customers can specify which 5 in
+     * AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+     * file provided and perform detection and annotation for each image
+     * extracted.
+     * @param \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchAnnotateFiles(\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateFiles',
+        $argument,
+        ['\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Run asynchronous image detection and annotation for a list of images.
+     *
+     * Progress and results can be retrieved through the
+     * `google.longrunning.Operations` interface.
+     * `Operation.metadata` contains `OperationMetadata` (metadata).
+     * `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+     *
+     * This service will write image annotation outputs to json files in customer
+     * GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * @param \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function AsyncBatchAnnotateImages(\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vision.v1.ImageAnnotator/AsyncBatchAnnotateImages',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

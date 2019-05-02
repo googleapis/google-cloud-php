@@ -3,6 +3,64 @@
 return [
     'interfaces' => [
         'google.cloud.vision.v1.ProductSearch' => [
+            'CreateProductSet' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/productSets',
+                'body' => 'product_set',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProductSets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/productSets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetProductSet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/productSets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateProductSet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{product_set.name=projects/*/locations/*/productSets/*}',
+                'body' => 'product_set',
+                'placeholders' => [
+                    'product_set.name' => [
+                        'getters' => [
+                            'getProductSet',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteProductSet' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/productSets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateProduct' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/products',
@@ -61,24 +119,14 @@ return [
                     ],
                 ],
             ],
-            'ListReferenceImages' => [
-                'method' => 'get',
+            'CreateReferenceImage' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/products/*}/referenceImages',
+                'body' => 'reference_image',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetReferenceImage' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/products/*/referenceImages/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -94,10 +142,9 @@ return [
                     ],
                 ],
             ],
-            'CreateReferenceImage' => [
-                'method' => 'post',
+            'ListReferenceImages' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/products/*}/referenceImages',
-                'body' => 'reference_image',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -106,56 +153,9 @@ return [
                     ],
                 ],
             ],
-            'CreateProductSet' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/productSets',
-                'body' => 'product_set',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListProductSets' => [
+            'GetReferenceImage' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/productSets',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetProductSet' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/productSets/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateProductSet' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{product_set.name=projects/*/locations/*/productSets/*}',
-                'body' => 'product_set',
-                'placeholders' => [
-                    'product_set.name' => [
-                        'getters' => [
-                            'getProductSet',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteProductSet' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/productSets/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/products/*/referenceImages/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -215,8 +215,16 @@ return [
         'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=operations/*}',
+                'uriTemplate' => '/v1/{name=projects/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=locations/*/operations/*}',

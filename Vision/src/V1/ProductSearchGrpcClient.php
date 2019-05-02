@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -130,10 +130,6 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * ProductSet are not deleted.
      *
      * The actual image files are not deleted from Google Cloud Storage.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the ProductSet does not exist.
      * @param \Google\Cloud\Vision\V1\DeleteProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -237,10 +233,6 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * Metadata of the product and all its images will be deleted right away, but
      * search queries against ProductSets containing the product may still work
      * until all related caches are refreshed.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the product does not exist.
      * @param \Google\Cloud\Vision\V1\DeleteProductRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -293,10 +285,6 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * caches are refreshed.
      *
      * The actual image files are not deleted from Google Cloud Storage.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the reference image does not exist.
      * @param \Google\Cloud\Vision\V1\DeleteReferenceImageRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -370,10 +358,6 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Removes a Product from the specified ProductSet.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND If the Product is not found under the ProductSet.
      * @param \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

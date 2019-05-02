@@ -42,9 +42,11 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     /**
      * The filtering expression. This can be used to restrict search results based
      * on Product labels. We currently support an AND of OR of key-value
-     * expressions, where each expression within an OR must have the same key.
+     * expressions, where each expression within an OR must have the same key. An
+     * '=' should be used to connect the key and value.
      * For example, "(color = red OR color = blue) AND brand = Google" is
-     * acceptable, but not "(color = red OR brand = Google)" or "color: red".
+     * acceptable, but "(color = red OR brand = Google)" is not acceptable.
+     * "color: red" is not acceptable because it uses a ':' instead of an '='.
      *
      * Generated from protobuf field <code>string filter = 8;</code>
      */
@@ -71,9 +73,11 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           The filtering expression. This can be used to restrict search results based
      *           on Product labels. We currently support an AND of OR of key-value
-     *           expressions, where each expression within an OR must have the same key.
+     *           expressions, where each expression within an OR must have the same key. An
+     *           '=' should be used to connect the key and value.
      *           For example, "(color = red OR color = blue) AND brand = Google" is
-     *           acceptable, but not "(color = red OR brand = Google)" or "color: red".
+     *           acceptable, but "(color = red OR brand = Google)" is not acceptable.
+     *           "color: red" is not acceptable because it uses a ':' instead of an '='.
      * }
      */
     public function __construct($data = NULL) {
@@ -174,9 +178,11 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     /**
      * The filtering expression. This can be used to restrict search results based
      * on Product labels. We currently support an AND of OR of key-value
-     * expressions, where each expression within an OR must have the same key.
+     * expressions, where each expression within an OR must have the same key. An
+     * '=' should be used to connect the key and value.
      * For example, "(color = red OR color = blue) AND brand = Google" is
-     * acceptable, but not "(color = red OR brand = Google)" or "color: red".
+     * acceptable, but "(color = red OR brand = Google)" is not acceptable.
+     * "color: red" is not acceptable because it uses a ':' instead of an '='.
      *
      * Generated from protobuf field <code>string filter = 8;</code>
      * @return string
@@ -189,9 +195,11 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     /**
      * The filtering expression. This can be used to restrict search results based
      * on Product labels. We currently support an AND of OR of key-value
-     * expressions, where each expression within an OR must have the same key.
+     * expressions, where each expression within an OR must have the same key. An
+     * '=' should be used to connect the key and value.
      * For example, "(color = red OR color = blue) AND brand = Google" is
-     * acceptable, but not "(color = red OR brand = Google)" or "color: red".
+     * acceptable, but "(color = red OR brand = Google)" is not acceptable.
+     * "color: red" is not acceptable because it uses a ':' instead of an '='.
      *
      * Generated from protobuf field <code>string filter = 8;</code>
      * @param string $var
