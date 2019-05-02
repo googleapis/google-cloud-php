@@ -73,13 +73,12 @@ $client->deleteQueue($queueName);
 
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly
-stable and we're working towards a release candidate. We will address issues
-and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Removal of pull queue
 
 The past version (V2beta2) supported pull queues, but we removed the
-pull queue support from V2beta3. For more details, read
+pull queue support from V2/V2beta3. For more details, read
 [our documentation](https://cloud.google.com/tasks/docs/alpha-to-beta#pull)
 about the removal.
