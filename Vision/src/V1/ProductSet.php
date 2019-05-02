@@ -36,7 +36,8 @@ class ProductSet extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this ProductSet was last indexed. Query
      * results will reflect all updates before this time. If this ProductSet has
-     * never been indexed, this field is 0.
+     * never been indexed, this timestamp is the default value
+     * "1970-01-01T00:00:00Z".
      * This field is ignored when creating a ProductSet.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3;</code>
@@ -68,7 +69,8 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $index_time
      *           Output only. The time at which this ProductSet was last indexed. Query
      *           results will reflect all updates before this time. If this ProductSet has
-     *           never been indexed, this field is 0.
+     *           never been indexed, this timestamp is the default value
+     *           "1970-01-01T00:00:00Z".
      *           This field is ignored when creating a ProductSet.
      *     @type \Google\Rpc\Status $index_error
      *           Output only. If there was an error with indexing the product set, the field
@@ -144,7 +146,8 @@ class ProductSet extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this ProductSet was last indexed. Query
      * results will reflect all updates before this time. If this ProductSet has
-     * never been indexed, this field is 0.
+     * never been indexed, this timestamp is the default value
+     * "1970-01-01T00:00:00Z".
      * This field is ignored when creating a ProductSet.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3;</code>
@@ -158,7 +161,8 @@ class ProductSet extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time at which this ProductSet was last indexed. Query
      * results will reflect all updates before this time. If this ProductSet has
-     * never been indexed, this field is 0.
+     * never been indexed, this timestamp is the default value
+     * "1970-01-01T00:00:00Z".
      * This field is ignored when creating a ProductSet.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3;</code>
