@@ -364,12 +364,19 @@ class Grpc implements ConnectionInterface
         if (isset($filter['propertyFilter'])) {
             $operator = $filter['propertyFilter']['op'];
 
-            $constName = PropertyFilterOperator::class . '::' . $operator;
-            if (!defined($constName)) {
-                throw new \InvalidArgumentException('Invalid operator.');
+            try {
+                if (is_int($operator)) {
+                    // verify that the operator, given as enum value, exists.
+                    PropertyFilterOperator::name($operator);
+                } else {
+                    // convert the operator, given as a string, to a grpc value.
+                    $operator = PropertyFilterOperator::value($operator);
+                }
+            } catch (\UnexpectedValueException $e) {
+                throw new \InvalidArgumentException($e->getMessage());
             }
 
-            $filter['propertyFilter']['op'] = constant($constName);
+            $filter['propertyFilter']['op'] = $operator;
         }
 
         if (isset($filter['compositeFilter'])) {
