@@ -28,26 +28,31 @@ use Google\Cloud\Firestore\FirestoreClient;
  * @group gapic
  *
  * This smoke test case currently only invokes ListIndexes API call.
- * 
+ *
  */
 class FirestoreAdminClientSmokeTest extends SystemTestCase
 {
     protected static $adminClient;
+    private static $projectId;
     private static $hasSetup = false;
 
-    public static function setupBeforeClass() {
+    public static function setupBeforeClass()
+    {
         if (self::$hasSetup) {
             return;
         }
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH');
+        $keyFileData = json_decode(file_get_contents($keyFilePath), true);
+        self::$projectId = $keyFileData['project_id'];
         self::$adminClient = new FirestoreAdminClient([
             'credentials' => $keyFilePath
         ]);
     }
 
-    public function testListIndex() {
+    public function testListIndex()
+    {
         $parentName = self::$adminClient->parentName(
-            getenv('PROJECT_ID'),
+            self::$projectId,
             FirestoreClient::DEFAULT_DATABASE,
             uniqid('system-test')
         );
