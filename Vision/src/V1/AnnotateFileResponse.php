@@ -28,6 +28,12 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
      */
     private $responses;
+    /**
+     * This field gives the total number of pages in the file.
+     *
+     * Generated from protobuf field <code>int32 total_pages = 3;</code>
+     */
+    private $total_pages = 0;
 
     /**
      * Constructor.
@@ -39,6 +45,8 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      *           Information about the file for which this response is generated.
      *     @type \Google\Cloud\Vision\V1\AnnotateImageResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
      *           Individual responses to images found within the file.
+     *     @type int $total_pages
+     *           This field gives the total number of pages in the file.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +102,32 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\AnnotateImageResponse::class);
         $this->responses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * This field gives the total number of pages in the file.
+     *
+     * Generated from protobuf field <code>int32 total_pages = 3;</code>
+     * @return int
+     */
+    public function getTotalPages()
+    {
+        return $this->total_pages;
+    }
+
+    /**
+     * This field gives the total number of pages in the file.
+     *
+     * Generated from protobuf field <code>int32 total_pages = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalPages($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_pages = $var;
 
         return $this;
     }

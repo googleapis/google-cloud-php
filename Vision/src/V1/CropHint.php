@@ -17,7 +17,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image's scale, as returned in `ImageParams`.
+     * box are in the original image's scale.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      */
@@ -44,7 +44,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
      *           The bounding polygon for the crop region. The coordinates of the bounding
-     *           box are in the original image's scale, as returned in `ImageParams`.
+     *           box are in the original image's scale.
      *     @type float $confidence
      *           Confidence of this being a salient region.  Range [0, 1].
      *     @type float $importance_fraction
@@ -59,7 +59,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
 
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image's scale, as returned in `ImageParams`.
+     * box are in the original image's scale.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
@@ -71,7 +71,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
 
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding
-     * box are in the original image's scale, as returned in `ImageParams`.
+     * box are in the original image's scale.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var

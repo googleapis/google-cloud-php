@@ -16,14 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI prefix.
+     * This field can either represent a gcs file prefix or gcs directory. In
+     * either case, the uri should be unique because in order to get all of the
+     * output files, you will need to do a wildcard gcs search on the uri prefix
+     * you provide.
      * Examples:
-     * *    File: gs://bucket-name/filename.json
-     * *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here
+     * *    File Prefix: gs://bucket-name/here/filenameprefix   The output files
+     * will be created in gs://bucket-name/here/ and the names of the
+     * output files will begin with "filenameprefix".
+     * *    Directory Prefix: gs://bucket-name/some/location/   The output files
+     * will be created in gs://bucket-name/some/location/ and the names of the
+     * output files could be anything because there was no filename prefix
+     * specified.
      * If multiple outputs, each response is still AnnotateFileResponse, each of
      * which contains some subset of the full list of AnnotateImageResponse.
      * Multiple outputs can happen if, for example, the output JSON is too large
@@ -40,14 +46,20 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Google Cloud Storage URI where the results will be stored. Results will
-     *           be in JSON format and preceded by its corresponding input URI. This field
-     *           can either represent a single file, or a prefix for multiple outputs.
-     *           Prefixes must end in a `/`.
+     *           Google Cloud Storage URI prefix where the results will be stored. Results
+     *           will be in JSON format and preceded by its corresponding input URI prefix.
+     *           This field can either represent a gcs file prefix or gcs directory. In
+     *           either case, the uri should be unique because in order to get all of the
+     *           output files, you will need to do a wildcard gcs search on the uri prefix
+     *           you provide.
      *           Examples:
-     *           *    File: gs://bucket-name/filename.json
-     *           *    Prefix: gs://bucket-name/prefix/here/
-     *           *    File: gs://bucket-name/prefix/here
+     *           *    File Prefix: gs://bucket-name/here/filenameprefix   The output files
+     *           will be created in gs://bucket-name/here/ and the names of the
+     *           output files will begin with "filenameprefix".
+     *           *    Directory Prefix: gs://bucket-name/some/location/   The output files
+     *           will be created in gs://bucket-name/some/location/ and the names of the
+     *           output files could be anything because there was no filename prefix
+     *           specified.
      *           If multiple outputs, each response is still AnnotateFileResponse, each of
      *           which contains some subset of the full list of AnnotateImageResponse.
      *           Multiple outputs can happen if, for example, the output JSON is too large
@@ -60,14 +72,20 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI prefix.
+     * This field can either represent a gcs file prefix or gcs directory. In
+     * either case, the uri should be unique because in order to get all of the
+     * output files, you will need to do a wildcard gcs search on the uri prefix
+     * you provide.
      * Examples:
-     * *    File: gs://bucket-name/filename.json
-     * *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here
+     * *    File Prefix: gs://bucket-name/here/filenameprefix   The output files
+     * will be created in gs://bucket-name/here/ and the names of the
+     * output files will begin with "filenameprefix".
+     * *    Directory Prefix: gs://bucket-name/some/location/   The output files
+     * will be created in gs://bucket-name/some/location/ and the names of the
+     * output files could be anything because there was no filename prefix
+     * specified.
      * If multiple outputs, each response is still AnnotateFileResponse, each of
      * which contains some subset of the full list of AnnotateImageResponse.
      * Multiple outputs can happen if, for example, the output JSON is too large
@@ -82,14 +100,20 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage URI where the results will be stored. Results will
-     * be in JSON format and preceded by its corresponding input URI. This field
-     * can either represent a single file, or a prefix for multiple outputs.
-     * Prefixes must end in a `/`.
+     * Google Cloud Storage URI prefix where the results will be stored. Results
+     * will be in JSON format and preceded by its corresponding input URI prefix.
+     * This field can either represent a gcs file prefix or gcs directory. In
+     * either case, the uri should be unique because in order to get all of the
+     * output files, you will need to do a wildcard gcs search on the uri prefix
+     * you provide.
      * Examples:
-     * *    File: gs://bucket-name/filename.json
-     * *    Prefix: gs://bucket-name/prefix/here/
-     * *    File: gs://bucket-name/prefix/here
+     * *    File Prefix: gs://bucket-name/here/filenameprefix   The output files
+     * will be created in gs://bucket-name/here/ and the names of the
+     * output files will begin with "filenameprefix".
+     * *    Directory Prefix: gs://bucket-name/some/location/   The output files
+     * will be created in gs://bucket-name/some/location/ and the names of the
+     * output files could be anything because there was no filename prefix
+     * specified.
      * If multiple outputs, each response is still AnnotateFileResponse, each of
      * which contains some subset of the full list of AnnotateImageResponse.
      * Multiple outputs can happen if, for example, the output JSON is too large

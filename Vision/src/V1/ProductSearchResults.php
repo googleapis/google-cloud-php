@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProductSearchResults extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to the
+     * product set and products removed from the product set after this time are
+     * not reflected in the current results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 2;</code>
      */
@@ -45,8 +46,9 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $index_time
-     *           Timestamp of the index which provided these results. Changes made after
-     *           this time are not reflected in the current results.
+     *           Timestamp of the index which provided these results. Products added to the
+     *           product set and products removed from the product set after this time are
+     *           not reflected in the current results.
      *     @type \Google\Cloud\Vision\V1\ProductSearchResults\Result[]|\Google\Protobuf\Internal\RepeatedField $results
      *           List of results, one for each product match.
      *     @type \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult[]|\Google\Protobuf\Internal\RepeatedField $product_grouped_results
@@ -62,8 +64,9 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to the
+     * product set and products removed from the product set after this time are
+     * not reflected in the current results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -74,8 +77,9 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamp of the index which provided these results. Changes made after
-     * this time are not reflected in the current results.
+     * Timestamp of the index which provided these results. Products added to the
+     * product set and products removed from the product set after this time are
+     * not reflected in the current results.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
