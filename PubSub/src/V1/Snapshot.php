@@ -14,10 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * operations, which allow
  * you to manage message acknowledgments in bulk. That is, you can set the
  * acknowledgment state of messages in an existing subscription to the state
- * captured by a snapshot.<br><br>
- * <b>BETA:</b> This feature is part of a beta release. This API might be
- * changed in backward-incompatible ways and is not recommended for production
- * use. It is not subject to any SLA or deprecation policy.
+ * captured by a snapshot.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Snapshot</code>
  */

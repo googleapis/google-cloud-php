@@ -21,9 +21,8 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      * [Service account
      * email](https://cloud.google.com/iam/docs/service-accounts)
      * to be used for generating the OIDC token. The caller (for
-     * CreateSubscription, UpdateSubscription, and ModifyPushConfig calls) must
+     * CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must
      * have the iam.serviceAccounts.actAs permission for the service account.
-     * See https://cloud.google.com/iam/docs/understanding-roles#service-accounts-roles.
      *
      * Generated from protobuf field <code>string service_account_email = 1;</code>
      */
@@ -50,9 +49,8 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      *           [Service account
      *           email](https://cloud.google.com/iam/docs/service-accounts)
      *           to be used for generating the OIDC token. The caller (for
-     *           CreateSubscription, UpdateSubscription, and ModifyPushConfig calls) must
+     *           CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must
      *           have the iam.serviceAccounts.actAs permission for the service account.
-     *           See https://cloud.google.com/iam/docs/understanding-roles#service-accounts-roles.
      *     @type string $audience
      *           Audience to be used when generating OIDC token. The audience claim
      *           identifies the recipients that the JWT is intended for. The audience
@@ -71,9 +69,8 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      * [Service account
      * email](https://cloud.google.com/iam/docs/service-accounts)
      * to be used for generating the OIDC token. The caller (for
-     * CreateSubscription, UpdateSubscription, and ModifyPushConfig calls) must
+     * CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must
      * have the iam.serviceAccounts.actAs permission for the service account.
-     * See https://cloud.google.com/iam/docs/understanding-roles#service-accounts-roles.
      *
      * Generated from protobuf field <code>string service_account_email = 1;</code>
      * @return string
@@ -87,9 +84,8 @@ class OidcToken extends \Google\Protobuf\Internal\Message
      * [Service account
      * email](https://cloud.google.com/iam/docs/service-accounts)
      * to be used for generating the OIDC token. The caller (for
-     * CreateSubscription, UpdateSubscription, and ModifyPushConfig calls) must
+     * CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must
      * have the iam.serviceAccounts.actAs permission for the service account.
-     * See https://cloud.google.com/iam/docs/understanding-roles#service-accounts-roles.
      *
      * Generated from protobuf field <code>string service_account_email = 1;</code>
      * @param string $var
