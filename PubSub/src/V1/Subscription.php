@@ -73,10 +73,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * <a
      * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      * Seek to a timestamp</a>.
-     * <br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      */
@@ -87,10 +83,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
+     * minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
@@ -121,9 +114,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
      * value for `expiration_policy.ttl` is 1 day.
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      */
@@ -177,20 +167,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           <a
      *           href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      *           Seek to a timestamp</a>.
-     *           <br><br>
-     *           <b>BETA:</b> This feature is part of a beta release. This API might be
-     *           changed in backward-incompatible ways and is not recommended for production
-     *           use. It is not subject to any SLA or deprecation policy.
      *     @type \Google\Protobuf\Duration $message_retention_duration
      *           How long to retain unacknowledged messages in the subscription's backlog,
      *           from the moment a message is published.
      *           If `retain_acked_messages` is true, then this also configures the retention
      *           of acknowledged messages, and thus configures how far back in time a `Seek`
      *           can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     *           minutes.<br><br>
-     *           <b>BETA:</b> This feature is part of a beta release. This API might be
-     *           changed in backward-incompatible ways and is not recommended for production
-     *           use. It is not subject to any SLA or deprecation policy.
+     *           minutes.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      *           managing labels</a>.
@@ -209,9 +192,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *           value for `expiration_policy.ttl` is 1 day.
-     *           <b>BETA:</b> This feature is part of a beta release. This API might be
-     *           changed in backward-incompatible ways and is not recommended for production
-     *           use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -383,10 +363,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * <a
      * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      * Seek to a timestamp</a>.
-     * <br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @return bool
@@ -404,10 +380,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * <a
      * href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      * Seek to a timestamp</a>.
-     * <br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @param bool $var
@@ -427,10 +399,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
+     * minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @return \Google\Protobuf\Duration
@@ -446,10 +415,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     * minutes.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
+     * minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @param \Google\Protobuf\Duration $var
@@ -536,9 +502,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
      * value for `expiration_policy.ttl` is 1 day.
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      * @return \Google\Cloud\PubSub\V1\ExpirationPolicy
@@ -555,9 +518,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * operations on the subscription. If `expiration_policy` is not set, a
      * *default policy* with `ttl` of 31 days will be used. The minimum allowed
      * value for `expiration_policy.ttl` is 1 day.
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      * @param \Google\Cloud\PubSub\V1\ExpirationPolicy $var

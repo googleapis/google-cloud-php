@@ -446,20 +446,13 @@ class SubscriberGapicClient
      *          <a
      *          href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
      *          Seek to a timestamp</a>.
-     *          <br><br>
-     *          <b>BETA:</b> This feature is part of a beta release. This API might be
-     *          changed in backward-incompatible ways and is not recommended for production
-     *          use. It is not subject to any SLA or deprecation policy.
      *     @type Duration $messageRetentionDuration
      *          How long to retain unacknowledged messages in the subscription's backlog,
      *          from the moment a message is published.
      *          If `retain_acked_messages` is true, then this also configures the retention
      *          of acknowledged messages, and thus configures how far back in time a `Seek`
      *          can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     *          minutes.<br><br>
-     *          <b>BETA:</b> This feature is part of a beta release. This API might be
-     *          changed in backward-incompatible ways and is not recommended for production
-     *          use. It is not subject to any SLA or deprecation policy.
+     *          minutes.
      *     @type array $labels
      *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      *          managing labels</a>.
@@ -478,9 +471,6 @@ class SubscriberGapicClient
      *          operations on the subscription. If `expiration_policy` is not set, a
      *          *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *          value for `expiration_policy.ttl` is 1 day.
-     *          <b>BETA:</b> This feature is part of a beta release. This API might be
-     *          changed in backward-incompatible ways and is not recommended for production
-     *          use. It is not subject to any SLA or deprecation policy.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1113,10 +1103,7 @@ class SubscriberGapicClient
      * operations, which allow
      * you to manage message acknowledgments in bulk. That is, you can set the
      * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
+     * captured by a snapshot.
      *
      * Sample code:
      * ```
@@ -1203,11 +1190,7 @@ class SubscriberGapicClient
      * you to manage message acknowledgments in bulk. That is, you can set the
      * acknowledgment state of messages in an existing subscription to the state
      * captured by a snapshot.
-     * <br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.<br><br>
-     * If the snapshot already exists, returns `ALREADY_EXISTS`.
+     * <br><br>If the snapshot already exists, returns `ALREADY_EXISTS`.
      * If the requested subscription doesn't exist, returns `NOT_FOUND`.
      * If the backlog in the subscription is too old -- and the resulting snapshot
      * would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.
@@ -1296,11 +1279,7 @@ class SubscriberGapicClient
      * operations, which allow
      * you to manage message acknowledgments in bulk. That is, you can set the
      * acknowledgment state of messages in an existing subscription to the state
-     * captured by a snapshot.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
-     * Note that certain properties of a snapshot are not modifiable.
+     * captured by a snapshot.
      *
      * Sample code:
      * ```
@@ -1367,9 +1346,6 @@ class SubscriberGapicClient
      * you to manage message acknowledgments in bulk. That is, you can set the
      * acknowledgment state of messages in an existing subscription to the state
      * captured by a snapshot.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
      * When the snapshot is deleted, all messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
@@ -1429,10 +1405,7 @@ class SubscriberGapicClient
      * you to manage message acknowledgments in bulk. That is, you can set the
      * acknowledgment state of messages in an existing subscription to the state
      * captured by a snapshot. Note that both the subscription and the snapshot
-     * must be on the same topic.<br><br>
-     * <b>BETA:</b> This feature is part of a beta release. This API might be
-     * changed in backward-incompatible ways and is not recommended for production
-     * use. It is not subject to any SLA or deprecation policy.
+     * must be on the same topic.
      *
      * Sample code:
      * ```
