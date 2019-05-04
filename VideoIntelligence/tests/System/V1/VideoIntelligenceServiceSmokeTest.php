@@ -38,7 +38,7 @@ class VideoIntelligenceServiceSmokeTest extends GeneratedTest
     public function annotateVideoTest()
     {
         $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
-        $inputUri = 'gs://demomaker/cat.mp4';
+        $inputUri = 'gs://videodemomaker/cat.mp4';
         $featuresElement = Feature::LABEL_DETECTION;
         $features = [$featuresElement];
         $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
