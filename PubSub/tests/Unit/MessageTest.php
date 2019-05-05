@@ -38,7 +38,8 @@ class MessageTest extends TestCase
             'publishTime' => $this->time,
             'attributes' => [
                 'foo' => 'bar'
-            ]
+            ],
+            'orderingKey' => 'baz',
         ], [
             'ackId' => 1234,
             'subscription' => $this->prophesize(Subscription::class)->reveal()
@@ -92,5 +93,10 @@ class MessageTest extends TestCase
         $this->assertInternalType('array', $this->message->info()['message']);
         $this->assertInstanceOf(Subscription::class, $this->message->info()['subscription']);
         $this->assertEquals(1234, $this->message->info()['ackId']);
+    }
+
+    public function testOrderingKey()
+    {
+        $this->assertEquals('baz', $this->message->orderingKey());
     }
 }

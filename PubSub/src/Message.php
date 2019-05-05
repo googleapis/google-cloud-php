@@ -166,7 +166,7 @@ class Message
 
     /**
      * Get the message ordering key
-     * 
+     *
      * Example:
      * ```
      * $orderingKey = $message->orderingKey();
