@@ -146,6 +146,9 @@ class QueryResults implements \IteratorAggregate
      *           **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
+     *     @type bool $returnRawResults Returns the raw data types returned from
+     *           BigQuery without converting their values into native PHP types or
+     *           the custom type classes supported by this library.
      * }
      * @return ItemIterator
      * @throws JobException If the maximum number of retries while waiting for
@@ -157,10 +160,11 @@ class QueryResults implements \IteratorAggregate
         $options += $this->queryResultsOptions;
         $this->waitUntilComplete($options);
         $schema = $this->info['schema']['fields'];
+        $returnRawResults = isset($options['returnRawResults']) ? $options['returnRawResults'] : false;
 
         return new ItemIterator(
             new PageIterator(
-                function (array $row) use ($schema) {
+                function (array $row) use ($schema, $returnRawResults) {
                     $mergedRow = [];
 
                     if ($row === null) {
@@ -173,7 +177,9 @@ class QueryResults implements \IteratorAggregate
 
                     foreach ($row['f'] as $key => $value) {
                         $fieldSchema = $schema[$key];
-                        $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
+                        $mergedRow[$fieldSchema['name']] = $returnRawResults
+                            ? $value['v']
+                            : $this->mapper->fromBigQuery($value, $fieldSchema);
                     }
 
                     return $mergedRow;
