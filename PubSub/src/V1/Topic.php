@@ -44,6 +44,17 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
      */
     private $message_storage_policy = null;
+    /**
+     * The resource name of the Cloud KMS CryptoKey to be used to protect access
+     * to messages published on this topic.
+     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 5;</code>
+     */
+    private $kms_key_name = '';
 
     /**
      * Constructor.
@@ -68,6 +79,13 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           CreateTopic or to UpdateTopic. This field will be populated in the
      *           responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
      *           response, then no constraints are in effect.
+     *     @type string $kms_key_name
+     *           The resource name of the Cloud KMS CryptoKey to be used to protect access
+     *           to messages published on this topic.
+     *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +189,42 @@ class Topic extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\MessageStoragePolicy::class);
         $this->message_storage_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource name of the Cloud KMS CryptoKey to be used to protect access
+     * to messages published on this topic.
+     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 5;</code>
+     * @return string
+     */
+    public function getKmsKeyName()
+    {
+        return $this->kms_key_name;
+    }
+
+    /**
+     * The resource name of the Cloud KMS CryptoKey to be used to protect access
+     * to messages published on this topic.
+     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_name = $var;
 
         return $this;
     }

@@ -15,7 +15,7 @@ class Cloudtasks
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        //\GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Cloud\Tasks\V2\Task::initOnce();

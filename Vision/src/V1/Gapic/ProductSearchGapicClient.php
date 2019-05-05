@@ -94,8 +94,8 @@ use Google\Protobuf\GPBEmpty;
  * $productSearchClient = new ProductSearchClient();
  * try {
  *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
- *     $product = new Product();
- *     $response = $productSearchClient->createProduct($formattedParent, $product);
+ *     $productSet = new ProductSet();
+ *     $response = $productSearchClient->createProductSet($formattedParent, $productSet);
  * } finally {
  *     $productSearchClient->close();
  * }
@@ -435,6 +435,337 @@ class ProductSearchGapicClient
     }
 
     /**
+     * Creates and returns a new ProductSet resource.
+     *
+     * Possible errors:
+     *
+     * * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
+     *   4096 characters.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $productSet = new ProductSet();
+     *     $response = $productSearchClient->createProductSet($formattedParent, $productSet);
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent The project in which the ProductSet should be created.
+     *
+     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param ProductSet $productSet   The ProductSet to create.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type string $productSetId
+     *          A user-supplied resource id for this ProductSet. If set, the server will
+     *          attempt to use this value as the resource id. If it is already in use, an
+     *          error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+     *          long. It cannot contain the character `/`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Vision\V1\ProductSet
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createProductSet($parent, $productSet, array $optionalArgs = [])
+    {
+        $request = new CreateProductSetRequest();
+        $request->setParent($parent);
+        $request->setProductSet($productSet);
+        if (isset($optionalArgs['productSetId'])) {
+            $request->setProductSetId($optionalArgs['productSetId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateProductSet',
+            ProductSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists ProductSets in an unspecified order.
+     *
+     * Possible errors:
+     *
+     * * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
+     *   than 1.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $productSearchClient->listProductSets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $productSearchClient->listProductSets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent The project from which ProductSets should be listed.
+     *
+     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listProductSets($parent, array $optionalArgs = [])
+    {
+        $request = new ListProductSetsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListProductSets',
+            $optionalArgs,
+            ListProductSetsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Gets information associated with a ProductSet.
+     *
+     * Possible errors:
+     *
+     * * Returns NOT_FOUND if the ProductSet does not exist.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+     *     $response = $productSearchClient->getProductSet($formattedName);
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Resource name of the ProductSet to get.
+     *
+     * Format is:
+     * `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Vision\V1\ProductSet
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getProductSet($name, array $optionalArgs = [])
+    {
+        $request = new GetProductSetRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetProductSet',
+            ProductSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Makes changes to a ProductSet resource.
+     * Only display_name can be updated currently.
+     *
+     * Possible errors:
+     *
+     * * Returns NOT_FOUND if the ProductSet does not exist.
+     * * Returns INVALID_ARGUMENT if display_name is present in update_mask but
+     *   missing from the request or longer than 4096 characters.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $productSet = new ProductSet();
+     *     $response = $productSearchClient->updateProductSet($productSet);
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param ProductSet $productSet   The ProductSet resource which replaces the one on the server.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
+     *          update.
+     *          If update_mask isn't specified, all mutable fields are to be updated.
+     *          Valid mask path is `display_name`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Vision\V1\ProductSet
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateProductSet($productSet, array $optionalArgs = [])
+    {
+        $request = new UpdateProductSetRequest();
+        $request->setProductSet($productSet);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'product_set.name' => $request->getProductSet()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateProductSet',
+            ProductSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Permanently deletes a ProductSet. Products and ReferenceImages in the
+     * ProductSet are not deleted.
+     *
+     * The actual image files are not deleted from Google Cloud Storage.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
+     *     $productSearchClient->deleteProductSet($formattedName);
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Resource name of the ProductSet to delete.
+     *
+     * Format is:
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteProductSet($name, array $optionalArgs = [])
+    {
+        $request = new DeleteProductSetRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteProductSet',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates and returns a new product resource.
      *
      * Possible errors:
@@ -730,10 +1061,6 @@ class ProductSearchGapicClient
      * search queries against ProductSets containing the product may still work
      * until all related caches are refreshed.
      *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the product does not exist.
-     *
      * Sample code:
      * ```
      * $productSearchClient = new ProductSearchClient();
@@ -776,6 +1103,147 @@ class ProductSearchGapicClient
 
         return $this->startCall(
             'DeleteProduct',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates and returns a new ReferenceImage resource.
+     *
+     * The `bounding_poly` field is optional. If `bounding_poly` is not specified,
+     * the system will try to detect regions of interest in the image that are
+     * compatible with the product_category on the parent product. If it is
+     * specified, detection is ALWAYS skipped. The system converts polygons into
+     * non-rotated rectangles.
+     *
+     * Note that the pipeline will resize the image if the image resolution is too
+     * large to process (above 50MP).
+     *
+     * Possible errors:
+     *
+     * * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
+     *   characters.
+     * * Returns INVALID_ARGUMENT if the product does not exist.
+     * * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
+     *   compatible with the parent product's product_category is detected.
+     * * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
+     *     $referenceImage = new ReferenceImage();
+     *     $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent Resource name of the product in which to create the reference image.
+     *
+     * Format is
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+     * @param ReferenceImage $referenceImage The reference image to create.
+     *                                       If an image ID is specified, it is ignored.
+     * @param array          $optionalArgs   {
+     *                                       Optional.
+     *
+     *     @type string $referenceImageId
+     *          A user-supplied resource id for the ReferenceImage to be added. If set,
+     *          the server will attempt to use this value as the resource id. If it is
+     *          already in use, an error is returned with code ALREADY_EXISTS. Must be at
+     *          most 128 characters long. It cannot contain the character `/`.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Vision\V1\ReferenceImage
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createReferenceImage($parent, $referenceImage, array $optionalArgs = [])
+    {
+        $request = new CreateReferenceImageRequest();
+        $request->setParent($parent);
+        $request->setReferenceImage($referenceImage);
+        if (isset($optionalArgs['referenceImageId'])) {
+            $request->setReferenceImageId($optionalArgs['referenceImageId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateReferenceImage',
+            ReferenceImage::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Permanently deletes a reference image.
+     *
+     * The image metadata will be deleted right away, but search queries
+     * against ProductSets containing the image may still work until all related
+     * caches are refreshed.
+     *
+     * The actual image files are not deleted from Google Cloud Storage.
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
+     *     $productSearchClient->deleteReferenceImage($formattedName);
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $name The resource name of the reference image to delete.
+     *
+     * Format is:
+     *
+     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteReferenceImage($name, array $optionalArgs = [])
+    {
+        $request = new DeleteReferenceImageRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteReferenceImage',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -930,486 +1398,6 @@ class ProductSearchGapicClient
     }
 
     /**
-     * Permanently deletes a reference image.
-     *
-     * The image metadata will be deleted right away, but search queries
-     * against ProductSets containing the image may still work until all related
-     * caches are refreshed.
-     *
-     * The actual image files are not deleted from Google Cloud Storage.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the reference image does not exist.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
-     *     $productSearchClient->deleteReferenceImage($formattedName);
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $name The resource name of the reference image to delete.
-     *
-     * Format is:
-     *
-     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteReferenceImage($name, array $optionalArgs = [])
-    {
-        $request = new DeleteReferenceImageRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteReferenceImage',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates and returns a new ReferenceImage resource.
-     *
-     * The `bounding_poly` field is optional. If `bounding_poly` is not specified,
-     * the system will try to detect regions of interest in the image that are
-     * compatible with the product_category on the parent product. If it is
-     * specified, detection is ALWAYS skipped. The system converts polygons into
-     * non-rotated rectangles.
-     *
-     * Note that the pipeline will resize the image if the image resolution is too
-     * large to process (above 50MP).
-     *
-     * Possible errors:
-     *
-     * * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
-     *   characters.
-     * * Returns INVALID_ARGUMENT if the product does not exist.
-     * * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
-     *   compatible with the parent product's product_category is detected.
-     * * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
-     *     $referenceImage = new ReferenceImage();
-     *     $response = $productSearchClient->createReferenceImage($formattedParent, $referenceImage);
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent Resource name of the product in which to create the reference image.
-     *
-     * Format is
-     * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     * @param ReferenceImage $referenceImage The reference image to create.
-     *                                       If an image ID is specified, it is ignored.
-     * @param array          $optionalArgs   {
-     *                                       Optional.
-     *
-     *     @type string $referenceImageId
-     *          A user-supplied resource id for the ReferenceImage to be added. If set,
-     *          the server will attempt to use this value as the resource id. If it is
-     *          already in use, an error is returned with code ALREADY_EXISTS. Must be at
-     *          most 128 characters long. It cannot contain the character `/`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Vision\V1\ReferenceImage
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createReferenceImage($parent, $referenceImage, array $optionalArgs = [])
-    {
-        $request = new CreateReferenceImageRequest();
-        $request->setParent($parent);
-        $request->setReferenceImage($referenceImage);
-        if (isset($optionalArgs['referenceImageId'])) {
-            $request->setReferenceImageId($optionalArgs['referenceImageId']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateReferenceImage',
-            ReferenceImage::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates and returns a new ProductSet resource.
-     *
-     * Possible errors:
-     *
-     * * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
-     *   4096 characters.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $productSet = new ProductSet();
-     *     $response = $productSearchClient->createProductSet($formattedParent, $productSet);
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent The project in which the ProductSet should be created.
-     *
-     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param ProductSet $productSet   The ProductSet to create.
-     * @param array      $optionalArgs {
-     *                                 Optional.
-     *
-     *     @type string $productSetId
-     *          A user-supplied resource id for this ProductSet. If set, the server will
-     *          attempt to use this value as the resource id. If it is already in use, an
-     *          error is returned with code ALREADY_EXISTS. Must be at most 128 characters
-     *          long. It cannot contain the character `/`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Vision\V1\ProductSet
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createProductSet($parent, $productSet, array $optionalArgs = [])
-    {
-        $request = new CreateProductSetRequest();
-        $request->setParent($parent);
-        $request->setProductSet($productSet);
-        if (isset($optionalArgs['productSetId'])) {
-            $request->setProductSetId($optionalArgs['productSetId']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateProductSet',
-            ProductSet::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Lists ProductSets in an unspecified order.
-     *
-     * Possible errors:
-     *
-     * * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
-     *   than 1.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $productSearchClient->listProductSets($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $productSearchClient->listProductSets($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent The project from which ProductSets should be listed.
-     *
-     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listProductSets($parent, array $optionalArgs = [])
-    {
-        $request = new ListProductSetsRequest();
-        $request->setParent($parent);
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->getPagedListResponse(
-            'ListProductSets',
-            $optionalArgs,
-            ListProductSetsResponse::class,
-            $request
-        );
-    }
-
-    /**
-     * Gets information associated with a ProductSet.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the ProductSet does not exist.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $response = $productSearchClient->getProductSet($formattedName);
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Resource name of the ProductSet to get.
-     *
-     * Format is:
-     * `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Vision\V1\ProductSet
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getProductSet($name, array $optionalArgs = [])
-    {
-        $request = new GetProductSetRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetProductSet',
-            ProductSet::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Makes changes to a ProductSet resource.
-     * Only display_name can be updated currently.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the ProductSet does not exist.
-     * * Returns INVALID_ARGUMENT if display_name is present in update_mask but
-     *   missing from the request or longer than 4096 characters.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $productSet = new ProductSet();
-     *     $response = $productSearchClient->updateProductSet($productSet);
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param ProductSet $productSet   The ProductSet resource which replaces the one on the server.
-     * @param array      $optionalArgs {
-     *                                 Optional.
-     *
-     *     @type FieldMask $updateMask
-     *          The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
-     *          update.
-     *          If update_mask isn't specified, all mutable fields are to be updated.
-     *          Valid mask path is `display_name`.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Vision\V1\ProductSet
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateProductSet($productSet, array $optionalArgs = [])
-    {
-        $request = new UpdateProductSetRequest();
-        $request->setProductSet($productSet);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'product_set.name' => $request->getProductSet()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateProductSet',
-            ProductSet::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Permanently deletes a ProductSet. Products and ReferenceImages in the
-     * ProductSet are not deleted.
-     *
-     * The actual image files are not deleted from Google Cloud Storage.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND if the ProductSet does not exist.
-     *
-     * Sample code:
-     * ```
-     * $productSearchClient = new ProductSearchClient();
-     * try {
-     *     $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
-     *     $productSearchClient->deleteProductSet($formattedName);
-     * } finally {
-     *     $productSearchClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Resource name of the ProductSet to delete.
-     *
-     * Format is:
-     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteProductSet($name, array $optionalArgs = [])
-    {
-        $request = new DeleteProductSetRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteProductSet',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Adds a Product to the specified ProductSet. If the Product is already
      * present, no change is made.
      *
@@ -1475,10 +1463,6 @@ class ProductSearchGapicClient
 
     /**
      * Removes a Product from the specified ProductSet.
-     *
-     * Possible errors:
-     *
-     * * Returns NOT_FOUND If the Product is not found under the ProductSet.
      *
      * Sample code:
      * ```

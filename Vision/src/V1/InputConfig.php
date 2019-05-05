@@ -22,6 +22,16 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      */
     private $gcs_source = null;
     /**
+     * File content, represented as a stream of bytes.
+     * Note: As with all `bytes` fields, protobuffers use a pure binary
+     * representation, whereas JSON representations use base64.
+     * Currently, this field only works for BatchAnnotateFiles requests. It does
+     * not work for AsyncBatchAnnotateFiles requests.
+     *
+     * Generated from protobuf field <code>bytes content = 3;</code>
+     */
+    private $content = '';
+    /**
      * The type of the file. Currently only "application/pdf" and "image/tiff"
      * are supported. Wildcards are not supported.
      *
@@ -37,6 +47,12 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\GcsSource $gcs_source
      *           The Google Cloud Storage location to read the input from.
+     *     @type string $content
+     *           File content, represented as a stream of bytes.
+     *           Note: As with all `bytes` fields, protobuffers use a pure binary
+     *           representation, whereas JSON representations use base64.
+     *           Currently, this field only works for BatchAnnotateFiles requests. It does
+     *           not work for AsyncBatchAnnotateFiles requests.
      *     @type string $mime_type
      *           The type of the file. Currently only "application/pdf" and "image/tiff"
      *           are supported. Wildcards are not supported.
@@ -69,6 +85,40 @@ class InputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\GcsSource::class);
         $this->gcs_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * File content, represented as a stream of bytes.
+     * Note: As with all `bytes` fields, protobuffers use a pure binary
+     * representation, whereas JSON representations use base64.
+     * Currently, this field only works for BatchAnnotateFiles requests. It does
+     * not work for AsyncBatchAnnotateFiles requests.
+     *
+     * Generated from protobuf field <code>bytes content = 3;</code>
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * File content, represented as a stream of bytes.
+     * Note: As with all `bytes` fields, protobuffers use a pure binary
+     * representation, whereas JSON representations use base64.
+     * Currently, this field only works for BatchAnnotateFiles requests. It does
+     * not work for AsyncBatchAnnotateFiles requests.
+     *
+     * Generated from protobuf field <code>bytes content = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContent($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->content = $var;
 
         return $this;
     }

@@ -35,13 +35,19 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Vision\V1\AnnotateFileRequest;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
+use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest;
+use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
+use Google\Cloud\Vision\V1\BatchAnnotateFilesRequest;
+use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\OperationMetadata;
+use Google\Cloud\Vision\V1\OutputConfig;
 use Google\LongRunning\Operation;
 
 /**
@@ -251,6 +257,138 @@ class ImageAnnotatorGapicClient
             BatchAnnotateImagesResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Service that performs image detection and annotation for a batch of files.
+     * Now only "application/pdf", "image/tiff" and "image/gif" are supported.
+     *
+     * This service will extract at most 5 (customers can specify which 5 in
+     * AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each
+     * file provided and perform detection and annotation for each image
+     * extracted.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $requests = [];
+     *     $response = $imageAnnotatorClient->batchAnnotateFiles($requests);
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param AnnotateFileRequest[] $requests     The list of file annotation requests. Right now we support only one
+     *                                            AnnotateFileRequest in BatchAnnotateFilesRequest.
+     * @param array                 $optionalArgs {
+     *                                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchAnnotateFiles($requests, array $optionalArgs = [])
+    {
+        $request = new BatchAnnotateFilesRequest();
+        $request->setRequests($requests);
+
+        return $this->startCall(
+            'BatchAnnotateFiles',
+            BatchAnnotateFilesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Run asynchronous image detection and annotation for a list of images.
+     *
+     * Progress and results can be retrieved through the
+     * `google.longrunning.Operations` interface.
+     * `Operation.metadata` contains `OperationMetadata` (metadata).
+     * `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results).
+     *
+     * This service will write image annotation outputs to json files in customer
+     * GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     *
+     * Sample code:
+     * ```
+     * $imageAnnotatorClient = new ImageAnnotatorClient();
+     * try {
+     *     $requests = [];
+     *     $outputConfig = new OutputConfig();
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $imageAnnotatorClient->resumeOperation($operationName, 'asyncBatchAnnotateImages');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $imageAnnotatorClient->close();
+     * }
+     * ```
+     *
+     * @param AnnotateImageRequest[] $requests     Individual image annotation requests for this batch.
+     * @param OutputConfig           $outputConfig Required. The desired output location and metadata (e.g. format).
+     * @param array                  $optionalArgs {
+     *                                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function asyncBatchAnnotateImages($requests, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new AsyncBatchAnnotateImagesRequest();
+        $request->setRequests($requests);
+        $request->setOutputConfig($outputConfig);
+
+        return $this->startOperationsCall(
+            'AsyncBatchAnnotateImages',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
