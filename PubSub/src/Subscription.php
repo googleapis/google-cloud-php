@@ -188,6 +188,8 @@ class Subscription
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type array $pushConfig.oidcToken Contains information needed for generating
+     *           an OpenIDConnect token.
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
@@ -200,6 +202,9 @@ class Subscription
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
+     *
+     *     @type bool $enableMessageOrdering
+     *     @type array $expirationPolicy
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException

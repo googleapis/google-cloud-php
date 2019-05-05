@@ -68,7 +68,8 @@ class Message
             'data' => null,
             'messageId' => null,
             'publishTime' => null,
-            'attributes' => []
+            'attributes' => [],
+            'orderingKey' => null,
         ];
 
         $metadata += [
@@ -163,6 +164,20 @@ class Message
             : null;
     }
 
+    /**
+     * Get the message ordering key
+     * 
+     * Example:
+     * ```
+     * $orderingKey = $message->orderingKey();
+     * ```
+     *
+     * @return string
+     */
+    public function orderingKey()
+    {
+        return $this->message['orderingKey'];
+    }
     /**
      * Get the message ackId.
      *
