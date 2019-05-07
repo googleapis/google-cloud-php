@@ -27,6 +27,7 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
+use Google\CRC32\Builtin;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
@@ -306,10 +307,10 @@ class Rest implements ConnectionInterface
             $args['name'] = basename($args['data']->getMetadata('uri'));
         }
 
-        // @todo add support for rolling hash
-        if (($args['validate'] === true || $args['validate'] === 'md5') && !isset($args['metadata']['md5Hash'])) {
+        $validate = $this->chooseValidationMethod($args);
+        if ($validate === 'md5') {
             $args['metadata']['md5Hash'] = base64_encode(Psr7\hash($args['data'], 'md5', true));
-        } elseif ($args['validate'] === 'crc32' && !isset($args['metadata']['crc32c'])) {
+        } elseif ($validate === 'crc32') {
             $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
         }
 
@@ -442,6 +443,43 @@ class Rest implements ConnectionInterface
             new Request('GET', Psr7\uri_for($uri)),
             $requestOptions
         ];
+    }
+
+    /**
+     * Choose a upload validation method based on user input and platform
+     * requirements.
+     *
+     * @param array $args
+     * @return bool|string
+     */
+    private function chooseValidationMethod(array $args)
+    {
+        // If the user provided a hash, skip hashing.
+        if (isset($args['metadata']['md5']) || isset($args['metadata']['crc32c'])) {
+            return false;
+        }
+
+        $validate = $args['validate'];
+        if (in_array($validate, [false, 'crc32', 'cd5'])) {
+            return $validate;
+        }
+
+        // not documented, but the feature is called crc32c, so let's accept that as input anyways.
+        if ($validate === 'crc32c') {
+            return 'crc32';
+        }
+
+        // is the extension loaded?
+        if (function_exists('crc32c')) {
+            return 'crc32';
+        }
+
+        // is crc32c available in `hash()`?
+        if (Builtin::supports(CRC32::CASTAGNOLI)) {
+            return 'crc32';
+        }
+
+        return 'md5';
     }
 
     /**

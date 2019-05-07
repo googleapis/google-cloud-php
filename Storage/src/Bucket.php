@@ -234,12 +234,14 @@ class Bucket
      *     @type bool|string $validate Indicates whether or not validation will
      *           be applied using md5 or crc32 hashing functionality. If
      *           enabled, and the calculated hash does not match that of the
-     *           upstream server, the upload will be rejected. Provide `true` or
-     *           `md5` for md5 hashing, `crc32` for crc32 hashing, or `false` to
-     *           disable. Please note that crc32 may have negative performance
-     *           implications in older versions of PHP. Installation of the
-     *           `crc32c` PHP extension is strongly advised for best
-     *           performance. **Defaults to** `true` (md5).
+     *           upstream server, the upload will be rejected. Available options
+     *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
+     *           crc32 will be chosen based on your platform. If false, no
+     *           validation hash will be sent. Choose either `md5` or `crc32` to
+     *           force a hash method regardless of performance implications. In
+     *           PHP versions earlier than 7.4, performance will be very
+     *           adversely impacted by using crc32 unless you install the `crc32c`
+     *           PHP extension. **Defaults to** `true`.
      *     @type int $chunkSize If provided the upload will be done in chunks.
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
