@@ -73,7 +73,6 @@ class CloudSchedulerSmokeTest extends TestCase
      */
     public function testScheduler($client)
     {
-        $project = $client->projectName(self::$projectId);
         $parent = $client->locationName(self::$projectId, self::$location);
         $target = new AppEngineHttpTarget;
         $target->setRelativeUri('/');
