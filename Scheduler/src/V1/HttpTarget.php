@@ -65,6 +65,7 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes body = 4;</code>
      */
     private $body = '';
+    protected $authorization_header;
 
     /**
      * Constructor.
@@ -101,6 +102,20 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
      *           HTTP request body. A request body is allowed only if the HTTP
      *           method is POST, PUT, or PATCH. It is an error to set body on a job with an
      *           incompatible [HttpMethod][google.cloud.scheduler.v1.HttpMethod].
+     *     @type \Google\Cloud\Scheduler\V1\OAuthToken $oauth_token
+     *           If specified, an
+     *           [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
+     *           will be generated and attached as an `Authorization` header in the HTTP
+     *           request.
+     *           This type of authorization should be used when sending requests to a GCP
+     *           endpoint.
+     *     @type \Google\Cloud\Scheduler\V1\OidcToken $oidc_token
+     *           If specified, an
+     *           [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     *           token will be generated and attached as an `Authorization` header in the
+     *           HTTP request.
+     *           This type of authorization should be used when sending requests to third
+     *           party endpoints or Cloud Run.
      * }
      */
     public function __construct($data = NULL) {
@@ -252,6 +267,86 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
         $this->body = $var;
 
         return $this;
+    }
+
+    /**
+     * If specified, an
+     * [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
+     * will be generated and attached as an `Authorization` header in the HTTP
+     * request.
+     * This type of authorization should be used when sending requests to a GCP
+     * endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.OAuthToken oauth_token = 5;</code>
+     * @return \Google\Cloud\Scheduler\V1\OAuthToken
+     */
+    public function getOauthToken()
+    {
+        return $this->readOneof(5);
+    }
+
+    /**
+     * If specified, an
+     * [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
+     * will be generated and attached as an `Authorization` header in the HTTP
+     * request.
+     * This type of authorization should be used when sending requests to a GCP
+     * endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.OAuthToken oauth_token = 5;</code>
+     * @param \Google\Cloud\Scheduler\V1\OAuthToken $var
+     * @return $this
+     */
+    public function setOauthToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Scheduler\V1\OAuthToken::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * If specified, an
+     * [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     * token will be generated and attached as an `Authorization` header in the
+     * HTTP request.
+     * This type of authorization should be used when sending requests to third
+     * party endpoints or Cloud Run.
+     *
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.OidcToken oidc_token = 6;</code>
+     * @return \Google\Cloud\Scheduler\V1\OidcToken
+     */
+    public function getOidcToken()
+    {
+        return $this->readOneof(6);
+    }
+
+    /**
+     * If specified, an
+     * [OIDC](https://developers.google.com/identity/protocols/OpenIDConnect)
+     * token will be generated and attached as an `Authorization` header in the
+     * HTTP request.
+     * This type of authorization should be used when sending requests to third
+     * party endpoints or Cloud Run.
+     *
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.OidcToken oidc_token = 6;</code>
+     * @param \Google\Cloud\Scheduler\V1\OidcToken $var
+     * @return $this
+     */
+    public function setOidcToken($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Scheduler\V1\OidcToken::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorizationHeader()
+    {
+        return $this->whichOneof("authorization_header");
     }
 
 }

@@ -119,6 +119,20 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.RetryConfig retry_config = 19;</code>
      */
     private $retry_config = null;
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as a
+     * `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according
+     * to the [RetryConfig][google.cloud.scheduler.v1.RetryConfig].
+     * The allowed duration for this deadline is:
+     * * For [HTTP targets][google.cloud.scheduler.v1.Job.http_target], between 15 seconds and 30 minutes.
+     * * For [App Engine HTTP targets][google.cloud.scheduler.v1.Job.app_engine_http_target], between 15
+     *   seconds and 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
+     */
+    private $attempt_deadline = null;
     protected $target;
 
     /**
@@ -196,6 +210,16 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The time the last job attempt started.
      *     @type \Google\Cloud\Scheduler\V1\RetryConfig $retry_config
      *           Settings that determine the retry behavior.
+     *     @type \Google\Protobuf\Duration $attempt_deadline
+     *           The deadline for job attempts. If the request handler does not respond by
+     *           this deadline then the request is cancelled and the attempt is marked as a
+     *           `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     *           execution logs. Cloud Scheduler will retry the job according
+     *           to the [RetryConfig][google.cloud.scheduler.v1.RetryConfig].
+     *           The allowed duration for this deadline is:
+     *           * For [HTTP targets][google.cloud.scheduler.v1.Job.http_target], between 15 seconds and 30 minutes.
+     *           * For [App Engine HTTP targets][google.cloud.scheduler.v1.Job.app_engine_http_target], between 15
+     *             seconds and 24 hours.
      * }
      */
     public function __construct($data = NULL) {
@@ -623,6 +647,48 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Scheduler\V1\RetryConfig::class);
         $this->retry_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as a
+     * `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according
+     * to the [RetryConfig][google.cloud.scheduler.v1.RetryConfig].
+     * The allowed duration for this deadline is:
+     * * For [HTTP targets][google.cloud.scheduler.v1.Job.http_target], between 15 seconds and 30 minutes.
+     * * For [App Engine HTTP targets][google.cloud.scheduler.v1.Job.app_engine_http_target], between 15
+     *   seconds and 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getAttemptDeadline()
+    {
+        return $this->attempt_deadline;
+    }
+
+    /**
+     * The deadline for job attempts. If the request handler does not respond by
+     * this deadline then the request is cancelled and the attempt is marked as a
+     * `DEADLINE_EXCEEDED` failure. The failed attempt can be viewed in
+     * execution logs. Cloud Scheduler will retry the job according
+     * to the [RetryConfig][google.cloud.scheduler.v1.RetryConfig].
+     * The allowed duration for this deadline is:
+     * * For [HTTP targets][google.cloud.scheduler.v1.Job.http_target], between 15 seconds and 30 minutes.
+     * * For [App Engine HTTP targets][google.cloud.scheduler.v1.Job.app_engine_http_target], between 15
+     *   seconds and 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setAttemptDeadline($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->attempt_deadline = $var;
 
         return $this;
     }
