@@ -27,7 +27,7 @@ class CommuteMethod
     const DRIVING = 1;
     /**
      * Commute time is calculated based on public transit including bus, metro,
-     * subway, etc.
+     * subway, and so on.
      *
      * Generated from protobuf enum <code>TRANSIT = 2;</code>
      */

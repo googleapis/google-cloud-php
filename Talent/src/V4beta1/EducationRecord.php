@@ -39,7 +39,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The name of the school or institution.
-     * For example, "Stanford University", "UC Berkeley", etc.
+     * For example, "Stanford University", "UC Berkeley", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string school_name = 4;</code>
@@ -68,21 +68,17 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     private $is_current = null;
     /**
-     * Output only. The school name snippet shows how the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
+     * Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
      * related to a search query in search result. It's empty if the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     * isn't related to the search query.
+     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't related to the search query.
      *
      * Generated from protobuf field <code>string school_name_snippet = 10;</code>
      */
     private $school_name_snippet = '';
     /**
-     * Output only. The job description snippet shows how the
-     * [degree][google.cloud.talent.v4beta1.degree] is related to a search query
-     * in search result. It's empty if the
-     * [degree][google.cloud.talent.v4beta1.degree] isn't related to the search
-     * query.
+     * Output only. The job description snippet shows how the [degree][google.cloud.talent.v4beta1.degree] is
+     * related to a search query in search result. It's empty if the [degree][google.cloud.talent.v4beta1.degree]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string degree_snippet = 11;</code>
      */
@@ -107,7 +103,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      *     @type string $school_name
      *           Optional.
      *           The name of the school or institution.
-     *           For example, "Stanford University", "UC Berkeley", etc.
+     *           For example, "Stanford University", "UC Berkeley", and so on.
      *           Number of characters allowed is 100.
      *     @type \Google\Cloud\Talent\V4beta1\Address $address
      *           Optional.
@@ -128,17 +124,13 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           If this education is current.
      *     @type string $school_name_snippet
-     *           Output only. The school name snippet shows how the
-     *           [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
+     *           Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
      *           related to a search query in search result. It's empty if the
-     *           [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     *           isn't related to the search query.
+     *           [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't related to the search query.
      *     @type string $degree_snippet
-     *           Output only. The job description snippet shows how the
-     *           [degree][google.cloud.talent.v4beta1.degree] is related to a search query
-     *           in search result. It's empty if the
-     *           [degree][google.cloud.talent.v4beta1.degree] isn't related to the search
-     *           query.
+     *           Output only. The job description snippet shows how the [degree][google.cloud.talent.v4beta1.degree] is
+     *           related to a search query in search result. It's empty if the [degree][google.cloud.talent.v4beta1.degree]
+     *           isn't related to the search query.
      * }
      */
     public function __construct($data = NULL) {
@@ -233,7 +225,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The name of the school or institution.
-     * For example, "Stanford University", "UC Berkeley", etc.
+     * For example, "Stanford University", "UC Berkeley", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string school_name = 4;</code>
@@ -247,7 +239,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The name of the school or institution.
-     * For example, "Stanford University", "UC Berkeley", etc.
+     * For example, "Stanford University", "UC Berkeley", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string school_name = 4;</code>
@@ -440,11 +432,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The school name snippet shows how the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
+     * Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
      * related to a search query in search result. It's empty if the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     * isn't related to the search query.
+     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't related to the search query.
      *
      * Generated from protobuf field <code>string school_name_snippet = 10;</code>
      * @return string
@@ -455,11 +445,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The school name snippet shows how the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
+     * Output only. The school name snippet shows how the [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
      * related to a search query in search result. It's empty if the
-     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
-     * isn't related to the search query.
+     * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] isn't related to the search query.
      *
      * Generated from protobuf field <code>string school_name_snippet = 10;</code>
      * @param string $var
@@ -474,11 +462,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the
-     * [degree][google.cloud.talent.v4beta1.degree] is related to a search query
-     * in search result. It's empty if the
-     * [degree][google.cloud.talent.v4beta1.degree] isn't related to the search
-     * query.
+     * Output only. The job description snippet shows how the [degree][google.cloud.talent.v4beta1.degree] is
+     * related to a search query in search result. It's empty if the [degree][google.cloud.talent.v4beta1.degree]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string degree_snippet = 11;</code>
      * @return string
@@ -489,11 +475,9 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the
-     * [degree][google.cloud.talent.v4beta1.degree] is related to a search query
-     * in search result. It's empty if the
-     * [degree][google.cloud.talent.v4beta1.degree] isn't related to the search
-     * query.
+     * Output only. The job description snippet shows how the [degree][google.cloud.talent.v4beta1.degree] is
+     * related to a search query in search result. It's empty if the [degree][google.cloud.talent.v4beta1.degree]
+     * isn't related to the search query.
      *
      * Generated from protobuf field <code>string degree_snippet = 11;</code>
      * @param string $var

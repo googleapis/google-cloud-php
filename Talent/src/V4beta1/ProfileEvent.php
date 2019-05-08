@@ -25,8 +25,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
-     * with this client event.
+     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      */
@@ -53,8 +52,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      *           Type of event.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $profiles
      *           Required.
-     *           The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
-     *           with this client event.
+     *           The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Optional.
      *           The job ID associated with this client event if there is one. Leave it
@@ -98,8 +96,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
-     * with this client event.
+     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -111,8 +108,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated
-     * with this client event.
+     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

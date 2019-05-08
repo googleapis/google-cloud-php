@@ -57,10 +57,10 @@ class PhoneType
     const VOICEMAIL = 6;
     /**
      * A virtual telephone number is a number that can be routed to another
-     * number and managed by the user via Web, SMS, IVR, etc.  It is associated
-     * with a particular person, and may be routed to either a MOBILE or
-     * LANDLINE number. The phone usage (see ContactInfoUsage above) should be
-     * set to PERSONAL for these phone types. Some more information can be
+     * number and managed by the user via Web, SMS, IVR, and so on.  It is
+     * associated with a particular person, and may be routed to either a MOBILE
+     * or LANDLINE number. The phone usage (see ContactInfoUsage above) should
+     * be set to PERSONAL for these phone types. Some more information can be
      * found here: http://en.wikipedia.org/wiki/Personal_Numbers
      *
      * Generated from protobuf enum <code>VIRTUAL = 7;</code>

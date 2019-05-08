@@ -47,7 +47,7 @@ use Google\Cloud\Talent\V4beta1\ListJobsRequest;
 use Google\Cloud\Talent\V4beta1\ListJobsResponse;
 use Google\Cloud\Talent\V4beta1\RequestMetadata;
 use Google\Cloud\Talent\V4beta1\SearchJobsRequest;
-use Google\Cloud\Talent\V4beta1\SearchJobsRequest_CustomRankingInfo;
+use Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo;
 use Google\Cloud\Talent\V4beta1\SearchJobsResponse;
 use Google\Cloud\Talent\V4beta1\UpdateJobRequest;
 use Google\Protobuf\FieldMask;
@@ -108,8 +108,9 @@ class JobServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
+    private static $companyNameTemplate;
+    private static $jobNameTemplate;
     private static $tenantNameTemplate;
-    private static $jobOldNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -131,6 +132,24 @@ class JobServiceGapicClient
         ];
     }
 
+    private static function getCompanyNameTemplate()
+    {
+        if (null == self::$companyNameTemplate) {
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
+        }
+
+        return self::$companyNameTemplate;
+    }
+
+    private static function getJobNameTemplate()
+    {
+        if (null == self::$jobNameTemplate) {
+            self::$jobNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/jobs/{jobs}');
+        }
+
+        return self::$jobNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (null == self::$tenantNameTemplate) {
@@ -140,25 +159,57 @@ class JobServiceGapicClient
         return self::$tenantNameTemplate;
     }
 
-    private static function getJobOldNameTemplate()
-    {
-        if (null == self::$jobOldNameTemplate) {
-            self::$jobOldNameTemplate = new PathTemplate('projects/{project}/jobs/{jobs}');
-        }
-
-        return self::$jobOldNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'company' => self::getCompanyNameTemplate(),
+                'job' => self::getJobNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
-                'jobOld' => self::getJobOldNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a company resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     * @param string $company
+     *
+     * @return string The formatted company resource.
+     * @experimental
+     */
+    public static function companyName($project, $tenant, $company)
+    {
+        return self::getCompanyNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a job resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     * @param string $jobs
+     *
+     * @return string The formatted job resource.
+     * @experimental
+     */
+    public static function jobName($project, $tenant, $jobs)
+    {
+        return self::getJobNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+            'jobs' => $jobs,
+        ]);
     }
 
     /**
@@ -180,29 +231,12 @@ class JobServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a job_old resource.
-     *
-     * @param string $project
-     * @param string $jobs
-     *
-     * @return string The formatted job_old resource.
-     * @experimental
-     */
-    public static function jobOldName($project, $jobs)
-    {
-        return self::getJobOldNameTemplate()->render([
-            'project' => $project,
-            'jobs' => $jobs,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - tenant: projects/{project}/tenants/{tenant}
-     * - jobOld: projects/{project}/jobs/{jobs}.
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
+     * - job: projects/{project}/tenants/{tenant}/jobs/{jobs}
+     * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -371,7 +405,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->jobOldName('[PROJECT]', '[JOBS]');
+     *     $formattedName = $jobServiceClient->jobName('[PROJECT]', '[TENANT]', '[JOBS]');
      *     $response = $jobServiceClient->getJob($formattedName);
      * } finally {
      *     $jobServiceClient->close();
@@ -450,10 +484,8 @@ class JobServiceGapicClient
      *          Optional but strongly recommended to be provided for the best service
      *          experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]
-     *          is provided, only the specified fields in
-     *          [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated.
-     *          Otherwise all the fields are updated.
+     *          If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask] is provided, only the specified fields in
+     *          [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated. Otherwise all the fields are updated.
      *
      *          A field mask to restrict the fields that are updated. Only
      *          top level fields of [Job][google.cloud.talent.v4beta1.Job] are supported.
@@ -502,7 +534,7 @@ class JobServiceGapicClient
      * ```
      * $jobServiceClient = new JobServiceClient();
      * try {
-     *     $formattedName = $jobServiceClient->jobOldName('[PROJECT]', '[JOBS]');
+     *     $formattedName = $jobServiceClient->jobName('[PROJECT]', '[TENANT]', '[JOBS]');
      *     $jobServiceClient->deleteJob($formattedName);
      * } finally {
      *     $jobServiceClient->close();
@@ -627,9 +659,8 @@ class JobServiceGapicClient
      *          Optional.
      *
      *          The desired job attributes returned for jobs in the
-     *          search response. Defaults to
-     *          [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL]
-     *          if no value is specified.
+     *          search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL] if no value is
+     *          specified.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\JobView}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -745,13 +776,11 @@ class JobServiceGapicClient
     }
 
     /**
-     * Searches for jobs using the provided
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
-     * This call constrains the
-     * [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs present in
-     * the database, and only returns jobs that the caller has permission to
-     * search against.
+     * This call constrains the [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs
+     * present in the database, and only returns jobs that the caller has
+     * permission to search against.
      *
      * Sample code:
      * ```
@@ -802,9 +831,8 @@ class JobServiceGapicClient
      *
      *          Mode of a search.
      *
-     *          Defaults to
-     *          [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest_SearchMode}
+     *          Defaults to [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode}
      *     @type JobQuery $jobQuery
      *          Optional.
      *
@@ -865,23 +893,19 @@ class JobServiceGapicClient
      *          Job histogram facets:
      *
      *          * company_id: histogram by [Job.distributor_company_id][].
-     *          * company_display_name: histogram by
-     *          [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name].
-     *          * employment_type: histogram by
-     *          [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types],
-     *          for example, "FULL_TIME", "PART_TIME".
-     *          * company_size: histogram by
-     *          [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example,
-     *          "SMALL", "MEDIUM", "BIG".
+     *          * company_display_name: histogram by [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name].
+     *          * employment_type: histogram by [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types], for example,
+     *          "FULL_TIME", "PART_TIME".
+     *          * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
+     *          "MEDIUM", "BIG".
      *          * publish_time_in_month: histogram by the [Job.publish_time][] in months.
      *          Must specify list of numeric buckets in spec.
      *          * publish_time_in_year: histogram by the [Job.publish_time][] in years.
      *          Must specify list of numeric buckets in spec.
      *          * degree_type: histogram by the [Job.degree_type][], for example,
      *          "Bachelors", "Masters".
-     *          * job_level: histogram by the
-     *          [Job.job_level][google.cloud.talent.v4beta1.Job.job_level], for example,
-     *          "Entry Level".
+     *          * job_level: histogram by the [Job.job_level][google.cloud.talent.v4beta1.Job.job_level], for example, "Entry
+     *          Level".
      *          * country: histogram by the country code of jobs, for example, "US", "FR".
      *          * admin1: histogram by the admin1 code of jobs, which is a global
      *          placeholder referring to the state, province, or the particular term a
@@ -895,14 +919,11 @@ class JobServiceGapicClient
      *          and longitude), for example, 37.4038522,-122.0987765. Since the coordinates
      *          of a city center can change, customers may need to refresh them
      *          periodically.
-     *          * locale: histogram by the
-     *          [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], for
-     *          example, "en-US", "fr-FR".
-     *          * language: histogram by the language subtag of the
-     *          [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], for
-     *          example, "en", "fr".
-     *          * category: histogram by the
-     *          [JobCategory][google.cloud.talent.v4beta1.JobCategory], for example,
+     *          * locale: histogram by the [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], for example, "en-US",
+     *          "fr-FR".
+     *          * language: histogram by the language subtag of the [Job.language_code][google.cloud.talent.v4beta1.Job.language_code],
+     *          for example, "en", "fr".
+     *          * category: histogram by the [JobCategory][google.cloud.talent.v4beta1.JobCategory], for example,
      *          "COMPUTER_AND_IT", "HEALTHCARE".
      *          * base_compensation_unit: histogram by the [CompensationUnit][] of base
      *          salary, for example, "WEEKLY", "MONTHLY".
@@ -912,12 +933,10 @@ class JobServiceGapicClient
      *          Must specify list of numeric buckets to group results by.
      *          * annualized_total_compensation: histogram by the total annualized salary.
      *          Must specify list of numeric buckets to group results by.
-     *          * string_custom_attribute: histogram by string
-     *          [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
+     *          * string_custom_attribute: histogram by string [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
      *          Values can be accessed via square bracket notations like
      *          string_custom_attribute["key1"].
-     *          * numeric_custom_attribute: histogram by numeric
-     *          [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
+     *          * numeric_custom_attribute: histogram by numeric [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
      *          Values can be accessed via square bracket notations like
      *          numeric_custom_attribute["key1"]. Must specify list of numeric buckets to
      *          group results by.
@@ -940,9 +959,7 @@ class JobServiceGapicClient
      *
      *          An integer that specifies the current offset (that is, starting result
      *          location, amongst the jobs deemed by the API as relevant) in search
-     *          results. This field is only considered if
-     *          [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
-     *          unset.
+     *          results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is unset.
      *
      *          For example, 0 means to  return results starting from the first matching
      *          job, and 10 means to return from the 11th job. This can be used for
@@ -968,31 +985,28 @@ class JobServiceGapicClient
      *          * "relevance desc": By relevance descending, as determined by the API
      *          algorithms. Relevance thresholding of query results is only available
      *          with this ordering.
-     *          * "posting`_`publish`_`time desc": By
-     *          [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *          * "posting`_`publish`_`time desc": By [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *          descending.
-     *          * "posting`_`update`_`time desc": By
-     *          [Job.posting_update_time][google.cloud.talent.v4beta1.Job.posting_update_time]
+     *          * "posting`_`update`_`time desc": By [Job.posting_update_time][google.cloud.talent.v4beta1.Job.posting_update_time]
      *          descending.
      *          * "title": By [Job.title][google.cloud.talent.v4beta1.Job.title] ascending.
-     *          * "title desc": By [Job.title][google.cloud.talent.v4beta1.Job.title]
-     *          descending.
+     *          * "title desc": By [Job.title][google.cloud.talent.v4beta1.Job.title] descending.
      *          * "annualized`_`base`_`compensation": By job's
-     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range]
-     *          ascending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range] ascending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "annualized`_`base`_`compensation desc": By job's
-     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range]
-     *          descending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range] descending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "annualized`_`total`_`compensation": By job's
-     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range]
-     *          ascending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range] ascending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "annualized`_`total`_`compensation desc": By job's
-     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range]
-     *          descending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range] descending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "custom`_`ranking desc": By the relevance score adjusted to the
      *          [SearchJobsRequest.custom_ranking_info.ranking_expression][] with weight
      *          factor assigned by
@@ -1021,11 +1035,10 @@ class JobServiceGapicClient
      *          displayed to the job seeker higher up in the results, with the other jobs
      *          being displayed lower down in the results.
      *
-     *          Defaults to
-     *          [DiversificationLevel.SIMPLE][google.cloud.talent.v4beta1.SearchJobsRequest.DiversificationLevel.SIMPLE]
-     *          if no value is specified.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest_DiversificationLevel}
-     *     @type SearchJobsRequest_CustomRankingInfo $customRankingInfo
+     *          Defaults to [DiversificationLevel.SIMPLE][google.cloud.talent.v4beta1.SearchJobsRequest.DiversificationLevel.SIMPLE] if no value
+     *          is specified.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel}
+     *     @type SearchJobsRequest\CustomRankingInfo $customRankingInfo
      *          Optional.
      *
      *          Controls over how job documents get ranked on top of existing relevance
@@ -1034,16 +1047,13 @@ class JobServiceGapicClient
      *          Optional.
      *
      *          Controls whether to disable exact keyword match on [Job.job_title][],
-     *          [Job.description][google.cloud.talent.v4beta1.Job.description],
-     *          [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
-     *          [Job.locations][0],
-     *          [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When
-     *          disable keyword match is turned off, a keyword match returns jobs that do
-     *          not match given category filters when there are matching keywords. For
-     *          example, for the query "program manager," a result is returned even if the
-     *          job posting has the title "software developer," which doesn't fall into
-     *          "program manager" ontology, but does have "program manager" appearing in
-     *          its description.
+     *          [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.locations][0],
+     *          [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
+     *          keyword match returns jobs that do not match given category filters when
+     *          there are matching keywords. For example, for the query "program manager,"
+     *          a result is returned even if the job posting has the title "software
+     *          developer," which doesn't fall into "program manager" ontology, but does
+     *          have "program manager" appearing in its description.
      *
      *          For queries like "cloud" that don't contain title or
      *          location specific ontology, jobs with "cloud" keyword matches are returned
@@ -1128,18 +1138,16 @@ class JobServiceGapicClient
     }
 
     /**
-     * Searches for jobs using the provided
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * This API call is intended for the use case of targeting passive job
      * seekers (for example, job seekers who have signed up to receive email
      * alerts about potential job opportunities), and has different algorithmic
      * adjustments that are targeted to passive job seekers.
      *
-     * This call constrains the
-     * [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs present in
-     * the database, and only returns jobs the caller has permission to search
-     * against.
+     * This call constrains the [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs
+     * present in the database, and only returns jobs the caller has
+     * permission to search against.
      *
      * Sample code:
      * ```
@@ -1190,9 +1198,8 @@ class JobServiceGapicClient
      *
      *          Mode of a search.
      *
-     *          Defaults to
-     *          [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest_SearchMode}
+     *          Defaults to [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode}
      *     @type JobQuery $jobQuery
      *          Optional.
      *
@@ -1253,23 +1260,19 @@ class JobServiceGapicClient
      *          Job histogram facets:
      *
      *          * company_id: histogram by [Job.distributor_company_id][].
-     *          * company_display_name: histogram by
-     *          [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name].
-     *          * employment_type: histogram by
-     *          [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types],
-     *          for example, "FULL_TIME", "PART_TIME".
-     *          * company_size: histogram by
-     *          [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example,
-     *          "SMALL", "MEDIUM", "BIG".
+     *          * company_display_name: histogram by [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name].
+     *          * employment_type: histogram by [Job.employment_types][google.cloud.talent.v4beta1.Job.employment_types], for example,
+     *          "FULL_TIME", "PART_TIME".
+     *          * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
+     *          "MEDIUM", "BIG".
      *          * publish_time_in_month: histogram by the [Job.publish_time][] in months.
      *          Must specify list of numeric buckets in spec.
      *          * publish_time_in_year: histogram by the [Job.publish_time][] in years.
      *          Must specify list of numeric buckets in spec.
      *          * degree_type: histogram by the [Job.degree_type][], for example,
      *          "Bachelors", "Masters".
-     *          * job_level: histogram by the
-     *          [Job.job_level][google.cloud.talent.v4beta1.Job.job_level], for example,
-     *          "Entry Level".
+     *          * job_level: histogram by the [Job.job_level][google.cloud.talent.v4beta1.Job.job_level], for example, "Entry
+     *          Level".
      *          * country: histogram by the country code of jobs, for example, "US", "FR".
      *          * admin1: histogram by the admin1 code of jobs, which is a global
      *          placeholder referring to the state, province, or the particular term a
@@ -1283,14 +1286,11 @@ class JobServiceGapicClient
      *          and longitude), for example, 37.4038522,-122.0987765. Since the coordinates
      *          of a city center can change, customers may need to refresh them
      *          periodically.
-     *          * locale: histogram by the
-     *          [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], for
-     *          example, "en-US", "fr-FR".
-     *          * language: histogram by the language subtag of the
-     *          [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], for
-     *          example, "en", "fr".
-     *          * category: histogram by the
-     *          [JobCategory][google.cloud.talent.v4beta1.JobCategory], for example,
+     *          * locale: histogram by the [Job.language_code][google.cloud.talent.v4beta1.Job.language_code], for example, "en-US",
+     *          "fr-FR".
+     *          * language: histogram by the language subtag of the [Job.language_code][google.cloud.talent.v4beta1.Job.language_code],
+     *          for example, "en", "fr".
+     *          * category: histogram by the [JobCategory][google.cloud.talent.v4beta1.JobCategory], for example,
      *          "COMPUTER_AND_IT", "HEALTHCARE".
      *          * base_compensation_unit: histogram by the [CompensationUnit][] of base
      *          salary, for example, "WEEKLY", "MONTHLY".
@@ -1300,12 +1300,10 @@ class JobServiceGapicClient
      *          Must specify list of numeric buckets to group results by.
      *          * annualized_total_compensation: histogram by the total annualized salary.
      *          Must specify list of numeric buckets to group results by.
-     *          * string_custom_attribute: histogram by string
-     *          [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
+     *          * string_custom_attribute: histogram by string [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
      *          Values can be accessed via square bracket notations like
      *          string_custom_attribute["key1"].
-     *          * numeric_custom_attribute: histogram by numeric
-     *          [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
+     *          * numeric_custom_attribute: histogram by numeric [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes].
      *          Values can be accessed via square bracket notations like
      *          numeric_custom_attribute["key1"]. Must specify list of numeric buckets to
      *          group results by.
@@ -1328,9 +1326,7 @@ class JobServiceGapicClient
      *
      *          An integer that specifies the current offset (that is, starting result
      *          location, amongst the jobs deemed by the API as relevant) in search
-     *          results. This field is only considered if
-     *          [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
-     *          unset.
+     *          results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is unset.
      *
      *          For example, 0 means to  return results starting from the first matching
      *          job, and 10 means to return from the 11th job. This can be used for
@@ -1356,31 +1352,28 @@ class JobServiceGapicClient
      *          * "relevance desc": By relevance descending, as determined by the API
      *          algorithms. Relevance thresholding of query results is only available
      *          with this ordering.
-     *          * "posting`_`publish`_`time desc": By
-     *          [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *          * "posting`_`publish`_`time desc": By [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *          descending.
-     *          * "posting`_`update`_`time desc": By
-     *          [Job.posting_update_time][google.cloud.talent.v4beta1.Job.posting_update_time]
+     *          * "posting`_`update`_`time desc": By [Job.posting_update_time][google.cloud.talent.v4beta1.Job.posting_update_time]
      *          descending.
      *          * "title": By [Job.title][google.cloud.talent.v4beta1.Job.title] ascending.
-     *          * "title desc": By [Job.title][google.cloud.talent.v4beta1.Job.title]
-     *          descending.
+     *          * "title desc": By [Job.title][google.cloud.talent.v4beta1.Job.title] descending.
      *          * "annualized`_`base`_`compensation": By job's
-     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range]
-     *          ascending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range] ascending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "annualized`_`base`_`compensation desc": By job's
-     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range]
-     *          descending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_base_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_base_compensation_range] descending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "annualized`_`total`_`compensation": By job's
-     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range]
-     *          ascending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range] ascending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "annualized`_`total`_`compensation desc": By job's
-     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range]
-     *          descending. Jobs whose annualized base compensation is unspecified are put
-     *          at the end of search results.
+     *          [CompensationInfo.annualized_total_compensation_range][google.cloud.talent.v4beta1.CompensationInfo.annualized_total_compensation_range] descending. Jobs
+     *          whose annualized base compensation is unspecified are put at the end of
+     *          search results.
      *          * "custom`_`ranking desc": By the relevance score adjusted to the
      *          [SearchJobsRequest.custom_ranking_info.ranking_expression][] with weight
      *          factor assigned by
@@ -1409,11 +1402,10 @@ class JobServiceGapicClient
      *          displayed to the job seeker higher up in the results, with the other jobs
      *          being displayed lower down in the results.
      *
-     *          Defaults to
-     *          [DiversificationLevel.SIMPLE][google.cloud.talent.v4beta1.SearchJobsRequest.DiversificationLevel.SIMPLE]
-     *          if no value is specified.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest_DiversificationLevel}
-     *     @type SearchJobsRequest_CustomRankingInfo $customRankingInfo
+     *          Defaults to [DiversificationLevel.SIMPLE][google.cloud.talent.v4beta1.SearchJobsRequest.DiversificationLevel.SIMPLE] if no value
+     *          is specified.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel}
+     *     @type SearchJobsRequest\CustomRankingInfo $customRankingInfo
      *          Optional.
      *
      *          Controls over how job documents get ranked on top of existing relevance
@@ -1422,16 +1414,13 @@ class JobServiceGapicClient
      *          Optional.
      *
      *          Controls whether to disable exact keyword match on [Job.job_title][],
-     *          [Job.description][google.cloud.talent.v4beta1.Job.description],
-     *          [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
-     *          [Job.locations][0],
-     *          [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When
-     *          disable keyword match is turned off, a keyword match returns jobs that do
-     *          not match given category filters when there are matching keywords. For
-     *          example, for the query "program manager," a result is returned even if the
-     *          job posting has the title "software developer," which doesn't fall into
-     *          "program manager" ontology, but does have "program manager" appearing in
-     *          its description.
+     *          [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.locations][0],
+     *          [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
+     *          keyword match returns jobs that do not match given category filters when
+     *          there are matching keywords. For example, for the query "program manager,"
+     *          a result is returned even if the job posting has the title "software
+     *          developer," which doesn't fall into "program manager" ontology, but does
+     *          have "program manager" appearing in its description.
      *
      *          For queries like "cloud" that don't contain title or
      *          location specific ontology, jobs with "cloud" keyword matches are returned
