@@ -40,13 +40,23 @@ class Tenant extends \Google\Protobuf\Internal\Message
      * Optional.
      * Indicates whether data owned by this tenant may be used to provide product
      * improvements across other tenants.
-     * Defaults behavior is
-     * [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
-     * if it's unset.
+     * Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant.DataUsageType usage_type = 3;</code>
      */
     private $usage_type = 0;
+    /**
+     * Optional.
+     * A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
+     * corresponding `string_values` are used in keyword searches. Profiles with
+     * `string_values` under these specified field keys are returned if any
+     * of the values match the search keyword. Custom field values with
+     * parenthesis, brackets and special symbols are not searchable as-is,
+     * and must be surrounded by quotes.
+     *
+     * Generated from protobuf field <code>repeated string keyword_searchable_profile_custom_attributes = 4;</code>
+     */
+    private $keyword_searchable_profile_custom_attributes;
 
     /**
      * Constructor.
@@ -68,9 +78,15 @@ class Tenant extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           Indicates whether data owned by this tenant may be used to provide product
      *           improvements across other tenants.
-     *           Defaults behavior is
-     *           [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
-     *           if it's unset.
+     *           Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_profile_custom_attributes
+     *           Optional.
+     *           A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
+     *           corresponding `string_values` are used in keyword searches. Profiles with
+     *           `string_values` under these specified field keys are returned if any
+     *           of the values match the search keyword. Custom field values with
+     *           parenthesis, brackets and special symbols are not searchable as-is,
+     *           and must be surrounded by quotes.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,9 +162,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      * Optional.
      * Indicates whether data owned by this tenant may be used to provide product
      * improvements across other tenants.
-     * Defaults behavior is
-     * [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
-     * if it's unset.
+     * Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant.DataUsageType usage_type = 3;</code>
      * @return int
@@ -162,9 +176,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      * Optional.
      * Indicates whether data owned by this tenant may be used to provide product
      * improvements across other tenants.
-     * Defaults behavior is
-     * [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
-     * if it's unset.
+     * Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant.DataUsageType usage_type = 3;</code>
      * @param int $var
@@ -174,6 +186,44 @@ class Tenant extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Tenant_DataUsageType::class);
         $this->usage_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional.
+     * A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
+     * corresponding `string_values` are used in keyword searches. Profiles with
+     * `string_values` under these specified field keys are returned if any
+     * of the values match the search keyword. Custom field values with
+     * parenthesis, brackets and special symbols are not searchable as-is,
+     * and must be surrounded by quotes.
+     *
+     * Generated from protobuf field <code>repeated string keyword_searchable_profile_custom_attributes = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getKeywordSearchableProfileCustomAttributes()
+    {
+        return $this->keyword_searchable_profile_custom_attributes;
+    }
+
+    /**
+     * Optional.
+     * A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
+     * corresponding `string_values` are used in keyword searches. Profiles with
+     * `string_values` under these specified field keys are returned if any
+     * of the values match the search keyword. Custom field values with
+     * parenthesis, brackets and special symbols are not searchable as-is,
+     * and must be surrounded by quotes.
+     *
+     * Generated from protobuf field <code>repeated string keyword_searchable_profile_custom_attributes = 4;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setKeywordSearchableProfileCustomAttributes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->keyword_searchable_profile_custom_attributes = $arr;
 
         return $this;
     }

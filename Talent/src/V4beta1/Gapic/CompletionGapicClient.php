@@ -94,6 +94,7 @@ class CompletionGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
+    private static $companyNameTemplate;
     private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
@@ -116,6 +117,15 @@ class CompletionGapicClient
         ];
     }
 
+    private static function getCompanyNameTemplate()
+    {
+        if (null == self::$companyNameTemplate) {
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
+        }
+
+        return self::$companyNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (null == self::$tenantNameTemplate) {
@@ -129,11 +139,32 @@ class CompletionGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'company' => self::getCompanyNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a company resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     * @param string $company
+     *
+     * @return string The formatted company resource.
+     * @experimental
+     */
+    public static function companyName($project, $tenant, $company)
+    {
+        return self::getCompanyNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+            'company' => $company,
+        ]);
     }
 
     /**
@@ -158,6 +189,7 @@ class CompletionGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
      * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -300,25 +332,16 @@ class CompletionGapicClient
      *          For more information, see
      *          [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *
-     *          For
-     *          [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
-     *          type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *          are returned.
+     *          For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
      *
-     *          For
-     *          [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
-     *          type, only companies having open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *          are returned.
+     *          For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
+     *          only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
+     *          returned.
      *
-     *          For
-     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
-     *          type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *          or companies having open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *          are returned.
+     *          For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
      *
      *          The maximum number of allowed characters is 255.
      *     @type string $company
@@ -335,15 +358,13 @@ class CompletionGapicClient
      *     @type int $scope
      *          Optional.
      *
-     *          The scope of the completion. The defaults is
-     *          [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionScope}
+     *          The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope}
      *     @type int $type
      *          Optional.
      *
-     *          The completion topic. The default is
-     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
-     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest_CompletionType}
+     *          The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

@@ -10,16 +10,14 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Output only.
- * Job entry with metadata inside
- * [SearchJobsResponse][google.cloud.talent.v4beta1.SearchJobsResponse].
+ * Job entry with metadata inside [SearchJobsResponse][google.cloud.talent.v4beta1.SearchJobsResponse].
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob</code>
  */
 class MatchingJob extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Job resource that matches the specified
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Job resource that matches the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
      */
@@ -40,12 +38,10 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      */
     private $job_title_snippet = '';
     /**
-     * Contains snippets of text from the
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] and
-     * similar fields that most closely match a search query's keywords, if
-     * available. All HTML tags in the original fields are stripped when
-     * returned in this field, and matching query keywords are enclosed in HTML
-     * bold tags.
+     * Contains snippets of text from the [Job.description][google.cloud.talent.v4beta1.Job.description] and similar
+     * fields that most closely match a search query's keywords, if available.
+     * All HTML tags in the original fields are stripped when returned in this
+     * field, and matching query keywords are enclosed in HTML bold tags.
      *
      * Generated from protobuf field <code>string search_text_snippet = 4;</code>
      */
@@ -65,8 +61,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Job $job
-     *           Job resource that matches the specified
-     *           [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     *           Job resource that matches the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *     @type string $job_summary
      *           A summary of the job with core information that's displayed on the search
      *           results listing page.
@@ -75,12 +70,10 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *           closely matching a search query's keywords, if available. The matching
      *           query keywords are enclosed in HTML bold tags.
      *     @type string $search_text_snippet
-     *           Contains snippets of text from the
-     *           [Job.description][google.cloud.talent.v4beta1.Job.description] and
-     *           similar fields that most closely match a search query's keywords, if
-     *           available. All HTML tags in the original fields are stripped when
-     *           returned in this field, and matching query keywords are enclosed in HTML
-     *           bold tags.
+     *           Contains snippets of text from the [Job.description][google.cloud.talent.v4beta1.Job.description] and similar
+     *           fields that most closely match a search query's keywords, if available.
+     *           All HTML tags in the original fields are stripped when returned in this
+     *           field, and matching query keywords are enclosed in HTML bold tags.
      *     @type \Google\Cloud\Talent\V4beta1\SearchJobsResponse\CommuteInfo $commute_info
      *           Commute information which is generated based on specified
      *            [CommuteFilter][google.cloud.talent.v4beta1.CommuteFilter].
@@ -92,8 +85,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job resource that matches the specified
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Job resource that matches the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
      * @return \Google\Cloud\Talent\V4beta1\Job
@@ -104,8 +96,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Job resource that matches the specified
-     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Job resource that matches the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\Job $var
@@ -178,12 +169,10 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains snippets of text from the
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] and
-     * similar fields that most closely match a search query's keywords, if
-     * available. All HTML tags in the original fields are stripped when
-     * returned in this field, and matching query keywords are enclosed in HTML
-     * bold tags.
+     * Contains snippets of text from the [Job.description][google.cloud.talent.v4beta1.Job.description] and similar
+     * fields that most closely match a search query's keywords, if available.
+     * All HTML tags in the original fields are stripped when returned in this
+     * field, and matching query keywords are enclosed in HTML bold tags.
      *
      * Generated from protobuf field <code>string search_text_snippet = 4;</code>
      * @return string
@@ -194,12 +183,10 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains snippets of text from the
-     * [Job.description][google.cloud.talent.v4beta1.Job.description] and
-     * similar fields that most closely match a search query's keywords, if
-     * available. All HTML tags in the original fields are stripped when
-     * returned in this field, and matching query keywords are enclosed in HTML
-     * bold tags.
+     * Contains snippets of text from the [Job.description][google.cloud.talent.v4beta1.Job.description] and similar
+     * fields that most closely match a search query's keywords, if available.
+     * All HTML tags in the original fields are stripped when returned in this
+     * field, and matching query keywords are enclosed in HTML bold tags.
      *
      * Generated from protobuf field <code>string search_text_snippet = 4;</code>
      * @param string $var

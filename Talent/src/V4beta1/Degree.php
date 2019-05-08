@@ -25,7 +25,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Full Degree name.
-     * For example, "B.S.", "Master of Arts", etc.
+     * For example, "B.S.", "Master of Arts", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string degree_name = 2;</code>
@@ -53,7 +53,7 @@ class Degree extends \Google\Protobuf\Internal\Message
      *     @type string $degree_name
      *           Optional.
      *           Full Degree name.
-     *           For example, "B.S.", "Master of Arts", etc.
+     *           For example, "B.S.", "Master of Arts", and so on.
      *           Number of characters allowed is 100.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $fields_of_study
      *           Optional.
@@ -98,7 +98,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Full Degree name.
-     * For example, "B.S.", "Master of Arts", etc.
+     * For example, "B.S.", "Master of Arts", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string degree_name = 2;</code>
@@ -112,7 +112,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Full Degree name.
-     * For example, "B.S.", "Master of Arts", etc.
+     * For example, "B.S.", "Master of Arts", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string degree_name = 2;</code>

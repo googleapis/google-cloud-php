@@ -37,8 +37,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Specifies which time field to filter profiles.
-     * Defaults to
-     * [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     * Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimeFilter.TimeField time_field = 3;</code>
      */
@@ -63,8 +62,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
      *     @type int $time_field
      *           Optional.
      *           Specifies which time field to filter profiles.
-     *           Defaults to
-     *           [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     *           Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      * }
      */
     public function __construct($data = NULL) {
@@ -139,8 +137,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Specifies which time field to filter profiles.
-     * Defaults to
-     * [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     * Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimeFilter.TimeField time_field = 3;</code>
      * @return int
@@ -153,8 +150,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Specifies which time field to filter profiles.
-     * Defaults to
-     * [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     * Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimeFilter.TimeField time_field = 3;</code>
      * @param int $var

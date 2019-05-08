@@ -18,7 +18,7 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.
-     * The skill name. For example, "java", "j2ee", etc.
+     * The skill name. For example, "java", "j2ee", and so on.
      *
      * Generated from protobuf field <code>string skill = 1;</code>
      */
@@ -40,7 +40,7 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
      *
      *     @type string $skill
      *           Required.
-     *           The skill name. For example, "java", "j2ee", etc.
+     *           The skill name. For example, "java", "j2ee", and so on.
      *     @type bool $negated
      *           Optional.
      *           Whether to apply negation to the filter so profiles matching the filter
@@ -54,7 +54,7 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The skill name. For example, "java", "j2ee", etc.
+     * The skill name. For example, "java", "j2ee", and so on.
      *
      * Generated from protobuf field <code>string skill = 1;</code>
      * @return string
@@ -66,7 +66,7 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Required.
-     * The skill name. For example, "java", "j2ee", etc.
+     * The skill name. For example, "java", "j2ee", and so on.
      *
      * Generated from protobuf field <code>string skill = 1;</code>
      * @param string $var

@@ -49,6 +49,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * * certifications
      * * recruitingNotes
      * * customAttributes
+     * * groupId
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -90,6 +91,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *           * certifications
      *           * recruitingNotes
      *           * customAttributes
+     *           * groupId
      * }
      */
     public function __construct($data = NULL) {
@@ -152,6 +154,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * * certifications
      * * recruitingNotes
      * * customAttributes
+     * * groupId
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -188,6 +191,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * * certifications
      * * recruitingNotes
      * * customAttributes
+     * * groupId
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

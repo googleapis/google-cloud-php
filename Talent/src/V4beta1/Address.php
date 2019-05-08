@@ -49,7 +49,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\PostalAddress $structured_address
      *           Optional.
      *           Structured address that contains street address, city, state, country,
-     *           etc.
+     *           and so on.
      *     @type \Google\Protobuf\BoolValue $current
      *           Optional.
      *           Indicates if it's the person's current address.
@@ -125,7 +125,7 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Structured address that contains street address, city, state, country,
-     * etc.
+     * and so on.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress structured_address = 3;</code>
      * @return \Google\Type\PostalAddress
@@ -138,7 +138,7 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Structured address that contains street address, city, state, country,
-     * etc.
+     * and so on.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress structured_address = 3;</code>
      * @param \Google\Type\PostalAddress $var

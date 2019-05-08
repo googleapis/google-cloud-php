@@ -120,8 +120,8 @@ class ProfileServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
-    private static $tenantNameTemplate;
     private static $profileNameTemplate;
+    private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -143,15 +143,6 @@ class ProfileServiceGapicClient
         ];
     }
 
-    private static function getTenantNameTemplate()
-    {
-        if (null == self::$tenantNameTemplate) {
-            self::$tenantNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}');
-        }
-
-        return self::$tenantNameTemplate;
-    }
-
     private static function getProfileNameTemplate()
     {
         if (null == self::$profileNameTemplate) {
@@ -161,34 +152,25 @@ class ProfileServiceGapicClient
         return self::$profileNameTemplate;
     }
 
+    private static function getTenantNameTemplate()
+    {
+        if (null == self::$tenantNameTemplate) {
+            self::$tenantNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}');
+        }
+
+        return self::$tenantNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'tenant' => self::getTenantNameTemplate(),
                 'profile' => self::getProfileNameTemplate(),
+                'tenant' => self::getTenantNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a tenant resource.
-     *
-     * @param string $project
-     * @param string $tenant
-     *
-     * @return string The formatted tenant resource.
-     * @experimental
-     */
-    public static function tenantName($project, $tenant)
-    {
-        return self::getTenantNameTemplate()->render([
-            'project' => $project,
-            'tenant' => $tenant,
-        ]);
     }
 
     /**
@@ -212,11 +194,29 @@ class ProfileServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a tenant resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     *
+     * @return string The formatted tenant resource.
+     * @experimental
+     */
+    public static function tenantName($project, $tenant)
+    {
+        return self::getTenantNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - tenant: projects/{project}/tenants/{tenant}
-     * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}.
+     * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}
+     * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -575,6 +575,7 @@ class ProfileServiceGapicClient
      *          * certifications
      *          * recruitingNotes
      *          * customAttributes
+     *          * groupId
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -672,9 +673,7 @@ class ProfileServiceGapicClient
      * For example, search by raw queries "software engineer in Mountain View" or
      * search by structured filters (location filter, education filter, etc.).
      *
-     * See
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
-     * for more information.
+     * See [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] for more information.
      *
      * Sample code:
      * ```
@@ -720,8 +719,7 @@ class ProfileServiceGapicClient
      *     @type ProfileQuery $profileQuery
      *          Optional.
      *
-     *          Search query to execute. See
-     *          [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     *          Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -735,9 +733,7 @@ class ProfileServiceGapicClient
      *          Optional.
      *
      *          An integer that specifies the current offset (that is, starting result) in
-     *          search results. This field is only considered if
-     *          [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
-     *          is unset.
+     *          search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
      *
      *          The maximum allowed value is 5000. Otherwise an error is thrown.
      *
@@ -783,8 +779,7 @@ class ProfileServiceGapicClient
      *          Optional.
      *
      *          A list of expressions specifies histogram requests against matching
-     *          profiles for
-     *          [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *          profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
      *          The expression syntax looks like a function definition with optional
      *          parameters.
@@ -837,29 +832,13 @@ class ProfileServiceGapicClient
      *          * experience_in_months: experience in months. 0 means 0 month to 1 month
      *          (exclusive).
      *          * application_date: The application date specifies application start dates.
-     *          See
-     *          [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
-     *          for more details.
+     *          See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
      *          * application_outcome_notes: The application outcome reason specifies the
      *          reasons behind the outcome of the job application.
-     *          See
-     *          [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
-     *          for more details.
-     *          * application_last_stage: The application last stage specifies the last
-     *          stage of job application.
-     *          See
-     *          [ApplicationLastStageFilter][google.cloud.talent.v4beta1.ApplicationLastStageFilter]
-     *          for more details.
+     *          See [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter] for more details.
      *          * application_job_title: The application job title specifies the job
      *          applied for in the application.
-     *          See
-     *          [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
-     *          for more details.
-     *          * application_status: The application status specifies the status of job
-     *          application.
-     *          See
-     *          [ApplicationStatusFilter][google.cloud.talent.v4beta1.ApplicationStatusFilter]
-     *          for more details.
+     *          See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
      *          * hirable_status: Hirable status specifies the profile's hirable status.
      *          * string_custom_attribute: String custom attributes. Values can be accessed
      *          via square bracket notation like string_custom_attribute["key1"].
