@@ -39,17 +39,41 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
+use Google\Cloud\Scheduler\V1\AppEngineHttpTarget;
 use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\Job\State;
 
-$schedulerClient = new CloudSchedulerClient();
+$client = new CloudSchedulerClient();
 $projectId = '[MY_PROJECT_ID]';
-$formattedName = $schedulerClient->projectName($projectId);
-$jobs = $schedulerClient->listJobs($formattedName);
+$location = 'us-central1';
+$parent = CloudSchedulerClient::locationName($projectId, $location);
+$job = new Job([
+    'name' => CloudSchedulerClient::jobName(
+        $projectId,
+        $location,
+        uniqid()
+    ),
+    'app_engine_http_target' => new AppEngineHttpTarget([
+        'relative_uri' => '/'
+    ]),
+    'schedule' => '* * * * *'
+]);
+$client->createJob($parent, $job);
+
+foreach ($client->listJobs($parent) as $job) {
+    printf(
+        'Job: %s : %s' . PHP_EOL,
+        $job->getName(),
+        State::name($job->getState())
+    );
+}
 ```
 
 ### Version
 
-This component is considered beta. As such, it should be expected to be mostly stable and we're working towards a release candidate. We will address issues and requests with a higher priority.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 
