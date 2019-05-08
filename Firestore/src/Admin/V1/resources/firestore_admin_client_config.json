@@ -3,7 +3,6 @@
     "google.firestore.admin.v1.FirestoreAdmin": {
       "retry_codes": {
         "idempotent": [
-          "DEADLINE_EXCEEDED",
           "UNAVAILABLE"
         ],
         "non_idempotent": []
