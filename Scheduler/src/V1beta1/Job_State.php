@@ -12,5 +12,5 @@ if (false) {
     class Job_State {}
 }
 class_exists(Job\State::class);
-@trigger_error('Google\Cloud\Scheduler\V1beta1\Job_State is deprecated and will be removed in the next major release. Use Google\Cloud\Scheduler\V1beta1\Job\State instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Scheduler\V1beta1\Job_State is deprecated and will be removed in a future release. Use Google\Cloud\Scheduler\V1beta1\Job\State instead', E_USER_DEPRECATED);
 

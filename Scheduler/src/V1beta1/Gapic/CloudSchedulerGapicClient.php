@@ -117,9 +117,9 @@ class CloudSchedulerGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $projectNameTemplate;
-    private static $locationNameTemplate;
     private static $jobNameTemplate;
+    private static $locationNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -141,13 +141,13 @@ class CloudSchedulerGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getJobNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$jobNameTemplate) {
+            self::$jobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/jobs/{job}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$jobNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -159,60 +159,26 @@ class CloudSchedulerGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getJobNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (null == self::$jobNameTemplate) {
-            self::$jobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/jobs/{job}');
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$jobNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-                'location' => self::getLocationNameTemplate(),
                 'job' => self::getJobNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location resource.
-     *
-     * @param string $project
-     * @param string $location
-     *
-     * @return string The formatted location resource.
-     * @experimental
-     */
-    public static function locationName($project, $location)
-    {
-        return self::getLocationNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-        ]);
     }
 
     /**
@@ -236,12 +202,46 @@ class CloudSchedulerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
+     * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
-     * - job: projects/{project}/locations/{location}/jobs/{job}.
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
