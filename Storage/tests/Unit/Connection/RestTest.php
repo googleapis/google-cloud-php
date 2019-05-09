@@ -262,7 +262,8 @@ class RestTest extends TestCase
                     'data' => $tempFile,
                     'name' => 'file.txt',
                     'predefinedAcl' => 'private',
-                    'metadata' => ['contentType' => 'text/plain']
+                    'metadata' => ['contentType' => 'text/plain'],
+                    'validate' => 'md5'
                 ],
                 ResumableUploader::class,
                 'text/plain',
@@ -362,6 +363,70 @@ class RestTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider validationMethod
+     */
+    public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
+    {
+        $rest = new RestCrc32Stub;
+        $rest->extensionLoaded = $extensionLoaded;
+        $rest->supportsBuiltin = $supportsBuiltin;
+
+        $this->assertEquals($expected, $rest->chooseValidationMethodProxy($args));
+    }
+
+    public function validationMethod()
+    {
+        return [
+            [
+                ['validate' => true],
+                false,
+                false,
+                'md5'
+            ], [
+                ['validate' => true],
+                true,
+                false,
+                'crc32'
+            ], [
+                ['validate' => true],
+                false,
+                true,
+                'crc32'
+            ], [
+                ['validate' => 'md5'],
+                true,
+                true,
+                'md5'
+            ], [
+                ['validate' => 'crc32'],
+                false,
+                false,
+                'crc32'
+            ], [
+                ['validate' => 'crc32c'],
+                false,
+                false,
+                'crc32'
+            ], [
+                ['validate' => false],
+                true,
+                true,
+                false
+            ], [
+                ['validate' => 'md5', 'metadata' => ['md5' => 'foo']],
+                true,
+                true,
+                false
+            ], [
+                ['validate' => 'md5', 'metadata' => ['crc32c' => 'foo']],
+                true,
+                true,
+                false
+            ]
+        ];
+    }
+
     private function getContentTypeAndMetadata(RequestInterface $request)
     {
         // Resumable upload request
@@ -378,5 +443,32 @@ class RestTest extends TestCase
             trim(explode(':', $lines[7])[1]),
             json_decode($lines[5], true)
         ];
+    }
+}
+
+//@codingStandardsIgnoreStart
+class RestCrc32Stub extends Rest
+{
+    public $extensionLoaded = false;
+    public $supportsBuiltin = false;
+
+    protected function crc32cExtensionLoaded()
+    {
+        return $this->extensionLoaded;
+    }
+
+    protected function supportsBuiltinCrc32()
+    {
+        return $this->supportsBuiltin;
+    }
+
+    public function chooseValidationMethodProxy(array $args)
+    {
+        $chooseValidationMethod = function () {
+            return call_user_func_array([$this, 'chooseValidationMethod'], func_get_args());
+        };
+
+        $call = $chooseValidationMethod->bindTo($this, Rest::class);
+        return $call($args);
     }
 }

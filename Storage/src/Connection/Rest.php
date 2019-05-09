@@ -460,7 +460,7 @@ class Rest implements ConnectionInterface
         }
 
         $validate = $args['validate'];
-        if (in_array($validate, [false, 'crc32', 'cd5'])) {
+        if (in_array($validate, [false, 'crc32', 'md5'], true)) {
             return $validate;
         }
 
@@ -470,12 +470,12 @@ class Rest implements ConnectionInterface
         }
 
         // is the extension loaded?
-        if (function_exists('crc32c')) {
+        if ($this->crc32cExtensionLoaded()) {
             return 'crc32';
         }
 
         // is crc32c available in `hash()`?
-        if (Builtin::supports(CRC32::CASTAGNOLI)) {
+        if ($this->supportsBuiltinCrc32()) {
             return 'crc32';
         }
 
@@ -506,5 +506,29 @@ class Rest implements ConnectionInterface
         $data->seek($pos);
 
         return base64_encode($crc32c->hash(true));
+    }
+
+    /**
+     * Check if the crc32c extension is available.
+     *
+     * Protected access for unit testing.
+     *
+     * @return bool
+     */
+    protected function crc32cExtensionLoaded()
+    {
+        return function_exists('crc32c');
+    }
+
+    /**
+     * Check if hash() supports crc32c.
+     *
+     * Protected access for unit testing.
+     *
+     * @return bool
+     */
+    protected function supportsBuiltinCrc32()
+    {
+        return Builtin::supports(CRC32::CASTAGNOLI);
     }
 }
