@@ -405,6 +405,38 @@ class Rest implements ConnectionInterface
 
     /**
      * @param array $args
+     */
+    public function createHmacKey(array $args = [])
+    {
+        return $this->send('projects.resources.hmacKeys', 'create', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteHmacKey(array $args = [])
+    {
+        return $this->send('projects.resources.hmacKeys', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getHmacKey(array $args = [])
+    {
+        return $this->send('projects.resources.hmacKeys', 'get', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listHmacKeys(array $args = [])
+    {
+        return $this->send('projects.resources.hmacKeys', 'list', $args);
+    }
+
+    /**
+     * @param array $args
      * @return array
      */
     private function buildDownloadObjectParams(array $args)

@@ -425,4 +425,124 @@ class StorageClient
         $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
         return $resp['email_address'];
     }
+
+    /**
+     * List Service Account HMAC keys in the project.
+     *
+     * Example:
+     * ```
+     * $hmacKeys = $storage->hmacKeys();
+     * ```
+     *
+     * ```
+     * // Get the HMAC keys associated with a Service Account email
+     * $hmacKeys = $storage->hmacKeys([
+     *     'serviceAccountEmail' => 'account@myProject.iam.gserviceaccount.com'
+     * ]);
+     * ```
+     *
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $serviceAccountEmail If present, only keys for the given
+     *           service account are returned.
+     *     @type bool $showDeletedKeys Whether or not to show keys in the
+     *           DELETED state.
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
+     * }
+     * @return ItemIterator<HmacKey>
+     */
+    public function hmacKeys(array $options = [])
+    {
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
+
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $key) {
+                    return $this->hmacKey(
+                        $key['metadata']['accessId'],
+                        $key['metadata']
+                    );
+                },
+                [$this->connection, 'listHmacKeys'],
+                ['project' => $this->projectId] + $options,
+                ['resultLimit' => $resultLimit]
+            )
+        );
+    }
+
+    /**
+     * Lazily instantiate an HMAC Key instance using an Access ID.
+     *
+     * Example:
+     * ```
+     * $hmacKey = $storage->hmacKey($accessId);
+     * ```
+     *
+     * @param string $accessId The ID of the HMAC Key.
+     * @param array $metadata [optional] HMAC key metadata.
+     * @return HmacKey
+     */
+    public function hmacKey($accessId, array $metadata = [])
+    {
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
+
+        return new HmacKey($this->connection, $this->projectId, $accessId, $metadata);
+    }
+
+    /**
+     * Creates a new HMAC key for the specified service account.
+     *
+     * Please note that the HMAC secret is only available at creation. Make sure
+     * to note the secret after creation.
+     *
+     * Example:
+     * ```
+     * $hmacKey = $storage->createHmacKey('account@myProject.iam.gserviceaccount.com');
+     * $secret = $hmacKey->secret();
+     * ```
+     *
+     * @param string $serviceAccountEmail Email address of the service account.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
+     * }
+     * @return HmacKey
+     */
+    public function createHmacKey($serviceAccountEmail, array $options = [])
+    {
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
+
+        $res = $this->connection->createHmacKey([
+            'projectId' => $this->projectId,
+            'serviceAccountEmail' => $serviceAccountEmail
+        ] + $options);
+
+        return new HmacKey(
+            $this->connection,
+            $this->projectId,
+            $res['metadata']['accessId'],
+            $res['metadata'],
+            $res['secret']
+        );
+    }
 }
