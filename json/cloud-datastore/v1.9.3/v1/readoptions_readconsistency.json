@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/readoptions_readconsistency","type":"","title":"Google\\Cloud\\Datastore\\V1\\ReadOptions_ReadConsistency","name":"ReadOptions_ReadConsistency","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\V1\\ReadOptions\\ReadConsistency instead.<\/p>","examples":[],"resources":[],"methods":[]}

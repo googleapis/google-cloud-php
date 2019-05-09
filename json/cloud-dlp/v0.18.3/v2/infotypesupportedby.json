@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/infotypesupportedby","type":"","title":"Google\\Cloud\\Dlp\\V2\\InfoTypeSupportedBy","name":"InfoTypeSupportedBy","description":"<p>Parts of the APIs which use certain infoTypes.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.InfoTypeSupportedBy<\/code><\/p>","examples":[],"resources":[],"methods":[]}
