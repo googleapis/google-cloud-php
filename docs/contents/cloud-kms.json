@@ -8,7 +8,7 @@
         },
         {
             "title": "KeyManagementServiceClient",
-            "type": "kms\/v1\/kmsclient",
+            "type": "kms\/v1\/keymanagementserviceclient",
             "nav": [],
             "patterns": [
                 "kms\/v1\/\\w{1,}"
