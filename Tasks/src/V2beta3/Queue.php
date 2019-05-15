@@ -102,14 +102,13 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     private $purge_time = null;
     /**
-     * Specifies the fraction of operations to write to
-     * [Stackdriver Logging](https://cloud.google.com/logging/docs/).
-     * This field may contain any value between 0.0 and 1.0, inclusive.
-     * 0.0 is the default and means that no operations are logged.
+     * Configuration options for writing logs to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     * field is unset, then no logs are written.
      *
-     * Generated from protobuf field <code>double log_sampling_ratio = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.StackdriverLoggingConfig stackdriver_logging_config = 10;</code>
      */
-    private $log_sampling_ratio = 0.0;
+    private $stackdriver_logging_config = null;
     protected $queue_type;
 
     /**
@@ -186,11 +185,10 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      *           Purge time will be truncated to the nearest microsecond. Purge
      *           time will be unset if the queue has never been purged.
-     *     @type float $log_sampling_ratio
-     *           Specifies the fraction of operations to write to
-     *           [Stackdriver Logging](https://cloud.google.com/logging/docs/).
-     *           This field may contain any value between 0.0 and 1.0, inclusive.
-     *           0.0 is the default and means that no operations are logged.
+     *     @type \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig $stackdriver_logging_config
+     *           Configuration options for writing logs to
+     *           [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     *           field is unset, then no logs are written.
      * }
      */
     public function __construct($data = NULL) {
@@ -467,33 +465,31 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the fraction of operations to write to
-     * [Stackdriver Logging](https://cloud.google.com/logging/docs/).
-     * This field may contain any value between 0.0 and 1.0, inclusive.
-     * 0.0 is the default and means that no operations are logged.
+     * Configuration options for writing logs to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     * field is unset, then no logs are written.
      *
-     * Generated from protobuf field <code>double log_sampling_ratio = 10;</code>
-     * @return float
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.StackdriverLoggingConfig stackdriver_logging_config = 10;</code>
+     * @return \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig
      */
-    public function getLogSamplingRatio()
+    public function getStackdriverLoggingConfig()
     {
-        return $this->log_sampling_ratio;
+        return $this->stackdriver_logging_config;
     }
 
     /**
-     * Specifies the fraction of operations to write to
-     * [Stackdriver Logging](https://cloud.google.com/logging/docs/).
-     * This field may contain any value between 0.0 and 1.0, inclusive.
-     * 0.0 is the default and means that no operations are logged.
+     * Configuration options for writing logs to
+     * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
+     * field is unset, then no logs are written.
      *
-     * Generated from protobuf field <code>double log_sampling_ratio = 10;</code>
-     * @param float $var
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.StackdriverLoggingConfig stackdriver_logging_config = 10;</code>
+     * @param \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig $var
      * @return $this
      */
-    public function setLogSamplingRatio($var)
+    public function setStackdriverLoggingConfig($var)
     {
-        GPBUtil::checkDouble($var);
-        $this->log_sampling_ratio = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig::class);
+        $this->stackdriver_logging_config = $var;
 
         return $this;
     }

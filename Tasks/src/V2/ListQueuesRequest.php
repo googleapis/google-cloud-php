@@ -28,7 +28,8 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * field can be used as a filter and several operators as supported.
      * For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      * described in
-     * [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     * [Stackdriver's Advanced Logs
+     * Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      * Sample filter "state: PAUSED".
      * Note that using filters might cause fewer queues than the
      * requested page_size to be returned.
@@ -75,7 +76,8 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *           field can be used as a filter and several operators as supported.
      *           For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      *           described in
-     *           [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *           [Stackdriver's Advanced Logs
+     *           Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      *           Sample filter "state: PAUSED".
      *           Note that using filters might cause fewer queues than the
      *           requested page_size to be returned.
@@ -136,7 +138,8 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * field can be used as a filter and several operators as supported.
      * For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      * described in
-     * [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     * [Stackdriver's Advanced Logs
+     * Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      * Sample filter "state: PAUSED".
      * Note that using filters might cause fewer queues than the
      * requested page_size to be returned.
@@ -154,7 +157,8 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * field can be used as a filter and several operators as supported.
      * For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      * described in
-     * [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     * [Stackdriver's Advanced Logs
+     * Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      * Sample filter "state: PAUSED".
      * Note that using filters might cause fewer queues than the
      * requested page_size to be returned.

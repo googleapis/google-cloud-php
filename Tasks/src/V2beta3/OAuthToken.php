@@ -11,8 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Contains information needed for generating an
  * [OAuth token](https://developers.google.com/identity/protocols/OAuth2).
- * This type of authorization should be used when sending requests to a GCP
- * endpoint.
+ * This type of authorization should generally only be used when calling Google
+ * APIs hosted on *.googleapis.com.
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.OAuthToken</code>
  */
