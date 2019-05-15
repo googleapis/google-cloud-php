@@ -45,6 +45,14 @@ class FieldPathTest extends SnippetTestCase
         $this->assertInstanceOf(FieldPath::class, $res->returnVal());
     }
 
+    public function testDocumentId()
+    {
+        $snippet = $this->snippetFromMethod(FieldPath::class, 'documentId');
+        $res = $snippet->invoke('path');
+        $this->assertInstanceOf(FieldPath::class, $res->returnVal());
+        $this->assertEquals('__name__', $res->returnVal()->pathString());
+    }
+
     public function testFromString()
     {
         $snippet = $this->snippetFromMethod(FieldPath::class, 'fromString');

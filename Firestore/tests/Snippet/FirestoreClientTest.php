@@ -64,6 +64,14 @@ class FirestoreClientTest extends SnippetTestCase
         $this->assertInstanceOf(FirestoreClient::class, $res->returnVal());
     }
 
+    public function testEmulator()
+    {
+        $snippet = $this->snippetFromClass(FirestoreClient::class, 1);
+        $res = $snippet->invoke('firestore');
+        $this->assertInstanceOf(FirestoreClient::class, $res->returnVal());
+        $this->assertEquals('localhost:8900', getenv('FIRESTORE_EMULATOR_HOST'));
+    }
+
     public function testBatch()
     {
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'batch');
@@ -160,6 +168,34 @@ class FirestoreClientTest extends SnippetTestCase
         $this->assertEquals('deleted-user Does Not Exist', $res->output());
     }
 
+    public function testCollectionGroup()
+    {
+        $this->connection->runQuery(Argument::any())
+            ->willReturn(new \ArrayIterator([
+                [
+                    'document' => [
+                        'name' => 'a/b/c/d',
+                        'fields' => []
+                    ],
+                    'readTime' => null
+                ], [
+                    'document' => [
+                        'name' => 'c/d',
+                        'fields' => []
+                    ],
+                    'readTime' => null
+                ]
+            ]));
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'collectionGroup');
+        $snippet->addLocal('firestore', $this->client);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Found 2 documents!', $res->output());
+    }
+
     public function testRunTransaction()
     {
         $from = sprintf('projects/%s/databases/%s/documents/users/john', self::PROJECT, self::DATABASE);
@@ -244,13 +280,5 @@ class FirestoreClientTest extends SnippetTestCase
         $snippet->addLocal('firestore', $this->client);
         $res = $snippet->invoke('path');
         $this->assertInstanceOf(FieldPath::class, $res->returnVal());
-    }
-    
-    public function testEmulator()
-    {
-        $snippet = $this->snippetFromClass(FirestoreClient::class, 1);
-        $res = $snippet->invoke('firestore');
-        $this->assertInstanceOf(FirestoreClient::class, $res->returnVal());
-        $this->assertEquals('localhost:8900', getenv('FIRESTORE_EMULATOR_HOST'));
     }
 }

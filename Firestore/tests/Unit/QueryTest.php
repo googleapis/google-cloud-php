@@ -24,8 +24,10 @@ use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\Gapic\FirestoreGapicClient;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -42,14 +44,16 @@ class QueryTest extends TestCase
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const PARENT = 'projects/example_project/databases/(default)/documents';
+    const COLLECTION = 'foo';
 
     private $queryObj = [
         'from' => [
-            ['collectionId' => 'foo']
+            ['collectionId' => self::COLLECTION]
         ]
     ];
     private $connection;
     private $query;
+    private $collectionGroupQuery;
 
     public function setUp()
     {
@@ -59,6 +63,15 @@ class QueryTest extends TestCase
             new ValueMapper($this->connection->reveal(), false),
             self::PARENT,
             $this->queryObj
+        ], ['connection', 'query', 'transaction']);
+
+        $allDescendants = $this->queryObj;
+        $allDescendants['from'][0]['allDescendants'] = true;
+        $this->collectionGroupQuery = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::PARENT,
+            $allDescendants
         ], ['connection', 'query', 'transaction']);
     }
 
@@ -329,6 +342,70 @@ class QueryTest extends TestCase
         $this->query->where('foo', 'hello', 'bar');
     }
 
+    /**
+     * @dataProvider whereDocument
+     */
+    public function testWhereDocumentId($document, $expected)
+    {
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(FieldPath::documentId(), '=', $document);
+
+            return $res;
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => '__name__'
+                        ],
+                        'op' => FieldFilterOperator::EQUAL,
+                        'value' => [
+                            'referenceValue' => is_string($expected)
+                                ? $expected
+                                : $expected->name()
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function whereDocument()
+    {
+        $name = FirestoreGapicClient::documentPathName(self::PROJECT, self::DATABASE, self::COLLECTION . '/a/b/c');
+
+        $ref = $this->prophesize(DocumentReference::class);
+        $ref->name()->willReturn($name);
+        $snap = $this->prophesize(DocumentSnapshot::class);
+        $snap->name()->willReturn($name);
+        return [
+            ['a/b/c', $name],
+            ['a/b/c', $ref->reveal()],
+            ['a/b/c', $snap->reveal()]
+        ];
+    }
+
+    /**
+     * @dataProvider whereInvalidDocument
+     * @expectedException InvalidArgumentException
+     */
+    public function testWhereInvalidDocument($document)
+    {
+        $this->query->where(FieldPath::documentId(), '=', $document);
+    }
+
+    public function whereInvalidDocument()
+    {
+        return [
+            [
+                'a/b',
+                1010
+            ]
+        ];
+    }
+
     public function testOrderBy()
     {
         $this->runAndAssert(function (Query $q) {
@@ -545,7 +622,9 @@ class QueryTest extends TestCase
 
     public function testBuildPositionWithDocumentId()
     {
-        $this->runAndAssert(function (Query $q) {
+        $documentPath = $this->queryFrom()[0]['collectionId'] . '/john';
+
+        $this->runAndAssert(function (Query $q) use ($documentPath) {
             return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
         }, [
             'parent' => self::PARENT,
@@ -563,7 +642,7 @@ class QueryTest extends TestCase
                     'before' => false,
                     'values' => [
                         [
-                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                            'referenceValue' => self::PARENT .'/'. $documentPath
                         ]
                     ]
                 ]
@@ -678,7 +757,7 @@ class QueryTest extends TestCase
         $snapshot->get('c')->willReturn('d');
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
-            $query = $this->query->orderBy('a')->orderBy('c');
+            $query = $this->query->orderBy('a')->orderBy('c')->orderBy(FieldPath::documentId());
             return $query->startAt($snapshot->reveal());
         }, [
             'parent' => self::PARENT,
@@ -808,6 +887,14 @@ class QueryTest extends TestCase
 
     /**
      * @expectedException InvalidArgumentException
+     */
+    public function testBuildPositionInvalidDocumentName()
+    {
+        $this->query->orderBy(Query::DOCUMENT_ID)->startAt(['a/b']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
      * @dataProvider sentinels
      */
     public function testBuildPositionInvalidSentinelValue($sentinel)
@@ -824,13 +911,42 @@ class QueryTest extends TestCase
         $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
 
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john/bar');
+        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john/bar/bat/baz');
         $ref->parent()->willReturn($c->reveal());
 
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
     }
 
-    private function runAndAssert(callable $filters, $assertion)
+    public function testBuildPositionAllDescendantsDocument()
+    {
+        $this->runAndAssert(function (Query $q) {
+            $query = $q->orderBy(FieldPath::documentId());
+            return $query->startAt([$this->queryFrom()[0]['collectionId'] .'/john']);
+        }, [
+            'parent' => self::PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(true),
+                'orderBy' => [
+                    [
+                        'field' => [
+                            'fieldPath' => Query::DOCUMENT_ID
+                        ],
+                        'direction' => Query::DIR_ASCENDING
+                    ]
+                ],
+                'startAt' => [
+                    'before' => true,
+                    'values' => [
+                        [
+                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                        ]
+                    ]
+                ]
+            ]
+        ], $this->collectionGroupQuery);
+    }
+
+    private function runAndAssert(callable $filters, $assertion, Query $query = null)
     {
         if (is_array($assertion)) {
             if (isset($assertion['structuredQuery'])) {
@@ -850,7 +966,8 @@ class QueryTest extends TestCase
                 ->shouldBeCalledTimes(1);
         }
 
-        $immutable = clone $this->query;
+        $query = $query ?: $this->query;
+        $immutable = clone $query;
         $immutable->___setProperty('connection', $this->connection->reveal());
         $query = $filters($immutable);
 
@@ -860,9 +977,14 @@ class QueryTest extends TestCase
         iterator_to_array($query->documents(['maxRetries' => 0]));
     }
 
-    private function queryFrom()
+    private function queryFrom($allDescendants = false)
     {
-        return $this->queryObj['from'];
+        $from = $this->queryObj['from'];
+        if ($allDescendants) {
+            $from[0]['allDescendants'] = true;
+        }
+
+        return $from;
     }
 
     public function sentinels()

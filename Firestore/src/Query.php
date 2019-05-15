@@ -289,6 +289,8 @@ class Query
      */
     public function where($fieldPath, $operator, $value)
     {
+        $basePath = $this->basePath();
+
         if ($value instanceof FieldValueInterface) {
             throw new \InvalidArgumentException(sprintf(
                 'Value cannot be a `%s` value.',
@@ -313,6 +315,19 @@ class Query
             ));
         }
 
+        if ($escapedPathString === self::DOCUMENT_ID &&
+            !($value instanceof DocumentReference) &&
+            !($value instanceof DocumentSnapshot) &&
+            (
+                !is_string($value) ||
+                !$this->isDocument($this->childPath($basePath, $value))
+            )
+        ) {
+            throw new \InvalidArgumentException(
+                'When filtering on document ID, value must be a document reference or valid document name.'
+            );
+        }
+
         if ((is_float($value) && is_nan($value)) || is_null($value)) {
             if ($operator !== self::OP_EQUAL) {
                 throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
@@ -331,6 +346,10 @@ class Query
                 ]
             ];
         } else {
+            if (is_string($value) && $escapedPathString === self::DOCUMENT_ID) {
+                $value = $this->createDocumentReference($basePath, $value);
+            }
+
             $filter = [
                 'fieldFilter' => [
                     'field' => [
@@ -600,6 +619,8 @@ class Query
      */
     private function buildPosition($key, $fieldValues, $before)
     {
+        $basePath = $this->basePath();
+
         $orderBy = $this->queryKey('orderBy') ?: [];
         if ($fieldValues instanceof DocumentSnapshot) {
             list($fieldValues, $orderBy) = $this->snapshotPosition($fieldValues, $orderBy);
@@ -637,25 +658,8 @@ class Query
 
         foreach ($fieldValues as $i => &$value) {
             if ($orderBy[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
-                $collection = $this->childPath(
-                    $this->parent,
-                    $this->query['from'][0]['collectionId']
-                );
-
                 if (is_string($value)) {
-                    $parent = new CollectionReference(
-                        $this->connection,
-                        $this->valueMapper,
-                        $collection
-                    );
-
-                    $name = $this->childPath($collection, $value);
-                    $value = new DocumentReference(
-                        $this->connection,
-                        $this->valueMapper,
-                        $parent,
-                        $name
-                    );
+                    $value = $this->createDocumentReference($basePath, $value);
                 } else {
                     if ($value instanceof DocumentReference) {
                         $name = $value->name();
@@ -667,7 +671,7 @@ class Query
                         );
                     }
 
-                    if (!$this->isPrefixOf($collection, $name)) {
+                    if (!$this->isPrefixOf($basePath, $name)) {
                         throw new \InvalidArgumentException(sprintf(
                             '%s is not a part of the query result set and ' .
                             'cannot be used as a query boundary',
@@ -675,7 +679,7 @@ class Query
                         ));
                     }
 
-                    if ($parent !== $collection) {
+                    if ($parent !== $basePath && !$this->allDescendants()) {
                         throw new \InvalidArgumentException(
                             'Only direct children may be used as query boundaries.'
                         );
@@ -834,5 +838,60 @@ class Query
         }
 
         return $query;
+    }
+
+    /**
+     * Creates a document reference from a string, relative to a given base.
+     *
+     * @param string $basePath The relative base of the document reference.
+     * @param string $name The document name/ID.
+     * @return DocumentReference
+     */
+    private function createDocumentReference($basePath, $name)
+    {
+        $name = $this->childPath($basePath, $name);
+        if (!$this->isDocument($name)) {
+            throw new \InvalidArgumentException(sprintf(
+                'Value must point to a document, but was `%s`, which is a collection. ' .
+                'Please provide a value with an even number of components.',
+                $name
+            ));
+        }
+
+        $parent = new CollectionReference(
+            $this->connection,
+            $this->valueMapper,
+            $this->parentPath($name)
+        );
+
+        return new DocumentReference(
+            $this->connection,
+            $this->valueMapper,
+            $parent,
+            $name
+        );
+    }
+
+    /**
+     * Indicates whether the current query should include all descendants.
+     *
+     * @return bool
+     */
+    private function allDescendants()
+    {
+        return isset($this->query['from'][0]['allDescendants']) && $this->query['from'][0]['allDescendants'];
+    }
+
+    /**
+     * Returns the query base path, either the parent in an all descendants query,
+     * or the parent with the given collection ID appended otherwise.
+     *
+     * @return string
+     */
+    private function basePath()
+    {
+        return $this->allDescendants()
+            ? $this->parent
+            : $this->childPath($this->parent, $this->query['from'][0]['collectionId']);
     }
 }

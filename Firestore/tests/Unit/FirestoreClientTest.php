@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\WriteBatch;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -313,6 +314,51 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals($names[0], $res[0]->name());
         $this->assertEquals($names[1], $res[1]->name());
         $this->assertEquals($names[2], $res[2]->name());
+    }
+
+    public function testCollectionGroup()
+    {
+        $this->connection->runQuery(Argument::allOf(
+            Argument::withEntry('structuredQuery', [
+                'from' => [
+                    [
+                        'collectionId' => 'foo',
+                        'allDescendants' => true
+                    ]
+                ],
+                'orderBy' => [],
+                'offset' => 0
+            ]),
+            Argument::withEntry('parent', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents')
+        ))->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'document' => [
+                    'name' => 'a/b/c/d',
+                    'fields' => []
+                ],
+                'readTime' => null
+            ], [
+                'document' => [
+                    'name' => 'c/d',
+                    'fields' => []
+                ],
+                'readTime' => null
+            ]
+        ]));
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $query = $this->client->collectionGroup('foo');
+
+        $this->assertInstanceOf(Query::class, $query);
+        $query->documents();
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testCollectionGroupInvalidId()
+    {
+        $this->client->collectionGroup('foo/bar');
     }
 
     public function testRunTransaction()
