@@ -123,12 +123,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_automatic_punctuation = false;
     /**
-     * *Optional* Metadata regarding this request.
-     *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
-     */
-    private $metadata = null;
-    /**
      * *Optional* Which model to select for the given request. Select the model
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
@@ -256,8 +250,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           Note: This is currently offered as an experimental service, complimentary
      *           to all users. In the future this may be exclusively available as a
      *           premium feature.
-     *     @type \Google\Cloud\Speech\V1\RecognitionMetadata $metadata
-     *           *Optional* Metadata regarding this request.
      *     @type string $model
      *           *Optional* Which model to select for the given request. Select the model
      *           best suited to your domain to get best results. If a model is not
@@ -660,32 +652,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_automatic_punctuation = $var;
-
-        return $this;
-    }
-
-    /**
-     * *Optional* Metadata regarding this request.
-     *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionMetadata
-     */
-    public function getMetadata()
-    {
-        return $this->metadata;
-    }
-
-    /**
-     * *Optional* Metadata regarding this request.
-     *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
-     * @param \Google\Cloud\Speech\V1\RecognitionMetadata $var
-     * @return $this
-     */
-    public function setMetadata($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\RecognitionMetadata::class);
-        $this->metadata = $var;
 
         return $this;
     }
