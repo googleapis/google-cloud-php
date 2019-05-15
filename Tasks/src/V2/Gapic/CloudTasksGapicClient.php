@@ -415,8 +415,7 @@ class CloudTasksGapicClient
      *          field can be used as a filter and several operators as supported.
      *          For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      *          described in
-     *          [Stackdriver's Advanced Logs
-     *          Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *          [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      *
      *          Sample filter "state: PAUSED".
      *
@@ -533,9 +532,8 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and
-     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
-     * this method.
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
+     * before using this method.
      *
      * Sample code:
      * ```
@@ -610,9 +608,8 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and
-     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
-     * this method.
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
+     * before using this method.
      *
      * Sample code:
      * ```
@@ -686,9 +683,8 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and
-     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
-     * this method.
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
+     * before using this method.
      *
      * Sample code:
      * ```
@@ -864,8 +860,7 @@ class CloudTasksGapicClient
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
      * queues, follow the 500/50/5 pattern described in
-     * [Managing Cloud Tasks Scaling
-     * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      *
      * Sample code:
      * ```
@@ -1283,7 +1278,8 @@ class CloudTasksGapicClient
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * The maximum task size is 100KB.
+     * * For [App Engine queues][google.cloud.tasks.v2.AppEngineHttpQueue], the maximum task size is
+     *   100KB.
      *
      * Sample code:
      * ```

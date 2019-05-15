@@ -39,12 +39,12 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      */
     private $response_view = 0;
     /**
-     * Maximum page size.
-     * Fewer tasks than requested might be returned, even if more tasks exist; use
-     * [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the response to
-     * determine if more tasks exist.
-     * The maximum page size is 1000. If unspecified, the page size will be the
-     * maximum.
+     * Requested page size. Fewer tasks than requested might be returned.
+     * The maximum page size is 1000. If unspecified, the page size will
+     * be the maximum. Fewer tasks than requested might be returned,
+     * even if more tasks exist; use
+     * [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the
+     * response to determine if more tasks exist.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
@@ -84,12 +84,12 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
      *           `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/)
      *           permission on the [Task][google.cloud.tasks.v2.Task] resource.
      *     @type int $page_size
-     *           Maximum page size.
-     *           Fewer tasks than requested might be returned, even if more tasks exist; use
-     *           [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the response to
-     *           determine if more tasks exist.
-     *           The maximum page size is 1000. If unspecified, the page size will be the
-     *           maximum.
+     *           Requested page size. Fewer tasks than requested might be returned.
+     *           The maximum page size is 1000. If unspecified, the page size will
+     *           be the maximum. Fewer tasks than requested might be returned,
+     *           even if more tasks exist; use
+     *           [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the
+     *           response to determine if more tasks exist.
      *     @type string $page_token
      *           A token identifying the page of results to return.
      *           To request the first page results, page_token must be empty. To
@@ -180,12 +180,12 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum page size.
-     * Fewer tasks than requested might be returned, even if more tasks exist; use
-     * [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the response to
-     * determine if more tasks exist.
-     * The maximum page size is 1000. If unspecified, the page size will be the
-     * maximum.
+     * Requested page size. Fewer tasks than requested might be returned.
+     * The maximum page size is 1000. If unspecified, the page size will
+     * be the maximum. Fewer tasks than requested might be returned,
+     * even if more tasks exist; use
+     * [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the
+     * response to determine if more tasks exist.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
@@ -196,12 +196,12 @@ class ListTasksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum page size.
-     * Fewer tasks than requested might be returned, even if more tasks exist; use
-     * [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the response to
-     * determine if more tasks exist.
-     * The maximum page size is 1000. If unspecified, the page size will be the
-     * maximum.
+     * Requested page size. Fewer tasks than requested might be returned.
+     * The maximum page size is 1000. If unspecified, the page size will
+     * be the maximum. Fewer tasks than requested might be returned,
+     * even if more tasks exist; use
+     * [next_page_token][google.cloud.tasks.v2.ListTasksResponse.next_page_token] in the
+     * response to determine if more tasks exist.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
