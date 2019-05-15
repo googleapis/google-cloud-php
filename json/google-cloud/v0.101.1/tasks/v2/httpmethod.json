@@ -1,0 +1,1 @@
+{"id":"tasks\/v2\/httpmethod","type":"","title":"Google\\Cloud\\Tasks\\V2\\HttpMethod","name":"HttpMethod","description":"<p>The HTTP method used to deliver the task.<\/p>\n<p>Protobuf type <code>google.cloud.tasks.v2.HttpMethod<\/code><\/p>","examples":[],"resources":[],"methods":[]}

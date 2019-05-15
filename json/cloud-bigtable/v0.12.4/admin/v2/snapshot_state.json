@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/snapshot_state","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Snapshot_State","name":"Snapshot_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\Snapshot\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}
