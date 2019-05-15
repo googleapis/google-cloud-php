@@ -144,7 +144,7 @@ class ReleaseBuilder extends GoogleCloudCommand
             }
 
             $commitRelease = $this->interactiveCommitRelease($output, $commit, $components);
-            $release = $this->mergeCommitIntoRelease($release, $commitRelease);
+            $release = $commitRelease ? $this->mergeCommitIntoRelease($release, $commitRelease) : $release;
         }
 
         $release = $this->determineUmbrellaLevel($release);
@@ -350,7 +350,8 @@ class ReleaseBuilder extends GoogleCloudCommand
                 'Change Release Type to Patch',
                 'Change Release Type to Minor',
                 'Change Release Type to Major',
-                'Start over'
+                'Start over',
+                'Skip Commit'
             ];
             $q = $this->choice('Choose an action', $choices, $choices[0]);
 
@@ -381,6 +382,9 @@ class ReleaseBuilder extends GoogleCloudCommand
                 case $choices[5]:
                     $commitRelease = $this->processCommit($output, $commit, $components);
                     break;
+
+                case $choices[6]:
+                    return;
             }
         } while (!$proceed);
 
