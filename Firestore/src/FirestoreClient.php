@@ -330,7 +330,7 @@ class FirestoreClient
      * a collection or subcollection with the given collection ID.
      *
      * A collection group query with a collection ID of `foo` will return
-     * documents from `/foo` and `/abc/dce/foo`, but not `/foo/bar`.
+     * documents from `/foo` and `/abc/dce/foo`, but not `/foo/abc/dce`.
      *
      * Example:
      * ```
