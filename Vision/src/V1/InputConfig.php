@@ -32,8 +32,8 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      */
     private $content = '';
     /**
-     * The type of the file. Currently only "application/pdf" and "image/tiff"
-     * are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and
+     * "image/gif" are supported. Wildcards are not supported.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
@@ -54,8 +54,8 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *           Currently, this field only works for BatchAnnotateFiles requests. It does
      *           not work for AsyncBatchAnnotateFiles requests.
      *     @type string $mime_type
-     *           The type of the file. Currently only "application/pdf" and "image/tiff"
-     *           are supported. Wildcards are not supported.
+     *           The type of the file. Currently only "application/pdf", "image/tiff" and
+     *           "image/gif" are supported. Wildcards are not supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,8 +124,8 @@ class InputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the file. Currently only "application/pdf" and "image/tiff"
-     * are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and
+     * "image/gif" are supported. Wildcards are not supported.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @return string
@@ -136,8 +136,8 @@ class InputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the file. Currently only "application/pdf" and "image/tiff"
-     * are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and
+     * "image/gif" are supported. Wildcards are not supported.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @param string $var
