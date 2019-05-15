@@ -74,9 +74,8 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and
-     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
-     * this method.
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
+     * before using this method.
      * @param \Google\Cloud\Tasks\V2\CreateQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -102,9 +101,8 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and
-     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
-     * this method.
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
+     * before using this method.
      * @param \Google\Cloud\Tasks\V2\UpdateQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -128,9 +126,8 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and
-     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
-     * this method.
+     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
+     * before using this method.
      * @param \Google\Cloud\Tasks\V2\DeleteQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -194,8 +191,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
      * queues, follow the 500/50/5 pattern described in
-     * [Managing Cloud Tasks Scaling
-     * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      * @param \Google\Cloud\Tasks\V2\ResumeQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -315,7 +311,8 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * The maximum task size is 100KB.
+     * * For [App Engine queues][google.cloud.tasks.v2.AppEngineHttpQueue], the maximum task size is
+     *   100KB.
      * @param \Google\Cloud\Tasks\V2\CreateTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

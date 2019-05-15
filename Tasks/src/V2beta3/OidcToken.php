@@ -11,10 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Contains information needed for generating an
  * [OpenID Connect
- * token](https://developers.google.com/identity/protocols/OpenIDConnect).
- * This type of authorization can be used for many scenarios, including
- * calling Cloud Run, or endpoints where you intend to validate the token
- * yourself.
+ * token](https://developers.google.com/identity/protocols/OpenIDConnect). This
+ * type of authorization should be used when sending requests to third party
+ * endpoints.
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.OidcToken</code>
  */
