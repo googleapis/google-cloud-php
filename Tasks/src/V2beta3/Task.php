@@ -149,9 +149,6 @@ class Task extends \Google\Protobuf\Internal\Message
      *           An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2beta3.AppEngineHttpRequest] set.
      *     @type \Google\Cloud\Tasks\V2beta3\HttpRequest $http_request
      *           HTTP request that is sent to the task's target.
-     *           Warning: This is an [alpha](https://cloud.google.com/terms/launch-stages)
-     *           feature. If you haven't already joined, you can [use this form to sign
-     *           up](https://docs.google.com/forms/d/e/1FAIpQLSfc4uEy9CBHKYUSdnY1hdhKDCX7julVZHy3imOiR-XrU7bUNQ/viewform).
      *           An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           The time when the task is scheduled to be attempted.
@@ -297,9 +294,6 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTP request that is sent to the task's target.
-     * Warning: This is an [alpha](https://cloud.google.com/terms/launch-stages)
-     * feature. If you haven't already joined, you can [use this form to sign
-     * up](https://docs.google.com/forms/d/e/1FAIpQLSfc4uEy9CBHKYUSdnY1hdhKDCX7julVZHy3imOiR-XrU7bUNQ/viewform).
      * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpRequest http_request = 11;</code>
@@ -312,9 +306,6 @@ class Task extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTP request that is sent to the task's target.
-     * Warning: This is an [alpha](https://cloud.google.com/terms/launch-stages)
-     * feature. If you haven't already joined, you can [use this form to sign
-     * up](https://docs.google.com/forms/d/e/1FAIpQLSfc4uEy9CBHKYUSdnY1hdhKDCX7julVZHy3imOiR-XrU7bUNQ/viewform).
      * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.HttpRequest http_request = 11;</code>

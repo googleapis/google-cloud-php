@@ -16,24 +16,24 @@ class Cloudtasks
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
-        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        \GPBMetadata\Google\Cloud\Tasks\V2Beta3\Task::initOnce();
         \GPBMetadata\Google\Cloud\Tasks\V2Beta3\Queue::initOnce();
+        \GPBMetadata\Google\Cloud\Tasks\V2Beta3\Task::initOnce();
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Rpc\Code::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0a8f210a2b676f6f676c652f636c6f75642f7461736b732f763262657461" .
             "332f636c6f75647461736b732e70726f746f121a676f6f676c652e636c6f" .
             "75642e7461736b732e763262657461331a19676f6f676c652f6170692f72" .
-            "65736f757263652e70726f746f1a1b676f6f676c652f70726f746f627566" .
-            "2f656d7074792e70726f746f1a20676f6f676c652f70726f746f6275662f" .
-            "6669656c645f6d61736b2e70726f746f1a25676f6f676c652f636c6f7564" .
-            "2f7461736b732f763262657461332f7461736b2e70726f746f1a26676f6f" .
-            "676c652f636c6f75642f7461736b732f763262657461332f71756575652e" .
-            "70726f746f1a1e676f6f676c652f69616d2f76312f69616d5f706f6c6963" .
-            "792e70726f746f1a1a676f6f676c652f69616d2f76312f706f6c6963792e" .
+            "65736f757263652e70726f746f1a26676f6f676c652f636c6f75642f7461" .
+            "736b732f763262657461332f71756575652e70726f746f1a25676f6f676c" .
+            "652f636c6f75642f7461736b732f763262657461332f7461736b2e70726f" .
+            "746f1a1e676f6f676c652f69616d2f76312f69616d5f706f6c6963792e70" .
+            "726f746f1a1a676f6f676c652f69616d2f76312f706f6c6963792e70726f" .
+            "746f1a1b676f6f676c652f70726f746f6275662f656d7074792e70726f74" .
+            "6f1a20676f6f676c652f70726f746f6275662f6669656c645f6d61736b2e" .
             "70726f746f1a15676f6f676c652f7270632f636f64652e70726f746f225a" .
             "0a114c69737451756575657352657175657374120e0a06706172656e7418" .
             "0120012809120e0a0666696c74657218022001280912110a09706167655f" .
