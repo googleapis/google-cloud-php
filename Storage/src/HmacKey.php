@@ -27,7 +27,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
  * use Google\Cloud\Storage\StorageClient;
  *
  * $storage = new StorageClient();
- * $key = $storage->hmacKey($accessId);
+ * $hmacKey = $storage->hmacKey($accessId);
  * ```
  */
 class HmacKey
@@ -83,7 +83,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $accessId = $key->accessId();
+     * $accessId = $hmacKey->accessId();
      * ```
      *
      * @return string
@@ -98,7 +98,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $keyMetadata = $key->reload();
+     * $keyMetadata = $hmacKey->reload();
      * ```
      *
      * @param array $options {
@@ -127,7 +127,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $keyMetadata = $key->metadata();
+     * $keyMetadata = $hmacKey->metadata();
      * ```
      *
      * @param array $options {
@@ -150,7 +150,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $secret = $key->secret();
+     * $secret = $hmacKey->secret();
      * ```
      *
      * @return string|null
@@ -165,7 +165,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $key->update('INACTIVE');
+     * $hmacKey->update('INACTIVE');
      * ```
      *
      * @param string $state The key state. Either `ACTIVE` or `INACTIVE`.
@@ -196,7 +196,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $key->delete();
+     * $hmacKey->delete();
      * ```
      *
      * @param array $options {

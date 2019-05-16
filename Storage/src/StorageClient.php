@@ -428,7 +428,7 @@ class StorageClient
      * ```
      * // Get the HMAC keys associated with a Service Account email
      * $hmacKeys = $storage->hmacKeys([
-     *     'serviceAccountEmail' => 'account@myProject.iam.gserviceaccount.com'
+     *     'serviceAccountEmail' => $serviceAccountEmail
      * ]);
      * ```
      *
