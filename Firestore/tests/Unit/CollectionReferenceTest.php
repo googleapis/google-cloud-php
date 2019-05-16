@@ -35,7 +35,7 @@ class CollectionReferenceTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
-    const PARENT = 'projects/example_project/databases/(default)/documents/a';
+    const COLLECTION_PARENT = 'projects/example_project/databases/(default)/documents/a';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
@@ -123,7 +123,7 @@ class CollectionReferenceTest extends TestCase
         $docName = self::NAME . '/foo';
 
         $this->connection->listDocuments(Argument::allOf(
-            Argument::withEntry('parent', self::PARENT),
+            Argument::withEntry('parent', self::COLLECTION_PARENT),
             Argument::withEntry('collectionId', $id),
             Argument::withEntry('mask', [])
         ))->shouldBeCalled()->willReturn([

@@ -340,15 +340,15 @@ class FirestoreClient
      * echo sprintf('Found %d documents!', $querySnapshot->size());
      * ```
      *
-     * @param string $collectionId Identifies the collection to query over.
-     *        Every collection or subcollection with this ID as the last segment
-     *        of its path will be included. May not contain a slash.
+     * @param string $id Identifies the collection to query over. Every
+     *        collection or subcollection with this ID as the last segment of
+     *        its path will be included. May not contain a slash.
      * @return Query
      * @throws InvalidArgumentException If the collection ID is not well-formed.
      */
-    public function collectionGroup($collectionId)
+    public function collectionGroup($id)
     {
-        if (strpos($collectionId, '/') !== false) {
+        if (strpos($id, '/') !== false) {
             throw new \InvalidArgumentException(
                 'Collection ID may not contain a slash.'
             );
@@ -361,7 +361,7 @@ class FirestoreClient
             [
                 'from' => [
                     [
-                        'collectionId' => $collectionId,
+                        'collectionId' => $id,
                         'allDescendants' => true
                     ]
                 ]

@@ -36,7 +36,7 @@ class QueryTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
-    const PARENT = 'projects/example_project/databases/(default)/documents';
+    const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
     const COLLECTION = 'a';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
@@ -61,7 +61,7 @@ class QueryTest extends SnippetTestCase
         $query = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
-            self::PARENT,
+            self::QUERY_PARENT,
             [
                 'from' => [
                     [
@@ -225,14 +225,14 @@ class QueryTest extends SnippetTestCase
         $q = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
-            self::PARENT,
+            self::QUERY_PARENT,
             [
                 'from' => $from
             ]
         ]);
 
         $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'retries' => 0,
             'structuredQuery' => [
                 'from' => $from

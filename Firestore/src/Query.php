@@ -315,17 +315,14 @@ class Query
             ));
         }
 
-        if ($escapedPathString === self::DOCUMENT_ID &&
-            !($value instanceof DocumentReference) &&
-            !($value instanceof DocumentSnapshot) &&
-            (
-                !is_string($value) ||
-                !$this->isDocument($this->childPath($basePath, $value))
-            )
-        ) {
-            throw new \InvalidArgumentException(
-                'When filtering on document ID, value must be a document reference or valid document name.'
-            );
+        if ($escapedPathString === self::DOCUMENT_ID) {
+            $value = $this->createDocumentReference($basePath, $value);
+
+            if (!$value) {
+                throw new \InvalidArgumentException(
+                    'When filtering on document ID, value must be a document reference or valid document name.'
+                );
+            }
         }
 
         if ((is_float($value) && is_nan($value)) || is_null($value)) {
@@ -346,10 +343,6 @@ class Query
                 ]
             ];
         } else {
-            if (is_string($value) && $escapedPathString === self::DOCUMENT_ID) {
-                $value = $this->createDocumentReference($basePath, $value);
-            }
-
             $filter = [
                 'fieldFilter' => [
                     'field' => [
@@ -660,6 +653,12 @@ class Query
             if ($orderBy[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
                 if (is_string($value)) {
                     $value = $this->createDocumentReference($basePath, $value);
+
+                    if ($value === false) {
+                        throw new \InvalidArgumentException(
+                            'When ordering by document ID, value must be a document reference or valid document name.'
+                        );
+                    }
                 } else {
                     if ($value instanceof DocumentReference) {
                         $name = $value->name();
@@ -843,32 +842,38 @@ class Query
     /**
      * Creates a document reference from a string, relative to a given base.
      *
+     * Returns `false` if the path is not a valid document.
+     *
      * @param string $basePath The relative base of the document reference.
-     * @param string $name The document name/ID.
-     * @return DocumentReference
+     * @param mixed $document The document.
+     * @return DocumentReference|bool
      */
-    private function createDocumentReference($basePath, $name)
+    private function createDocumentReference($basePath, $document)
     {
-        $name = $this->childPath($basePath, $name);
-        if (!$this->isDocument($name)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Value must point to a document, but was `%s`, which is a collection. ' .
-                'Please provide a value with an even number of components.',
-                $name
-            ));
+        if ($document instanceof DocumentReference || $document instanceof DocumentSnapshot) {
+            return $document;
+        }
+
+        if (!is_string($document)) {
+            return false;
+        }
+
+        $childPath = $this->childPath($basePath, $document);
+        if (!$this->isDocument($childPath)) {
+            return false;
         }
 
         $parent = new CollectionReference(
             $this->connection,
             $this->valueMapper,
-            $this->parentPath($name)
+            $this->parentPath($childPath)
         );
 
         return new DocumentReference(
             $this->connection,
             $this->valueMapper,
             $parent,
-            $name
+            $childPath
         );
     }
 

@@ -26,43 +26,6 @@ use Google\Cloud\Firestore\Query;
  */
 class CollectionGroupTest extends FirestoreTestCase
 {
-    private function createDocuments(array $paths)
-    {
-        // Create a random collection name, but make sure
-        // it starts with 'b' for predictable ordering.
-        $collectionGroup = 'b' . uniqid(self::COLLECTION_NAME);
-        $query = self::$client->collectionGroup($collectionGroup);
-
-        foreach ($paths as &$path) {
-            $path = sprintf($path, $collectionGroup);
-        }
-
-        $batch = self::$client->batch();
-        foreach ($paths as $path) {
-            $doc = self::$client->document($path);
-            self::$deletionQueue->add($doc);
-            $batch->set($doc, [
-                'x' => 1
-            ]);
-        }
-
-        $batch->commit();
-
-        return [$query, $paths, $collectionGroup];
-    }
-
-    private function getIds(Query $query)
-    {
-        $documents = $query->documents()->rows();
-        $ids = [];
-        foreach ($documents as $document) {
-            $ids[] = $document->id();
-        }
-        sort($ids);
-
-        return $ids;
-    }
-
     public function testCollectionGroup()
     {
         list ($query) = $this->createDocuments([
@@ -172,5 +135,42 @@ class CollectionGroupTest extends FirestoreTestCase
             ['cg-doc2', 'cg-doc3', 'cg-doc4'],
             $this->getIds($query)
         );
+    }
+
+    private function createDocuments(array $paths)
+    {
+        // Create a random collection name, but make sure
+        // it starts with 'b' for predictable ordering.
+        $collectionGroup = 'b' . uniqid(self::COLLECTION_NAME);
+        $query = self::$client->collectionGroup($collectionGroup);
+
+        foreach ($paths as &$path) {
+            $path = sprintf($path, $collectionGroup);
+        }
+
+        $batch = self::$client->batch();
+        foreach ($paths as $path) {
+            $doc = self::$client->document($path);
+            self::$deletionQueue->add($doc);
+            $batch->set($doc, [
+                'x' => 1
+            ]);
+        }
+
+        $batch->commit();
+
+        return [$query, $paths, $collectionGroup];
+    }
+
+    private function getIds(Query $query)
+    {
+        $documents = $query->documents()->rows();
+        $ids = [];
+        foreach ($documents as $document) {
+            $ids[] = $document->id();
+        }
+        sort($ids);
+
+        return $ids;
     }
 }

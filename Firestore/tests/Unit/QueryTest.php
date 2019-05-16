@@ -43,7 +43,7 @@ class QueryTest extends TestCase
 {
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
-    const PARENT = 'projects/example_project/databases/(default)/documents';
+    const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
     const COLLECTION = 'foo';
 
     private $queryObj = [
@@ -61,7 +61,7 @@ class QueryTest extends TestCase
         $this->query = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
-            self::PARENT,
+            self::QUERY_PARENT,
             $this->queryObj
         ], ['connection', 'query', 'transaction']);
 
@@ -70,7 +70,7 @@ class QueryTest extends TestCase
         $this->collectionGroupQuery = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
-            self::PARENT,
+            self::QUERY_PARENT,
             $allDescendants
         ], ['connection', 'query', 'transaction']);
     }
@@ -83,14 +83,14 @@ class QueryTest extends TestCase
         new Query(
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
-            self::PARENT,
+            self::QUERY_PARENT,
             []
         );
     }
 
     public function testDocuments()
     {
-        $name = self::PARENT .'/foo';
+        $name = self::QUERY_PARENT .'/foo';
 
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalled()
@@ -122,7 +122,7 @@ class QueryTest extends TestCase
 
     public function testDocumentsMetadata()
     {
-        $name = self::PARENT .'/foo';
+        $name = self::QUERY_PARENT .'/foo';
 
         $ts = (new \DateTime)->format(Timestamp::FORMAT);
         $this->connection->runQuery(Argument::any())
@@ -162,7 +162,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) use ($paths) {
             return $q->select($paths);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'select' => [
@@ -187,7 +187,7 @@ class QueryTest extends TestCase
             $res = $res->select(['users.dan']);
             return $res;
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'select' => [
@@ -204,7 +204,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) {
             return $q->select([]);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'select' => [
@@ -226,7 +226,7 @@ class QueryTest extends TestCase
 
             return $res;
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'where' => [
@@ -352,7 +352,7 @@ class QueryTest extends TestCase
 
             return $res;
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'where' => [
@@ -414,7 +414,7 @@ class QueryTest extends TestCase
 
             return $res;
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -485,7 +485,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) use ($limit) {
             return $q->limit($limit);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'limit' => ['value' => $limit]
@@ -500,7 +500,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) use ($offset) {
             return $q->offset($offset);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'offset' => $offset
@@ -513,7 +513,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) {
             return $q->orderBy('name', Query::DIR_DESCENDING)->startAt(['john']);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -541,7 +541,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) {
             return $q->orderBy('name', Query::DIR_DESCENDING)->startAfter(['john']);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -569,7 +569,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) {
             return $q->orderBy('name', Query::DIR_DESCENDING)->endBefore(['john']);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -597,7 +597,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) {
             return $q->orderBy('name', Query::DIR_DESCENDING)->endAt(['john']);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -627,7 +627,7 @@ class QueryTest extends TestCase
         $this->runAndAssert(function (Query $q) use ($documentPath) {
             return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt(['john']);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -642,7 +642,7 @@ class QueryTest extends TestCase
                     'before' => false,
                     'values' => [
                         [
-                            'referenceValue' => self::PARENT .'/'. $documentPath
+                            'referenceValue' => self::QUERY_PARENT .'/'. $documentPath
                         ]
                     ]
                 ]
@@ -653,16 +653,16 @@ class QueryTest extends TestCase
     public function testBuildPositionWithDocumentReference()
     {
         $c = $this->prophesize(CollectionReference::class);
-        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
 
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
 
         $this->runAndAssert(function (Query $q) use ($ref) {
             return $q->orderBy(Query::DOCUMENT_ID, Query::DIR_DESCENDING)->endAt([$ref->reveal()]);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -677,7 +677,7 @@ class QueryTest extends TestCase
                     'before' => false,
                     'values' => [
                         [
-                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
                         ]
                     ]
                 ]
@@ -688,20 +688,20 @@ class QueryTest extends TestCase
     public function testPositionWithDocumentSnapshot()
     {
         $c = $this->prophesize(CollectionReference::class);
-        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
 
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
 
         $snapshot = $this->prophesize(DocumentSnapshot::class);
-        $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
 
         $this->runAndAssert(function (Query $q) use ($snapshot) {
             return $this->query->startAt($snapshot->reveal());
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -716,7 +716,7 @@ class QueryTest extends TestCase
                     'before' => true,
                     'values' => [
                         [
-                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
                         ]
                     ]
                 ]
@@ -744,14 +744,14 @@ class QueryTest extends TestCase
     public function testPositionSnapshotOrderBy()
     {
         $c = $this->prophesize(CollectionReference::class);
-        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
 
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
 
         $snapshot = $this->prophesize(DocumentSnapshot::class);
-        $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('a')->willReturn('b');
         $snapshot->get('c')->willReturn('d');
@@ -760,7 +760,7 @@ class QueryTest extends TestCase
             $query = $this->query->orderBy('a')->orderBy('c')->orderBy(FieldPath::documentId());
             return $query->startAt($snapshot->reveal());
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -787,7 +787,7 @@ class QueryTest extends TestCase
                         ['stringValue' => 'b'],
                         ['stringValue' => 'd'],
                         [
-                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
                         ]
                     ]
                 ]
@@ -798,14 +798,14 @@ class QueryTest extends TestCase
     public function testPositionInequalityFilter()
     {
         $c = $this->prophesize(CollectionReference::class);
-        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId']);
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId']);
 
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $ref->parent()->willReturn($c->reveal());
 
         $snapshot = $this->prophesize(DocumentSnapshot::class);
-        $snapshot->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $snapshot->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
         $snapshot->reference()->willReturn($ref->reveal());
         $snapshot->get('foo')->willReturn('bar');
 
@@ -813,7 +813,7 @@ class QueryTest extends TestCase
             $query = $this->query->where('foo', '>', 'bar');
             return $query->startAt($snapshot->reveal());
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
                 'orderBy' => [
@@ -835,7 +835,7 @@ class QueryTest extends TestCase
                         [
                             'stringValue' => 'bar'
                         ], [
-                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
                         ]
                     ]
                 ],
@@ -868,10 +868,10 @@ class QueryTest extends TestCase
     public function testBuildPositionOutOfBounds()
     {
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/whatev/john');
+        $ref->name()->willReturn(self::QUERY_PARENT .'/whatev/john');
 
         $col = $this->prophesize(CollectionReference::class);
-        $col->name()->willReturn(self::PARENT .'/whatev/john');
+        $col->name()->willReturn(self::QUERY_PARENT .'/whatev/john');
         $ref->parent()->willReturn($col->reveal());
 
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
@@ -908,10 +908,10 @@ class QueryTest extends TestCase
     public function testBuildPositionNestedChild()
     {
         $c = $this->prophesize(CollectionReference::class);
-        $c->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
+        $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
 
         $ref = $this->prophesize(DocumentReference::class);
-        $ref->name()->willReturn(self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john/bar/bat/baz');
+        $ref->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john/bar/bat/baz');
         $ref->parent()->willReturn($c->reveal());
 
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
@@ -923,7 +923,7 @@ class QueryTest extends TestCase
             $query = $q->orderBy(FieldPath::documentId());
             return $query->startAt([$this->queryFrom()[0]['collectionId'] .'/john']);
         }, [
-            'parent' => self::PARENT,
+            'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(true),
                 'orderBy' => [
@@ -938,7 +938,7 @@ class QueryTest extends TestCase
                     'before' => true,
                     'values' => [
                         [
-                            'referenceValue' => self::PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
+                            'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
                         ]
                     ]
                 ]
