@@ -430,6 +430,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateHmacKey(array $args = [])
+    {
+        return $this->send('projects.resources.hmacKeys', 'update', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function listHmacKeys(array $args = [])
     {
         return $this->send('projects.resources.hmacKeys', 'list', $args);

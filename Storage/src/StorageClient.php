@@ -183,12 +183,7 @@ class StorageClient
      */
     public function buckets(array $options = [])
     {
-        if (!$this->projectId) {
-            throw new GoogleException(
-                'No project ID was provided, ' .
-                'and we were unable to detect a default project ID.'
-            );
-        }
+        $this->requireProjectId();
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
@@ -321,12 +316,8 @@ class StorageClient
      */
     public function createBucket($name, array $options = [])
     {
-        if (!$this->projectId) {
-            throw new GoogleException(
-                'No project ID was provided, ' .
-                'and we were unable to detect a default project ID.'
-            );
-        }
+        $this->requireProjectId();
+
         if (isset($options['lifecycle']) && $options['lifecycle'] instanceof Lifecycle) {
             $options['lifecycle'] = $options['lifecycle']->toArray();
         }
@@ -455,24 +446,19 @@ class StorageClient
      */
     public function hmacKeys(array $options = [])
     {
-        if (!$this->projectId) {
-            throw new GoogleException(
-                'No project ID was provided, ' .
-                'and we were unable to detect a default project ID.'
-            );
-        }
+        $this->requireProjectId();
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
-                function (array $key) {
+                function (array $metadata) {
                     return $this->hmacKey(
-                        $key['metadata']['accessId'],
-                        $key['metadata']
+                        $metadata['accessId'],
+                        $metadata
                     );
                 },
                 [$this->connection, 'listHmacKeys'],
-                ['project' => $this->projectId] + $options,
+                ['projectId' => $this->projectId] + $options,
                 ['resultLimit' => $resultLimit]
             )
         );
@@ -492,12 +478,7 @@ class StorageClient
      */
     public function hmacKey($accessId, array $metadata = [])
     {
-        if (!$this->projectId) {
-            throw new GoogleException(
-                'No project ID was provided, ' .
-                'and we were unable to detect a default project ID.'
-            );
-        }
+        $this->requireProjectId();
 
         return new HmacKey($this->connection, $this->projectId, $accessId, $metadata);
     }
@@ -525,12 +506,7 @@ class StorageClient
      */
     public function createHmacKey($serviceAccountEmail, array $options = [])
     {
-        if (!$this->projectId) {
-            throw new GoogleException(
-                'No project ID was provided, ' .
-                'and we were unable to detect a default project ID.'
-            );
-        }
+        $this->requireProjectId();
 
         $res = $this->connection->createHmacKey([
             'projectId' => $this->projectId,
@@ -544,5 +520,21 @@ class StorageClient
             $res['metadata'],
             $res['secret']
         );
+    }
+
+    /**
+     * Throw an exception if no project ID available.
+     *
+     * @return void
+     * @throws GoogleException
+     */
+    private function requireProjectId()
+    {
+        if (!$this->projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
     }
 }

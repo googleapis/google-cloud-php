@@ -181,5 +181,10 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateHmacKey(array $args = []);
+
+    /**
+     * @param array $args
+     */
     public function listHmacKeys(array $args = []);
 }

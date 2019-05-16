@@ -118,7 +118,12 @@ class RestTest extends TestCase
             ['insertNotification'],
             ['listNotifications'],
             ['getServiceAccount'],
-            ['lockRetentionPolicy']
+            ['lockRetentionPolicy'],
+            ['createHmacKey'],
+            ['deleteHmacKey'],
+            ['getHmacKey'],
+            ['updateHmacKey'],
+            ['listHmacKeys'],
         ];
     }
 

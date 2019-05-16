@@ -72,13 +72,29 @@ class HmacKey
         $secret = null
     ) {
         $this->connection = $connection;
-        $this->acessId = $accessId;
+        $this->projectId = $projectId;
+        $this->accessId = $accessId;
         $this->metadata = $metadata;
         $this->secret = $secret;
     }
 
     /**
-     * Fetch the key metadata from Cloud Storage
+     * Get the HMAC Key Access ID.
+     *
+     * Example:
+     * ```
+     * $accessId = $key->accessId();
+     * ```
+     *
+     * @return string
+     */
+    public function accessId()
+    {
+        return $this->accessId;
+    }
+
+    /**
+     * Fetch the key metadata from Cloud Storage.
      *
      * Example:
      * ```
@@ -141,11 +157,42 @@ class HmacKey
      */
     public function secret()
     {
-        return $this->hmacKey['secret'];
+        return $this->secret;
+    }
+
+    /**
+     * Update the HMAC Key state.
+     *
+     * Example:
+     * ```
+     * $key->update('INACTIVE');
+     * ```
+     *
+     * @param string $state The key state. Either `ACTIVE` or `INACTIVE`.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
+     * }
+     * @return array
+     */
+    public function update($state, array $options = [])
+    {
+        $this->metadata = $this->connection->updateHmacKey([
+            'accessId' => $this->accessId,
+            'projectId' => $this->projectId,
+            'state' => $state
+        ] + $options);
+
+        return $this->metadata;
     }
 
     /**
      * Delete the HMAC Key.
+     *
+     * Key state must be set to `INACTIVE` prior to deletion. See
+     * {@see Google\Cloud\Storage\HmacKey::update()} for details.
      *
      * Example:
      * ```
@@ -163,7 +210,8 @@ class HmacKey
     public function delete(array $options = [])
     {
         $this->connection->deleteHmacKey([
-            'accessId' => $this->accessId
+            'accessId' => $this->accessId,
+            'projectId' => $this->projectId,
         ] + $options);
     }
 }
