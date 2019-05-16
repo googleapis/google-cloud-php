@@ -50,7 +50,7 @@ class HmacKey
     /**
      * @var array|null
      */
-    private $metadata;
+    private $info;
 
     /**
      * @var string|null
@@ -61,20 +61,20 @@ class HmacKey
      * @param ConnectionInterface $connection A connection to Cloud Storage.
      * @param string $projectId The current project ID.
      * @param string $accessId The key identifier.
-     * @param array|null $metadata The key metadata.
+     * @param array|null $info The key metadata.
      * @param string|null $secret The key secret.
      */
     public function __construct(
         ConnectionInterface $connection,
         $projectId,
         $accessId,
-        array $metadata = [],
+        array $info = [],
         $secret = null
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->accessId = $accessId;
-        $this->metadata = $metadata;
+        $this->info = $info;
         $this->secret = $secret;
     }
 
@@ -111,12 +111,12 @@ class HmacKey
      */
     public function reload(array $options = [])
     {
-        $this->metadata = $this->connection->getHmacKey([
+        $this->info = $this->connection->getHmacKey([
             'projectId' => $this->projectId,
             'accessId' => $this->accessId
         ] + $options);
 
-        return $this->metadata;
+        return $this->info;
     }
 
     /**
@@ -140,7 +140,7 @@ class HmacKey
      */
     public function info(array $options = [])
     {
-        return $this->metadata ?: $this->reload($options);
+        return $this->info ?: $this->reload($options);
     }
 
     /**
@@ -179,13 +179,13 @@ class HmacKey
      */
     public function update($state, array $options = [])
     {
-        $this->metadata = $this->connection->updateHmacKey([
+        $this->info = $this->connection->updateHmacKey([
             'accessId' => $this->accessId,
             'projectId' => $this->projectId,
             'state' => $state
         ] + $options);
 
-        return $this->metadata;
+        return $this->info;
     }
 
     /**

@@ -50,7 +50,7 @@ class HmacKeyTest extends TestCase
             $this->metadata['accessId'],
             $this->metadata,
             $this->secret
-        ], ['connection', 'metadata', 'secret']);
+        ], ['connection', 'info', 'secret']);
     }
 
     public function testAccessId()
@@ -81,7 +81,7 @@ class HmacKeyTest extends TestCase
         ])->shouldBeCalledTimes(1)->willReturn($this->metadata);
 
         $this->key->___setProperty('connection', $this->connection->reveal());
-        $this->key->___setProperty('metadata', []);
+        $this->key->___setProperty('info', []);
 
         $this->assertEquals($this->metadata, $this->key->info());
 
