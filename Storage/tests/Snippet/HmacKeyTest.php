@@ -41,8 +41,6 @@ class HmacKeyTest extends SnippetTestCase
 
     private $secret = 'bar';
 
-
-
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -85,9 +83,9 @@ class HmacKeyTest extends SnippetTestCase
         $this->assertEquals($newMetadata, $res->returnVal());
     }
 
-    public function testMetadata()
+    public function testInfo()
     {
-        $snippet = $this->snippetFromMethod(HmacKey::class, 'metadata');
+        $snippet = $this->snippetFromMethod(HmacKey::class, 'info');
         $snippet->addLocal('hmacKey', $this->key);
 
         $this->assertEquals($this->metadata, $snippet->invoke('keyMetadata')->returnVal());

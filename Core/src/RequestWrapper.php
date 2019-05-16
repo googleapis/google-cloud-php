@@ -198,11 +198,10 @@ class RequestWrapper
         }
 
         try {
-            $res = $backoff->execute($this->httpHandler, [
+            return $backoff->execute($this->httpHandler, [
                 $this->applyHeaders($request),
                 $this->getRequestOptions($options)
             ]);
-            return $res;
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }

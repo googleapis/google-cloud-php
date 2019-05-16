@@ -41,7 +41,7 @@ class HmacKeyTest extends StorageTestCase
     public function testKeyLifecycle()
     {
         $key = $this->createHmacKey(self::$serviceAccountEmail);
-        $this->assertEquals('ACTIVE', $key->metadata()['state']);
+        $this->assertEquals('ACTIVE', $key->info()['state']);
         $this->assertNotNull($key->secret());
 
         $this->assertHasKey($key->accessId());

@@ -73,7 +73,7 @@ class HmacKeyTest extends TestCase
         $this->key->reload();
     }
 
-    public function testMetadata()
+    public function testInfo()
     {
         $this->connection->getHmacKey([
             'projectId' => self::PROJECT,
@@ -83,19 +83,19 @@ class HmacKeyTest extends TestCase
         $this->key->___setProperty('connection', $this->connection->reveal());
         $this->key->___setProperty('metadata', []);
 
-        $this->assertEquals($this->metadata, $this->key->metadata());
+        $this->assertEquals($this->metadata, $this->key->info());
 
         // Test that the 2nd call uses cached result.
-        $this->assertEquals($this->metadata, $this->key->metadata());
+        $this->assertEquals($this->metadata, $this->key->info());
     }
 
-    public function testMetadataCached()
+    public function testInfoCached()
     {
         $this->connection->getHmacKey(Argument::any())
             ->shouldNotBeCalled();
 
         $this->key->___setProperty('connection', $this->connection->reveal());
-        $this->assertEquals($this->metadata, $this->key->metadata());
+        $this->assertEquals($this->metadata, $this->key->info());
     }
 
     public function testGetSecret()
@@ -123,7 +123,7 @@ class HmacKeyTest extends TestCase
 
         $res = $this->key->update($state);
         $this->assertEquals($newMetadata, $res);
-        $this->assertEquals($newMetadata, $this->key->metadata());
+        $this->assertEquals($newMetadata, $this->key->info());
     }
 
     public function testDelete()

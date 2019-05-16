@@ -127,7 +127,7 @@ class HmacKey
      *
      * Example:
      * ```
-     * $keyMetadata = $hmacKey->metadata();
+     * $keyMetadata = $hmacKey->info();
      * ```
      *
      * @param array $options {
@@ -138,7 +138,7 @@ class HmacKey
      * }
      * @return array
      */
-    public function metadata(array $options = [])
+    public function info(array $options = [])
     {
         return $this->metadata ?: $this->reload($options);
     }

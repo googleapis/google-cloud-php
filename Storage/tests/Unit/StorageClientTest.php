@@ -202,7 +202,7 @@ class StorageClientTest extends TestCase
         ]))[0];
 
         $this->assertEquals($accessId, $key->accessId());
-        $this->assertEquals(['accessId' => $accessId], $key->metadata());
+        $this->assertEquals(['accessId' => $accessId], $key->info());
         $this->assertNull($key->secret());
     }
 
@@ -234,7 +234,7 @@ class StorageClientTest extends TestCase
         $this->assertInstanceOf(HmacKey::class, $res);
         $this->assertEquals($secret, $res->secret());
         $this->assertEquals($accessId, $res->accessId());
-        $this->assertEquals(['accessId' => $accessId], $res->metadata());
+        $this->assertEquals(['accessId' => $accessId], $res->info());
     }
 
     /**
