@@ -497,11 +497,20 @@ class GrpcTest extends TestCase
     }
 
     /**
+     * @dataProvider invalidFilters
      * @expectedException \InvalidArgumentException
      */
-    public function testInvalidFilter()
+    public function testInvalidFilter($filter)
     {
-        return $this->testQueryPropertyFilters('FOO');
+        return $this->testQueryPropertyFilters($filter);
+    }
+
+    public function invalidFilters()
+    {
+        return [
+            ['F00'],
+            [9999999]
+        ];
     }
 
     private function assertRunsServiceCall($method, $args, $expectedArgs, $return = null, $result = '')

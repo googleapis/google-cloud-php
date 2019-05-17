@@ -19,9 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RequestMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * The client-defined scope or source of the service call, which typically
      * is the domain on
      * which the service has been implemented and is currently being run.
@@ -37,9 +35,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     private $domain = '';
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * A unique session identification string. A session is defined as the
      * duration of an end user's interaction with the service over a certain
      * period.
@@ -53,9 +49,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     private $session_id = '';
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * A unique user identification string, as determined by the client.
      * To have the strongest positive impact on search quality
      * make sure the client-level is unique.
@@ -70,16 +64,10 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     private $user_id = '';
     /**
      * Optional.
-     * If set to `true`,
-     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     * optional. Only set when any of these fields isn't available for some
-     * reason. It is highly recommended not to set this field and provide accurate
-     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
-     * service experience.
+     * If set to `true`, [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are optional.
+     * Only set when any of these fields isn't available for some reason. It
+     * is highly recommended not to set this field and provide accurate
+     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best service experience.
      *
      * Generated from protobuf field <code>bool allow_missing_ids = 4;</code>
      */
@@ -100,9 +88,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $domain
-     *           Required if
-     *           [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     *           is unset or `false`.
+     *           Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      *           The client-defined scope or source of the service call, which typically
      *           is the domain on
      *           which the service has been implemented and is currently being run.
@@ -114,9 +100,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *           on this field being set correctly to a unique domain.
      *           The maximum number of allowed characters is 255.
      *     @type string $session_id
-     *           Required if
-     *           [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     *           is unset or `false`.
+     *           Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      *           A unique session identification string. A session is defined as the
      *           duration of an end user's interaction with the service over a certain
      *           period.
@@ -126,9 +110,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *           on this field being set correctly to a unique session ID.
      *           The maximum number of allowed characters is 255.
      *     @type string $user_id
-     *           Required if
-     *           [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     *           is unset or `false`.
+     *           Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      *           A unique user identification string, as determined by the client.
      *           To have the strongest positive impact on search quality
      *           make sure the client-level is unique.
@@ -139,16 +121,10 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *           The maximum number of allowed characters is 255.
      *     @type bool $allow_missing_ids
      *           Optional.
-     *           If set to `true`,
-     *           [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     *           [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     *           [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     *           optional. Only set when any of these fields isn't available for some
-     *           reason. It is highly recommended not to set this field and provide accurate
-     *           [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     *           [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     *           [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
-     *           service experience.
+     *           If set to `true`, [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are optional.
+     *           Only set when any of these fields isn't available for some reason. It
+     *           is highly recommended not to set this field and provide accurate
+     *           [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best service experience.
      *     @type \Google\Cloud\Talent\V4beta1\DeviceInfo $device_info
      *           Optional.
      *           The type of device used by the job seeker at the time of the call to the
@@ -161,9 +137,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * The client-defined scope or source of the service call, which typically
      * is the domain on
      * which the service has been implemented and is currently being run.
@@ -184,9 +158,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * The client-defined scope or source of the service call, which typically
      * is the domain on
      * which the service has been implemented and is currently being run.
@@ -211,9 +183,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * A unique session identification string. A session is defined as the
      * duration of an end user's interaction with the service over a certain
      * period.
@@ -232,9 +202,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * A unique session identification string. A session is defined as the
      * duration of an end user's interaction with the service over a certain
      * period.
@@ -257,9 +225,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * A unique user identification string, as determined by the client.
      * To have the strongest positive impact on search quality
      * make sure the client-level is unique.
@@ -278,9 +244,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required if
-     * [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids]
-     * is unset or `false`.
+     * Required if [allow_missing_ids][google.cloud.talent.v4beta1.RequestMetadata.allow_missing_ids] is unset or `false`.
      * A unique user identification string, as determined by the client.
      * To have the strongest positive impact on search quality
      * make sure the client-level is unique.
@@ -304,16 +268,10 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * If set to `true`,
-     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     * optional. Only set when any of these fields isn't available for some
-     * reason. It is highly recommended not to set this field and provide accurate
-     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
-     * service experience.
+     * If set to `true`, [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are optional.
+     * Only set when any of these fields isn't available for some reason. It
+     * is highly recommended not to set this field and provide accurate
+     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best service experience.
      *
      * Generated from protobuf field <code>bool allow_missing_ids = 4;</code>
      * @return bool
@@ -325,16 +283,10 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * If set to `true`,
-     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     * optional. Only set when any of these fields isn't available for some
-     * reason. It is highly recommended not to set this field and provide accurate
-     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
-     * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
-     * service experience.
+     * If set to `true`, [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are optional.
+     * Only set when any of these fields isn't available for some reason. It
+     * is highly recommended not to set this field and provide accurate
+     * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain], [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best service experience.
      *
      * Generated from protobuf field <code>bool allow_missing_ids = 4;</code>
      * @param bool $var

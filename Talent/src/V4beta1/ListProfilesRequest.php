@@ -27,9 +27,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to
-     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     * to continue the list.
+     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     * continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
@@ -67,9 +66,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional.
      *           The token that specifies the current offset (that is, starting result).
-     *           Please set the value to
-     *           [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     *           to continue the list.
+     *           Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     *           continue the list.
      *     @type int $page_size
      *           Optional.
      *           The maximum number of profiles to be returned, at most 100.
@@ -122,9 +120,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to
-     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     * to continue the list.
+     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     * continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -137,9 +134,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The token that specifies the current offset (that is, starting result).
-     * Please set the value to
-     * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
-     * to continue the list.
+     * Please set the value to [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token] to
+     * continue the list.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var

@@ -29,15 +29,14 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * Client side application identifier, used to uniquely identify the
-     * recruiter.
+     * application.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 31;</code>
      */
     private $external_id = '';
     /**
-     * Required.
-     * Resource name of the candidate of this application.
+     * Output only. Resource name of the candidate of this application.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      * for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -49,8 +48,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
      * The format is
-     * "projects/{project_id}/jobs/{job_id}",
-     * for example, "projects/api-test-project/jobs/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
+     * for example, "projects/api-test-project/tenants/foo/jobs/bar".
      *
      * Generated from protobuf field <code>string job = 4;</code>
      */
@@ -59,8 +58,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
-     * "projects/{project_id}/companies/{company_id}",
-     * for example, "projects/api-test-project/companies/foo".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
+     * for example, "projects/api-test-project/tenants/foo/companies/bar".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      */
@@ -91,9 +90,9 @@ class Application extends \Google\Protobuf\Internal\Message
     private $state = 0;
     /**
      * Optional.
-     * All interviews (screen, onsite, etc) conducted as part of this application
-     * (includes details such as user conducting the interview, timestamp,
-     * feedback, etc).
+     * All interviews (screen, onsite, and so on) conducted as part of this
+     * application (includes details such as user conducting the interview,
+     * timestamp, feedback, and so on).
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Interview interviews = 16;</code>
      */
@@ -168,11 +167,10 @@ class Application extends \Google\Protobuf\Internal\Message
      *     @type string $external_id
      *           Required.
      *           Client side application identifier, used to uniquely identify the
-     *           recruiter.
+     *           application.
      *           The maximum number of allowed characters is 255.
      *     @type string $profile
-     *           Required.
-     *           Resource name of the candidate of this application.
+     *           Output only. Resource name of the candidate of this application.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -180,14 +178,14 @@ class Application extends \Google\Protobuf\Internal\Message
      *           One of either a job or a company is required.
      *           Resource name of the job which the candidate applied for.
      *           The format is
-     *           "projects/{project_id}/jobs/{job_id}",
-     *           for example, "projects/api-test-project/jobs/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
+     *           for example, "projects/api-test-project/tenants/foo/jobs/bar".
      *     @type string $company
      *           One of either a job or a company is required.
      *           Resource name of the company which the candidate applied for.
      *           The format is
-     *           "projects/{project_id}/companies/{company_id}",
-     *           for example, "projects/api-test-project/companies/foo".
+     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
+     *           for example, "projects/api-test-project/tenants/foo/companies/bar".
      *     @type \Google\Type\Date $application_date
      *           Optional.
      *           The application date.
@@ -202,9 +200,9 @@ class Application extends \Google\Protobuf\Internal\Message
      *           The application state.
      *     @type \Google\Cloud\Talent\V4beta1\Interview[]|\Google\Protobuf\Internal\RepeatedField $interviews
      *           Optional.
-     *           All interviews (screen, onsite, etc) conducted as part of this application
-     *           (includes details such as user conducting the interview, timestamp,
-     *           feedback, etc).
+     *           All interviews (screen, onsite, and so on) conducted as part of this
+     *           application (includes details such as user conducting the interview,
+     *           timestamp, feedback, and so on).
      *     @type \Google\Protobuf\BoolValue $referral
      *           Optional.
      *           If the candidate is referred by a employee.
@@ -276,7 +274,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * Client side application identifier, used to uniquely identify the
-     * recruiter.
+     * application.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 31;</code>
@@ -290,7 +288,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Required.
      * Client side application identifier, used to uniquely identify the
-     * recruiter.
+     * application.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 31;</code>
@@ -306,8 +304,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the candidate of this application.
+     * Output only. Resource name of the candidate of this application.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      * for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -321,8 +318,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the candidate of this application.
+     * Output only. Resource name of the candidate of this application.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      * for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -343,8 +339,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
      * The format is
-     * "projects/{project_id}/jobs/{job_id}",
-     * for example, "projects/api-test-project/jobs/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
+     * for example, "projects/api-test-project/tenants/foo/jobs/bar".
      *
      * Generated from protobuf field <code>string job = 4;</code>
      * @return string
@@ -358,8 +354,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
      * The format is
-     * "projects/{project_id}/jobs/{job_id}",
-     * for example, "projects/api-test-project/jobs/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
+     * for example, "projects/api-test-project/tenants/foo/jobs/bar".
      *
      * Generated from protobuf field <code>string job = 4;</code>
      * @param string $var
@@ -377,8 +373,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
-     * "projects/{project_id}/companies/{company_id}",
-     * for example, "projects/api-test-project/companies/foo".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
+     * for example, "projects/api-test-project/tenants/foo/companies/bar".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      * @return string
@@ -392,8 +388,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
-     * "projects/{project_id}/companies/{company_id}",
-     * for example, "projects/api-test-project/companies/foo".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
+     * for example, "projects/api-test-project/tenants/foo/companies/bar".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      * @param string $var
@@ -499,9 +495,9 @@ class Application extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * All interviews (screen, onsite, etc) conducted as part of this application
-     * (includes details such as user conducting the interview, timestamp,
-     * feedback, etc).
+     * All interviews (screen, onsite, and so on) conducted as part of this
+     * application (includes details such as user conducting the interview,
+     * timestamp, feedback, and so on).
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Interview interviews = 16;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -513,9 +509,9 @@ class Application extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * All interviews (screen, onsite, etc) conducted as part of this application
-     * (includes details such as user conducting the interview, timestamp,
-     * feedback, etc).
+     * All interviews (screen, onsite, and so on) conducted as part of this
+     * application (includes details such as user conducting the interview,
+     * timestamp, feedback, and so on).
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Interview interviews = 16;</code>
      * @param \Google\Cloud\Talent\V4beta1\Interview[]|\Google\Protobuf\Internal\RepeatedField $var

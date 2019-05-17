@@ -101,8 +101,8 @@ class ApplicationServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
-    private static $profileNameTemplate;
     private static $applicationNameTemplate;
+    private static $profileNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -124,15 +124,6 @@ class ApplicationServiceGapicClient
         ];
     }
 
-    private static function getProfileNameTemplate()
-    {
-        if (null == self::$profileNameTemplate) {
-            self::$profileNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/profiles/{profile}');
-        }
-
-        return self::$profileNameTemplate;
-    }
-
     private static function getApplicationNameTemplate()
     {
         if (null == self::$applicationNameTemplate) {
@@ -142,36 +133,25 @@ class ApplicationServiceGapicClient
         return self::$applicationNameTemplate;
     }
 
+    private static function getProfileNameTemplate()
+    {
+        if (null == self::$profileNameTemplate) {
+            self::$profileNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/profiles/{profile}');
+        }
+
+        return self::$profileNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'profile' => self::getProfileNameTemplate(),
                 'application' => self::getApplicationNameTemplate(),
+                'profile' => self::getProfileNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a profile resource.
-     *
-     * @param string $project
-     * @param string $tenant
-     * @param string $profile
-     *
-     * @return string The formatted profile resource.
-     * @experimental
-     */
-    public static function profileName($project, $tenant, $profile)
-    {
-        return self::getProfileNameTemplate()->render([
-            'project' => $project,
-            'tenant' => $tenant,
-            'profile' => $profile,
-        ]);
     }
 
     /**
@@ -197,11 +177,31 @@ class ApplicationServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a profile resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     * @param string $profile
+     *
+     * @return string The formatted profile resource.
+     * @experimental
+     */
+    public static function profileName($project, $tenant, $profile)
+    {
+        return self::getProfileNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+            'profile' => $profile,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}
-     * - application: projects/{project}/tenants/{tenant}/profiles/{profile}/applications/{application}.
+     * - application: projects/{project}/tenants/{tenant}/profiles/{profile}/applications/{application}
+     * - profile: projects/{project}/tenants/{tenant}/profiles/{profile}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -438,15 +438,11 @@ class ApplicationServiceGapicClient
      *          Optional but strongly recommended for the best service
      *          experience.
      *
-     *          If
-     *          [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask]
-     *          is provided, only the specified fields in
-     *          [application][google.cloud.talent.v4beta1.UpdateApplicationRequest.application]
-     *          are updated. Otherwise all the fields are updated.
+     *          If [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask] is provided, only the specified fields in
+     *          [application][google.cloud.talent.v4beta1.UpdateApplicationRequest.application] are updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the application fields to be updated. Only
-     *          top level fields of [Application][google.cloud.talent.v4beta1.Application]
-     *          are supported.
+     *          top level fields of [Application][google.cloud.talent.v4beta1.Application] are supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

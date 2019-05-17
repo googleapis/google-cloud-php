@@ -19,6 +19,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud KMS](#google-cloud-kms-ga) (GA)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
+* [Google Cloud Scheduler](#google-cloud-scheduler-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Tasks](#google-cloud-tasks-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
@@ -34,7 +35,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
-* [Google Cloud Scheduler](#google-cloud-scheduler-beta) (Beta)
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
@@ -375,6 +375,53 @@ foreach ($messages as $message) {
 
 ```
 $ composer require google/cloud-pubsub
+```
+
+## Google Cloud Scheduler (GA)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/scheduler/readme)
+- [Official Documentation](https://cloud.google.com/scheduler/docs/)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Scheduler\V1\AppEngineHttpTarget;
+use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Job;
+use Google\Cloud\Scheduler\V1\Job\State;
+
+$client = new CloudSchedulerClient();
+$projectId = '[MY_PROJECT_ID]';
+$location = 'us-central1';
+$parent = CloudSchedulerClient::locationName($projectId, $location);
+$job = new Job([
+    'name' => CloudSchedulerClient::jobName(
+        $projectId,
+        $location,
+        uniqid()
+    ),
+    'app_engine_http_target' => new AppEngineHttpTarget([
+        'relative_uri' => '/'
+    ]),
+    'schedule' => '* * * * *'
+]);
+$client->createJob($parent, $job);
+
+foreach ($client->listJobs($parent) as $job) {
+    printf(
+        'Job: %s : %s' . PHP_EOL,
+        $job->getName(),
+        State::name($job->getState())
+    );
+}
+```
+
+#### google/cloud-scheduler
+
+[Google Cloud Scheduler](https://github.com/googleapis/google-cloud-php-scheduler) can be installed separately by requiring the [`google/cloud-scheduler`](https://packagist.org/packages/google/cloud-scheduler) composer package:
+
+```
+$ composer require google/cloud-scheduler
 ```
 
 ## Google Cloud Storage (GA)
@@ -910,30 +957,6 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 
 ```
 $ composer require google/cloud-oslogin
-```
-
-## Google Cloud Scheduler (Beta)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/scheduler/readme)
-- [Official Documentation](https://cloud.google.com/scheduler/docs/)
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
-
-$schedulerClient = new CloudSchedulerClient();
-$projectId = '[MY_PROJECT_ID]';
-$formattedName = $schedulerClient->projectName($projectId);
-$jobs = $schedulerClient->listJobs($formattedName);
-```
-
-#### google/cloud-scheduler
-
-[Google Cloud Scheduler](https://github.com/googleapis/google-cloud-php-scheduler) can be installed separately by requiring the [`google/cloud-scheduler`](https://packagist.org/packages/google/cloud-scheduler) composer package:
-
-```
-$ composer require google/cloud-scheduler
 ```
 
 ## Google Cloud Text-to-Speech (Beta)

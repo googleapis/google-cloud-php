@@ -112,9 +112,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * For example, search by raw queries "software engineer in Mountain View" or
      * search by structured filters (location filter, education filter, etc.).
      *
-     * See
-     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
-     * for more information.
+     * See [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] for more information.
      * @param \Google\Cloud\Talent\V4beta1\SearchProfilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -425,7 +425,8 @@ class CloudTasksGapicClient
      *          field can be used as a filter and several operators as supported.
      *          For example: `<=, <, >=, >, !=, =, :`. The filter syntax is the same as
      *          described in
-     *          [Stackdriver's Advanced Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *          [Stackdriver's Advanced Logs
+     *          Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
      *
      *          Sample filter "state: PAUSED".
      *
@@ -544,8 +545,9 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
-     * before using this method.
+     * [Overview of Queue Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      *
      * Sample code:
      * ```
@@ -621,8 +623,9 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
-     * before using this method.
+     * [Overview of Queue Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      *
      * Sample code:
      * ```
@@ -697,8 +700,9 @@ class CloudTasksGapicClient
      * WARNING: Using this method may have unintended side effects if you are
      * using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
      * Read
-     * [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml)
-     * before using this method.
+     * [Overview of Queue Management and
+     * queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+     * this method.
      *
      * Sample code:
      * ```
@@ -877,7 +881,8 @@ class CloudTasksGapicClient
      * WARNING: Resuming many high-QPS queues at the same time can
      * lead to target overloading. If you are resuming high-QPS
      * queues, follow the 500/50/5 pattern described in
-     * [Managing Cloud Tasks Scaling Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+     * [Managing Cloud Tasks Scaling
+     * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      *
      * Sample code:
      * ```
@@ -952,8 +957,7 @@ class CloudTasksGapicClient
      * ```
      *
      * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
+     *                             See the operation documentation for the appropriate value for this field.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1015,8 +1019,7 @@ class CloudTasksGapicClient
      * ```
      *
      * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
+     *                             See the operation documentation for the appropriate value for this field.
      * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
      *                             the policy is limited to a few 10s of KB. An empty policy is a
      *                             valid policy but certain Cloud Platform services (such as Projects)
@@ -1079,8 +1082,7 @@ class CloudTasksGapicClient
      * ```
      *
      * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               `resource` is usually specified as a path. For example, a Project
-     *                               resource is specified as `projects/{project}`.
+     *                               See the operation documentation for the appropriate value for this field.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
      *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
@@ -1304,8 +1306,7 @@ class CloudTasksGapicClient
      *
      * Tasks cannot be updated after creation; there is no UpdateTask command.
      *
-     * * For [App Engine queues][google.cloud.tasks.v2beta3.AppEngineHttpQueue], the maximum task size is
-     *   100KB.
+     * * The maximum task size is 100KB.
      *
      * Sample code:
      * ```

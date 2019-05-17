@@ -160,7 +160,6 @@ class ProfileServiceClientTest extends GeneratedTest
         $source = 'source-896505829';
         $uri = 'uri116076';
         $groupId = 'groupId506361563';
-        $resumeHrxml = 'resumeHrxml1834730555';
         $processed = true;
         $keywordSnippet = 'keywordSnippet1325317319';
         $expectedResponse = new Profile();
@@ -169,7 +168,6 @@ class ProfileServiceClientTest extends GeneratedTest
         $expectedResponse->setSource($source);
         $expectedResponse->setUri($uri);
         $expectedResponse->setGroupId($groupId);
-        $expectedResponse->setResumeHrxml($resumeHrxml);
         $expectedResponse->setProcessed($processed);
         $expectedResponse->setKeywordSnippet($keywordSnippet);
         $transport->addResponse($expectedResponse);
@@ -252,7 +250,6 @@ class ProfileServiceClientTest extends GeneratedTest
         $source = 'source-896505829';
         $uri = 'uri116076';
         $groupId = 'groupId506361563';
-        $resumeHrxml = 'resumeHrxml1834730555';
         $processed = true;
         $keywordSnippet = 'keywordSnippet1325317319';
         $expectedResponse = new Profile();
@@ -261,7 +258,6 @@ class ProfileServiceClientTest extends GeneratedTest
         $expectedResponse->setSource($source);
         $expectedResponse->setUri($uri);
         $expectedResponse->setGroupId($groupId);
-        $expectedResponse->setResumeHrxml($resumeHrxml);
         $expectedResponse->setProcessed($processed);
         $expectedResponse->setKeywordSnippet($keywordSnippet);
         $transport->addResponse($expectedResponse);
@@ -339,7 +335,6 @@ class ProfileServiceClientTest extends GeneratedTest
         $source = 'source-896505829';
         $uri = 'uri116076';
         $groupId = 'groupId506361563';
-        $resumeHrxml = 'resumeHrxml1834730555';
         $processed = true;
         $keywordSnippet = 'keywordSnippet1325317319';
         $expectedResponse = new Profile();
@@ -348,7 +343,6 @@ class ProfileServiceClientTest extends GeneratedTest
         $expectedResponse->setSource($source);
         $expectedResponse->setUri($uri);
         $expectedResponse->setGroupId($groupId);
-        $expectedResponse->setResumeHrxml($resumeHrxml);
         $expectedResponse->setProcessed($processed);
         $expectedResponse->setKeywordSnippet($keywordSnippet);
         $transport->addResponse($expectedResponse);

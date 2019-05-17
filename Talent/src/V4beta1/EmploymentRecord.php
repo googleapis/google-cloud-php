@@ -18,17 +18,6 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Start date of the employment.
-     * It can be a partial date (only year, or only year and month), but must be
-     * valid. Otherwise an error is thrown.
-     * Examples:
-     * {"year": 2017, "month": 2, "day": 28} is valid.
-     * {"year": 2020, "month": 1, "date": 31} is valid.
-     * {"year": 2018, "month": 12} is valid (partial date).
-     * {"year": 2018} is valid (partial date).
-     * {"year": 2015, "day": 21} is not valid (month is missing but day is
-     * presented).
-     * {"year": 2018, "month": 13} is not valid (invalid month).
-     * {"year": 2017, "month": 1, "day": 32} is not valid (invalid day).
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      */
@@ -43,7 +32,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The name of the employer company/organization.
-     * For example, "Google", "Alphabet", etc.
+     * For example, "Google", "Alphabet", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string employer_name = 3;</code>
@@ -52,7 +41,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The division name of the employment.
-     * For example, division, department, client, etc.
+     * For example, division, department, client, and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string division_name = 4;</code>
@@ -68,7 +57,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The job title of the employment.
-     * For example, "Software Engineer", "Data Scientist", etc.
+     * For example, "Software Engineer", "Data Scientist", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string job_title = 6;</code>
@@ -84,7 +73,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     private $job_description = '';
     /**
      * Optional.
-     * If it is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      */
@@ -104,31 +93,25 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     private $is_current = null;
     /**
-     * Output only. The job title snippet shows how the
-     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
-     * related to a search query. It's empty if the
-     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
-     * related to the search query.
+     * Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
+     * to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
+     * search query.
      *
      * Generated from protobuf field <code>string job_title_snippet = 11;</code>
      */
     private $job_title_snippet = '';
     /**
-     * Output only. The job description snippet shows how the
-     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * is related to a search query. It's empty if the
-     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * isn't related to the search query.
+     * Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string job_description_snippet = 12;</code>
      */
     private $job_description_snippet = '';
     /**
-     * Output only. The employer name snippet shows how the
-     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     * is related to a search query. It's empty if the
-     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     * isn't related to the search query.
+     * Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
+     * related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
      */
@@ -143,29 +126,18 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Date $start_date
      *           Optional.
      *           Start date of the employment.
-     *           It can be a partial date (only year, or only year and month), but must be
-     *           valid. Otherwise an error is thrown.
-     *           Examples:
-     *           {"year": 2017, "month": 2, "day": 28} is valid.
-     *           {"year": 2020, "month": 1, "date": 31} is valid.
-     *           {"year": 2018, "month": 12} is valid (partial date).
-     *           {"year": 2018} is valid (partial date).
-     *           {"year": 2015, "day": 21} is not valid (month is missing but day is
-     *           presented).
-     *           {"year": 2018, "month": 13} is not valid (invalid month).
-     *           {"year": 2017, "month": 1, "day": 32} is not valid (invalid day).
      *     @type \Google\Type\Date $end_date
      *           Optional.
      *           End date of the employment.
      *     @type string $employer_name
      *           Optional.
      *           The name of the employer company/organization.
-     *           For example, "Google", "Alphabet", etc.
+     *           For example, "Google", "Alphabet", and so on.
      *           Number of characters allowed is 100.
      *     @type string $division_name
      *           Optional.
      *           The division name of the employment.
-     *           For example, division, department, client, etc.
+     *           For example, division, department, client, and so on.
      *           Number of characters allowed is 100.
      *     @type \Google\Cloud\Talent\V4beta1\Address $address
      *           Optional.
@@ -173,7 +145,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *     @type string $job_title
      *           Optional.
      *           The job title of the employment.
-     *           For example, "Software Engineer", "Data Scientist", etc.
+     *           For example, "Software Engineer", "Data Scientist", and so on.
      *           Number of characters allowed is 100.
      *     @type string $job_description
      *           Optional.
@@ -181,7 +153,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *           Number of characters allowed is 100,000.
      *     @type \Google\Protobuf\BoolValue $is_supervisor
      *           Optional.
-     *           If it is a supervisor position.
+     *           If the jobs is a supervisor position.
      *     @type \Google\Protobuf\BoolValue $is_self_employed
      *           Optional.
      *           If this employment is self-employed.
@@ -189,23 +161,17 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           If this employment is current.
      *     @type string $job_title_snippet
-     *           Output only. The job title snippet shows how the
-     *           [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
-     *           related to a search query. It's empty if the
-     *           [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
-     *           related to the search query.
+     *           Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
+     *           to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
+     *           search query.
      *     @type string $job_description_snippet
-     *           Output only. The job description snippet shows how the
-     *           [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     *           is related to a search query. It's empty if the
-     *           [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     *           isn't related to the search query.
+     *           Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     *           is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
+     *           related to the search query.
      *     @type string $employer_name_snippet
-     *           Output only. The employer name snippet shows how the
-     *           [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     *           is related to a search query. It's empty if the
-     *           [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     *           isn't related to the search query.
+     *           Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
+     *           related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
+     *           related to the search query.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,17 +182,6 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Start date of the employment.
-     * It can be a partial date (only year, or only year and month), but must be
-     * valid. Otherwise an error is thrown.
-     * Examples:
-     * {"year": 2017, "month": 2, "day": 28} is valid.
-     * {"year": 2020, "month": 1, "date": 31} is valid.
-     * {"year": 2018, "month": 12} is valid (partial date).
-     * {"year": 2018} is valid (partial date).
-     * {"year": 2015, "day": 21} is not valid (month is missing but day is
-     * presented).
-     * {"year": 2018, "month": 13} is not valid (invalid month).
-     * {"year": 2017, "month": 1, "day": 32} is not valid (invalid day).
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @return \Google\Type\Date
@@ -239,17 +194,6 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * Start date of the employment.
-     * It can be a partial date (only year, or only year and month), but must be
-     * valid. Otherwise an error is thrown.
-     * Examples:
-     * {"year": 2017, "month": 2, "day": 28} is valid.
-     * {"year": 2020, "month": 1, "date": 31} is valid.
-     * {"year": 2018, "month": 12} is valid (partial date).
-     * {"year": 2018} is valid (partial date).
-     * {"year": 2015, "day": 21} is not valid (month is missing but day is
-     * presented).
-     * {"year": 2018, "month": 13} is not valid (invalid month).
-     * {"year": 2017, "month": 1, "day": 32} is not valid (invalid day).
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @param \Google\Type\Date $var
@@ -294,7 +238,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The name of the employer company/organization.
-     * For example, "Google", "Alphabet", etc.
+     * For example, "Google", "Alphabet", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string employer_name = 3;</code>
@@ -308,7 +252,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The name of the employer company/organization.
-     * For example, "Google", "Alphabet", etc.
+     * For example, "Google", "Alphabet", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string employer_name = 3;</code>
@@ -326,7 +270,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The division name of the employment.
-     * For example, division, department, client, etc.
+     * For example, division, department, client, and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string division_name = 4;</code>
@@ -340,7 +284,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The division name of the employment.
-     * For example, division, department, client, etc.
+     * For example, division, department, client, and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string division_name = 4;</code>
@@ -386,7 +330,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The job title of the employment.
-     * For example, "Software Engineer", "Data Scientist", etc.
+     * For example, "Software Engineer", "Data Scientist", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string job_title = 6;</code>
@@ -400,7 +344,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The job title of the employment.
-     * For example, "Software Engineer", "Data Scientist", etc.
+     * For example, "Software Engineer", "Data Scientist", and so on.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string job_title = 6;</code>
@@ -447,7 +391,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * If it is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @return \Google\Protobuf\BoolValue
@@ -461,7 +405,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getIsSupervisor()</code>
 
      * Optional.
-     * If it is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @return bool|null
@@ -474,7 +418,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * If it is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -492,7 +436,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
      * Optional.
-     * If it is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @param bool|null $var
@@ -623,11 +567,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job title snippet shows how the
-     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
-     * related to a search query. It's empty if the
-     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
-     * related to the search query.
+     * Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
+     * to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
+     * search query.
      *
      * Generated from protobuf field <code>string job_title_snippet = 11;</code>
      * @return string
@@ -638,11 +580,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job title snippet shows how the
-     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
-     * related to a search query. It's empty if the
-     * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
-     * related to the search query.
+     * Output only. The job title snippet shows how the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is related
+     * to a search query. It's empty if the [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't related to the
+     * search query.
      *
      * Generated from protobuf field <code>string job_title_snippet = 11;</code>
      * @param string $var
@@ -657,11 +597,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the
-     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * is related to a search query. It's empty if the
-     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * isn't related to the search query.
+     * Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string job_description_snippet = 12;</code>
      * @return string
@@ -672,11 +610,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The job description snippet shows how the
-     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * is related to a search query. It's empty if the
-     * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
-     * isn't related to the search query.
+     * Output only. The job description snippet shows how the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
+     * is related to a search query. It's empty if the [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string job_description_snippet = 12;</code>
      * @param string $var
@@ -691,11 +627,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The employer name snippet shows how the
-     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     * is related to a search query. It's empty if the
-     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     * isn't related to the search query.
+     * Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
+     * related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
      * @return string
@@ -706,11 +640,9 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The employer name snippet shows how the
-     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     * is related to a search query. It's empty if the
-     * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
-     * isn't related to the search query.
+     * Output only. The employer name snippet shows how the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] is
+     * related to a search query. It's empty if the [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name] isn't
+     * related to the search query.
      *
      * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
      * @param string $var

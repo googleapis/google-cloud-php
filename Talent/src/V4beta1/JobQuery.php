@@ -45,15 +45,13 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The location filter specifies geo-regions containing the jobs to
-     * search against. See
-     * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
-     * information.
+     * search against. See [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more information.
      * If a location value isn't specified, jobs fitting the other search
      * criteria are retrieved regardless of where they're located.
      * If multiple values are specified, jobs are retrieved from any of the
      * specified locations. If different values are specified for the
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * parameter, the maximum provided distance is used for all locations.
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] parameter, the maximum provided
+     * distance is used for all locations.
      * At most 5 location filters are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 3;</code>
@@ -97,10 +95,10 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This search filter is applied only to
-     * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
-     * For example, if the filter is specified as "Hourly job with per-hour
-     * compensation > $15", only jobs meeting these criteria are searched. If a
-     * filter isn't defined, all open jobs are searched.
+     * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info]. For example, if the filter is specified
+     * as "Hourly job with per-hour compensation > $15", only jobs meeting
+     * these criteria are searched. If a filter isn't defined, all open jobs
+     * are searched.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter compensation_filter = 7;</code>
      */
@@ -108,8 +106,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a structured syntax to match against the
-     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
-     * marked as `filterable`.
+     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] marked as `filterable`.
      * The syntax for this expression is a subset of SQL syntax.
      * Supported operators are: `=`, `!=`, `<`, `<=`, `>`, and `>=` where the
      * left of the operator is a custom field key and the right of the operator
@@ -142,8 +139,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The employment type filter specifies the employment type of jobs to
-     * search against, such as
-     * [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
+     * search against, such as [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      * If a value isn't specified, jobs in the search results includes any
      * employment type.
      * If multiple values are specified, jobs in the search results include
@@ -177,7 +173,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a list of job names to be excluded during search.
-     * At most 200 excluded job names are allowed.
+     * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>
      */
@@ -210,15 +206,13 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\LocationFilter[]|\Google\Protobuf\Internal\RepeatedField $location_filters
      *           Optional.
      *           The location filter specifies geo-regions containing the jobs to
-     *           search against. See
-     *           [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
-     *           information.
+     *           search against. See [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more information.
      *           If a location value isn't specified, jobs fitting the other search
      *           criteria are retrieved regardless of where they're located.
      *           If multiple values are specified, jobs are retrieved from any of the
      *           specified locations. If different values are specified for the
-     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     *           parameter, the maximum provided distance is used for all locations.
+     *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] parameter, the maximum provided
+     *           distance is used for all locations.
      *           At most 5 location filters are allowed.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $job_categories
      *           Optional.
@@ -246,15 +240,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\CompensationFilter $compensation_filter
      *           Optional.
      *           This search filter is applied only to
-     *           [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
-     *           For example, if the filter is specified as "Hourly job with per-hour
-     *           compensation > $15", only jobs meeting these criteria are searched. If a
-     *           filter isn't defined, all open jobs are searched.
+     *           [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info]. For example, if the filter is specified
+     *           as "Hourly job with per-hour compensation > $15", only jobs meeting
+     *           these criteria are searched. If a filter isn't defined, all open jobs
+     *           are searched.
      *     @type string $custom_attribute_filter
      *           Optional.
      *           This filter specifies a structured syntax to match against the
-     *           [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
-     *           marked as `filterable`.
+     *           [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] marked as `filterable`.
      *           The syntax for this expression is a subset of SQL syntax.
      *           Supported operators are: `=`, `!=`, `<`, `<=`, `>`, and `>=` where the
      *           left of the operator is a custom field key and the right of the operator
@@ -279,8 +272,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $employment_types
      *           Optional.
      *           The employment type filter specifies the employment type of jobs to
-     *           search against, such as
-     *           [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
+     *           search against, such as [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      *           If a value isn't specified, jobs in the search results includes any
      *           employment type.
      *           If multiple values are specified, jobs in the search results include
@@ -302,7 +294,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excluded_jobs
      *           Optional.
      *           This filter specifies a list of job names to be excluded during search.
-     *           At most 200 excluded job names are allowed.
+     *           At most 400 excluded job names are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -393,15 +385,13 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The location filter specifies geo-regions containing the jobs to
-     * search against. See
-     * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
-     * information.
+     * search against. See [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more information.
      * If a location value isn't specified, jobs fitting the other search
      * criteria are retrieved regardless of where they're located.
      * If multiple values are specified, jobs are retrieved from any of the
      * specified locations. If different values are specified for the
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * parameter, the maximum provided distance is used for all locations.
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] parameter, the maximum provided
+     * distance is used for all locations.
      * At most 5 location filters are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 3;</code>
@@ -415,15 +405,13 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The location filter specifies geo-regions containing the jobs to
-     * search against. See
-     * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
-     * information.
+     * search against. See [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more information.
      * If a location value isn't specified, jobs fitting the other search
      * criteria are retrieved regardless of where they're located.
      * If multiple values are specified, jobs are retrieved from any of the
      * specified locations. If different values are specified for the
-     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles]
-     * parameter, the maximum provided distance is used for all locations.
+     * [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] parameter, the maximum provided
+     * distance is used for all locations.
      * At most 5 location filters are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 3;</code>
@@ -553,10 +541,10 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This search filter is applied only to
-     * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
-     * For example, if the filter is specified as "Hourly job with per-hour
-     * compensation > $15", only jobs meeting these criteria are searched. If a
-     * filter isn't defined, all open jobs are searched.
+     * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info]. For example, if the filter is specified
+     * as "Hourly job with per-hour compensation > $15", only jobs meeting
+     * these criteria are searched. If a filter isn't defined, all open jobs
+     * are searched.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter compensation_filter = 7;</code>
      * @return \Google\Cloud\Talent\V4beta1\CompensationFilter
@@ -569,10 +557,10 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This search filter is applied only to
-     * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
-     * For example, if the filter is specified as "Hourly job with per-hour
-     * compensation > $15", only jobs meeting these criteria are searched. If a
-     * filter isn't defined, all open jobs are searched.
+     * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info]. For example, if the filter is specified
+     * as "Hourly job with per-hour compensation > $15", only jobs meeting
+     * these criteria are searched. If a filter isn't defined, all open jobs
+     * are searched.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter compensation_filter = 7;</code>
      * @param \Google\Cloud\Talent\V4beta1\CompensationFilter $var
@@ -589,8 +577,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a structured syntax to match against the
-     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
-     * marked as `filterable`.
+     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] marked as `filterable`.
      * The syntax for this expression is a subset of SQL syntax.
      * Supported operators are: `=`, `!=`, `<`, `<=`, `>`, and `>=` where the
      * left of the operator is a custom field key and the right of the operator
@@ -618,8 +605,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a structured syntax to match against the
-     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
-     * marked as `filterable`.
+     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] marked as `filterable`.
      * The syntax for this expression is a subset of SQL syntax.
      * Supported operators are: `=`, `!=`, `<`, `<=`, `>`, and `>=` where the
      * left of the operator is a custom field key and the right of the operator
@@ -685,8 +671,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The employment type filter specifies the employment type of jobs to
-     * search against, such as
-     * [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
+     * search against, such as [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      * If a value isn't specified, jobs in the search results includes any
      * employment type.
      * If multiple values are specified, jobs in the search results include
@@ -703,8 +688,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * The employment type filter specifies the employment type of jobs to
-     * search against, such as
-     * [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
+     * search against, such as [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      * If a value isn't specified, jobs in the search results includes any
      * employment type.
      * If multiple values are specified, jobs in the search results include
@@ -797,7 +781,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a list of job names to be excluded during search.
-     * At most 200 excluded job names are allowed.
+     * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -810,7 +794,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional.
      * This filter specifies a list of job names to be excluded during search.
-     * At most 200 excluded job names are allowed.
+     * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

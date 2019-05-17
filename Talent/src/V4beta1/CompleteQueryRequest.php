@@ -41,23 +41,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * For
-     * [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
-     * type, only open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
-     * For
-     * [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
-     * type, only companies having open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
-     * For
-     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
-     * type, only open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * or companies having open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
+     * For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     * For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
+     * only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
+     * returned.
+     * For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
@@ -85,16 +76,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     private $company = '';
     /**
      * Optional.
-     * The scope of the completion. The defaults is
-     * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     * The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      */
     private $scope = 0;
     /**
      * Optional.
-     * The completion topic. The default is
-     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     * The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
      */
@@ -123,23 +112,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           the BCP-47 language code, such as "en-US" or "sr-Latn".
      *           For more information, see
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     *           For
-     *           [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
-     *           type, only open jobs with the same
-     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *           are returned.
-     *           For
-     *           [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
-     *           type, only companies having open jobs with the same
-     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *           are returned.
-     *           For
-     *           [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
-     *           type, only open jobs with the same
-     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *           or companies having open jobs with the same
-     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     *           are returned.
+     *           For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
+     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *           For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
+     *           only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
+     *           returned.
+     *           For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
+     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
+     *           [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
      *           The maximum number of allowed characters is 255.
      *     @type int $page_size
      *           Required.
@@ -155,12 +135,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           example, "projects/api-test-project/companies/bar".
      *     @type int $scope
      *           Optional.
-     *           The scope of the completion. The defaults is
-     *           [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *           The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *     @type int $type
      *           Optional.
-     *           The completion topic. The default is
-     *           [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *           The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      * }
      */
     public function __construct($data = NULL) {
@@ -240,23 +218,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * For
-     * [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
-     * type, only open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
-     * For
-     * [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
-     * type, only companies having open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
-     * For
-     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
-     * type, only open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * or companies having open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
+     * For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     * For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
+     * only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
+     * returned.
+     * For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
@@ -273,23 +242,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * For
-     * [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
-     * type, only open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
-     * For
-     * [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
-     * type, only companies having open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
-     * For
-     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
-     * type, only open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * or companies having open jobs with the same
-     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
-     * are returned.
+     * For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     * For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
+     * only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
+     * returned.
+     * For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
+     * [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
@@ -374,8 +334,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * The scope of the completion. The defaults is
-     * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     * The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      * @return int
@@ -387,8 +346,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * The scope of the completion. The defaults is
-     * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     * The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      * @param int $var
@@ -404,8 +362,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * The completion topic. The default is
-     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     * The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
      * @return int
@@ -417,8 +374,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional.
-     * The completion topic. The default is
-     * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     * The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
      * @param int $var

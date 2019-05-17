@@ -51,3 +51,15 @@ s.replace(
     'tests/**/**/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
+
+# V1 is GA, so remove @experimental tags
+s.replace(
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
+
+# Change the wording for the deprecation warning.
+s.replace(
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')

@@ -100,8 +100,8 @@ class CompanyServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
+    private static $companyNameTemplate;
     private static $tenantNameTemplate;
-    private static $companyOldNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -123,6 +123,15 @@ class CompanyServiceGapicClient
         ];
     }
 
+    private static function getCompanyNameTemplate()
+    {
+        if (null == self::$companyNameTemplate) {
+            self::$companyNameTemplate = new PathTemplate('projects/{project}/tenants/{tenant}/companies/{company}');
+        }
+
+        return self::$companyNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (null == self::$tenantNameTemplate) {
@@ -132,25 +141,36 @@ class CompanyServiceGapicClient
         return self::$tenantNameTemplate;
     }
 
-    private static function getCompanyOldNameTemplate()
-    {
-        if (null == self::$companyOldNameTemplate) {
-            self::$companyOldNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
-        }
-
-        return self::$companyOldNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'company' => self::getCompanyNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
-                'companyOld' => self::getCompanyOldNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a company resource.
+     *
+     * @param string $project
+     * @param string $tenant
+     * @param string $company
+     *
+     * @return string The formatted company resource.
+     * @experimental
+     */
+    public static function companyName($project, $tenant, $company)
+    {
+        return self::getCompanyNameTemplate()->render([
+            'project' => $project,
+            'tenant' => $tenant,
+            'company' => $company,
+        ]);
     }
 
     /**
@@ -172,29 +192,11 @@ class CompanyServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a company_old resource.
-     *
-     * @param string $project
-     * @param string $company
-     *
-     * @return string The formatted company_old resource.
-     * @experimental
-     */
-    public static function companyOldName($project, $company)
-    {
-        return self::getCompanyOldNameTemplate()->render([
-            'project' => $project,
-            'company' => $company,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - tenant: projects/{project}/tenants/{tenant}
-     * - companyOld: projects/{project}/companies/{company}.
+     * - company: projects/{project}/tenants/{tenant}/companies/{company}
+     * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -359,7 +361,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyOldName('[PROJECT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
      *     $response = $companyServiceClient->getCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
@@ -435,15 +437,11 @@ class CompanyServiceGapicClient
      *          Optional but strongly recommended for the best service
      *          experience.
      *
-     *          If
-     *          [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
-     *          is provided, only the specified fields in
-     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
-     *          updated. Otherwise all the fields are updated.
+     *          If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
+     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the company fields to be updated. Only
-     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are
-     *          supported.
+     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -487,7 +485,7 @@ class CompanyServiceGapicClient
      * ```
      * $companyServiceClient = new CompanyServiceClient();
      * try {
-     *     $formattedName = $companyServiceClient->companyOldName('[PROJECT]', '[COMPANY]');
+     *     $formattedName = $companyServiceClient->companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
      *     $companyServiceClient->deleteCompany($formattedName);
      * } finally {
      *     $companyServiceClient->close();
@@ -594,9 +592,8 @@ class CompanyServiceGapicClient
      *
      *          Defaults to false.
      *
-     *          If true, at most
-     *          [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
-     *          companies are fetched, among which only those with open jobs are returned.
+     *          If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
+     *          only those with open jobs are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

@@ -27,19 +27,30 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 class QueryResultPaginationTest extends DatastoreTestCase
 {
     private static $expectedTotal = 610;
-    private static $kind;
+    private static $parentKey;
+    private static $testKind;
 
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
+        static $setUp = false;
+        if ($setUp) {
+            return;
+        }
 
-        self::$kind = uniqid(self::TESTING_PREFIX);
+        $ancestorKind = uniqid(self::TESTING_PREFIX);
 
         $client = self::$restClient;
+        self::$parentKey = $client->key($ancestorKind, uniqid('pagination-'));
+        self::$testKind = uniqid('test-kind-');
+
         // seed a large set.
         $set = [];
         for ($i = 0; $i < self::$expectedTotal; $i++) {
-            $set[] = $client->entity(self::$kind, [
+            $key = $client->key(self::$testKind, uniqid('name-'));
+            $key->ancestorKey(self::$parentKey);
+
+            $set[] = $client->entity($key, [
                 'a' => rand(1, 10)
             ]);
 
@@ -52,14 +63,21 @@ class QueryResultPaginationTest extends DatastoreTestCase
         if ($set) {
             $client->insertBatch($set);
         }
+
+        $setUp = true;
     }
 
     public static function tearDownAfterClass()
     {
+        self::setUpBeforeClass();
+
         $client = self::$restClient;
-        $query = $client->query()->kind(self::$kind);
+        $q = $client->query()
+            ->hasAncestor(self::$parentKey)
+            ->kind(self::$testKind);
+
         $set = [];
-        foreach ($client->runQuery($query) as $entity) {
+        foreach ($client->runQuery($q) as $entity) {
             $set[] = $entity->key();
 
             if (count($set) === 100) {
@@ -74,7 +92,10 @@ class QueryResultPaginationTest extends DatastoreTestCase
      */
     public function testGqlQueryPagination(DatastoreClient $client)
     {
-        $q = $client->gqlQuery('SELECT * FROM ' . self::$kind);
+        $q = $client->gqlQuery(sprintf(
+            'SELECT * FROM `%s`',
+            self::$testKind
+        ));
 
         $this->assertQueryCount(self::$expectedTotal, $client, $q);
     }
@@ -84,7 +105,9 @@ class QueryResultPaginationTest extends DatastoreTestCase
      */
     public function testQueryPagination(DatastoreClient $client)
     {
-        $q = $client->query()->kind(self::$kind);
+        $q = $client->query()
+            ->hasAncestor(self::$parentKey)
+            ->kind(self::$testKind);
 
         $this->assertQueryCount(self::$expectedTotal, $client, $q);
     }
@@ -94,7 +117,19 @@ class QueryResultPaginationTest extends DatastoreTestCase
      */
     public function testGqlQueryPaginationByPage(DatastoreClient $client)
     {
-        $q = $client->gqlQuery('SELECT * FROM ' . self::$kind);
+        $end = self::$parentKey->pathEnd();
+        $parentKind = $end['kind'];
+        $parentId = self::$parentKey->pathEndIdentifier();
+
+        $queryString = sprintf(
+            'SELECT * FROM `%s` WHERE __key__ HAS ANCESTOR KEY(`%s`, "%s")',
+            self::$testKind,
+            $parentKind,
+            $parentId
+        );
+        $q = $client->gqlQuery($queryString, [
+            'allowLiterals' => true
+        ]);
 
         $this->assertQueryPageCount(self::$expectedTotal, $client, $q);
     }
@@ -104,7 +139,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
      */
     public function testQueryPaginationByPage(DatastoreClient $client)
     {
-        $q = $client->query()->kind(self::$kind);
+        $q = $client->query()->kind(self::$testKind);
 
         $this->assertQueryPageCount(self::$expectedTotal, $client, $q);
     }

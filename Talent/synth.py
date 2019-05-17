@@ -49,3 +49,13 @@ s.replace(
     'tests/**/V4beta1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
+
+# Use correct namespace
+s.replace(
+    'src/V4beta1/Gapic/*.php',
+    r'CompleteQueryRequest_',
+    r'CompleteQueryRequest\\')
+s.replace(
+    'src/V4beta1/Gapic/*.php',
+    r'SearchJobsRequest_',
+    r'SearchJobsRequest\\')

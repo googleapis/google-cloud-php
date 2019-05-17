@@ -20,8 +20,6 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/scheduler/v1/cloudscheduler.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Scheduler\V1\Gapic;
@@ -84,8 +82,6 @@ use Google\Protobuf\GPBEmpty;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parseName method to extract the individual identifiers contained within formatted names
  * that are returned by the API.
- *
- * @experimental
  */
 class CloudSchedulerGapicClient
 {
@@ -117,9 +113,9 @@ class CloudSchedulerGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $projectNameTemplate;
-    private static $locationNameTemplate;
     private static $jobNameTemplate;
+    private static $locationNameTemplate;
+    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -141,13 +137,13 @@ class CloudSchedulerGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getJobNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$jobNameTemplate) {
+            self::$jobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/jobs/{job}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$jobNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -159,60 +155,26 @@ class CloudSchedulerGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getJobNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (null == self::$jobNameTemplate) {
-            self::$jobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/jobs/{job}');
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$jobNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-                'location' => self::getLocationNameTemplate(),
                 'job' => self::getJobNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a location resource.
-     *
-     * @param string $project
-     * @param string $location
-     *
-     * @return string The formatted location resource.
-     * @experimental
-     */
-    public static function locationName($project, $location)
-    {
-        return self::getLocationNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-        ]);
     }
 
     /**
@@ -224,7 +186,6 @@ class CloudSchedulerGapicClient
      * @param string $job
      *
      * @return string The formatted job resource.
-     * @experimental
      */
     public static function jobName($project, $location, $job)
     {
@@ -236,12 +197,44 @@ class CloudSchedulerGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
+     * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
-     * - job: projects/{project}/locations/{location}/jobs/{job}.
+     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -254,7 +247,6 @@ class CloudSchedulerGapicClient
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
      */
     public static function parseName($formattedName, $template = null)
     {
@@ -328,7 +320,6 @@ class CloudSchedulerGapicClient
      * }
      *
      * @throws ValidationException
-     * @experimental
      */
     public function __construct(array $options = [])
     {
@@ -391,7 +382,6 @@ class CloudSchedulerGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function listJobs($parent, array $optionalArgs = [])
     {
@@ -450,7 +440,6 @@ class CloudSchedulerGapicClient
      * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function getJob($name, array $optionalArgs = [])
     {
@@ -511,7 +500,6 @@ class CloudSchedulerGapicClient
      * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function createJob($parent, $job, array $optionalArgs = [])
     {
@@ -577,7 +565,6 @@ class CloudSchedulerGapicClient
      * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function updateJob($job, $updateMask, array $optionalArgs = [])
     {
@@ -629,7 +616,6 @@ class CloudSchedulerGapicClient
      * }
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function deleteJob($name, array $optionalArgs = [])
     {
@@ -688,7 +674,6 @@ class CloudSchedulerGapicClient
      * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function pauseJob($name, array $optionalArgs = [])
     {
@@ -746,7 +731,6 @@ class CloudSchedulerGapicClient
      * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function resumeJob($name, array $optionalArgs = [])
     {
@@ -802,7 +786,6 @@ class CloudSchedulerGapicClient
      * @return \Google\Cloud\Scheduler\V1\Job
      *
      * @throws ApiException if the remote call fails
-     * @experimental
      */
     public function runJob($name, array $optionalArgs = [])
     {

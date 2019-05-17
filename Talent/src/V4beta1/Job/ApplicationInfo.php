@@ -16,11 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ApplicationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this field to specify email address(es) to which resumes or
      * applications can be sent.
      * The maximum number of allowed characters for each entry is 255.
@@ -29,11 +25,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      */
     private $emails;
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this field to provide instructions, such as "Mail your application
      * to ...", that a candidate can follow to apply for the job.
      * This field accepts and sanitizes HTML input, and also accepts
@@ -44,11 +36,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      */
     private $instruction = '';
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this URI field to direct an applicant to a website, for example to
      * link to an online application form.
      * The maximum number of allowed characters for each entry is 2,000.
@@ -64,31 +52,19 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $emails
-     *           Optional but at least one of
-     *           [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     *           [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     *           [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     *           must be specified.
+     *           Optional.
      *           Use this field to specify email address(es) to which resumes or
      *           applications can be sent.
      *           The maximum number of allowed characters for each entry is 255.
      *     @type string $instruction
-     *           Optional but at least one of
-     *           [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     *           [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     *           [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     *           must be specified.
+     *           Optional.
      *           Use this field to provide instructions, such as "Mail your application
      *           to ...", that a candidate can follow to apply for the job.
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 3,000.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
-     *           Optional but at least one of
-     *           [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     *           [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     *           [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     *           must be specified.
+     *           Optional.
      *           Use this URI field to direct an applicant to a website, for example to
      *           link to an online application form.
      *           The maximum number of allowed characters for each entry is 2,000.
@@ -100,11 +76,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this field to specify email address(es) to which resumes or
      * applications can be sent.
      * The maximum number of allowed characters for each entry is 255.
@@ -118,11 +90,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this field to specify email address(es) to which resumes or
      * applications can be sent.
      * The maximum number of allowed characters for each entry is 255.
@@ -140,11 +108,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this field to provide instructions, such as "Mail your application
      * to ...", that a candidate can follow to apply for the job.
      * This field accepts and sanitizes HTML input, and also accepts
@@ -160,11 +124,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this field to provide instructions, such as "Mail your application
      * to ...", that a candidate can follow to apply for the job.
      * This field accepts and sanitizes HTML input, and also accepts
@@ -184,11 +144,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this URI field to direct an applicant to a website, for example to
      * link to an online application form.
      * The maximum number of allowed characters for each entry is 2,000.
@@ -202,11 +158,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but at least one of
-     * [uris][google.cloud.talent.v4beta1.Job.ApplicationInfo.uris],
-     * [emails][google.cloud.talent.v4beta1.Job.ApplicationInfo.emails] or
-     * [instruction][google.cloud.talent.v4beta1.Job.ApplicationInfo.instruction]
-     * must be specified.
+     * Optional.
      * Use this URI field to direct an applicant to a website, for example to
      * link to an online application form.
      * The maximum number of allowed characters for each entry is 2,000.

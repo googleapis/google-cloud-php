@@ -98,7 +98,7 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $inputUri = 'gs://videodemomaker/cat.mp4';
+        $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
         $featuresElement = Feature::LABEL_DETECTION;
         $features = [$featuresElement];
 
@@ -174,7 +174,7 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $inputUri = 'gs://videodemomaker/cat.mp4';
+        $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
         $featuresElement = Feature::LABEL_DETECTION;
         $features = [$featuresElement];
 
