@@ -174,7 +174,7 @@ class Topic
      *
      *     @type string $kmsKeyName The resource name of the Cloud KMS
      *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`.
+     *           topic. The expected format is `projects\/*\/locations\/*\/keyRings\/*\/cryptoKeys\/*`.
      *           This is an experimental feature and is not recommended for production use.
      * }
      *
