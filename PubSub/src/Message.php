@@ -62,11 +62,11 @@ class Message
      *     @type array $messageId ID of this message, assigned by the
      *           server when the message is published.
      *     @type \DateTimeImmutable $publishTime The time at which the
-     *           message was published, populated by the server when it recieves the
+     *           message was published, populated by the server when it receives the
      *           publish call.
      *     @type array $orderingKey Identifies related fields for which publisher order should
-     *           be respected. See the Subscription class `enable_message_ordering` option for
-     *           more information.
+     *           be respected. See `$options.enableMessageOrdering` on {@see Google\Cloud\PubSub\Subscription::create()}
+     *           for more information
      * }
      *
      * @param array $metadata {

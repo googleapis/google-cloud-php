@@ -96,14 +96,16 @@ class Topic
      *     A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
      *
      *     @type string name The name of the topic.
-     *
      *     @type array $labels Key value pairs used to organize your resources.
-     *
-     *     @type array $messageStoragePolicy Policy constraining how messages published to the topic may be stored.
-     *
+     *     @type array $messageStoragePolicy Policy constraining how messages published to the topic may be stored. It
+     *                 is determined when the topic is created based on the policy configured at the project level. It
+     *                 must not be set by the caller in the request to CreateTopic or to UpdateTopic. This field will
+     *                 be populated in the responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+     *                 response, then no constraints are in effect.
      *     @type string $kmsKeyName The resource name of the Cloud KMS
      *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is `projects\/*\/locations\/*\/keyRings\/*\/cryptoKeys\/*`.
+     *           topic. The expected format is
+     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
      *           This is an experimental feature and is not recommended for production use.
      * }
      *
@@ -164,17 +166,15 @@ class Topic
      * @param array $options  {
      *     Configuration Options
      *
-     *     @type string name The name of the topic.
-     *
+     *     @type string name The name of the topic.\
      *     @type array $labels Key value pairs used to organize your
-     *           resources.
-     *
+     *           resources.\
      *     @type array $messageStoragePolicy Policy constraining how
      *           messages published to the topic may be stored.
-     *
      *     @type string $kmsKeyName The resource name of the Cloud KMS
      *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is `projects\/*\/locations\/*\/keyRings\/*\/cryptoKeys\/*`.
+     *           topic. The expected format is
+     *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
      *           This is an experimental feature and is not recommended for production use.
      * }
      *
