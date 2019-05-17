@@ -317,12 +317,6 @@ class Query
 
         if ($escapedPathString === self::DOCUMENT_ID) {
             $value = $this->createDocumentReference($basePath, $value);
-
-            if (!$value) {
-                throw new \InvalidArgumentException(
-                    'When filtering on document ID, value must be a document reference or valid document name.'
-                );
-            }
         }
 
         if ((is_float($value) && is_nan($value)) || is_null($value)) {
@@ -653,12 +647,6 @@ class Query
             if ($orderBy[$i]['field']['fieldPath'] === self::DOCUMENT_ID) {
                 if (is_string($value)) {
                     $value = $this->createDocumentReference($basePath, $value);
-
-                    if ($value === false) {
-                        throw new \InvalidArgumentException(
-                            'When ordering by document ID, value must be a document reference or valid document name.'
-                        );
-                    }
                 } else {
                     if ($value instanceof DocumentReference) {
                         $name = $value->name();
@@ -846,7 +834,8 @@ class Query
      *
      * @param string $basePath The relative base of the document reference.
      * @param mixed $document The document.
-     * @return DocumentReference|bool
+     * @return DocumentReference
+     * @throws InvalidArgumentException If $document is not a valid document.
      */
     private function createDocumentReference($basePath, $document)
     {
@@ -854,13 +843,16 @@ class Query
             return $document;
         }
 
+        $exceptionMessage = 'When ordering or filtering by document ID, ' .
+            'value must be a document reference or valid document name.';
+
         if (!is_string($document)) {
-            return false;
+            throw new \InvalidArgumentException($exceptionMessage);
         }
 
         $childPath = $this->childPath($basePath, $document);
         if (!$this->isDocument($childPath)) {
-            return false;
+            throw new \InvalidArgumentException($exceptionMessage);
         }
 
         $parent = new CollectionReference(
