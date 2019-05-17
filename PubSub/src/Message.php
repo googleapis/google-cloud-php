@@ -185,7 +185,7 @@ class Message
      *
      * Example:
      * ```
-     * $orderingKey = $message->orderingKey();
+     * echo $message->orderingKey();
      * ```
      *
      * @return string

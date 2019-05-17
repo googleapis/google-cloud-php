@@ -42,6 +42,7 @@ class MessageTest extends SnippetTestCase
             'data' => 'hello world',
             'messageId' => '1234',
             'publishTime' => (new \DateTime())->format('c'),
+            'orderingKey' => 'test-key',
             'attributes' => [
                 'browser-name' => 'Google Chrome'
             ]
@@ -140,6 +141,16 @@ class MessageTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals($this->metadata['ackId'], $res->output());
+    }
+
+
+    public function testOrderingKey()
+    {
+        $snippet = $this->snippetFromMethod(Message::class, 'orderingKey');
+        $snippet->addLocal('message', $this->message);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($this->msg['orderingKey'], $res->output());
     }
 
     public function testSubscription()
