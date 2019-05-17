@@ -203,7 +203,13 @@ class Subscription
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
      *
-     *     @type bool $enableMessageOrdering
+     *     @type bool $enableMessageOrdering Identifies related messages for 
+     *           which publish order should be respected. If true, messages
+     *           published with the same ordering key will be delivered to
+     *           subscribers in the order in which they are recieved by the
+     *           Pub/Sub system. This is an experimental feature and not
+     *           recommended for use in production.
+     *        
      *     @type array $expirationPolicy
      * }
      * @return array An array of subscription info

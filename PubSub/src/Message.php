@@ -51,8 +51,24 @@ class Message
     private $subscription;
 
     /**
-     * @param array $message See
-     *        [PubsubMessage](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param array $message {
+     *     Message Options
+     *
+     *     See [PubsubMessage](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     *
+     *     @type string $data The message data field. If this is empty, the message must
+     *           contain at least one attribute.
+     *     @type array $attributes Optional attributes for this message
+     *     @type array $messageId ID of this message, assigned by the
+     *           server when the message is published.
+     *     @type \DateTimeImmutable $publishTime The time at which the
+     *           message was published, populated by the server when it recieves the
+     *           publish call.
+     *     @type array $orderingKey Identifies related fields for which publisher order should
+     *           be respected. See the Subscription class `enable_message_ordering` option for
+     *           more information.
+     * }
+     *
      * @param array $metadata {
      *     Message metadata
      *
