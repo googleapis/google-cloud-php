@@ -33,8 +33,9 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     private $product_set = '';
     /**
      * The list of product categories to search in. Currently, we only consider
-     * the first category, and either "homegoods", "apparel", or "toys" should be
-     * specified.
+     * the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
+     * should be specified. The legacy categories "homegoods", "apparel", and
+     * "toys" are still supported, but these should not be used for new products.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
      */
@@ -68,8 +69,9 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $product_categories
      *           The list of product categories to search in. Currently, we only consider
-     *           the first category, and either "homegoods", "apparel", or "toys" should be
-     *           specified.
+     *           the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
+     *           should be specified. The legacy categories "homegoods", "apparel", and
+     *           "toys" are still supported, but these should not be used for new products.
      *     @type string $filter
      *           The filtering expression. This can be used to restrict search results based
      *           on Product labels. We currently support an AND of OR of key-value
@@ -147,8 +149,9 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of product categories to search in. Currently, we only consider
-     * the first category, and either "homegoods", "apparel", or "toys" should be
-     * specified.
+     * the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
+     * should be specified. The legacy categories "homegoods", "apparel", and
+     * "toys" are still supported, but these should not be used for new products.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -160,8 +163,9 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of product categories to search in. Currently, we only consider
-     * the first category, and either "homegoods", "apparel", or "toys" should be
-     * specified.
+     * the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
+     * should be specified. The legacy categories "homegoods", "apparel", and
+     * "toys" are still supported, but these should not be used for new products.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
