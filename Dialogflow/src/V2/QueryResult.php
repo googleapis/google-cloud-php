@@ -22,7 +22,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * - If natural language speech audio was provided as input, `query_text`
      *   contains the speech recognition result. If speech recognizer produced
      *   multiple alternatives, a particular one is picked.
-     * - If an event was provided as input, `query_text` is not set.
+     * - If automatic spell correction is enabled, `query_text` will contain the
+     *   corrected user input.
      *
      * Generated from protobuf field <code>string query_text = 1;</code>
      */
@@ -153,7 +154,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           - If natural language speech audio was provided as input, `query_text`
      *             contains the speech recognition result. If speech recognizer produced
      *             multiple alternatives, a particular one is picked.
-     *           - If an event was provided as input, `query_text` is not set.
+     *           - If automatic spell correction is enabled, `query_text` will contain the
+     *             corrected user input.
      *     @type string $language_code
      *           The language that was triggered during intent detection.
      *           See [Language
@@ -224,7 +226,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * - If natural language speech audio was provided as input, `query_text`
      *   contains the speech recognition result. If speech recognizer produced
      *   multiple alternatives, a particular one is picked.
-     * - If an event was provided as input, `query_text` is not set.
+     * - If automatic spell correction is enabled, `query_text` will contain the
+     *   corrected user input.
      *
      * Generated from protobuf field <code>string query_text = 1;</code>
      * @return string
@@ -241,7 +244,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * - If natural language speech audio was provided as input, `query_text`
      *   contains the speech recognition result. If speech recognizer produced
      *   multiple alternatives, a particular one is picked.
-     * - If an event was provided as input, `query_text` is not set.
+     * - If automatic spell correction is enabled, `query_text` will contain the
+     *   corrected user input.
      *
      * Generated from protobuf field <code>string query_text = 1;</code>
      * @param string $var
