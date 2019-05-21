@@ -161,9 +161,9 @@ class Topic
      * @param array $options  {
      *     Configuration Options
      *
-     *     @type string name The name of the topic.\
+     *     @type string name The name of the topic.
      *     @type array $labels Key value pairs used to organize your
-     *           resources.\
+     *           resources.
      *     @type string $kmsKeyName The resource name of the Cloud KMS
      *           CryptoKey to be used to protect access to messages published on this
      *           topic. The expected format is
