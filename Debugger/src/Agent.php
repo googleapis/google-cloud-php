@@ -19,7 +19,6 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
-use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -207,7 +206,7 @@ class Agent
                     );
                     break;
                 default:
-                    continue;
+                    continue 2;
             }
         }
     }
