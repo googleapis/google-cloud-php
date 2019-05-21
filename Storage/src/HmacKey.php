@@ -53,29 +53,21 @@ class HmacKey
     private $info;
 
     /**
-     * @var string|null
-     */
-    private $secret;
-
-    /**
      * @param ConnectionInterface $connection A connection to Cloud Storage.
      * @param string $projectId The current project ID.
      * @param string $accessId The key identifier.
      * @param array|null $info The key metadata.
-     * @param string|null $secret The key secret.
      */
     public function __construct(
         ConnectionInterface $connection,
         $projectId,
         $accessId,
-        array $info = [],
-        $secret = null
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->accessId = $accessId;
         $this->info = $info;
-        $this->secret = $secret;
     }
 
     /**
@@ -105,7 +97,8 @@ class HmacKey
      *     Configuration Options
      *
      *     @type string $userProject If set, this is the ID of the project which
-     *           will be billed for the request.
+     *           will be billed for the request. **NOTE**: This option is
+     *           currently ignored by Cloud Storage.
      * }
      * @return array
      */
@@ -134,30 +127,14 @@ class HmacKey
      *     Configuration Options
      *
      *     @type string $userProject If set, this is the ID of the project which
-     *           will be billed for the request.
+     *           will be billed for the request. **NOTE**: This option is
+     *           currently ignored by Cloud Storage.
      * }
      * @return array
      */
     public function info(array $options = [])
     {
         return $this->info ?: $this->reload($options);
-    }
-
-    /**
-     * Get the HMAC Key Secret.
-     *
-     * Only populated immediately after key creation.
-     *
-     * Example:
-     * ```
-     * $secret = $hmacKey->secret();
-     * ```
-     *
-     * @return string|null
-     */
-    public function secret()
-    {
-        return $this->secret;
     }
 
     /**
@@ -173,7 +150,8 @@ class HmacKey
      *     Configuration Options
      *
      *     @type string $userProject If set, this is the ID of the project which
-     *           will be billed for the request.
+     *           will be billed for the request. **NOTE**: This option is
+     *           currently ignored by Cloud Storage.
      * }
      * @return array
      */
@@ -203,7 +181,8 @@ class HmacKey
      *     Configuration Options
      *
      *     @type string $userProject If set, this is the ID of the project which
-     *           will be billed for the request.
+     *           will be billed for the request. **NOTE**: This option is
+     *           currently ignored by Cloud Storage.
      * }
      * @return void
      */

@@ -40,15 +40,15 @@ class HmacKeyTest extends StorageTestCase
 
     public function testKeyLifecycle()
     {
-        $key = $this->createHmacKey(self::$serviceAccountEmail);
-        $this->assertEquals('ACTIVE', $key->info()['state']);
-        $this->assertNotNull($key->secret());
+        $res = $this->createHmacKey(self::$serviceAccountEmail);
+        $this->assertEquals('ACTIVE', $res->hmacKey()->info()['state']);
+        $this->assertNotNull($res->secret());
 
-        $this->assertHasKey($key->accessId());
+        $this->assertHasKey($res->hmacKey()->accessId());
 
-        $this->deleteKey($key);
+        $this->deleteKey($res->hmacKey());
 
-        $this->assertNotHasKey($key->accessId());
+        $this->assertNotHasKey($res->hmacKey()->accessId());
     }
 
     public function testListWithServiceAccountEmail()
@@ -64,17 +64,17 @@ class HmacKeyTest extends StorageTestCase
             true
         )['client_email'];
 
-        $key1 = $this->createHmacKey(self::$serviceAccountEmail);
-        $key2 = $this->createHmacKey($altServiceAccountEmail);
+        $res1 = $this->createHmacKey(self::$serviceAccountEmail);
+        $res2 = $this->createHmacKey($altServiceAccountEmail);
 
-        $this->assertHasKey($key1->accessId());
-        $this->assertHasKey($key2->accessId());
+        $this->assertHasKey($res1->hmacKey()->accessId());
+        $this->assertHasKey($res2->hmacKey()->accessId());
 
-        $this->assertNotHasKey($key1->accessId(), $altServiceAccountEmail);
-        $this->assertHasKey($key2->accessId(), $altServiceAccountEmail);
+        $this->assertNotHasKey($res1->hmacKey()->accessId(), $altServiceAccountEmail);
+        $this->assertHasKey($res2->hmacKey()->accessId(), $altServiceAccountEmail);
 
-        $this->deleteKey($key1);
-        $this->deleteKey($key2);
+        $this->deleteKey($res1->hmacKey());
+        $this->deleteKey($res2->hmacKey());
     }
 
     public function testListMaxResultsAndPage()
@@ -128,7 +128,7 @@ class HmacKeyTest extends StorageTestCase
      * try again.
      *
      * @param string $serviceAccountEmail
-     * @return HmacKey
+     * @return CreatedHmacKey
      */
     private function createHmacKey($serviceAccountEmail)
     {

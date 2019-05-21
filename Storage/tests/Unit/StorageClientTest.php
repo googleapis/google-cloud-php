@@ -22,6 +22,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\CreatedHmacKey;
 use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
@@ -203,7 +204,6 @@ class StorageClientTest extends TestCase
 
         $this->assertEquals($accessId, $key->accessId());
         $this->assertEquals(['accessId' => $accessId], $key->info());
-        $this->assertNull($key->secret());
     }
 
     public function testHmacKey()
@@ -231,10 +231,10 @@ class StorageClientTest extends TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->client->createHmacKey($email);
-        $this->assertInstanceOf(HmacKey::class, $res);
+        $this->assertInstanceOf(CreatedHmacKey::class, $res);
         $this->assertEquals($secret, $res->secret());
-        $this->assertEquals($accessId, $res->accessId());
-        $this->assertEquals(['accessId' => $accessId], $res->info());
+        $this->assertEquals($accessId, $res->hmacKey()->accessId());
+        $this->assertEquals(['accessId' => $accessId], $res->hmacKey()->info());
     }
 
     /**

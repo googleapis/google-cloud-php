@@ -491,8 +491,8 @@ class StorageClient
      *
      * Example:
      * ```
-     * $hmacKey = $storage->createHmacKey('account@myProject.iam.gserviceaccount.com');
-     * $secret = $hmacKey->secret();
+     * $response = $storage->createHmacKey('account@myProject.iam.gserviceaccount.com');
+     * $secret = $response->secret();
      * ```
      *
      * @param string $serviceAccountEmail Email address of the service account.
@@ -500,9 +500,10 @@ class StorageClient
      *     Configuration Options
      *
      *     @type string $userProject If set, this is the ID of the project which
-     *           will be billed for the request.
+     *           will be billed for the request. **NOTE**: This option is
+     *           currently ignored by Cloud Storage.
      * }
-     * @return HmacKey
+     * @return CreatedHmacKey
      */
     public function createHmacKey($serviceAccountEmail, array $options = [])
     {
@@ -513,13 +514,14 @@ class StorageClient
             'serviceAccountEmail' => $serviceAccountEmail
         ] + $options);
 
-        return new HmacKey(
+        $key = new HmacKey(
             $this->connection,
             $this->projectId,
             $res['metadata']['accessId'],
-            $res['metadata'],
-            $res['secret']
+            $res['metadata']
         );
+
+        return new CreatedHmacKey($key, $res['secret']);
     }
 
     /**

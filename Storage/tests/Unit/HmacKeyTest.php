@@ -39,8 +39,6 @@ class HmacKeyTest extends TestCase
         'accessId' => 'foo'
     ];
 
-    private $secret = 'bar';
-
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -48,9 +46,8 @@ class HmacKeyTest extends TestCase
             $this->connection->reveal(),
             self::PROJECT,
             $this->metadata['accessId'],
-            $this->metadata,
-            $this->secret
-        ], ['connection', 'info', 'secret']);
+            $this->metadata
+        ], ['connection', 'info']);
     }
 
     public function testAccessId()
@@ -96,17 +93,6 @@ class HmacKeyTest extends TestCase
 
         $this->key->___setProperty('connection', $this->connection->reveal());
         $this->assertEquals($this->metadata, $this->key->info());
-    }
-
-    public function testGetSecret()
-    {
-        $this->assertEquals($this->secret, $this->key->secret());
-    }
-
-    public function testGetSecretNull()
-    {
-        $this->key->___setProperty('secret', null);
-        $this->assertNull($this->key->secret());
     }
 
     public function testUpdate()

@@ -39,8 +39,6 @@ class HmacKeyTest extends SnippetTestCase
         'accessId' => 'foo'
     ];
 
-    private $secret = 'bar';
-
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -49,8 +47,7 @@ class HmacKeyTest extends SnippetTestCase
             $this->connection->reveal(),
             self::PROJECT,
             $this->metadata['accessId'],
-            $this->metadata,
-            $this->secret
+            $this->metadata
         ]);
     }
 
@@ -89,14 +86,6 @@ class HmacKeyTest extends SnippetTestCase
         $snippet->addLocal('hmacKey', $this->key);
 
         $this->assertEquals($this->metadata, $snippet->invoke('keyMetadata')->returnVal());
-    }
-
-    public function testSecret()
-    {
-        $snippet = $this->snippetFromMethod(HmacKey::class, 'secret');
-        $snippet->addLocal('hmacKey', $this->key);
-
-        $this->assertEquals($this->secret, $snippet->invoke('secret')->returnVal());
     }
 
     public function testUpdate()
