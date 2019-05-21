@@ -127,6 +127,12 @@ class Platform
      * Generated from protobuf enum <code>ACTIONS_ON_GOOGLE = 8;</code>
      */
     const ACTIONS_ON_GOOGLE = 8;
+    /**
+     * Google Hangouts.
+     *
+     * Generated from protobuf enum <code>GOOGLE_HANGOUTS = 11;</code>
+     */
+    const GOOGLE_HANGOUTS = 11;
 
     private static $valueToName = [
         self::PLATFORM_UNSPECIFIED => 'PLATFORM_UNSPECIFIED',
@@ -138,6 +144,7 @@ class Platform
         self::LINE => 'LINE',
         self::VIBER => 'VIBER',
         self::ACTIONS_ON_GOOGLE => 'ACTIONS_ON_GOOGLE',
+        self::GOOGLE_HANGOUTS => 'GOOGLE_HANGOUTS',
     ];
 
     public static function name($value)

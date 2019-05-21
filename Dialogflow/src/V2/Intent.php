@@ -123,8 +123,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $messages;
     /**
-     * Optional. The list of platforms for which the first response will be
-     * taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first responses will be
+     * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15;</code>
      */
@@ -213,8 +213,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Optional. The collection of rich messages corresponding to the
      *           `Response` field in the Dialogflow console.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $default_response_platforms
-     *           Optional. The list of platforms for which the first response will be
-     *           taken from among the messages assigned to the DEFAULT_PLATFORM.
+     *           Optional. The list of platforms for which the first responses will be
+     *           copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *     @type string $root_followup_intent_name
      *           Read-only. The unique identifier of the root intent in the chain of
      *           followup intents. It identifies the correct followup intents chain for
@@ -644,8 +644,8 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of platforms for which the first response will be
-     * taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first responses will be
+     * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -656,8 +656,8 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of platforms for which the first response will be
-     * taken from among the messages assigned to the DEFAULT_PLATFORM.
+     * Optional. The list of platforms for which the first responses will be
+     * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
