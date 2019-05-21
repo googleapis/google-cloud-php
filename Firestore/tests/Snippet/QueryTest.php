@@ -36,20 +36,15 @@ class QueryTest extends SnippetTestCase
 {
     use GrpcTestTrait;
 
+    const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
+    const COLLECTION = 'a';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
-    private $query;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->query = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
-            self::NAME,
-            ['from' => self::NAME]
-        ]);
     }
 
     public function testClass()
@@ -63,14 +58,27 @@ class QueryTest extends SnippetTestCase
 
     public function testDocuments()
     {
+        $query = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::QUERY_PARENT,
+            [
+                'from' => [
+                    [
+                        'collectionId' => self::COLLECTION,
+                    ]
+                ]
+            ]
+        ]);
+
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
+        $query->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Query::class, 'documents');
-        $snippet->addLocal('query', $this->query);
+        $snippet->addLocal('query', $query);
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(QuerySnapshot::class, $res->returnVal());
     }
@@ -205,21 +213,37 @@ class QueryTest extends SnippetTestCase
         return $this->runAndAssertArray($snippet, [$key => $argument]);
     }
 
-    private function runAndAssertArray(Snippet $snippet, array $query)
+    private function runAndAssertArray(Snippet $snippet, array $query, $allDescendants = false)
     {
+        $from = [
+            [
+                'collectionId' => self::COLLECTION,
+                'allDescendants' => $allDescendants
+            ]
+        ];
+
+        $q = TestHelpers::stub(Query::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::QUERY_PARENT,
+            [
+                'from' => $from
+            ]
+        ]);
+
         $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => self::NAME,
+            'parent' => self::QUERY_PARENT,
             'retries' => 0,
-            'structuredQuery' => array_filter([
-                'from' => self::NAME,
-            ]) + $query + [
+            'structuredQuery' => [
+                'from' => $from
+            ] + $query + [
                 'offset' => 0,
                 'orderBy' => []
             ]
         ]))->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
-        $this->query->___setProperty('connection', $this->connection->reveal());
-        $snippet->addLocal('query', $this->query);
+        $q->___setProperty('connection', $this->connection->reveal());
+        $snippet->addLocal('query', $q);
 
         $res = $snippet->invoke('query');
         $res->returnVal()->documents(['maxRetries' => 0]);

@@ -42,6 +42,12 @@ class FieldPathTest extends TestCase
         new FieldPath(['']);
     }
 
+    public function testDocumentId()
+    {
+        $path = FieldPath::documentId();
+        $this->assertEquals('__name__', $path->pathString());
+    }
+
     public function testFromString()
     {
         $fieldPath = FieldPath::fromString(implode('.', $this->pieces));

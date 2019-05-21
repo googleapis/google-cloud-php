@@ -58,6 +58,23 @@ class FieldPath
     }
 
     /**
+     * Create a field path indicating the document ID.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\FieldPath;
+     *
+     * $path = FieldPath::documentId();
+     * ```
+     *
+     * @return FieldPath
+     */
+    public static function documentId()
+    {
+        return new self(['__name__']);
+    }
+
+    /**
      * Create a FieldPath from a string path.
      *
      * Example:

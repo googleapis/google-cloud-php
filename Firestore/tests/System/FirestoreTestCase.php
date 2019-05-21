@@ -59,10 +59,16 @@ class FirestoreTestCase extends SystemTestCase
         $backoff = new ExponentialBackoff(8);
 
         self::$localDeletionQueue->process(function ($items) use ($backoff) {
-            foreach ($items as $collection) {
-                $backoff->execute(function () use ($collection) {
-                    foreach ($collection->documents() as $document) {
-                        $document->reference()->delete();
+            foreach ($items as $item) {
+                $backoff->execute(function () use ($item) {
+                    if ($item instanceof CollectionReference) {
+                        foreach ($item->documents() as $document) {
+                            $document->reference()->delete();
+                        }
+                    } elseif ($item instanceof DocumentReference) {
+                        $item->delete();
+                    } elseif ($item instanceof DocumentSnapshot) {
+                        $item->reference()->delete();
                     }
                 });
             }

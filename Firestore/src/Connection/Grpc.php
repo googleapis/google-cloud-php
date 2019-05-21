@@ -57,6 +57,7 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        //@codeCoverageIgnoreStart
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
@@ -71,16 +72,19 @@ class Grpc implements ConnectionInterface
                 return $this->formatTimestampFromApi($v);
             },
         ]);
+        //@codeCoverageIgnoreEnd
 
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
+        //@codeCoverageIgnoreStart
         $grpcConfig = $this->getGaxConfig(
             ManualFirestoreClient::VERSION,
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
                 : null
         );
+        //@codeCoverageIgnoreEnd
 
         //@codeCoverageIgnoreStart
         $config += ['emulatorHost' => null];

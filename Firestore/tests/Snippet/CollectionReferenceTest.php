@@ -37,7 +37,6 @@ class CollectionReferenceTest extends SnippetTestCase
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
-    const PARENT = 'projects/example_project/databases/(default)/documents';
     const NAME = 'projects/example_project/databases/(default)/documents/users';
 
     private $connection;

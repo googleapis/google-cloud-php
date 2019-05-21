@@ -326,6 +326,50 @@ class FirestoreClient
     }
 
     /**
+     * Creates a new Query which includes all documents that are contained in
+     * a collection or subcollection with the given collection ID.
+     *
+     * A collection group query with a collection ID of `foo` will return
+     * documents from `/foo` and `/abc/dce/foo`, but not `/foo/abc/dce`.
+     *
+     * Example:
+     * ```
+     * $query = $firestore->collectionGroup('users');
+     * $querySnapshot = $query->documents();
+     *
+     * echo sprintf('Found %d documents!', $querySnapshot->size());
+     * ```
+     *
+     * @param string $id Identifies the collection to query over. Every
+     *        collection or subcollection with this ID as the last segment of
+     *        its path will be included. May not contain a slash.
+     * @return Query
+     * @throws InvalidArgumentException If the collection ID is not well-formed.
+     */
+    public function collectionGroup($id)
+    {
+        if (strpos($id, '/') !== false) {
+            throw new \InvalidArgumentException(
+                'Collection ID may not contain a slash.'
+            );
+        }
+
+        return new Query(
+            $this->connection,
+            $this->valueMapper,
+            $this->fullName($this->projectId, $this->database),
+            [
+                'from' => [
+                    [
+                        'collectionId' => $id,
+                        'allDescendants' => true
+                    ]
+                ]
+            ]
+        );
+    }
+
+    /**
      * Executes a function in a Firestore transaction.
      *
      * Transactions offer atomic operations, guaranteeing that either all
