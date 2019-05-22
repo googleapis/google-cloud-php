@@ -147,7 +147,20 @@ class AnalyzeTest extends LanguageTestCase
                 if ($entity['name'] == $expectedEntity['name']) {
                     $exists = true;
                     $this->assertEquals($entity['type'], $expectedEntity['type']);
-                    $this->assertEquals($entity['sentiment'], $expectedEntity['sentiment']);
+                    $this->assertEquals(
+                        $entity['sentiment']['score'],
+                        $expectedEntity['sentiment']['score'],
+                        '',
+                        0.2
+                    );
+
+                    $this->assertEquals(
+                        $entity['sentiment']['magnitude'],
+                        $expectedEntity['sentiment']['magnitude'],
+                        '',
+                        0.2
+                    );
+
                     break;
                 }
             }
