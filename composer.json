@@ -103,7 +103,8 @@
         "google/cloud-translate": "1.2.9",
         "google/cloud-videointelligence": "1.5.3",
         "google/cloud-vision": "0.22.2",
-        "google/cloud-web-risk": "0.1.1"
+        "google/cloud-web-risk": "0.1.1",
+        "google/cloud-web-security-scanner": "master"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -150,6 +151,7 @@
             "Google\\Cloud\\VideoIntelligence\\": "VideoIntelligence/src",
             "Google\\Cloud\\Vision\\": "Vision/src",
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
+            "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "GPBMetadata\\Google\\": "CommonProtos/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
@@ -172,6 +174,7 @@
             "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "VideoIntelligence/metadata",
             "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
             "GPBMetadata\\Google\\Cloud\\Webrisk\\": "WebRisk/metadata",
+            "GPBMetadata\\Google\\Cloud\\Websecurityscanner\\": "WebSecurityScanner/metadata",
             "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "Debugger/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouderrorreporting\\": "ErrorReporting/metadata",
@@ -188,7 +191,9 @@
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\": "tests",
-            "Google\\Cloud\\CommonProtos\\Tests\\": "CommonProtos\tests",
+            "Google\\Cloud\\CommonProtos\\Tests\\": "CommonProtos/tests",
+            "Google\\Cloud\\Asset\\Tests\\": "Asset/tests",
+            "Google\\Cloud\\AutoMl\\Tests\\": "AutoMl/tests",
             "Google\\Cloud\\BigQuery\\Tests\\": "BigQuery/tests",
             "Google\\Cloud\\BigQuery\\DataTransfer\\Tests\\": "BigQueryDataTransfer/tests",
             "Google\\Cloud\\Bigtable\\Tests\\": "Bigtable/tests",
@@ -214,13 +219,15 @@
             "Google\\Cloud\\Spanner\\Tests\\": "Spanner/tests",
             "Google\\Cloud\\Speech\\Tests\\": "Speech/tests",
             "Google\\Cloud\\Storage\\Tests\\": "Storage/tests",
-            "Google\\Cloud\\Tasks\\Talent\\": "Talent/tests",
+            "Google\\Cloud\\Talent\\Tests\\": "Talent/tests",
             "Google\\Cloud\\Tasks\\Tests\\": "Tasks/tests",
             "Google\\Cloud\\TextToSpeech\\Tests\\": "TextToSpeech/tests",
             "Google\\Cloud\\Trace\\Tests\\": "Trace/tests",
             "Google\\Cloud\\Translate\\Tests\\": "Translate/tests",
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
-            "Google\\Cloud\\Vision\\Tests\\": "Vision/tests"
+            "Google\\Cloud\\Vision\\Tests\\": "Vision/tests",
+            "Google\\Cloud\\WebRisk\\Tests\\": "WebRisk/tests",
+            "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests"
         },
         "files": [
             "Firestore/tests/Conformance/FirestoreTestGpb.php"

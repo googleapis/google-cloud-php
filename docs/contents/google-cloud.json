@@ -41,6 +41,7 @@
         "cloud-translate",
         "cloud-videointelligence",
         "cloud-vision",
-        "cloud-web-risk"
+        "cloud-web-risk",
+        "cloud-web-security-scanner"
     ]
 }

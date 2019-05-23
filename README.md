@@ -50,6 +50,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud Security Command Center](#google-cloud-security-command-center-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Cloud Web Risk](#google-cloud-web-risk-alpha) (Alpha)
+* [Google Cloud Web Security Scanner](#google-cloud-web-security-scanner-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -1502,6 +1503,43 @@ if ($threats) {
 
 ```
 $ composer require google/cloud-web-risk
+```
+
+## Google Cloud Web Security Scanner (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/websecurityscanner/readme)
+- [Official Documentation](https://cloud.google.com/security-scanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig;
+use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\UserAgent;
+use Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ExecutionState;
+use Google\Cloud\WebSecurityScanner\V1beta\WebSecurityScannerClient;
+
+$client = new WebSecurityScannerClient();
+$scanConfig = $client->createScanConfig(
+    WebSecurityScannerClient::projectName('[MY_PROJECT_ID'),
+    new ScanConfig([
+        'display_name' => 'Test Scan',
+        'starting_urls' => ['https://[MY_APPLICATION_ID].appspot.com/'],
+        'user_agent' => UserAgent::CHROME_LINUX
+    ])
+);
+$scanRun = $client->startScanRun($scanConfig->getName());
+
+echo 'Scan execution state: ' . ExecutionState::name($scanRun->getExecutionState()) . PHP_EOL;
+```
+
+#### google/cloud-web-security-scanner
+
+[Google Cloud Web Risk](https://github.com/googleapis/google-cloud-php-web-security-scanner) can be installed separately by requiring the [`google/cloud-web-risk`](https://packagist.org/packages/google/cloud-web-security-scanner) composer package:
+
+```
+$ composer require google/cloud-web-security-scanner
 ```
 
 ## Google Stackdriver Trace (Alpha)
