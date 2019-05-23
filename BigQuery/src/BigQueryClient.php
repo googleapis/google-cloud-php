@@ -316,6 +316,9 @@ class BigQueryClient
      *           **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to poll the Job status,
      *           until the job is complete. By default, will poll indefinitely.
+     *     @type bool $returnRawResults Returns the raw data types returned from
+     *           BigQuery without converting their values into native PHP types or
+     *           the custom type classes supported by this library.
      * }
      * @return QueryResults
      * @throws JobException If the maximum number of retries while waiting for
@@ -327,7 +330,8 @@ class BigQueryClient
             'maxResults',
             'startIndex',
             'timeoutMs',
-            'maxRetries'
+            'maxRetries',
+            'returnRawResults',
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
 
