@@ -269,7 +269,7 @@ class Grpc implements ConnectionInterface
     /**
      * Convert a list of keys to a list of {@see Google\Cloud\Datastore\V1\Key}.
      *
-     * @param array[]
+     * @param array[] $keys
      * @return Key[]
      */
     private function keysList(array $keys)

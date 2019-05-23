@@ -22,6 +22,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -956,7 +957,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/lookup Lookup API documentation
      *
-     * @param Key[] $key The identifiers to look up.
+     * @param Key[] $keys The identifiers to look up.
      * @param array $options [optional] {
      *     Configuration Options
      *

@@ -376,14 +376,14 @@ class EntityMapper
             case 'unknown type':
                 throw new \InvalidArgumentException(sprintf(
                     'Unknown type for `%s',
-                    $content
+                    $value
                 ));
                 break;
 
             default:
                 throw new \InvalidArgumentException(sprintf(
                     'Invalid type for `%s',
-                    $content
+                    $value
                 ));
                 break;
             //@codeCoverageIgnoreEnd

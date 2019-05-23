@@ -19,7 +19,6 @@ namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
@@ -56,7 +55,7 @@ class Operation
     private $namespaceId;
 
     /**
-     * @var string
+     * @var EntityMapper
      */
     private $entityMapper;
 
@@ -66,6 +65,7 @@ class Operation
      * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
+     * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -655,7 +655,7 @@ class Operation
      *        If an array is given, it must be an associative array, where
      *        the key is a Kind and the value is an object implementing
      *        {@see Google\Cloud\Datastore\EntityInterface}.
-     * @return EntityInterface[]
+     * @return EntityInterface
      */
     private function mapEntityResult(array $result, $class)
     {
