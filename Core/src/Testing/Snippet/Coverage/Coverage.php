@@ -108,7 +108,7 @@ class Coverage
     }
 
     /**
-     * @param $identifier
+     * @param string|int $identifier
      * @return Snippet|null
      *
      * @experimental

@@ -24,16 +24,10 @@ use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
-use Google\GAX\ApiException as GaxApiException;
-use Google\GAX\OperationResponse as GaxOperationResponse;
-use Google\GAX\PagedListResponse as GaxPagedListResponse;
-use Google\GAX\Serializer as GaxSerializer;
-use Google\GAX\ServerStream as GaxServerStream;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;
 use Google\Rpc\Code;
 use Google\Rpc\RetryInfo;
-use Grpc;
 
 /**
  * The GrpcRequestWrapper is responsible for delivering gRPC requests.
@@ -96,7 +90,7 @@ class GrpcRequestWrapper
 
         $config += [
             'authHttpHandler' => null,
-            'serializer' => $this->buildSerializer(),
+            'serializer' => new Serializer,
             'grpcOptions' => []
         ];
 
@@ -148,7 +142,7 @@ class GrpcRequestWrapper
         try {
             return $this->handleResponse($backoff->execute($request, $args));
         } catch (\Exception $ex) {
-            if ($ex instanceof ApiException || $ex instanceof GaxApiException) {
+            if ($ex instanceof ApiException) {
                 throw $this->convertToGoogleException($ex);
             }
 
@@ -160,11 +154,11 @@ class GrpcRequestWrapper
      * Serializes a gRPC response.
      *
      * @param mixed $response
-     * @return \Generator|array|null
+     * @return \Generator|OperationResponse|array|null
      */
     private function handleResponse($response)
     {
-        if ($response instanceof PagedListResponse || $response instanceof GaxPagedListResponse) {
+        if ($response instanceof PagedListResponse) {
             $response = $response->getPage()->getResponseObject();
         }
 
@@ -172,11 +166,11 @@ class GrpcRequestWrapper
             return $this->serializer->encodeMessage($response);
         }
 
-        if ($response instanceof OperationResponse || $response instanceof GaxOperationResponse) {
+        if ($response instanceof OperationResponse) {
             return $response;
         }
 
-        if ($response instanceof ServerStream || $response instanceof GaxServerStream) {
+        if ($response instanceof ServerStream) {
             return $this->handleStream($response);
         }
 
@@ -186,7 +180,7 @@ class GrpcRequestWrapper
     /**
      * Handles a streaming response.
      *
-     * @param ServerStream|GaxServerStream $response
+     * @param ServerStream $response
      * @return \Generator|array|null
      */
     private function handleStream($response)
@@ -204,7 +198,7 @@ class GrpcRequestWrapper
     /**
      * Convert a ApiCore exception to a Google Exception.
      *
-     * @param ApiException|GaxApiException $ex
+     * @param \Exception $ex
      * @return Exception\ServiceException
      */
     private function convertToGoogleException($ex)
@@ -261,15 +255,5 @@ class GrpcRequestWrapper
         }
 
         return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
-    }
-
-    /**
-     * @return Serializer|GaxSerializer
-     */
-    private function buildSerializer()
-    {
-        return class_exists(Serializer::class)
-            ? new Serializer
-            : new GaxSerializer;
     }
 }

@@ -45,7 +45,7 @@ use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 class Metadata
 {
     /**
-     * @var StreamReader The metadata reader.
+     * @var ReaderInterface The metadata reader.
      */
     private $reader;
 

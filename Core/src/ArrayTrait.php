@@ -51,7 +51,7 @@ trait ArrayTrait
     /**
      * Pluck a subset of an array.
      *
-     * @param string $keys
+     * @param string[] $keys
      * @param array $arr
      * @return array
      */

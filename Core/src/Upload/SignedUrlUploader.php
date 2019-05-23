@@ -89,7 +89,7 @@ class SignedUrlUploader extends ResumableUploader
     /**
      * Decode the response body
      *
-     * @param ReponseInterface $response
+     * @param ResponseInterface $response
      * @return string
      */
     protected function decodeResponse(ResponseInterface $response)

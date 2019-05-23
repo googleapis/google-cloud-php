@@ -43,7 +43,7 @@ trait JobTrait
     private $numWorkers;
 
     /**
-     * @var string An optional file that is required to run this job.
+     * @var string|null An optional file that is required to run this job.
      */
     private $bootstrapFile;
 

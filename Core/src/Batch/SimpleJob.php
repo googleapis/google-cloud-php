@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Core\Batch;
 
-use Google\Cloud\Core\SysvTrait;
-
 /**
  * Represents a simple job that runs a single method that loops forever.
  *
