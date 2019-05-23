@@ -53,7 +53,6 @@ $scanConfig = $client->createScanConfig(
         'user_agent' => UserAgent::CHROME_LINUX
     ])
 );
-
 $scanRun = $client->startScanRun($scanConfig->getName());
 
 echo 'Scan execution state: ' . ExecutionState::name($scanRun->getExecutionState()) . PHP_EOL;
