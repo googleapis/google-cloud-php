@@ -35,6 +35,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud OsLogin](#google-cloud-oslogin-beta) (Beta)
+* [Google Cloud Speech](#google-cloud-speech-beta) (Beta)
 * [Google Cloud Text-to-Speech](#google-cloud-text-to-speech-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 * [Google DLP](#google-dlp-beta) (Beta)
@@ -47,7 +48,6 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud IoT](#google-cloud-iot-alpha) (Alpha)
 * [Google Cloud Redis](#google-cloud-redis-alpha) (Alpha)
 * [Google Cloud Security Command Center](#google-cloud-security-command-center-alpha) (Alpha)
-* [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Cloud Web Risk](#google-cloud-web-risk-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
@@ -959,6 +959,44 @@ $loginProfile = $osLoginServiceClient->getLoginProfile($formattedName);
 $ composer require google/cloud-oslogin
 ```
 
+## Google Cloud Speech (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
+- [Official Documentation](https://cloud.google.com/speech/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig;
+use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
+
+$recognitionConfig = new RecognitionConfig();
+$recognitionConfig->setEncoding(AudioEncoding::FLAC);
+$recognitionConfig->setSampleRateHertz(44100);
+$recognitionConfig->setLanguageCode('en-US');
+$config = new StreamingRecognitionConfig();
+$config->setConfig($recognitionConfig);
+
+$audioResource = fopen('path/to/audio.flac', 'r');
+
+$responses = $speechClient->recognizeAudioStream($config, $audioResource);
+
+foreach ($responses as $element) {
+    // doSomethingWith($element);
+}
+```
+
+#### google/cloud-speech
+
+[Google Cloud Speech](https://github.com/googleapis/google-cloud-php-speech) can be installed separately by requiring the [`google/cloud-speech`](https://packagist.org/packages/google/cloud-speech) composer package:
+
+```
+$ composer require google/cloud-speech
+```
+
 ## Google Cloud Text-to-Speech (Beta)
 
 - [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/text-to-speech/readme)
@@ -1371,44 +1409,6 @@ $res = $security->createSource($parent, $source);
 
 ```
 $ composer require google/cloud-security-center
-```
-
-## Google Cloud Speech (Alpha)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
-- [Official Documentation](https://cloud.google.com/speech/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
-use Google\Cloud\Speech\V1\RecognitionConfig;
-use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
-
-$recognitionConfig = new RecognitionConfig();
-$recognitionConfig->setEncoding(AudioEncoding::FLAC);
-$recognitionConfig->setSampleRateHertz(44100);
-$recognitionConfig->setLanguageCode('en-US');
-$config = new StreamingRecognitionConfig();
-$config->setConfig($recognitionConfig);
-
-$audioResource = fopen('path/to/audio.flac', 'r');
-
-$responses = $speechClient->recognizeAudioStream($config, $audioResource);
-
-foreach ($responses as $element) {
-    // doSomethingWith($element);
-}
-```
-
-#### google/cloud-speech
-
-[Google Cloud Speech](https://github.com/googleapis/google-cloud-php-speech) can be installed separately by requiring the [`google/cloud-speech`](https://packagist.org/packages/google/cloud-speech) composer package:
-
-```
-$ composer require google/cloud-speech
 ```
 
 ## Google Cloud Talent Solution (Alpha)
