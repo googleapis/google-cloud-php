@@ -1504,6 +1504,44 @@ if ($threats) {
 $ composer require google/cloud-web-risk
 ```
 
+## Google Cloud Web Security Scanner (Alpha)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/websecurityscanner/readme)
+- [Official Documentation](https://cloud.google.com/security-scanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig;
+use Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\UserAgent;
+use Google\Cloud\WebSecurityScanner\V1beta\ScanRun\ExecutionState;
+use Google\Cloud\WebSecurityScanner\V1beta\WebSecurityScannerClient;
+
+$client = new WebSecurityScannerClient();
+$scanConfig = $client->createScanConfig(
+    WebSecurityScannerClient::projectName('[MY_PROJECT_ID'),
+    new ScanConfig([
+        'display_name' => 'Test Scan',
+        'starting_urls' => ['https://[MY_APPLICATION_ID].appspot.com/'],
+        'user_agent' => UserAgent::CHROME_LINUX
+    ])
+);
+
+$scanRun = $client->startScanRun($scanConfig->getName());
+
+echo 'Scan execution state: ' . ExecutionState::name($scanRun->getExecutionState()) . PHP_EOL;
+```
+
+#### google/cloud-web-security-scanner
+
+[Google Cloud Web Risk](https://github.com/googleapis/google-cloud-php-web-security-scanner) can be installed separately by requiring the [`google/cloud-web-risk`](https://packagist.org/packages/google/cloud-web-security-scanner) composer package:
+
+```
+$ composer require google/cloud-web-security-scanner
+```
+
 ## Google Stackdriver Trace (Alpha)
 
 - [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/trace/traceclient)
