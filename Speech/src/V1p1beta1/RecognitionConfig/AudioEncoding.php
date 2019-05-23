@@ -97,6 +97,14 @@ class AudioEncoding
      * Generated from protobuf enum <code>SPEEX_WITH_HEADER_BYTE = 7;</code>
      */
     const SPEEX_WITH_HEADER_BYTE = 7;
+    /**
+     * MP3 audio. Support all standard MP3 bitrates (which range from 32-320
+     * kbps). When using this encoding, `sample_rate_hertz` can be optionally
+     * unset if not known.
+     *
+     * Generated from protobuf enum <code>MP3 = 8;</code>
+     */
+    const MP3 = 8;
 
     private static $valueToName = [
         self::ENCODING_UNSPECIFIED => 'ENCODING_UNSPECIFIED',
@@ -107,6 +115,7 @@ class AudioEncoding
         self::AMR_WB => 'AMR_WB',
         self::OGG_OPUS => 'OGG_OPUS',
         self::SPEEX_WITH_HEADER_BYTE => 'SPEEX_WITH_HEADER_BYTE',
+        self::MP3 => 'MP3',
     ];
 
     public static function name($value)
