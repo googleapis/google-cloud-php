@@ -1,0 +1,24 @@
+{
+  "updateTime": "2019-05-23T18:09:44.813901Z",
+  "sources": [
+    {
+      "generator": {
+        "name": "artman",
+        "version": "0.20.0",
+        "dockerImage": "googleapis/artman@sha256:3246adac900f4bdbd62920e80de2e5877380e44036b3feae13667ec255ebf5ec"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "websecurityscanner",
+        "apiVersion": "v1beta",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/websecurityscanner/artman_websecurityscanner_v1beta.yaml"
+      }
+    }
+  ]
+}
