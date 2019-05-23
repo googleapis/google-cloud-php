@@ -1521,6 +1521,14 @@
                 "v0.1.0",
                 "master"
             ]
+        },
+        {
+            "id": "cloud-web-security-scanner",
+            "name": "google/cloud-web-security-scanner",
+            "defaultService": "websecurityscanner/readme",
+            "versions": [
+                "master"
+            ]
         }
     ],
     "content": "json",
