@@ -279,7 +279,7 @@ class Key implements JsonSerializable
      * }
      * ```
      *
-     * @return bool
+     * @return string
      */
     public function state()
     {

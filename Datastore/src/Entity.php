@@ -19,7 +19,6 @@ namespace Google\Cloud\Datastore;
 
 use ArrayAccess;
 use InvalidArgumentException;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * A Datastore Entity
@@ -110,7 +109,7 @@ class Entity implements ArrayAccess, EntityInterface
 
     /**
      * @param string $key The value name.
-     * @param mixed $value The value.
+     * @param mixed $val The value.
      * @return void
      * @access private
      */

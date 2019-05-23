@@ -105,7 +105,7 @@ trait TransactionTrait
      * }
      * ```
      *
-     * @param Key[] $key The identifiers to look up.
+     * @param Key[] $keys The identifiers to look up.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -171,6 +171,6 @@ trait TransactionTrait
      */
     public function rollback()
     {
-        return $this->operation->rollback($this->transactionId);
+        $this->operation->rollback($this->transactionId);
     }
 }
