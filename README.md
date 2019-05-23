@@ -50,6 +50,7 @@ This client supports the following Google Cloud Platform services at an [Alpha](
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Talent Solution](#google-cloud-talent-solution-alpha) (Alpha)
 * [Google Cloud Web Risk](#google-cloud-web-risk-alpha) (Alpha)
+* [Google Cloud Web Security Scanner](#google-cloud-web-security-scanner-alpha) (Alpha)
 * [Google Stackdriver Debugger](#google-stackdriver-debugger-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
