@@ -62,7 +62,7 @@ foreach ($responses as $element) {
 
 ### Version
 
-This component is considered alpha. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
+This component is considered beta. As such, it is still a work-in-progress and is more likely to get backwards-incompatible updates.
 
 ### Next Steps
 
