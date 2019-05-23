@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.102.0",
                 "v0.101.1",
                 "v0.101.0",
                 "v0.100.0",
@@ -166,6 +167,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
@@ -492,6 +494,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.18.4",
                 "v0.18.3",
                 "v0.18.2",
                 "v0.18.1",
@@ -531,6 +534,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.8.3",
                 "v0.8.2",
                 "v0.8.1",
                 "v0.8.0",
@@ -665,6 +669,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.6.0",
                 "v1.5.2",
                 "v1.5.1",
                 "v1.5.0",
@@ -781,6 +786,7 @@
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
+                "v0.19.3",
                 "v0.19.2",
                 "v0.19.1",
                 "v0.19.0",
@@ -1170,6 +1176,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.24.0",
                 "v0.23.3",
                 "v0.23.2",
                 "v0.23.1",
@@ -1281,6 +1288,7 @@
             "name": "google/cloud-tasks",
             "defaultService": "tasks/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.2",
                 "v1.0.1",
                 "v1.0.0",
@@ -1462,6 +1470,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v0.22.3",
                 "v0.22.2",
                 "v0.22.1",
                 "v0.22.0",
@@ -1527,6 +1536,7 @@
             "name": "google/cloud-web-security-scanner",
             "defaultService": "websecurityscanner/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         }
