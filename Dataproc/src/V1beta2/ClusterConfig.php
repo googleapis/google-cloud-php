@@ -16,18 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A Cloud Storage staging bucket used for sharing generated
-     * SSH keys and config. If you do not specify a staging bucket, Cloud
-     * Dataproc will determine an appropriate Cloud Storage location (US,
+     * Optional. A Google Cloud Storage bucket used to stage job
+     * dependencies, config files, and job driver console output.
+     * If you do not specify a staging bucket, Cloud
+     * Dataproc will determine a Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
-     * Compute Engine zone where your cluster is deployed, and then it will create
-     * and manage this project-level, per-location bucket for you.
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket (see
+     * [Cloud Dataproc staging
+     * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
      * Generated from protobuf field <code>string config_bucket = 1;</code>
      */
     private $config_bucket = '';
     /**
-     * Required. The shared Compute Engine config settings for
+     * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GceClusterConfig gce_cluster_config = 8;</code>
@@ -89,6 +92,25 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.EncryptionConfig encryption_config = 15;</code>
      */
     private $encryption_config = null;
+    /**
+     * Optional. Autoscaling config for the policy associated with the cluster.
+     * Cluster does not autoscale if this field is unset.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingConfig autoscaling_config = 16;</code>
+     */
+    private $autoscaling_config = null;
+    /**
+     * Optional. Port/endpoint configuration for this cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.EndpointConfig endpoint_config = 17;</code>
+     */
+    private $endpoint_config = null;
+    /**
+     * Optional. Security related configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SecurityConfig security_config = 18;</code>
+     */
+    private $security_config = null;
 
     /**
      * Constructor.
@@ -97,14 +119,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $config_bucket
-     *           Optional. A Cloud Storage staging bucket used for sharing generated
-     *           SSH keys and config. If you do not specify a staging bucket, Cloud
-     *           Dataproc will determine an appropriate Cloud Storage location (US,
+     *           Optional. A Google Cloud Storage bucket used to stage job
+     *           dependencies, config files, and job driver console output.
+     *           If you do not specify a staging bucket, Cloud
+     *           Dataproc will determine a Cloud Storage location (US,
      *           ASIA, or EU) for your cluster's staging bucket according to the Google
-     *           Compute Engine zone where your cluster is deployed, and then it will create
-     *           and manage this project-level, per-location bucket for you.
+     *           Compute Engine zone where your cluster is deployed, and then create
+     *           and manage this project-level, per-location bucket (see
+     *           [Cloud Dataproc staging
+     *           bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *     @type \Google\Cloud\Dataproc\V1beta2\GceClusterConfig $gce_cluster_config
-     *           Required. The shared Compute Engine config settings for
+     *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
      *     @type \Google\Cloud\Dataproc\V1beta2\InstanceGroupConfig $master_config
      *           Optional. The Compute Engine config settings for
@@ -134,6 +159,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *               fi
      *     @type \Google\Cloud\Dataproc\V1beta2\EncryptionConfig $encryption_config
      *           Optional. Encryption settings for the cluster.
+     *     @type \Google\Cloud\Dataproc\V1beta2\AutoscalingConfig $autoscaling_config
+     *           Optional. Autoscaling config for the policy associated with the cluster.
+     *           Cluster does not autoscale if this field is unset.
+     *     @type \Google\Cloud\Dataproc\V1beta2\EndpointConfig $endpoint_config
+     *           Optional. Port/endpoint configuration for this cluster
+     *     @type \Google\Cloud\Dataproc\V1beta2\SecurityConfig $security_config
+     *           Optional. Security related configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,12 +174,15 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage staging bucket used for sharing generated
-     * SSH keys and config. If you do not specify a staging bucket, Cloud
-     * Dataproc will determine an appropriate Cloud Storage location (US,
+     * Optional. A Google Cloud Storage bucket used to stage job
+     * dependencies, config files, and job driver console output.
+     * If you do not specify a staging bucket, Cloud
+     * Dataproc will determine a Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
-     * Compute Engine zone where your cluster is deployed, and then it will create
-     * and manage this project-level, per-location bucket for you.
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket (see
+     * [Cloud Dataproc staging
+     * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
      * Generated from protobuf field <code>string config_bucket = 1;</code>
      * @return string
@@ -158,12 +193,15 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage staging bucket used for sharing generated
-     * SSH keys and config. If you do not specify a staging bucket, Cloud
-     * Dataproc will determine an appropriate Cloud Storage location (US,
+     * Optional. A Google Cloud Storage bucket used to stage job
+     * dependencies, config files, and job driver console output.
+     * If you do not specify a staging bucket, Cloud
+     * Dataproc will determine a Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
-     * Compute Engine zone where your cluster is deployed, and then it will create
-     * and manage this project-level, per-location bucket for you.
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket (see
+     * [Cloud Dataproc staging
+     * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
      * Generated from protobuf field <code>string config_bucket = 1;</code>
      * @param string $var
@@ -178,7 +216,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The shared Compute Engine config settings for
+     * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GceClusterConfig gce_cluster_config = 8;</code>
@@ -190,7 +228,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The shared Compute Engine config settings for
+     * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GceClusterConfig gce_cluster_config = 8;</code>
@@ -411,6 +449,86 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\EncryptionConfig::class);
         $this->encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Autoscaling config for the policy associated with the cluster.
+     * Cluster does not autoscale if this field is unset.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingConfig autoscaling_config = 16;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingConfig
+     */
+    public function getAutoscalingConfig()
+    {
+        return $this->autoscaling_config;
+    }
+
+    /**
+     * Optional. Autoscaling config for the policy associated with the cluster.
+     * Cluster does not autoscale if this field is unset.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingConfig autoscaling_config = 16;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\AutoscalingConfig $var
+     * @return $this
+     */
+    public function setAutoscalingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\AutoscalingConfig::class);
+        $this->autoscaling_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Port/endpoint configuration for this cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.EndpointConfig endpoint_config = 17;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\EndpointConfig
+     */
+    public function getEndpointConfig()
+    {
+        return $this->endpoint_config;
+    }
+
+    /**
+     * Optional. Port/endpoint configuration for this cluster
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.EndpointConfig endpoint_config = 17;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\EndpointConfig $var
+     * @return $this
+     */
+    public function setEndpointConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\EndpointConfig::class);
+        $this->endpoint_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Security related configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SecurityConfig security_config = 18;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\SecurityConfig
+     */
+    public function getSecurityConfig()
+    {
+        return $this->security_config;
+    }
+
+    /**
+     * Optional. Security related configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SecurityConfig security_config = 18;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\SecurityConfig $var
+     * @return $this
+     */
+    public function setSecurityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\SecurityConfig::class);
+        $this->security_config = $var;
 
         return $this;
     }

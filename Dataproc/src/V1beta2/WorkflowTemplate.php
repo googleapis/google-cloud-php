@@ -20,6 +20,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
+     * .
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
@@ -103,6 +104,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *           The id must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). Cannot begin or end with underscore
      *           or hyphen. Must consist of between 3 and 50 characters.
+     *           .
      *     @type string $name
      *           Output only. The "resource name" of the template, as described
      *           in https://cloud.google.com/apis/design/resource_names of the form
@@ -150,6 +152,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
+     * .
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @return string
@@ -164,6 +167,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
+     * .
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @param string $var

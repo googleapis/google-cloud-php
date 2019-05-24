@@ -22,15 +22,15 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
-     * If unspecified, it defaults to the latest version.
+     * If unspecified, it defaults to the latest Debian version.
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      */
     private $image_version = '';
     /**
      * Optional. The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, such as
-     * `core:fs.defaultFS`. The following are supported prefixes
+     * Property keys are specified in `prefix:property` format, for example
+     * `core:hadoop.tmp.dir`. The following are supported prefixes
      * and their mappings:
      * * capacity-scheduler: `capacity-scheduler.xml`
      * * core:   `core-site.xml`
@@ -47,6 +47,12 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> properties = 2;</code>
      */
     private $properties;
+    /**
+     * The set of optional components to activate on the cluster.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Component optional_components = 3;</code>
+     */
+    private $optional_components;
 
     /**
      * Constructor.
@@ -61,11 +67,11 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           such as "1.2" (including a subminor version, such as "1.2.29"), or the
      *           ["preview"
      *           version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
-     *           If unspecified, it defaults to the latest version.
+     *           If unspecified, it defaults to the latest Debian version.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. The properties to set on daemon config files.
-     *           Property keys are specified in `prefix:property` format, such as
-     *           `core:fs.defaultFS`. The following are supported prefixes
+     *           Property keys are specified in `prefix:property` format, for example
+     *           `core:hadoop.tmp.dir`. The following are supported prefixes
      *           and their mappings:
      *           * capacity-scheduler: `capacity-scheduler.xml`
      *           * core:   `core-site.xml`
@@ -78,6 +84,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           * yarn:   `yarn-site.xml`
      *           For more information, see
      *           [Cluster properties](/dataproc/docs/concepts/cluster-properties).
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $optional_components
+     *           The set of optional components to activate on the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,7 +100,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
-     * If unspecified, it defaults to the latest version.
+     * If unspecified, it defaults to the latest Debian version.
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @return string
@@ -109,7 +117,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * such as "1.2" (including a subminor version, such as "1.2.29"), or the
      * ["preview"
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
-     * If unspecified, it defaults to the latest version.
+     * If unspecified, it defaults to the latest Debian version.
      *
      * Generated from protobuf field <code>string image_version = 1;</code>
      * @param string $var
@@ -125,8 +133,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, such as
-     * `core:fs.defaultFS`. The following are supported prefixes
+     * Property keys are specified in `prefix:property` format, for example
+     * `core:hadoop.tmp.dir`. The following are supported prefixes
      * and their mappings:
      * * capacity-scheduler: `capacity-scheduler.xml`
      * * core:   `core-site.xml`
@@ -150,8 +158,8 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The properties to set on daemon config files.
-     * Property keys are specified in `prefix:property` format, such as
-     * `core:fs.defaultFS`. The following are supported prefixes
+     * Property keys are specified in `prefix:property` format, for example
+     * `core:hadoop.tmp.dir`. The following are supported prefixes
      * and their mappings:
      * * capacity-scheduler: `capacity-scheduler.xml`
      * * core:   `core-site.xml`
@@ -173,6 +181,32 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->properties = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The set of optional components to activate on the cluster.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Component optional_components = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOptionalComponents()
+    {
+        return $this->optional_components;
+    }
+
+    /**
+     * The set of optional components to activate on the cluster.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Component optional_components = 3;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOptionalComponents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dataproc\V1beta2\Component::class);
+        $this->optional_components = $arr;
 
         return $this;
     }
