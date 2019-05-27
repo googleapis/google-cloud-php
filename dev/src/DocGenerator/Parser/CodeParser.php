@@ -789,6 +789,10 @@ class CodeParser implements ParserInterface
              ) = $this->getExternalDepVersion($type, $external);
         }
 
+        // strip method reference from external type, since we can't predict
+        // with certainty how method anchors work.
+        $type = explode('::', $type)[0];
+
         $placeholders['type'] = explode('/', $type);
 
         $uri = new UriTemplate;
