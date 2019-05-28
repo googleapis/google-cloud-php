@@ -28,8 +28,8 @@ class InvokeResult
     /**
      * InvokeResult constructor.
      *
-     * @param $returnVal
-     * @param $output
+     * @param mixed $returnVal
+     * @param mixed $output
      */
     public function __construct($returnVal, $output)
     {

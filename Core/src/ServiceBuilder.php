@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core;
 
+use Google\Auth\HttpHandler\Guzzle5HttpHandler;
+use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;

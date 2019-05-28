@@ -373,13 +373,6 @@ class RequestWrapper
     {
         if ($ex instanceof RequestException && $ex->hasResponse()) {
             return (string) $ex->getResponse()->getBody();
-
-            try {
-                $this->jsonDecode($res);
-                return $res;
-            } catch (\InvalidArgumentException $e) {
-                // no-op
-            }
         }
 
         return $ex->getMessage();

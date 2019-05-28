@@ -28,7 +28,7 @@ trait TimeTrait
      * @param string $timestamp A string representation of a timestamp, encoded
      *        in RFC 3339 format (YYYY-MM-DDTHH:MM:SS.000000[000]TZ).
      * @return array [\DateTimeImmutable, int]
-     * @throws \InvalidArgumentException If the timestamp string is in an unrecognized format.
+     * @throws \Exception If the timestamp string is in an unrecognized format.
      */
     private function parseTimeString($timestamp)
     {
@@ -44,12 +44,6 @@ trait TimeTrait
         }
 
         $dt = new \DateTimeImmutable($timestamp);
-        if (!$dt) {
-            throw new \InvalidArgumentException(sprintf(
-                'Could not create a DateTime instance from given timestamp %s.',
-                $timestamp
-            ));
-        }
 
         $nanos = (int) str_pad($subSeconds, 9, '0', STR_PAD_RIGHT);
 

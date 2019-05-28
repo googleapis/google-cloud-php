@@ -250,7 +250,7 @@ class ResumableUploader extends AbstractUploader
      * Gets the starting range for the upload.
      *
      * @param string $rangeHeader
-     * @return int
+     * @return int|null
      */
     protected function getRangeStart($rangeHeader)
     {

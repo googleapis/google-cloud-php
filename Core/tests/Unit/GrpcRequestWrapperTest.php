@@ -19,17 +19,22 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Api\Http;
-use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\Exception;
-use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
-use Google\Protobuf\Internal\Message;
-use Prophecy\Argument;
+use Google\ApiCore\ServerStream;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\Exception;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Rpc\BadRequest;
+use Google\Rpc\BadRequest\FieldViolation;
+use Google\Rpc\Code;
+use Google\Rpc\PreconditionFailure;
+use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -118,6 +123,46 @@ class GrpcRequestWrapperTest extends TestCase
         }, [[]]);
     }
 
+    public function testReturnsOperationResponse()
+    {
+        $requestWrapper = new GrpcRequestWrapper();
+
+        $this->assertInstanceOf(OperationResponse::class, $requestWrapper->send(function () {
+            $op = $this->prophesize(OperationResponse::class);
+
+            return $op->reveal();
+        }, [[]]));
+    }
+
+    /**
+     * @group stream
+     *
+     * @return void
+     */
+    public function testReturnsStreamedResponse()
+    {
+        $requestWrapper = new GrpcRequestWrapper();
+
+        $status = new Status(['code' => Code::CANCELLED]);
+        $expected = (new Serializer)->encodeMessage($status);
+
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new \ArrayIterator([
+            $status,
+            $status,
+            $status
+        ]));
+
+        $res = $requestWrapper->send(function () use ($stream) {
+            return $stream->reveal();
+        }, [[]]);
+
+        $this->assertInstanceOf(\Generator::class, $res);
+        foreach ($res as $r) {
+            $this->assertEquals($expected, $r);
+        }
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -201,15 +246,60 @@ class GrpcRequestWrapperTest extends TestCase
     public function exceptionProvider()
     {
         return [
-            [3, Exception\BadRequestException::class],
-            [5, Exception\NotFoundException::class],
-            [12, Exception\NotFoundException::class],
-            [6, Exception\ConflictException::class],
-            [9, Exception\FailedPreconditionException::class],
-            [2, Exception\ServerException::class],
-            [13, Exception\ServerException::class],
-            [10, Exception\AbortedException::class],
+            [Code::INVALID_ARGUMENT, Exception\BadRequestException::class],
+            [Code::NOT_FOUND, Exception\NotFoundException::class],
+            [Code::UNIMPLEMENTED, Exception\NotFoundException::class],
+            [Code::ALREADY_EXISTS, Exception\ConflictException::class],
+            [Code::FAILED_PRECONDITION, Exception\FailedPreconditionException::class],
+            [Code::UNKNOWN, Exception\ServerException::class],
+            [Code::INTERNAL, Exception\ServerException::class],
+            [Code::ABORTED, Exception\AbortedException::class],
+            [Code::DEADLINE_EXCEEDED, Exception\DeadlineExceededException::class],
             [999, Exception\ServiceException::class]
         ];
+    }
+
+    public function testExceptionMetadata()
+    {
+        $metadata = new BadRequest([
+            'field_violations' => [
+                new FieldViolation([
+                    'field' => 'foo',
+                    'description' => 'bar'
+                ])
+            ]
+        ]);
+
+        $otherMetadata = new PreconditionFailure;
+
+        $e = new ApiException(
+            'Testing',
+            Code::INVALID_ARGUMENT,
+            'foo',
+            [
+                'metadata' => [
+                    'google.rpc.badrequest-bin' => [$metadata->serializeToString()],
+                    'google.rpc.preconditionfailure-bin' => [$otherMetadata->serializeToString()]
+                ]
+            ]
+        );
+
+        $requestWrapper = new GrpcRequestWrapper();
+
+        try {
+            $requestWrapper->send(function () use ($e) {
+                throw $e;
+            }, [[]], ['retries' => 0]);
+
+            $this->assertFalse(true, 'Exception not thrown!');
+        } catch (\Exception $ex) {
+            $this->assertEquals(
+                json_decode($metadata->serializeToJsonString(), true),
+                $ex->getMetadata()[0]
+            );
+
+            // Assert only whitelisted types are included.
+            $this->assertCount(1, $ex->getMetadata());
+        }
     }
 }

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
-use DomDocument;
+use DOMDocument;
 use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Parsedown;
 use ReflectionClass;
@@ -175,7 +175,8 @@ class Parser
      * $examples = $parser->examplesFromMethod($parser, 'examplesFromMethod');
      * ```
      *
-     * @param object $class An instance of the class to parse examples from.
+     * @param object|string $class An instance of the class to parse examples,
+     *        or the name of the class.
      * @param string|ReflectionMethod $method The name of the method to parse
      *        examples from.
      * @return array
@@ -293,8 +294,8 @@ class Parser
     /**
      * Create identifier
      *
-     * @param $fqn
-     * @param $indexOrName
+     * @param string $fqn
+     * @param int|string $indexOrName
      * @return string
      */
     public function createIdentifier($fqn, $indexOrName)

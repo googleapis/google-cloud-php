@@ -40,7 +40,7 @@ trait RequestWrapperTrait
     private $authCacheOptions;
 
     /**
-     * @var FetchAuthTokenInterface Fetches credentials.
+     * @var FetchAuthTokenInterface|null Fetches credentials.
      */
     private $credentialsFetcher;
 

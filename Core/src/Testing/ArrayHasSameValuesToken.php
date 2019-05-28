@@ -19,7 +19,7 @@ class ArrayHasSameValuesToken implements TokenInterface
 
     /**
      * ArrayHasSameValuesToken constructor.
-     * @param $value
+     * @param mixed $value
      * @param StringUtil|null $util
      *
      * @experimental
@@ -32,7 +32,7 @@ class ArrayHasSameValuesToken implements TokenInterface
     }
 
     /**
-     * @param $argument
+     * @param mixed $argument
      * @return bool|int
      *
      * @experimental

@@ -38,12 +38,14 @@ interface ScannerInterface
     /**
      * Retrieve a list of classes in the given PHP files.
      *
+     * @param array $files
+     * @param array $exclude
      * @return string[]
      *
      * @experimental
      * @internal
      */
-    public function classes(array $files);
+    public function classes(array $files, array $exclude = []);
 
     /**
      * Get a list of all snippets from the given classes.
