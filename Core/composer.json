@@ -19,7 +19,8 @@
         "phpdocumentor/reflection": "^3.0",
         "erusev/parsedown": "^1.6",
         "google/gax": "^1.0",
-        "opis/closure": "^3"
+        "opis/closure": "^3",
+        "google/common-protos": "^1.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",

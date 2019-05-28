@@ -21,9 +21,11 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Api\Http;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\ServerStream;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\GrpcRequestWrapper;
@@ -32,6 +34,7 @@ use Google\Rpc\BadRequest;
 use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
+use Google\Rpc\Status;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -118,6 +121,46 @@ class GrpcRequestWrapperTest extends TestCase
                 \Google\ApiCore\ApiStatus::NOT_FOUND
             );
         }, [[]]);
+    }
+
+    public function testReturnsOperationResponse()
+    {
+        $requestWrapper = new GrpcRequestWrapper();
+
+        $this->assertInstanceOf(OperationResponse::class, $requestWrapper->send(function () {
+            $op = $this->prophesize(OperationResponse::class);
+
+            return $op->reveal();
+        }, [[]]));
+    }
+
+    /**
+     * @group stream
+     *
+     * @return void
+     */
+    public function testReturnsStreamedResponse()
+    {
+        $requestWrapper = new GrpcRequestWrapper();
+
+        $status = new Status(['code' => Code::CANCELLED]);
+        $expected = (new Serializer)->encodeMessage($status);
+
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new \ArrayIterator([
+            $status,
+            $status,
+            $status
+        ]));
+
+        $res = $requestWrapper->send(function () use ($stream) {
+            return $stream->reveal();
+        }, [[]]);
+
+        $this->assertInstanceOf(\Generator::class, $res);
+        foreach ($res as $r) {
+            $this->assertEquals($expected, $r);
+        }
     }
 
     /**
