@@ -37,6 +37,17 @@ trait ClientTrait
     private $projectId;
 
     /**
+     * Return the detected project ID, may be null if detectProjectId has not
+     * yet been called.
+     *
+     * @return string|null
+     */
+    public function getProjectId()
+    {
+        return $this->projectId;
+    }
+
+    /**
      * Get either a gRPC or REST connection based on the provided config
      * and the system dependencies available.
      *

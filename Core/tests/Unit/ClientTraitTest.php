@@ -130,7 +130,7 @@ class ClientTraitTest extends TestCase
         $conf = $this->impl->call('configureAuthentication', [[]]);
 
         $this->assertEquals(json_decode(file_get_contents($keyFilePath), true), $conf['keyFile']);
-        $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
+        $this->assertEquals('example_project', $this->impl->call('getProjectId', []));
     }
 
     public function testConfigureAuthenticationWithKeyFile()
@@ -144,7 +144,7 @@ class ClientTraitTest extends TestCase
         ]]);
 
         $this->assertEquals($keyFile, $conf['keyFile']);
-        $this->assertEquals('test', $this->impl->___getProperty('projectId'));
+        $this->assertEquals('test', $this->impl->call('getProjectId', []));
     }
 
     public function testConfigureAuthenticationWithKeyFilePath()
@@ -157,7 +157,7 @@ class ClientTraitTest extends TestCase
         ]]);
 
         $this->assertEquals($keyFile, $conf['keyFile']);
-        $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
+        $this->assertEquals('example_project', $this->impl->call('getProjectId', []));
     }
 
     /**
