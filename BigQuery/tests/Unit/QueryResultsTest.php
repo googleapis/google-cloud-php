@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Prophecy\Argument;
@@ -35,14 +36,18 @@ class QueryResultsTest extends TestCase
     public $queryData = [
         'jobComplete' => true,
         'rows' => [
-            ['f' => [['v' => 'Alton']]]
+            ['f' => [['v' => 'Alton'], ['v' => 1]]]
         ],
         'schema' => [
             'fields' => [
                 [
                     'name' => 'first_name',
                     'type' => 'STRING'
-                ]
+                ],
+                [
+                    'name' => 'numeric_value',
+                    'type' => 'NUMERIC'
+                ],
             ]
         ]
     ];
@@ -81,6 +86,7 @@ class QueryResultsTest extends TestCase
         $rows = iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[0]['first_name']);
+        $this->assertInstanceOf(Numeric::class, $rows[0]['numeric_value']);
     }
 
     public function testGetsRowsWithToken()
@@ -95,6 +101,31 @@ class QueryResultsTest extends TestCase
         $rows = iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[1]['first_name']);
+        $this->assertInstanceOf(Numeric::class, $rows[1]['numeric_value']);
+    }
+
+    public function testReturnRawResults()
+    {
+        $this->connection->getQueryResults()->shouldNotBeCalled();
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
+        $rows = iterator_to_array($queryResults->rows([
+            'returnRawResults' => true
+        ]));
+
+        $this->assertEquals('Alton', $rows[0]['first_name']);
+        $this->assertEquals(1, $rows[0]['numeric_value']);
+    }
+
+    public function testReturnRawResultsIsFalse()
+    {
+        $this->connection->getQueryResults()->shouldNotBeCalled();
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
+        $rows = iterator_to_array($queryResults->rows([
+            'returnRawResults' => false
+        ]));
+
+        $this->assertEquals('Alton', $rows[0]['first_name']);
+        $this->assertInstanceOf(Numeric::class, $rows[0]['numeric_value']);
     }
 
     public function testWaitsUntilComplete()
