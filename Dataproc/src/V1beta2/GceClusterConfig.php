@@ -48,8 +48,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     * * `projects/[project_id]/regions/us-east1/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
@@ -111,6 +111,12 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> metadata = 5;</code>
      */
     private $metadata;
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11;</code>
+     */
+    private $reservation_affinity = null;
 
     /**
      * Constructor.
@@ -142,8 +148,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The Compute Engine subnetwork to be used for machine
      *           communications. Cannot be specified with network_uri.
      *           A full URL, partial URI, or short name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     *           * `projects/[project_id]/regions/us-east1/sub0`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     *           * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      *           * `sub0`
      *     @type bool $internal_ip_only
      *           Optional. If true, all instances in the cluster will only have internal IP
@@ -181,6 +187,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           The Compute Engine metadata entries to add to all instances (see
      *           [Project and instance
      *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     *     @type \Google\Cloud\Dataproc\V1beta2\ReservationAffinity $reservation_affinity
+     *           Optional. Reservation Affinity for consuming Zonal reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -276,8 +284,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     * * `projects/[project_id]/regions/us-east1/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
@@ -292,8 +300,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     * * `projects/[project_id]/regions/us-east1/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
@@ -486,6 +494,32 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\ReservationAffinity
+     */
+    public function getReservationAffinity()
+    {
+        return $this->reservation_affinity;
+    }
+
+    /**
+     * Optional. Reservation Affinity for consuming Zonal reservation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\ReservationAffinity $var
+     * @return $this
+     */
+    public function setReservationAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\ReservationAffinity::class);
+        $this->reservation_affinity = $var;
 
         return $this;
     }

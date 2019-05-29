@@ -32,6 +32,10 @@
             "type": "dataproc\/v1beta2\/readme",
             "nav": [
                 {
+                    "title": "AutoscalingPolicyServiceClient",
+                    "type": "dataproc\/v1beta2\/autoscalingpolicyserviceclient"
+                },
+                {
                     "title": "ClusterControllerClient",
                     "type": "dataproc\/v1beta2\/clustercontrollerclient"
                 },

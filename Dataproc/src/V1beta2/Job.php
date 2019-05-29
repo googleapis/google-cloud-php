@@ -127,6 +127,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Job is a Hive job.
      *     @type \Google\Cloud\Dataproc\V1beta2\PigJob $pig_job
      *           Job is a Pig job.
+     *     @type \Google\Cloud\Dataproc\V1beta2\SparkRJob $spark_r_job
+     *           Job is a SparkR job.
      *     @type \Google\Cloud\Dataproc\V1beta2\SparkSqlJob $spark_sql_job
      *           Job is a SparkSql job.
      *     @type \Google\Cloud\Dataproc\V1beta2\JobStatus $status
@@ -356,6 +358,32 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\PigJob::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Job is a SparkR job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 21;</code>
+     * @return \Google\Cloud\Dataproc\V1beta2\SparkRJob
+     */
+    public function getSparkRJob()
+    {
+        return $this->readOneof(21);
+    }
+
+    /**
+     * Job is a SparkR job.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 21;</code>
+     * @param \Google\Cloud\Dataproc\V1beta2\SparkRJob $var
+     * @return $this
+     */
+    public function setSparkRJob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1beta2\SparkRJob::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }

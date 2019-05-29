@@ -104,6 +104,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
      * duration</td>
      * </tr>
+     * <tr>
+     * <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change
+     * autoscaling policies</td>
+     * </tr>
      * </table>
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
@@ -111,11 +115,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two
-     * [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
-     * requests  with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created
-     * and stored in the backend is returned.
+     * receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     * backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
@@ -200,14 +203,17 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
      *           duration</td>
      *           </tr>
+     *           <tr>
+     *           <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change
+     *           autoscaling policies</td>
+     *           </tr>
      *           </table>
      *     @type string $request_id
      *           Optional. A unique id used to identify the request. If the server
-     *           receives two
-     *           [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
-     *           requests  with the same id, then the second request will be ignored and the
-     *           first [google.longrunning.Operation][google.longrunning.Operation] created
-     *           and stored in the backend is returned.
+     *           receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
+     *           id, then the second request will be ignored and the
+     *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *           backend is returned.
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      *           The id must contain only letters (a-z, A-Z), numbers (0-9),
@@ -415,6 +421,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
      * duration</td>
      * </tr>
+     * <tr>
+     * <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change
+     * autoscaling policies</td>
+     * </tr>
      * </table>
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
@@ -477,6 +487,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
      * duration</td>
      * </tr>
+     * <tr>
+     * <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or change
+     * autoscaling policies</td>
+     * </tr>
      * </table>
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
@@ -493,11 +507,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two
-     * [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
-     * requests  with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created
-     * and stored in the backend is returned.
+     * receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     * backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
@@ -513,11 +526,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique id used to identify the request. If the server
-     * receives two
-     * [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
-     * requests  with the same id, then the second request will be ignored and the
-     * first [google.longrunning.Operation][google.longrunning.Operation] created
-     * and stored in the backend is returned.
+     * receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
+     * id, then the second request will be ignored and the
+     * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     * backend is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
