@@ -52,8 +52,8 @@ $formattedLocationName = $client->locationName($projectId, $location);
 $response = $client->listInstances($formattedLocationName);
 foreach ($response->iterateAllElements() as $instance) {
     printf('Instance: %s : %s' . PHP_EOL,
-        $device->getDisplayName(),
-        $device->getName()
+        $instance->getDisplayName(),
+        $instance->getName()
     );
 }
 ```
