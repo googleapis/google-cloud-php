@@ -140,7 +140,7 @@ class Database
     private $info;
 
     /**
-     * @var Iam
+     * @var Iam|null
      */
     private $iam;
 

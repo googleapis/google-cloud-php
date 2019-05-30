@@ -24,8 +24,9 @@ use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
 use Grpc\UnaryCall;
-use Psr\Cache\CacheItemPoolInterface;
 use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * This session pool implementation accepts a PSR-6 compatible cache
@@ -141,7 +142,7 @@ class CacheSessionPool implements SessionPoolInterface
     private $database;
 
     /**
-     * @var UnaryCall[]
+     * @var PromiseInterface[]
      */
     private $deleteCalls = [];
 
@@ -773,7 +774,6 @@ class CacheSessionPool implements SessionPoolInterface
     /**
      * Validate the config.
      *
-     * @param array $config
      * @throws \InvalidArgumentException
      */
     private function validateConfig()

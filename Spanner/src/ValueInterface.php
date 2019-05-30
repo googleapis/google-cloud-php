@@ -23,7 +23,7 @@ namespace Google\Cloud\Spanner;
 interface ValueInterface
 {
     /**
-     * @return string
+     * @return int|string
      */
     public function type();
 

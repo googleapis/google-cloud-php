@@ -26,7 +26,6 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -116,7 +115,7 @@ class Instance
     private $info;
 
     /**
-     * @var Iam
+     * @var Iam|null
      */
     private $iam;
 
@@ -254,7 +253,6 @@ class Instance
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstancerequest CreateInstanceRequest
      *
      * @param InstanceConfiguration $config The configuration to use
-     * @param string $name The instance name
      * @param array $options [optional] {
      *     Configuration options
      *
@@ -339,7 +337,7 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
-     * @return LongRunningOperation<void>
+     * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -368,7 +366,7 @@ class Instance
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteInstance($options + [
+        $this->connection->deleteInstance($options + [
             'name' => $this->name
         ]);
     }

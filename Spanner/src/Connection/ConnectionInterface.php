@@ -126,7 +126,7 @@ interface ConnectionInterface
 
     /**
      * @param array $args
-     * @return PromiseInterface[]
+     * @return PromiseInterface
      */
     public function createSessionAsync(array $args);
 
@@ -139,6 +139,12 @@ interface ConnectionInterface
      * @param array $args
      */
     public function deleteSession(array $args);
+
+    /**
+     * @param array $args
+     * @return PromiseInterface
+     */
+    public function deleteSessionAsync(array $args);
 
     /**
      * @param array $args

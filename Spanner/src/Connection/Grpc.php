@@ -952,6 +952,7 @@ class Grpc implements ConnectionInterface
         $field = new Value;
         $value = $this->formatValueForApi($param);
 
+        $setter = null;
         switch (array_keys($value)[0]) {
             case 'string_value':
                 $setter = 'setStringValue';
@@ -989,7 +990,9 @@ class Grpc implements ConnectionInterface
         }
 
         $value = is_array($value) ? current($value) : $value;
-        $field->$setter($value);
+        if ($setter) {
+            $field->$setter($value);
+        }
 
         return $field;
     }

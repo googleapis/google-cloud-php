@@ -96,7 +96,7 @@ class Date implements ValueInterface
      * echo $date->type();
      * ```
      *
-     * @return string
+     * @return int
      */
     public function type()
     {

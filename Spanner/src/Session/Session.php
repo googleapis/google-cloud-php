@@ -120,7 +120,7 @@ class Session
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteSession($options + [
+        $this->connection->deleteSession($options + [
             'name' => $this->name(),
             'database' => $this->database
         ]);
