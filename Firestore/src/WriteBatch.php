@@ -219,15 +219,14 @@ class WriteBatch
             || $metadata['hasUpdateMask'];
 
         if ($shouldEnqueueUpdate) {
-            $write = [
-                'fields' => $this->valueMapper->encodeValues($fields),
-            ];
+            $write = [];
+            $write['fields'] = $this->valueMapper->encodeValues($fields);
 
             if ($merge) {
                 $write['updateMask'] = $this->pathsToStrings($this->encodeFieldPaths($fields), $sentinels);
             }
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, $write, $options);
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, array_merge($options, $write));
         }
 
         // document transform operations are enqueued as a separate mutation.
@@ -567,7 +566,7 @@ class WriteBatch
      *
      * @codingStandardsIgnoreStart
      * @param array $options Configuration Options
-     * @return array [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
+     * @return array|void [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
      * @throws \InvalidArgumentException If the precondition is invalid.
      * @codingStandardsIgnoreEnd
      */
@@ -909,7 +908,7 @@ class WriteBatch
                     'Conflicts occur when a field path descends from another ' .
                     'path. For instance `a.b` is not allowed when `a` is also ' .
                     'provided.',
-                    $prefix
+                    implode('.', $prefix)
                 ));
             }
         }

@@ -371,7 +371,8 @@ class Query
      * ```
      *
      * @param string|FieldPath $fieldPath The field to order by.
-     * @param string $direction The direction to order in. **Defaults to** `ASC`.
+     * @param string|int $direction The direction to order in. **Defaults to**
+     *        `ASC`.
      * @return Query A new instance of Query with the given changes applied.
      * @throws \InvalidArgumentException If an invalid direction is given.
      * @throws \InvalidArgumentException If orderBy is called after `startAt()`,
@@ -602,7 +603,7 @@ class Query
      *        to use as the query boundary.
      * @param bool $before Whether the query boundary lies just before or after
      *        the provided data.
-     * @return array
+     * @return Query
      */
     private function buildPosition($key, $fieldValues, $before)
     {
@@ -622,7 +623,7 @@ class Query
             foreach ($fieldValues as $value) {
                 if ($value instanceof DocumentSnapshot) {
                     throw new \InvalidArgumentException(sprintf(
-                        'Instances of `%` are not allowed in an array of field values. ' .
+                        'Instances of `%s` are not allowed in an array of field values. ' .
                         'Provide it as the method argument instead.',
                         DocumentSnapshot::class
                     ));
@@ -761,7 +762,7 @@ class Query
      *
      * @param DocumentSnapshot $snapshot
      * @param array $orderBy
-     * @return $fieldValues
+     * @return array $fieldValues
      */
     private function snapshotCursorValues(DocumentSnapshot $snapshot, array $orderBy)
     {

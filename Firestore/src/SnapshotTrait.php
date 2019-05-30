@@ -140,7 +140,8 @@ trait SnapshotTrait
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
-     * @param string[] $paths A list of fully-qualified firestore document paths.
+     * @param string[]|DocumentReference[] $paths A list of fully-qualified
+     *        firestore document paths or DocumentReference instances.
      * @param array $options Configuration options.
      * @return DocumentSnapshot[]
      */

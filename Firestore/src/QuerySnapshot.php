@@ -110,7 +110,7 @@ class QuerySnapshot implements \IteratorAggregate
 
     /**
      * @access private
-     * @return \Generator
+     * @return \ArrayIterator
      */
     public function getIterator()
     {
