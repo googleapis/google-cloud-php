@@ -76,7 +76,7 @@ class Bytes implements ValueInterface
      * echo $bytes->type();
      * ```
      *
-     * @return string
+     * @return int
      */
     public function type()
     {

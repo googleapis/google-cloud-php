@@ -124,7 +124,7 @@ class Result implements \IteratorAggregate
     /**
      * @param Operation $operation Runs operations against Google Cloud Spanner.
      * @param Session $session The session used for any operations executed.
-     * @param \Generator $resultGenerator Reads rows from Google Cloud Spanner.
+     * @param callable $call A callable, yielding a generator filled with results.
      * @param string $transactionContext The transaction's context.
      * @param ValueMapper $mapper Maps values.
      * @param int $retries Number of attempts to resume a broken stream, assuming
@@ -389,6 +389,7 @@ class Result implements \IteratorAggregate
         $chunkedResult = null;
         $shouldMergeValues = $this->isSetAndTrue($bufferedResults[0], 'chunkedValue');
 
+        $result = [];
         foreach ($bufferedResults as $key => $result) {
             if ($key === 0 && isset($bufferedResults[0]['values'])) {
                 $values = $bufferedResults[0]['values'];

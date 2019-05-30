@@ -299,7 +299,7 @@ class KeyRange
      *
      * @param string $type The range type.
      * @param mixed $startOrEnd
-     * @return array
+     * @return string
      */
     private function fromDefinition($type, $startOrEnd)
     {

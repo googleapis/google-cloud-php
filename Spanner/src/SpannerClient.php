@@ -21,7 +21,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\GoogleException;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -476,7 +475,7 @@ class SpannerClient
      * $bytes = $spanner->bytes('hello world');
      * ```
      *
-     * @param string|resource|StreamInterface $value The bytes value.
+     * @param StreamInterface|string|resource $bytes The bytes value.
      * @return Bytes
      */
     public function bytes($bytes)
@@ -492,7 +491,7 @@ class SpannerClient
      * $date = $spanner->date(new \DateTime('1995-02-04'));
      * ```
      *
-     * @param \DateTimeInterface $value The date value.
+     * @param \DateTimeInterface $date The date value.
      * @return Date
      */
     public function date(\DateTimeInterface $date)
@@ -508,7 +507,7 @@ class SpannerClient
      * $timestamp = $spanner->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```
      *
-     * @param \DateTimeInterface $value The timestamp value.
+     * @param \DateTimeInterface $timestamp The timestamp value.
      * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
      * @return Timestamp
      */

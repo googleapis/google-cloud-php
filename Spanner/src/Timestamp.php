@@ -52,7 +52,7 @@ class Timestamp extends CoreTimestamp implements ValueInterface
      * $type = $timestamp->type();
      * ```
      *
-     * @return string
+     * @return int
      */
     public function type()
     {

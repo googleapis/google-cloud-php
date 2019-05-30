@@ -114,7 +114,7 @@ class Operation
      *
      * @codingStandardsIgnoreStart
      * @param Session $session The session ID to use for the commit.
-     * @param Transaction $transaction The transaction to commit.
+     * @param array $mutations A list of mutations to apply.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -150,7 +150,7 @@ class Operation
      */
     public function rollback(Session $session, $transactionId, array $options = [])
     {
-        return $this->connection->rollback([
+        $this->connection->rollback([
             'transactionId' => $transactionId,
             'session' => $session->name(),
             'database' => $session->info()['database']
@@ -413,7 +413,7 @@ class Operation
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
      * }
-     * @return Snapshot
+     * @return mixed
      */
     public function snapshot(Session $session, array $options = [])
     {
@@ -443,7 +443,7 @@ class Operation
      * @param array $res [optional] The createTransaction response.
      * @param string $className [optional] The class to instantiate with a
      *        snapshot. **Defaults to** `Google\Cloud\Spanner\Snapshot`.
-     * @return Snapshot
+     * @return mixed
      */
     public function createSnapshot(Session $session, array $res = [], $className = Snapshot::class)
     {
