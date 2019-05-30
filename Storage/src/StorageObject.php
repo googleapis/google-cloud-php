@@ -1145,7 +1145,7 @@ class StorageObject
      * echo $object->identity()['object'];
      * ```
      *
-     * @return string
+     * @return array
      */
     public function identity()
     {

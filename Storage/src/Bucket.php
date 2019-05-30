@@ -87,7 +87,7 @@ class Bucket
     private $info;
 
     /**
-     * @var Iam
+     * @var Iam|null
      */
     private $iam;
 
