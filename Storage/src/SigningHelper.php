@@ -615,6 +615,6 @@ class SigningHelper
      */
     private function buildQueryString(array $input)
     {
-        return http_build_query($input, null, '&', PHP_QUERY_RFC3986);
+        return http_build_query($input, '', '&', PHP_QUERY_RFC3986);
     }
 }

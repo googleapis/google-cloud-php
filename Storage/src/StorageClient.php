@@ -395,7 +395,7 @@ class StorageClient
      * $timestamp = $storage->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```
      *
-     * @param \DateTimeInterface $value The timestamp value.
+     * @param \DateTimeInterface $timestamp The timestamp value.
      * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
      * @return Timestamp
      */
