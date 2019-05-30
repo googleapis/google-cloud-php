@@ -105,7 +105,7 @@ trait PathTrait
     /**
      * Get the project id from a path
      *
-     * @param string $path
+     * @param string $name
      * @return string|null
      */
     private function projectIdFromName($name)
@@ -229,7 +229,7 @@ trait PathTrait
         // of adding random_compat or something similar.
         // Generate a UUID, then strip `-` and trim to expected length.
         // @todo revisit once library requires php >= 7.0 and random_int() can be used without dependency.
-        $rand = substr(str_replace('-', '', Uuid::uuid4()), 0, 20);
+        $rand = substr(str_replace('-', '', Uuid::uuid4()->toString()), 0, 20);
 
         return $this->childPath($parent, $rand);
     }
@@ -238,7 +238,7 @@ trait PathTrait
      * Get a relative name from an absolute name.
      *
      * @param string $name
-     * @return string
+     * @return string|null
      */
     private function relativeName($name)
     {

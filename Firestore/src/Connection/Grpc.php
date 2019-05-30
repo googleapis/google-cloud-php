@@ -220,7 +220,6 @@ class Grpc implements ConnectionInterface
      * Add the `google-cloud-resource-prefix` header value to the request.
      *
      * @param array $args
-     * @param string $value
      * @return array
      */
     private function addResourcePrefixHeader(array $args)
