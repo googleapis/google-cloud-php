@@ -44,12 +44,14 @@ class DebuggerClientTest extends TestCase
 
     public function testListsDebuggees()
     {
-        $this->connection->listDebuggees(['project' => self::PROJECT])->willReturn([
-            'debuggees' => [
-                ['id' => 'debuggee1', 'project' => self::PROJECT],
-                ['id' => 'debuggee2', 'project' => self::PROJECT],
-            ]
-        ]);
+        $this->connection->listDebuggees(Argument::withEntry('project',self::PROJECT))
+            ->willReturn([
+                'debuggees' => [
+                    ['id' => 'debuggee1', 'project' => self::PROJECT],
+                    ['id' => 'debuggee2', 'project' => self::PROJECT],
+                ]
+            ]);
+
         $this->client->___setProperty('connection', $this->connection->reveal());
         $debuggees = $this->client->debuggees();
         $this->assertCount(2, $debuggees);
@@ -59,7 +61,9 @@ class DebuggerClientTest extends TestCase
 
     public function testListsDebuggeesEmpty()
     {
-        $this->connection->listDebuggees(['project' => self::PROJECT])->willReturn([]);
+        $this->connection->listDebuggees(Argument::withEntry('project',self::PROJECT))
+            ->willReturn([]);
+
         $this->client->___setProperty('connection', $this->connection->reveal());
         $debuggees = $this->client->debuggees();
         $this->assertCount(0, $debuggees);

@@ -181,6 +181,6 @@ class DebuggerClient
             }
         }
 
-        return [];
+        return $debuggees;
     }
 }
