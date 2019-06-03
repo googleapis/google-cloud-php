@@ -44,7 +44,7 @@ class DebuggerClientTest extends TestCase
 
     public function testListsDebuggees()
     {
-        $this->connection->listDebuggees(Argument::withEntry('project',self::PROJECT))
+        $this->connection->listDebuggees(Argument::withEntry('project', self::PROJECT))
             ->willReturn([
                 'debuggees' => [
                     ['id' => 'debuggee1', 'project' => self::PROJECT],
@@ -61,7 +61,7 @@ class DebuggerClientTest extends TestCase
 
     public function testListsDebuggeesEmpty()
     {
-        $this->connection->listDebuggees(Argument::withEntry('project',self::PROJECT))
+        $this->connection->listDebuggees(Argument::withEntry('project', self::PROJECT))
             ->willReturn([]);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
