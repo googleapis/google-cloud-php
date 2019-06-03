@@ -130,8 +130,9 @@ class DebuggerClient
      *            user about this debuggee. Absence of this field indicates no
      *            status. The message can be either informational or an error
      *            status.
-     *      @type ExtendedSourceContext[] $extSourceContexts References to the locations and
-     *            revisions of the source code used in the deployed application.
+     *      @type ExtendedSourceContext[] $extSourceContexts References to the
+     *            locations and revisions of the source code used in the
+     *            deployed application.
      * }
      * @return Debuggee
      */
@@ -152,16 +153,34 @@ class DebuggerClient
      * $debuggees = $client->debuggees();
      * ```
      *
+     * @see https://cloud.google.com/debugger/api/reference/rest/v2/debugger.debuggees/list debugger.debuggees.list
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $includeInactive When set to `true`, the result includes
+     *           all debuggees. Otherwise, the result includes only debuggees
+     *           that are active.
+     *     @type string $clientVersion The client version making the call.
+     *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * }
      * @return Debuggee[]
      */
-    public function debuggees(array $extras = [])
+    public function debuggees(array $options = [])
     {
-        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $extras);
-        if (is_array($res) && array_key_exists('debuggees', $res)) {
-            return array_map(function ($info) {
-                return new Debuggee($this->connection, $info);
-            }, $res['debuggees']);
+        $options += [
+            'clientVersion' => self::getDefaultAgentVersion()
+        ];
+
+        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $options);
+
+        $debuggees = [];
+        if (is_array($res) && isset($res['debuggees'])) {
+            foreach ($res['debuggees'] as $debuggee) {
+                $debuggees[] = new Debuggee($this->connection, $debuggee);
+            }
         }
+
         return [];
     }
 }

@@ -292,7 +292,7 @@ class Agent
 
     private function defaultLogger()
     {
-        $logName = isset($server['GAE_SERVICE'])
+        $logName = isset($_SERVER['GAE_SERVICE'])
             ? self::DEFAULT_APP_ENGINE_LOG_NAME
             : self::DEFAULT_LOGPOINT_LOG_NAME;
         return LoggingClient::psrBatchLogger($logName);

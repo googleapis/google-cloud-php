@@ -20,10 +20,6 @@ namespace Google\Cloud\Debugger\Tests\System;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
-use Google\Cloud\Debugger\V2\Gapic\Debugger2GapicClient as GapicClient;
-use Google\Cloud\Debugger\V2\Breakpoint as GapicBreakpoint;
-use Google\Cloud\Debugger\V2\SourceLocation;
-
 use PHPUnit\Framework\TestCase;
 
 /**

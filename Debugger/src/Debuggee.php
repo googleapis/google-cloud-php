@@ -94,10 +94,10 @@ class Debuggee
     private $labels = [];
 
     /**
-     * @var string $status Human readable message to be displayed to the
-     *            user about this debuggee. Absence of this field indicates no
-     *            status. The message can be either informational or an error
-     *            status
+     * @var StatusMessage|array|null $status Human readable message to be
+     *            displayed to the user about this debuggee. Absence of this
+     *            field indicates no status. The message can be either
+     *            informational or an error status.
      */
     private $status;
 
@@ -383,12 +383,17 @@ class Debuggee
                 return is_array($esc) ? $esc : $esc->info();
             }, $this->extSourceContexts)
         ];
-        if ($this->status) {
+
+        if ($this->status instanceof StatusMessage) {
             $info['status'] = $this->status->info();
+        } elseif ($this->status) {
+            $info['status'] = $this->status;
         }
+
         if (!empty($this->labels)) {
             $info['labels'] = $this->labels;
         }
+
         return $info;
     }
 }
