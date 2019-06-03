@@ -38,6 +38,7 @@ use Google\Cloud\Dataproc\V1\DeleteJobRequest;
 use Google\Cloud\Dataproc\V1\GetJobRequest;
 use Google\Cloud\Dataproc\V1\Job;
 use Google\Cloud\Dataproc\V1\ListJobsRequest;
+use Google\Cloud\Dataproc\V1\ListJobsRequest\JobStateMatcher;
 use Google\Cloud\Dataproc\V1\ListJobsResponse;
 use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 use Google\Cloud\Dataproc\V1\UpdateJobRequest;
@@ -197,8 +198,8 @@ class JobControllerGapicClient
      *
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest]
-     *          requests  with the same id, then the second request will be ignored and the
+     *          receives two [SubmitJobRequest][google.cloud.dataproc.v1.SubmitJobRequest] requests  with the same
+     *          id, then the second request will be ignored and the
      *          first [Job][google.cloud.dataproc.v1.Job] created and stored in the backend
      *          is returned.
      *

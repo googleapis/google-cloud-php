@@ -16,18 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A Cloud Storage staging bucket used for sharing generated
-     * SSH keys and config. If you do not specify a staging bucket, Cloud
-     * Dataproc will determine an appropriate Cloud Storage location (US,
+     * Optional. A Google Cloud Storage bucket used to stage job
+     * dependencies, config files, and job driver console output.
+     * If you do not specify a staging bucket, Cloud
+     * Dataproc will determine a Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
-     * Compute Engine zone where your cluster is deployed, and then it will create
-     * and manage this project-level, per-location bucket for you.
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket (see
+     * [Cloud Dataproc staging
+     * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
      * Generated from protobuf field <code>string config_bucket = 1;</code>
      */
     private $config_bucket = '';
     /**
-     * Required. The shared Compute Engine config settings for
+     * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
@@ -91,14 +94,17 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $config_bucket
-     *           Optional. A Cloud Storage staging bucket used for sharing generated
-     *           SSH keys and config. If you do not specify a staging bucket, Cloud
-     *           Dataproc will determine an appropriate Cloud Storage location (US,
+     *           Optional. A Google Cloud Storage bucket used to stage job
+     *           dependencies, config files, and job driver console output.
+     *           If you do not specify a staging bucket, Cloud
+     *           Dataproc will determine a Cloud Storage location (US,
      *           ASIA, or EU) for your cluster's staging bucket according to the Google
-     *           Compute Engine zone where your cluster is deployed, and then it will create
-     *           and manage this project-level, per-location bucket for you.
+     *           Compute Engine zone where your cluster is deployed, and then create
+     *           and manage this project-level, per-location bucket (see
+     *           [Cloud Dataproc staging
+     *           bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *     @type \Google\Cloud\Dataproc\V1\GceClusterConfig $gce_cluster_config
-     *           Required. The shared Compute Engine config settings for
+     *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $master_config
      *           Optional. The Compute Engine config settings for
@@ -134,12 +140,15 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage staging bucket used for sharing generated
-     * SSH keys and config. If you do not specify a staging bucket, Cloud
-     * Dataproc will determine an appropriate Cloud Storage location (US,
+     * Optional. A Google Cloud Storage bucket used to stage job
+     * dependencies, config files, and job driver console output.
+     * If you do not specify a staging bucket, Cloud
+     * Dataproc will determine a Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
-     * Compute Engine zone where your cluster is deployed, and then it will create
-     * and manage this project-level, per-location bucket for you.
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket (see
+     * [Cloud Dataproc staging
+     * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
      * Generated from protobuf field <code>string config_bucket = 1;</code>
      * @return string
@@ -150,12 +159,15 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage staging bucket used for sharing generated
-     * SSH keys and config. If you do not specify a staging bucket, Cloud
-     * Dataproc will determine an appropriate Cloud Storage location (US,
+     * Optional. A Google Cloud Storage bucket used to stage job
+     * dependencies, config files, and job driver console output.
+     * If you do not specify a staging bucket, Cloud
+     * Dataproc will determine a Cloud Storage location (US,
      * ASIA, or EU) for your cluster's staging bucket according to the Google
-     * Compute Engine zone where your cluster is deployed, and then it will create
-     * and manage this project-level, per-location bucket for you.
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket (see
+     * [Cloud Dataproc staging
+     * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
      * Generated from protobuf field <code>string config_bucket = 1;</code>
      * @param string $var
@@ -170,7 +182,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The shared Compute Engine config settings for
+     * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
@@ -182,7 +194,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The shared Compute Engine config settings for
+     * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
