@@ -48,8 +48,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     * * `projects/[project_id]/regions/us-east1/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
@@ -142,8 +142,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The Compute Engine subnetwork to be used for machine
      *           communications. Cannot be specified with network_uri.
      *           A full URL, partial URI, or short name are valid. Examples:
-     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     *           * `projects/[project_id]/regions/us-east1/sub0`
+     *           * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     *           * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      *           * `sub0`
      *     @type bool $internal_ip_only
      *           Optional. If true, all instances in the cluster will only have internal IP
@@ -276,8 +276,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     * * `projects/[project_id]/regions/us-east1/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
@@ -292,8 +292,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.
      * A full URL, partial URI, or short name are valid. Examples:
-     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`
-     * * `projects/[project_id]/regions/us-east1/sub0`
+     * * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
      * Generated from protobuf field <code>string subnetwork_uri = 6;</code>

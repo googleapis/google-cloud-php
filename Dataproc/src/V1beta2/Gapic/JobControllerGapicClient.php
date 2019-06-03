@@ -38,6 +38,7 @@ use Google\Cloud\Dataproc\V1beta2\DeleteJobRequest;
 use Google\Cloud\Dataproc\V1beta2\GetJobRequest;
 use Google\Cloud\Dataproc\V1beta2\Job;
 use Google\Cloud\Dataproc\V1beta2\ListJobsRequest;
+use Google\Cloud\Dataproc\V1beta2\ListJobsRequest\JobStateMatcher;
 use Google\Cloud\Dataproc\V1beta2\ListJobsResponse;
 use Google\Cloud\Dataproc\V1beta2\SubmitJobRequest;
 use Google\Cloud\Dataproc\V1beta2\UpdateJobRequest;
