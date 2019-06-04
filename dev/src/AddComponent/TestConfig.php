@@ -49,7 +49,7 @@ class TestConfig
 
         foreach ($files as $file) {
             $source = $this->rootPath . '/dev/src/AddComponent/templates/template-' . $file . '.txt';
-            $dest = $this->path .'/' . $file;
+            $dest = $this->path . '/' . $file;
 
             copy($source, $dest);
         }
