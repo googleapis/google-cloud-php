@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [Failover][google.cloud.redis.v1beta1.CloudRedis.FailoverInstance].
+ * Request for [Failover][google.cloud.redis.v1beta1.CloudRedis.FailoverInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.FailoverInstanceRequest</code>
  */
@@ -19,7 +18,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -41,7 +40,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Redis instance resource name using the form:
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *           where `location_id` refers to a GCP region
+     *           where `location_id` refers to a GCP region.
      *     @type int $data_protection_mode
      *           Optional. Available data protection modes that the user can choose. If it's
      *           unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
@@ -55,7 +54,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -68,7 +67,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

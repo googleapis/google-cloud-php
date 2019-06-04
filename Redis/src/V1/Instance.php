@@ -62,7 +62,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The version of Redis software.
      * If not provided, latest supported version will be used. Updating the
      * version will perform an upgrade/downgrade to the new version. Currently,
-     * the supported values are `REDIS_3_2` for Redis 3.2.
+     * the supported values are:
+     *  *   `REDIS_4_0` for Redis 4.0 compatibility (default)
+     *  *   `REDIS_3_2` for Redis 3.2 compatibility
      *
      * Generated from protobuf field <code>string redis_version = 7;</code>
      */
@@ -122,8 +124,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:
+     *  Redis 3.2 and above:
      *  *   maxmemory-policy
      *  *   notify-keyspace-events
+     *  Redis 4.0 and above:
+     *  *   activedefrag
+     *  *   lfu-log-factor
+     *  *   lfu-decay-time
      *
      * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
      */
@@ -149,6 +156,16 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string authorized_network = 20;</code>
      */
     private $authorized_network = '';
+    /**
+     * Output only. Cloud IAM identity used by import / export operations to
+     * transfer data to/from Cloud Storage. Format is
+     * "serviceAccount:<service_account_email>". The value may change over time
+     * for a given instance so should be checked before each import/export
+     * operation.
+     *
+     * Generated from protobuf field <code>string persistence_iam_identity = 21;</code>
+     */
+    private $persistence_iam_identity = '';
 
     /**
      * Constructor.
@@ -183,7 +200,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. The version of Redis software.
      *           If not provided, latest supported version will be used. Updating the
      *           version will perform an upgrade/downgrade to the new version. Currently,
-     *           the supported values are `REDIS_3_2` for Redis 3.2.
+     *           the supported values are:
+     *            *   `REDIS_4_0` for Redis 4.0 compatibility (default)
+     *            *   `REDIS_3_2` for Redis 3.2 compatibility
      *     @type string $reserved_ip_range
      *           Optional. The CIDR range of internal addresses that are reserved for this
      *           instance. If not provided, the service will choose an unused /29 block,
@@ -211,8 +230,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Redis configuration parameters, according to
      *           http://redis.io/topics/config. Currently, the only supported parameters
      *           are:
+     *            Redis 3.2 and above:
      *            *   maxmemory-policy
      *            *   notify-keyspace-events
+     *            Redis 4.0 and above:
+     *            *   activedefrag
+     *            *   lfu-log-factor
+     *            *   lfu-decay-time
      *     @type int $tier
      *           Required. The service tier of the instance.
      *     @type int $memory_size_gb
@@ -222,6 +246,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           [network](/compute/docs/networks-and-firewalls#networks) to which the
      *           instance is connected. If left unspecified, the `default` network
      *           will be used.
+     *     @type string $persistence_iam_identity
+     *           Output only. Cloud IAM identity used by import / export operations to
+     *           transfer data to/from Cloud Storage. Format is
+     *           "serviceAccount:<service_account_email>". The value may change over time
+     *           for a given instance so should be checked before each import/export
+     *           operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -389,7 +419,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The version of Redis software.
      * If not provided, latest supported version will be used. Updating the
      * version will perform an upgrade/downgrade to the new version. Currently,
-     * the supported values are `REDIS_3_2` for Redis 3.2.
+     * the supported values are:
+     *  *   `REDIS_4_0` for Redis 4.0 compatibility (default)
+     *  *   `REDIS_3_2` for Redis 3.2 compatibility
      *
      * Generated from protobuf field <code>string redis_version = 7;</code>
      * @return string
@@ -403,7 +435,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. The version of Redis software.
      * If not provided, latest supported version will be used. Updating the
      * version will perform an upgrade/downgrade to the new version. Currently,
-     * the supported values are `REDIS_3_2` for Redis 3.2.
+     * the supported values are:
+     *  *   `REDIS_4_0` for Redis 4.0 compatibility (default)
+     *  *   `REDIS_3_2` for Redis 3.2 compatibility
      *
      * Generated from protobuf field <code>string redis_version = 7;</code>
      * @param string $var
@@ -621,8 +655,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:
+     *  Redis 3.2 and above:
      *  *   maxmemory-policy
      *  *   notify-keyspace-events
+     *  Redis 4.0 and above:
+     *  *   activedefrag
+     *  *   lfu-log-factor
+     *  *   lfu-decay-time
      *
      * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -636,8 +675,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Redis configuration parameters, according to
      * http://redis.io/topics/config. Currently, the only supported parameters
      * are:
+     *  Redis 3.2 and above:
      *  *   maxmemory-policy
      *  *   notify-keyspace-events
+     *  Redis 4.0 and above:
+     *  *   activedefrag
+     *  *   lfu-log-factor
+     *  *   lfu-decay-time
      *
      * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -731,6 +775,40 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->authorized_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Cloud IAM identity used by import / export operations to
+     * transfer data to/from Cloud Storage. Format is
+     * "serviceAccount:<service_account_email>". The value may change over time
+     * for a given instance so should be checked before each import/export
+     * operation.
+     *
+     * Generated from protobuf field <code>string persistence_iam_identity = 21;</code>
+     * @return string
+     */
+    public function getPersistenceIamIdentity()
+    {
+        return $this->persistence_iam_identity;
+    }
+
+    /**
+     * Output only. Cloud IAM identity used by import / export operations to
+     * transfer data to/from Cloud Storage. Format is
+     * "serviceAccount:<service_account_email>". The value may change over time
+     * for a given instance so should be checked before each import/export
+     * operation.
+     *
+     * Generated from protobuf field <code>string persistence_iam_identity = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPersistenceIamIdentity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->persistence_iam_identity = $var;
 
         return $this;
     }

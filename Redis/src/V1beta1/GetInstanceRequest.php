@@ -18,7 +18,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -33,7 +33,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Redis instance resource name using the form:
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *           where `location_id` refers to a GCP region
+     *           where `location_id` refers to a GCP region.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -12,6 +12,9 @@ use UnexpectedValueException;
 class DataProtectionMode
 {
     /**
+     * Defaults to LIMITED_DATA_LOSS if a data protection mode is not
+     * specified.
+     *
      * Generated from protobuf enum <code>DATA_PROTECTION_MODE_UNSPECIFIED = 0;</code>
      */
     const DATA_PROTECTION_MODE_UNSPECIFIED = 0;
