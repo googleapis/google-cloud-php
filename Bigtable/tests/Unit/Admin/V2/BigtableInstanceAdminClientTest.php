@@ -31,7 +31,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
-use Google\Cloud\Bigtable\Admin\V2\Instance_Type;
+use Google\Cloud\Bigtable\Admin\V2\Instance\Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
@@ -60,14 +60,22 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return BigtableInstanceAdminClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new BigtableInstanceAdminClient($options);
@@ -82,6 +90,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -171,6 +180,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -399,7 +409,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $displayName = 'displayName1615086568';
-        $type = Instance_Type::TYPE_UNSPECIFIED;
+        $type = Type::TYPE_UNSPECIFIED;
         $labels = [];
 
         $response = $client->updateInstance($formattedName, $displayName, $type, $labels);
@@ -451,7 +461,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $displayName = 'displayName1615086568';
-        $type = Instance_Type::TYPE_UNSPECIFIED;
+        $type = Type::TYPE_UNSPECIFIED;
         $labels = [];
 
         try {
@@ -477,6 +487,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -558,6 +569,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -694,6 +706,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -781,6 +794,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -998,6 +1012,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -1081,6 +1096,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -1460,6 +1476,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -1543,6 +1560,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([

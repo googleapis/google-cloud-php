@@ -49,6 +49,7 @@ use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
+use Google\Cloud\Bigtable\Admin\V2\Instance\State;
 use Google\Cloud\Bigtable\Admin\V2\Instance\Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
@@ -691,7 +692,7 @@ class BigtableInstanceAdminGapicClient
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Instance\Type::TYPE_UNSPECIFIED;
+     *     $type = Type::TYPE_UNSPECIFIED;
      *     $labels = [];
      *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {
