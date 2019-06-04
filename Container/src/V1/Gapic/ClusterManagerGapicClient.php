@@ -69,7 +69,7 @@ use Google\Cloud\Container\V1\SetLocationsRequest;
 use Google\Cloud\Container\V1\SetLoggingServiceRequest;
 use Google\Cloud\Container\V1\SetMaintenancePolicyRequest;
 use Google\Cloud\Container\V1\SetMasterAuthRequest;
-use Google\Cloud\Container\V1\SetMasterAuthRequest_Action;
+use Google\Cloud\Container\V1\SetMasterAuthRequest\Action;
 use Google\Cloud\Container\V1\SetMonitoringServiceRequest;
 use Google\Cloud\Container\V1\SetNetworkPolicyRequest;
 use Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest;
@@ -1049,7 +1049,7 @@ class ClusterManagerGapicClient
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $action = SetMasterAuthRequest_Action::UNKNOWN;
+     *     $action = Action::UNKNOWN;
      *     $update = new MasterAuth();
      *     $response = $clusterManagerClient->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
      * } finally {
@@ -1067,7 +1067,7 @@ class ClusterManagerGapicClient
      * @param string     $clusterId    Deprecated. The name of the cluster to upgrade.
      *                                 This field has been deprecated and replaced by the name field.
      * @param int        $action       The exact form of action to be taken on the master auth.
-     *                                 For allowed values, use constants defined on {@see \Google\Cloud\Container\V1\SetMasterAuthRequest_Action}
+     *                                 For allowed values, use constants defined on {@see \Google\Cloud\Container\V1\SetMasterAuthRequest\Action}
      * @param MasterAuth $update       A description of the update.
      * @param array      $optionalArgs {
      *                                 Optional.

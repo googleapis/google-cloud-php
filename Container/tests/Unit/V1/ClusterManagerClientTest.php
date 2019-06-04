@@ -41,7 +41,7 @@ use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ServerConfig;
-use Google\Cloud\Container\V1\SetMasterAuthRequest_Action;
+use Google\Cloud\Container\V1\SetMasterAuthRequest\Action;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -62,14 +62,22 @@ class ClusterManagerClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return ClusterManagerClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new ClusterManagerClient($options);
@@ -1260,7 +1268,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $projectId = 'projectId-1969970175';
         $zone = 'zone3744684';
         $clusterId = 'clusterId240280960';
-        $action = SetMasterAuthRequest_Action::UNKNOWN;
+        $action = Action::UNKNOWN;
         $update = new MasterAuth();
 
         $response = $client->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
@@ -1316,7 +1324,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $projectId = 'projectId-1969970175';
         $zone = 'zone3744684';
         $clusterId = 'clusterId240280960';
-        $action = SetMasterAuthRequest_Action::UNKNOWN;
+        $action = Action::UNKNOWN;
         $update = new MasterAuth();
 
         try {
