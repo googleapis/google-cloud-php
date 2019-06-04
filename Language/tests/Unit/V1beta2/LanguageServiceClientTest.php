@@ -31,7 +31,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
-use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
@@ -54,14 +54,22 @@ class LanguageServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return LanguageServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new LanguageServiceClient($options);
@@ -448,7 +456,7 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $features = new AnnotateTextRequest_Features();
+        $features = new Features();
 
         $response = $client->annotateText($document, $features);
         $this->assertEquals($expectedResponse, $response);
@@ -492,7 +500,7 @@ class LanguageServiceClientTest extends GeneratedTest
 
         // Mock request
         $document = new Document();
-        $features = new AnnotateTextRequest_Features();
+        $features = new Features();
 
         try {
             $client->annotateText($document, $features);

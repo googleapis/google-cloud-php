@@ -430,17 +430,17 @@ class LanguageServiceGapicClient
      * $languageServiceClient = new LanguageServiceClient();
      * try {
      *     $document = new Document();
-     *     $features = new AnnotateTextRequest\Features();
+     *     $features = new Features();
      *     $response = $languageServiceClient->annotateText($document, $features);
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
-     * @param Document                     $document     Input document.
-     * @param AnnotateTextRequest\Features $features     The enabled features.
-     * @param array                        $optionalArgs {
-     *                                                   Optional.
+     * @param Document $document     Input document.
+     * @param Features $features     The enabled features.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
