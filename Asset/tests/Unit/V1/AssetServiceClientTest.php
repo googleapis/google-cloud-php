@@ -54,14 +54,22 @@ class AssetServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return AssetServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new AssetServiceClient($options);
@@ -76,6 +84,7 @@ class AssetServiceClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -153,6 +162,7 @@ class AssetServiceClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
