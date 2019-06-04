@@ -119,7 +119,7 @@ $ pecl install protobuf
 ```
 
 * [gRPC Installation Instructions](https://cloud.google.com/php/grpc)
-* [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#install_the_protobuf_runtime_library)
+* [Protobuf Installation Instructions](https://cloud.google.com/php/grpc#installing_the_protobuf_runtime_library)
 
 ## Cloud Firestore (GA)
 
