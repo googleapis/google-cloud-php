@@ -683,7 +683,7 @@ class DlpServiceGapicClient
      *
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector.
-     *     @type RedactImageRequest\ImageRedactionConfig[] $imageRedactionConfigs
+     *     @type ImageRedactionConfig[] $imageRedactionConfigs
      *          The configuration for specifying what content to redact from images.
      *     @type bool $includeFindings
      *          Whether the response should include findings along with the redacted
