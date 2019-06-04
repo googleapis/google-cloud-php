@@ -105,21 +105,47 @@ class Composer
 
     public function run()
     {
-        $this->updateMainComposer();
-        $this->createComponentComposer();
+        $parts = explode('/', $this->path);
+        $relativePath = array_pop($parts);
+
+        $namespace = $this->ask(
+            'Enter the component base namespace, relative to `Google\\Cloud\\`.',
+            $relativePath
+        );
+
+        $gpbMetadataNamespace = $this->ask(
+            'Enter the component metadata namespace, relative to `GPBMetadata\\`. ' .
+            '(e.g. GPBMetadata\\Google\\Cloud\\FooBar). ' .
+            'NOTE: This value is often subtly different from the component namespace. ' .
+            'Be sure you correctly enter the value, taking care to correctly case characters.',
+            'Google\\Cloud\\' . $relativePath
+        );
+
+        $this->updateMainComposer($namespace, $gpbMetadataNamespace, $relativePath);
+        $this->createComponentComposer($namespace, $gpbMetadataNamespace, $relativePath);
     }
 
-    private function updateMainComposer()
+    private function updateMainComposer($namespace, $gpbMetadataNamespace, $relativePath)
     {
         $path = $this->rootPath .'/composer.json';
         $composer = json_decode(file_get_contents($path), true);
+
+        // Add `replace` to main composer file.
         $composer['replace']['google/'. $this->info['name']] = 'master';
         ksort($composer['replace']);
+
+        // Add namespaces to main composer file.
+        $composer['autoload']['psr-4']['Google\\Cloud\\' . $namespace .'\\'] = $relativePath . '/src';
+        $composer['autoload']['psr-4']['GPBMetadata\\' . $gpbMetadataNamespace .'\\'] = $relativePath . '/metadata';
+        $composer['autoload-dev']['psr-4']['Google\\Cloud\\' . $namespace .'\\Tests\\'] = $relativePath . '/tests';
+
+        ksort($composer['autoload']['psr-4']);
+        ksort($composer['autoload-dev']['psr-4']);
 
         file_put_contents($path, json_encode($composer, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
     }
 
-    private function createComponentComposer()
+    private function createComponentComposer($namespace, $gpbMetadataNamespace, $relativePath)
     {
         $composer = [];
         $composer['name'] = 'google/'. $this->info['name'];
@@ -130,17 +156,9 @@ class Composer
         $composer['license'] = 'Apache-2.0';
         $composer['minimum-stability'] = 'stable';
 
-        $parts = explode('/', $this->path);
-        $last = array_pop($parts);
-        $namespace = $this->ask(
-            'Enter the component base namespace, relative to `Google\\Cloud\\`.',
-            $last
-        );
         $composer['autoload']['psr-4'] = [
             'Google\\Cloud\\' . $namespace .'\\' => 'src',
-            // This will need manual fixing in many cases
-            // TODO: derive the correct value somehow
-            'GPBMetadata\\Google\\Cloud\\' . $namespace .'\\' => 'metadata'
+            'GPBMetadata\\' . $gpbMetadataNamespace .'\\' => 'metadata'
         ];
         $composer['autoload-dev']['psr-4'] = [
             'Google\\Cloud\\' . $namespace .'\\Tests\\' => 'tests'
@@ -160,7 +178,7 @@ class Composer
 
         $composer['extra']['component'] = [
             'id' => $this->info['name'],
-            'path' => $last,
+            'path' => $relativePath,
             'entry' => $entry ?: null,
             'target' => $target
         ];

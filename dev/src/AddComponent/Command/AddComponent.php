@@ -26,6 +26,7 @@ use Google\Cloud\Dev\AddComponent\Manifest;
 use Google\Cloud\Dev\AddComponent\PullRequestTemplate;
 use Google\Cloud\Dev\AddComponent\Readmes;
 use Google\Cloud\Dev\AddComponent\TableOfContents;
+use Google\Cloud\Dev\AddComponent\TestConfig;
 use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\QuestionTrait;
 use Symfony\Component\Console\Input\InputInterface;
@@ -89,6 +90,13 @@ class AddComponent extends GoogleCloudCommand
         ));
 
         (new GitAttributes($this->rootPath, $info['path']))->run();
+
+        $output->writeln($formatter->formatSection(
+            'Test Config',
+            'Creating PHPUnit configs by copying from templates.'
+        ));
+
+        (new TestConfig($this->rootPath, $info['path']))->run();
 
         $output->writeln($formatter->formatSection(
             'Readme',
@@ -163,8 +171,7 @@ class AddComponent extends GoogleCloudCommand
         $output->writeln('Success!');
         $output->writeln(
             "All done! Before committing, be sure to complete the following manual steps:\n"
-            . "1. Check the PSR-4 Namespace value for GPBMetadata in /path/to/Folder/composer.json.\n"
-            . "2. Add a code sample to /path/to/Folder/README.md"
+            . "1. Add a code sample to /path/to/Folder/README.md"
         );
     }
 
