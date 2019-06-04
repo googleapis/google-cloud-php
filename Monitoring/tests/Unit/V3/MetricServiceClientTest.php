@@ -31,7 +31,7 @@ use Google\Api\MetricDescriptor;
 use Google\Api\MonitoredResourceDescriptor;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
@@ -55,14 +55,22 @@ class MetricServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return MetricServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new MetricServiceClient($options);
@@ -565,7 +573,7 @@ class MetricServiceClientTest extends GeneratedTest
         $formattedName = $client->projectName('[PROJECT]');
         $filter = 'filter-1274492040';
         $interval = new TimeInterval();
-        $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
+        $view = TimeSeriesView::FULL;
 
         $response = $client->listTimeSeries($formattedName, $filter, $interval, $view);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -620,7 +628,7 @@ class MetricServiceClientTest extends GeneratedTest
         $formattedName = $client->projectName('[PROJECT]');
         $filter = 'filter-1274492040';
         $interval = new TimeInterval();
-        $view = ListTimeSeriesRequest_TimeSeriesView::FULL;
+        $view = TimeSeriesView::FULL;
 
         try {
             $client->listTimeSeries($formattedName, $filter, $interval, $view);

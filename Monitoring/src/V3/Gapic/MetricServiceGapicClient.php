@@ -758,7 +758,7 @@ class MetricServiceGapicClient
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
      *     $interval = new TimeInterval();
-     *     $view = ListTimeSeriesRequest\TimeSeriesView::FULL;
+     *     $view = TimeSeriesView::FULL;
      *     // Iterate over pages of elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
