@@ -113,7 +113,8 @@ class TestHelpers
         $scanner = new Scanner($parser, self::projectRoot(), [
             '/vendor/',
             '/dev/',
-            new RegexFileFilter('/\w{0,}\/vendor\//')
+            new RegexFileFilter('/\w{0,}\/vendor\//'),
+            new RegexFileFilter('/\w{0,}\/V\d{1,}\//')
         ]);
         $coverage = new Coverage($scanner);
         $coverage->buildListToCover();
