@@ -33,7 +33,7 @@ use Google\Cloud\Kms\V1\AsymmetricDecryptResponse;
 use Google\Cloud\Kms\V1\AsymmetricSignResponse;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
-use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
+use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\Digest;
 use Google\Cloud\Kms\V1\EncryptResponse;
@@ -64,14 +64,22 @@ class KeyManagementServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return KeyManagementServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new KeyManagementServiceClient($options);
@@ -641,7 +649,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
         $cryptoKeyId = 'my-app-key';
-        $purpose = CryptoKey_CryptoKeyPurpose::ENCRYPT_DECRYPT;
+        $purpose = CryptoKeyPurpose::ENCRYPT_DECRYPT;
         $seconds = 2147483647;
         $nextRotationTime = new Timestamp();
         $nextRotationTime->setSeconds($seconds);
@@ -699,7 +707,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
         $cryptoKeyId = 'my-app-key';
-        $purpose = CryptoKey_CryptoKeyPurpose::ENCRYPT_DECRYPT;
+        $purpose = CryptoKeyPurpose::ENCRYPT_DECRYPT;
         $seconds = 2147483647;
         $nextRotationTime = new Timestamp();
         $nextRotationTime->setSeconds($seconds);
