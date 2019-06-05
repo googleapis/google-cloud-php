@@ -942,11 +942,11 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string              $parent       Required. The name of the entity type to create entities in. Format:
-     *                                          `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param string   $parent       Required. The name of the entity type to create entities in. Format:
+     *                               `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param Entity[] $entities     Required. The entities to create.
-     * @param array               $optionalArgs {
-     *                                          Optional.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entities`. If not
@@ -1036,11 +1036,11 @@ class EntityTypesGapicClient
      * }
      * ```
      *
-     * @param string              $parent       Required. The name of the entity type to update or create entities in.
-     *                                          Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
+     * @param string   $parent       Required. The name of the entity type to update or create entities in.
+     *                               Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      * @param Entity[] $entities     Required. The entities to update or create.
-     * @param array               $optionalArgs {
-     *                                          Optional.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
      *     @type string $languageCode
      *          Optional. The language of entity synonyms defined in `entities`. If not
