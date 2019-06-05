@@ -403,7 +403,8 @@ class GapicClientTraitTest extends TestCase
             'transportConfig' => [
                 'grpc' => [
                     'stubOpts' => [
-                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker()
+                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker(),
+                        'grpc.service_config_disable_resolution' => 1
                     ]
                 ],
                 'rest' => [
