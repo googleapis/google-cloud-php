@@ -118,7 +118,10 @@ class Page implements IteratorAggregate
             );
         }
 
-        $newRequest = clone $this->getRequestObject();
+        $oldRequest = $this->getRequestObject();
+        $requestClass = get_class($oldRequest);
+        $newRequest = new $requestClass();
+        $newRequest->mergeFrom($oldRequest);
 
         $requestPageTokenSetMethod = $this->pageStreamingDescriptor->getRequestPageTokenSetMethod();
         $newRequest->$requestPageTokenSetMethod($this->getNextPageToken());

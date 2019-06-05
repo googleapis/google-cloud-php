@@ -87,6 +87,13 @@ class PageTest extends TestCase
 
         $this->assertEquals($nextPage->hasNextPage(), false);
         $this->assertEquals($nextPage->getNextPageToken(), '');
+
+        $newRequest = $nextPage->getRequestObject();
+        $this->assertEquals($newRequest->getPageToken(), 'nextPageToken1');
+
+        // Call serializeToJsonString - this will test for bugs in the protobuf
+        // c extension (if installed) that can cause segmentation faults.
+        $newRequest->serializeToJsonString();
     }
 
     /**
