@@ -51,6 +51,7 @@ use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest;
+use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest\RunAttempt;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse;
@@ -1139,7 +1140,7 @@ class DataTransferServiceGapicClient
      *     @type int[] $messageTypes
      *          Message types to return. If not populated - INFO, WARNING and ERROR
      *          messages are returned.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage_MessageSeverity}
+     *          For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage\MessageSeverity}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
