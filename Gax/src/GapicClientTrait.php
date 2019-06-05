@@ -160,7 +160,7 @@ trait GapicClientTrait
             'libVersion' => null,
         ];
         $defaultOptions['transportConfig'] += [
-            'grpc' => [],
+            'grpc' => ['stubOpts' => ['grpc.service_config_disable_resolution' => 1]],
             'rest' => [],
             'grpc-fallback' => [],
         ];
@@ -172,6 +172,7 @@ trait GapicClientTrait
         $options['credentialsConfig'] += $defaultOptions['credentialsConfig'];
         $options['transportConfig'] += $defaultOptions['transportConfig'];
         $options['transportConfig']['grpc'] += $defaultOptions['transportConfig']['grpc'];
+        $options['transportConfig']['grpc']['stubOpts'] += $defaultOptions['transportConfig']['grpc']['stubOpts'];
         $options['transportConfig']['rest'] += $defaultOptions['transportConfig']['rest'];
         $options['transportConfig']['grpc-fallback'] += $defaultOptions['transportConfig']['grpc-fallback'];
 
