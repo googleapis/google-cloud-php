@@ -59,6 +59,12 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.TextDetectionConfig text_detection_config = 8;</code>
      */
     private $text_detection_config = null;
+    /**
+     * Config for OBJECT_TRACKING.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ObjectTrackingConfig object_tracking_config = 13;</code>
+     */
+    private $object_tracking_config = null;
 
     /**
      * Constructor.
@@ -82,6 +88,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *           Config for SPEECH_TRANSCRIPTION.
      *     @type \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig $text_detection_config
      *           Config for TEXT_DETECTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig $object_tracking_config
+     *           Config for OBJECT_TRACKING.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,6 +279,32 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig::class);
         $this->text_detection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Config for OBJECT_TRACKING.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ObjectTrackingConfig object_tracking_config = 13;</code>
+     * @return \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig
+     */
+    public function getObjectTrackingConfig()
+    {
+        return $this->object_tracking_config;
+    }
+
+    /**
+     * Config for OBJECT_TRACKING.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ObjectTrackingConfig object_tracking_config = 13;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig $var
+     * @return $this
+     */
+    public function setObjectTrackingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig::class);
+        $this->object_tracking_config = $var;
 
         return $this;
     }
