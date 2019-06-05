@@ -39,7 +39,7 @@ use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
 use Google\Cloud\Debugger\V2\GetBreakpointRequest;
 use Google\Cloud\Debugger\V2\GetBreakpointResponse;
 use Google\Cloud\Debugger\V2\ListBreakpointsRequest;
-use Google\Cloud\Debugger\V2\ListBreakpointsRequest_BreakpointActionValue;
+use Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue;
 use Google\Cloud\Debugger\V2\ListBreakpointsResponse;
 use Google\Cloud\Debugger\V2\ListDebuggeesRequest;
 use Google\Cloud\Debugger\V2\ListDebuggeesResponse;
@@ -370,7 +370,7 @@ class Debugger2GapicClient
      *     @type bool $includeInactive
      *          When set to `true`, the response includes active and inactive
      *          breakpoints. Otherwise, it includes only active breakpoints.
-     *     @type ListBreakpointsRequest_BreakpointActionValue $action
+     *     @type BreakpointActionValue $action
      *          When set, the response includes only breakpoints with the specified action.
      *     @type bool $stripResults
      *          This field is deprecated. The following fields are always stripped out of
