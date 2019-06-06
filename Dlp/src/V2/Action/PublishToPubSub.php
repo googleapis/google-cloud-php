@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Publish the results of a DlpJob to a pub sub channel.
+ * Publish a message into given Pub/Sub topic when DlpJob has completed. The
+ * message contains a single field, `DlpJobName`, which is equal to the
+ * finished job's
+ * [`DlpJob.name`](/dlp/docs/reference/rest/v2/projects.dlpJobs#DlpJob).
  * Compatible with: Inspect, Risk
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Action.PublishToPubSub</code>
