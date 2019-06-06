@@ -72,6 +72,14 @@ class Grpc implements ConnectionInterface
             'google.protobuf.Timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
         ]);
         //@codeCoverageIgnoreEnd
 
