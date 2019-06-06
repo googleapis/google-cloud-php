@@ -52,6 +52,12 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
      */
     private $errors;
+    /**
+     * Statistics about this storedInfoType version.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
+     */
+    private $stats = null;
 
     /**
      * Constructor.
@@ -79,6 +85,8 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *           use the UpdateStoredInfoType API method to create another version of the
      *           storedInfoType to continue using it, reusing the same `config` if it was
      *           not the source of the error.
+     *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeStats $stats
+     *           Statistics about this storedInfoType version.
      * }
      */
     public function __construct($data = NULL) {
@@ -210,6 +218,32 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\Error::class);
         $this->errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Statistics about this storedInfoType version.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeStats
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    /**
+     * Statistics about this storedInfoType version.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\StoredInfoTypeStats $var
+     * @return $this
+     */
+    public function setStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\StoredInfoTypeStats::class);
+        $this->stats = $var;
 
         return $this;
     }
