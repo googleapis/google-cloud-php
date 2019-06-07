@@ -42,16 +42,14 @@ class DataSource extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * Data source client id which should be used to receive refresh token.
-     * When not supplied, no offline credentials are populated for data transfer.
      *
      * Generated from protobuf field <code>string client_id = 5;</code>
      */
     private $client_id = '';
     /**
-     * Api auth scopes for which refresh token needs to be obtained. Only valid
-     * when `client_id` is specified. Ignored otherwise. These are scopes needed
-     * by a data source to prepare data and ingest them into BigQuery,
-     * e.g., https://www.googleapis.com/auth/bigquery
+     * Api auth scopes for which refresh token needs to be obtained. These are
+     * scopes needed by a data source to prepare data and ingest them into
+     * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *
      * Generated from protobuf field <code>repeated string scopes = 6;</code>
      */
@@ -59,19 +57,18 @@ class DataSource extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
      */
     private $transfer_type = 0;
     /**
-     * Indicates whether the data source supports multiple transfers
-     * to different BigQuery targets.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>bool supports_multiple_transfers = 8;</code>
+     * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
      */
     private $supports_multiple_transfers = false;
     /**
      * The number of seconds to wait for an update from the data source
-     * before BigQuery marks the transfer as failed.
+     * before the Data Transfer Service marks the transfer as FAILED.
      *
      * Generated from protobuf field <code>int32 update_deadline_seconds = 9;</code>
      */
@@ -141,6 +138,18 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
      */
     private $minimum_schedule_interval = null;
+    /**
+     * Partner's legal name of this data source
+     *
+     * Generated from protobuf field <code>string partner_legal_name = 22;</code>
+     */
+    private $partner_legal_name = '';
+    /**
+     * Redirect URL to complete transfer config setup for 3rd party data sources.
+     *
+     * Generated from protobuf field <code>string redirect_url = 23;</code>
+     */
+    private $redirect_url = '';
 
     /**
      * Constructor.
@@ -158,20 +167,17 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           User friendly data source description string.
      *     @type string $client_id
      *           Data source client id which should be used to receive refresh token.
-     *           When not supplied, no offline credentials are populated for data transfer.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $scopes
-     *           Api auth scopes for which refresh token needs to be obtained. Only valid
-     *           when `client_id` is specified. Ignored otherwise. These are scopes needed
-     *           by a data source to prepare data and ingest them into BigQuery,
-     *           e.g., https://www.googleapis.com/auth/bigquery
+     *           Api auth scopes for which refresh token needs to be obtained. These are
+     *           scopes needed by a data source to prepare data and ingest them into
+     *           BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *     @type int $transfer_type
      *           Deprecated. This field has no effect.
      *     @type bool $supports_multiple_transfers
-     *           Indicates whether the data source supports multiple transfers
-     *           to different BigQuery targets.
+     *           Deprecated. This field has no effect.
      *     @type int $update_deadline_seconds
      *           The number of seconds to wait for an update from the data source
-     *           before BigQuery marks the transfer as failed.
+     *           before the Data Transfer Service marks the transfer as FAILED.
      *     @type string $default_schedule
      *           Default data transfer schedule.
      *           Examples of valid schedules include:
@@ -201,6 +207,10 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           for the data source.
      *     @type \Google\Protobuf\Duration $minimum_schedule_interval
      *           The minimum interval for scheduler to schedule runs.
+     *     @type string $partner_legal_name
+     *           Partner's legal name of this data source
+     *     @type string $redirect_url
+     *           Redirect URL to complete transfer config setup for 3rd party data sources.
      * }
      */
     public function __construct($data = NULL) {
@@ -314,7 +324,6 @@ class DataSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Data source client id which should be used to receive refresh token.
-     * When not supplied, no offline credentials are populated for data transfer.
      *
      * Generated from protobuf field <code>string client_id = 5;</code>
      * @return string
@@ -326,7 +335,6 @@ class DataSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Data source client id which should be used to receive refresh token.
-     * When not supplied, no offline credentials are populated for data transfer.
      *
      * Generated from protobuf field <code>string client_id = 5;</code>
      * @param string $var
@@ -341,10 +349,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Api auth scopes for which refresh token needs to be obtained. Only valid
-     * when `client_id` is specified. Ignored otherwise. These are scopes needed
-     * by a data source to prepare data and ingest them into BigQuery,
-     * e.g., https://www.googleapis.com/auth/bigquery
+     * Api auth scopes for which refresh token needs to be obtained. These are
+     * scopes needed by a data source to prepare data and ingest them into
+     * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *
      * Generated from protobuf field <code>repeated string scopes = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -355,10 +362,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Api auth scopes for which refresh token needs to be obtained. Only valid
-     * when `client_id` is specified. Ignored otherwise. These are scopes needed
-     * by a data source to prepare data and ingest them into BigQuery,
-     * e.g., https://www.googleapis.com/auth/bigquery
+     * Api auth scopes for which refresh token needs to be obtained. These are
+     * scopes needed by a data source to prepare data and ingest them into
+     * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *
      * Generated from protobuf field <code>repeated string scopes = 6;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -375,7 +381,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
      * @return int
      */
     public function getTransferType()
@@ -386,7 +392,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
      * @param int $var
      * @return $this
      */
@@ -399,10 +405,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the data source supports multiple transfers
-     * to different BigQuery targets.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>bool supports_multiple_transfers = 8;</code>
+     * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
      * @return bool
      */
     public function getSupportsMultipleTransfers()
@@ -411,10 +416,9 @@ class DataSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether the data source supports multiple transfers
-     * to different BigQuery targets.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>bool supports_multiple_transfers = 8;</code>
+     * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
      */
@@ -428,7 +432,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of seconds to wait for an update from the data source
-     * before BigQuery marks the transfer as failed.
+     * before the Data Transfer Service marks the transfer as FAILED.
      *
      * Generated from protobuf field <code>int32 update_deadline_seconds = 9;</code>
      * @return int
@@ -440,7 +444,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of seconds to wait for an update from the data source
-     * before BigQuery marks the transfer as failed.
+     * before the Data Transfer Service marks the transfer as FAILED.
      *
      * Generated from protobuf field <code>int32 update_deadline_seconds = 9;</code>
      * @param int $var
@@ -706,6 +710,58 @@ class DataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->minimum_schedule_interval = $var;
+
+        return $this;
+    }
+
+    /**
+     * Partner's legal name of this data source
+     *
+     * Generated from protobuf field <code>string partner_legal_name = 22;</code>
+     * @return string
+     */
+    public function getPartnerLegalName()
+    {
+        return $this->partner_legal_name;
+    }
+
+    /**
+     * Partner's legal name of this data source
+     *
+     * Generated from protobuf field <code>string partner_legal_name = 22;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPartnerLegalName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->partner_legal_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Redirect URL to complete transfer config setup for 3rd party data sources.
+     *
+     * Generated from protobuf field <code>string redirect_url = 23;</code>
+     * @return string
+     */
+    public function getRedirectUrl()
+    {
+        return $this->redirect_url;
+    }
+
+    /**
+     * Redirect URL to complete transfer config setup for 3rd party data sources.
+     *
+     * Generated from protobuf field <code>string redirect_url = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedirectUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->redirect_url = $var;
 
         return $this;
     }
