@@ -33,7 +33,7 @@ class TransferState
      */
     const RUNNING = 3;
     /**
-     * Data transfer completed successsfully.
+     * Data transfer completed successfully.
      *
      * Generated from protobuf enum <code>SUCCEEDED = 4;</code>
      */

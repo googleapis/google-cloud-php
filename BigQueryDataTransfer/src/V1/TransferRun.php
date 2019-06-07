@@ -25,6 +25,12 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * User labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 22;</code>
+     */
+    private $labels;
+    /**
      * Minimum time after which a transfer run can be started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 3;</code>
@@ -88,11 +94,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. Unique ID of the user on whose behalf transfer is done.
-     * Applicable only to data sources that do not support service accounts.
-     * When set to 0, the data source service account credentials are used.
-     * May be negative. Note, that this identifier is not stable.
-     * It may change over time even for the same user.
+     * Deprecated. Unique ID of the user on whose behalf transfer is done.
      *
      * Generated from protobuf field <code>int64 user_id = 11;</code>
      */
@@ -102,11 +104,22 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * created as part of a regular schedule. For batch transfer runs that are
      * scheduled manually, this is empty.
      * NOTE: the system might choose to delay the schedule depending on the
-     * current load, so `schedule_time` doesn't always matches this.
+     * current load, so `schedule_time` doesn't always match this.
      *
      * Generated from protobuf field <code>string schedule = 12;</code>
      */
     private $schedule = '';
+    /**
+     * Output only. This is the same token initialized from TransferConfig.
+     * Partner token is a unique identifier used for identifying a transfer setup
+     * stored on external partner side. The token is opaque to DTS and can only be
+     * interpreted by partner. Partner data source should create a mapping between
+     * the config id and the token to validate that a transfer config/run is
+     * legitimate.
+     *
+     * Generated from protobuf field <code>string partner_token = 28;</code>
+     */
+    private $partner_token = '';
 
     /**
      * Constructor.
@@ -119,6 +132,8 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *           Transfer run names have the form
      *           `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
      *           The name is ignored when creating a transfer run.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           User labels.
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           Minimum time after which a transfer run can be started.
      *     @type \Google\Protobuf\Timestamp $run_time
@@ -143,17 +158,20 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Data transfer run state. Ignored for input requests.
      *     @type int|string $user_id
-     *           Output only. Unique ID of the user on whose behalf transfer is done.
-     *           Applicable only to data sources that do not support service accounts.
-     *           When set to 0, the data source service account credentials are used.
-     *           May be negative. Note, that this identifier is not stable.
-     *           It may change over time even for the same user.
+     *           Deprecated. Unique ID of the user on whose behalf transfer is done.
      *     @type string $schedule
      *           Output only. Describes the schedule of this transfer run if it was
      *           created as part of a regular schedule. For batch transfer runs that are
      *           scheduled manually, this is empty.
      *           NOTE: the system might choose to delay the schedule depending on the
-     *           current load, so `schedule_time` doesn't always matches this.
+     *           current load, so `schedule_time` doesn't always match this.
+     *     @type string $partner_token
+     *           Output only. This is the same token initialized from TransferConfig.
+     *           Partner token is a unique identifier used for identifying a transfer setup
+     *           stored on external partner side. The token is opaque to DTS and can only be
+     *           interpreted by partner. Partner data source should create a mapping between
+     *           the config id and the token to validate that a transfer config/run is
+     *           legitimate.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +207,32 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * User labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 22;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * User labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 22;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }
@@ -460,11 +504,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Unique ID of the user on whose behalf transfer is done.
-     * Applicable only to data sources that do not support service accounts.
-     * When set to 0, the data source service account credentials are used.
-     * May be negative. Note, that this identifier is not stable.
-     * It may change over time even for the same user.
+     * Deprecated. Unique ID of the user on whose behalf transfer is done.
      *
      * Generated from protobuf field <code>int64 user_id = 11;</code>
      * @return int|string
@@ -475,11 +515,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Unique ID of the user on whose behalf transfer is done.
-     * Applicable only to data sources that do not support service accounts.
-     * When set to 0, the data source service account credentials are used.
-     * May be negative. Note, that this identifier is not stable.
-     * It may change over time even for the same user.
+     * Deprecated. Unique ID of the user on whose behalf transfer is done.
      *
      * Generated from protobuf field <code>int64 user_id = 11;</code>
      * @param int|string $var
@@ -498,7 +534,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * created as part of a regular schedule. For batch transfer runs that are
      * scheduled manually, this is empty.
      * NOTE: the system might choose to delay the schedule depending on the
-     * current load, so `schedule_time` doesn't always matches this.
+     * current load, so `schedule_time` doesn't always match this.
      *
      * Generated from protobuf field <code>string schedule = 12;</code>
      * @return string
@@ -513,7 +549,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * created as part of a regular schedule. For batch transfer runs that are
      * scheduled manually, this is empty.
      * NOTE: the system might choose to delay the schedule depending on the
-     * current load, so `schedule_time` doesn't always matches this.
+     * current load, so `schedule_time` doesn't always match this.
      *
      * Generated from protobuf field <code>string schedule = 12;</code>
      * @param string $var
@@ -523,6 +559,42 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->schedule = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This is the same token initialized from TransferConfig.
+     * Partner token is a unique identifier used for identifying a transfer setup
+     * stored on external partner side. The token is opaque to DTS and can only be
+     * interpreted by partner. Partner data source should create a mapping between
+     * the config id and the token to validate that a transfer config/run is
+     * legitimate.
+     *
+     * Generated from protobuf field <code>string partner_token = 28;</code>
+     * @return string
+     */
+    public function getPartnerToken()
+    {
+        return $this->partner_token;
+    }
+
+    /**
+     * Output only. This is the same token initialized from TransferConfig.
+     * Partner token is a unique identifier used for identifying a transfer setup
+     * stored on external partner side. The token is opaque to DTS and can only be
+     * interpreted by partner. Partner data source should create a mapping between
+     * the config id and the token to validate that a transfer config/run is
+     * legitimate.
+     *
+     * Generated from protobuf field <code>string partner_token = 28;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPartnerToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->partner_token = $var;
 
         return $this;
     }

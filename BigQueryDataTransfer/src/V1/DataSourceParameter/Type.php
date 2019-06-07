@@ -45,7 +45,7 @@ class Type
      */
     const BOOLEAN = 4;
     /**
-     * Record parameter.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf enum <code>RECORD = 5;</code>
      */
