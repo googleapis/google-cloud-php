@@ -30,7 +30,7 @@ use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
 use Google\Cloud\ErrorReporting\V1beta1\SourceLocation;
 
 /**
- * @group error-reporting
+ * @group errorreporting
  * @group gapic
  */
 class ReportErrorsServiceSmokeTest extends GeneratedTest
