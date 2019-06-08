@@ -41,7 +41,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group spanner-admin-database
+ * @group database
  * @group gapic
  */
 class DatabaseAdminClientTest extends GeneratedTest

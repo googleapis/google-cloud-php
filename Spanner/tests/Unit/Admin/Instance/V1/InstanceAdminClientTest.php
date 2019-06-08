@@ -43,7 +43,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group spanner-admin-instance
+ * @group instance
  * @group gapic
  */
 class InstanceAdminClientTest extends GeneratedTest
