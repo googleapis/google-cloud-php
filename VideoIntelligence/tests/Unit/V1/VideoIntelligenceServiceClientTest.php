@@ -37,7 +37,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group video-intelligence
+ * @group videointelligence
  * @group gapic
  */
 class VideoIntelligenceServiceClientTest extends GeneratedTest
