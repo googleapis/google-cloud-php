@@ -36,7 +36,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group os-login
+ * @group oslogin
  * @group gapic
  */
 class OsLoginServiceClientTest extends GeneratedTest
