@@ -47,7 +47,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group bigquerydatatransfer
+ * @group datatransfer
  * @group gapic
  */
 class DataTransferServiceClientTest extends GeneratedTest
