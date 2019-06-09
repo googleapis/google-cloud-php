@@ -38,7 +38,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group firestore-admin
+ * @group admin
  * @group gapic
  */
 class FirestoreAdminClientTest extends GeneratedTest
