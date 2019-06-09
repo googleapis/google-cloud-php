@@ -34,7 +34,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group error-reporting
+ * @group errorreporting
  * @group gapic
  */
 class ReportErrorsServiceClientTest extends GeneratedTest
