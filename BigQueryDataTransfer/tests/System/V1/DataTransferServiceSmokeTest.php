@@ -26,7 +26,7 @@ use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
 use Google\ApiCore\Testing\GeneratedTest;
 
 /**
- * @group bigquerydatatransfer
+ * @group datatransfer
  * @group gapic
  */
 class DataTransferServiceSmokeTest extends GeneratedTest
