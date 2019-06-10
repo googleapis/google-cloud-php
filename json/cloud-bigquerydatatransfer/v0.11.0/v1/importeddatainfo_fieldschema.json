@@ -1,0 +1,1 @@
+{"id":"bigquerydatatransfer\/v1\/importeddatainfo_fieldschema","type":"","title":"Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo_FieldSchema","name":"ImportedDataInfo_FieldSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo\\FieldSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}
