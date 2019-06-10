@@ -63,3 +63,9 @@ s.replace(
     'src/V1/Gapic/DataTransferServiceGapicClient.php',
     r'ListTransferRunsRequest_RunAttempt',
     'ListTransferRunsRequest\RunAttempt')
+
+# fix test group
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'@group datatransfer',
+    '@group bigquerydatatransfer')

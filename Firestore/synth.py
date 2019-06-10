@@ -106,3 +106,9 @@ s.replace(
     'tests/Unit/Admin/V1/FirestoreAdminClientTest.php',
     r'Copyright \d{4}',
     'Copyright 2019')
+
+# fix test group
+s.replace(
+    'tests/**/Admin/V1/*Test.php',
+    r'@group admin',
+    '@group firestore-admin')
