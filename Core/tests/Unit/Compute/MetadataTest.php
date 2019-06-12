@@ -18,77 +18,86 @@
 namespace Google\Cloud\Core\Tests\Unit\Compute;
 
 use Google\Cloud\Core\Compute\Metadata;
+use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
- * @group compute
+ * @group core-compute
  */
 class MetadataTest extends TestCase
 {
-    protected $mock;
-    protected $metadata;
+    private $metadata;
+    private $reader;
 
     public function setUp()
     {
-        $this->metadata = new Metadata();
-        $this->mock = $this->getMockBuilder(
-            StreamReader::class)
-            ->setMethods(array('read'))
-            ->getmock();
-        $this->metadata->setReader($this->mock);
+        $this->metadata = TestHelpers::stub(Metadata::class, [], ['reader']);
+        $this->reader = $this->prophesize(ReaderInterface::class);
     }
 
-    public function testProjectMetadata()
+    public function testSetReader()
     {
-        $expected_path = 'project/attributes/mykey';
-        $expected_val = 'myval';
-        $this->mock->expects($this->once())
-            ->method('read')
-            ->with($this->equalTo($expected_path))
-            ->willReturn($expected_val);
-        $val = $this->metadata->getProjectMetadata('mykey');
-        $this->assertEquals($expected_val, $val);
+        $beforeReader = $this->metadata->___getProperty('reader');
+
+        $this->metadata->setReader(new StreamReader);
+
+        $this->assertNotEquals(
+            get_class($beforeReader),
+            get_class($this->metadata->___getProperty('reader'))
+        );
     }
 
-    public function testInstanceMetadata()
+    /**
+     * @dataProvider metadataTypes
+     */
+    public function testGetMetadata($type, $method)
     {
-        $expected_path = 'instance/attributes/mykey';
-        $expected_val = 'myval';
-        $this->mock->expects($this->once())
-            ->method('read')
-            ->with($this->equalTo($expected_path))
-            ->willReturn($expected_val);
-        $val = $this->metadata->getInstanceMetadata('mykey');
-        $this->assertEquals($expected_val, $val);
+        $path = $type . '/attributes/mykey';
+        $expectedVal = 'myval';
+
+        $this->reader->read($path)
+            ->shouldBeCalled()
+            ->willReturn($expectedVal);
+
+        $this->metadata->___setProperty('reader', $this->reader->reveal());
+        $this->assertEquals($expectedVal, $this->metadata->$method('mykey'));
     }
 
-    public function testGetProjectId()
+    public function metadataTypes()
     {
-        $expected_path = 'project/project-id';
-        $expected_val = 'my-project';
-        $this->mock->expects($this->once())
-            ->method('read')
-            ->with($this->equalTo($expected_path))
-            ->willReturn($expected_val);
-        $project_id = $this->metadata->getProjectId();
-        $this->assertEquals($expected_val, $project_id);
+        return [
+            ['project', 'getProjectMetadata'],
+            ['instance', 'getInstanceMetadata']
+        ];
+    }
+
+    /**
+     * @dataProvider projectIdTypes
+     */
+    public function testGetProjectId($type, $method)
+    {
+        $path = 'project/' . $type;
+        $expectedVal = 'my-project';
+
+        $this->reader->read($path)
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedVal);
+
+        $this->metadata->___setProperty('reader', $this->reader->reveal());
+        $this->assertEquals($expectedVal, $this->metadata->$method());
+
         // Ensure this value is cached thus we `read` only once.
-        $this->metadata->getProjectId();
+        $this->metadata->$method();
     }
 
-    public function testGetNumericProjectId()
+    public function projectIdTypes()
     {
-        $expected_path = 'project/numeric-project-id';
-        $expected_val = '1234567';
-        $this->mock->expects($this->once())
-            ->method('read')
-            ->with($this->equalTo($expected_path))
-            ->willReturn($expected_val);
-        $project_id = $this->metadata->getNumericProjectId();
-        $this->assertEquals($expected_val, $project_id);
-        // Ensure this value is cached thus we `read` only once.
-        $this->metadata->getNumericProjectId();
+        return [
+            ['project-id', 'getProjectId'],
+            ['numeric-project-id', 'getNumericProjectId']
+        ];
     }
 }
