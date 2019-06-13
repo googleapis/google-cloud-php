@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_sync_gcs")
  */
 
+// sample-metadata
+//   title: Transcript Audio File (Cloud Storage)
+//   description: Transcribe short audio file from Cloud Storage using synchronous speech recognition
+
+//   usage: php samples/V1/SpeechTranscribeSyncGcs.php [--storage_uri "gs://cloud-samples-data/speech/brooklyn_bridge.raw"]
 // [START speech_transcribe_sync_gcs]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -34,8 +39,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
  */
 function sampleRecognize($storageUri)
 {
-    // [START speech_transcribe_sync_gcs_core]
-
     $speechClient = new SpeechClient();
 
     // $storageUri = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw';
@@ -66,8 +69,6 @@ function sampleRecognize($storageUri)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_sync_gcs_core]
 }
 // [END speech_transcribe_sync_gcs]
 

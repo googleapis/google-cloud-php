@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_recognition_metadata_beta")
  */
 
+// sample-metadata
+//   title: Adding recognition metadata (Local File) (Beta)
+//   description: Adds additional details short audio file included in this recognition request
+
+//   usage: php samples/V1p1beta1/SpeechTranscribeRecognitionMetadataBeta.php [--local_file_path "resources/commercial_mono.wav"]
 // [START speech_transcribe_recognition_metadata_beta]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -36,8 +41,6 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionMetadata\RecordingDeviceType;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_recognition_metadata_beta_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/commercial_mono.wav';
@@ -76,8 +79,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_recognition_metadata_beta_core]
 }
 // [END speech_transcribe_recognition_metadata_beta]
 

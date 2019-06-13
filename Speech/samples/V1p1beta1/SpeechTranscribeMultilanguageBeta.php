@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_multilanguage_beta")
  */
 
+// sample-metadata
+//   title: Detecting language spoken automatically (Local File) (Beta)
+//   description: Transcribe a short audio file with language detected from a list of possible languages
+
+//   usage: php samples/V1p1beta1/SpeechTranscribeMultilanguageBeta.php [--local_file_path "resources/brooklyn_bridge.flac"]
 // [START speech_transcribe_multilanguage_beta]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +38,6 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionConfig;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_multilanguage_beta_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/brooklyn_bridge.flac';
@@ -66,8 +69,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_multilanguage_beta_core]
 }
 // [END speech_transcribe_multilanguage_beta]
 

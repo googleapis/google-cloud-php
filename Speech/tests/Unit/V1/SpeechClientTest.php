@@ -32,7 +32,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Speech\V1\LongRunningRecognizeResponse;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
-use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
 use Google\Cloud\Speech\V1\RecognizeResponse;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
@@ -57,14 +57,22 @@ class SpeechClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return SpeechClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new SpeechClient($options);
@@ -85,7 +93,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $encoding = AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -137,7 +145,7 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $encoding = AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -171,6 +179,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -196,7 +205,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $encoding = AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();
@@ -256,6 +265,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -285,7 +295,7 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $encoding = AudioEncoding::FLAC;
         $sampleRateHertz = 44100;
         $languageCode = 'en-US';
         $config = new RecognitionConfig();

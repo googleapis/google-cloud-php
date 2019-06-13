@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_word_level_confidence_beta")
  */
 
+// sample-metadata
+//   title: Enabling word-level confidence (Local File) (Beta)
+//   description: Print confidence level for individual words in a transcription of a short audio file
+
+//   usage: php samples/V1p1beta1/SpeechTranscribeWordLevelConfidenceBeta.php [--local_file_path "resources/brooklyn_bridge.flac"]
 // [START speech_transcribe_word_level_confidence_beta]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +38,6 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionConfig;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_word_level_confidence_beta_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/brooklyn_bridge.flac';
@@ -67,8 +70,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_word_level_confidence_beta_core]
 }
 // [END speech_transcribe_word_level_confidence_beta]
 

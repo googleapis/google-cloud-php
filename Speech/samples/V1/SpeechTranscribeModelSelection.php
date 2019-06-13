@@ -19,6 +19,10 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_model_selection")
  */
 
+// sample-metadata
+//   title: Selecting a Transcription Model (Local File)
+//   description: Transcribe a short audio file using a specified transcription model
+//   usage: php samples/V1/SpeechTranscribeModelSelection.php [--local_file_path "resources/hello.wav"] [--model "phone_call"]
 // [START speech_transcribe_model_selection]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -36,8 +40,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig;
  */
 function sampleRecognize($localFilePath, $model)
 {
-    // [START speech_transcribe_model_selection_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/hello.wav';
@@ -62,8 +64,6 @@ function sampleRecognize($localFilePath, $model)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_model_selection_core]
 }
 // [END speech_transcribe_model_selection]
 

@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_multichannel_gcs")
  */
 
+// sample-metadata
+//   title: Multi-Channel Audio Transcription (Cloud Storage)
+//   description: Transcribe a short audio file from Cloud Storage with multiple channels
+
+//   usage: php samples/V1/SpeechTranscribeMultichannelGcs.php [--storage_uri "gs://cloud-samples-data/speech/multi.wav"]
 // [START speech_transcribe_multichannel_gcs]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +38,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig;
  */
 function sampleRecognize($storageUri)
 {
-    // [START speech_transcribe_multichannel_gcs_core]
-
     $speechClient = new SpeechClient();
 
     // $storageUri = 'gs://cloud-samples-data/speech/multi.wav';
@@ -68,8 +71,6 @@ function sampleRecognize($storageUri)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_multichannel_gcs_core]
 }
 // [END speech_transcribe_multichannel_gcs]
 

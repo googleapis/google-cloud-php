@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("LongRunningRequest",  "speech_transcribe_async_word_time_offsets_gcs")
  */
 
+// sample-metadata
+//   title: Getting word timestamps (Cloud Storage) (LRO)
+//   description: Print start and end time of each word spoken in audio file from Cloud Storage
+
+//   usage: php samples/V1/SpeechTranscribeAsyncWordTimeOffsetsGcs.php [--storage_uri "gs://cloud-samples-data/speech/brooklyn_bridge.flac"]
 // [START speech_transcribe_async_word_time_offsets_gcs]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +38,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig;
  */
 function sampleLongRunningRecognize($storageUri)
 {
-    // [START speech_transcribe_async_word_time_offsets_gcs_core]
-
     $speechClient = new SpeechClient();
 
     // $storageUri = 'gs://cloud-samples-data/speech/brooklyn_bridge.flac';
@@ -74,8 +77,6 @@ function sampleLongRunningRecognize($storageUri)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_async_word_time_offsets_gcs_core]
 }
 // [END speech_transcribe_async_word_time_offsets_gcs]
 

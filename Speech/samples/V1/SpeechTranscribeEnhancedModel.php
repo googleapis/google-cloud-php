@@ -19,6 +19,10 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_enhanced_model")
  */
 
+// sample-metadata
+//   title: Using Enhanced Models (Local File)
+//   description: Transcribe a short audio file using an enhanced model
+//   usage: php samples/V1/SpeechTranscribeEnhancedModel.php [--local_file_path "resources/hello.wav"]
 // [START speech_transcribe_enhanced_model]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +37,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_enhanced_model_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/hello.wav';
@@ -68,8 +70,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_enhanced_model_core]
 }
 // [END speech_transcribe_enhanced_model]
 

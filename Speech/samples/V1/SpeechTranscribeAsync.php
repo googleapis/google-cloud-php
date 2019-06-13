@@ -19,6 +19,10 @@
  * DO NOT EDIT! This is a generated sample ("LongRunningRequest",  "speech_transcribe_async")
  */
 
+// sample-metadata
+//   title: Transcribe Audio File using Long Running Operation (Local File) (LRO)
+//   description: Transcribe a long audio file using asynchronous speech recognition
+//   usage: php samples/V1/SpeechTranscribeAsync.php [--local_file_path "resources/brooklyn_bridge.raw"]
 // [START speech_transcribe_async]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -34,8 +38,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
  */
 function sampleLongRunningRecognize($localFilePath)
 {
-    // [START speech_transcribe_async_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/brooklyn_bridge.raw';
@@ -74,8 +76,6 @@ function sampleLongRunningRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_async_core]
 }
 // [END speech_transcribe_async]
 

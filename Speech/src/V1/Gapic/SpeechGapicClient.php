@@ -55,7 +55,7 @@ use Google\LongRunning\Operation;
  * ```
  * $speechClient = new SpeechClient();
  * try {
- *     $encoding = RecognitionConfig\AudioEncoding::FLAC;
+ *     $encoding = AudioEncoding::FLAC;
  *     $sampleRateHertz = 44100;
  *     $languageCode = 'en-US';
  *     $config = new RecognitionConfig();
@@ -227,7 +227,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $encoding = RecognitionConfig\AudioEncoding::FLAC;
+     *     $encoding = AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
      *     $languageCode = 'en-US';
      *     $config = new RecognitionConfig();
@@ -285,7 +285,7 @@ class SpeechGapicClient
      * ```
      * $speechClient = new SpeechClient();
      * try {
-     *     $encoding = RecognitionConfig\AudioEncoding::FLAC;
+     *     $encoding = AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
      *     $languageCode = 'en-US';
      *     $config = new RecognitionConfig();

@@ -19,8 +19,14 @@
  * DO NOT EDIT! This is a generated sample ("LongRunningRequest",  "speech_transcribe_diarization_beta")
  */
 
+// sample-metadata
+//   title: Separating different speakers (Local File) (LRO) (Beta)
+//   description: Print confidence level for individual words in a transcription of a short audio file
+Separating different speakers in an audio file recording
+
+//   usage: php samples/V1p1beta1/SpeechTranscribeDiarizationBeta.php [--local_file_path "resources/commercial_mono.wav"]
 // [START speech_transcribe_diarization_beta]
-require __DIR__.'/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Google\Cloud\Speech\V1p1beta1\SpeechClient;
 use Google\Cloud\Speech\V1p1beta1\RecognitionAudio;
@@ -28,14 +34,12 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionConfig;
 
 /**
  * Print confidence level for individual words in a transcription of a short audio file
- * Separating different speakers in an audio file recording.
+ * Separating different speakers in an audio file recording
  *
  * @param string $localFilePath Path to local audio file, e.g. /path/audio.wav
  */
 function sampleLongRunningRecognize($localFilePath)
 {
-    // [START speech_transcribe_diarization_beta_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/commercial_mono.wav';
@@ -65,11 +69,11 @@ function sampleLongRunningRecognize($localFilePath)
             foreach ($response->getResults() as $result) {
                 // First alternative has words tagged with speakers
                 $alternative = $result->getAlternatives()[0];
-                printf('Transcript: %s'.PHP_EOL, $alternative->getTranscript());
+                printf("Transcript: %s" . PHP_EOL, $alternative->getTranscript());
                 // Print the speakerTag of each word
                 foreach ($alternative->getWords() as $word) {
-                    printf('Word: %s'.PHP_EOL, $word->getWord());
-                    printf('Speaker tag: %s'.PHP_EOL, $word->getSpeakerTag());
+                    printf("Word: %s" . PHP_EOL, $word->getWord());
+                    printf("Speaker tag: %s" . PHP_EOL, $word->getSpeakerTag());
                 }
             }
         } else {
@@ -79,8 +83,6 @@ function sampleLongRunningRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_diarization_beta_core]
 }
 // [END speech_transcribe_diarization_beta]
 

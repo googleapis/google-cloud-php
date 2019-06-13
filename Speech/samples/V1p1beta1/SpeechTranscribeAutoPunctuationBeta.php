@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_auto_punctuation_beta")
  */
 
+// sample-metadata
+//   title: Getting punctuation in results (Local File) (Beta)
+//   description: Transcribe a short audio file with punctuation
+
+//   usage: php samples/V1p1beta1/SpeechTranscribeAutoPunctuationBeta.php [--local_file_path "resources/commercial_mono.wav"]
 // [START speech_transcribe_auto_punctuation_beta]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +38,6 @@ use Google\Cloud\Speech\V1p1beta1\RecognitionConfig;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_auto_punctuation_beta_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/commercial_mono.wav';
@@ -62,8 +65,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_auto_punctuation_beta_core]
 }
 // [END speech_transcribe_auto_punctuation_beta]
 

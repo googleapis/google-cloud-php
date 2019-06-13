@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_model_selection_gcs")
  */
 
+// sample-metadata
+//   title: Selecting a Transcription Model (Cloud Storage)
+//   description: Transcribe a short audio file from Cloud Storage using a specified transcription model
+
+//   usage: php samples/V1/SpeechTranscribeModelSelectionGcs.php [--storage_uri "gs://cloud-samples-data/speech/hello.wav"] [--model "phone_call"]
 // [START speech_transcribe_model_selection_gcs]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -36,8 +41,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig;
  */
 function sampleRecognize($storageUri, $model)
 {
-    // [START speech_transcribe_model_selection_gcs_core]
-
     $speechClient = new SpeechClient();
 
     // $storageUri = 'gs://cloud-samples-data/speech/hello.wav';
@@ -61,8 +64,6 @@ function sampleRecognize($storageUri, $model)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_model_selection_gcs_core]
 }
 // [END speech_transcribe_model_selection_gcs]
 

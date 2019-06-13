@@ -19,6 +19,10 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_sync")
  */
 
+// sample-metadata
+//   title: Transcribe Audio File (Local File)
+//   description: Transcribe a short audio file using synchronous speech recognition
+//   usage: php samples/V1/SpeechTranscribeSync.php [--local_file_path "resources/brooklyn_bridge.raw"]
 // [START speech_transcribe_sync]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -34,8 +38,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_sync_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/brooklyn_bridge.raw';
@@ -67,8 +69,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_sync_core]
 }
 // [END speech_transcribe_sync]
 

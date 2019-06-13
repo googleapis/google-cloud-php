@@ -19,6 +19,10 @@
  * DO NOT EDIT! This is a generated sample ("Request",  "speech_transcribe_multichannel")
  */
 
+// sample-metadata
+//   title: Multi-Channel Audio Transcription (Local File)
+//   description: Transcribe a short audio file with multiple channels
+//   usage: php samples/V1/SpeechTranscribeMultichannel.php [--local_file_path "resources/multi.wav"]
 // [START speech_transcribe_multichannel]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -33,8 +37,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig;
  */
 function sampleRecognize($localFilePath)
 {
-    // [START speech_transcribe_multichannel_core]
-
     $speechClient = new SpeechClient();
 
     // $localFilePath = 'resources/multi.wav';
@@ -69,8 +71,6 @@ function sampleRecognize($localFilePath)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_multichannel_core]
 }
 // [END speech_transcribe_multichannel]
 

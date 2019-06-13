@@ -19,6 +19,11 @@
  * DO NOT EDIT! This is a generated sample ("LongRunningRequest",  "speech_transcribe_async_gcs")
  */
 
+// sample-metadata
+//   title: Transcript Audio File using Long Running Operation (Cloud Storage) (LRO)
+//   description: Transcribe long audio file from Cloud Storage using asynchronous speech recognition
+
+//   usage: php samples/V1/SpeechTranscribeAsyncGcs.php [--storage_uri "gs://cloud-samples-data/speech/brooklyn_bridge.raw"]
 // [START speech_transcribe_async_gcs]
 require __DIR__.'/../../vendor/autoload.php';
 
@@ -34,8 +39,6 @@ use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
  */
 function sampleLongRunningRecognize($storageUri)
 {
-    // [START speech_transcribe_async_gcs_core]
-
     $speechClient = new SpeechClient();
 
     // $storageUri = 'gs://cloud-samples-data/speech/brooklyn_bridge.raw';
@@ -73,8 +76,6 @@ function sampleLongRunningRecognize($storageUri)
     } finally {
         $speechClient->close();
     }
-
-    // [END speech_transcribe_async_gcs_core]
 }
 // [END speech_transcribe_async_gcs]
 
