@@ -30,7 +30,7 @@ for version in ['V1', 'V1p1beta1']:
         service='speech',
         version=lower_version,
         artman_output_name=f'google-cloud-speech-{lower_version}',
-        generator_args=['--dev_samples'])
+        include_samples=True)
 
     # copy all src except partial veneer classes
     s.move(library / f'src/{version}/Gapic')
