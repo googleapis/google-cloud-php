@@ -69,6 +69,7 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($options['location'], $bucket->info()['location']);
         $this->assertEquals($options['storageClass'], $bucket->info()['storageClass']);
         $this->assertEquals($options['versioning'], $bucket->info()['versioning']);
+        $this->assertEquals('MULTI_REGION', $bucket->info()['locationType']);
     }
 
     public function testCreatesBucketWithLifeycleBuilder()
@@ -201,5 +202,65 @@ class ManageBucketsTest extends StorageTestCase
         $bucket->reload();
 
         $this->assertFalse(isset($bucket->info()['labels']['foo']));
+    }
+
+    /**
+     * @group location
+     * @dataProvider locationTypes
+     */
+    public function testBucketLocationType($storageClass, $location, $expectedLocationType, $updateStorageClass)
+    {
+        $bucketName = uniqid(self::TESTING_PREFIX);
+        $bucket = self::createBucket(self::$client, $bucketName, [
+            'storageClass' => $storageClass,
+            'location' => $location,
+            'retentionPolicy' => [
+                'retentionPeriod' => 1
+            ]
+        ]);
+
+        // Test create bucket response
+        $this->assertEquals($expectedLocationType, $bucket->info()['locationType']);
+
+        // Test get bucket response
+        $this->assertEquals($expectedLocationType, $bucket->reload()['locationType']);
+
+        // Test update bucket.
+        $bucket->update(['storageClass' => $updateStorageClass]);
+        $bucket->update(['storageClass' => $storageClass]);
+        $this->assertEquals($expectedLocationType, $bucket->info()['locationType']);
+
+        // Test list bucket response
+        $buckets = iterator_to_array(self::$client->buckets());
+        $listBucketBucket = current(array_filter($buckets, function ($bucket) use ($bucketName) {
+            return $bucket->name() === $bucketName;
+        }));
+        $this->assertEquals($expectedLocationType, $listBucketBucket->info()['locationType']);
+
+        // Test lock retention policy response
+        $bucket->lockRetentionPolicy();
+        $this->assertEquals($expectedLocationType, $bucket->info()['locationType']);
+    }
+
+    public function locationTypes()
+    {
+        return [
+            [
+                'STANDARD',
+                'us',
+                'MULTI_REGION',
+                'NEARLINE'
+            ], [
+                'STANDARD',
+                'us-central1',
+                'REGION',
+                'NEARLINE'
+            ], [
+                'COLDLINE',
+                'nam4',
+                'DUAL_REGION',
+                'STANDARD'
+            ]
+        ];
     }
 }

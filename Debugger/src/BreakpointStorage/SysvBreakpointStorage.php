@@ -53,6 +53,7 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
      */
     public function save(Debuggee $debuggee, array $breakpoints)
     {
+        /** @var resource|bool */
         $shmid = shm_attach($this->sysvKey);
         if ($shmid === false) {
             throw new \RuntimeException(
@@ -73,6 +74,7 @@ class SysvBreakpointStorage implements BreakpointStorageInterface
      */
     public function load()
     {
+        /** @var resource|bool */
         $shmid = shm_attach($this->sysvKey);
         if ($shmid === false) {
             throw new \RuntimeException(

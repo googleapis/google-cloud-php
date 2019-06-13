@@ -39,6 +39,28 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string model = 3;</code>
      */
     private $model = '';
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * frame-level detection. If not set, it is set to 0.4 by default. The valid
+     * range for this threshold is [0.1, 0.9]. Any value set outside of this
+     * range will be clipped.
+     * Note: for best results please follow the default threshold. We will update
+     * the default threshold everytime when we release a new model.
+     *
+     * Generated from protobuf field <code>float frame_confidence_threshold = 4;</code>
+     */
+    private $frame_confidence_threshold = 0.0;
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * video-level and shot-level detections. If not set, it is set to 0.3 by
+     * default. The valid range for this threshold is [0.1, 0.9]. Any value set
+     * outside of this range will be clipped.
+     * Note: for best results please follow the default threshold. We will update
+     * the default threshold everytime when we release a new model.
+     *
+     * Generated from protobuf field <code>float video_confidence_threshold = 5;</code>
+     */
+    private $video_confidence_threshold = 0.0;
 
     /**
      * Constructor.
@@ -58,6 +80,20 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
      *           Model to use for label detection.
      *           Supported values: "builtin/stable" (the default if unset) and
      *           "builtin/latest".
+     *     @type float $frame_confidence_threshold
+     *           The confidence threshold we perform filtering on the labels from
+     *           frame-level detection. If not set, it is set to 0.4 by default. The valid
+     *           range for this threshold is [0.1, 0.9]. Any value set outside of this
+     *           range will be clipped.
+     *           Note: for best results please follow the default threshold. We will update
+     *           the default threshold everytime when we release a new model.
+     *     @type float $video_confidence_threshold
+     *           The confidence threshold we perform filtering on the labels from
+     *           video-level and shot-level detections. If not set, it is set to 0.3 by
+     *           default. The valid range for this threshold is [0.1, 0.9]. Any value set
+     *           outside of this range will be clipped.
+     *           Note: for best results please follow the default threshold. We will update
+     *           the default threshold everytime when we release a new model.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +187,78 @@ class LabelDetectionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * frame-level detection. If not set, it is set to 0.4 by default. The valid
+     * range for this threshold is [0.1, 0.9]. Any value set outside of this
+     * range will be clipped.
+     * Note: for best results please follow the default threshold. We will update
+     * the default threshold everytime when we release a new model.
+     *
+     * Generated from protobuf field <code>float frame_confidence_threshold = 4;</code>
+     * @return float
+     */
+    public function getFrameConfidenceThreshold()
+    {
+        return $this->frame_confidence_threshold;
+    }
+
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * frame-level detection. If not set, it is set to 0.4 by default. The valid
+     * range for this threshold is [0.1, 0.9]. Any value set outside of this
+     * range will be clipped.
+     * Note: for best results please follow the default threshold. We will update
+     * the default threshold everytime when we release a new model.
+     *
+     * Generated from protobuf field <code>float frame_confidence_threshold = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFrameConfidenceThreshold($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->frame_confidence_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * video-level and shot-level detections. If not set, it is set to 0.3 by
+     * default. The valid range for this threshold is [0.1, 0.9]. Any value set
+     * outside of this range will be clipped.
+     * Note: for best results please follow the default threshold. We will update
+     * the default threshold everytime when we release a new model.
+     *
+     * Generated from protobuf field <code>float video_confidence_threshold = 5;</code>
+     * @return float
+     */
+    public function getVideoConfidenceThreshold()
+    {
+        return $this->video_confidence_threshold;
+    }
+
+    /**
+     * The confidence threshold we perform filtering on the labels from
+     * video-level and shot-level detections. If not set, it is set to 0.3 by
+     * default. The valid range for this threshold is [0.1, 0.9]. Any value set
+     * outside of this range will be clipped.
+     * Note: for best results please follow the default threshold. We will update
+     * the default threshold everytime when we release a new model.
+     *
+     * Generated from protobuf field <code>float video_confidence_threshold = 5;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setVideoConfidenceThreshold($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->video_confidence_threshold = $var;
 
         return $this;
     }

@@ -29,11 +29,13 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataSource;
+use Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse;
+use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
@@ -59,14 +61,22 @@ class DataTransferServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return DataTransferServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new DataTransferServiceClient($options);
@@ -95,6 +105,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $helpUrl = 'helpUrl-789431439';
         $defaultDataRefreshWindowDays = 1804935157;
         $manualRunsDisabled = true;
+        $partnerLegalName = 'partnerLegalName-1307326424';
+        $redirectUrl = 'redirectUrl951230092';
         $expectedResponse = new DataSource();
         $expectedResponse->setName($name2);
         $expectedResponse->setDataSourceId($dataSourceId);
@@ -108,6 +120,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setHelpUrl($helpUrl);
         $expectedResponse->setDefaultDataRefreshWindowDays($defaultDataRefreshWindowDays);
         $expectedResponse->setManualRunsDisabled($manualRunsDisabled);
+        $expectedResponse->setPartnerLegalName($partnerLegalName);
+        $expectedResponse->setRedirectUrl($redirectUrl);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -266,6 +280,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $disabled = true;
         $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
+        $partnerToken = 'partnerToken725173186';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
@@ -276,6 +291,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setDatasetRegion($datasetRegion);
+        $expectedResponse->setPartnerToken($partnerToken);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -360,6 +376,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $disabled = true;
         $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
+        $partnerToken = 'partnerToken725173186';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
@@ -370,6 +387,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setDatasetRegion($datasetRegion);
+        $expectedResponse->setPartnerToken($partnerToken);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -524,6 +542,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $disabled = true;
         $userId = 147132913;
         $datasetRegion = 'datasetRegion959248539';
+        $partnerToken = 'partnerToken725173186';
         $expectedResponse = new TransferConfig();
         $expectedResponse->setName($name2);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
@@ -534,6 +553,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDisabled($disabled);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setDatasetRegion($datasetRegion);
+        $expectedResponse->setPartnerToken($partnerToken);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -769,12 +789,14 @@ class DataTransferServiceClientTest extends GeneratedTest
         $dataSourceId = 'dataSourceId-1015796374';
         $userId = 147132913;
         $schedule = 'schedule-697920873';
+        $partnerToken = 'partnerToken725173186';
         $expectedResponse = new TransferRun();
         $expectedResponse->setName($name2);
         $expectedResponse->setDestinationDatasetId($destinationDatasetId);
         $expectedResponse->setDataSourceId($dataSourceId);
         $expectedResponse->setUserId($userId);
         $expectedResponse->setSchedule($schedule);
+        $expectedResponse->setPartnerToken($partnerToken);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1123,6 +1145,192 @@ class DataTransferServiceClientTest extends GeneratedTest
 
         try {
             $client->checkValidCreds($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function startManualTransferRunsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new StartManualTransferRunsResponse();
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->startManualTransferRuns();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/StartManualTransferRuns', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function startManualTransferRunsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->startManualTransferRuns();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function enableDataTransferServiceTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+
+        $client->enableDataTransferService();
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnableDataTransferService', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function enableDataTransferServiceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->enableDataTransferService();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function isDataTransferServiceEnabledTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $enabled = false;
+        $reason = 'reason-934964668';
+        $expectedResponse = new IsDataTransferServiceEnabledResponse();
+        $expectedResponse->setEnabled($enabled);
+        $expectedResponse->setReason($reason);
+        $transport->addResponse($expectedResponse);
+
+        $response = $client->isDataTransferServiceEnabled();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/IsDataTransferServiceEnabled', $actualFuncCall);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function isDataTransferServiceEnabledExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        try {
+            $client->isDataTransferServiceEnabled();
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

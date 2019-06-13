@@ -26,7 +26,7 @@ use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\Feature;
-use Google\Cloud\Vision\V1\Feature_Type;
+use Google\Cloud\Vision\V1\Feature\Type;
 use Google\Cloud\Vision\V1\Image;
 use Google\Cloud\Vision\V1\ImageSource;
 
@@ -47,7 +47,7 @@ class ImageAnnotatorSmokeTest extends GeneratedTest
         $source->setGcsImageUri($gcsImageUri);
         $image = new Image();
         $image->setSource($source);
-        $type = Feature_Type::FACE_DETECTION;
+        $type = Type::FACE_DETECTION;
         $featuresElement = new Feature();
         $featuresElement->setType($type);
         $features = [$featuresElement];

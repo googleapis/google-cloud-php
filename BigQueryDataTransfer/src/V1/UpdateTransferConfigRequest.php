@@ -48,6 +48,17 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
      */
     private $update_mask = null;
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info, users
+     * must use the "none+gsession" response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     *
+     * Generated from protobuf field <code>string version_info = 5;</code>
+     */
+    private $version_info = '';
 
     /**
      * Constructor.
@@ -75,6 +86,13 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *             the user to copy the code and paste it in the application.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required list of fields to be updated in this request.
+     *     @type string $version_info
+     *           Optional version info. If users want to find a very recent access token,
+     *           that is, immediately after approving access, users have to set the
+     *           version_info claim in the token request. To obtain the version_info, users
+     *           must use the "none+gsession" response type. which be return a
+     *           version_info back in the authorization response which be be put in a JWT
+     *           claim in the token request.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,6 +202,42 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info, users
+     * must use the "none+gsession" response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     *
+     * Generated from protobuf field <code>string version_info = 5;</code>
+     * @return string
+     */
+    public function getVersionInfo()
+    {
+        return $this->version_info;
+    }
+
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info, users
+     * must use the "none+gsession" response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     *
+     * Generated from protobuf field <code>string version_info = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionInfo($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_info = $var;
 
         return $this;
     }

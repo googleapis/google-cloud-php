@@ -36,7 +36,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group os-login
+ * @group oslogin
  * @group gapic
  */
 class OsLoginServiceClientTest extends GeneratedTest
@@ -50,14 +50,22 @@ class OsLoginServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return OsLoginServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new OsLoginServiceClient($options);

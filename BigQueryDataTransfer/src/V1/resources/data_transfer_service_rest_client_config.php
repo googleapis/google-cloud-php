@@ -233,6 +233,56 @@ return [
                     ],
                 ],
             ],
+            'StartManualTransferRuns' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}:startManualRuns',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}:startManualRuns',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'EnableDataTransferService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}:enableDataTransferService',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'IsDataTransferServiceEnabled' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}:isDataTransferServiceEnabled',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*}:isEnabled',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

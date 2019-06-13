@@ -51,7 +51,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     private $required = false;
     /**
-     * Can parameter have multiple values.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool repeated = 6;</code>
      */
@@ -81,7 +81,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     private $max_value = null;
     /**
-     * When parameter is a record, describes child fields.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter fields = 11;</code>
      */
@@ -106,8 +106,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     private $immutable = false;
     /**
-     * If set to true, schema should be taken from the parent with the same
-     * parameter_id. Only applicable when parameter type is RECORD.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool recurse = 15;</code>
      */
@@ -130,7 +129,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *     @type bool $required
      *           Is parameter required.
      *     @type bool $repeated
-     *           Can parameter have multiple values.
+     *           Deprecated. This field has no effect.
      *     @type string $validation_regex
      *           Regular expression which can be used for parameter validation.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_values
@@ -140,7 +139,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\DoubleValue $max_value
      *           For integer and double values specifies maxminum allowed value.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $fields
-     *           When parameter is a record, describes child fields.
+     *           Deprecated. This field has no effect.
      *     @type string $validation_description
      *           Description of the requirements for this field, in case the user input does
      *           not fulfill the regex pattern or min/max values.
@@ -149,8 +148,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *     @type bool $immutable
      *           Cannot be changed after initial creation.
      *     @type bool $recurse
-     *           If set to true, schema should be taken from the parent with the same
-     *           parameter_id. Only applicable when parameter type is RECORD.
+     *           Deprecated. This field has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -289,7 +287,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can parameter have multiple values.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool repeated = 6;</code>
      * @return bool
@@ -300,7 +298,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can parameter have multiple values.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool repeated = 6;</code>
      * @param bool $var
@@ -477,7 +475,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When parameter is a record, describes child fields.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter fields = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -488,7 +486,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When parameter is a record, describes child fields.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter fields = 11;</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -583,8 +581,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, schema should be taken from the parent with the same
-     * parameter_id. Only applicable when parameter type is RECORD.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool recurse = 15;</code>
      * @return bool
@@ -595,8 +592,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, schema should be taken from the parent with the same
-     * parameter_id. Only applicable when parameter type is RECORD.
+     * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool recurse = 15;</code>
      * @param bool $var

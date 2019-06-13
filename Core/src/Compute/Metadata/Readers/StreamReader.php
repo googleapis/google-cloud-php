@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2015 Google Inc.
  *
@@ -17,6 +16,8 @@
  */
 namespace Google\Cloud\Core\Compute\Metadata\Readers;
 
+use Google\Auth\Credentials\GCECredentials;
+
 /**
  * A class only reading the metadata URL with an appropriate header.
  *
@@ -26,11 +27,15 @@ class StreamReader implements ReaderInterface
 {
     /**
      * The base PATH for the metadata.
+     *
+     * @deprecated
      */
     const BASE_URL = 'http://169.254.169.254/computeMetadata/v1/';
 
     /**
      * The header whose presence indicates GCE presence.
+     *
+     * @deprecated
      */
     const FLAVOR_HEADER = 'Metadata-Flavor: Google';
 
@@ -44,21 +49,53 @@ class StreamReader implements ReaderInterface
      */
     public function __construct()
     {
-        $options = array(
-            'http' => array(
+        $options = [
+            'http' => [
                 'method' => 'GET',
-                'header' => self::FLAVOR_HEADER,
-            ),
-        );
-        $this->context = stream_context_create($options);
+                'header' => GCECredentials::FLAVOR_HEADER . ': Google'
+            ],
+        ];
+        $this->context = $this->createStreamContext($options);
     }
 
     /**
-     * A method to read the metadata value for a given path.
+     * Read the metadata for a given path.
+     *
+     * @param string $path The metadata path, relative to `/computeMetadata/v1/`.
+     * @return string
      */
     public function read($path)
     {
-        $url = self::BASE_URL.$path;
+        $url = sprintf(
+            'http://%s/computeMetadata/v1/%s',
+            GCECredentials::METADATA_IP,
+            $path
+        );
+
+        return $this->getMetadata($url);
+    }
+
+    /**
+     * Abstracted for testing.
+     *
+     * @param array $options
+     * @return resource
+     * @codeCoverageIgnore
+     */
+    protected function createStreamContext(array $options)
+    {
+        return stream_context_create($options);
+    }
+
+    /**
+     * Abstracted for testing.
+     *
+     * @param string $url
+     * @return string
+     * @codeCoverageIgnore
+     */
+    protected function getMetadata($url)
+    {
         return file_get_contents($url, false, $this->context);
     }
 }

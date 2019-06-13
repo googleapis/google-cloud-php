@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google Inc.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
@@ -142,6 +143,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * For each date - or whatever granularity the data source supports - in the
      * range, one transfer run is created.
      * Note that runs are created per UTC time in the time range.
+     * DEPRECATED: use StartManualTransferRuns instead.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -151,6 +153,23 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/ScheduleTransferRuns',
         $argument,
         ['\Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Start manual transfer runs to be executed now with schedule_time equal to
+     * current time. The transfer runs can be created for a time range where the
+     * run_time is between start_time (inclusive) and end_time (exclusive), or for
+     * a specific run_time.
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function StartManualTransferRuns(\Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/StartManualTransferRuns',
+        $argument,
+        ['\Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -226,6 +245,37 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/CheckValidCreds',
         $argument,
         ['\Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Enables data transfer service for a given project. This
+     * method requires the additional scope of
+     * 'https://www.googleapis.com/auth/cloudplatformprojects'
+     * to manage the cloud project permissions.
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\EnableDataTransferServiceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function EnableDataTransferService(\Google\Cloud\BigQuery\DataTransfer\V1\EnableDataTransferServiceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnableDataTransferService',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns true if data transfer is enabled for a project.
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function IsDataTransferServiceEnabled(\Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/IsDataTransferServiceEnabled',
+        $argument,
+        ['\Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledResponse', 'decode'],
         $metadata, $options);
     }
 

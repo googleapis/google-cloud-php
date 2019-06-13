@@ -33,7 +33,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group error-reporting
+ * @group errorreporting
  * @group gapic
  */
 class ErrorGroupServiceClientTest extends GeneratedTest
@@ -47,14 +47,22 @@ class ErrorGroupServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return ErrorGroupServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new ErrorGroupServiceClient($options);

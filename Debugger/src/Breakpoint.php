@@ -58,20 +58,20 @@ class Breakpoint
     private $id;
 
     /**
-     * @var string Action that the agent should perform when the code at the
-     *      breakpoint location is hit.
+     * @var string|null Action that the agent should perform when the code at
+     *      the breakpoint location is hit.
      */
     private $action;
 
     /**
-     * @var SourceLocation Breakpoint source location.
+     * @var SourceLocation|null Breakpoint source location.
      */
     private $location;
 
     /**
-     * @var SourceLocation Resolved breakpoint location. The requested location
-     *      may not exactly match the path to the deployed source. This value
-     *      will be resolved by the Daemon to an existing file (if found).
+     * @var SourceLocation|null Resolved breakpoint location. The requested
+     *      location may not exactly match the path to the deployed source. This
+     *      value will be resolved by the Daemon to an existing file (if found).
      */
     private $resolvedLocation;
 
@@ -127,15 +127,15 @@ class Breakpoint
     private $finalTime;
 
     /**
-     * @var string E-mail address of the user that created this breakpoint
+     * @var string|null E-mail address of the user that created this breakpoint.
      */
     private $userEmail;
 
     /**
-     * @var StatusMessage Breakpoint status. The status includes an error flag and a
-     *      human readable message. This field is usually unset. The message can
-     *      be either informational or an error message. Regardless, clients
-     *      should always display the text message back to the user.
+     * @var StatusMessage|null Breakpoint status. The status includes an error
+     *      flag and a human readable message. This field is usually unset. The
+     *      message can be either informational or an error message. Regardless,
+     *      clients should always display the text message back to the user.
      */
     private $status;
 
@@ -156,7 +156,7 @@ class Breakpoint
     private $evaluatedExpressions;
 
     /**
-     * @var VariableTable The variableTable exists to aid with computation,
+     * @var VariableTable|null The variableTable exists to aid with computation,
      *      memory and network traffic optimization. It enables storing a
      *      variable once and reference it from multiple variables, including
      *      variables stored in the variableTable itself. For example, the same
@@ -431,8 +431,8 @@ class Breakpoint
      * captured stackframe data.
      *
      * @access private
-     * @param array $expressions Key is the expression executed. Value is the
-     *        execution result.
+     * @param array $evaluatedExpressions Key is the expression executed. Value
+     *        is the execution result.
      * @param array $stackFrames Array of stackframe data.
      * @param array $options [optional] {
      *      Configuration options.
@@ -447,11 +447,11 @@ class Breakpoint
      *            the captured variable. **Defaults to** 500.
      * }
      */
-    public function evaluate(array $evaluatedExpressions, array $stackframes, array $options = [])
+    public function evaluate(array $evaluatedExpressions, array $stackFrames, array $options = [])
     {
         $this->variableTable->setOptions($options);
         $this->addEvaluatedExpressions($evaluatedExpressions);
-        $this->addStackFrames($stackframes);
+        $this->addStackFrames($stackFrames);
         $this->finalize();
     }
 
@@ -507,7 +507,7 @@ class Breakpoint
     public function finalize()
     {
         list($usec, $sec) = explode(' ', microtime());
-        $micro = sprintf("%06d", $usec * 1000000);
+        $micro = sprintf("%06d", (float) $usec * 1000000);
         $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
         $when->setTimezone(new \DateTimeZone('UTC'));
         $this->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');

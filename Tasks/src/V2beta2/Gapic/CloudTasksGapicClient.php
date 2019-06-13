@@ -61,6 +61,7 @@ use Google\Cloud\Tasks\V2beta2\RenewLeaseRequest;
 use Google\Cloud\Tasks\V2beta2\ResumeQueueRequest;
 use Google\Cloud\Tasks\V2beta2\RunTaskRequest;
 use Google\Cloud\Tasks\V2beta2\Task;
+use Google\Cloud\Tasks\V2beta2\Task\View;
 use Google\Cloud\Tasks\V2beta2\UpdateQueueRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;

@@ -22,7 +22,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The BigQuery project id where the transfer configuration should be created.
-     * Must be in the format /projects/{project_id}/locations/{location_id}
+     * Must be in the format projects/{project_id}/locations/{location_id}
      * If specified location and location of the destination bigquery dataset
      * do not match - the request will fail.
      *
@@ -55,6 +55,17 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string authorization_code = 3;</code>
      */
     private $authorization_code = '';
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info, users
+     * must use the "none+gsession" response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     *
+     * Generated from protobuf field <code>string version_info = 5;</code>
+     */
+    private $version_info = '';
 
     /**
      * Constructor.
@@ -64,7 +75,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The BigQuery project id where the transfer configuration should be created.
-     *           Must be in the format /projects/{project_id}/locations/{location_id}
+     *           Must be in the format projects/{project_id}/locations/{location_id}
      *           If specified location and location of the destination bigquery dataset
      *           do not match - the request will fail.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transfer_config
@@ -85,6 +96,13 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *             urn:ietf:wg:oauth:2.0:oob means that authorization code should be
      *             returned in the title bar of the browser, with the page text prompting
      *             the user to copy the code and paste it in the application.
+     *     @type string $version_info
+     *           Optional version info. If users want to find a very recent access token,
+     *           that is, immediately after approving access, users have to set the
+     *           version_info claim in the token request. To obtain the version_info, users
+     *           must use the "none+gsession" response type. which be return a
+     *           version_info back in the authorization response which be be put in a JWT
+     *           claim in the token request.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +112,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The BigQuery project id where the transfer configuration should be created.
-     * Must be in the format /projects/{project_id}/locations/{location_id}
+     * Must be in the format projects/{project_id}/locations/{location_id}
      * If specified location and location of the destination bigquery dataset
      * do not match - the request will fail.
      *
@@ -108,7 +126,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The BigQuery project id where the transfer configuration should be created.
-     * Must be in the format /projects/{project_id}/locations/{location_id}
+     * Must be in the format projects/{project_id}/locations/{location_id}
      * If specified location and location of the destination bigquery dataset
      * do not match - the request will fail.
      *
@@ -200,6 +218,42 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->authorization_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info, users
+     * must use the "none+gsession" response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     *
+     * Generated from protobuf field <code>string version_info = 5;</code>
+     * @return string
+     */
+    public function getVersionInfo()
+    {
+        return $this->version_info;
+    }
+
+    /**
+     * Optional version info. If users want to find a very recent access token,
+     * that is, immediately after approving access, users have to set the
+     * version_info claim in the token request. To obtain the version_info, users
+     * must use the "none+gsession" response type. which be return a
+     * version_info back in the authorization response which be be put in a JWT
+     * claim in the token request.
+     *
+     * Generated from protobuf field <code>string version_info = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersionInfo($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version_info = $var;
 
         return $this;
     }

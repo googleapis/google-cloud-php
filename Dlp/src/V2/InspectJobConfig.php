@@ -34,8 +34,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      */
     private $inspect_template_name = '';
     /**
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
+     * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 4;</code>
      */
@@ -56,8 +55,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      *           `inspect_config` will be merged into the values persisted as part of the
      *           template.
      *     @type \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
-     *           Actions to execute at the completion of the job. Are executed in the order
-     *           provided.
+     *           Actions to execute at the completion of the job.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,8 +146,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
+     * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -160,8 +157,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Actions to execute at the completion of the job. Are executed in the order
-     * provided.
+     * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 4;</code>
      * @param \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $var

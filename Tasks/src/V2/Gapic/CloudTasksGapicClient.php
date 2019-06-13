@@ -54,6 +54,7 @@ use Google\Cloud\Tasks\V2\Queue;
 use Google\Cloud\Tasks\V2\ResumeQueueRequest;
 use Google\Cloud\Tasks\V2\RunTaskRequest;
 use Google\Cloud\Tasks\V2\Task;
+use Google\Cloud\Tasks\V2\Task\View;
 use Google\Cloud\Tasks\V2\UpdateQueueRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;

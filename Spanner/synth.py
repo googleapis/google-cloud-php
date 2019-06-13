@@ -126,3 +126,14 @@ s.replace(
     'tests/Unit/Admin/Instance/*/*.php',
     r'namespace Google\\Cloud\\Spanner\\Admin\\Instance\\Tests\\Unit',
     'namespace Google\\Cloud\\Spanner\\Tests\\Unit\\Admin\\Instance')
+
+# fix test group
+s.replace(
+    'tests/**/Admin/Database/V1/*Test.php',
+    '@group database',
+    '@group spanner-admin-database')
+
+s.replace(
+    'tests/**/Admin/Instance/V1/*Test.php',
+    '@group instance',
+    '@group spanner-admin-instance')
