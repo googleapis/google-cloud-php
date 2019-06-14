@@ -24,7 +24,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     private $text = '';
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -43,7 +43,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *           Text length must not exceed 256 characters.
      *     @type string $language_code
      *           Required. The language of this conversational query. See [Language
-     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
      * }
@@ -83,7 +83,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -97,7 +97,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this conversational query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *

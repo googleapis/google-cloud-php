@@ -73,6 +73,30 @@ return [
                     ],
                 ],
             ],
+            'SetAgent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{agent.parent=projects/*}/agent',
+                'body' => 'agent',
+                'placeholders' => [
+                    'agent.parent' => [
+                        'getters' => [
+                            'getAgent',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAgent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

@@ -33,7 +33,7 @@ namespace Google\Cloud\Dialogflow\V2;
  * You can create an agent using both Dialogflow Standard Edition and
  * Dialogflow Enterprise Edition. For details, see
  * [Dialogflow
- * Editions](https://cloud.google.com/dialogflow-enterprise/docs/editions).
+ * Editions](https://cloud.google.com/dialogflow/docs/editions).
  *
  * You can save your agent for backup or versioning by exporting the agent by
  * using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent] method. You can import a saved
@@ -41,13 +41,13 @@ namespace Google\Cloud\Dialogflow\V2;
  *
  * Dialogflow provides several
  * [prebuilt
- * agents](https://cloud.google.com/dialogflow-enterprise/docs/agents-prebuilt)
+ * agents](https://cloud.google.com/dialogflow/docs/agents-prebuilt)
  * for common conversation scenarios such as determining a date and time,
  * converting currency, and so on.
  *
  * For more information about agents, see the
  * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow-enterprise/docs/agents-overview).
+ * documentation](https://cloud.google.com/dialogflow/docs/agents-overview).
  */
 class AgentsGrpcClient extends \Grpc\BaseStub {
 
@@ -71,6 +71,34 @@ class AgentsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.dialogflow.v2.Agents/GetAgent',
         $argument,
         ['\Google\Cloud\Dialogflow\V2\Agent', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates/updates the specified agent.
+     * @param \Google\Cloud\Dialogflow\V2\SetAgentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function SetAgent(\Google\Cloud\Dialogflow\V2\SetAgentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Agents/SetAgent',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\Agent', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes the specified agent.
+     * @param \Google\Cloud\Dialogflow\V2\DeleteAgentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DeleteAgent(\Google\Cloud\Dialogflow\V2\DeleteAgentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Agents/DeleteAgent',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

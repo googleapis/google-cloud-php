@@ -29,7 +29,7 @@ class SpeechModelVariant
      * Use the best available variant of the [Speech
      * model][InputAudioConfig.model] that the caller is eligible for.
      * Please see the [Dialogflow
-     * docs](https://cloud.google.com/dialogflow-enterprise/docs/data-logging) for
+     * docs](https://cloud.google.com/dialogflow/docs/data-logging) for
      * how to make your project eligible for enhanced models.
      *
      * Generated from protobuf enum <code>USE_BEST_AVAILABLE = 1;</code>
@@ -54,7 +54,7 @@ class SpeechModelVariant
      *   describes which models have enhanced variants.
      * * If the API caller isn't eligible for enhanced models, Dialogflow returns
      *   an error. Please see the [Dialogflow
-     *   docs](https://cloud.google.com/dialogflow-enterprise/docs/data-logging)
+     *   docs](https://cloud.google.com/dialogflow/docs/data-logging)
      *   for how to make your project eligible.
      *
      * Generated from protobuf enum <code>USE_ENHANCED = 3;</code>

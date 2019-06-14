@@ -58,7 +58,7 @@ use Google\Protobuf\GPBEmpty;
  *
  * For more information about entity types, see the
  * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow-enterprise/docs/entities-overview).
+ * documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
