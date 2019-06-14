@@ -111,6 +111,13 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool recurse = 15;</code>
      */
     private $recurse = false;
+    /**
+     * If true, it should not be used in new transfers, and it should not be
+     * visible to users.
+     *
+     * Generated from protobuf field <code>bool deprecated = 20;</code>
+     */
+    private $deprecated = false;
 
     /**
      * Constructor.
@@ -149,6 +156,9 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *           Cannot be changed after initial creation.
      *     @type bool $recurse
      *           Deprecated. This field has no effect.
+     *     @type bool $deprecated
+     *           If true, it should not be used in new transfers, and it should not be
+     *           visible to users.
      * }
      */
     public function __construct($data = NULL) {
@@ -602,6 +612,34 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->recurse = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, it should not be used in new transfers, and it should not be
+     * visible to users.
+     *
+     * Generated from protobuf field <code>bool deprecated = 20;</code>
+     * @return bool
+     */
+    public function getDeprecated()
+    {
+        return $this->deprecated;
+    }
+
+    /**
+     * If true, it should not be used in new transfers, and it should not be
+     * visible to users.
+     *
+     * Generated from protobuf field <code>bool deprecated = 20;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeprecated($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deprecated = $var;
 
         return $this;
     }

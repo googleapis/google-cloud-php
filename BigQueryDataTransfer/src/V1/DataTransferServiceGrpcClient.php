@@ -248,35 +248,4 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
-    /**
-     * Enables data transfer service for a given project. This
-     * method requires the additional scope of
-     * 'https://www.googleapis.com/auth/cloudplatformprojects'
-     * to manage the cloud project permissions.
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\EnableDataTransferServiceRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function EnableDataTransferService(\Google\Cloud\BigQuery\DataTransfer\V1\EnableDataTransferServiceRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnableDataTransferService',
-        $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Returns true if data transfer is enabled for a project.
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function IsDataTransferServiceEnabled(\Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/IsDataTransferServiceEnabled',
-        $argument,
-        ['\Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledResponse', 'decode'],
-        $metadata, $options);
-    }
-
 }

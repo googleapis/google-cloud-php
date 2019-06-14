@@ -23,12 +23,6 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * User labels to add to the scheduled runs.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
-     */
-    private $labels;
-    /**
      * Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`.
      *
@@ -52,8 +46,6 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Transfer configuration name in the form:
      *           `projects/{project_id}/transferConfigs/{config_id}`.
-     *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           User labels to add to the scheduled runs.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start time of the range of transfer runs. For example,
      *           `"2017-05-25T00:00:00+00:00"`.
@@ -91,32 +83,6 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
-
-        return $this;
-    }
-
-    /**
-     * User labels to add to the scheduled runs.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
-     * @return \Google\Protobuf\Internal\MapField
-     */
-    public function getLabels()
-    {
-        return $this->labels;
-    }
-
-    /**
-     * User labels to add to the scheduled runs.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
-     * @return $this
-     */
-    public function setLabels($var)
-    {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->labels = $arr;
 
         return $this;
     }

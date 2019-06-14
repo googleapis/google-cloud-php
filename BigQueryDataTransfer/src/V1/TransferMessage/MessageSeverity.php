@@ -37,19 +37,12 @@ class MessageSeverity
      * Generated from protobuf enum <code>ERROR = 3;</code>
      */
     const ERROR = 3;
-    /**
-     * Debug message.
-     *
-     * Generated from protobuf enum <code>DEBUG = 4;</code>
-     */
-    const DEBUG = 4;
 
     private static $valueToName = [
         self::MESSAGE_SEVERITY_UNSPECIFIED => 'MESSAGE_SEVERITY_UNSPECIFIED',
         self::INFO => 'INFO',
         self::WARNING => 'WARNING',
         self::ERROR => 'ERROR',
-        self::DEBUG => 'DEBUG',
     ];
 
     public static function name($value)
