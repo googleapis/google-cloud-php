@@ -51,7 +51,7 @@ use Google\LongRunning\Operation;
  * ```
  * $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
  * try {
- *     $inputUri = 'gs://demomaker/cat.mp4';
+ *     $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
  *     $featuresElement = Feature::LABEL_DETECTION;
  *     $features = [$featuresElement];
  *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
@@ -246,7 +246,7 @@ class VideoIntelligenceServiceGapicClient
      * ```
      * $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
      * try {
-     *     $inputUri = 'gs://demomaker/cat.mp4';
+     *     $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
      *     $featuresElement = Feature::LABEL_DETECTION;
      *     $features = [$featuresElement];
      *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
