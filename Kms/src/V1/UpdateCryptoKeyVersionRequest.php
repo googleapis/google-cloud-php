@@ -9,16 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
+ * Request message for [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.UpdateCryptoKeyVersionRequest</code>
  */
 class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated
-     * values.
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 1;</code>
      */
@@ -37,8 +35,7 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion $crypto_key_version
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated
-     *           values.
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required list of fields to be updated in this request.
      * }
@@ -49,8 +46,7 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated
-     * values.
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 1;</code>
      * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
@@ -61,8 +57,7 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated
-     * values.
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 1;</code>
      * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $var

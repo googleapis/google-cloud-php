@@ -7,13 +7,15 @@ namespace Google\Cloud\Kms\V1\KeyOperationAttestation;
 use UnexpectedValueException;
 
 /**
- * Attestion formats provided by the HSM.
+ * Attestation formats provided by the HSM.
  *
  * Protobuf type <code>google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat</code>
  */
 class AttestationFormat
 {
     /**
+     * Not specified.
+     *
      * Generated from protobuf enum <code>ATTESTATION_FORMAT_UNSPECIFIED = 0;</code>
      */
     const ATTESTATION_FORMAT_UNSPECIFIED = 0;
@@ -26,7 +28,7 @@ class AttestationFormat
     const CAVIUM_V1_COMPRESSED = 3;
     /**
      * Cavium HSM attestation V2 compressed with gzip. This is a new format
-     * Introduced in Cavium's version 3.2-08
+     * introduced in Cavium's version 3.2-08.
      *
      * Generated from protobuf enum <code>CAVIUM_V2_COMPRESSED = 4;</code>
      */

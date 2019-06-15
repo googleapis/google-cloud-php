@@ -9,17 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
+ * Request message for [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.AsymmetricSignRequest</code>
  */
 class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     * signing.
+     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -40,9 +37,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *           signing.
+     *           Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
      *     @type \Google\Cloud\Kms\V1\Digest $digest
      *           Required. The digest of the data to sign. The digest must be produced with
      *           the same digest algorithm as specified by the key version's
@@ -55,9 +50,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     * signing.
+     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -68,9 +61,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     * signing.
+     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

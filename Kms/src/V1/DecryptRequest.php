@@ -9,17 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+ * Request message for [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.DecryptRequest</code>
  */
 class DecryptRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     * server will choose the appropriate version.
+     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
+     * The server will choose the appropriate version.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -46,9 +44,8 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     *           server will choose the appropriate version.
+     *           Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
+     *           The server will choose the appropriate version.
      *     @type string $ciphertext
      *           Required. The encrypted data originally returned in
      *           [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
@@ -63,9 +60,8 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     * server will choose the appropriate version.
+     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
+     * The server will choose the appropriate version.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -76,9 +72,8 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     * server will choose the appropriate version.
+     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
+     * The server will choose the appropriate version.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

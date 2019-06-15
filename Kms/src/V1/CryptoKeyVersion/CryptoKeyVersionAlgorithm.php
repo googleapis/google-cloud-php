@@ -7,16 +7,13 @@ namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
 use UnexpectedValueException;
 
 /**
- * The algorithm of the
- * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
+ * The algorithm of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
  * parameters must be used for each cryptographic operation.
  * The
  * [GOOGLE_SYMMETRIC_ENCRYPTION][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION]
- * algorithm is usable with
- * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * algorithm is usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
- * Algorithms beginning with "RSA_SIGN_" are usable with
- * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "RSA_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "RSA_SIGN_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
@@ -29,11 +26,12 @@ use UnexpectedValueException;
  * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
  * The fields in the name after "RSA_DECRYPT_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
- * Algorithms beginning with "EC_SIGN_" are usable with
- * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "EC_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "EC_SIGN_" correspond to the following
  * parameters: elliptic curve, digest algorithm.
+ * For more information, see [Key purposes and algorithms]
+ * (https://cloud.google.com/kms/docs/algorithms).
  *
  * Protobuf type <code>google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm</code>
  */
@@ -70,6 +68,12 @@ class CryptoKeyVersionAlgorithm
      */
     const RSA_SIGN_PSS_4096_SHA256 = 4;
     /**
+     * RSASSA-PSS 4096 bit key with a SHA512 digest.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_PSS_4096_SHA512 = 15;</code>
+     */
+    const RSA_SIGN_PSS_4096_SHA512 = 15;
+    /**
      * RSASSA-PKCS1-v1_5 with a 2048 bit key and a SHA256 digest.
      *
      * Generated from protobuf enum <code>RSA_SIGN_PKCS1_2048_SHA256 = 5;</code>
@@ -87,6 +91,12 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>RSA_SIGN_PKCS1_4096_SHA256 = 7;</code>
      */
     const RSA_SIGN_PKCS1_4096_SHA256 = 7;
+    /**
+     * RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA512 digest.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_PKCS1_4096_SHA512 = 16;</code>
+     */
+    const RSA_SIGN_PKCS1_4096_SHA512 = 16;
     /**
      * RSAES-OAEP 2048 bit key with a SHA256 digest.
      *
@@ -106,6 +116,12 @@ class CryptoKeyVersionAlgorithm
      */
     const RSA_DECRYPT_OAEP_4096_SHA256 = 10;
     /**
+     * RSAES-OAEP 4096 bit key with a SHA512 digest.
+     *
+     * Generated from protobuf enum <code>RSA_DECRYPT_OAEP_4096_SHA512 = 17;</code>
+     */
+    const RSA_DECRYPT_OAEP_4096_SHA512 = 17;
+    /**
      * ECDSA on the NIST P-256 curve with a SHA256 digest.
      *
      * Generated from protobuf enum <code>EC_SIGN_P256_SHA256 = 12;</code>
@@ -124,12 +140,15 @@ class CryptoKeyVersionAlgorithm
         self::RSA_SIGN_PSS_2048_SHA256 => 'RSA_SIGN_PSS_2048_SHA256',
         self::RSA_SIGN_PSS_3072_SHA256 => 'RSA_SIGN_PSS_3072_SHA256',
         self::RSA_SIGN_PSS_4096_SHA256 => 'RSA_SIGN_PSS_4096_SHA256',
+        self::RSA_SIGN_PSS_4096_SHA512 => 'RSA_SIGN_PSS_4096_SHA512',
         self::RSA_SIGN_PKCS1_2048_SHA256 => 'RSA_SIGN_PKCS1_2048_SHA256',
         self::RSA_SIGN_PKCS1_3072_SHA256 => 'RSA_SIGN_PKCS1_3072_SHA256',
         self::RSA_SIGN_PKCS1_4096_SHA256 => 'RSA_SIGN_PKCS1_4096_SHA256',
+        self::RSA_SIGN_PKCS1_4096_SHA512 => 'RSA_SIGN_PKCS1_4096_SHA512',
         self::RSA_DECRYPT_OAEP_2048_SHA256 => 'RSA_DECRYPT_OAEP_2048_SHA256',
         self::RSA_DECRYPT_OAEP_3072_SHA256 => 'RSA_DECRYPT_OAEP_3072_SHA256',
         self::RSA_DECRYPT_OAEP_4096_SHA256 => 'RSA_DECRYPT_OAEP_4096_SHA256',
+        self::RSA_DECRYPT_OAEP_4096_SHA512 => 'RSA_DECRYPT_OAEP_4096_SHA512',
         self::EC_SIGN_P256_SHA256 => 'EC_SIGN_P256_SHA256',
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
     ];

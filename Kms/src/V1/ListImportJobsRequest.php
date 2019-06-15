@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
+ * Request message for [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
  *
- * Generated from protobuf message <code>google.cloud.kms.v1.ListCryptoKeysRequest</code>
+ * Generated from protobuf message <code>google.cloud.kms.v1.ListImportJobsRequest</code>
  */
-class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
+class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
@@ -23,38 +23,32 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     * response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     * including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     * request.  If unspecified, the server will pick an appropriate default.
+     * Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
+     * response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
+     * including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
+     * request. If unspecified, the server will pick an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
      * Optional pagination token, returned earlier via
-     * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
+     * [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
     /**
-     * The fields of the primary version to include in the response.
-     *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView version_view = 4;</code>
-     */
-    private $version_view = 0;
-    /**
      * Optional. Only include resources that match the filter in the response.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 4;</code>
      */
     private $filter = '';
     /**
      * Optional. Specify how the results should be sorted. If not specified, the
      * results will be sorted in the default order.
      *
-     * Generated from protobuf field <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 5;</code>
      */
     private $order_by = '';
 
@@ -68,15 +62,13 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *     @type int $page_size
-     *           Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     *           response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     *           including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     *           request.  If unspecified, the server will pick an appropriate default.
+     *           Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
+     *           response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
+     *           including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
+     *           request. If unspecified, the server will pick an appropriate default.
      *     @type string $page_token
      *           Optional pagination token, returned earlier via
-     *           [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
-     *     @type int $version_view
-     *           The fields of the primary version to include in the response.
+     *           [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token].
      *     @type string $filter
      *           Optional. Only include resources that match the filter in the response.
      *     @type string $order_by
@@ -118,10 +110,10 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     * response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     * including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     * request.  If unspecified, the server will pick an appropriate default.
+     * Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
+     * response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
+     * including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
+     * request. If unspecified, the server will pick an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -132,10 +124,10 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     * response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     * including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     * request.  If unspecified, the server will pick an appropriate default.
+     * Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
+     * response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
+     * including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
+     * request. If unspecified, the server will pick an appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -151,7 +143,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional pagination token, returned earlier via
-     * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
+     * [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -163,7 +155,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional pagination token, returned earlier via
-     * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
+     * [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -178,35 +170,9 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields of the primary version to include in the response.
-     *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView version_view = 4;</code>
-     * @return int
-     */
-    public function getVersionView()
-    {
-        return $this->version_view;
-    }
-
-    /**
-     * The fields of the primary version to include in the response.
-     *
-     * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView version_view = 4;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setVersionView($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\CryptoKeyVersion_CryptoKeyVersionView::class);
-        $this->version_view = $var;
-
-        return $this;
-    }
-
-    /**
      * Optional. Only include resources that match the filter in the response.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 4;</code>
      * @return string
      */
     public function getFilter()
@@ -217,7 +183,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Only include resources that match the filter in the response.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 4;</code>
      * @param string $var
      * @return $this
      */
@@ -233,7 +199,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      * Optional. Specify how the results should be sorted. If not specified, the
      * results will be sorted in the default order.
      *
-     * Generated from protobuf field <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 5;</code>
      * @return string
      */
     public function getOrderBy()
@@ -245,7 +211,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      * Optional. Specify how the results should be sorted. If not specified, the
      * results will be sorted in the default order.
      *
-     * Generated from protobuf field <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 5;</code>
      * @param string $var
      * @return $this
      */

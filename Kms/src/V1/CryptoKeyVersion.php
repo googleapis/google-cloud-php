@@ -9,48 +9,42 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
- * individual cryptographic key, and the associated key material.
- * An
- * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
- * version can be used for cryptographic operations.
+ * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
+ * associated key material.
+ * An [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] version can be
+ * used for cryptographic operations.
  * For security reasons, the raw cryptographic key material represented by a
- * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] can never be viewed
- * or exported. It can only be used to encrypt, decrypt, or sign data when an
- * authorized user or application invokes Cloud KMS.
+ * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] can never be viewed or exported. It can only be used to
+ * encrypt, decrypt, or sign data when an authorized user or application invokes
+ * Cloud KMS.
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKeyVersion</code>
  */
 class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
+     * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The current state of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * The current state of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState state = 3;</code>
      */
     private $state = 0;
     /**
-     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel]
-     * describing how crypto operations are performed with this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
      */
     private $protection_level = 0;
     /**
-     * Output only. The
-     * [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     * that this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * supports.
+     * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
      */
@@ -59,32 +53,27 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. Statement that was generated and signed by the HSM at key
      * creation time. Use this statement to verify attributes of the key as stored
      * on the HSM, independently of Google. Only provided for key versions with
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level]
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
      */
     private $attestation = null;
     /**
-     * Output only. The time at which this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
+     * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
     private $create_time = null;
     /**
-     * Output only. The time this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      * generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
      */
     private $generate_time = null;
     /**
-     * Output only. The time this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
-     * scheduled for destruction. Only present if
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
+     * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5;</code>
@@ -92,13 +81,35 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     private $destroy_time = null;
     /**
      * Output only. The time this CryptoKeyVersion's key material was
-     * destroyed. Only present if
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6;</code>
      */
     private $destroy_event_time = null;
+    /**
+     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
+     * imported.
+     *
+     * Generated from protobuf field <code>string import_job = 14;</code>
+     */
+    private $import_job = '';
+    /**
+     * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
+     * was imported.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15;</code>
+     */
+    private $import_time = null;
+    /**
+     * Output only. The root cause of an import failure. Only present if
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
+     *
+     * Generated from protobuf field <code>string import_failure_reason = 16;</code>
+     */
+    private $import_failure_reason = '';
 
     /**
      * Constructor.
@@ -107,45 +118,45 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
+     *           Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *     @type int $state
-     *           The current state of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *           The current state of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *     @type int $protection_level
-     *           Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel]
-     *           describing how crypto operations are performed with this
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *           Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     *           performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *     @type int $algorithm
-     *           Output only. The
-     *           [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     *           that this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     *           supports.
+     *           Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *     @type \Google\Cloud\Kms\V1\KeyOperationAttestation $attestation
      *           Output only. Statement that was generated and signed by the HSM at key
      *           creation time. Use this statement to verify attributes of the key as stored
      *           on the HSM, independently of Google. Only provided for key versions with
-     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level]
-     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which this
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
+     *           Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *     @type \Google\Protobuf\Timestamp $generate_time
-     *           Output only. The time this
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     *           Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      *           generated.
      *     @type \Google\Protobuf\Timestamp $destroy_time
-     *           Output only. The time this
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
-     *           scheduled for destruction. Only present if
-     *           [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
+     *           for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      *           [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *     @type \Google\Protobuf\Timestamp $destroy_event_time
      *           Output only. The time this CryptoKeyVersion's key material was
-     *           destroyed. Only present if
-     *           [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
+     *     @type string $import_job
+     *           Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
+     *           imported.
+     *     @type \Google\Protobuf\Timestamp $import_time
+     *           Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
+     *           was imported.
+     *     @type string $import_failure_reason
+     *           Output only. The root cause of an import failure. Only present if
+     *           [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     *           [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      * }
      */
     public function __construct($data = NULL) {
@@ -154,8 +165,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
+     * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -167,8 +177,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
+     * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -184,8 +193,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current state of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * The current state of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState state = 3;</code>
      * @return int
@@ -196,8 +204,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current state of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * The current state of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState state = 3;</code>
      * @param int $var
@@ -212,9 +219,8 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel]
-     * describing how crypto operations are performed with this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
      * @return int
@@ -225,9 +231,8 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel]
-     * describing how crypto operations are performed with this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Output only. The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] describing how crypto operations are
+     * performed with this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
      * @param int $var
@@ -242,10 +247,8 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The
-     * [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     * that this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * supports.
+     * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
      * @return int
@@ -256,10 +259,8 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The
-     * [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     * that this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * supports.
+     * Output only. The [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] that this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] supports.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 10;</code>
      * @param int $var
@@ -277,8 +278,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. Statement that was generated and signed by the HSM at key
      * creation time. Use this statement to verify attributes of the key as stored
      * on the HSM, independently of Google. Only provided for key versions with
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level]
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
      * @return \Google\Cloud\Kms\V1\KeyOperationAttestation
@@ -292,8 +292,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. Statement that was generated and signed by the HSM at key
      * creation time. Use this statement to verify attributes of the key as stored
      * on the HSM, independently of Google. Only provided for key versions with
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level]
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8;</code>
      * @param \Google\Cloud\Kms\V1\KeyOperationAttestation $var
@@ -308,8 +307,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
+     * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
@@ -320,8 +318,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
+     * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -336,8 +333,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      * generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
@@ -349,8 +345,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material was
      * generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11;</code>
@@ -366,10 +361,8 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
-     * scheduled for destruction. Only present if
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
+     * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5;</code>
@@ -381,10 +374,8 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time this
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is
-     * scheduled for destruction. Only present if
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * Output only. The time this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material is scheduled
+     * for destruction. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5;</code>
@@ -401,8 +392,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time this CryptoKeyVersion's key material was
-     * destroyed. Only present if
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6;</code>
@@ -415,8 +405,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time this CryptoKeyVersion's key material was
-     * destroyed. Only present if
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6;</code>
@@ -427,6 +416,94 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->destroy_event_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
+     * imported.
+     *
+     * Generated from protobuf field <code>string import_job = 14;</code>
+     * @return string
+     */
+    public function getImportJob()
+    {
+        return $this->import_job;
+    }
+
+    /**
+     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
+     * imported.
+     *
+     * Generated from protobuf field <code>string import_job = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImportJob($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->import_job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
+     * was imported.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getImportTime()
+    {
+        return $this->import_time;
+    }
+
+    /**
+     * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
+     * was imported.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setImportTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->import_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The root cause of an import failure. Only present if
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
+     *
+     * Generated from protobuf field <code>string import_failure_reason = 16;</code>
+     * @return string
+     */
+    public function getImportFailureReason()
+    {
+        return $this->import_failure_reason;
+    }
+
+    /**
+     * Output only. The root cause of an import failure. Only present if
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
+     * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
+     *
+     * Generated from protobuf field <code>string import_failure_reason = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImportFailureReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->import_failure_reason = $var;
 
         return $this;
     }

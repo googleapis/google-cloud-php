@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The public key for a given
- * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
+ * The public key for a given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
  * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.PublicKey</code>
@@ -28,9 +27,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     private $pem = '';
     /**
-     * The
-     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     * associated with this key.
+     * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
+     * with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      */
@@ -49,9 +47,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *           [Textual Encoding of Subject Public Key Info]
      *           (https://tools.ietf.org/html/rfc7468#section-13).
      *     @type int $algorithm
-     *           The
-     *           [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     *           associated with this key.
+     *           The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
+     *           with this key.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,9 +91,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The
-     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     * associated with this key.
+     * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
+     * with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      * @return int
@@ -107,9 +103,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The
-     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
-     * associated with this key.
+     * The [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] associated
+     * with this key.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2;</code>
      * @param int $var

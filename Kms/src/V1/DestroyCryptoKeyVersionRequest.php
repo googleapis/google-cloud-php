@@ -9,16 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
+ * Request message for [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.DestroyCryptoKeyVersionRequest</code>
  */
 class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -31,8 +29,7 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     *           The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +38,7 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -53,8 +49,7 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -86,6 +86,20 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
+     * @param \Google\Cloud\Kms\V1\ListImportJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListImportJobs(\Google\Cloud\Kms\V1\ListImportJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/ListImportJobs',
+        $argument,
+        ['\Google\Cloud\Kms\V1\ListImportJobsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Returns metadata for a given [KeyRing][google.cloud.kms.v1.KeyRing].
      * @param \Google\Cloud\Kms\V1\GetKeyRingRequest $argument input argument
      * @param array $metadata metadata
@@ -100,9 +114,8 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as
-     * well as its [primary][google.cloud.kms.v1.CryptoKey.primary]
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as well as its
+     * [primary][google.cloud.kms.v1.CryptoKey.primary] [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      * @param \Google\Cloud\Kms\V1\GetCryptoKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -116,8 +129,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns metadata for a given
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Returns metadata for a given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      * @param \Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -131,11 +143,9 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the public key for the given
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
+     * Returns the public key for the given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
-     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN]
-     * or
+     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN] or
      * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
      * @param \Google\Cloud\Kms\V1\GetPublicKeyRequest $argument input argument
      * @param array $metadata metadata
@@ -150,8 +160,21 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and
-     * Location.
+     * Returns metadata for a given [ImportJob][google.cloud.kms.v1.ImportJob].
+     * @param \Google\Cloud\Kms\V1\GetImportJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetImportJob(\Google\Cloud\Kms\V1\GetImportJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/GetImportJob',
+        $argument,
+        ['\Google\Cloud\Kms\V1\ImportJob', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and Location.
      * @param \Google\Cloud\Kms\V1\CreateKeyRingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -165,8 +188,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
-     * [KeyRing][google.cloud.kms.v1.KeyRing].
+     * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a [KeyRing][google.cloud.kms.v1.KeyRing].
      *
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] and
      * [CryptoKey.version_template.algorithm][google.cloud.kms.v1.CryptoKeyVersionTemplate.algorithm]
@@ -184,8 +206,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * The server will assign the next sequential id. If unset,
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
@@ -199,6 +220,40 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/CreateCryptoKeyVersion',
         $argument,
         ['\Google\Cloud\Kms\V1\CryptoKeyVersion', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Imports a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] into an existing [CryptoKey][google.cloud.kms.v1.CryptoKey] using the
+     * wrapped key material provided in the request.
+     *
+     * The version ID will be assigned the next sequential id within the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * @param \Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ImportCryptoKeyVersion(\Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/ImportCryptoKeyVersion',
+        $argument,
+        ['\Google\Cloud\Kms\V1\CryptoKeyVersion', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a [KeyRing][google.cloud.kms.v1.KeyRing].
+     *
+     * [ImportJob.import_method][google.cloud.kms.v1.ImportJob.import_method] is required.
+     * @param \Google\Cloud\Kms\V1\CreateImportJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function CreateImportJob(\Google\Cloud\Kms\V1\CreateImportJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/CreateImportJob',
+        $argument,
+        ['\Google\Cloud\Kms\V1\ImportJob', 'decode'],
         $metadata, $options);
     }
 
@@ -217,18 +272,13 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
-     * metadata.
+     * Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s metadata.
      *
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] may be changed between
-     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
-     * and
-     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED]
-     * using this method. See
-     * [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]
-     * and
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
-     * to move between other states.
+     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] and
+     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED] using this
+     * method. See [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion] and [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] to
+     * move between other states.
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -242,9 +292,8 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Encrypts data, so that it can only be recovered by a call to
-     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt]. The
-     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * Encrypts data, so that it can only be recovered by a call to [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+     * The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * @param \Google\Cloud\Kms\V1\EncryptRequest $argument input argument
      * @param array $metadata metadata
@@ -259,10 +308,8 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Decrypts data that was protected by
-     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The
-     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
-     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * Decrypts data that was protected by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * must be [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * @param \Google\Cloud\Kms\V1\DecryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -276,11 +323,9 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
      * ASYMMETRIC_SIGN, producing a signature that can be verified with the public
-     * key retrieved from
-     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     * key retrieved from [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      * @param \Google\Cloud\Kms\V1\AsymmetricSignRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -295,10 +340,8 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Decrypts data that was encrypted with a public key retrieved from
-     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
-     * corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * ASYMMETRIC_DECRYPT.
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey] corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] ASYMMETRIC_DECRYPT.
      * @param \Google\Cloud\Kms\V1\AsymmetricDecryptRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -312,9 +355,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that
-     * will be used in
-     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
      *
      * Returns an error if called on an asymmetric key.
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument input argument
@@ -330,24 +371,18 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
-     * destruction.
+     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for destruction.
      *
-     * Upon calling this method,
-     * [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will
-     * be set to
+     * Upon calling this method, [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
-     * be set to a time 24 hours in the future, at which point the
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be changed to
-     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED],
-     * and the key material will be irrevocably destroyed.
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be set to a time 24
+     * hours in the future, at which point the [state][google.cloud.kms.v1.CryptoKeyVersion.state]
+     * will be changed to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED], and the key
+     * material will be irrevocably destroyed.
      *
-     * Before the
-     * [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is
-     * reached,
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
-     * may be called to reverse the process.
+     * Before the [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is reached,
+     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] may be called to reverse the process.
      * @param \Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -365,11 +400,9 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state.
      *
-     * Upon restoration of the CryptoKeyVersion,
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
-     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
-     * be cleared.
+     * Upon restoration of the CryptoKeyVersion, [state][google.cloud.kms.v1.CryptoKeyVersion.state]
+     * will be set to [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be cleared.
      * @param \Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

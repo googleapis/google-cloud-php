@@ -33,14 +33,19 @@ use Google\Cloud\Kms\V1\AsymmetricDecryptResponse;
 use Google\Cloud\Kms\V1\AsymmetricSignResponse;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
 use Google\Cloud\Kms\V1\CryptoKey\CryptoKeyPurpose;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\Digest;
 use Google\Cloud\Kms\V1\EncryptResponse;
+use Google\Cloud\Kms\V1\ImportJob;
+use Google\Cloud\Kms\V1\ImportJob\ImportMethod;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
 use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
+use Google\Cloud\Kms\V1\ListImportJobsResponse;
 use Google\Cloud\Kms\V1\ListKeyRingsResponse;
+use Google\Cloud\Kms\V1\ProtectionLevel;
 use Google\Cloud\Kms\V1\PublicKey;
 use Google\Protobuf\Any;
 use Google\Protobuf\Duration;
@@ -154,6 +159,87 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         try {
             $client->listKeyRings($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listImportJobsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $totalSize = 705419236;
+        $importJobsElement = new ImportJob();
+        $importJobs = [$importJobsElement];
+        $expectedResponse = new ListImportJobsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
+        $expectedResponse->setImportJobs($importJobs);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+
+        $response = $client->listImportJobs($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getImportJobs()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ListImportJobs', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listImportJobsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+
+        try {
+            $client->listImportJobs($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -404,6 +490,79 @@ class KeyManagementServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function getImportJobTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new ImportJob();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
+
+        $response = $client->getImportJob($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/GetImportJob', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getImportJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
+
+        try {
+            $client->getImportJob($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getCryptoKeyTest()
     {
         $transport = $this->createTransport();
@@ -486,8 +645,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $importJob = 'importJob2125587491';
+        $importFailureReason = 'importFailureReason-494073229';
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setImportJob($importJob);
+        $expectedResponse->setImportFailureReason($importFailureReason);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -633,6 +796,97 @@ class KeyManagementServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function createImportJobTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new ImportJob();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $importJobId = 'my-import-job';
+        $importMethod = ImportMethod::RSA_OAEP_3072_SHA1_AES_256;
+        $protectionLevel = ProtectionLevel::HSM;
+        $importJob = new ImportJob();
+        $importJob->setImportMethod($importMethod);
+        $importJob->setProtectionLevel($protectionLevel);
+
+        $response = $client->createImportJob($formattedParent, $importJobId, $importJob);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/CreateImportJob', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getImportJobId();
+
+        $this->assertProtobufEquals($importJobId, $actualValue);
+        $actualValue = $actualRequestObject->getImportJob();
+
+        $this->assertProtobufEquals($importJob, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createImportJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+        $importJobId = 'my-import-job';
+        $importMethod = ImportMethod::RSA_OAEP_3072_SHA1_AES_256;
+        $protectionLevel = ProtectionLevel::HSM;
+        $importJob = new ImportJob();
+        $importJob->setImportMethod($importMethod);
+        $importJob->setProtectionLevel($protectionLevel);
+
+        try {
+            $client->createImportJob($formattedParent, $importJobId, $importJob);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createCryptoKeyTest()
     {
         $transport = $this->createTransport();
@@ -745,8 +999,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
+        $importJob = 'importJob2125587491';
+        $importFailureReason = 'importFailureReason-494073229';
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
+        $expectedResponse->setImportJob($importJob);
+        $expectedResponse->setImportFailureReason($importFailureReason);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -799,6 +1057,93 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         try {
             $client->createCryptoKeyVersion($formattedParent, $cryptoKeyVersion);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function importCryptoKeyVersionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name = 'name3373707';
+        $importJob2 = 'importJob2-1714851050';
+        $importFailureReason = 'importFailureReason-494073229';
+        $expectedResponse = new CryptoKeyVersion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setImportJob($importJob2);
+        $expectedResponse->setImportFailureReason($importFailureReason);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+        $importJob = 'importJob2125587491';
+
+        $response = $client->importCryptoKeyVersion($formattedParent, $algorithm, $importJob);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.kms.v1.KeyManagementService/ImportCryptoKeyVersion', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAlgorithm();
+
+        $this->assertProtobufEquals($algorithm, $actualValue);
+        $actualValue = $actualRequestObject->getImportJob();
+
+        $this->assertProtobufEquals($importJob, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function importCryptoKeyVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+        $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+        $importJob = 'importJob2125587491';
+
+        try {
+            $client->importCryptoKeyVersion($formattedParent, $algorithm, $importJob);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -901,8 +1246,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
+        $importJob = 'importJob2125587491';
+        $importFailureReason = 'importFailureReason-494073229';
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
+        $expectedResponse->setImportJob($importJob);
+        $expectedResponse->setImportFailureReason($importFailureReason);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1215,8 +1564,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $importJob = 'importJob2125587491';
+        $importFailureReason = 'importFailureReason-494073229';
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setImportJob($importJob);
+        $expectedResponse->setImportFailureReason($importFailureReason);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -1288,8 +1641,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $importJob = 'importJob2125587491';
+        $importFailureReason = 'importFailureReason-494073229';
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setImportJob($importJob);
+        $expectedResponse->setImportFailureReason($importFailureReason);
         $transport->addResponse($expectedResponse);
 
         // Mock request

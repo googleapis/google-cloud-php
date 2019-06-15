@@ -9,27 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
+ * Response message for [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
  *
- * Generated from protobuf message <code>google.cloud.kms.v1.ListCryptoKeysResponse</code>
+ * Generated from protobuf message <code>google.cloud.kms.v1.ListImportJobsResponse</code>
  */
-class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
+class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.CryptoKey crypto_keys = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ImportJob import_jobs = 1;</code>
      */
-    private $crypto_keys;
+    private $import_jobs;
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCryptoKeysRequest.page_token][google.cloud.kms.v1.ListCryptoKeysRequest.page_token] to retrieve the next page of results.
+     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
     /**
-     * The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that matched the query.
+     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -41,13 +41,13 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Kms\V1\CryptoKey[]|\Google\Protobuf\Internal\RepeatedField $crypto_keys
-     *           The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     *     @type \Google\Cloud\Kms\V1\ImportJob[]|\Google\Protobuf\Internal\RepeatedField $import_jobs
+     *           The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
-     *           [ListCryptoKeysRequest.page_token][google.cloud.kms.v1.ListCryptoKeysRequest.page_token] to retrieve the next page of results.
+     *           [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
      *     @type int $total_size
-     *           The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that matched the query.
+     *           The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,34 +56,34 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.CryptoKey crypto_keys = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ImportJob import_jobs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getCryptoKeys()
+    public function getImportJobs()
     {
-        return $this->crypto_keys;
+        return $this->import_jobs;
     }
 
     /**
-     * The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.CryptoKey crypto_keys = 1;</code>
-     * @param \Google\Cloud\Kms\V1\CryptoKey[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ImportJob import_jobs = 1;</code>
+     * @param \Google\Cloud\Kms\V1\ImportJob[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setCryptoKeys($var)
+    public function setImportJobs($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Kms\V1\CryptoKey::class);
-        $this->crypto_keys = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Kms\V1\ImportJob::class);
+        $this->import_jobs = $arr;
 
         return $this;
     }
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCryptoKeysRequest.page_token][google.cloud.kms.v1.ListCryptoKeysRequest.page_token] to retrieve the next page of results.
+     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -95,7 +95,7 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCryptoKeysRequest.page_token][google.cloud.kms.v1.ListCryptoKeysRequest.page_token] to retrieve the next page of results.
+     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
@@ -110,7 +110,7 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that matched the query.
+     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -121,7 +121,7 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] that matched the query.
+     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var
