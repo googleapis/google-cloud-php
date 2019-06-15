@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/importjob_importjobstate","type":"","title":"Google\\Cloud\\Kms\\V1\\ImportJob_ImportJobState","name":"ImportJob_ImportJobState","description":"<p>This class is deprecated. Use Google\\Cloud\\Kms\\V1\\ImportJob\\ImportJobState instead.<\/p>","examples":[],"resources":[],"methods":[]}
