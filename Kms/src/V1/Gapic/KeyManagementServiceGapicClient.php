@@ -47,9 +47,11 @@ use Google\Cloud\Kms\V1\AsymmetricSignRequest;
 use Google\Cloud\Kms\V1\AsymmetricSignResponse;
 use Google\Cloud\Kms\V1\CreateCryptoKeyRequest;
 use Google\Cloud\Kms\V1\CreateCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\CreateImportJobRequest;
 use Google\Cloud\Kms\V1\CreateKeyRingRequest;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKeyVersion;
+use Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
@@ -58,13 +60,18 @@ use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
 use Google\Cloud\Kms\V1\GetCryptoKeyRequest;
 use Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\GetImportJobRequest;
 use Google\Cloud\Kms\V1\GetKeyRingRequest;
 use Google\Cloud\Kms\V1\GetPublicKeyRequest;
+use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\ImportJob;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
 use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
+use Google\Cloud\Kms\V1\ListImportJobsRequest;
+use Google\Cloud\Kms\V1\ListImportJobsResponse;
 use Google\Cloud\Kms\V1\ListKeyRingsRequest;
 use Google\Cloud\Kms\V1\ListKeyRingsResponse;
 use Google\Cloud\Kms\V1\PublicKey;
@@ -151,10 +158,12 @@ class KeyManagementServiceGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloudkms',
     ];
     private static $cryptoKeyNameTemplate;
     private static $cryptoKeyPathNameTemplate;
     private static $cryptoKeyVersionNameTemplate;
+    private static $importJobNameTemplate;
     private static $keyRingNameTemplate;
     private static $locationNameTemplate;
     private static $pathTemplateMap;
@@ -205,6 +214,15 @@ class KeyManagementServiceGapicClient
         return self::$cryptoKeyVersionNameTemplate;
     }
 
+    private static function getImportJobNameTemplate()
+    {
+        if (null == self::$importJobNameTemplate) {
+            self::$importJobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}');
+        }
+
+        return self::$importJobNameTemplate;
+    }
+
     private static function getKeyRingNameTemplate()
     {
         if (null == self::$keyRingNameTemplate) {
@@ -230,6 +248,7 @@ class KeyManagementServiceGapicClient
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
                 'cryptoKeyPath' => self::getCryptoKeyPathNameTemplate(),
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
+                'importJob' => self::getImportJobNameTemplate(),
                 'keyRing' => self::getKeyRingNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
@@ -308,6 +327,28 @@ class KeyManagementServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a import_job resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $importJob
+     *
+     * @return string The formatted import_job resource.
+     * @experimental
+     */
+    public static function importJobName($project, $location, $keyRing, $importJob)
+    {
+        return self::getImportJobNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'import_job' => $importJob,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a key_ring resource.
      *
      * @param string $project
@@ -351,6 +392,7 @@ class KeyManagementServiceGapicClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyPath: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
      * - location: projects/{project}/locations/{location}.
      *
@@ -477,8 +519,7 @@ class KeyManagementServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the location associated with the
-     *                             [KeyRings][google.cloud.kms.v1.KeyRing], in the format
-     *                             `projects/&#42;/locations/*`.
+     *                             [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -491,6 +532,11 @@ class KeyManagementServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
+     *     @type string $filter
+     *          Optional. Only include resources that match the filter in the response.
+     *     @type string $orderBy
+     *          Optional. Specify how the results should be sorted. If not specified, the
+     *          results will be sorted in the default order.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -513,6 +559,12 @@ class KeyManagementServiceGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
@@ -525,6 +577,98 @@ class KeyManagementServiceGapicClient
             'ListKeyRings',
             $optionalArgs,
             ListKeyRingsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $keyManagementServiceClient->listImportJobs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $keyManagementServiceClient->listImportJobs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
+     *                             `projects/&#42;/locations/&#42;/keyRings/*`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type string $filter
+     *          Optional. Only include resources that match the filter in the response.
+     *     @type string $orderBy
+     *          Optional. Specify how the results should be sorted. If not specified, the
+     *          results will be sorted in the default order.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listImportJobs($parent, array $optionalArgs = [])
+    {
+        $request = new ListImportJobsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListImportJobs',
+            $optionalArgs,
+            ListImportJobsResponse::class,
             $request
         );
     }
@@ -558,8 +702,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     *                             to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
+     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
+     *                             `projects/&#42;/locations/&#42;/keyRings/*`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -575,6 +719,11 @@ class KeyManagementServiceGapicClient
      *     @type int $versionView
      *          The fields of the primary version to include in the response.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionView}
+     *     @type string $filter
+     *          Optional. Only include resources that match the filter in the response.
+     *     @type string $orderBy
+     *          Optional. Specify how the results should be sorted. If not specified, the
+     *          results will be sorted in the default order.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -599,6 +748,12 @@ class KeyManagementServiceGapicClient
         }
         if (isset($optionalArgs['versionView'])) {
             $request->setVersionView($optionalArgs['versionView']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -645,8 +800,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the
-     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     * @param string $parent       Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
      *                             `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -663,6 +817,11 @@ class KeyManagementServiceGapicClient
      *     @type int $view
      *          The fields to include in the response.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionView}
+     *     @type string $filter
+     *          Optional. Only include resources that match the filter in the response.
+     *     @type string $orderBy
+     *          Optional. Specify how the results should be sorted. If not specified, the
+     *          results will be sorted in the default order.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -687,6 +846,12 @@ class KeyManagementServiceGapicClient
         }
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -718,8 +883,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The [name][google.cloud.kms.v1.KeyRing.name] of the
-     *                             [KeyRing][google.cloud.kms.v1.KeyRing] to get.
+     * @param string $name         The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] to get.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -756,9 +920,58 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as
-     * well as its [primary][google.cloud.kms.v1.CryptoKey.primary]
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Returns metadata for a given [ImportJob][google.cloud.kms.v1.ImportJob].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedName = $keyManagementServiceClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');
+     *     $response = $keyManagementServiceClient->getImportJob($formattedName);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\ImportJob
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getImportJob($name, array $optionalArgs = [])
+    {
+        $request = new GetImportJobRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetImportJob',
+            ImportJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as well as its
+     * [primary][google.cloud.kms.v1.CryptoKey.primary] [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Sample code:
      * ```
@@ -771,8 +984,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The [name][google.cloud.kms.v1.CryptoKey.name] of the
-     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     * @param string $name         The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -809,8 +1021,7 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns metadata for a given
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Returns metadata for a given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Sample code:
      * ```
@@ -823,8 +1034,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     * @param string $name         The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -861,8 +1071,7 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and
-     * Location.
+     * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and Location.
      *
      * Sample code:
      * ```
@@ -878,8 +1087,7 @@ class KeyManagementServiceGapicClient
      * ```
      *
      * @param string  $parent       Required. The resource name of the location associated with the
-     *                              [KeyRings][google.cloud.kms.v1.KeyRing], in the format
-     *                              `projects/&#42;/locations/*`.
+     *                              [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;/locations/*`.
      * @param string  $keyRingId    Required. It must be unique within a location and match the regular
      *                              expression `[a-zA-Z0-9_-]{1,63}`
      * @param KeyRing $keyRing      A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
@@ -921,8 +1129,71 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
-     * [KeyRing][google.cloud.kms.v1.KeyRing].
+     * Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a [KeyRing][google.cloud.kms.v1.KeyRing].
+     *
+     * [ImportJob.import_method][google.cloud.kms.v1.ImportJob.import_method] is required.
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedParent = $keyManagementServiceClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
+     *     $importJobId = 'my-import-job';
+     *     $importMethod = ImportMethod::RSA_OAEP_3072_SHA1_AES_256;
+     *     $protectionLevel = ProtectionLevel::HSM;
+     *     $importJob = new ImportJob();
+     *     $importJob->setImportMethod($importMethod);
+     *     $importJob->setProtectionLevel($protectionLevel);
+     *     $response = $keyManagementServiceClient->createImportJob($formattedParent, $importJobId, $importJob);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     *                                [ImportJobs][google.cloud.kms.v1.ImportJob].
+     * @param string    $importJobId  Required. It must be unique within a KeyRing and match the regular
+     *                                expression `[a-zA-Z0-9_-]{1,63}`
+     * @param ImportJob $importJob    Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\ImportJob
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createImportJob($parent, $importJobId, $importJob, array $optionalArgs = [])
+    {
+        $request = new CreateImportJobRequest();
+        $request->setParent($parent);
+        $request->setImportJobId($importJobId);
+        $request->setImportJob($importJob);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateImportJob',
+            ImportJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a [KeyRing][google.cloud.kms.v1.KeyRing].
      *
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] and
      * [CryptoKey.version_template.algorithm][google.cloud.kms.v1.CryptoKeyVersionTemplate.algorithm]
@@ -951,14 +1222,20 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
-     *                                associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
+     *                                [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      * @param string    $cryptoKeyId  Required. It must be unique within a KeyRing and match the regular
      *                                expression `[a-zA-Z0-9_-]{1,63}`
      * @param CryptoKey $cryptoKey    A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
      * @param array     $optionalArgs {
      *                                Optional.
      *
+     *     @type bool $skipInitialVersionCreation
+     *          If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
+     *          [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
+     *          [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     *          [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
+     *          before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -977,6 +1254,9 @@ class KeyManagementServiceGapicClient
         $request->setParent($parent);
         $request->setCryptoKeyId($cryptoKeyId);
         $request->setCryptoKey($cryptoKey);
+        if (isset($optionalArgs['skipInitialVersionCreation'])) {
+            $request->setSkipInitialVersionCreation($optionalArgs['skipInitialVersionCreation']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
@@ -994,8 +1274,7 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * The server will assign the next sequential id. If unset,
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
@@ -1013,11 +1292,9 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
-     *                                           [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
-     *                                           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
-     * @param CryptoKeyVersion $cryptoKeyVersion A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial
-     *                                           field values.
+     * @param string           $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
+     *                                           the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
+     * @param CryptoKeyVersion $cryptoKeyVersion A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
      * @param array            $optionalArgs     {
      *                                           Optional.
      *
@@ -1048,6 +1325,94 @@ class KeyManagementServiceGapicClient
 
         return $this->startCall(
             'CreateCryptoKeyVersion',
+            CryptoKeyVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Imports a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] into an existing [CryptoKey][google.cloud.kms.v1.CryptoKey] using the
+     * wrapped key material provided in the request.
+     *
+     * The version ID will be assigned the next sequential id within the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $formattedParent = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
+     *     $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+     *     $importJob = '';
+     *     $response = $keyManagementServiceClient->importCryptoKeyVersion($formattedParent, $algorithm, $importJob);
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
+     *                             be imported into.
+     * @param int    $algorithm    Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
+     *                             the key being imported. This does not need to match the
+     *                             [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
+     *                             version imports into.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm}
+     * @param string $importJob    Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
+     *                             wrap this key material.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $rsaAesWrappedKey
+     *          Wrapped key material produced with
+     *          [RSA_OAEP_3072_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_3072_SHA1_AES_256]
+     *          or
+     *          [RSA_OAEP_4096_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_4096_SHA1_AES_256].
+     *
+     *          This field contains the concatenation of two wrapped keys:
+     *          <ol>
+     *            <li>An ephemeral AES-256 wrapping key wrapped with the
+     *                [public_key][google.cloud.kms.v1.ImportJob.public_key] using RSAES-OAEP with SHA-1,
+     *                MGF1 with SHA-1, and an empty label.
+     *            </li>
+     *            <li>The key to be imported, wrapped with the ephemeral AES-256 key
+     *                using AES-KWP (RFC 5649).
+     *            </li>
+     *          </ol>
+     *
+     *          This format is the same as the format produced by PKCS#11 mechanism
+     *          CKM_RSA_AES_KEY_WRAP.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function importCryptoKeyVersion($parent, $algorithm, $importJob, array $optionalArgs = [])
+    {
+        $request = new ImportCryptoKeyVersionRequest();
+        $request->setParent($parent);
+        $request->setAlgorithm($algorithm);
+        $request->setImportJob($importJob);
+        if (isset($optionalArgs['rsaAesWrappedKey'])) {
+            $request->setRsaAesWrappedKey($optionalArgs['rsaAesWrappedKey']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'ImportCryptoKeyVersion',
             CryptoKeyVersion::class,
             $optionalArgs,
             $request
@@ -1108,18 +1473,13 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
-     * metadata.
+     * Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s metadata.
      *
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] may be changed between
-     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
-     * and
-     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED]
-     * using this method. See
-     * [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]
-     * and
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
-     * to move between other states.
+     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] and
+     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED] using this
+     * method. See [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion] and [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] to
+     * move between other states.
      *
      * Sample code:
      * ```
@@ -1133,8 +1493,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param CryptoKeyVersion $cryptoKeyVersion [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated
-     *                                           values.
+     * @param CryptoKeyVersion $cryptoKeyVersion [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
      * @param FieldMask        $updateMask       Required list of fields to be updated in this request.
      * @param array            $optionalArgs     {
      *                                           Optional.
@@ -1173,9 +1532,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Encrypts data, so that it can only be recovered by a call to
-     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt]. The
-     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * Encrypts data, so that it can only be recovered by a call to [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+     * The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Sample code:
@@ -1190,37 +1548,32 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The resource name of the
-     *                     [CryptoKey][google.cloud.kms.v1.CryptoKey] or
-     *                     [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *                     encryption.
+     * @param string $name Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] or [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     *                     to use for encryption.
      *
-     * If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server
-     * will use its [primary version][google.cloud.kms.v1.CryptoKey.primary].
+     * If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server will use its
+     * [primary version][google.cloud.kms.v1.CryptoKey.primary].
      * @param string $plaintext Required. The data to encrypt. Must be no larger than 64KiB.
      *
      * The maximum size depends on the key version's
-     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     * For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
-     * plaintext must be no larger than 64KiB. For
-     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     * the plaintext and additional_authenticated_data fields must be no larger
-     * than 8KiB.
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
+     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the plaintext must be no larger
+     * than 64KiB. For [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of the
+     * plaintext and additional_authenticated_data fields must be no larger than
+     * 8KiB.
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type string $additionalAuthenticatedData
      *          Optional data that, if specified, must also be provided during decryption
-     *          through
-     *          [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
+     *          through [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
      *
      *          The maximum size depends on the key version's
-     *          [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *          For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the AAD
-     *          must be no larger than 64KiB. For
-     *          [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
-     *          the plaintext and additional_authenticated_data fields must be no larger
-     *          than 8KiB.
+     *          [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
+     *          [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the AAD must be no larger than
+     *          64KiB. For [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of the
+     *          plaintext and additional_authenticated_data fields must be no larger than
+     *          8KiB.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1258,10 +1611,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Decrypts data that was protected by
-     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The
-     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
-     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * Decrypts data that was protected by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * must be [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Sample code:
      * ```
@@ -1275,9 +1626,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
-     *                             server will choose the appropriate version.
+     * @param string $name         Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
+     *                             The server will choose the appropriate version.
      * @param string $ciphertext   Required. The encrypted data originally returned in
      *                             [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      * @param array  $optionalArgs {
@@ -1323,9 +1673,7 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that
-     * will be used in
-     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
      *
      * Returns an error if called on an asymmetric key.
      *
@@ -1341,10 +1689,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name               The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
-     *                                   update.
-     * @param string $cryptoKeyVersionId The id of the child
-     *                                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * @param string $name               The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * @param string $cryptoKeyVersionId The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      * @param array  $optionalArgs       {
      *                                   Optional.
      *
@@ -1382,24 +1728,18 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
-     * destruction.
+     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for destruction.
      *
-     * Upon calling this method,
-     * [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will
-     * be set to
+     * Upon calling this method, [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
-     * be set to a time 24 hours in the future, at which point the
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be changed to
-     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED],
-     * and the key material will be irrevocably destroyed.
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be set to a time 24
+     * hours in the future, at which point the [state][google.cloud.kms.v1.CryptoKeyVersion.state]
+     * will be changed to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED], and the key
+     * material will be irrevocably destroyed.
      *
-     * Before the
-     * [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is
-     * reached,
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
-     * may be called to reverse the process.
+     * Before the [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is reached,
+     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] may be called to reverse the process.
      *
      * Sample code:
      * ```
@@ -1412,8 +1752,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * @param string $name         The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1454,11 +1793,9 @@ class KeyManagementServiceGapicClient
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state.
      *
-     * Upon restoration of the CryptoKeyVersion,
-     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
-     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
-     * be cleared.
+     * Upon restoration of the CryptoKeyVersion, [state][google.cloud.kms.v1.CryptoKeyVersion.state]
+     * will be set to [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be cleared.
      *
      * Sample code:
      * ```
@@ -1471,8 +1808,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The resource name of the
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
+     * @param string $name         The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1509,11 +1845,9 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns the public key for the given
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
+     * Returns the public key for the given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
-     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN]
-     * or
+     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN] or
      * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
      *
      * Sample code:
@@ -1527,8 +1861,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
+     * @param string $name         The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
+     *                             get.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1566,10 +1900,8 @@ class KeyManagementServiceGapicClient
 
     /**
      * Decrypts data that was encrypted with a public key retrieved from
-     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
-     * corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * ASYMMETRIC_DECRYPT.
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey] corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] ASYMMETRIC_DECRYPT.
      *
      * Sample code:
      * ```
@@ -1583,12 +1915,10 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
      *                             decryption.
-     * @param string $ciphertext   Required. The data encrypted with the named
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
-     *                             OAEP.
+     * @param string $ciphertext   Required. The data encrypted with the named [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public
+     *                             key using OAEP.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1626,11 +1956,9 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
      * ASYMMETRIC_SIGN, producing a signature that can be verified with the public
-     * key retrieved from
-     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     * key retrieved from [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      *
      * Sample code:
      * ```
@@ -1644,9 +1972,7 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
-     *                             signing.
+     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
      * @param Digest $digest       Required. The digest of the data to sign. The digest must be produced with
      *                             the same digest algorithm as specified by the key version's
      *                             [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].
@@ -1687,8 +2013,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any
-     * existing policy.
+     * Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
      *
      * Sample code:
      * ```
@@ -1747,9 +2073,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Gets the access control policy for a resource.
-     * Returns an empty policy if the resource exists and does not have a policy
-     * set.
+     * Gets the access control policy for a resource. Returns an empty policy
+     * if the resource exists and does not have a policy set.
      *
      * Sample code:
      * ```
@@ -1802,13 +2127,13 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource.
-     * If the resource does not exist, this will return an empty set of
+     * Returns permissions that a caller has on the specified resource. If the
+     * resource does not exist, this will return an empty set of
      * permissions, not a NOT_FOUND error.
      *
-     * Note: This operation is designed to be used for building permission-aware
-     * UIs and command-line tools, not for authorization checking. This operation
-     * may "fail open" without warning.
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * Sample code:
      * ```

@@ -9,16 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for
- * [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+ * Response message for [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.DecryptResponse</code>
  */
 class DecryptResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The decrypted data originally supplied in
-     * [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     * The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      */
@@ -31,8 +29,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $plaintext
-     *           The decrypted data originally supplied in
-     *           [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     *           The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +38,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The decrypted data originally supplied in
-     * [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     * The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      * @return string
@@ -53,8 +49,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The decrypted data originally supplied in
-     * [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     * The decrypted data originally supplied in [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
      *
      * Generated from protobuf field <code>bytes plaintext = 1;</code>
      * @param string $var

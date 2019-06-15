@@ -7,8 +7,9 @@ namespace Google\Cloud\Kms\V1;
 use UnexpectedValueException;
 
 /**
- * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how
- * cryptographic operations are performed.
+ * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how cryptographic operations are performed.
+ * For more information, see [Protection levels]
+ * (https://cloud.google.com/kms/docs/algorithms#protection_levels).
  *
  * Protobuf type <code>google.cloud.kms.v1.ProtectionLevel</code>
  */

@@ -13,6 +13,16 @@ return [
                     'resourcesGetMethod' => 'getKeyRings',
                 ],
             ],
+            'ListImportJobs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getImportJobs',
+                ],
+            ],
             'ListCryptoKeys' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

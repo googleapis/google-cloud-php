@@ -9,16 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for
- * [KeyManagementService.GetCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion].
+ * Request message for [KeyManagementService.GetCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.GetCryptoKeyVersionRequest</code>
  */
 class GetCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -31,8 +29,7 @@ class GetCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     *           The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +38,7 @@ class GetCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -53,8 +49,7 @@ class GetCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
-     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     * The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains an HSM-generated attestation about a key operation.
+ * Contains an HSM-generated attestation about a key operation. For more
+ * information, see [Verifying attestations]
+ * (https://cloud.google.com/kms/docs/attest-key).
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.KeyOperationAttestation</code>
  */
