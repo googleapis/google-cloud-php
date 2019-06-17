@@ -30,11 +30,6 @@ class ExponentialBackoff
     private $retries;
 
     /**
-     * @var callable|null
-     */
-    private $retryFunction;
-
-    /**
      * @var callable
      */
     private $delayFunction;
@@ -43,6 +38,11 @@ class ExponentialBackoff
      * @var callable|null
      */
     private $calcDelayFunction;
+
+    /**
+     * @var callable|null
+     */
+    protected $retryFunction;
 
     /**
      * @param int $retries [optional] Number of retries for a failed request.
