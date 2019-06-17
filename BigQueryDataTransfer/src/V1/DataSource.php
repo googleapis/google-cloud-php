@@ -138,18 +138,6 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
      */
     private $minimum_schedule_interval = null;
-    /**
-     * Partner's legal name of this data source
-     *
-     * Generated from protobuf field <code>string partner_legal_name = 22;</code>
-     */
-    private $partner_legal_name = '';
-    /**
-     * Redirect URL to complete transfer config setup for 3rd party data sources.
-     *
-     * Generated from protobuf field <code>string redirect_url = 23;</code>
-     */
-    private $redirect_url = '';
 
     /**
      * Constructor.
@@ -207,10 +195,6 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           for the data source.
      *     @type \Google\Protobuf\Duration $minimum_schedule_interval
      *           The minimum interval for scheduler to schedule runs.
-     *     @type string $partner_legal_name
-     *           Partner's legal name of this data source
-     *     @type string $redirect_url
-     *           Redirect URL to complete transfer config setup for 3rd party data sources.
      * }
      */
     public function __construct($data = NULL) {
@@ -710,58 +694,6 @@ class DataSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->minimum_schedule_interval = $var;
-
-        return $this;
-    }
-
-    /**
-     * Partner's legal name of this data source
-     *
-     * Generated from protobuf field <code>string partner_legal_name = 22;</code>
-     * @return string
-     */
-    public function getPartnerLegalName()
-    {
-        return $this->partner_legal_name;
-    }
-
-    /**
-     * Partner's legal name of this data source
-     *
-     * Generated from protobuf field <code>string partner_legal_name = 22;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setPartnerLegalName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->partner_legal_name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Redirect URL to complete transfer config setup for 3rd party data sources.
-     *
-     * Generated from protobuf field <code>string redirect_url = 23;</code>
-     * @return string
-     */
-    public function getRedirectUrl()
-    {
-        return $this->redirect_url;
-    }
-
-    /**
-     * Redirect URL to complete transfer config setup for 3rd party data sources.
-     *
-     * Generated from protobuf field <code>string redirect_url = 23;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setRedirectUrl($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->redirect_url = $var;
 
         return $this;
     }

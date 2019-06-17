@@ -127,30 +127,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string dataset_region = 14;</code>
      */
     private $dataset_region = '';
-    /**
-     * A unique identifier used for identifying a transfer setup stored on
-     * external partner side. The token is opaque to DTS and can only be
-     * interpreted by partner. Partner data source should create a mapping between
-     * the config id and the token to validate that a transfer config/run is
-     * legitimate.
-     *
-     * Generated from protobuf field <code>string partner_token = 22;</code>
-     */
-    private $partner_token = '';
-    /**
-     * Transfer settings managed by partner data sources. It is stored as
-     * key-value pairs and used for DTS UI display purpose only. Two reasons we
-     * don't want to store them together with 'params' are:
-     *  - The connection info is provided by partner and not editable in DTS UI
-     *    which is different from the immutable parameter. It will be confusing to
-     *    add another boolean to DataSourceParameter to differentiate them.
-     *  - The connection info can be any arbitrary key-value pairs. Adding them to
-     *    params fields requires partner to provide definition for them in data
-     *    source definition. It will be friendlier to avoid that for partners.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Struct partner_connection_info = 23;</code>
-     */
-    private $partner_connection_info = null;
 
     /**
      * Constructor.
@@ -209,22 +185,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           Deprecated. Unique ID of the user on whose behalf transfer is done.
      *     @type string $dataset_region
      *           Output only. Region in which BigQuery dataset is located.
-     *     @type string $partner_token
-     *           A unique identifier used for identifying a transfer setup stored on
-     *           external partner side. The token is opaque to DTS and can only be
-     *           interpreted by partner. Partner data source should create a mapping between
-     *           the config id and the token to validate that a transfer config/run is
-     *           legitimate.
-     *     @type \Google\Protobuf\Struct $partner_connection_info
-     *           Transfer settings managed by partner data sources. It is stored as
-     *           key-value pairs and used for DTS UI display purpose only. Two reasons we
-     *           don't want to store them together with 'params' are:
-     *            - The connection info is provided by partner and not editable in DTS UI
-     *              which is different from the immutable parameter. It will be confusing to
-     *              add another boolean to DataSourceParameter to differentiate them.
-     *            - The connection info can be any arbitrary key-value pairs. Adding them to
-     *              params fields requires partner to provide definition for them in data
-     *              source definition. It will be friendlier to avoid that for partners.
      * }
      */
     public function __construct($data = NULL) {
@@ -638,82 +598,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dataset_region = $var;
-
-        return $this;
-    }
-
-    /**
-     * A unique identifier used for identifying a transfer setup stored on
-     * external partner side. The token is opaque to DTS and can only be
-     * interpreted by partner. Partner data source should create a mapping between
-     * the config id and the token to validate that a transfer config/run is
-     * legitimate.
-     *
-     * Generated from protobuf field <code>string partner_token = 22;</code>
-     * @return string
-     */
-    public function getPartnerToken()
-    {
-        return $this->partner_token;
-    }
-
-    /**
-     * A unique identifier used for identifying a transfer setup stored on
-     * external partner side. The token is opaque to DTS and can only be
-     * interpreted by partner. Partner data source should create a mapping between
-     * the config id and the token to validate that a transfer config/run is
-     * legitimate.
-     *
-     * Generated from protobuf field <code>string partner_token = 22;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setPartnerToken($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->partner_token = $var;
-
-        return $this;
-    }
-
-    /**
-     * Transfer settings managed by partner data sources. It is stored as
-     * key-value pairs and used for DTS UI display purpose only. Two reasons we
-     * don't want to store them together with 'params' are:
-     *  - The connection info is provided by partner and not editable in DTS UI
-     *    which is different from the immutable parameter. It will be confusing to
-     *    add another boolean to DataSourceParameter to differentiate them.
-     *  - The connection info can be any arbitrary key-value pairs. Adding them to
-     *    params fields requires partner to provide definition for them in data
-     *    source definition. It will be friendlier to avoid that for partners.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Struct partner_connection_info = 23;</code>
-     * @return \Google\Protobuf\Struct
-     */
-    public function getPartnerConnectionInfo()
-    {
-        return $this->partner_connection_info;
-    }
-
-    /**
-     * Transfer settings managed by partner data sources. It is stored as
-     * key-value pairs and used for DTS UI display purpose only. Two reasons we
-     * don't want to store them together with 'params' are:
-     *  - The connection info is provided by partner and not editable in DTS UI
-     *    which is different from the immutable parameter. It will be confusing to
-     *    add another boolean to DataSourceParameter to differentiate them.
-     *  - The connection info can be any arbitrary key-value pairs. Adding them to
-     *    params fields requires partner to provide definition for them in data
-     *    source definition. It will be friendlier to avoid that for partners.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Struct partner_connection_info = 23;</code>
-     * @param \Google\Protobuf\Struct $var
-     * @return $this
-     */
-    public function setPartnerConnectionInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
-        $this->partner_connection_info = $var;
 
         return $this;
     }

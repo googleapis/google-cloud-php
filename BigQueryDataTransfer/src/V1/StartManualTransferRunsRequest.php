@@ -22,12 +22,6 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
-    /**
-     * User labels to add to the backfilled runs.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     */
-    private $labels;
     protected $time;
 
     /**
@@ -39,8 +33,6 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Transfer configuration name in the form:
      *           `projects/{project_id}/transferConfigs/{config_id}`.
-     *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           User labels to add to the backfilled runs.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange $requested_time_range
      *           Time range for the transfer runs that should be started.
      *     @type \Google\Protobuf\Timestamp $requested_run_time
@@ -77,32 +69,6 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
-
-        return $this;
-    }
-
-    /**
-     * User labels to add to the backfilled runs.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     * @return \Google\Protobuf\Internal\MapField
-     */
-    public function getLabels()
-    {
-        return $this->labels;
-    }
-
-    /**
-     * User labels to add to the backfilled runs.
-     *
-     * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
-     * @return $this
-     */
-    public function setLabels($var)
-    {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->labels = $arr;
 
         return $this;
     }

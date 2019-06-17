@@ -41,12 +41,9 @@ use Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataSource;
 use Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferRunRequest;
-use Google\Cloud\BigQuery\DataTransfer\V1\EnableDataTransferServiceRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\GetTransferConfigRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\GetTransferRunRequest;
-use Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledRequest;
-use Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest;
@@ -893,8 +890,6 @@ class DataTransferServiceGapicClient
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type array $labels
-     *          User labels to add to the scheduled runs.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -913,9 +908,6 @@ class DataTransferServiceGapicClient
         $request->setParent($parent);
         $request->setStartTime($startTime);
         $request->setEndTime($endTime);
-        if (isset($optionalArgs['labels'])) {
-            $request->setLabels($optionalArgs['labels']);
-        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
@@ -1292,8 +1284,6 @@ class DataTransferServiceGapicClient
      *     @type string $parent
      *          Transfer configuration name in the form:
      *          `projects/{project_id}/transferConfigs/{config_id}`.
-     *     @type array $labels
-     *          User labels to add to the backfilled runs.
      *     @type TimeRange $requestedTimeRange
      *          Time range for the transfer runs that should be started.
      *     @type Timestamp $requestedRunTime
@@ -1317,9 +1307,6 @@ class DataTransferServiceGapicClient
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
         }
-        if (isset($optionalArgs['labels'])) {
-            $request->setLabels($optionalArgs['labels']);
-        }
         if (isset($optionalArgs['requestedTimeRange'])) {
             $request->setRequestedTimeRange($optionalArgs['requestedTimeRange']);
         }
@@ -1337,113 +1324,6 @@ class DataTransferServiceGapicClient
         return $this->startCall(
             'StartManualTransferRuns',
             StartManualTransferRunsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Enables data transfer service for a given project. This
-     * method requires the additional scope of
-     * 'https://www.googleapis.com/auth/cloudplatformprojects'
-     * to manage the cloud project permissions.
-     *
-     * Sample code:
-     * ```
-     * $dataTransferServiceClient = new DataTransferServiceClient();
-     * try {
-     *     $dataTransferServiceClient->enableDataTransferService();
-     * } finally {
-     *     $dataTransferServiceClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type string $name
-     *          The name of the project resource in the form:
-     *          `projects/{project_id}`
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function enableDataTransferService(array $optionalArgs = [])
-    {
-        $request = new EnableDataTransferServiceRequest();
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'EnableDataTransferService',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Returns true if data transfer is enabled for a project.
-     *
-     * Sample code:
-     * ```
-     * $dataTransferServiceClient = new DataTransferServiceClient();
-     * try {
-     *     $response = $dataTransferServiceClient->isDataTransferServiceEnabled();
-     * } finally {
-     *     $dataTransferServiceClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type string $name
-     *          The name of the project resource in the form:
-     *          `projects/{project_id}`
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\IsDataTransferServiceEnabledResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function isDataTransferServiceEnabled(array $optionalArgs = [])
-    {
-        $request = new IsDataTransferServiceEnabledRequest();
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'IsDataTransferServiceEnabled',
-            IsDataTransferServiceEnabledResponse::class,
             $optionalArgs,
             $request
         )->wait();

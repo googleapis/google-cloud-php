@@ -252,37 +252,6 @@ return [
                     ],
                 ],
             ],
-            'EnableDataTransferService' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}:enableDataTransferService',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'IsDataTransferServiceEnabled' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}:isDataTransferServiceEnabled',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{name=projects/*}:isEnabled',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
         ],
     ],
 ];
