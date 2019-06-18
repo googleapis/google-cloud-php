@@ -12,11 +12,11 @@
             "nav": [
                 {
                     "title": "WebSecurityScannerClient",
-                    "type": "websecurityscanner\/v1\/websecurityscannerclient"
+                    "type": "websecurityscanner\/v1beta\/websecurityscannerclient"
                 }
             ],
             "patterns": [
-                "securitycenter\/v1\/\\w{1,}"
+                "securitycenter\/v1beta\/\\w{1,}"
             ]
         }
     ],
