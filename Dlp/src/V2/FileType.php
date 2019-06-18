@@ -44,12 +44,20 @@ class FileType
      * Generated from protobuf enum <code>IMAGE = 3;</code>
      */
     const IMAGE = 3;
+    /**
+     * Included file extensions:
+     *   avro
+     *
+     * Generated from protobuf enum <code>AVRO = 7;</code>
+     */
+    const AVRO = 7;
 
     private static $valueToName = [
         self::FILE_TYPE_UNSPECIFIED => 'FILE_TYPE_UNSPECIFIED',
         self::BINARY_FILE => 'BINARY_FILE',
         self::TEXT_FILE => 'TEXT_FILE',
         self::IMAGE => 'IMAGE',
+        self::AVRO => 'AVRO',
     ];
 
     public static function name($value)

@@ -39,6 +39,10 @@ class BytesType
      * Generated from protobuf enum <code>TEXT_UTF8 = 5;</code>
      */
     const TEXT_UTF8 = 5;
+    /**
+     * Generated from protobuf enum <code>AVRO = 11;</code>
+     */
+    const AVRO = 11;
 
     private static $valueToName = [
         self::BYTES_TYPE_UNSPECIFIED => 'BYTES_TYPE_UNSPECIFIED',
@@ -48,6 +52,7 @@ class BytesType
         self::IMAGE_PNG => 'IMAGE_PNG',
         self::IMAGE_SVG => 'IMAGE_SVG',
         self::TEXT_UTF8 => 'TEXT_UTF8',
+        self::AVRO => 'AVRO',
     ];
 
     public static function name($value)
