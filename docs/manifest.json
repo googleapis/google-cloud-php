@@ -222,6 +222,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "0.11.1",
                 "v0.11.0",
                 "v0.10.4",
                 "v0.10.3",
@@ -578,6 +579,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "0.20.0",
                 "v0.19.0",
                 "v0.18.4",
                 "v0.18.3",
@@ -775,6 +777,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "1.4.0",
                 "v1.3.5",
                 "v1.3.4",
                 "v1.3.3",
