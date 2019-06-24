@@ -53,17 +53,17 @@ use Google\LongRunning\Operation;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $speechClient = new SpeechClient();
+ * $speechClient = new Google\Cloud\Speech\V1p1beta1\SpeechClient();
  * try {
- *     $encoding = AudioEncoding::FLAC;
+ *     $encoding = Google\Cloud\Speech\V1p1beta1\RecognitionConfig\AudioEncoding::FLAC;
  *     $sampleRateHertz = 44100;
  *     $languageCode = 'en-US';
- *     $config = new RecognitionConfig();
+ *     $config = new Google\Cloud\Speech\V1p1beta1\RecognitionConfig();
  *     $config->setEncoding($encoding);
  *     $config->setSampleRateHertz($sampleRateHertz);
  *     $config->setLanguageCode($languageCode);
  *     $uri = 'gs://bucket_name/file_name.flac';
- *     $audio = new RecognitionAudio();
+ *     $audio = new Google\Cloud\Speech\V1p1beta1\RecognitionAudio();
  *     $audio->setUri($uri);
  *     $response = $speechClient->recognize($config, $audio);
  * } finally {
@@ -225,17 +225,17 @@ class SpeechGapicClient
      *
      * Sample code:
      * ```
-     * $speechClient = new SpeechClient();
+     * $speechClient = new Google\Cloud\Speech\V1p1beta1\SpeechClient();
      * try {
-     *     $encoding = AudioEncoding::FLAC;
+     *     $encoding = Google\Cloud\Speech\V1p1beta1\RecognitionConfig\AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
      *     $languageCode = 'en-US';
-     *     $config = new RecognitionConfig();
+     *     $config = new Google\Cloud\Speech\V1p1beta1\RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRateHertz($sampleRateHertz);
      *     $config->setLanguageCode($languageCode);
      *     $uri = 'gs://bucket_name/file_name.flac';
-     *     $audio = new RecognitionAudio();
+     *     $audio = new Google\Cloud\Speech\V1p1beta1\RecognitionAudio();
      *     $audio->setUri($uri);
      *     $response = $speechClient->recognize($config, $audio);
      * } finally {
@@ -283,17 +283,17 @@ class SpeechGapicClient
      *
      * Sample code:
      * ```
-     * $speechClient = new SpeechClient();
+     * $speechClient = new Google\Cloud\Speech\V1p1beta1\SpeechClient();
      * try {
-     *     $encoding = AudioEncoding::FLAC;
+     *     $encoding = Google\Cloud\Speech\V1p1beta1\RecognitionConfig\AudioEncoding::FLAC;
      *     $sampleRateHertz = 44100;
      *     $languageCode = 'en-US';
-     *     $config = new RecognitionConfig();
+     *     $config = new Google\Cloud\Speech\V1p1beta1\RecognitionConfig();
      *     $config->setEncoding($encoding);
      *     $config->setSampleRateHertz($sampleRateHertz);
      *     $config->setLanguageCode($languageCode);
      *     $uri = 'gs://bucket_name/file_name.flac';
-     *     $audio = new RecognitionAudio();
+     *     $audio = new Google\Cloud\Speech\V1p1beta1\RecognitionAudio();
      *     $audio->setUri($uri);
      *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
      *     $operationResponse->pollUntilComplete();
@@ -367,9 +367,9 @@ class SpeechGapicClient
      *
      * Sample code:
      * ```
-     * $speechClient = new SpeechClient();
+     * $speechClient = new Google\Cloud\Speech\V1p1beta1\SpeechClient();
      * try {
-     *     $request = new StreamingRecognizeRequest();
+     *     $request = new Google\Cloud\Speech\V1p1beta1\StreamingRecognizeRequest();
      *     // Write all requests to the server, then read all responses until the
      *     // stream is complete
      *     $requests = [$request];
