@@ -56,14 +56,27 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2018')
 
-# Use new namespace in the doc sample. See
-# https://github.com/googleapis/gapic-generator/issues/2141
-s.replace(
-    'src/*/Gapic/SpeechGapicClient.php',
-    r'RecognitionConfig_AudioEncoding',
-    r'RecognitionConfig\\AudioEncoding')
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# Fix class references in gapic samples
+for version in ['V1', 'V1p1beta1']:
+    pathExpr = 'src/' + version + '/Gapic/SpeechGapicClient.php'
+
+    types = {
+        'new SpeechClient': r'new Google\\Cloud\\Speech\\' + version + r'\\SpeechClient',
+        '= AudioEncoding::': r'= Google\\Cloud\\Speech\\' + version + r'\\RecognitionConfig\\AudioEncoding::',
+        'new RecognitionConfig': r'new Google\\Cloud\\Speech\\' + version + r'\\RecognitionConfig',
+        'new RecognitionAudio': r'new Google\\Cloud\\Speech\\' + version + r'\\RecognitionAudio',
+        'new StreamingRecognizeRequest': r'new Google\\Cloud\\Speech\\' + version + r'\\StreamingRecognizeRequest',
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)

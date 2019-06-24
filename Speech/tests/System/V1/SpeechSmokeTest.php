@@ -26,7 +26,7 @@ use Google\Cloud\Speech\V1\SpeechClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
-use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
+use Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding;
 
 /**
  * @group speech
@@ -42,7 +42,7 @@ class SpeechSmokeTest extends GeneratedTest
         $speechClient = new SpeechClient();
         $languageCode = 'en-US';
         $sampleRateHertz = 44100;
-        $encoding = RecognitionConfig_AudioEncoding::FLAC;
+        $encoding = AudioEncoding::FLAC;
         $config = new RecognitionConfig();
         $config->setLanguageCode($languageCode);
         $config->setSampleRateHertz($sampleRateHertz);
