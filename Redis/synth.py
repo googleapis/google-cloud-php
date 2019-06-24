@@ -70,9 +70,24 @@ s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
-# Use new namespace in the doc sample. See
-# https://github.com/googleapis/gapic-generator/issues/2141
-s.replace(
-    'src/**/Gapic/CloudRedisGapicClient.php',
-    r'Instance_Tier',
-    'Tier')
+
+# Fix class references in gapic samples
+for version in ['V1', 'V1beta1']:
+    pathExpr = 'src/' + version + '/Gapic/CloudRedisGapicClient.php'
+
+    types = {
+        'new CloudRedisClient': r'new Google\\Cloud\\Redis\\'+ version + r'\\CloudRedisClient',
+        'new Instance': r'new Google\\Cloud\\Redis\\' + version + r'\\Instance',
+        '= Tier::': r'= Google\\Cloud\\Redis\\' + version + r'\\Instance\\Tier::',
+        'new FieldMask': r'new Google\\Protobuf\\FieldMask',
+        'new InputConfig': r'new Google\\Cloud\\Redis\\' + version + r'\\InputConfig',
+        'new OutputConfig': r'new Google\\Cloud\\Redis\\' + version + r'\\OutputConfig',
+        '= DataProtectionMode': r'= Google\\Cloud\\Redis\\' + version + r'\\FailoverInstanceRequest\\DataProtectionMode::'
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+        )

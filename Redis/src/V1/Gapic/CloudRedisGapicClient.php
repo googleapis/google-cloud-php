@@ -74,7 +74,7 @@ use Google\Protobuf\FieldMask;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $cloudRedisClient = new CloudRedisClient();
+ * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
  * try {
  *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
  *     // Iterate over pages of elements
@@ -376,7 +376,7 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
@@ -458,7 +458,7 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
      *     $response = $cloudRedisClient->getInstance($formattedName);
@@ -521,13 +521,13 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
      *     $instanceId = 'test_instance';
-     *     $tier = Tier::BASIC;
+     *     $tier = Google\Cloud\Redis\V1\Instance\Tier::BASIC;
      *     $memorySizeGb = 1;
-     *     $instance = new Instance();
+     *     $instance = new Google\Cloud\Redis\V1\Instance();
      *     $instance->setTier($tier);
      *     $instance->setMemorySizeGb($memorySizeGb);
      *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
@@ -622,15 +622,15 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $pathsElement = 'display_name';
      *     $pathsElement2 = 'memory_size_gb';
      *     $paths = [$pathsElement, $pathsElement2];
-     *     $updateMask = new FieldMask();
+     *     $updateMask = new Google\Protobuf\FieldMask();
      *     $updateMask->setPaths($paths);
      *     $displayName = ' instance.memory_size_gb=4';
-     *     $instance = new Instance();
+     *     $instance = new Google\Cloud\Redis\V1\Instance();
      *     $instance->setDisplayName($displayName);
      *     $operationResponse = $cloudRedisClient->updateInstance($updateMask, $instance);
      *     $operationResponse->pollUntilComplete();
@@ -724,10 +724,10 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $inputConfig = new InputConfig();
+     *     $inputConfig = new Google\Cloud\Redis\V1\InputConfig();
      *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -812,10 +812,10 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $outputConfig = new OutputConfig();
+     *     $outputConfig = new Google\Cloud\Redis\V1\OutputConfig();
      *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -896,10 +896,10 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $dataProtectionMode = DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
+     *     $dataProtectionMode = Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode::::DATA_PROTECTION_MODE_UNSPECIFIED;
      *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -982,7 +982,7 @@ class CloudRedisGapicClient
      *
      * Sample code:
      * ```
-     * $cloudRedisClient = new CloudRedisClient();
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
      *     $operationResponse = $cloudRedisClient->deleteInstance($formattedName);
