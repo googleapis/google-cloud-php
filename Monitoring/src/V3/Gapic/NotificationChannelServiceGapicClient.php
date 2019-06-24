@@ -57,7 +57,7 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+ * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
  * try {
  *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
@@ -344,7 +344,7 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -433,7 +433,7 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
      *     $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($formattedName);
@@ -484,7 +484,7 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -593,7 +593,7 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
      *     $response = $notificationChannelServiceClient->getNotificationChannel($formattedName);
@@ -645,10 +645,10 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
-     *     $notificationChannel = new NotificationChannel();
+     *     $notificationChannel = new Google\Cloud\Monitoring\V3\NotificationChannel();
      *     $response = $notificationChannelServiceClient->createNotificationChannel($formattedName, $notificationChannel);
      * } finally {
      *     $notificationChannelServiceClient->close();
@@ -706,9 +706,9 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $notificationChannel = new NotificationChannel();
+     *     $notificationChannel = new Google\Cloud\Monitoring\V3\NotificationChannel();
      *     $response = $notificationChannelServiceClient->updateNotificationChannel($notificationChannel);
      * } finally {
      *     $notificationChannelServiceClient->close();
@@ -764,7 +764,7 @@ class NotificationChannelServiceGapicClient
      *
      * Sample code:
      * ```
-     * $notificationChannelServiceClient = new NotificationChannelServiceClient();
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
      *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
      *     $notificationChannelServiceClient->deleteNotificationChannel($formattedName);

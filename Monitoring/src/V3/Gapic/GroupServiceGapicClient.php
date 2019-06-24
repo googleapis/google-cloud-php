@@ -65,7 +65,7 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $groupServiceClient = new GroupServiceClient();
+ * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
  * try {
  *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
@@ -321,7 +321,7 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -426,7 +426,7 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $response = $groupServiceClient->getGroup($formattedName);
@@ -477,10 +477,10 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
-     *     $group = new Group();
+     *     $group = new Google\Cloud\Monitoring\V3\Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
      * } finally {
      *     $groupServiceClient->close();
@@ -538,9 +538,9 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $group = new Group();
+     *     $group = new Google\Cloud\Monitoring\V3\Group();
      *     $response = $groupServiceClient->updateGroup($group);
      * } finally {
      *     $groupServiceClient->close();
@@ -594,7 +594,7 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     $groupServiceClient->deleteGroup($formattedName);
@@ -643,7 +643,7 @@ class GroupServiceGapicClient
      *
      * Sample code:
      * ```
-     * $groupServiceClient = new GroupServiceClient();
+     * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
      *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
      *     // Iterate over pages of elements

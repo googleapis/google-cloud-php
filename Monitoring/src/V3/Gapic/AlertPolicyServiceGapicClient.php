@@ -60,7 +60,7 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $alertPolicyServiceClient = new AlertPolicyServiceClient();
+ * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
  * try {
  *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
@@ -348,7 +348,7 @@ class AlertPolicyServiceGapicClient
      *
      * Sample code:
      * ```
-     * $alertPolicyServiceClient = new AlertPolicyServiceClient();
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
      *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -455,7 +455,7 @@ class AlertPolicyServiceGapicClient
      *
      * Sample code:
      * ```
-     * $alertPolicyServiceClient = new AlertPolicyServiceClient();
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
      *     $formattedName = $alertPolicyServiceClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
      *     $response = $alertPolicyServiceClient->getAlertPolicy($formattedName);
@@ -507,10 +507,10 @@ class AlertPolicyServiceGapicClient
      *
      * Sample code:
      * ```
-     * $alertPolicyServiceClient = new AlertPolicyServiceClient();
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
      *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
-     *     $alertPolicy = new AlertPolicy();
+     *     $alertPolicy = new Google\Cloud\Monitoring\V3\AlertPolicy();
      *     $response = $alertPolicyServiceClient->createAlertPolicy($formattedName, $alertPolicy);
      * } finally {
      *     $alertPolicyServiceClient->close();
@@ -569,7 +569,7 @@ class AlertPolicyServiceGapicClient
      *
      * Sample code:
      * ```
-     * $alertPolicyServiceClient = new AlertPolicyServiceClient();
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
      *     $formattedName = $alertPolicyServiceClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
      *     $alertPolicyServiceClient->deleteAlertPolicy($formattedName);
@@ -624,9 +624,9 @@ class AlertPolicyServiceGapicClient
      *
      * Sample code:
      * ```
-     * $alertPolicyServiceClient = new AlertPolicyServiceClient();
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $alertPolicy = new AlertPolicy();
+     *     $alertPolicy = new Google\Cloud\Monitoring\V3\AlertPolicy();
      *     $response = $alertPolicyServiceClient->updateAlertPolicy($alertPolicy);
      * } finally {
      *     $alertPolicyServiceClient->close();
