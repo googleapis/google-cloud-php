@@ -57,9 +57,9 @@ use Google\Cloud\Language\V1\EncodingType;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $languageServiceClient = new LanguageServiceClient();
+ * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
  * try {
- *     $document = new Document();
+ *     $document = new Google\Cloud\Language\V1\Document();
  *     $response = $languageServiceClient->analyzeSentiment($document);
  * } finally {
  *     $languageServiceClient->close();
@@ -182,9 +182,9 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
-     * $languageServiceClient = new LanguageServiceClient();
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
      * try {
-     *     $document = new Document();
+     *     $document = new Google\Cloud\Language\V1\Document();
      *     $response = $languageServiceClient->analyzeSentiment($document);
      * } finally {
      *     $languageServiceClient->close();
@@ -233,9 +233,9 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
-     * $languageServiceClient = new LanguageServiceClient();
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
      * try {
-     *     $document = new Document();
+     *     $document = new Google\Cloud\Language\V1\Document();
      *     $response = $languageServiceClient->analyzeEntities($document);
      * } finally {
      *     $languageServiceClient->close();
@@ -283,9 +283,9 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
-     * $languageServiceClient = new LanguageServiceClient();
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
      * try {
-     *     $document = new Document();
+     *     $document = new Google\Cloud\Language\V1\Document();
      *     $response = $languageServiceClient->analyzeEntitySentiment($document);
      * } finally {
      *     $languageServiceClient->close();
@@ -334,9 +334,9 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
-     * $languageServiceClient = new LanguageServiceClient();
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
      * try {
-     *     $document = new Document();
+     *     $document = new Google\Cloud\Language\V1\Document();
      *     $response = $languageServiceClient->analyzeSyntax($document);
      * } finally {
      *     $languageServiceClient->close();
@@ -383,9 +383,9 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
-     * $languageServiceClient = new LanguageServiceClient();
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
      * try {
-     *     $document = new Document();
+     *     $document = new Google\Cloud\Language\V1\Document();
      *     $response = $languageServiceClient->classifyText($document);
      * } finally {
      *     $languageServiceClient->close();
@@ -427,10 +427,10 @@ class LanguageServiceGapicClient
      *
      * Sample code:
      * ```
-     * $languageServiceClient = new LanguageServiceClient();
+     * $languageServiceClient = new Google\Cloud\Language\V1\LanguageServiceClient();
      * try {
-     *     $document = new Document();
-     *     $features = new Features();
+     *     $document = new Google\Cloud\Language\V1\Document();
+     *     $features = new Google\Cloud\Language\V1\AnnotateTextRequest\Features();
      *     $response = $languageServiceClient->annotateText($document, $features);
      * } finally {
      *     $languageServiceClient->close();

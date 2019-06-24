@@ -58,8 +58,19 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2019')
 
-# Use new namespaces
-s.replace(
-    'src/*/Gapic/LanguageServiceGapicClient.php',
-    r'AnnotateTextRequest_Features',
-    r'AnnotateTextRequest\\Features')
+# Fix class references in gapic samples
+for version in ['V1', 'V1beta2']:
+    pathExpr = 'src/' + version + '/Gapic/LanguageServiceGapicClient.php'
+
+    types = {
+        'new LanguageServiceClient': r'new Google\\Cloud\\Language\\'+ version + r'\\LanguageServiceClient',
+        'new Document': r'new Google\\Cloud\\Language\\'+ version + r'\\Document',
+        'new Features': r'new Google\\Cloud\\Language\\'+ version + r'\\AnnotateTextRequest\\Features',
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)
