@@ -77,11 +77,11 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+ * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
  * try {
  *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
  *     $instanceId = '';
- *     $instance = new Instance();
+ *     $instance = new Google\Cloud\Bigtable\Admin\V2\Instance();
  *     $clusters = [];
  *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
  *     $operationResponse->pollUntilComplete();
@@ -486,11 +486,11 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
      *     $instanceId = '';
-     *     $instance = new Instance();
+     *     $instance = new Google\Cloud\Bigtable\Admin\V2\Instance();
      *     $clusters = [];
      *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
      *     $operationResponse->pollUntilComplete();
@@ -581,7 +581,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $bigtableInstanceAdminClient->getInstance($formattedName);
@@ -632,7 +632,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
      *     $response = $bigtableInstanceAdminClient->listInstances($formattedParent);
@@ -688,11 +688,11 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $displayName = '';
-     *     $type = Type::TYPE_UNSPECIFIED;
+     *     $type = Google\Cloud\Bigtable\Admin\V2\Instance\Type::TYPE_UNSPECIFIED;
      *     $labels = [];
      *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {
@@ -769,10 +769,10 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $instance = new Instance();
-     *     $updateMask = new FieldMask();
+     *     $instance = new Google\Cloud\Bigtable\Admin\V2\Instance();
+     *     $updateMask = new Google\Protobuf\FieldMask();
      *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -851,7 +851,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $bigtableInstanceAdminClient->deleteInstance($formattedName);
@@ -900,11 +900,11 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $clusterId = '';
-     *     $cluster = new Cluster();
+     *     $cluster = new Google\Cloud\Bigtable\Admin\V2\Cluster();
      *     $operationResponse = $bigtableInstanceAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -989,7 +989,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $response = $bigtableInstanceAdminClient->getCluster($formattedName);
@@ -1040,7 +1040,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $bigtableInstanceAdminClient->listClusters($formattedParent);
@@ -1098,7 +1098,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $serveNodes = 0;
@@ -1173,7 +1173,7 @@ class BigtableInstanceAdminGapicClient
      */
     public function updateCluster($name, $serveNodes, array $optionalArgs = [])
     {
-        $request = new Cluster();
+        $request = new Google\Cloud\Bigtable\Admin\V2\Cluster();
         $request->setName($name);
         $request->setServeNodes($serveNodes);
         if (isset($optionalArgs['location'])) {
@@ -1206,7 +1206,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $bigtableInstanceAdminClient->deleteCluster($formattedName);
@@ -1255,11 +1255,11 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $appProfileId = '';
-     *     $appProfile = new AppProfile();
+     *     $appProfile = new Google\Cloud\Bigtable\Admin\V2\AppProfile();
      *     $response = $bigtableInstanceAdminClient->createAppProfile($formattedParent, $appProfileId, $appProfile);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
@@ -1321,7 +1321,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
      *     $response = $bigtableInstanceAdminClient->getAppProfile($formattedName);
@@ -1372,7 +1372,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
@@ -1455,10 +1455,10 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $appProfile = new AppProfile();
-     *     $updateMask = new FieldMask();
+     *     $appProfile = new Google\Cloud\Bigtable\Admin\V2\AppProfile();
+     *     $updateMask = new Google\Protobuf\FieldMask();
      *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -1542,7 +1542,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
      *     $ignoreWarnings = false;
@@ -1595,7 +1595,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $response = $bigtableInstanceAdminClient->getIamPolicy($formattedResource);
@@ -1647,10 +1647,10 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     $policy = new Policy();
+     *     $policy = new Google\Cloud\Iam\V1\Policy();
      *     $response = $bigtableInstanceAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
@@ -1704,7 +1704,7 @@ class BigtableInstanceAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableInstanceAdminClient = new BigtableInstanceAdminClient();
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $formattedResource = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $permissions = [];

@@ -74,11 +74,11 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $bigtableTableAdminClient = new BigtableTableAdminClient();
+ * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
  * try {
  *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     $tableId = '';
- *     $table = new Table();
+ *     $table = new Google\Cloud\Bigtable\Admin\V2\Table();
  *     $response = $bigtableTableAdminClient->createTable($formattedParent, $tableId, $table);
  * } finally {
  *     $bigtableTableAdminClient->close();
@@ -432,11 +432,11 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
-     *     $table = new Table();
+     *     $table = new Google\Cloud\Bigtable\Admin\V2\Table();
      *     $response = $bigtableTableAdminClient->createTable($formattedParent, $tableId, $table);
      * } finally {
      *     $bigtableTableAdminClient->close();
@@ -517,7 +517,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
@@ -606,7 +606,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
@@ -693,7 +693,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $response = $bigtableTableAdminClient->getTable($formattedName);
@@ -752,7 +752,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $bigtableTableAdminClient->deleteTable($formattedName);
@@ -805,7 +805,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $modifications = [];
@@ -865,7 +865,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $bigtableTableAdminClient->dropRowRange($formattedName);
@@ -929,7 +929,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $response = $bigtableTableAdminClient->generateConsistencyToken($formattedName);
@@ -983,7 +983,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $consistencyToken = '';
@@ -1045,7 +1045,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $cluster = '';
@@ -1153,7 +1153,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
      *     $response = $bigtableTableAdminClient->getSnapshot($formattedName);
@@ -1211,7 +1211,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     // Iterate over pages of elements
@@ -1301,7 +1301,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
      *     $bigtableTableAdminClient->deleteSnapshot($formattedName);

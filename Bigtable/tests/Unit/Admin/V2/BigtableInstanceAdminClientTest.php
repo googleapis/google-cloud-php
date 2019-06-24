@@ -46,7 +46,8 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group bigtable-admin
+ * @group bigtable
+ * bigtable-admin
  * @group gapic
  */
 class BigtableInstanceAdminClientTest extends GeneratedTest

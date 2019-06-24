@@ -61,7 +61,7 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $bigtableClient = new BigtableClient();
+ * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
  * try {
  *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
  *     // Read all responses until the stream is complete
@@ -286,7 +286,7 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableClient = new BigtableClient();
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
@@ -366,7 +366,7 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableClient = new BigtableClient();
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
@@ -427,7 +427,7 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableClient = new BigtableClient();
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
@@ -495,7 +495,7 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableClient = new BigtableClient();
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $entries = [];
@@ -560,7 +560,7 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableClient = new BigtableClient();
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
@@ -652,7 +652,7 @@ class BigtableGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableClient = new BigtableClient();
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
      *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '';
