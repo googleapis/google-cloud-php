@@ -61,7 +61,7 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+ * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
  * try {
  *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
@@ -318,7 +318,7 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
-     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
      *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -399,7 +399,7 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
-     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
      *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
      *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig($formattedName);
@@ -450,10 +450,10 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
-     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
      *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
-     *     $uptimeCheckConfig = new UptimeCheckConfig();
+     *     $uptimeCheckConfig = new Google\Cloud\Monitoring\V3\UptimeCheckConfig();
      *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
      * } finally {
      *     $uptimeCheckServiceClient->close();
@@ -507,9 +507,9 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
-     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $uptimeCheckConfig = new UptimeCheckConfig();
+     *     $uptimeCheckConfig = new Google\Cloud\Monitoring\V3\UptimeCheckConfig();
      *     $response = $uptimeCheckServiceClient->updateUptimeCheckConfig($uptimeCheckConfig);
      * } finally {
      *     $uptimeCheckServiceClient->close();
@@ -577,7 +577,7 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
-     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
      *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
      *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($formattedName);
@@ -626,7 +626,7 @@ class UptimeCheckServiceGapicClient
      *
      * Sample code:
      * ```
-     * $uptimeCheckServiceClient = new UptimeCheckServiceClient();
+     * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
      *     // Iterate over pages of elements
      *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckIps();

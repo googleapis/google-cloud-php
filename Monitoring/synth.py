@@ -49,6 +49,7 @@ for client in ['GroupService', 'MetricService', 'UptimeCheckService']:
         f'**/V3/{client}Client.php',
         r'Copyright \d{4}',
         'Copyright 2017')
+
 for client in ['AlertPolicyService', 'NotificationChannelService']:
     s.replace(
         f'**/Gapic/{client}GapicClient.php',
@@ -58,13 +59,30 @@ for client in ['AlertPolicyService', 'NotificationChannelService']:
         f'**/V3/{client}Client.php',
         r'Copyright \d{4}',
         'Copyright 2018')
+
 s.replace(
     'tests/**/V3/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
 
-# Use new namespaces
-s.replace(
-    'src/V3/Gapic/MetricServiceGapicClient.php',
-    r'ListTimeSeriesRequest_TimeSeriesView',
-    'ListTimeSeriesRequest\\TimeSeriesView')
+# Fix class references in gapic samples
+for version in ['V3']:
+    pathExpr = 'src/' + version + '/Gapic/*GapicClient.php'
+
+    types = {
+        '= new Alert': r'= new Google\\Cloud\\Monitoring\\'+ version + r'\\Alert',
+        '= new Group': r'= new Google\\Cloud\\Monitoring\\'+ version + r'\\Group',
+        '= new Metric': r'= new Google\\Cloud\\Monitoring\\'+ version + r'\\Metric',
+        '= new TimeInterval': r'= new Google\\Cloud\\Monitoring\\'+ version + r'\\TimeInterval',
+        '= TimeSeriesView::': r'= Google\\Cloud\\Monitoring\\'+ version + r'\\ListTimeSeriesRequest\\TimeSeriesView::',
+        '= new Notification': r'= new Google\\Cloud\\Monitoring\\'+ version + r'\\Notification',
+        '= new UptimeCheck': r'= new Google\\Cloud\\Monitoring\\'+ version + r'\\UptimeCheck',
+
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)

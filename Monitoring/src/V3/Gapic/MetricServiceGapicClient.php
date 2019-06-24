@@ -62,7 +62,7 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $metricServiceClient = new MetricServiceClient();
+ * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
  * try {
  *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
  *     // Iterate over pages of elements
@@ -349,7 +349,7 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -442,7 +442,7 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
@@ -496,7 +496,7 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
@@ -590,7 +590,7 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
@@ -645,10 +645,10 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     $metricDescriptor = new MetricDescriptor();
+     *     $metricDescriptor = new Google\Cloud\Monitoring\V3\MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
      * } finally {
      *     $metricServiceClient->close();
@@ -701,7 +701,7 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
@@ -753,12 +753,12 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $filter = '';
-     *     $interval = new TimeInterval();
-     *     $view = ListTimeSeriesRequest\TimeSeriesView::FULL;
+     *     $interval = new Google\Cloud\Monitoring\V3\TimeInterval();
+     *     $view = Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView::FULL;
      *     // Iterate over pages of elements
      *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -868,7 +868,7 @@ class MetricServiceGapicClient
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new MetricServiceClient();
+     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
      * try {
      *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
      *     $timeSeries = [];
