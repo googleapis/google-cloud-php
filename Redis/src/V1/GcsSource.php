@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The GCS location for the input content
+ * The Cloud Storage location for the input content
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.GcsSource</code>
  */

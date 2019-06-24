@@ -126,8 +126,48 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Failover the master role to current replica node against a specific
-     * STANDARD tier redis instance.
+     * Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
+     *
+     * Redis may stop serving during this operation. Instance state will be
+     * IMPORTING for entire operation. When complete, the instance will contain
+     * only data from the imported file.
+     *
+     * The returned operation is automatically deleted after a few hours, so
+     * there is no need to call DeleteOperation.
+     * @param \Google\Cloud\Redis\V1\ImportInstanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ImportInstance(\Google\Cloud\Redis\V1\ImportInstanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/ImportInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Export Redis instance data into a Redis RDB format file in Cloud Storage.
+     *
+     * Redis will continue serving during this operation.
+     *
+     * The returned operation is automatically deleted after a few hours, so
+     * there is no need to call DeleteOperation.
+     * @param \Google\Cloud\Redis\V1\ExportInstanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ExportInstance(\Google\Cloud\Redis\V1\ExportInstanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/ExportInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Initiates a failover of the master node to current replica node for a
+     * specific STANDARD tier Cloud Memorystore for Redis instance.
      * @param \Google\Cloud\Redis\V1\FailoverInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

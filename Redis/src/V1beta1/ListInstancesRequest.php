@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
+ * Request for [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.ListInstancesRequest</code>
  */
@@ -19,7 +18,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the instance location using the form:
      *     `projects/{project_id}/locations/{location_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -52,7 +51,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the instance location using the form:
      *               `projects/{project_id}/locations/{location_id}`
-     *           where `location_id` refers to a GCP region
+     *           where `location_id` refers to a GCP region.
      *     @type int $page_size
      *           The maximum number of items to return.
      *           If not specified, a default value of 1000 will be used by the service.
@@ -73,7 +72,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the instance location using the form:
      *     `projects/{project_id}/locations/{location_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -86,7 +85,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the instance location using the form:
      *     `projects/{project_id}/locations/{location_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [DeleteInstance][google.cloud.redis.v1beta1.CloudRedis.DeleteInstance].
+ * Request for [DeleteInstance][google.cloud.redis.v1beta1.CloudRedis.DeleteInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.DeleteInstanceRequest</code>
  */
@@ -19,7 +18,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -34,7 +33,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Redis instance resource name using the form:
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *           where `location_id` refers to a GCP region
+     *           where `location_id` refers to a GCP region.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +44,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -58,7 +57,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis instance resource name using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * where `location_id` refers to a GCP region
+     * where `location_id` refers to a GCP region.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

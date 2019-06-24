@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response for
- * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
+ * Response for [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.ListInstancesResponse</code>
  */
