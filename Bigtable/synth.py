@@ -93,7 +93,7 @@ for version in ['V2']:
         r'\$instance = new Instance': r'$instance = new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Instance',
         '= Type::': r'= Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Instance\\Type::',
         'new FieldMask': r'new Google\\Protobuf\\FieldMask',
-        'new Cluster': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Cluster',
+        r'\$cluster = new Cluster': r'$cluster = new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Cluster',
         'new AppProfile': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\AppProfile',
         'new Policy': r'new Google\\Cloud\\Iam\\V1\\Policy',
         'new BigtableTableAdminClient': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\BigtableTableAdminClient',

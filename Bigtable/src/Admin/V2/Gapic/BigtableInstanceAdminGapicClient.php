@@ -1173,7 +1173,7 @@ class BigtableInstanceAdminGapicClient
      */
     public function updateCluster($name, $serveNodes, array $optionalArgs = [])
     {
-        $request = new Google\Cloud\Bigtable\Admin\V2\Cluster();
+        $request = new Cluster();
         $request->setName($name);
         $request->setServeNodes($serveNodes);
         if (isset($optionalArgs['location'])) {
