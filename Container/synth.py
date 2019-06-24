@@ -52,3 +52,26 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2018')
+
+# Fix class references in gapic samples
+for version in ['V1']:
+    pathExpr = 'src/' + version + '/Gapic/ClusterManagerGapicClient.php'
+
+    types = {
+        'new Cluster': r'new Google\\Cloud\\Container\\'+ version + r'\\Cluster',
+        'new NodePoolAutoscaling': r'new Google\\Cloud\\Container\\'+ version + r'\\NodePoolAutoscaling',
+        'new AddonsConfig': r'new Google\\Cloud\\Container\\'+ version + r'\\AddonsConfig',
+        '= Action::': r'= Google\\Cloud\\Container\\'+ version + r'\\SetMasterAuthRequest\\Action::',
+        'new MasterAuth': r'new Google\\Cloud\\Container\\'+ version + r'\\MasterAuth',
+        'new NodePool': r'new Google\\Cloud\\Container\\'+ version + r'\\NodePool',
+        'new NodeManagement': r'new Google\\Cloud\\Container\\'+ version + r'\\NodeManagement',
+        'new NetworkPolicy': r'new Google\\Cloud\\Container\\'+ version + r'\\NetworkPolicy',
+        'new MaintenancePolicy': r'new Google\\Cloud\\Container\\'+ version + r'\\MaintenancePolicy',
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)
