@@ -112,6 +112,39 @@ class ExponentialBackoffTest extends TestCase
         $this->assertEquals(1, $actualAttempts);
     }
 
+    public function testBackoffChaining()
+    {
+        $retryCount1 = 0;
+        $retryCount2 = 0;
+        $executionCount = 0;
+
+        $backoff = new ExponentialBackoff(2, function($exception) use (&$retryCount1) {
+            $retryCount1++;
+            return $exception instanceof \DomainException;
+        });
+        $backoff->setDelayFunction($this->delayFunction);
+        $backoff2 = new ExponentialBackoff(1, function ($exception) use (&$retryCount2) {
+            $retryCount2++;
+            return $exception instanceof \OutOfRangeException;
+        });
+
+        $backoff->chain($backoff2);
+        $backoff->execute(function() use (&$executionCount) {
+            $executionCount++;
+            if ($executionCount == 1) {
+                throw new \DomainException;
+            }
+            if ($executionCount == 2) {
+                throw new \OutOfRangeException;
+            }
+            return true;
+        });
+
+        $this->assertEquals(2, $retryCount1);
+        $this->assertEquals(1, $retryCount2);
+        $this->assertEquals(3, $executionCount);
+    }
+
     public function testSetsCalculateDelayFunction()
     {
         $backoff = new ExponentialBackoff();

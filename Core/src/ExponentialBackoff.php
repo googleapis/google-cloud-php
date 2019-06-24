@@ -30,6 +30,11 @@ class ExponentialBackoff
     private $retries;
 
     /**
+     * @var callable|null
+     */
+    private $retryFunction;
+
+    /**
      * @var callable
      */
     private $delayFunction;
@@ -40,9 +45,14 @@ class ExponentialBackoff
     private $calcDelayFunction;
 
     /**
-     * @var callable|null
+     * @var int
      */
-    protected $retryFunction;
+    private $retryAttempt = 0;
+
+    /**
+     * @var ExpoentialBackoff|null
+     */
+    private $backoff;
 
     /**
      * @param int $retries [optional] Number of retries for a failed request.
@@ -72,29 +82,58 @@ class ExponentialBackoff
     {
         $delayFunction = $this->delayFunction;
         $calcDelayFunction = $this->calcDelayFunction ?: [$this, 'calculateDelay'];
-        $retryAttempt = 0;
         $exception = null;
 
         while (true) {
             try {
                 return call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
-                if ($this->retryFunction) {
-                    if (!call_user_func($this->retryFunction, $exception)) {
-                        throw $exception;
-                    }
+                if (!$this->shouldRetry($exception)) {
+                    throw $exception;
                 }
 
-                if ($retryAttempt >= $this->retries) {
-                    break;
-                }
-
-                $delayFunction($calcDelayFunction($retryAttempt));
-                $retryAttempt++;
+                $delayFunction($calcDelayFunction($this->retryAttempt));
+                $this->retryAttempt++;
             }
         }
 
         throw $exception;
+    }
+
+    /**
+     * Configure this backoff to call another backoff retry function if this
+     * backoff's retry function returns false.
+     *
+     * @param ExponentialBackoff $backoff
+     * @return null
+     */
+    public function chain(ExponentialBackoff $backoff)
+    {
+        $this->backoff = $backoff;
+    }
+
+    /**
+     * Function which returns bool for whether or not to retry.
+     *
+     * @param Exception $exception
+     * @return bool
+     */
+    protected function shouldRetry(\Exception $exception)
+    {
+        if ($this->retryAttempt < $this->retries) {
+            if (!$this->retryFunction) {
+                return true;
+            }
+            if (call_user_func($this->retryFunction, $exception)) {
+                return true;
+            }
+        }
+
+        if ($this->backoff && $this->backoff->shouldRetry($exception)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
