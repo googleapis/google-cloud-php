@@ -58,6 +58,7 @@ use Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
+use Google\Cloud\Bigtable\Admin\V2\Table\View;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
@@ -73,11 +74,11 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $bigtableTableAdminClient = new BigtableTableAdminClient();
+ * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
  * try {
  *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     $tableId = '';
- *     $table = new Table();
+ *     $table = new Google\Cloud\Bigtable\Admin\V2\Table();
  *     $response = $bigtableTableAdminClient->createTable($formattedParent, $tableId, $table);
  * } finally {
  *     $bigtableTableAdminClient->close();
@@ -431,11 +432,11 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
-     *     $table = new Table();
+     *     $table = new Google\Cloud\Bigtable\Admin\V2\Table();
      *     $response = $bigtableTableAdminClient->createTable($formattedParent, $tableId, $table);
      * } finally {
      *     $bigtableTableAdminClient->close();
@@ -450,7 +451,7 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type CreateTableRequest\Split[] $initialSplits
+     *     @type Split[] $initialSplits
      *          The optional list of row keys that will be used to initially split the
      *          table into several tablets (tablets are similar to HBase regions).
      *          Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -516,7 +517,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $tableId = '';
@@ -605,7 +606,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
@@ -692,7 +693,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $response = $bigtableTableAdminClient->getTable($formattedName);
@@ -751,7 +752,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $bigtableTableAdminClient->deleteTable($formattedName);
@@ -804,7 +805,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $modifications = [];
@@ -814,15 +815,15 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string                                     $name          The unique name of the table whose families should be modified.
-     *                                                                  Values are of the form
-     *                                                                  `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param ModifyColumnFamiliesRequest\Modification[] $modifications Modifications to be atomically applied to the specified table's families.
-     *                                                                  Entries are applied in order, meaning that earlier modifications can be
-     *                                                                  masked by later ones (in the case of repeated updates to the same family,
-     *                                                                  for example).
-     * @param array                                      $optionalArgs  {
-     *                                                                  Optional.
+     * @param string         $name          The unique name of the table whose families should be modified.
+     *                                      Values are of the form
+     *                                      `projects/<project>/instances/<instance>/tables/<table>`.
+     * @param Modification[] $modifications Modifications to be atomically applied to the specified table's families.
+     *                                      Entries are applied in order, meaning that earlier modifications can be
+     *                                      masked by later ones (in the case of repeated updates to the same family,
+     *                                      for example).
+     * @param array          $optionalArgs  {
+     *                                      Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -864,7 +865,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $bigtableTableAdminClient->dropRowRange($formattedName);
@@ -928,7 +929,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $response = $bigtableTableAdminClient->generateConsistencyToken($formattedName);
@@ -982,7 +983,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $consistencyToken = '';
@@ -1044,7 +1045,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $cluster = '';
@@ -1152,7 +1153,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
      *     $response = $bigtableTableAdminClient->getSnapshot($formattedName);
@@ -1210,7 +1211,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedParent = $bigtableTableAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     // Iterate over pages of elements
@@ -1300,7 +1301,7 @@ class BigtableTableAdminGapicClient
      *
      * Sample code:
      * ```
-     * $bigtableTableAdminClient = new BigtableTableAdminClient();
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
      * try {
      *     $formattedName = $bigtableTableAdminClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
      *     $bigtableTableAdminClient->deleteSnapshot($formattedName);

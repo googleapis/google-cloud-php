@@ -198,6 +198,25 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Returns the unboxed value from <code>getFamilyName()</code>
+
+     * The column family name for this chunk of data.  If this message
+     * is not present this CellChunk is a continuation of the same column
+     * family as the previous CellChunk.  The empty string can occur as a
+     * column family name in a response so clients must check
+     * explicitly for the presence of this message, not just for
+     * `family_name.value` being non-empty.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
+     * @return string|null
+     */
+    public function getFamilyNameValue()
+    {
+        $wrapper = $this->getFamilyName();
+        return is_null($wrapper) ? null : $wrapper->getValue();
+    }
+
+    /**
      * The column family name for this chunk of data.  If this message
      * is not present this CellChunk is a continuation of the same column
      * family as the previous CellChunk.  The empty string can occur as a
@@ -218,6 +237,26 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\StringValue object.
+
+     * The column family name for this chunk of data.  If this message
+     * is not present this CellChunk is a continuation of the same column
+     * family as the previous CellChunk.  The empty string can occur as a
+     * column family name in a response so clients must check
+     * explicitly for the presence of this message, not just for
+     * `family_name.value` being non-empty.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
+     * @param string|null $var
+     * @return $this
+     */
+    public function setFamilyNameValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
+        return $this->setFamilyName($wrappedVar);
+    }
+
+    /**
      * The column qualifier for this chunk of data.  If this message
      * is not present, this CellChunk is a continuation of the same column
      * as the previous CellChunk.  Column qualifiers may be empty so
@@ -230,6 +269,24 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     public function getQualifier()
     {
         return $this->qualifier;
+    }
+
+    /**
+     * Returns the unboxed value from <code>getQualifier()</code>
+
+     * The column qualifier for this chunk of data.  If this message
+     * is not present, this CellChunk is a continuation of the same column
+     * as the previous CellChunk.  Column qualifiers may be empty so
+     * clients must check for the presence of this message, not just
+     * for `qualifier.value` being non-empty.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * @return string|null
+     */
+    public function getQualifierValue()
+    {
+        $wrapper = $this->getQualifier();
+        return is_null($wrapper) ? null : $wrapper->getValue();
     }
 
     /**
@@ -249,6 +306,25 @@ class CellChunk extends \Google\Protobuf\Internal\Message
         $this->qualifier = $var;
 
         return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BytesValue object.
+
+     * The column qualifier for this chunk of data.  If this message
+     * is not present, this CellChunk is a continuation of the same column
+     * as the previous CellChunk.  Column qualifiers may be empty so
+     * clients must check for the presence of this message, not just
+     * for `qualifier.value` being non-empty.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
+     * @param string|null $var
+     * @return $this
+     */
+    public function setQualifierValue($var)
+    {
+        $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BytesValue(['value' => $var]);
+        return $this->setQualifier($wrappedVar);
     }
 
     /**

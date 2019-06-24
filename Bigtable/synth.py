@@ -68,38 +68,41 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2018')
 
-# Use new namespaces
-s.replace(
-    'src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php',
-    r'Cluster_State',
-    'Cluster\\State')
-s.replace(
-    'src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php',
-    r'Instance_Type',
-    'Instance\\Type')
-s.replace(
-    'src/Admin/V2/Gapic/BigtableInstanceAdminGapicClient.php',
-    r'Instance_State',
-    'Instance\\State')
-s.replace(
-    'src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php',
-    r'CreateTableRequest_Split',
-    'CreateTableRequest\\Split')
-s.replace(
-    'src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php',
-    r'ModifyColumnFamiliesRequest_Modification',
-    'ModifyColumnFamiliesRequest\\Modification')
-s.replace(
-    'src/Admin/V2/Gapic/BigtableTableAdminGapicClient.php',
-    r'Table_View',
-    'Table\\View')
-s.replace(
-    'src/V2/Gapic/BigtableGapicClient.php',
-    r'MutateRowsRequest_Entry',
-    'MutateRowsRequest\\Entry')
-
 # fix unit test namespace
 s.replace(
     'tests/Unit/Admin/*/*.php',
-    r'namespace\ Google\\Cloud\\Bigtable\\Admin\\Tests\\Unit',
-    'namespace Google\\Cloud\\Bigtable\\Tests\\Unit\\Admin')
+    r'namespace Google\\Cloud\\Bigtable\\Admin\\Tests\\Unit',
+    r'namespace Google\\Cloud\\Bigtable\\Tests\\Unit\\Admin')
+
+# fix test group
+s.replace(
+    'tests/**/Admin/**/*Test.php',
+    '@group admin',
+    '@group bigtable' + '\n' + ' * bigtable-admin')
+
+# Fix class references in gapic samples
+for version in ['V2']:
+    pathExpr = [
+        'src/' + version + '/Gapic/BigtableGapicClient.php',
+        'src/Admin/' + version + '/Gapic/*GapicClient.php'
+    ]
+
+    types = {
+        'new BigtableClient': r'new Google\\Cloud\\Bigtable\\' + version + r'\\BigtableClient',
+        'new BigtableInstanceAdminClient': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\BigtableInstanceAdminClient',
+        r'\$instance = new Instance': r'$instance = new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Instance',
+        '= Type::': r'= Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Instance\\Type::',
+        'new FieldMask': r'new Google\\Protobuf\\FieldMask',
+        r'\$cluster = new Cluster': r'$cluster = new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Cluster',
+        'new AppProfile': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\AppProfile',
+        'new Policy': r'new Google\\Cloud\\Iam\\V1\\Policy',
+        'new BigtableTableAdminClient': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\BigtableTableAdminClient',
+        'new Table': r'new Google\\Cloud\\Bigtable\\Admin\\' + version + r'\\Table',
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)
