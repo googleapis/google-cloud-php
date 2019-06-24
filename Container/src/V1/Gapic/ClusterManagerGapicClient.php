@@ -88,7 +88,7 @@ use Google\Protobuf\GPBEmpty;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $clusterManagerClient = new ClusterManagerClient();
+ * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
  * try {
  *     $projectId = '';
  *     $zone = '';
@@ -214,7 +214,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -279,7 +279,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -359,11 +359,11 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
-     *     $cluster = new Cluster();
+     *     $cluster = new Google\Cloud\Container\V1\Cluster();
      *     $response = $clusterManagerClient->createCluster($projectId, $zone, $cluster);
      * } finally {
      *     $clusterManagerClient->close();
@@ -427,12 +427,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $update = new ClusterUpdate();
+     *     $update = new Google\Cloud\Container\V1\ClusterUpdate();
      *     $response = $clusterManagerClient->updateCluster($projectId, $zone, $clusterId, $update);
      * } finally {
      *     $clusterManagerClient->close();
@@ -498,7 +498,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -587,13 +587,13 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
      *     $nodePoolId = '';
-     *     $autoscaling = new NodePoolAutoscaling();
+     *     $autoscaling = new Google\Cloud\Container\V1\NodePoolAutoscaling();
      *     $response = $clusterManagerClient->setNodePoolAutoscaling($projectId, $zone, $clusterId, $nodePoolId, $autoscaling);
      * } finally {
      *     $clusterManagerClient->close();
@@ -663,7 +663,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -738,7 +738,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -813,12 +813,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $addonsConfig = new AddonsConfig();
+     *     $addonsConfig = new Google\Cloud\Container\V1\AddonsConfig();
      *     $response = $clusterManagerClient->setAddonsConfig($projectId, $zone, $clusterId, $addonsConfig);
      * } finally {
      *     $clusterManagerClient->close();
@@ -885,7 +885,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -962,7 +962,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1044,13 +1044,13 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $action = Action::UNKNOWN;
-     *     $update = new MasterAuth();
+     *     $action = Google\Cloud\Container\V1\SetMasterAuthRequest\Action::UNKNOWN;
+     *     $update = new Google\Cloud\Container\V1\MasterAuth();
      *     $response = $clusterManagerClient->setMasterAuth($projectId, $zone, $clusterId, $action, $update);
      * } finally {
      *     $clusterManagerClient->close();
@@ -1127,7 +1127,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1195,7 +1195,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1259,7 +1259,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1327,7 +1327,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1392,7 +1392,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1455,7 +1455,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1523,7 +1523,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1596,12 +1596,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $nodePool = new NodePool();
+     *     $nodePool = new Google\Cloud\Container\V1\NodePool();
      *     $response = $clusterManagerClient->createNodePool($projectId, $zone, $clusterId, $nodePool);
      * } finally {
      *     $clusterManagerClient->close();
@@ -1668,7 +1668,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1742,7 +1742,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1815,13 +1815,13 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
      *     $nodePoolId = '';
-     *     $management = new NodeManagement();
+     *     $management = new Google\Cloud\Container\V1\NodeManagement();
      *     $response = $clusterManagerClient->setNodePoolManagement($projectId, $zone, $clusterId, $nodePoolId, $management);
      * } finally {
      *     $clusterManagerClient->close();
@@ -1891,7 +1891,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -1970,7 +1970,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -2041,7 +2041,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -2114,7 +2114,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -2182,7 +2182,7 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
@@ -2258,12 +2258,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $networkPolicy = new NetworkPolicy();
+     *     $networkPolicy = new Google\Cloud\Container\V1\NetworkPolicy();
      *     $response = $clusterManagerClient->setNetworkPolicy($projectId, $zone, $clusterId, $networkPolicy);
      * } finally {
      *     $clusterManagerClient->close();
@@ -2329,12 +2329,12 @@ class ClusterManagerGapicClient
      *
      * Sample code:
      * ```
-     * $clusterManagerClient = new ClusterManagerClient();
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
      * try {
      *     $projectId = '';
      *     $zone = '';
      *     $clusterId = '';
-     *     $maintenancePolicy = new MaintenancePolicy();
+     *     $maintenancePolicy = new Google\Cloud\Container\V1\MaintenancePolicy();
      *     $response = $clusterManagerClient->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
      * } finally {
      *     $clusterManagerClient->close();
