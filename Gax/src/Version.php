@@ -56,7 +56,9 @@ class Version
      */
     public static function readVersionFile($file)
     {
-        $versionString = @file_get_contents($file) ?: "";
+        $versionString = file_exists($file)
+            ? file_get_contents($file)
+            : "";
         return trim($versionString);
     }
 
