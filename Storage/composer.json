@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "google/cloud-core": "^1.28",
-        "google/crc32": "dev-master"
+        "google/crc32": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
