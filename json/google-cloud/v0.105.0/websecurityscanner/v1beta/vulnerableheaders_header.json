@@ -1,0 +1,1 @@
+{"id":"websecurityscanner\/v1beta\/vulnerableheaders_header","type":"","title":"Google\\Cloud\\WebSecurityScanner\\V1beta\\VulnerableHeaders_Header","name":"VulnerableHeaders_Header","description":"<p>This class is deprecated. Use Google\\Cloud\\WebSecurityScanner\\V1beta\\VulnerableHeaders\\Header instead.<\/p>","examples":[],"resources":[],"methods":[]}
