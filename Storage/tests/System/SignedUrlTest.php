@@ -44,7 +44,10 @@ class SignedUrlTest extends StorageTestCase
             ], [
                 uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX) . '.txt'
             ], [
-                uniqid(self::TESTING_PREFIX) .'/'. uniqid(self::TESTING_PREFIX) .' '. uniqid(self::TESTING_PREFIX) . '.txt'
+                uniqid(self::TESTING_PREFIX) .
+                '/'. uniqid(self::TESTING_PREFIX) .
+                ' '. uniqid(self::TESTING_PREFIX) .
+                '.txt'
             ], [
                 uniqid(self::TESTING_PREFIX) . '.txt',
                 [
