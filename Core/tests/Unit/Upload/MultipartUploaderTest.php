@@ -52,4 +52,47 @@ class MultipartUploaderTest extends TestCase
 
         $this->assertEquals(json_decode($successBody, true), $uploader->upload());
     }
+
+    /**
+     * @dataProvider streamSizes
+     */
+    public function testStreamWithoutSizeDoesNotReceiveContentLengthHeader($stream, $shouldContentLengthExist)
+    {
+        $requestWrapper = $this->prophesize(RequestWrapper::class);
+        $requestWrapper->send(
+            Argument::that(
+                function (RequestInterface $request) use ($shouldContentLengthExist) {
+                    return $request->hasHeader('Content-Length') === $shouldContentLengthExist;
+                }
+            ),
+            Argument::type('array')
+        )->willReturn(new Response(200, [], '{}'));
+
+        $uploader = new MultipartUploader(
+            $requestWrapper->reveal(),
+            $stream,
+            'http://www.example.com'
+        );
+
+        $uploader->upload();
+    }
+
+    public function streamSizes()
+    {
+        return [
+            'stream has an unknown size' => [$this->createStreamWithSizeOf(null), false],
+            'stream has an known size' => [$this->createStreamWithSizeOf(5), true],
+        ];
+    }
+
+    private function createStreamWithSizeOf($size)
+    {
+        $stream = $this->getMockBuilder(Psr7\Stream::class)
+                       ->setConstructorArgs([fopen('php://temp', 'r+')])
+                       ->setMethods(['getSize'])
+                       ->getMock();
+        $stream->method('getSize')->willReturn($size);
+
+        return $stream;
+    }
 }
