@@ -197,10 +197,6 @@ class SignedUrlTest extends StorageTestCase
         $disposition = 'attachment;filename="image.jpg"';
         $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
 
-        $obj->update([
-            'contentType' => null
-        ]);
-
         $url = $obj->signedUrl(time() + 2, [
             'responseDisposition' => $disposition,
             'responseType' => $contentType,
