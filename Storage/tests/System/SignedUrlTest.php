@@ -40,13 +40,16 @@ class SignedUrlTest extends StorageTestCase
     {
         return [
             [
-                uniqid(self::TESTING_PREFIX)
+                uniqid(self::TESTING_PREFIX) . '.txt'
             ], [
-                uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
+                uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX) . '.txt'
             ], [
-                uniqid(self::TESTING_PREFIX) .'/'. uniqid(self::TESTING_PREFIX) .' '. uniqid(self::TESTING_PREFIX)
+                uniqid(self::TESTING_PREFIX) .
+                '/'. uniqid(self::TESTING_PREFIX) .
+                ' '. uniqid(self::TESTING_PREFIX) .
+                '.txt'
             ], [
-                uniqid(self::TESTING_PREFIX),
+                uniqid(self::TESTING_PREFIX) . '.txt',
                 [
                     'headers' => [
                         'x-goog-foo' => 'bar',
@@ -54,7 +57,7 @@ class SignedUrlTest extends StorageTestCase
                     ]
                 ]
             ], [
-                uniqid(self::TESTING_PREFIX),
+                uniqid(self::TESTING_PREFIX) . '.txt',
                 [
                     'headers' => [
                         'x-goog-foo' => 'bar',
@@ -193,9 +196,9 @@ class SignedUrlTest extends StorageTestCase
      */
     public function testSignedUrlContentType($version)
     {
-        $contentType = 'image/jpg';
+        $contentType = 'image/jpeg';
         $disposition = 'attachment;filename="image.jpg"';
-        $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.txt');
+        $obj = $this->createFile(uniqid(self::TESTING_PREFIX) .'.jpg');
 
         $url = $obj->signedUrl(time() + 2, [
             'responseDisposition' => $disposition,
@@ -254,7 +257,7 @@ class SignedUrlTest extends StorageTestCase
     {
         $bucket = self::$bucket;
         $object = $bucket->upload(self::CONTENT, [
-            'name' => $name .'.txt',
+            'name' => $name,
         ]);
 
         self::$deletionQueue->add($object);
