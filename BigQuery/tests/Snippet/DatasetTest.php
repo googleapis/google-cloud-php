@@ -178,4 +178,36 @@ class DatasetTest extends SnippetTestCase
 
         $this->assertEquals($this->identity['projectId'], $res->output());
     }
+
+    public function testModel()
+    {
+        $dataset = $this->getDataset($this->connection);
+        $snippet = $this->snippetFromMethod(Dataset::class, 'model');
+        $snippet->addLocal('dataset', $dataset);
+        $res = $snippet->invoke();
+
+        $this->assertEquals('my_model', $res->output());
+    }
+
+    public function testModels()
+    {
+        $this->connection->listModels(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn([
+                'models' => [
+                    [
+                        'modelReference' => [
+                            'modelId' => 'my_model'
+                        ]
+                    ]
+                ]
+            ]);
+        $dataset = $this->getDataset($this->connection);
+        $snippet = $this->snippetFromMethod(Dataset::class, 'models');
+        $snippet->addLocal('dataset', $dataset);
+        $res = $snippet->invoke('models');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertEquals('my_model', trim($res->output()));
+    }
 }

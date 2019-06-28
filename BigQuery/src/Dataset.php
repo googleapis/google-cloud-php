@@ -164,9 +164,9 @@ class Dataset
     public function update(array $metadata, array $options = [])
     {
         $options = $this->applyEtagHeader(
-            $options
-            + $metadata
+            $metadata
             + $this->identity
+            + $options
         );
 
         if (!isset($options['etag']) && !isset($options['retries'])) {
@@ -378,5 +378,75 @@ class Dataset
     public function identity()
     {
         return $this->identity;
+    }
+
+    /**
+     * Lazily instantiates a machine learning model in the dataset. There are no
+     * network requests made at this point. To see the operations that can be performed on a
+     * model, please see {@see Google\Cloud\BigQuery\Model}.
+     *
+     * Example:
+     * ```
+     * $model = $dataset->model('my_model');
+     * echo $model->id();
+     * ```
+     *
+     * @param $id string The model's ID.
+     * @return Model
+     */
+    public function model($id)
+    {
+        return new Model(
+            $this->connection,
+            $id,
+            $this->id(),
+            $this->identity['projectId']
+        );
+    }
+
+    /**
+     * Fetches all of the models in the dataset.
+     *
+     * Example:
+     * ```
+     * $models = $dataset->models();
+     *
+     * foreach ($models as $model) {
+     *     echo $model->id() . PHP_EOL;
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/models/list Models list API documentation.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Model>
+     */
+    public function models(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        $datasetId = $this->id();
+        $projectId = $this->identity['projectId'];
+
+        return new ItemIterator(
+            new PageIterator(
+                function (array $model) {
+                    return $this->model($model['modelReference']['modelId']);
+                },
+                [$this->connection, 'listModels'],
+                $options + ['projectId' => $projectId, 'datasetId' => $datasetId],
+                [
+                    'itemsKey' => 'models',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 }

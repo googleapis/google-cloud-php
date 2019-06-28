@@ -92,6 +92,10 @@ class RestTest extends TestCase
             ['cancelJob'],
             ['insertJob'],
             ['getServiceAccount'],
+            ['getModel'],
+            ['listModels'],
+            ['patchModel'],
+            ['deleteModel'],
         ];
     }
 
