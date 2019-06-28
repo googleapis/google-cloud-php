@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.AsymmetricDecryptResponse</code>
  */
-class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
+final class AsymmetricDecryptResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The decrypted data originally encrypted with the matching public key.

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKeyVersionTemplate</code>
  */
-class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
+final class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
      * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on

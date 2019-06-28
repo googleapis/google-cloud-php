@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKeyVersion</code>
  */
-class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
+final class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name for this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format

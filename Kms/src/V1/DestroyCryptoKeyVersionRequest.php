@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.DestroyCryptoKeyVersionRequest</code>
  */
-class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
+final class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.

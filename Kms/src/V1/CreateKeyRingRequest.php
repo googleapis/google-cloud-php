@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CreateKeyRingRequest</code>
  */
-class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
+final class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the location associated with the

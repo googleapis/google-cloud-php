@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKey</code>
  */
-class CryptoKey extends \Google\Protobuf\Internal\Message
+final class CryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name for this [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format

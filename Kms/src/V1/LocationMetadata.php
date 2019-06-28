@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.LocationMetadata</code>
  */
-class LocationMetadata extends \Google\Protobuf\Internal\Message
+final class LocationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with

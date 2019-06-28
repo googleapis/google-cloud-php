@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ImportJob.WrappingPublicKey</code>
  */
-class WrappingPublicKey extends \Google\Protobuf\Internal\Message
+final class WrappingPublicKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * The public key, encoded in PEM format. For more information, see the [RFC

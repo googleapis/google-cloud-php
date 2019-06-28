@@ -35,7 +35,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ImportJob</code>
  */
-class ImportJob extends \Google\Protobuf\Internal\Message
+final class ImportJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name for this [ImportJob][google.cloud.kms.v1.ImportJob] in the format

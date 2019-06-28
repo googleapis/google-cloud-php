@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.GetKeyRingRequest</code>
  */
-class GetKeyRingRequest extends \Google\Protobuf\Internal\Message
+final class GetKeyRingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] to get.

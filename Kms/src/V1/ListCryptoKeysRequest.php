@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListCryptoKeysRequest</code>
  */
-class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
+final class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format

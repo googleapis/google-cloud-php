@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.KeyOperationAttestation</code>
  */
-class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
+final class KeyOperationAttestation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The format of the attestation data.

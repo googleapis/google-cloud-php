@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CreateImportJobRequest</code>
  */
-class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
+final class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the

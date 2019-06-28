@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.KeyRing</code>
  */
-class KeyRing extends \Google\Protobuf\Internal\Message
+final class KeyRing extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format

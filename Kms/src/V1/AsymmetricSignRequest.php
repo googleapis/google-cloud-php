@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.AsymmetricSignRequest</code>
  */
-class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
+final class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.

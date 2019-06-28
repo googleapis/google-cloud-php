@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.UpdateCryptoKeyVersionRequest</code>
  */
-class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
+final class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.

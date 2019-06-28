@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.EncryptResponse</code>
  */
-class EncryptResponse extends \Google\Protobuf\Internal\Message
+final class EncryptResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.

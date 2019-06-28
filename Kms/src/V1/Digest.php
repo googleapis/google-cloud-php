@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.Digest</code>
  */
-class Digest extends \Google\Protobuf\Internal\Message
+final class Digest extends \Google\Protobuf\Internal\Message
 {
     protected $digest;
 
