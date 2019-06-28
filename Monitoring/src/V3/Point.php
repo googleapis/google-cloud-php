@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.Point</code>
  */
-class Point extends \Google\Protobuf\Internal\Message
+final class Point extends \Google\Protobuf\Internal\Message
 {
     /**
      * The time interval to which the data point applies.  For `GAUGE` metrics,

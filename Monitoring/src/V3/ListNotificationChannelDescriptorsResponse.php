@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListNotificationChannelDescriptorsResponse</code>
  */
-class ListNotificationChannelDescriptorsResponse extends \Google\Protobuf\Internal\Message
+final class ListNotificationChannelDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The monitored resource descriptors supported for the specified

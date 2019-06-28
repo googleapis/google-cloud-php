@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.TcpCheck</code>
  */
-class TcpCheck extends \Google\Protobuf\Internal\Message
+final class TcpCheck extends \Google\Protobuf\Internal\Message
 {
     /**
      * The port to the page to run the check against. Will be combined with host

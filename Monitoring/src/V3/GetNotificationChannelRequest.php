@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.GetNotificationChannelRequest</code>
  */
-class GetNotificationChannelRequest extends \Google\Protobuf\Internal\Message
+final class GetNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The channel for which to execute the request. The format is

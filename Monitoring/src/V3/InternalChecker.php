@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.InternalChecker</code>
  */
-class InternalChecker extends \Google\Protobuf\Internal\Message
+final class InternalChecker extends \Google\Protobuf\Internal\Message
 {
     /**
      * A unique resource name for this InternalChecker. The format is:

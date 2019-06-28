@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListGroupMembersResponse</code>
  */
-class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
+final class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A set of monitored resources in the group.

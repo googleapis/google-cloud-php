@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.MutationRecord</code>
  */
-class MutationRecord extends \Google\Protobuf\Internal\Message
+final class MutationRecord extends \Google\Protobuf\Internal\Message
 {
     /**
      * When the change occurred.

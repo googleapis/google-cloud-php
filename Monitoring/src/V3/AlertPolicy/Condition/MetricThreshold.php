@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Condition.MetricThreshold</code>
  */
-class MetricThreshold extends \Google\Protobuf\Internal\Message
+final class MetricThreshold extends \Google\Protobuf\Internal\Message
 {
     /**
      * A [filter](/monitoring/api/v3/filters) that

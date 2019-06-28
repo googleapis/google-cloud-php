@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListNotificationChannelDescriptorsRequest</code>
  */
-class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Internal\Message
+final class ListNotificationChannelDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The REST resource name of the parent from which to retrieve

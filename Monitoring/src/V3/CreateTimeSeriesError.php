@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.CreateTimeSeriesError</code>
  */
-class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
+final class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
 {
     /**
      * The time series, including the `Metric`, `MonitoredResource`,

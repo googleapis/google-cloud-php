@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.TypedValue</code>
  */
-class TypedValue extends \Google\Protobuf\Internal\Message
+final class TypedValue extends \Google\Protobuf\Internal\Message
 {
     protected $value;
 

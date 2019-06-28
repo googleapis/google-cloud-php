@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.HttpCheck</code>
  */
-class HttpCheck extends \Google\Protobuf\Internal\Message
+final class HttpCheck extends \Google\Protobuf\Internal\Message
 {
     /**
      * If true, use HTTPS instead of HTTP to run the check.

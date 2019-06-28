@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.TimeInterval</code>
  */
-class TimeInterval extends \Google\Protobuf\Internal\Message
+final class TimeInterval extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The end of the time interval.

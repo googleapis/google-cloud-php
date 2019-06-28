@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.NotificationChannelDescriptor</code>
  */
-class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
+final class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
 {
     /**
      * The full REST resource name for this descriptor. The syntax is:

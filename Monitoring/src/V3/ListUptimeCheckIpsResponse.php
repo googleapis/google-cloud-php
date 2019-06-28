@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListUptimeCheckIpsResponse</code>
  */
-class ListUptimeCheckIpsResponse extends \Google\Protobuf\Internal\Message
+final class ListUptimeCheckIpsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The returned list of IP addresses (including region and location) that the

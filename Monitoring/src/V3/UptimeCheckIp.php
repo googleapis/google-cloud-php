@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckIp</code>
  */
-class UptimeCheckIp extends \Google\Protobuf\Internal\Message
+final class UptimeCheckIp extends \Google\Protobuf\Internal\Message
 {
     /**
      * A broad region category in which the IP address is located.

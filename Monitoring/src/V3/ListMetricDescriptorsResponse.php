@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListMetricDescriptorsResponse</code>
  */
-class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
+final class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The metric descriptors that are available to the project

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.DeleteAlertPolicyRequest</code>
  */
-class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
+final class DeleteAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The alerting policy to delete. The format is:

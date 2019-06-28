@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.ResourceGroup</code>
  */
-class ResourceGroup extends \Google\Protobuf\Internal\Message
+final class ResourceGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group of resources being monitored. Should be only the

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Documentation</code>
  */
-class Documentation extends \Google\Protobuf\Internal\Message
+final class Documentation extends \Google\Protobuf\Internal\Message
 {
     /**
      * The text of the documentation, interpreted according to `mime_type`.

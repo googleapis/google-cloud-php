@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.VerifyNotificationChannelRequest</code>
  */
-class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
+final class VerifyNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The notification channel to verify.

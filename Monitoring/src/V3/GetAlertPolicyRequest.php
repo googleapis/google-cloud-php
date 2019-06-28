@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.GetAlertPolicyRequest</code>
  */
-class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
+final class GetAlertPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The alerting policy to retrieve. The format is

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.GetUptimeCheckConfigRequest</code>
  */
-class GetUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
+final class GetUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The uptime check configuration to retrieve. The format

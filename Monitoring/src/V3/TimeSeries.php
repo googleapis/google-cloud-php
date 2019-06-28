@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.TimeSeries</code>
  */
-class TimeSeries extends \Google\Protobuf\Internal\Message
+final class TimeSeries extends \Google\Protobuf\Internal\Message
 {
     /**
      * The associated metric. A fully-specified metric used to identify the time

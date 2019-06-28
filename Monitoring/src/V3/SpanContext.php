@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.SpanContext</code>
  */
-class SpanContext extends \Google\Protobuf\Internal\Message
+final class SpanContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the span in the following format:

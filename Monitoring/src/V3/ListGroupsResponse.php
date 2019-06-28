@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListGroupsResponse</code>
  */
-class ListGroupsResponse extends \Google\Protobuf\Internal\Message
+final class ListGroupsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The groups that match the specified filters.

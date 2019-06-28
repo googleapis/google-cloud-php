@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UpdateGroupRequest</code>
  */
-class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
+final class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The new definition of the group.  All fields of the existing group,

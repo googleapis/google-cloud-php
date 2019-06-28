@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.DeleteNotificationChannelRequest</code>
  */
-class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
+final class DeleteNotificationChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The channel for which to execute the request. The format is

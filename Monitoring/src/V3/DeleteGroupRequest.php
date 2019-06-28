@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.DeleteGroupRequest</code>
  */
-class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
+final class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group to delete. The format is

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.DeleteMetricDescriptorRequest</code>
  */
-class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
+final class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The metric descriptor on which to execute the request. The format is

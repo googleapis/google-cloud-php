@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListTimeSeriesRequest</code>
  */
-class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
+final class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The project on which to execute the request. The format is

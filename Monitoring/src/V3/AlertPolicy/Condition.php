@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Condition</code>
  */
-class Condition extends \Google\Protobuf\Internal\Message
+final class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required if the condition exists. The unique resource name for this

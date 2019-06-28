@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Condition.MetricAbsence</code>
  */
-class MetricAbsence extends \Google\Protobuf\Internal\Message
+final class MetricAbsence extends \Google\Protobuf\Internal\Message
 {
     /**
      * A [filter](/monitoring/api/v3/filters) that

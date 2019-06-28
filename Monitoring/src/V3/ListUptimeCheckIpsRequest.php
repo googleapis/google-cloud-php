@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListUptimeCheckIpsRequest</code>
  */
-class ListUptimeCheckIpsRequest extends \Google\Protobuf\Internal\Message
+final class ListUptimeCheckIpsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The maximum number of results to return in a single response. The server

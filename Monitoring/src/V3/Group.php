@@ -35,7 +35,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.Group</code>
  */
-class Group extends \Google\Protobuf\Internal\Message
+final class Group extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of this group. The format is

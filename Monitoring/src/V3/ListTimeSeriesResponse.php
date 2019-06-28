@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListTimeSeriesResponse</code>
  */
-class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
+final class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * One or more time series that match the filter included in the request.

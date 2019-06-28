@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.ListGroupMembersRequest</code>
  */
-class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
+final class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group whose members are listed. The format is

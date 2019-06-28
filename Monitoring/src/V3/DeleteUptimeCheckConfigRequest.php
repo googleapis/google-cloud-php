@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.DeleteUptimeCheckConfigRequest</code>
  */
-class DeleteUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
+final class DeleteUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The uptime check configuration to delete. The format

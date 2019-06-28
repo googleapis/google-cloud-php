@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.ContentMatcher</code>
  */
-class ContentMatcher extends \Google\Protobuf\Internal\Message
+final class ContentMatcher extends \Google\Protobuf\Internal\Message
 {
     /**
      * String or regex content to match (max 1024 bytes)

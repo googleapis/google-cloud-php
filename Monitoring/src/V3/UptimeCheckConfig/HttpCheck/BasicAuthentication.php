@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication</code>
  */
-class BasicAuthentication extends \Google\Protobuf\Internal\Message
+final class BasicAuthentication extends \Google\Protobuf\Internal\Message
 {
     /**
      * The username to authenticate.

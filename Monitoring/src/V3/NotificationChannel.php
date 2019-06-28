@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.NotificationChannel</code>
  */
-class NotificationChannel extends \Google\Protobuf\Internal\Message
+final class NotificationChannel extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of the notification channel. This field matches the
@@ -458,7 +458,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
      * @return bool|null
      */
-    public function getEnabledValue()
+    public function getEnabledUnwrapped()
     {
         $wrapper = $this->getEnabled();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -498,7 +498,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setEnabledValue($var)
+    public function setEnabledUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setEnabled($wrappedVar);

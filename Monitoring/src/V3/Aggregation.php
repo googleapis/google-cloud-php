@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.monitoring.v3.Aggregation</code>
  */
-class Aggregation extends \Google\Protobuf\Internal\Message
+final class Aggregation extends \Google\Protobuf\Internal\Message
 {
     /**
      * The alignment period for per-[time series][google.monitoring.v3.TimeSeries]
