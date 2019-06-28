@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.BatchGetAssetsHistoryResponse</code>
  */
-class BatchGetAssetsHistoryResponse extends \Google\Protobuf\Internal\Message
+final class BatchGetAssetsHistoryResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of assets with valid time windows.

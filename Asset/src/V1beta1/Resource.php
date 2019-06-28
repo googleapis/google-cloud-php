@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1beta1.Resource</code>
  */
-class Resource extends \Google\Protobuf\Internal\Message
+final class Resource extends \Google\Protobuf\Internal\Message
 {
     /**
      * The API version. Example: "v1".

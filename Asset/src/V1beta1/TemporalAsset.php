@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1beta1.TemporalAsset</code>
  */
-class TemporalAsset extends \Google\Protobuf\Internal\Message
+final class TemporalAsset extends \Google\Protobuf\Internal\Message
 {
     /**
      * The time window when the asset data and state was observed.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.OutputConfig</code>
  */
-class OutputConfig extends \Google\Protobuf\Internal\Message
+final class OutputConfig extends \Google\Protobuf\Internal\Message
 {
     protected $destination;
 

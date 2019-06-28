@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1beta1.Asset</code>
  */
-class Asset extends \Google\Protobuf\Internal\Message
+final class Asset extends \Google\Protobuf\Internal\Message
 {
     /**
      * The full name of the asset. For example:

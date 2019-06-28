@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.TimeWindow</code>
  */
-class TimeWindow extends \Google\Protobuf\Internal\Message
+final class TimeWindow extends \Google\Protobuf\Internal\Message
 {
     /**
      * Start time of the time window (exclusive).

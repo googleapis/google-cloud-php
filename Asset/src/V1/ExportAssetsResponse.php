@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ExportAssetsResponse</code>
  */
-class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
+final class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Time the snapshot was taken.

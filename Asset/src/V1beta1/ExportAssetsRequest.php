@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.asset.v1beta1.ExportAssetsRequest</code>
  */
-class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
+final class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The relative name of the root asset. This can only be an
