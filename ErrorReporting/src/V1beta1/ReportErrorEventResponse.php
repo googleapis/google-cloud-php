@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse</code>
  */
-class ReportErrorEventResponse extends \Google\Protobuf\Internal\Message
+final class ReportErrorEventResponse extends \Google\Protobuf\Internal\Message
 {
 
     /**

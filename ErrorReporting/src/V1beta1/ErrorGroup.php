@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ErrorGroup</code>
  */
-class ErrorGroup extends \Google\Protobuf\Internal\Message
+final class ErrorGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group resource name.

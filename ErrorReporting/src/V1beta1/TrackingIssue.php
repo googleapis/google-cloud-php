@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.TrackingIssue</code>
  */
-class TrackingIssue extends \Google\Protobuf\Internal\Message
+final class TrackingIssue extends \Google\Protobuf\Internal\Message
 {
     /**
      * A URL pointing to a related entry in an issue tracking system.

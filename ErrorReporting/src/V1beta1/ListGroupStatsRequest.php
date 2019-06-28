@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest</code>
  */
-class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
+final class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Required] The resource name of the Google Cloud Platform project. Written

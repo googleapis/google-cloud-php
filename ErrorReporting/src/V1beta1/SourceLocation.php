@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.SourceLocation</code>
  */
-class SourceLocation extends \Google\Protobuf\Internal\Message
+final class SourceLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * The source code filename, which can include a truncated relative

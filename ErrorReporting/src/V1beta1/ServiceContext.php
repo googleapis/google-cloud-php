@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ServiceContext</code>
  */
-class ServiceContext extends \Google\Protobuf\Internal\Message
+final class ServiceContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * An identifier of the service, such as the name of the

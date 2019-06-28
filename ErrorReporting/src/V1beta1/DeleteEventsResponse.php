@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.DeleteEventsResponse</code>
  */
-class DeleteEventsResponse extends \Google\Protobuf\Internal\Message
+final class DeleteEventsResponse extends \Google\Protobuf\Internal\Message
 {
 
     /**

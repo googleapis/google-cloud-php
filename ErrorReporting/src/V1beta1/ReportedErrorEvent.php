@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent</code>
  */
-class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
+final class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Optional] Time when the event occurred.

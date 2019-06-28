@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.QueryTimeRange</code>
  */
-class QueryTimeRange extends \Google\Protobuf\Internal\Message
+final class QueryTimeRange extends \Google\Protobuf\Internal\Message
 {
     /**
      * Restricts the query to the specified time range.

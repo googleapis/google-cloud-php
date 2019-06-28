@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.HttpRequestContext</code>
  */
-class HttpRequestContext extends \Google\Protobuf\Internal\Message
+final class HttpRequestContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of HTTP request, such as `GET`, `POST`, etc.

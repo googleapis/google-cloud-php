@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.TimedCount</code>
  */
-class TimedCount extends \Google\Protobuf\Internal\Message
+final class TimedCount extends \Google\Protobuf\Internal\Message
 {
     /**
      * Approximate number of occurrences in the given time period.

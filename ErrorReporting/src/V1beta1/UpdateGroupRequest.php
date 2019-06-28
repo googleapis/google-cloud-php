@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest</code>
  */
-class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
+final class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Required] The group which replaces the resource on the server.

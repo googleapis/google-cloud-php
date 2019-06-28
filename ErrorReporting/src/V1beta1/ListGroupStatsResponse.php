@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ListGroupStatsResponse</code>
  */
-class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
+final class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The error group stats which match the given request.

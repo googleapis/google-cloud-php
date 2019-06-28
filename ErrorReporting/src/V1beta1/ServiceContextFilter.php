@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter</code>
  */
-class ServiceContextFilter extends \Google\Protobuf\Internal\Message
+final class ServiceContextFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Optional] The exact value to match against
