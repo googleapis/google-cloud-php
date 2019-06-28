@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ImageSource</code>
  */
-class ImageSource extends \Google\Protobuf\Internal\Message
+final class ImageSource extends \Google\Protobuf\Internal\Message
 {
     /**
      * **Use `image_uri` instead.**

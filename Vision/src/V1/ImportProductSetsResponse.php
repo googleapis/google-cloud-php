@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsResponse</code>
  */
-class ImportProductSetsResponse extends \Google\Protobuf\Internal\Message
+final class ImportProductSetsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of reference_images that are imported successfully.

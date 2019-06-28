@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.BoundingPoly</code>
  */
-class BoundingPoly extends \Google\Protobuf\Internal\Message
+final class BoundingPoly extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon vertices.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.InputConfig</code>
  */
-class InputConfig extends \Google\Protobuf\Internal\Message
+final class InputConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Google Cloud Storage location to read the input from.

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ImageAnnotationContext</code>
  */
-class ImageAnnotationContext extends \Google\Protobuf\Internal\Message
+final class ImageAnnotationContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * The URI of the file used to produce the image.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.DeleteProductSetRequest</code>
  */
-class DeleteProductSetRequest extends \Google\Protobuf\Internal\Message
+final class DeleteProductSetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of the ProductSet to delete.

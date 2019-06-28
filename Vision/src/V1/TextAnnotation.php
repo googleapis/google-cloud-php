@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation</code>
  */
-class TextAnnotation extends \Google\Protobuf\Internal\Message
+final class TextAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of pages detected by OCR.

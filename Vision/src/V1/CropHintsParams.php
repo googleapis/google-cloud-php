@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.CropHintsParams</code>
  */
-class CropHintsParams extends \Google\Protobuf\Internal\Message
+final class CropHintsParams extends \Google\Protobuf\Internal\Message
 {
     /**
      * Aspect ratios in floats, representing the ratio of the width to the height

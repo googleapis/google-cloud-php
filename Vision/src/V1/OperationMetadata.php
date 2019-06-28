@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.OperationMetadata</code>
  */
-class OperationMetadata extends \Google\Protobuf\Internal\Message
+final class OperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Current state of the batch operation.

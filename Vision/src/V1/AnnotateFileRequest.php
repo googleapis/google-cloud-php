@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.AnnotateFileRequest</code>
  */
-class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
+final class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Information about the input file.

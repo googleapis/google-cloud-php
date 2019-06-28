@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsGcsSource</code>
  */
-class ImportProductSetsGcsSource extends \Google\Protobuf\Internal\Message
+final class ImportProductSetsGcsSource extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Google Cloud Storage URI of the input csv file.

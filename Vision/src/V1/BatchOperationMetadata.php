@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.BatchOperationMetadata</code>
  */
-class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
+final class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The current state of the batch operation.

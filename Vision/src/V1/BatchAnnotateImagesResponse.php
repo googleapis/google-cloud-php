@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.BatchAnnotateImagesResponse</code>
  */
-class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
+final class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Individual responses to image annotation requests within the batch.

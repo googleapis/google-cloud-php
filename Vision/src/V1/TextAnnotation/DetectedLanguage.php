@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation.DetectedLanguage</code>
  */
-class DetectedLanguage extends \Google\Protobuf\Internal\Message
+final class DetectedLanguage extends \Google\Protobuf\Internal\Message
 {
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more

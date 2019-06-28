@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.CropHint</code>
  */
-class CropHint extends \Google\Protobuf\Internal\Message
+final class CropHint extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon for the crop region. The coordinates of the bounding

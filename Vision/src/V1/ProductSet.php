@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ProductSet</code>
  */
-class ProductSet extends \Google\Protobuf\Internal\Message
+final class ProductSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the ProductSet.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.DeleteReferenceImageRequest</code>
  */
-class DeleteReferenceImageRequest extends \Google\Protobuf\Internal\Message
+final class DeleteReferenceImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the reference image to delete.

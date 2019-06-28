@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.EntityAnnotation</code>
  */
-class EntityAnnotation extends \Google\Protobuf\Internal\Message
+final class EntityAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Opaque entity ID. Some IDs may be available in

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.Symbol</code>
  */
-class Symbol extends \Google\Protobuf\Internal\Message
+final class Symbol extends \Google\Protobuf\Internal\Message
 {
     /**
      * Additional information detected for the symbol.

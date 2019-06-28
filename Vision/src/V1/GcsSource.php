@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.GcsSource</code>
  */
-class GcsSource extends \Google\Protobuf\Internal\Message
+final class GcsSource extends \Google\Protobuf\Internal\Message
 {
     /**
      * Google Cloud Storage URI for the input file. This must only be a

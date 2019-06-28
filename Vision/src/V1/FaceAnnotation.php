@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.FaceAnnotation</code>
  */
-class FaceAnnotation extends \Google\Protobuf\Internal\Message
+final class FaceAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon around the face. The coordinates of the bounding box

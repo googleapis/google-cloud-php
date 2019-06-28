@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchResults</code>
  */
-class ProductSearchResults extends \Google\Protobuf\Internal\Message
+final class ProductSearchResults extends \Google\Protobuf\Internal\Message
 {
     /**
      * Timestamp of the index which provided these results. Products added to the

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.AsyncBatchAnnotateFilesRequest</code>
  */
-class AsyncBatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
+final class AsyncBatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Individual async file annotation requests for this batch.

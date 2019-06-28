@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.Page</code>
  */
-class Page extends \Google\Protobuf\Internal\Message
+final class Page extends \Google\Protobuf\Internal\Message
 {
     /**
      * Additional information detected on the page.

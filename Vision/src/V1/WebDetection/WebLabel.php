@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.WebDetection.WebLabel</code>
  */
-class WebLabel extends \Google\Protobuf\Internal\Message
+final class WebLabel extends \Google\Protobuf\Internal\Message
 {
     /**
      * Label for extra metadata.

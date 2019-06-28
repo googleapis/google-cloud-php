@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.WebDetection.WebImage</code>
  */
-class WebImage extends \Google\Protobuf\Internal\Message
+final class WebImage extends \Google\Protobuf\Internal\Message
 {
     /**
      * The result image URL.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ListReferenceImagesResponse</code>
  */
-class ListReferenceImagesResponse extends \Google\Protobuf\Internal\Message
+final class ListReferenceImagesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of reference images.

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.SafeSearchAnnotation</code>
  */
-class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
+final class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Represents the adult content likelihood for the image. Adult content may

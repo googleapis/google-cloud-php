@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.Vertex</code>
  */
-class Vertex extends \Google\Protobuf\Internal\Message
+final class Vertex extends \Google\Protobuf\Internal\Message
 {
     /**
      * X coordinate.

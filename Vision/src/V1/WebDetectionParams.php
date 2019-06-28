@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.WebDetectionParams</code>
  */
-class WebDetectionParams extends \Google\Protobuf\Internal\Message
+final class WebDetectionParams extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether to include results derived from the geo information in the image.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.Word</code>
  */
-class Word extends \Google\Protobuf\Internal\Message
+final class Word extends \Google\Protobuf\Internal\Message
 {
     /**
      * Additional information detected for the word.

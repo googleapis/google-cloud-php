@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation.TextProperty</code>
  */
-class TextProperty extends \Google\Protobuf\Internal\Message
+final class TextProperty extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of detected languages together with confidence.

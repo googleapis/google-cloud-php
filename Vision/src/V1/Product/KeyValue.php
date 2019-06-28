@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.Product.KeyValue</code>
  */
-class KeyValue extends \Google\Protobuf\Internal\Message
+final class KeyValue extends \Google\Protobuf\Internal\Message
 {
     /**
      * The key of the label attached to the product. Cannot be empty and cannot

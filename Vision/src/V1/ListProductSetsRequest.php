@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ListProductSetsRequest</code>
  */
-class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
+final class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The project from which ProductSets should be listed.

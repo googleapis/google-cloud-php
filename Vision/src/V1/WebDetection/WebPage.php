@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.WebDetection.WebPage</code>
  */
-class WebPage extends \Google\Protobuf\Internal\Message
+final class WebPage extends \Google\Protobuf\Internal\Message
 {
     /**
      * The result web page URL.

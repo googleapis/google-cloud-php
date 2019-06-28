@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ColorInfo</code>
  */
-class ColorInfo extends \Google\Protobuf\Internal\Message
+final class ColorInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * RGB components of the color.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.CreateProductRequest</code>
  */
-class CreateProductRequest extends \Google\Protobuf\Internal\Message
+final class CreateProductRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The project in which the Product should be created.

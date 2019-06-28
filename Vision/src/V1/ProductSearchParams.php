@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchParams</code>
  */
-class ProductSearchParams extends \Google\Protobuf\Internal\Message
+final class ProductSearchParams extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon around the area of interest in the image.

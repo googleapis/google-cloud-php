@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.WebDetection</code>
  */
-class WebDetection extends \Google\Protobuf\Internal\Message
+final class WebDetection extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deduced entities from similar images on the Internet.

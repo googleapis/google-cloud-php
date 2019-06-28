@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ImageProperties</code>
  */
-class ImageProperties extends \Google\Protobuf\Internal\Message
+final class ImageProperties extends \Google\Protobuf\Internal\Message
 {
     /**
      * If present, dominant colors completed successfully.

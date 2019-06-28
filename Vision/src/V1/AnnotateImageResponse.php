@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.AnnotateImageResponse</code>
  */
-class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
+final class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * If present, face detection has completed successfully.

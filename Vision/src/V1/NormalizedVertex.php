@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.NormalizedVertex</code>
  */
-class NormalizedVertex extends \Google\Protobuf\Internal\Message
+final class NormalizedVertex extends \Google\Protobuf\Internal\Message
 {
     /**
      * X coordinate.

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchResults.GroupedResult</code>
  */
-class GroupedResult extends \Google\Protobuf\Internal\Message
+final class GroupedResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon around the product detected in the query image.

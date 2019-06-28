@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.LocationInfo</code>
  */
-class LocationInfo extends \Google\Protobuf\Internal\Message
+final class LocationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * lat/long location coordinates.

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.AnnotateFileResponse</code>
  */
-class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
+final class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Information about the file for which this response is generated.

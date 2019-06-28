@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.Feature</code>
  */
-class Feature extends \Google\Protobuf\Internal\Message
+final class Feature extends \Google\Protobuf\Internal\Message
 {
     /**
      * The feature type.

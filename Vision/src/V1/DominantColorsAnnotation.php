@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.DominantColorsAnnotation</code>
  */
-class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
+final class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * RGB color values with their score and pixel fraction.
