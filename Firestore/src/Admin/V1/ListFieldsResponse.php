@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ListFieldsResponse</code>
  */
-class ListFieldsResponse extends \Google\Protobuf\Internal\Message
+final class ListFieldsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The requested fields.

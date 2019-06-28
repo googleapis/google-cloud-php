@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.BatchGetDocumentsRequest</code>
  */
-class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
+final class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The database name. In the format:

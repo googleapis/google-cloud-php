@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.UpdateFieldRequest</code>
  */
-class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
+final class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The field to be updated.

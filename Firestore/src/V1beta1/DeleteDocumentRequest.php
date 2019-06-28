@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.DeleteDocumentRequest</code>
  */
-class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
+final class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the Document to delete. In the format:

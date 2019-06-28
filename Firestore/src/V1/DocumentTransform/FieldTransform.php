@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.DocumentTransform.FieldTransform</code>
  */
-class FieldTransform extends \Google\Protobuf\Internal\Message
+final class FieldTransform extends \Google\Protobuf\Internal\Message
 {
     /**
      * The path of the field. See [Document.fields][google.firestore.v1.Document.fields] for the field path syntax

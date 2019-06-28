@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.ExistenceFilter</code>
  */
-class ExistenceFilter extends \Google\Protobuf\Internal\Message
+final class ExistenceFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * The target ID to which this filter applies.

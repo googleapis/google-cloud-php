@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta</code>
  */
-class IndexConfigDelta extends \Google\Protobuf\Internal\Message
+final class IndexConfigDelta extends \Google\Protobuf\Internal\Message
 {
     /**
      * Specifies how the index is changing.

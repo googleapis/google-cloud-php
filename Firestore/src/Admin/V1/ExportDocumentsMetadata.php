@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ExportDocumentsMetadata</code>
  */
-class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
+final class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The time this operation started.

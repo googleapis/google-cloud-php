@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.Projection</code>
  */
-class Projection extends \Google\Protobuf\Internal\Message
+final class Projection extends \Google\Protobuf\Internal\Message
 {
     /**
      * The fields to return.

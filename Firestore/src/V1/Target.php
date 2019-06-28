@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.Target</code>
  */
-class Target extends \Google\Protobuf\Internal\Message
+final class Target extends \Google\Protobuf\Internal\Message
 {
     /**
      * A client provided target ID.

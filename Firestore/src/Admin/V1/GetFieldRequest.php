@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.GetFieldRequest</code>
  */
-class GetFieldRequest extends \Google\Protobuf\Internal\Message
+final class GetFieldRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * A name of the form

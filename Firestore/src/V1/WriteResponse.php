@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.WriteResponse</code>
  */
-class WriteResponse extends \Google\Protobuf\Internal\Message
+final class WriteResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The ID of the stream.

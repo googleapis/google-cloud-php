@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery</code>
  */
-class StructuredQuery extends \Google\Protobuf\Internal\Message
+final class StructuredQuery extends \Google\Protobuf\Internal\Message
 {
     /**
      * The projection to return.
@@ -362,7 +362,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 5;</code>
      * @return int|null
      */
-    public function getLimitValue()
+    public function getLimitUnwrapped()
     {
         $wrapper = $this->getLimit();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -396,7 +396,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setLimitValue($var)
+    public function setLimitUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
         return $this->setLimit($wrappedVar);

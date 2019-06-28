@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Field.IndexConfig</code>
  */
-class IndexConfig extends \Google\Protobuf\Internal\Message
+final class IndexConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The indexes supported for this field.

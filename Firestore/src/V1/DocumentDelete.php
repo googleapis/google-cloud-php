@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.DocumentDelete</code>
  */
-class DocumentDelete extends \Google\Protobuf\Internal\Message
+final class DocumentDelete extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the [Document][google.firestore.v1.Document] that was deleted.

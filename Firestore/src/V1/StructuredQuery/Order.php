@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.Order</code>
  */
-class Order extends \Google\Protobuf\Internal\Message
+final class Order extends \Google\Protobuf\Internal\Message
 {
     /**
      * The field to order by.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.TransactionOptions.ReadWrite</code>
  */
-class ReadWrite extends \Google\Protobuf\Internal\Message
+final class ReadWrite extends \Google\Protobuf\Internal\Message
 {
     /**
      * An optional transaction to retry.

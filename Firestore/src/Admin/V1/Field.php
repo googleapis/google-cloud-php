@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Field</code>
  */
-class Field extends \Google\Protobuf\Internal\Message
+final class Field extends \Google\Protobuf\Internal\Message
 {
     /**
      * A field name of the form

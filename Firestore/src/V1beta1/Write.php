@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.Write</code>
  */
-class Write extends \Google\Protobuf\Internal\Message
+final class Write extends \Google\Protobuf\Internal\Message
 {
     /**
      * The fields to update in this write.

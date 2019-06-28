@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.ListCollectionIdsRequest</code>
  */
-class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
+final class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parent document. In the format:

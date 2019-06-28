@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ExportDocumentsRequest</code>
  */
-class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
+final class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Database to export. Should be of the form:

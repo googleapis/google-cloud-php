@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Index.IndexField</code>
  */
-class IndexField extends \Google\Protobuf\Internal\Message
+final class IndexField extends \Google\Protobuf\Internal\Message
 {
     /**
      * Can be __name__.

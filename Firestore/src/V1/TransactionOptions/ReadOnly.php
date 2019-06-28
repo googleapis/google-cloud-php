@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.TransactionOptions.ReadOnly</code>
  */
-class ReadOnly extends \Google\Protobuf\Internal\Message
+final class ReadOnly extends \Google\Protobuf\Internal\Message
 {
     protected $consistency_selector;
 

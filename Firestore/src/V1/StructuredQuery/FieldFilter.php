@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.FieldFilter</code>
  */
-class FieldFilter extends \Google\Protobuf\Internal\Message
+final class FieldFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * The field to filter by.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.Value</code>
  */
-class Value extends \Google\Protobuf\Internal\Message
+final class Value extends \Google\Protobuf\Internal\Message
 {
     protected $value_type;
 

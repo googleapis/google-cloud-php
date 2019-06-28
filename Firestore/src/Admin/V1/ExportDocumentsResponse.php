@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ExportDocumentsResponse</code>
  */
-class ExportDocumentsResponse extends \Google\Protobuf\Internal\Message
+final class ExportDocumentsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Location of the output files. This can be used to begin an import

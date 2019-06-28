@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.CompositeFilter</code>
  */
-class CompositeFilter extends \Google\Protobuf\Internal\Message
+final class CompositeFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * The operator for combining multiple filters.

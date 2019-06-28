@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.StructuredQuery.UnaryFilter</code>
  */
-class UnaryFilter extends \Google\Protobuf\Internal\Message
+final class UnaryFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unary operator to apply.

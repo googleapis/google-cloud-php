@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.BeginTransactionResponse</code>
  */
-class BeginTransactionResponse extends \Google\Protobuf\Internal\Message
+final class BeginTransactionResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The transaction that was started.

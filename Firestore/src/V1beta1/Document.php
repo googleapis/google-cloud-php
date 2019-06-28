@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.Document</code>
  */
-class Document extends \Google\Protobuf\Internal\Message
+final class Document extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the document, for example

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.DocumentMask</code>
  */
-class DocumentMask extends \Google\Protobuf\Internal\Message
+final class DocumentMask extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of field paths in the mask. See [Document.fields][google.firestore.v1.Document.fields] for a field

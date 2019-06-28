@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.TargetChange</code>
  */
-class TargetChange extends \Google\Protobuf\Internal\Message
+final class TargetChange extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of change that occurred.

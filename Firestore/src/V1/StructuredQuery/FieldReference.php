@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.StructuredQuery.FieldReference</code>
  */
-class FieldReference extends \Google\Protobuf\Internal\Message
+final class FieldReference extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>string field_path = 2;</code>

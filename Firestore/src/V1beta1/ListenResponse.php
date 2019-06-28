@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.ListenResponse</code>
  */
-class ListenResponse extends \Google\Protobuf\Internal\Message
+final class ListenResponse extends \Google\Protobuf\Internal\Message
 {
     protected $response_type;
 

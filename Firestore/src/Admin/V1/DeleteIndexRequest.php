@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.DeleteIndexRequest</code>
  */
-class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
+final class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * A name of the form

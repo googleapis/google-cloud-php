@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.ListDocumentsResponse</code>
  */
-class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
+final class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Documents found.

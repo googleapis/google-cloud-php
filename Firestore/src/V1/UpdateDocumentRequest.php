@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.UpdateDocumentRequest</code>
  */
-class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
+final class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The updated document.

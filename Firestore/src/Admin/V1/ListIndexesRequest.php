@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ListIndexesRequest</code>
  */
-class ListIndexesRequest extends \Google\Protobuf\Internal\Message
+final class ListIndexesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * A parent name of the form

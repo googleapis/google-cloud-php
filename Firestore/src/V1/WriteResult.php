@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.WriteResult</code>
  */
-class WriteResult extends \Google\Protobuf\Internal\Message
+final class WriteResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The last update time of the document after applying the write. Not set

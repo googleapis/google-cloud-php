@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.DocumentTransform</code>
  */
-class DocumentTransform extends \Google\Protobuf\Internal\Message
+final class DocumentTransform extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the document to transform.

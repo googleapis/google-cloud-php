@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1beta1.ListCollectionIdsResponse</code>
  */
-class ListCollectionIdsResponse extends \Google\Protobuf\Internal\Message
+final class ListCollectionIdsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The collection ids.

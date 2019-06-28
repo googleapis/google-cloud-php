@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.DocumentChange</code>
  */
-class DocumentChange extends \Google\Protobuf\Internal\Message
+final class DocumentChange extends \Google\Protobuf\Internal\Message
 {
     /**
      * The new state of the [Document][google.firestore.v1.Document].

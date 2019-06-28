@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Index</code>
  */
-class Index extends \Google\Protobuf\Internal\Message
+final class Index extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only.

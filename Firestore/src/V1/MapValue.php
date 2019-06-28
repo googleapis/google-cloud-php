@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.MapValue</code>
  */
-class MapValue extends \Google\Protobuf\Internal\Message
+final class MapValue extends \Google\Protobuf\Internal\Message
 {
     /**
      * The map's fields.

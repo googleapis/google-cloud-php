@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.Cursor</code>
  */
-class Cursor extends \Google\Protobuf\Internal\Message
+final class Cursor extends \Google\Protobuf\Internal\Message
 {
     /**
      * The values that represent a position, in the order they appear in

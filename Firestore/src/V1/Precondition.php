@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.firestore.v1.Precondition</code>
  */
-class Precondition extends \Google\Protobuf\Internal\Message
+final class Precondition extends \Google\Protobuf\Internal\Message
 {
     protected $condition_type;
 
