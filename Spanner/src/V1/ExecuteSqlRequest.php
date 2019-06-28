@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ExecuteSqlRequest</code>
  */
-class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
+final class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session in which the SQL query should be performed.

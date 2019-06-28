@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.GetDatabaseRequest</code>
  */
-class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
+final class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the requested database. Values are of the form

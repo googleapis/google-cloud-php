@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ResultSetStats</code>
  */
-class ResultSetStats extends \Google\Protobuf\Internal\Message
+final class ResultSetStats extends \Google\Protobuf\Internal\Message
 {
     /**
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this

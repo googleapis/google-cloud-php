@@ -73,7 +73,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.KeyRange</code>
  */
-class KeyRange extends \Google\Protobuf\Internal\Message
+final class KeyRange extends \Google\Protobuf\Internal\Message
 {
     protected $start_key_type;
     protected $end_key_type;

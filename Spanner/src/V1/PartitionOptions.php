@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.PartitionOptions</code>
  */
-class PartitionOptions extends \Google\Protobuf\Internal\Message
+final class PartitionOptions extends \Google\Protobuf\Internal\Message
 {
     /**
      * **Note:** This hint is currently ignored by PartitionQuery and

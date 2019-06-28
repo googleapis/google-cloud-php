@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.DeleteInstanceRequest</code>
  */
-class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
+final class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the instance to be deleted. Values are of the form

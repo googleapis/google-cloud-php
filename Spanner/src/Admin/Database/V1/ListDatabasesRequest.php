@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.ListDatabasesRequest</code>
  */
-class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
+final class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The instance whose databases should be listed.

@@ -28,7 +28,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ExecuteBatchDmlResponse</code>
  */
-class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
+final class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * ResultSets, one for each statement in the request that ran successfully, in

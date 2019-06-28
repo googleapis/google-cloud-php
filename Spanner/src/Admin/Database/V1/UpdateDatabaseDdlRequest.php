@@ -27,7 +27,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.UpdateDatabaseDdlRequest</code>
  */
-class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
+final class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The database to update.

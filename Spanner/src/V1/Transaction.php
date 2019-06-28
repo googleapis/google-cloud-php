@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Transaction</code>
  */
-class Transaction extends \Google\Protobuf\Internal\Message
+final class Transaction extends \Google\Protobuf\Internal\Message
 {
     /**
      * `id` may be used to identify the transaction in subsequent

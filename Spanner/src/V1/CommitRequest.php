@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.CommitRequest</code>
  */
-class CommitRequest extends \Google\Protobuf\Internal\Message
+final class CommitRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session in which the transaction to be committed is running.

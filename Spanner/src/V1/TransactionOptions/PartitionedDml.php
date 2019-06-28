@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.TransactionOptions.PartitionedDml</code>
  */
-class PartitionedDml extends \Google\Protobuf\Internal\Message
+final class PartitionedDml extends \Google\Protobuf\Internal\Message
 {
 
     /**

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.PartitionQueryRequest</code>
  */
-class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
+final class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session used to create the partitions.

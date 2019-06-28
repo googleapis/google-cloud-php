@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.CreateSessionRequest</code>
  */
-class CreateSessionRequest extends \Google\Protobuf\Internal\Message
+final class CreateSessionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The database in which the new session is created.

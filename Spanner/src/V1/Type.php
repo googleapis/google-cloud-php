@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Type</code>
  */
-class Type extends \Google\Protobuf\Internal\Message
+final class Type extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The [TypeCode][google.spanner.v1.TypeCode] for this type.

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Mutation</code>
  */
-class Mutation extends \Google\Protobuf\Internal\Message
+final class Mutation extends \Google\Protobuf\Internal\Message
 {
     protected $operation;
 

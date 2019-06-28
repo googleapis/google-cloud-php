@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.KeySet</code>
  */
-class KeySet extends \Google\Protobuf\Internal\Message
+final class KeySet extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of specific keys. Entries in `keys` should have exactly as

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.CommitResponse</code>
  */
-class CommitResponse extends \Google\Protobuf\Internal\Message
+final class CommitResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Cloud Spanner timestamp at which the transaction committed.

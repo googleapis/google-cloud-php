@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.UpdateInstanceMetadata</code>
  */
-class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
+final class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The desired end state of the update.

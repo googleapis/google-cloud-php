@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ExecuteBatchDmlRequest</code>
  */
-class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
+final class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session in which the DML statements should be performed.

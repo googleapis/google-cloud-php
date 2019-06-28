@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.RollbackRequest</code>
  */
-class RollbackRequest extends \Google\Protobuf\Internal\Message
+final class RollbackRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session in which the transaction to roll back is running.

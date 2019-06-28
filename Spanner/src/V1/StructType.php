@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.StructType</code>
  */
-class StructType extends \Google\Protobuf\Internal\Message
+final class StructType extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of fields that make up this struct. Order is

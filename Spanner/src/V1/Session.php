@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Session</code>
  */
-class Session extends \Google\Protobuf\Internal\Message
+final class Session extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the session. This is always system-assigned; values provided

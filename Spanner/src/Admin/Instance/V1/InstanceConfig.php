@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.InstanceConfig</code>
  */
-class InstanceConfig extends \Google\Protobuf\Internal\Message
+final class InstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * A unique identifier for the instance configuration.  Values

@@ -232,7 +232,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.TransactionOptions</code>
  */
-class TransactionOptions extends \Google\Protobuf\Internal\Message
+final class TransactionOptions extends \Google\Protobuf\Internal\Message
 {
     protected $mode;
 

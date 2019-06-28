@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.GetDatabaseDdlResponse</code>
  */
-class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
+final class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of formatted DDL statements defining the schema of the database

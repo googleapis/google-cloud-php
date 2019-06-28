@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.ListInstancesRequest</code>
  */
-class ListInstancesRequest extends \Google\Protobuf\Internal\Message
+final class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the project for which a list of instances is

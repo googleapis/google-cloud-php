@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.ListDatabasesResponse</code>
  */
-class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
+final class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Databases that matched the request.

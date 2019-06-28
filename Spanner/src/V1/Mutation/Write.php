@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Mutation.Write</code>
  */
-class Write extends \Google\Protobuf\Internal\Message
+final class Write extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The table whose rows will be written.

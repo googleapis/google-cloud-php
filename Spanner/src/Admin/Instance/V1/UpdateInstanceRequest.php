@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.UpdateInstanceRequest</code>
  */
-class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
+final class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The instance to update, which must always include the instance

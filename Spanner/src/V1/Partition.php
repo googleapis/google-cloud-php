@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Partition</code>
  */
-class Partition extends \Google\Protobuf\Internal\Message
+final class Partition extends \Google\Protobuf\Internal\Message
 {
     /**
      * This token can be passed to Read, StreamingRead, ExecuteSql, or

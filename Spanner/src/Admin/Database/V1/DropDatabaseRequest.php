@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.DropDatabaseRequest</code>
  */
-class DropDatabaseRequest extends \Google\Protobuf\Internal\Message
+final class DropDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The database to be dropped.

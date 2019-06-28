@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.StructType.Field</code>
  */
-class Field extends \Google\Protobuf\Internal\Message
+final class Field extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the field. For reads, this is the column name. For

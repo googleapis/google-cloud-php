@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.TransactionSelector</code>
  */
-class TransactionSelector extends \Google\Protobuf\Internal\Message
+final class TransactionSelector extends \Google\Protobuf\Internal\Message
 {
     protected $selector;
 

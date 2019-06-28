@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.Database</code>
  */
-class Database extends \Google\Protobuf\Internal\Message
+final class Database extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the database. Values are of the form

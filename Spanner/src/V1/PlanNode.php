@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.PlanNode</code>
  */
-class PlanNode extends \Google\Protobuf\Internal\Message
+final class PlanNode extends \Google\Protobuf\Internal\Message
 {
     /**
      * The `PlanNode`'s index in [node

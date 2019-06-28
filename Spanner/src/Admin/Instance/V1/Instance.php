@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.Instance</code>
  */
-class Instance extends \Google\Protobuf\Internal\Message
+final class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A unique identifier for the instance, which cannot be changed

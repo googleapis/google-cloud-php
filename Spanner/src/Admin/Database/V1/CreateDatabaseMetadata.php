@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateDatabaseMetadata</code>
  */
-class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
+final class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The database being created.

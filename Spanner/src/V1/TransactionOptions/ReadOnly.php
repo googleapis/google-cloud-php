@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.TransactionOptions.ReadOnly</code>
  */
-class ReadOnly extends \Google\Protobuf\Internal\Message
+final class ReadOnly extends \Google\Protobuf\Internal\Message
 {
     /**
      * If true, the Cloud Spanner-selected read timestamp is included in

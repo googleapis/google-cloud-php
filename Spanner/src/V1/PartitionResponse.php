@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.PartitionResponse</code>
  */
-class PartitionResponse extends \Google\Protobuf\Internal\Message
+final class PartitionResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Partitions created by this request.

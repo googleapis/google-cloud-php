@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.PlanNode.ChildLink</code>
  */
-class ChildLink extends \Google\Protobuf\Internal\Message
+final class ChildLink extends \Google\Protobuf\Internal\Message
 {
     /**
      * The node to which the link points.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ListSessionsRequest</code>
  */
-class ListSessionsRequest extends \Google\Protobuf\Internal\Message
+final class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The database in which to list sessions.

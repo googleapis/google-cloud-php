@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ResultSet</code>
  */
-class ResultSet extends \Google\Protobuf\Internal\Message
+final class ResultSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * Metadata about the result set, such as row type information.

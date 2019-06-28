@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.ReadRequest</code>
  */
-class ReadRequest extends \Google\Protobuf\Internal\Message
+final class ReadRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The session in which the read should be performed.

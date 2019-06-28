@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.PlanNode.ShortRepresentation</code>
  */
-class ShortRepresentation extends \Google\Protobuf\Internal\Message
+final class ShortRepresentation extends \Google\Protobuf\Internal\Message
 {
     /**
      * A string representation of the expression subtree rooted at this node.

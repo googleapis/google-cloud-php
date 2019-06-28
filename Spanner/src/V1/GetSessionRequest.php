@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.GetSessionRequest</code>
  */
-class GetSessionRequest extends \Google\Protobuf\Internal\Message
+final class GetSessionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the session to retrieve.

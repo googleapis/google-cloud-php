@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.Mutation.Delete</code>
  */
-class Delete extends \Google\Protobuf\Internal\Message
+final class Delete extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The table whose rows will be deleted.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.spanner.v1.QueryPlan</code>
  */
-class QueryPlan extends \Google\Protobuf\Internal\Message
+final class QueryPlan extends \Google\Protobuf\Internal\Message
 {
     /**
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
