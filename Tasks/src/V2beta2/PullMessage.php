@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.PullMessage</code>
  */
-class PullMessage extends \Google\Protobuf\Internal\Message
+final class PullMessage extends \Google\Protobuf\Internal\Message
 {
     /**
      * A data payload consumed by the worker to execute the task.

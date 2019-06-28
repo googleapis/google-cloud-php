@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.AttemptStatus</code>
  */
-class AttemptStatus extends \Google\Protobuf\Internal\Message
+final class AttemptStatus extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The time that this attempt was scheduled.

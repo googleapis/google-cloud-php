@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.OidcToken</code>
  */
-class OidcToken extends \Google\Protobuf\Internal\Message
+final class OidcToken extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Service account email](https://cloud.google.com/iam/docs/service-accounts)

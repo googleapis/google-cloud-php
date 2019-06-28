@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.ListQueuesResponse</code>
  */
-class ListQueuesResponse extends \Google\Protobuf\Internal\Message
+final class ListQueuesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of queues.

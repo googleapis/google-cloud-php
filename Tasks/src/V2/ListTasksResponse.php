@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.ListTasksResponse</code>
  */
-class ListTasksResponse extends \Google\Protobuf\Internal\Message
+final class ListTasksResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of tasks.

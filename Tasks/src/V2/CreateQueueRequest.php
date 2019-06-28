@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.CreateQueueRequest</code>
  */
-class CreateQueueRequest extends \Google\Protobuf\Internal\Message
+final class CreateQueueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.

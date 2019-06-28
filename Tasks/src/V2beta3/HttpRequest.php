@@ -34,7 +34,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.HttpRequest</code>
  */
-class HttpRequest extends \Google\Protobuf\Internal\Message
+final class HttpRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The full url path that the request will be sent to.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.TaskStatus</code>
  */
-class TaskStatus extends \Google\Protobuf\Internal\Message
+final class TaskStatus extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The number of attempts dispatched.

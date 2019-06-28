@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.RenewLeaseRequest</code>
  */
-class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
+final class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.

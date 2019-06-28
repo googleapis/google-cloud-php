@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.ResumeQueueRequest</code>
  */
-class ResumeQueueRequest extends \Google\Protobuf\Internal\Message
+final class ResumeQueueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.

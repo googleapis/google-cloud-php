@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta3.StackdriverLoggingConfig</code>
  */
-class StackdriverLoggingConfig extends \Google\Protobuf\Internal\Message
+final class StackdriverLoggingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Specifies the fraction of operations to write to

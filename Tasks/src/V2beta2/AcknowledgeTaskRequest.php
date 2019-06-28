@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.AcknowledgeTaskRequest</code>
  */
-class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
+final class AcknowledgeTaskRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.

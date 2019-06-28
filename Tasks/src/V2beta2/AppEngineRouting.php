@@ -22,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.AppEngineRouting</code>
  */
-class AppEngineRouting extends \Google\Protobuf\Internal\Message
+final class AppEngineRouting extends \Google\Protobuf\Internal\Message
 {
     /**
      * App service.

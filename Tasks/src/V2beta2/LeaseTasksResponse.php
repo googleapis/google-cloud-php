@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.LeaseTasksResponse</code>
  */
-class LeaseTasksResponse extends \Google\Protobuf\Internal\Message
+final class LeaseTasksResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The leased tasks.

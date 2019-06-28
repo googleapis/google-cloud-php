@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.Task</code>
  */
-class Task extends \Google\Protobuf\Internal\Message
+final class Task extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optionally caller-specified in [CreateTask][google.cloud.tasks.v2.CloudTasks.CreateTask].

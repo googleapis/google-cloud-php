@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.Queue</code>
  */
-class Queue extends \Google\Protobuf\Internal\Message
+final class Queue extends \Google\Protobuf\Internal\Message
 {
     /**
      * Caller-specified and required in

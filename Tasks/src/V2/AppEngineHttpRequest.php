@@ -62,7 +62,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.AppEngineHttpRequest</code>
  */
-class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
+final class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The HTTP method to use for the request. The default is POST.
