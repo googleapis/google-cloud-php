@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.DeviceState</code>
  */
-class DeviceState extends \Google\Protobuf\Internal\Message
+final class DeviceState extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Output only] The time at which this state version was updated in Cloud

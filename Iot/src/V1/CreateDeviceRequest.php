@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.CreateDeviceRequest</code>
  */
-class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
+final class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the device registry where this device should be created.

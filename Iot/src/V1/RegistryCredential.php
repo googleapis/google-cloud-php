@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.RegistryCredential</code>
  */
-class RegistryCredential extends \Google\Protobuf\Internal\Message
+final class RegistryCredential extends \Google\Protobuf\Internal\Message
 {
     protected $credential;
 

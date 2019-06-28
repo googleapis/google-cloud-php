@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.HttpConfig</code>
  */
-class HttpConfig extends \Google\Protobuf\Internal\Message
+final class HttpConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * If enabled, allows devices to use DeviceService via the HTTP protocol.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.Device</code>
  */
-class Device extends \Google\Protobuf\Internal\Message
+final class Device extends \Google\Protobuf\Internal\Message
 {
     /**
      * The user-defined device identifier. The device ID must be unique

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.ListDeviceStatesResponse</code>
  */
-class ListDeviceStatesResponse extends \Google\Protobuf\Internal\Message
+final class ListDeviceStatesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The last few device states. States are listed in descending order of server

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.UpdateDeviceRegistryRequest</code>
  */
-class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
+final class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The new values for the device registry. The `id` field must be empty, and

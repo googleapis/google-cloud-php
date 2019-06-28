@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.DeleteDeviceRequest</code>
  */
-class DeleteDeviceRequest extends \Google\Protobuf\Internal\Message
+final class DeleteDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the device. For example,

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.BindDeviceToGatewayRequest</code>
  */
-class BindDeviceToGatewayRequest extends \Google\Protobuf\Internal\Message
+final class BindDeviceToGatewayRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the registry. For example,

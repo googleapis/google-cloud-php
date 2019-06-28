@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.ListDeviceRegistriesRequest</code>
  */
-class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
+final class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The project and cloud region path. For example,

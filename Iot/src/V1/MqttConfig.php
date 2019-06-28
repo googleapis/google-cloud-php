@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.MqttConfig</code>
  */
-class MqttConfig extends \Google\Protobuf\Internal\Message
+final class MqttConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * If enabled, allows connections using the MQTT protocol. Otherwise, MQTT

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.UnbindDeviceFromGatewayResponse</code>
  */
-class UnbindDeviceFromGatewayResponse extends \Google\Protobuf\Internal\Message
+final class UnbindDeviceFromGatewayResponse extends \Google\Protobuf\Internal\Message
 {
 
     /**

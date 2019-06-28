@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.ListDeviceConfigVersionsResponse</code>
  */
-class ListDeviceConfigVersionsResponse extends \Google\Protobuf\Internal\Message
+final class ListDeviceConfigVersionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The device configuration for the last few versions. Versions are listed

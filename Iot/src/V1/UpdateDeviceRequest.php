@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.UpdateDeviceRequest</code>
  */
-class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
+final class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The new values for the device. The `id` and `num_id` fields must

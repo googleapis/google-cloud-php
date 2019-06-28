@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.X509CertificateDetails</code>
  */
-class X509CertificateDetails extends \Google\Protobuf\Internal\Message
+final class X509CertificateDetails extends \Google\Protobuf\Internal\Message
 {
     /**
      * The entity that signed the certificate.

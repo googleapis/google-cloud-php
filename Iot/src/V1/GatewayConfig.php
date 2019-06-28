@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.iot.v1.GatewayConfig</code>
  */
-class GatewayConfig extends \Google\Protobuf\Internal\Message
+final class GatewayConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Indicates whether the device is a gateway.
