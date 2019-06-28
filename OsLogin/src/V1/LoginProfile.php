@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.v1.LoginProfile</code>
  */
-class LoginProfile extends \Google\Protobuf\Internal\Message
+final class LoginProfile extends \Google\Protobuf\Internal\Message
 {
     /**
      * The primary email address that uniquely identifies the user.

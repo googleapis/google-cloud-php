@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.common.PosixAccount</code>
  */
-class PosixAccount extends \Google\Protobuf\Internal\Message
+final class PosixAccount extends \Google\Protobuf\Internal\Message
 {
     /**
      * Only one POSIX account can be marked as primary.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.common.SshPublicKey</code>
  */
-class SshPublicKey extends \Google\Protobuf\Internal\Message
+final class SshPublicKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Public key text in SSH format, defined by

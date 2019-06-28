@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.v1.ImportSshPublicKeyResponse</code>
  */
-class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
+final class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The login profile information for the user.

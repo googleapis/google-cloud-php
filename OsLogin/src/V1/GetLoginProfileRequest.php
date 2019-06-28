@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.v1.GetLoginProfileRequest</code>
  */
-class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
+final class GetLoginProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique ID for the user in format `users/{user}`.

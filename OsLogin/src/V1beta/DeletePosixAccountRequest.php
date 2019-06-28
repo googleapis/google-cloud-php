@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.v1beta.DeletePosixAccountRequest</code>
  */
-class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
+final class DeletePosixAccountRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * A reference to the POSIX account to update. POSIX accounts are identified

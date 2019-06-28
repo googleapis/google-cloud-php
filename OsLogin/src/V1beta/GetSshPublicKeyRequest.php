@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.oslogin.v1beta.GetSshPublicKeyRequest</code>
  */
-class GetSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
+final class GetSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The fingerprint of the public key to retrieve. Public keys are identified
