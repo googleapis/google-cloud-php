@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList</code>
  */
-class WordList extends \Google\Protobuf\Internal\Message
+final class WordList extends \Google\Protobuf\Internal\Message
 {
     /**
      * Words or phrases defining the dictionary. The dictionary must contain

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric</code>
  */
-class PrivacyMetric extends \Google\Protobuf\Internal\Message
+final class PrivacyMetric extends \Google\Protobuf\Internal\Message
 {
     protected $type;
 

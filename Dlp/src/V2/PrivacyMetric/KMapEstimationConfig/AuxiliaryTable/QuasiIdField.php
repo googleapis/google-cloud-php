@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable.QuasiIdField</code>
  */
-class QuasiIdField extends \Google\Protobuf\Internal\Message
+final class QuasiIdField extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>

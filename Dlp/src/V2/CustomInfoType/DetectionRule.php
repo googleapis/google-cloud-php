@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule</code>
  */
-class DetectionRule extends \Google\Protobuf\Internal\Message
+final class DetectionRule extends \Google\Protobuf\Internal\Message
 {
     protected $type;
 

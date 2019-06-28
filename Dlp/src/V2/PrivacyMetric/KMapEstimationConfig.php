@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig</code>
  */
-class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
+final class KMapEstimationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Fields considered to be quasi-identifiers. No two columns can have the

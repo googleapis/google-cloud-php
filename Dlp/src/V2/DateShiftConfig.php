@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DateShiftConfig</code>
  */
-class DateShiftConfig extends \Google\Protobuf\Internal\Message
+final class DateShiftConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Range of shift in days. Actual shift will be selected at random within this

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectConfig</code>
  */
-class InspectConfig extends \Google\Protobuf\Internal\Message
+final class InspectConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Restricts what info_types to look for. The values must correspond to

@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket</code>
  */
-class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
+final class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
 {
     /**
      * Lower bound on the value frequency of the values in this bucket.

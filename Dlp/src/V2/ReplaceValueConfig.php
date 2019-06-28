@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ReplaceValueConfig</code>
  */
-class ReplaceValueConfig extends \Google\Protobuf\Internal\Message
+final class ReplaceValueConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Value to replace it with.

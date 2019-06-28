@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult</code>
  */
-class LDiversityResult extends \Google\Protobuf\Internal\Message
+final class LDiversityResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Histogram of l-diversity equivalence class sensitive value frequencies.

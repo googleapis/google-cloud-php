@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DatastoreOptions</code>
  */
-class DatastoreOptions extends \Google\Protobuf\Internal\Message
+final class DatastoreOptions extends \Google\Protobuf\Internal\Message
 {
     /**
      * A partition ID identifies a grouping of entities. The grouping is always

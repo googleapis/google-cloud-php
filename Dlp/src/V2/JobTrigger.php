@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.JobTrigger</code>
  */
-class JobTrigger extends \Google\Protobuf\Internal\Message
+final class JobTrigger extends \Google\Protobuf\Internal\Message
 {
     /**
      * Unique resource name for the triggeredJob, assigned by the service when the

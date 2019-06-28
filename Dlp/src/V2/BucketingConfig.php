@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.BucketingConfig</code>
  */
-class BucketingConfig extends \Google\Protobuf\Internal\Message
+final class BucketingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Set of buckets. Ranges must be non-overlapping.

@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoHashConfig</code>
  */
-class CryptoHashConfig extends \Google\Protobuf\Internal\Message
+final class CryptoHashConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The key used by the hash function.

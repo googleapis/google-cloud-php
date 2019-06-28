@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.StoredInfoTypeVersion</code>
  */
-class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
+final class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
 {
     /**
      * StoredInfoType configuration.

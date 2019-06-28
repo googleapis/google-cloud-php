@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectionRuleSet</code>
  */
-class InspectionRuleSet extends \Google\Protobuf\Internal\Message
+final class InspectionRuleSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of infoTypes this rule set is applied to.

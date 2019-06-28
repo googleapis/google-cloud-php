@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.StatisticalTable</code>
  */
-class StatisticalTable extends \Google\Protobuf\Internal\Message
+final class StatisticalTable extends \Google\Protobuf\Internal\Message
 {
     /**
      * Auxiliary table location. [required]

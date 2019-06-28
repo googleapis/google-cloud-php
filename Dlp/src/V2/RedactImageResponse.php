@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RedactImageResponse</code>
  */
-class RedactImageResponse extends \Google\Protobuf\Internal\Message
+final class RedactImageResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The redacted image. The type will be the same as the original image.

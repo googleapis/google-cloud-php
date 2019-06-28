@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult</code>
  */
-class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
+final class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The intervals [min_probability, max_probability) do not overlap. If a

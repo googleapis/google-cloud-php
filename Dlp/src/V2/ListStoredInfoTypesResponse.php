@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ListStoredInfoTypesResponse</code>
  */
-class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
+final class ListStoredInfoTypesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of storedInfoTypes, up to page_size in ListStoredInfoTypesRequest.

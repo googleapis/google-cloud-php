@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.BigQueryField</code>
  */
-class BigQueryField extends \Google\Protobuf\Internal\Message
+final class BigQueryField extends \Google\Protobuf\Internal\Message
 {
     /**
      * Source table of the field.

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig</code>
  */
-class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
+final class DeltaPresenceEstimationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Fields considered to be quasi-identifiers. No two fields can have the

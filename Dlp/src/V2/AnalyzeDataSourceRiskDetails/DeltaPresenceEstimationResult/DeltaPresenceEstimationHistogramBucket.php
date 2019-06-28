@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationHistogramBucket</code>
  */
-class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
+final class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
 {
     /**
      * Between 0 and 1.

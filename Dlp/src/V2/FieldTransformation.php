@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.FieldTransformation</code>
  */
-class FieldTransformation extends \Google\Protobuf\Internal\Message
+final class FieldTransformation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Input field(s) to apply the transformation to. [required]

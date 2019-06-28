@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationHistogramBucket</code>
  */
-class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
+final class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
 {
     /**
      * Always positive.

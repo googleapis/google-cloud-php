@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.TransformationSummary</code>
  */
-class TransformationSummary extends \Google\Protobuf\Internal\Message
+final class TransformationSummary extends \Google\Protobuf\Internal\Message
 {
     /**
      * Set if the transformation was limited to a specific InfoType.

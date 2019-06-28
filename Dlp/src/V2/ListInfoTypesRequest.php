@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ListInfoTypesRequest</code>
  */
-class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
+final class ListInfoTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional BCP-47 language code for localized infoType friendly

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.TransformationSummary.SummaryResult</code>
  */
-class SummaryResult extends \Google\Protobuf\Internal\Message
+final class SummaryResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>int64 count = 1;</code>

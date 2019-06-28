@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.TransientCryptoKey</code>
  */
-class TransientCryptoKey extends \Google\Protobuf\Internal\Message
+final class TransientCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Name of the key. [required]

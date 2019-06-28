@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectTemplate</code>
  */
-class InspectTemplate extends \Google\Protobuf\Internal\Message
+final class InspectTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
      * The template name. Output only.

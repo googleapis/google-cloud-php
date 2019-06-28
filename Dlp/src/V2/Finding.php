@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Finding</code>
  */
-class Finding extends \Google\Protobuf\Internal\Message
+final class Finding extends \Google\Protobuf\Internal\Message
 {
     /**
      * The content that was found. Even if the content is not textual, it

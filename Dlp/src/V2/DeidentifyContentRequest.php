@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyContentRequest</code>
  */
-class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
+final class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parent resource name, for example projects/my-project-id.

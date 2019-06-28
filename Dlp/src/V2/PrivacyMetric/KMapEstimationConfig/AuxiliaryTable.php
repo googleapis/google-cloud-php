@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.AuxiliaryTable</code>
  */
-class AuxiliaryTable extends \Google\Protobuf\Internal\Message
+final class AuxiliaryTable extends \Google\Protobuf\Internal\Message
 {
     /**
      * Auxiliary table location. [required]

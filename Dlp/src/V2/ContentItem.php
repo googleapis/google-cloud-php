@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ContentItem</code>
  */
-class ContentItem extends \Google\Protobuf\Internal\Message
+final class ContentItem extends \Google\Protobuf\Internal\Message
 {
     protected $data_item;
 

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.TimePartConfig</code>
  */
-class TimePartConfig extends \Google\Protobuf\Internal\Message
+final class TimePartConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TimePartConfig.TimePart part_to_extract = 1;</code>

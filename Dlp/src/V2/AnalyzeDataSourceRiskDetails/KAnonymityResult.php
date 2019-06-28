@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult</code>
  */
-class KAnonymityResult extends \Google\Protobuf\Internal\Message
+final class KAnonymityResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Histogram of k-anonymity equivalence classes.

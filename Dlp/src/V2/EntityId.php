@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.EntityId</code>
  */
-class EntityId extends \Google\Protobuf\Internal\Message
+final class EntityId extends \Google\Protobuf\Internal\Message
 {
     /**
      * Composite key indicating which field contains the entity identifier.

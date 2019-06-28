@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Range</code>
  */
-class Range extends \Google\Protobuf\Internal\Message
+final class Range extends \Google\Protobuf\Internal\Message
 {
     /**
      * Index of the first character of the range (inclusive).

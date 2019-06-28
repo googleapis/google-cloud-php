@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule</code>
  */
-class HotwordRule extends \Google\Protobuf\Internal\Message
+final class HotwordRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * Regular expression pattern defining what qualifies as a hotword.

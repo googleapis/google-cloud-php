@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.GetJobTriggerRequest</code>
  */
-class GetJobTriggerRequest extends \Google\Protobuf\Internal\Message
+final class GetJobTriggerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of the project and the triggeredJob, for example

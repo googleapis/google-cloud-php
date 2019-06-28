@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket</code>
  */
-class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message
+final class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message
 {
     /**
      * Lower bound on the sensitive value frequencies of the equivalence

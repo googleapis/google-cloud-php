@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InfoTypeTransformations</code>
  */
-class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
+final class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
 {
     /**
      * Transformation for each infoType. Cannot specify more than one

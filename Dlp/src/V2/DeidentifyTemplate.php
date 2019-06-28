@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyTemplate</code>
  */
-class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
+final class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
      * The template name. Output only.

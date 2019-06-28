@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.StorageConfig.TimespanConfig</code>
  */
-class TimespanConfig extends \Google\Protobuf\Internal\Message
+final class TimespanConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Exclude files or rows older than this value.

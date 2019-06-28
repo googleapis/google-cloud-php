@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ImageLocation</code>
  */
-class ImageLocation extends \Google\Protobuf\Internal\Message
+final class ImageLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Bounding boxes locating the pixels within the image containing the finding.

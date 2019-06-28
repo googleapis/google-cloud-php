@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ListDeidentifyTemplatesResponse</code>
  */
-class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
+final class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of deidentify templates, up to page_size in

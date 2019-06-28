@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoKey</code>
  */
-class CryptoKey extends \Google\Protobuf\Internal\Message
+final class CryptoKey extends \Google\Protobuf\Internal\Message
 {
     protected $source;
 

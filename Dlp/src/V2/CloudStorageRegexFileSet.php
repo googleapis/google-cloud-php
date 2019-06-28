@@ -38,7 +38,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CloudStorageRegexFileSet</code>
  */
-class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
+final class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of a Cloud Storage bucket. Required.

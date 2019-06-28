@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InfoTypeTransformations.InfoTypeTransformation</code>
  */
-class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
+final class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
 {
     /**
      * InfoTypes to apply the transformation to. An empty list will cause

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.StoredInfoTypeConfig</code>
  */
-class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
+final class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Display name of the StoredInfoType (max 256 characters).

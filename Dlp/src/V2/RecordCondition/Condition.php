@@ -29,7 +29,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RecordCondition.Condition</code>
  */
-class Condition extends \Google\Protobuf\Internal\Message
+final class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
      * Field within the record this condition is evaluated against. [required]

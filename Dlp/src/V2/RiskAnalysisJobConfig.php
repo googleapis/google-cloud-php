@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RiskAnalysisJobConfig</code>
  */
-class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
+final class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Privacy metric to compute.

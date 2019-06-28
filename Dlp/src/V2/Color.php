@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Color</code>
  */
-class Color extends \Google\Protobuf\Internal\Message
+final class Color extends \Google\Protobuf\Internal\Message
 {
     /**
      * The amount of red in the color as a value in the interval [0, 1].

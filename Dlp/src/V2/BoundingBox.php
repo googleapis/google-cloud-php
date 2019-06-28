@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.BoundingBox</code>
  */
-class BoundingBox extends \Google\Protobuf\Internal\Message
+final class BoundingBox extends \Google\Protobuf\Internal\Message
 {
     /**
      * Top coordinate of the bounding box. (0,0) is upper left.

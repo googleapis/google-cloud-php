@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CharacterMaskConfig</code>
  */
-class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
+final class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Character to mask the sensitive values&mdash;for example, "*" for an

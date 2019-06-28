@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.FixedSizeBucketingConfig</code>
  */
-class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
+final class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Lower bound value of buckets. All values less than `lower_bound` are

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ByteContentItem</code>
  */
-class ByteContentItem extends \Google\Protobuf\Internal\Message
+final class ByteContentItem extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of data stored in the bytes string. Default will be TEXT_UTF8.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ListStoredInfoTypesRequest</code>
  */
-class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
+final class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parent resource name, for example projects/my-project-id or

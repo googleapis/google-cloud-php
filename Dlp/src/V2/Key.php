@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Key</code>
  */
-class Key extends \Google\Protobuf\Internal\Message
+final class Key extends \Google\Protobuf\Internal\Message
 {
     /**
      * Entities are partitioned into subsets, currently identified by a project

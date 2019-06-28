@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DlpJob</code>
  */
-class DlpJob extends \Google\Protobuf\Internal\Message
+final class DlpJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * The server-assigned name.

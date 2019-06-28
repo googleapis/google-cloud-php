@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.privacy.dlp.v2.Table.Row</code>
  */
-class Row extends \Google\Protobuf\Internal\Message
+final class Row extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>

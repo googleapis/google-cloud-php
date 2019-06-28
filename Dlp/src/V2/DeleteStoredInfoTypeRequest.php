@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeleteStoredInfoTypeRequest</code>
  */
-class DeleteStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
+final class DeleteStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of the organization and storedInfoType to be deleted, for

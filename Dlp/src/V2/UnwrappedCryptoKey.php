@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.UnwrappedCryptoKey</code>
  */
-class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
+final class UnwrappedCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * A 128/192/256 bit key. [required]

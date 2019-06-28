@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig</code>
  */
-class KAnonymityConfig extends \Google\Protobuf\Internal\Message
+final class KAnonymityConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Set of fields to compute k-anonymity over. When multiple fields are

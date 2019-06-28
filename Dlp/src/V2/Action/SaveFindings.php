@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Action.SaveFindings</code>
  */
-class SaveFindings extends \Google\Protobuf\Internal\Message
+final class SaveFindings extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig output_config = 1;</code>

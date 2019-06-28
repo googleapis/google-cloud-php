@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.BucketingConfig.Bucket</code>
  */
-class Bucket extends \Google\Protobuf\Internal\Message
+final class Bucket extends \Google\Protobuf\Internal\Message
 {
     /**
      * Lower bound of the range, inclusive. Type should be the same as max if

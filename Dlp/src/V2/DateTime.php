@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DateTime</code>
  */
-class DateTime extends \Google\Protobuf\Internal\Message
+final class DateTime extends \Google\Protobuf\Internal\Message
 {
     /**
      * One or more of the following must be set. All fields are optional, but

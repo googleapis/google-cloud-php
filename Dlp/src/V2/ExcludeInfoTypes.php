@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ExcludeInfoTypes</code>
  */
-class ExcludeInfoTypes extends \Google\Protobuf\Internal\Message
+final class ExcludeInfoTypes extends \Google\Protobuf\Internal\Message
 {
     /**
      * InfoType list in ExclusionRule rule drops a finding when it overlaps or

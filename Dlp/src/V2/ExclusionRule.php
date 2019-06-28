@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ExclusionRule</code>
  */
-class ExclusionRule extends \Google\Protobuf\Internal\Message
+final class ExclusionRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * How the rule is applied, see MatchingType documentation for details.

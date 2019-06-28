@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InfoTypeStats</code>
  */
-class InfoTypeStats extends \Google\Protobuf\Internal\Message
+final class InfoTypeStats extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of finding this stat is for.

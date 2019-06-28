@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyContentResponse</code>
  */
-class DeidentifyContentResponse extends \Google\Protobuf\Internal\Message
+final class DeidentifyContentResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The de-identified item.

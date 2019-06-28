@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig</code>
  */
-class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
+final class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The key used by the encryption algorithm. [required]

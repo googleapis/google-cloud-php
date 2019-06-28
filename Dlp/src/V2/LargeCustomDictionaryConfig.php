@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.LargeCustomDictionaryConfig</code>
  */
-class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
+final class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Location to store dictionary artifacts in Google Cloud Storage. These files

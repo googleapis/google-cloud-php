@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig.TaggedField</code>
  */
-class TaggedField extends \Google\Protobuf\Internal\Message
+final class TaggedField extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifies the column. [required]

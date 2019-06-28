@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Key.PathElement</code>
  */
-class PathElement extends \Google\Protobuf\Internal\Message
+final class PathElement extends \Google\Protobuf\Internal\Message
 {
     /**
      * The kind of the entity.

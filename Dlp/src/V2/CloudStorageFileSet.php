@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CloudStorageFileSet</code>
  */
-class CloudStorageFileSet extends \Google\Protobuf\Internal\Message
+final class CloudStorageFileSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * The url, in the format `gs://<bucket>/<path>`. Trailing wildcard in the

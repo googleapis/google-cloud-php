@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.KindExpression</code>
  */
-class KindExpression extends \Google\Protobuf\Internal\Message
+final class KindExpression extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the kind.

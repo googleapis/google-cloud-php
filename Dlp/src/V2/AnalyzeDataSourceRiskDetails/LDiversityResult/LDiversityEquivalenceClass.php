@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClass</code>
  */
-class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
+final class LDiversityEquivalenceClass extends \Google\Protobuf\Internal\Message
 {
     /**
      * Quasi-identifier values defining the k-anonymity equivalence

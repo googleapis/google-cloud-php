@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.privacy.dlp.v2.DateTime.TimeZone</code>
  */
-class TimeZone extends \Google\Protobuf\Internal\Message
+final class TimeZone extends \Google\Protobuf\Internal\Message
 {
     /**
      * Set only if the offset can be determined. Positive for time ahead of UTC.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeleteDeidentifyTemplateRequest</code>
  */
-class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
+final class DeleteDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of the organization and deidentify template to be deleted,

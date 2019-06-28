@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult</code>
  */
-class NumericalStatsResult extends \Google\Protobuf\Internal\Message
+final class NumericalStatsResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Minimum value appearing in the column.

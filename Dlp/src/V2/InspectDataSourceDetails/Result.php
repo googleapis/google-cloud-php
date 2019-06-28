@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectDataSourceDetails.Result</code>
  */
-class Result extends \Google\Protobuf\Internal\Message
+final class Result extends \Google\Protobuf\Internal\Message
 {
     /**
      * Total size in bytes that were processed.

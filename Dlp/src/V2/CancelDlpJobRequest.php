@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CancelDlpJobRequest</code>
  */
-class CancelDlpJobRequest extends \Google\Protobuf\Internal\Message
+final class CancelDlpJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the DlpJob resource to be cancelled.

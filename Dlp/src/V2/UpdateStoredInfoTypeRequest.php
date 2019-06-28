@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.UpdateStoredInfoTypeRequest</code>
  */
-class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
+final class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of organization and storedInfoType to be updated, for

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RecordKey</code>
  */
-class RecordKey extends \Google\Protobuf\Internal\Message
+final class RecordKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Values of identifying columns in the given row. Order of values matches

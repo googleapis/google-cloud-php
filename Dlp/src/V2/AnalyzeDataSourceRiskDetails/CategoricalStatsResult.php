@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult</code>
  */
-class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
+final class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Histogram of value frequencies in the column.

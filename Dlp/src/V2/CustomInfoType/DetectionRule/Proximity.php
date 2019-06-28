@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity</code>
  */
-class Proximity extends \Google\Protobuf\Internal\Message
+final class Proximity extends \Google\Protobuf\Internal\Message
 {
     /**
      * Number of characters before the finding to consider.

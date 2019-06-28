@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DatastoreKey</code>
  */
-class DatastoreKey extends \Google\Protobuf\Internal\Message
+final class DatastoreKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Datastore entity key.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails</code>
  */
-class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
+final class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
 {
     /**
      * Privacy metric to compute.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RecordLocation</code>
  */
-class RecordLocation extends \Google\Protobuf\Internal\Message
+final class RecordLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Key of the finding.

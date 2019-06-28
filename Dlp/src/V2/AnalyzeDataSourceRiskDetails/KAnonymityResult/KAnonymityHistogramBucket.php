@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket</code>
  */
-class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
+final class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
 {
     /**
      * Lower bound on the size of the equivalence classes in this bucket.

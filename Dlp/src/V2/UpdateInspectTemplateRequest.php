@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.UpdateInspectTemplateRequest</code>
  */
-class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
+final class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Resource name of organization and inspectTemplate to be updated, for

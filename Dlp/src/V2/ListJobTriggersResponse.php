@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ListJobTriggersResponse</code>
  */
-class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
+final class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of triggeredJobs, up to page_size in ListJobTriggersRequest.

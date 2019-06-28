@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CloudStorageOptions.FileSet</code>
  */
-class FileSet extends \Google\Protobuf\Internal\Message
+final class FileSet extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Cloud Storage url of the file(s) to scan, in the format

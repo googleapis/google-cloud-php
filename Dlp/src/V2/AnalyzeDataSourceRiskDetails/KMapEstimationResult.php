@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult</code>
  */
-class KMapEstimationResult extends \Google\Protobuf\Internal\Message
+final class KMapEstimationResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * The intervals [min_anonymity, max_anonymity] do not overlap. If a value

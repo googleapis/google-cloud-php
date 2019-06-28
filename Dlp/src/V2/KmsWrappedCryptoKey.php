@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.KmsWrappedCryptoKey</code>
  */
-class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
+final class KmsWrappedCryptoKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * The wrapped data crypto key. [required]

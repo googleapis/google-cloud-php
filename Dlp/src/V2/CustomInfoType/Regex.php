@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.Regex</code>
  */
-class Regex extends \Google\Protobuf\Internal\Message
+final class Regex extends \Google\Protobuf\Internal\Message
 {
     /**
      * Pattern defining the regular expression. Its syntax

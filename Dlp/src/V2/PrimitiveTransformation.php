@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.PrimitiveTransformation</code>
  */
-class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
+final class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
 {
     protected $transformation;
 

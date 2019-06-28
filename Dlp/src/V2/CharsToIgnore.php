@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CharsToIgnore</code>
  */
-class CharsToIgnore extends \Google\Protobuf\Internal\Message
+final class CharsToIgnore extends \Google\Protobuf\Internal\Message
 {
     protected $characters;
 
