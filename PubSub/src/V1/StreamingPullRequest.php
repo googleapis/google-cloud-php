@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.StreamingPullRequest</code>
  */
-class StreamingPullRequest extends \Google\Protobuf\Internal\Message
+final class StreamingPullRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The subscription for which to initialize the new stream. This must be

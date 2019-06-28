@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.Snapshot</code>
  */
-class Snapshot extends \Google\Protobuf\Internal\Message
+final class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the snapshot.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.PullRequest</code>
  */
-class PullRequest extends \Google\Protobuf\Internal\Message
+final class PullRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The subscription from which messages should be pulled.

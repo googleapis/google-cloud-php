@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.ReceivedMessage</code>
  */
-class ReceivedMessage extends \Google\Protobuf\Internal\Message
+final class ReceivedMessage extends \Google\Protobuf\Internal\Message
 {
     /**
      * This ID can be used to acknowledge the received message.

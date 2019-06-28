@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Generated from protobuf message <code>google.pubsub.v1.MessageStoragePolicy</code>
  */
-class MessageStoragePolicy extends \Google\Protobuf\Internal\Message
+final class MessageStoragePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of GCP region IDs where messages that are published to the topic

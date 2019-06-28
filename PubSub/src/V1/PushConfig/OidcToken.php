@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.PushConfig.OidcToken</code>
  */
-class OidcToken extends \Google\Protobuf\Internal\Message
+final class OidcToken extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Service account

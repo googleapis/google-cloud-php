@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.StreamingPullResponse</code>
  */
-class StreamingPullResponse extends \Google\Protobuf\Internal\Message
+final class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Received Pub/Sub messages. This will not be empty.

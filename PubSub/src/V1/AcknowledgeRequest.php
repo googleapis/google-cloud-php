@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.AcknowledgeRequest</code>
  */
-class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
+final class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The subscription whose message is being acknowledged.

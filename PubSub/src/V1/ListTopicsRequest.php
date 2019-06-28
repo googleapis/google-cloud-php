@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.ListTopicsRequest</code>
  */
-class ListTopicsRequest extends \Google\Protobuf\Internal\Message
+final class ListTopicsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the project in which to list topics.

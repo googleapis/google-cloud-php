@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.PubsubMessage</code>
  */
-class PubsubMessage extends \Google\Protobuf\Internal\Message
+final class PubsubMessage extends \Google\Protobuf\Internal\Message
 {
     /**
      * The message data field. If this field is empty, the message must contain

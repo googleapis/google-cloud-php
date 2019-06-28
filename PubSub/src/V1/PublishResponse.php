@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.PublishResponse</code>
  */
-class PublishResponse extends \Google\Protobuf\Internal\Message
+final class PublishResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The server-assigned ID of each published message, in the same order as

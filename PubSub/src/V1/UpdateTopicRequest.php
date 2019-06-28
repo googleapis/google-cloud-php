@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.UpdateTopicRequest</code>
  */
-class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
+final class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The updated topic object.

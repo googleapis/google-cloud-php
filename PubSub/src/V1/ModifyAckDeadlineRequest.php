@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.ModifyAckDeadlineRequest</code>
  */
-class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
+final class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the subscription.

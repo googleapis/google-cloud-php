@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.ListTopicSubscriptionsRequest</code>
  */
-class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
+final class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the topic that subscriptions are attached to.

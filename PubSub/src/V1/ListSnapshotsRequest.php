@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.pubsub.v1.ListSnapshotsRequest</code>
  */
-class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
+final class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the project in which to list snapshots.
