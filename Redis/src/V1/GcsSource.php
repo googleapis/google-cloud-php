@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.GcsSource</code>
  */
-class GcsSource extends \Google\Protobuf\Internal\Message
+final class GcsSource extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Source data URI. (e.g. 'gs://my_bucket/my_object').

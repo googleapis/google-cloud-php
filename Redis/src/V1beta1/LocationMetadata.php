@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.LocationMetadata</code>
  */
-class LocationMetadata extends \Google\Protobuf\Internal\Message
+final class LocationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The set of available zones in the location. The map is keyed

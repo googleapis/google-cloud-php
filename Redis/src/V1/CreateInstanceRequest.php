@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.CreateInstanceRequest</code>
  */
-class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
+final class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the instance location using the form:

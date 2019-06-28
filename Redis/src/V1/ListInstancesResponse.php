@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.ListInstancesResponse</code>
  */
-class ListInstancesResponse extends \Google\Protobuf\Internal\Message
+final class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of Redis instances in the project in the specified location,

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.Instance</code>
  */
-class Instance extends \Google\Protobuf\Internal\Message
+final class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Unique name of the resource in this scope including project and

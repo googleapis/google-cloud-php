@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.ZoneMetadata</code>
  */
-class ZoneMetadata extends \Google\Protobuf\Internal\Message
+final class ZoneMetadata extends \Google\Protobuf\Internal\Message
 {
 
     /**

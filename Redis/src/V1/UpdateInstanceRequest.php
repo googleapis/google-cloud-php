@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.UpdateInstanceRequest</code>
  */
-class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
+final class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Mask of fields to update. At least one path must be supplied in

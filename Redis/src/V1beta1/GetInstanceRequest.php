@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.GetInstanceRequest</code>
  */
-class GetInstanceRequest extends \Google\Protobuf\Internal\Message
+final class GetInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Redis instance resource name using the form:

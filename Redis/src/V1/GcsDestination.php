@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.redis.v1.GcsDestination</code>
  */
-class GcsDestination extends \Google\Protobuf\Internal\Message
+final class GcsDestination extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Data destination URI (e.g.
