@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.TimeEvents</code>
  */
-class TimeEvents extends \Google\Protobuf\Internal\Message
+final class TimeEvents extends \Google\Protobuf\Internal\Message
 {
     /**
      * A collection of `TimeEvent`s.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.TruncatableString</code>
  */
-class TruncatableString extends \Google\Protobuf\Internal\Message
+final class TruncatableString extends \Google\Protobuf\Internal\Message
 {
     /**
      * The shortened string. For example, if the original string is 500

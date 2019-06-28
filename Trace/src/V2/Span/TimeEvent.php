@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.TimeEvent</code>
  */
-class TimeEvent extends \Google\Protobuf\Internal\Message
+final class TimeEvent extends \Google\Protobuf\Internal\Message
 {
     /**
      * The timestamp indicating the time the event occurred.

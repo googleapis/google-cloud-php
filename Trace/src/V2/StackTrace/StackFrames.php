@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.StackTrace.StackFrames</code>
  */
-class StackFrames extends \Google\Protobuf\Internal\Message
+final class StackFrames extends \Google\Protobuf\Internal\Message
 {
     /**
      * Stack frames in this call stack.

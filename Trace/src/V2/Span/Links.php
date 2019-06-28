@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.Links</code>
  */
-class Links extends \Google\Protobuf\Internal\Message
+final class Links extends \Google\Protobuf\Internal\Message
 {
     /**
      * A collection of links.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.BatchWriteSpansRequest</code>
  */
-class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
+final class BatchWriteSpansRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the project where the spans belong. The format is

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.StackTrace</code>
  */
-class StackTrace extends \Google\Protobuf\Internal\Message
+final class StackTrace extends \Google\Protobuf\Internal\Message
 {
     /**
      * Stack frames in this stack trace. A maximum of 128 frames are allowed.

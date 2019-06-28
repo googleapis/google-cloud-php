@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.Link</code>
  */
-class Link extends \Google\Protobuf\Internal\Message
+final class Link extends \Google\Protobuf\Internal\Message
 {
     /**
      * The [TRACE_ID] for a trace within a project.

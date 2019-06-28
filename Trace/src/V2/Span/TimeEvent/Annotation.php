@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation</code>
  */
-class Annotation extends \Google\Protobuf\Internal\Message
+final class Annotation extends \Google\Protobuf\Internal\Message
 {
     /**
      * A user-supplied message describing the event. The maximum length for

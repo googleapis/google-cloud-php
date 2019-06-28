@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span</code>
  */
-class Span extends \Google\Protobuf\Internal\Message
+final class Span extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the span in the following format:
@@ -529,7 +529,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12;</code>
      * @return bool|null
      */
-    public function getSameProcessAsParentSpanValue()
+    public function getSameProcessAsParentSpanUnwrapped()
     {
         $wrapper = $this->getSameProcessAsParentSpan();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -565,7 +565,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setSameProcessAsParentSpanValue($var)
+    public function setSameProcessAsParentSpanUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setSameProcessAsParentSpan($wrappedVar);
@@ -592,7 +592,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13;</code>
      * @return int|null
      */
-    public function getChildSpanCountValue()
+    public function getChildSpanCountUnwrapped()
     {
         $wrapper = $this->getChildSpanCount();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -624,7 +624,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setChildSpanCountValue($var)
+    public function setChildSpanCountUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
         return $this->setChildSpanCount($wrappedVar);

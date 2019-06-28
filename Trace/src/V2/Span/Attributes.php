@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.Attributes</code>
  */
-class Attributes extends \Google\Protobuf\Internal\Message
+final class Attributes extends \Google\Protobuf\Internal\Message
 {
     /**
      * The set of attributes. Each attribute's key can be up to 128 bytes

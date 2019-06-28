@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Module</code>
  */
-class Module extends \Google\Protobuf\Internal\Message
+final class Module extends \Google\Protobuf\Internal\Message
 {
     /**
      * For example: main binary, kernel modules, and dynamic libraries

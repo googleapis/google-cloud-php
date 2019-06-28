@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent</code>
  */
-class MessageEvent extends \Google\Protobuf\Internal\Message
+final class MessageEvent extends \Google\Protobuf\Internal\Message
 {
     /**
      * Type of MessageEvent. Indicates whether the message was sent or
