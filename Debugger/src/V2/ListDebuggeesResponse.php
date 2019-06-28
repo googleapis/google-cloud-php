@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.ListDebuggeesResponse</code>
  */
-class ListDebuggeesResponse extends \Google\Protobuf\Internal\Message
+final class ListDebuggeesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * List of debuggees accessible to the calling user.

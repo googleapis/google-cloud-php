@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.ListBreakpointsRequest.BreakpointActionValue</code>
  */
-class BreakpointActionValue extends \Google\Protobuf\Internal\Message
+final class BreakpointActionValue extends \Google\Protobuf\Internal\Message
 {
     /**
      * Only breakpoints with the specified action will pass the filter.

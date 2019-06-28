@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.UpdateActiveBreakpointResponse</code>
  */
-class UpdateActiveBreakpointResponse extends \Google\Protobuf\Internal\Message
+final class UpdateActiveBreakpointResponse extends \Google\Protobuf\Internal\Message
 {
 
     /**

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.SourceLocation</code>
  */
-class SourceLocation extends \Google\Protobuf\Internal\Message
+final class SourceLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Path to the source file within the source context of the target binary.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.FormatMessage</code>
  */
-class FormatMessage extends \Google\Protobuf\Internal\Message
+final class FormatMessage extends \Google\Protobuf\Internal\Message
 {
     /**
      * Format template for the message. The `format` uses placeholders `$0`,

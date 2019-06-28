@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.RegisterDebuggeeRequest</code>
  */
-class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
+final class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Debuggee information to register.

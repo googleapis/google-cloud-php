@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.ListBreakpointsRequest</code>
  */
-class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
+final class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * ID of the debuggee whose breakpoints to list.

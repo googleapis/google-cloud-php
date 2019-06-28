@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.StatusMessage</code>
  */
-class StatusMessage extends \Google\Protobuf\Internal\Message
+final class StatusMessage extends \Google\Protobuf\Internal\Message
 {
     /**
      * Distinguishes errors from informational messages.

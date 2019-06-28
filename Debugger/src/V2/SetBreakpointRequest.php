@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.SetBreakpointRequest</code>
  */
-class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
+final class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * ID of the debuggee where the breakpoint is to be set.

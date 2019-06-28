@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.devtools.clouddebugger.v2.StackFrame</code>
  */
-class StackFrame extends \Google\Protobuf\Internal\Message
+final class StackFrame extends \Google\Protobuf\Internal\Message
 {
     /**
      * Demangled function name at the call site.
