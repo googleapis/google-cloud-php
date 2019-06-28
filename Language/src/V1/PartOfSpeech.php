@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.PartOfSpeech</code>
  */
-class PartOfSpeech extends \Google\Protobuf\Internal\Message
+final class PartOfSpeech extends \Google\Protobuf\Internal\Message
 {
     /**
      * The part of speech tag.

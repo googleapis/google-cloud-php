@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.AnalyzeSyntaxResponse</code>
  */
-class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
+final class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Sentences in the input document.

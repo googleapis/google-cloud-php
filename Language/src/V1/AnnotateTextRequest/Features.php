@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.AnnotateTextRequest.Features</code>
  */
-class Features extends \Google\Protobuf\Internal\Message
+final class Features extends \Google\Protobuf\Internal\Message
 {
     /**
      * Extract syntax information.

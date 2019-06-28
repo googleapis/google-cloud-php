@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.EntityMention</code>
  */
-class EntityMention extends \Google\Protobuf\Internal\Message
+final class EntityMention extends \Google\Protobuf\Internal\Message
 {
     /**
      * The mention text.

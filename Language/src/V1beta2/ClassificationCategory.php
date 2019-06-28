@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.ClassificationCategory</code>
  */
-class ClassificationCategory extends \Google\Protobuf\Internal\Message
+final class ClassificationCategory extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the category representing the document.

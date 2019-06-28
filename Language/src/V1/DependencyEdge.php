@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.DependencyEdge</code>
  */
-class DependencyEdge extends \Google\Protobuf\Internal\Message
+final class DependencyEdge extends \Google\Protobuf\Internal\Message
 {
     /**
      * Represents the head of this token in the dependency tree.

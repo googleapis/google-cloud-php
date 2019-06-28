@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.AnnotateTextRequest</code>
  */
-class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
+final class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Input document.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.AnalyzeEntitiesResponse</code>
  */
-class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
+final class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The recognized entities in the input document.

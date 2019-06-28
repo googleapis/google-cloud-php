@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.TextSpan</code>
  */
-class TextSpan extends \Google\Protobuf\Internal\Message
+final class TextSpan extends \Google\Protobuf\Internal\Message
 {
     /**
      * The content of the output text.

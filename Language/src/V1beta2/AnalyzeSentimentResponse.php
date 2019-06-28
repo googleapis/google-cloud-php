@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.AnalyzeSentimentResponse</code>
  */
-class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
+final class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The overall sentiment of the input document.

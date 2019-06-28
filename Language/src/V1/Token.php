@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.Token</code>
  */
-class Token extends \Google\Protobuf\Internal\Message
+final class Token extends \Google\Protobuf\Internal\Message
 {
     /**
      * The token text.

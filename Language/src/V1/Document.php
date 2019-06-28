@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.language.v1.Document</code>
  */
-class Document extends \Google\Protobuf\Internal\Message
+final class Document extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`,
