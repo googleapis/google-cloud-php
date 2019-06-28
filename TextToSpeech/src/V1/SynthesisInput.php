@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.texttospeech.v1.SynthesisInput</code>
  */
-class SynthesisInput extends \Google\Protobuf\Internal\Message
+final class SynthesisInput extends \Google\Protobuf\Internal\Message
 {
     protected $input_source;
 

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.texttospeech.v1.AudioConfig</code>
  */
-class AudioConfig extends \Google\Protobuf\Internal\Message
+final class AudioConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The format of the requested audio byte stream.

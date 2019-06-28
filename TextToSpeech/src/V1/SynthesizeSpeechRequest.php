@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.texttospeech.v1.SynthesizeSpeechRequest</code>
  */
-class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
+final class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.texttospeech.v1.ListVoicesRequest</code>
  */
-class ListVoicesRequest extends \Google\Protobuf\Internal\Message
+final class ListVoicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional (but recommended)
