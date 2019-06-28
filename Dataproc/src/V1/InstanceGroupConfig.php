@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.InstanceGroupConfig</code>
  */
-class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
+final class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The number of VM instances in the instance group.

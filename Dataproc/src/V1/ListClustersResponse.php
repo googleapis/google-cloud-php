@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.ListClustersResponse</code>
  */
-class ListClustersResponse extends \Google\Protobuf\Internal\Message
+final class ListClustersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The clusters in the project.

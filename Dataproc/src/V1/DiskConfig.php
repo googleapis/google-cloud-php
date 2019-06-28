@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.DiskConfig</code>
  */
-class DiskConfig extends \Google\Protobuf\Internal\Message
+final class DiskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Type of the boot disk (default is "pd-standard").

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.DeleteClusterRequest</code>
  */
-class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
+final class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster

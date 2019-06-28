@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.ClusterStatus</code>
  */
-class ClusterStatus extends \Google\Protobuf\Internal\Message
+final class ClusterStatus extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The cluster's state.

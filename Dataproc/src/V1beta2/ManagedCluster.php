@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.ManagedCluster</code>
  */
-class ManagedCluster extends \Google\Protobuf\Internal\Message
+final class ManagedCluster extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The cluster name prefix. A unique cluster name will be formed by

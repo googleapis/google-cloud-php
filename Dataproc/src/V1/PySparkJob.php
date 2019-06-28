@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.PySparkJob</code>
  */
-class PySparkJob extends \Google\Protobuf\Internal\Message
+final class PySparkJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The HCFS URI of the main Python file to use as the driver. Must

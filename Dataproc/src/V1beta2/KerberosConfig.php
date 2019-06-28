@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.KerberosConfig</code>
  */
-class KerberosConfig extends \Google\Protobuf\Internal\Message
+final class KerberosConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Flag to indicate whether to Kerberize the cluster.

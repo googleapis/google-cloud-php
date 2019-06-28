@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.GceClusterConfig</code>
  */
-class GceClusterConfig extends \Google\Protobuf\Internal\Message
+final class GceClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The zone where the Compute Engine cluster will be located.

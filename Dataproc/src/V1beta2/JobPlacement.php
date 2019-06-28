@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.JobPlacement</code>
  */
-class JobPlacement extends \Google\Protobuf\Internal\Message
+final class JobPlacement extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the cluster where the job will be submitted.

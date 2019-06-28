@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.ListWorkflowTemplatesResponse</code>
  */
-class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
+final class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. WorkflowTemplates list.

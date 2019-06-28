@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.GetWorkflowTemplateRequest</code>
  */
-class GetWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
+final class GetWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The "resource name" of the workflow template, as described

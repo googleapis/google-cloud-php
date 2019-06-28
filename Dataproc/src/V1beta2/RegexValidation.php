@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.RegexValidation</code>
  */
-class RegexValidation extends \Google\Protobuf\Internal\Message
+final class RegexValidation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. RE2 regular expressions used to validate the parameter's value.

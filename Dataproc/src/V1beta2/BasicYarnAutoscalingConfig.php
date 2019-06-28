@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig</code>
  */
-class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
+final class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Timeout for YARN graceful decommissioning of Node Managers.

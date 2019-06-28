@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.LoggingConfig</code>
  */
-class LoggingConfig extends \Google\Protobuf\Internal\Message
+final class LoggingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The per-package log levels for the driver. This may include

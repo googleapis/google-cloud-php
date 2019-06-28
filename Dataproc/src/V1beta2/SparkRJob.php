@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.SparkRJob</code>
  */
-class SparkRJob extends \Google\Protobuf\Internal\Message
+final class SparkRJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The HCFS URI of the main R file to use as the driver.

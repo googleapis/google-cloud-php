@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.ListJobsRequest</code>
  */
-class ListJobsRequest extends \Google\Protobuf\Internal\Message
+final class ListJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The ID of the Google Cloud Platform project that the job

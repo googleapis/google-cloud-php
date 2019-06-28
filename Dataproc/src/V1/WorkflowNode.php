@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.WorkflowNode</code>
  */
-class WorkflowNode extends \Google\Protobuf\Internal\Message
+final class WorkflowNode extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of the node.

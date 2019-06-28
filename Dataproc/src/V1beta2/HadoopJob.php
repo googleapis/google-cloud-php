@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.HadoopJob</code>
  */
-class HadoopJob extends \Google\Protobuf\Internal\Message
+final class HadoopJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The arguments to pass to the driver. Do not

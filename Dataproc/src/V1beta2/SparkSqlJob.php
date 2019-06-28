@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.SparkSqlJob</code>
  */
-class SparkSqlJob extends \Google\Protobuf\Internal\Message
+final class SparkSqlJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Mapping of query variable names to values (equivalent to the

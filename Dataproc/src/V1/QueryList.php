@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.QueryList</code>
  */
-class QueryList extends \Google\Protobuf\Internal\Message
+final class QueryList extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The queries to execute. You do not need to terminate a query

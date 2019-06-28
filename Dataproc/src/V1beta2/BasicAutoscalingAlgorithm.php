@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.BasicAutoscalingAlgorithm</code>
  */
-class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
+final class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. YARN autoscaling configuration.

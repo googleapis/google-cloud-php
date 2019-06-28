@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.JobStatus</code>
  */
-class JobStatus extends \Google\Protobuf\Internal\Message
+final class JobStatus extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. A state message specifying the overall job state.

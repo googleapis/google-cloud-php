@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.ManagedGroupConfig</code>
  */
-class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
+final class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of the Instance Template used for the Managed

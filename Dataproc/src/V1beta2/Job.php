@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.Job</code>
  */
-class Job extends \Google\Protobuf\Internal\Message
+final class Job extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The fully qualified reference to the job, which can be used to

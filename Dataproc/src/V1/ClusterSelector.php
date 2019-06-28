@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.ClusterSelector</code>
  */
-class ClusterSelector extends \Google\Protobuf\Internal\Message
+final class ClusterSelector extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The zone where workflow process executes. This parameter does not

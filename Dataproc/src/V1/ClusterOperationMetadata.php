@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.ClusterOperationMetadata</code>
  */
-class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
+final class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Name of the cluster for the operation.

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig</code>
  */
-class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Message
+final class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Minimum number of instances for this group.

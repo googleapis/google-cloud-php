@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.LifecycleConfig</code>
  */
-class LifecycleConfig extends \Google\Protobuf\Internal\Message
+final class LifecycleConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The duration to keep the cluster alive while idling.

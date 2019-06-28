@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.ListJobsResponse</code>
  */
-class ListJobsResponse extends \Google\Protobuf\Internal\Message
+final class ListJobsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Jobs list.

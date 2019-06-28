@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.PigJob</code>
  */
-class PigJob extends \Google\Protobuf\Internal\Message
+final class PigJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Whether to continue executing queries if a query fails.

@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.TemplateParameter</code>
  */
-class TemplateParameter extends \Google\Protobuf\Internal\Message
+final class TemplateParameter extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required.  Parameter name.

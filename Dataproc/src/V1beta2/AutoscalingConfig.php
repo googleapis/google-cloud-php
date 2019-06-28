@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.AutoscalingConfig</code>
  */
-class AutoscalingConfig extends \Google\Protobuf\Internal\Message
+final class AutoscalingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The autoscaling policy used by the cluster.

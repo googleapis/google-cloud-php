@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SoftwareConfig</code>
  */
-class SoftwareConfig extends \Google\Protobuf\Internal\Message
+final class SoftwareConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The version of software inside the cluster. It must be one of the

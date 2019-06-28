@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.ReservationAffinity</code>
  */
-class ReservationAffinity extends \Google\Protobuf\Internal\Message
+final class ReservationAffinity extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Type of reservation to consume

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.YarnApplication</code>
  */
-class YarnApplication extends \Google\Protobuf\Internal\Message
+final class YarnApplication extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The application name.

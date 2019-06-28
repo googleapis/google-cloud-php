@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.DeleteAutoscalingPolicyRequest</code>
  */
-class DeleteAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
+final class DeleteAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The "resource name" of the autoscaling policy, as described

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.EndpointConfig</code>
  */
-class EndpointConfig extends \Google\Protobuf\Internal\Message
+final class EndpointConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The map of port descriptions to URLs. Will only be populated

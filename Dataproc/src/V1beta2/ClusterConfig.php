@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.ClusterConfig</code>
  */
-class ClusterConfig extends \Google\Protobuf\Internal\Message
+final class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. A Google Cloud Storage bucket used to stage job

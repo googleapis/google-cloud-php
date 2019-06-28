@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.AcceleratorConfig</code>
  */
-class AcceleratorConfig extends \Google\Protobuf\Internal\Message
+final class AcceleratorConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Full URL, partial URI, or short name of the accelerator type resource to

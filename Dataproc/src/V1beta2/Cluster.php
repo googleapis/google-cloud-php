@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.Cluster</code>
  */
-class Cluster extends \Google\Protobuf\Internal\Message
+final class Cluster extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Google Cloud Platform project ID that the cluster belongs to.

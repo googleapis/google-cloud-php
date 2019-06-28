@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.JobScheduling</code>
  */
-class JobScheduling extends \Google\Protobuf\Internal\Message
+final class JobScheduling extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Maximum number of times per hour a driver may be restarted as
