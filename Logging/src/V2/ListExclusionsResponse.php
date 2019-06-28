@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.ListExclusionsResponse</code>
  */
-class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
+final class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of exclusions.

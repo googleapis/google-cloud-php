@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.UpdateSinkRequest</code>
  */
-class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
+final class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The full resource name of the sink to update, including the

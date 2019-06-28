@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.GetSinkRequest</code>
  */
-class GetSinkRequest extends \Google\Protobuf\Internal\Message
+final class GetSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the sink:

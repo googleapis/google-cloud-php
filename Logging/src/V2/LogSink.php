@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.LogSink</code>
  */
-class LogSink extends \Google\Protobuf\Internal\Message
+final class LogSink extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The client-assigned sink identifier, unique within the

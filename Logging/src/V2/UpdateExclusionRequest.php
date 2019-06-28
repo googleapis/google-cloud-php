@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.UpdateExclusionRequest</code>
  */
-class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
+final class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the exclusion to update:

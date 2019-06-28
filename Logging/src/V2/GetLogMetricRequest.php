@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.GetLogMetricRequest</code>
  */
-class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
+final class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the desired metric:

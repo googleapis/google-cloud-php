@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.LogEntryOperation</code>
  */
-class LogEntryOperation extends \Google\Protobuf\Internal\Message
+final class LogEntryOperation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. An arbitrary operation identifier. Log entries with the

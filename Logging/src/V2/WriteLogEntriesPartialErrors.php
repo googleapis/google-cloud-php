@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.WriteLogEntriesPartialErrors</code>
  */
-class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
+final class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
 {
     /**
      * When `WriteLogEntriesRequest.partial_success` is true, records the error

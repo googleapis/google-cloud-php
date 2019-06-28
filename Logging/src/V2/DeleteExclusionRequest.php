@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.DeleteExclusionRequest</code>
  */
-class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
+final class DeleteExclusionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of an existing exclusion to delete:

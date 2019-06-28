@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.ListMonitoredResourceDescriptorsRequest</code>
  */
-class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
+final class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The maximum number of results to return from this request.

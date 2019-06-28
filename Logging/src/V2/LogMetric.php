@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.LogMetric</code>
  */
-class LogMetric extends \Google\Protobuf\Internal\Message
+final class LogMetric extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The client-assigned metric identifier.

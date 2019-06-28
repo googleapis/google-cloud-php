@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.LogExclusion</code>
  */
-class LogExclusion extends \Google\Protobuf\Internal\Message
+final class LogExclusion extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A client-assigned identifier, such as

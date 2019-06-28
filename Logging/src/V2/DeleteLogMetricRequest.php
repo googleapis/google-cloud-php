@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.DeleteLogMetricRequest</code>
  */
-class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
+final class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the metric to delete:

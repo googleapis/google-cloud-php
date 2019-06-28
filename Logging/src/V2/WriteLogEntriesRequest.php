@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.WriteLogEntriesRequest</code>
  */
-class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
+final class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. A default log resource name that is assigned to all log entries

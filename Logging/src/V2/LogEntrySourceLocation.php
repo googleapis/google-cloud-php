@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.LogEntrySourceLocation</code>
  */
-class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
+final class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Source file name. Depending on the runtime environment, this

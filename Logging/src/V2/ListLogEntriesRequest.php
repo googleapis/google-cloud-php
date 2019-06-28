@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.ListLogEntriesRequest</code>
  */
-class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
+final class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. Use `resource_names` instead.  One or more project identifiers

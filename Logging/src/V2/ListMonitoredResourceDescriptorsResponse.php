@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.logging.v2.ListMonitoredResourceDescriptorsResponse</code>
  */
-class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal\Message
+final class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of resource descriptors.
