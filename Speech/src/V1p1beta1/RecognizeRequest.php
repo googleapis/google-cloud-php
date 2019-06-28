@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.RecognizeRequest</code>
  */
-class RecognizeRequest extends \Google\Protobuf\Internal\Message
+final class RecognizeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * *Required* Provides information to the recognizer that specifies how to

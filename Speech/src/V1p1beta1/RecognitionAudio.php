@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.RecognitionAudio</code>
  */
-class RecognitionAudio extends \Google\Protobuf\Internal\Message
+final class RecognitionAudio extends \Google\Protobuf\Internal\Message
 {
     protected $audio_source;
 

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.RecognitionConfig</code>
  */
-class RecognitionConfig extends \Google\Protobuf\Internal\Message
+final class RecognitionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.

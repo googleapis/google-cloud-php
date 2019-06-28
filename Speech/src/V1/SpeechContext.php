@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.SpeechContext</code>
  */
-class SpeechContext extends \Google\Protobuf\Internal\Message
+final class SpeechContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * *Optional* A list of strings containing words and phrases "hints" so that

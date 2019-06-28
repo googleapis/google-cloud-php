@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.LongRunningRecognizeMetadata</code>
  */
-class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
+final class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Approximate percentage of audio processed thus far. Guaranteed to be 100

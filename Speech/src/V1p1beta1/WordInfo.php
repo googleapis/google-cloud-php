@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.WordInfo</code>
  */
-class WordInfo extends \Google\Protobuf\Internal\Message
+final class WordInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Time offset relative to the beginning of the audio,

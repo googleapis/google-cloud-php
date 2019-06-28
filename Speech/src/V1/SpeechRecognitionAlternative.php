@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.SpeechRecognitionAlternative</code>
  */
-class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
+final class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Transcript text representing the words that the user spoke.

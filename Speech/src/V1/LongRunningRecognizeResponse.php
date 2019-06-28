@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.LongRunningRecognizeResponse</code>
  */
-class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
+final class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Sequential list of transcription results corresponding to

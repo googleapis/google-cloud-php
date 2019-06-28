@@ -48,7 +48,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.StreamingRecognizeResponse</code>
  */
-class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
+final class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. If set, returns a [google.rpc.Status][google.rpc.Status]

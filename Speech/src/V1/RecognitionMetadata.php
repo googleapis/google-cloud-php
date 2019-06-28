@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.RecognitionMetadata</code>
  */
-class RecognitionMetadata extends \Google\Protobuf\Internal\Message
+final class RecognitionMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The use case most closely describing the audio content to be recognized.

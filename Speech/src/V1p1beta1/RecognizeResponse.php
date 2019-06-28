@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.RecognizeResponse</code>
  */
-class RecognizeResponse extends \Google\Protobuf\Internal\Message
+final class RecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Sequential list of transcription results corresponding to

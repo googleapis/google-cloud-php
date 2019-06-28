@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.StreamingRecognizeRequest</code>
  */
-class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
+final class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
     protected $streaming_request;
 
