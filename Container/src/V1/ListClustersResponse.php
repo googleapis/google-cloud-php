@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.ListClustersResponse</code>
  */
-class ListClustersResponse extends \Google\Protobuf\Internal\Message
+final class ListClustersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of clusters in the project in the specified zone, or

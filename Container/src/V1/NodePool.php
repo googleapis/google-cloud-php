@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.NodePool</code>
  */
-class NodePool extends \Google\Protobuf\Internal\Message
+final class NodePool extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the node pool.

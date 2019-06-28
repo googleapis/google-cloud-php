@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.SetLegacyAbacRequest</code>
  */
-class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
+final class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project

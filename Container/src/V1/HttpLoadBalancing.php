@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.HttpLoadBalancing</code>
  */
-class HttpLoadBalancing extends \Google\Protobuf\Internal\Message
+final class HttpLoadBalancing extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether the HTTP Load Balancing controller is enabled in the cluster.

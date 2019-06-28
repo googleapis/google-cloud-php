@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.NodeManagement</code>
  */
-class NodeManagement extends \Google\Protobuf\Internal\Message
+final class NodeManagement extends \Google\Protobuf\Internal\Message
 {
     /**
      * A flag that specifies whether node auto-upgrade is enabled for the node

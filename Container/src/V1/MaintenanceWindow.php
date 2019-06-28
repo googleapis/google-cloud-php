@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.MaintenanceWindow</code>
  */
-class MaintenanceWindow extends \Google\Protobuf\Internal\Message
+final class MaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
     protected $policy;
 

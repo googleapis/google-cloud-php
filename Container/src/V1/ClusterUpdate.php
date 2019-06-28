@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.ClusterUpdate</code>
  */
-class ClusterUpdate extends \Google\Protobuf\Internal\Message
+final class ClusterUpdate extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Kubernetes version to change the nodes to (typically an

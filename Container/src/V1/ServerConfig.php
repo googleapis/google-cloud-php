@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.ServerConfig</code>
  */
-class ServerConfig extends \Google\Protobuf\Internal\Message
+final class ServerConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Version of Kubernetes the service deploys by default.

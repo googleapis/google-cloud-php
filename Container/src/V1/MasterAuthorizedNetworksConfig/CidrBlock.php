@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.MasterAuthorizedNetworksConfig.CidrBlock</code>
  */
-class CidrBlock extends \Google\Protobuf\Internal\Message
+final class CidrBlock extends \Google\Protobuf\Internal\Message
 {
     /**
      * display_name is an optional field for users to identify CIDR blocks.

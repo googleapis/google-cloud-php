@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.UpdateNodePoolRequest</code>
  */
-class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
+final class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project

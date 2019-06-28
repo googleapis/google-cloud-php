@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.HorizontalPodAutoscaling</code>
  */
-class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
+final class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.

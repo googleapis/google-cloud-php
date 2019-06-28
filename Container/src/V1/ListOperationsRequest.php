@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.ListOperationsRequest</code>
  */
-class ListOperationsRequest extends \Google\Protobuf\Internal\Message
+final class ListOperationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.ClientCertificateConfig</code>
  */
-class ClientCertificateConfig extends \Google\Protobuf\Internal\Message
+final class ClientCertificateConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Issue a client certificate.

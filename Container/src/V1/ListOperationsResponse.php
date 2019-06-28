@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.ListOperationsResponse</code>
  */
-class ListOperationsResponse extends \Google\Protobuf\Internal\Message
+final class ListOperationsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of operations in the project in the specified zone.

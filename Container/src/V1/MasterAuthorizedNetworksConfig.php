@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.MasterAuthorizedNetworksConfig</code>
  */
-class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
+final class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether or not master authorized networks is enabled.

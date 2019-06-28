@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.KubernetesDashboard</code>
  */
-class KubernetesDashboard extends \Google\Protobuf\Internal\Message
+final class KubernetesDashboard extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether the Kubernetes Dashboard is enabled for this cluster.

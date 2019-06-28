@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.DailyMaintenanceWindow</code>
  */
-class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
+final class DailyMaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
     /**
      * Time within the maintenance window to start the maintenance operations.

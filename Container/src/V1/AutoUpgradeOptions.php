@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.AutoUpgradeOptions</code>
  */
-class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
+final class AutoUpgradeOptions extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Output only] This field is set when upgrades are about to commence

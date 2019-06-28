@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.NetworkPolicy</code>
  */
-class NetworkPolicy extends \Google\Protobuf\Internal\Message
+final class NetworkPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * The selected network policy provider.

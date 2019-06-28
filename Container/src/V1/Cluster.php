@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.Cluster</code>
  */
-class Cluster extends \Google\Protobuf\Internal\Message
+final class Cluster extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of this cluster. The name must be unique within this project

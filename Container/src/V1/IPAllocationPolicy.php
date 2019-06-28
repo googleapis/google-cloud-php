@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.IPAllocationPolicy</code>
  */
-class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
+final class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.

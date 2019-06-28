@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.PrivateClusterConfig</code>
  */
-class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
+final class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether nodes have internal IP addresses only. If enabled, all nodes are

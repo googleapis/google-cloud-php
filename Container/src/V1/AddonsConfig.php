@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.AddonsConfig</code>
  */
-class AddonsConfig extends \Google\Protobuf\Internal\Message
+final class AddonsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Configuration for the HTTP (L7) load balancing controller addon, which

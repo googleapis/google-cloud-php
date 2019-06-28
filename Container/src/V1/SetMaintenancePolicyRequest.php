@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.SetMaintenancePolicyRequest</code>
  */
-class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
+final class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Google Developers Console [project ID or project

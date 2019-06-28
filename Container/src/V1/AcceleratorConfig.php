@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.AcceleratorConfig</code>
  */
-class AcceleratorConfig extends \Google\Protobuf\Internal\Message
+final class AcceleratorConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The number of the accelerator cards exposed to an instance.

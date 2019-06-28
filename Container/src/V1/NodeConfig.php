@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.NodeConfig</code>
  */
-class NodeConfig extends \Google\Protobuf\Internal\Message
+final class NodeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of a Google Compute Engine [machine

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.MasterAuth</code>
  */
-class MasterAuth extends \Google\Protobuf\Internal\Message
+final class MasterAuth extends \Google\Protobuf\Internal\Message
 {
     /**
      * The username to use for HTTP basic authentication to the master endpoint.

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.NetworkPolicyConfig</code>
  */
-class NetworkPolicyConfig extends \Google\Protobuf\Internal\Message
+final class NetworkPolicyConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether NetworkPolicy is enabled for this cluster.

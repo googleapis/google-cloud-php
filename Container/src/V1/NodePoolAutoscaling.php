@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.NodePoolAutoscaling</code>
  */
-class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
+final class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
 {
     /**
      * Is autoscaling enabled for this node pool.

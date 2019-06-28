@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.container.v1.LegacyAbac</code>
  */
-class LegacyAbac extends \Google\Protobuf\Internal\Message
+final class LegacyAbac extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether the ABAC authorizer is enabled for this cluster. When enabled,
