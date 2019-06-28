@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.CreateInstanceRequest</code>
  */
-class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
+final class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the project in which to create the new instance.

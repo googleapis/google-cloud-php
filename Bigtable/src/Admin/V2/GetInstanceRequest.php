@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GetInstanceRequest</code>
  */
-class GetInstanceRequest extends \Google\Protobuf\Internal\Message
+final class GetInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the requested instance. Values are of the form

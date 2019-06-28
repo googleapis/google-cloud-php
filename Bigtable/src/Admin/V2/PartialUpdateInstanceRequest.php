@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.PartialUpdateInstanceRequest</code>
  */
-class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
+final class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Instance which will (partially) replace the current value.

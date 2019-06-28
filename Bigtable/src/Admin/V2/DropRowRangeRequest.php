@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.DropRowRangeRequest</code>
  */
-class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
+final class DropRowRangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the table on which to drop a range of rows.

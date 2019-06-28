@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.DeleteClusterRequest</code>
  */
-class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
+final class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the cluster to be deleted. Values are of the form

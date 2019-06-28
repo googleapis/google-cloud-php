@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Table.ClusterState</code>
  */
-class ClusterState extends \Google\Protobuf\Internal\Message
+final class ClusterState extends \Google\Protobuf\Internal\Message
 {
     /**
      * (`OutputOnly`)

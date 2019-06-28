@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.DeleteTableRequest</code>
  */
-class DeleteTableRequest extends \Google\Protobuf\Internal\Message
+final class DeleteTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the table to be deleted.

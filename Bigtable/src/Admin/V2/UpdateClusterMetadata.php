@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.UpdateClusterMetadata</code>
  */
-class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
+final class UpdateClusterMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The request that prompted the initiation of this UpdateCluster operation.

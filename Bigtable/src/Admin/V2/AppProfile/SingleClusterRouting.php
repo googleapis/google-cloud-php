@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.AppProfile.SingleClusterRouting</code>
  */
-class SingleClusterRouting extends \Google\Protobuf\Internal\Message
+final class SingleClusterRouting extends \Google\Protobuf\Internal\Message
 {
     /**
      * The cluster to which read/write requests should be routed.

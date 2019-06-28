@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.CreateTableRequest</code>
  */
-class CreateTableRequest extends \Google\Protobuf\Internal\Message
+final class CreateTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the instance in which to create the table.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GcRule.Union</code>
  */
-class Union extends \Google\Protobuf\Internal\Message
+final class Union extends \Google\Protobuf\Internal\Message
 {
     /**
      * Delete cells which would be deleted by any element of `rules`.

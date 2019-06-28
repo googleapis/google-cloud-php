@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ModifyColumnFamiliesRequest</code>
  */
-class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
+final class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the table whose families should be modified.

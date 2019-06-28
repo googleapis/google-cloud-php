@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListClustersResponse</code>
  */
-class ListClustersResponse extends \Google\Protobuf\Internal\Message
+final class ListClustersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of requested clusters.

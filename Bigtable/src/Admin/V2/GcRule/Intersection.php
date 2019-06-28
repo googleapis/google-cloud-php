@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GcRule.Intersection</code>
  */
-class Intersection extends \Google\Protobuf\Internal\Message
+final class Intersection extends \Google\Protobuf\Internal\Message
 {
     /**
      * Only delete cells which would be deleted by every element of `rules`.

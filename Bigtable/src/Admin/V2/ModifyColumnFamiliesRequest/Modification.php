@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification</code>
  */
-class Modification extends \Google\Protobuf\Internal\Message
+final class Modification extends \Google\Protobuf\Internal\Message
 {
     /**
      * The ID of the column family to be modified.

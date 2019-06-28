@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.DeleteAppProfileRequest</code>
  */
-class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
+final class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the app profile to be deleted. Values are of the form

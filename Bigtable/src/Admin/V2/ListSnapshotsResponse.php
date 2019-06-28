@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListSnapshotsResponse</code>
  */
-class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
+final class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The snapshots present in the requested cluster.

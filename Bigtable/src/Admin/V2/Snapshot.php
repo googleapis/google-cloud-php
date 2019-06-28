@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.Snapshot</code>
  */
-class Snapshot extends \Google\Protobuf\Internal\Message
+final class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
      * (`OutputOnly`)

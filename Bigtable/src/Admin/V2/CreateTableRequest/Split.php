@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.CreateTableRequest.Split</code>
  */
-class Split extends \Google\Protobuf\Internal\Message
+final class Split extends \Google\Protobuf\Internal\Message
 {
     /**
      * Row key to use as an initial tablet boundary.

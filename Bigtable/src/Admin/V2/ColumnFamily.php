@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ColumnFamily</code>
  */
-class ColumnFamily extends \Google\Protobuf\Internal\Message
+final class ColumnFamily extends \Google\Protobuf\Internal\Message
 {
     /**
      * Garbage collection rule specified as a protobuf.

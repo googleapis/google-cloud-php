@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListAppProfilesRequest</code>
  */
-class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
+final class ListAppProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the instance for which a list of app profiles is

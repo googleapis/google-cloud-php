@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.UpdateInstanceMetadata</code>
  */
-class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
+final class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * The request that prompted the initiation of this UpdateInstance operation.

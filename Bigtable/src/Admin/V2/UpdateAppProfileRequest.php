@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.UpdateAppProfileRequest</code>
  */
-class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
+final class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The app profile which will (partially) replace the current value.

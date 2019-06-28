@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListTablesResponse</code>
  */
-class ListTablesResponse extends \Google\Protobuf\Internal\Message
+final class ListTablesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The tables present in the requested instance.

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GcRule</code>
  */
-class GcRule extends \Google\Protobuf\Internal\Message
+final class GcRule extends \Google\Protobuf\Internal\Message
 {
     protected $rule;
 

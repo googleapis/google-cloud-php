@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GenerateConsistencyTokenResponse</code>
  */
-class GenerateConsistencyTokenResponse extends \Google\Protobuf\Internal\Message
+final class GenerateConsistencyTokenResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * The generated consistency token.

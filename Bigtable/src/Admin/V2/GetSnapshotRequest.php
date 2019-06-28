@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GetSnapshotRequest</code>
  */
-class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
+final class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The unique name of the requested snapshot.

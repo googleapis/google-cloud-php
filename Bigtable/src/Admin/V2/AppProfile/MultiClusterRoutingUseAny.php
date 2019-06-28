@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny</code>
  */
-class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
+final class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
 {
 
     /**
