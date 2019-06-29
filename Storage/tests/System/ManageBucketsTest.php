@@ -69,7 +69,7 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($options['location'], $bucket->info()['location']);
         $this->assertEquals($options['storageClass'], $bucket->info()['storageClass']);
         $this->assertEquals($options['versioning'], $bucket->info()['versioning']);
-        $this->assertEquals('MULTI_REGION', $bucket->info()['locationType']);
+        $this->assertEquals('multi-region', $bucket->info()['locationType']);
     }
 
     public function testCreatesBucketWithLifeycleBuilder()
@@ -248,17 +248,17 @@ class ManageBucketsTest extends StorageTestCase
             [
                 'STANDARD',
                 'us',
-                'MULTI_REGION',
+                'multi-region',
                 'NEARLINE'
             ], [
                 'STANDARD',
                 'us-central1',
-                'REGION',
+                'region',
                 'NEARLINE'
             ], [
                 'COLDLINE',
                 'nam4',
-                'DUAL_REGION',
+                'dual-region',
                 'STANDARD'
             ]
         ];
