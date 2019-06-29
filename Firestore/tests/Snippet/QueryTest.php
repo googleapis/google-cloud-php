@@ -160,9 +160,7 @@ class QueryTest extends SnippetTestCase
     public function testLimit()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'limit');
-        $this->runAndAssert($snippet, 'limit', [
-            'value' => 10
-        ]);
+        $this->runAndAssert($snippet, 'limit', 10);
     }
 
     public function testOffset()
@@ -180,13 +178,19 @@ class QueryTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Query::class, $method);
         $snippet->setLine(1, '');
         $snippet->addLocal('cursor', $cursor);
+
+        $cursorArr = [
+            'values' => [
+                ['integerValue' => $value]
+            ]
+        ];
+
+        if ($before) {
+            $cursorArr['before'] = $before;
+        }
+
         $this->runAndAssertArray($snippet, [
-            $key => [
-                'before' => $before,
-                'values' => [
-                    ['integerValue' => $value]
-                ]
-            ],
+            $key => $cursorArr,
             'orderBy' => [
                 [
                     'field' => [
@@ -236,10 +240,7 @@ class QueryTest extends SnippetTestCase
             'retries' => 0,
             'structuredQuery' => [
                 'from' => $from
-            ] + $query + [
-                'offset' => 0,
-                'orderBy' => []
-            ]
+            ] + $query
         ]))->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
 
         $q->___setProperty('connection', $this->connection->reveal());

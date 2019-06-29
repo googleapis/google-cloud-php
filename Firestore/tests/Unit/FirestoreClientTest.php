@@ -325,9 +325,7 @@ class FirestoreClientTest extends TestCase
                         'collectionId' => 'foo',
                         'allDescendants' => true
                     ]
-                ],
-                'orderBy' => [],
-                'offset' => 0
+                ]
             ]),
             Argument::withEntry('parent', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents')
         ))->shouldBeCalled()->willReturn(new \ArrayIterator([

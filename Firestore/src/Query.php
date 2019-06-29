@@ -132,10 +132,7 @@ class Query
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
-        $this->query = $query + [
-            'orderBy' => [],
-            'offset' => 0
-        ];
+        $this->query = $query;
 
         if (!isset($this->query['from'])) {
             throw new \InvalidArgumentException(
@@ -430,9 +427,7 @@ class Query
     public function limit($number)
     {
         return $this->newQuery([
-            'limit' => [
-                'value' => $number
-            ]
+            'limit' => $number
         ]);
     }
 
@@ -676,11 +671,16 @@ class Query
             }
         }
 
+        $clause = [
+            'values' => $this->valueMapper->encodeValues($fieldValues)
+        ];
+
+        if ($before) {
+            $clause['before'] = $before;
+        }
+
         return $this->newQuery([
-            $key => [
-                'before' => $before,
-                'values' => $this->valueMapper->encodeValues($fieldValues)
-            ],
+            $key => $clause,
             'orderBy' => $orderBy
         ], true);
     }
