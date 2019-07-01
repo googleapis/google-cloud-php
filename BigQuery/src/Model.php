@@ -212,9 +212,9 @@ class Model
     public function update(array $metadata, array $options = [])
     {
         $options = $this->applyEtagHeader(
-            $options
+            $this->identity
             + $metadata
-            + $this->identity
+            + $options
         );
 
         if (!isset($options['etag']) && !isset($options['retries'])) {
