@@ -14,6 +14,9 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import os
+# https://github.com/googleapis/artman/pull/655#issuecomment-507784277
+os.environ["SYNTHTOOL_ARTMAN_VERSION"] = "0.29.1"
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
