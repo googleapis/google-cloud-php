@@ -30,6 +30,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *           Publish a notification to a pubsub topic.
      *     @type \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $publish_summary_to_cscc
      *           Publish summary to Cloud Security Command Center (Alpha).
+     *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $publish_findings_to_cloud_data_catalog
+     *           Publish findings to Cloud Datahub.
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
      *           Enable email notification to project owners and editors on job's
      *           completion/failure.
@@ -114,6 +116,32 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishSummaryToCscc::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Publish findings to Cloud Datahub.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5;</code>
+     * @return \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog
+     */
+    public function getPublishFindingsToCloudDataCatalog()
+    {
+        return $this->readOneof(5);
+    }
+
+    /**
+     * Publish findings to Cloud Datahub.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5;</code>
+     * @param \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $var
+     * @return $this
+     */
+    public function setPublishFindingsToCloudDataCatalog($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishFindingsToCloudDataCatalog::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

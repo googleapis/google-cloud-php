@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Rule for modifying a CustomInfoType to alter behavior under certain
- * circumstances, depending on the specific details of the rule. Not supported
- * for the `surrogate_type` custom info type.
+ * Deprecated; use `InspectionRuleSet` instead. Rule for modifying a
+ * `CustomInfoType` to alter behavior under certain circumstances, depending
+ * on the specific details of the rule. Not supported for the `surrogate_type`
+ * custom infoType.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.DetectionRule</code>
  */
