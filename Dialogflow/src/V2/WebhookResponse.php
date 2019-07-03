@@ -72,6 +72,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Makes the platform immediately invoke another `DetectIntent` call
      * internally with the specified event as input.
+     * When this field is set, Dialogflow ignores the `fulfillment_text`,
+     * `fulfillment_messages`, and `payload` fields.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EventInput followup_event_input = 6;</code>
      */
@@ -120,6 +122,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\EventInput $followup_event_input
      *           Optional. Makes the platform immediately invoke another `DetectIntent` call
      *           internally with the specified event as input.
+     *           When this field is set, Dialogflow ignores the `fulfillment_text`,
+     *           `fulfillment_messages`, and `payload` fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +312,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Makes the platform immediately invoke another `DetectIntent` call
      * internally with the specified event as input.
+     * When this field is set, Dialogflow ignores the `fulfillment_text`,
+     * `fulfillment_messages`, and `payload` fields.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EventInput followup_event_input = 6;</code>
      * @return \Google\Cloud\Dialogflow\V2\EventInput
@@ -320,6 +326,8 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Makes the platform immediately invoke another `DetectIntent` call
      * internally with the specified event as input.
+     * When this field is set, Dialogflow ignores the `fulfillment_text`,
+     * `fulfillment_messages`, and `payload` fields.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EventInput followup_event_input = 6;</code>
      * @param \Google\Cloud\Dialogflow\V2\EventInput $var

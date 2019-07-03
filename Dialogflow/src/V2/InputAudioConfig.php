@@ -34,7 +34,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -42,10 +42,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
-     * Optional. The collection of phrase hints which are used to boost accuracy
-     * of speech recognition.
-     * Refer to
-     * [Cloud Speech API
+     * Optional. A list of strings containing words and phrases that the speech
+     * recognizer should recognize with higher likelihood.
+     * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
      *
@@ -76,14 +75,13 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           Required. The language of the supplied audio. Dialogflow does not do
      *           translations. See [Language
-     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_hints
-     *           Optional. The collection of phrase hints which are used to boost accuracy
-     *           of speech recognition.
-     *           Refer to
-     *           [Cloud Speech API
+     *           Optional. A list of strings containing words and phrases that the speech
+     *           recognizer should recognize with higher likelihood.
+     *           See [the Cloud Speech
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      *           for more details.
      *     @type int $model_variant
@@ -158,7 +156,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -173,7 +171,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The language of the supplied audio. Dialogflow does not do
      * translations. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -190,10 +188,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of phrase hints which are used to boost accuracy
-     * of speech recognition.
-     * Refer to
-     * [Cloud Speech API
+     * Optional. A list of strings containing words and phrases that the speech
+     * recognizer should recognize with higher likelihood.
+     * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
      *
@@ -206,10 +203,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The collection of phrase hints which are used to boost accuracy
-     * of speech recognition.
-     * Refer to
-     * [Cloud Speech API
+     * Optional. A list of strings containing words and phrases that the speech
+     * recognizer should recognize with higher likelihood.
+     * See [the Cloud Speech
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      * for more details.
      *

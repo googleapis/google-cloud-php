@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Agents' => [
+            'SetAgent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{agent.parent=projects/*}/agent',
+                'body' => 'agent',
+                'placeholders' => [
+                    'agent.parent' => [
+                        'getters' => [
+                            'getAgent',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAgent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{parent=projects/*}/agent',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetAgent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent',
@@ -69,6 +93,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

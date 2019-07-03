@@ -36,7 +36,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with this context.
      * Refer to [this
-     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      * for syntax.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
@@ -62,7 +62,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $parameters
      *           Optional. The collection of parameters associated with this context.
      *           Refer to [this
-     *           doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     *           doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      *           for syntax.
      * }
      */
@@ -138,7 +138,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with this context.
      * Refer to [this
-     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      * for syntax.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
@@ -152,7 +152,7 @@ class Context extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with this context.
      * Refer to [this
-     * doc](https://cloud.google.com/dialogflow-enterprise/docs/intents-actions-parameters)
+     * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      * for syntax.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
