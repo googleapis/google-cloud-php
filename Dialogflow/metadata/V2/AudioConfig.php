@@ -14,11 +14,13 @@ class AudioConfig
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
-            "0af70c0a2d676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
+            "0a950d0a2d676f6f676c652f636c6f75642f6469616c6f67666c6f772f76" .
             "322f617564696f5f636f6e6669672e70726f746f121a676f6f676c652e63" .
-            "6c6f75642e6469616c6f67666c6f772e763222e4010a10496e7075744175" .
+            "6c6f75642e6469616c6f67666c6f772e76321a1c676f6f676c652f617069" .
+            "2f616e6e6f746174696f6e732e70726f746f22e4010a10496e7075744175" .
             "64696f436f6e66696712410a0e617564696f5f656e636f64696e67180120" .
             "01280e32292e676f6f676c652e636c6f75642e6469616c6f67666c6f772e" .
             "76322e417564696f456e636f64696e6712190a1173616d706c655f726174" .

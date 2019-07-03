@@ -31,7 +31,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The language that was triggered during intent detection.
      * See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
@@ -159,7 +159,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           The language that was triggered during intent detection.
      *           See [Language
-     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes.
      *     @type float $speech_recognition_confidence
      *           The Speech recognition confidence between 0.0 and 1.0. A higher number
@@ -262,7 +262,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The language that was triggered during intent detection.
      * See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>
@@ -276,7 +276,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The language that was triggered during intent detection.
      * See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes.
      *
      * Generated from protobuf field <code>string language_code = 15;</code>

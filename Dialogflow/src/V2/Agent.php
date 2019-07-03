@@ -31,7 +31,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The default language of the agent as a language tag. See
      * [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. This field cannot be
      * set by the `Update` method.
      *
@@ -64,7 +64,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The URI of the agent's avatar.
      * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web
-     * Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo)
+     * Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      * integration.
      *
      * Generated from protobuf field <code>string avatar_uri = 7;</code>
@@ -94,6 +94,21 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float classification_threshold = 10;</code>
      */
     private $classification_threshold = 0.0;
+    /**
+     * Optional. API version displayed in Dialogflow console. If not specified,
+     * V2 API is assumed. Clients are free to query different service endpoints
+     * for different API versions. However, bots connectors and webhook calls will
+     * follow the specified API version.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14;</code>
+     */
+    private $api_version = 0;
+    /**
+     * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15;</code>
+     */
+    private $tier = 0;
 
     /**
      * Constructor.
@@ -109,7 +124,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *     @type string $default_language_code
      *           Required. The default language of the agent as a language tag. See
      *           [Language
-     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. This field cannot be
      *           set by the `Update` method.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_language_codes
@@ -126,7 +141,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Optional. The URI of the agent's avatar.
      *           Avatars are used throughout the Dialogflow console and in the self-hosted
      *           [Web
-     *           Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo)
+     *           Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      *           integration.
      *     @type bool $enable_logging
      *           Optional. Determines whether this agent should log conversation queries.
@@ -140,6 +155,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           are no fallback intents defined, no intent will be triggered. The score
      *           values range from 0.0 (completely uncertain) to 1.0 (completely certain).
      *           If set to 0.0, the default of 0.3 is used.
+     *     @type int $api_version
+     *           Optional. API version displayed in Dialogflow console. If not specified,
+     *           V2 API is assumed. Clients are free to query different service endpoints
+     *           for different API versions. However, bots connectors and webhook calls will
+     *           follow the specified API version.
+     *     @type int $tier
+     *           Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,7 +226,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The default language of the agent as a language tag. See
      * [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. This field cannot be
      * set by the `Update` method.
      *
@@ -219,7 +241,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The default language of the agent as a language tag. See
      * [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. This field cannot be
      * set by the `Update` method.
      *
@@ -325,7 +347,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The URI of the agent's avatar.
      * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web
-     * Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo)
+     * Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      * integration.
      *
      * Generated from protobuf field <code>string avatar_uri = 7;</code>
@@ -340,7 +362,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The URI of the agent's avatar.
      * Avatars are used throughout the Dialogflow console and in the self-hosted
      * [Web
-     * Demo](https://cloud.google.com/dialogflow-enterprise/docs/integrations/web-demo)
+     * Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      * integration.
      *
      * Generated from protobuf field <code>string avatar_uri = 7;</code>
@@ -441,6 +463,64 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->classification_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. API version displayed in Dialogflow console. If not specified,
+     * V2 API is assumed. Clients are free to query different service endpoints
+     * for different API versions. However, bots connectors and webhook calls will
+     * follow the specified API version.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14;</code>
+     * @return int
+     */
+    public function getApiVersion()
+    {
+        return $this->api_version;
+    }
+
+    /**
+     * Optional. API version displayed in Dialogflow console. If not specified,
+     * V2 API is assumed. Clients are free to query different service endpoints
+     * for different API versions. However, bots connectors and webhook calls will
+     * follow the specified API version.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setApiVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent_ApiVersion::class);
+        $this->api_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15;</code>
+     * @return int
+     */
+    public function getTier()
+    {
+        return $this->tier;
+    }
+
+    /**
+     * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Agent_Tier::class);
+        $this->tier = $var;
 
         return $this;
     }

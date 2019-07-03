@@ -65,7 +65,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     private $mandatory = false;
     /**
      * Optional. The collection of prompts that the agent can present to the
-     * user in order to collect value for the parameter.
+     * user in order to collect a value for the parameter.
      *
      * Generated from protobuf field <code>repeated string prompts = 7;</code>
      */
@@ -109,7 +109,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *           value.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prompts
      *           Optional. The collection of prompts that the agent can present to the
-     *           user in order to collect value for the parameter.
+     *           user in order to collect a value for the parameter.
      *     @type bool $is_list
      *           Optional. Indicates whether the parameter represents a list of values.
      * }
@@ -301,7 +301,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The collection of prompts that the agent can present to the
-     * user in order to collect value for the parameter.
+     * user in order to collect a value for the parameter.
      *
      * Generated from protobuf field <code>repeated string prompts = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -313,7 +313,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The collection of prompts that the agent can present to the
-     * user in order to collect value for the parameter.
+     * user in order to collect a value for the parameter.
      *
      * Generated from protobuf field <code>repeated string prompts = 7;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

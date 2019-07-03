@@ -85,7 +85,7 @@ use Google\Protobuf\GPBEmpty;
  *
  * For more information about intents, see the
  * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow-enterprise/docs/intents-overview).
+ * documentation](https://cloud.google.com/dialogflow/docs/intents-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -446,7 +446,7 @@ class IntentsGapicClient
      *          Optional. The language to list training phrases, parameters and rich
      *          messages for. If not specified, the agent's default language is used.
      *          [Many
-     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
      *          are supported. Note: languages must be enabled in the agent before they can
      *          be used.
      *     @type int $intentView
@@ -528,7 +528,7 @@ class IntentsGapicClient
      *          Optional. The language to retrieve training phrases, parameters and rich
      *          messages for. If not specified, the agent's default language is used.
      *          [Many
-     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
      *          are supported. Note: languages must be enabled in the agent before they can
      *          be used.
      *     @type int $intentView
@@ -597,7 +597,7 @@ class IntentsGapicClient
      *          Optional. The language of training phrases, parameters and rich messages
      *          defined in `intent`. If not specified, the agent's default language is
      *          used. [Many
-     *          languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *          languages](https://cloud.google.com/dialogflow/docs/reference/language)
      *          are supported. Note: languages must be enabled in the agent before they can
      *          be used.
      *     @type int $intentView
@@ -661,7 +661,7 @@ class IntentsGapicClient
      * @param string $languageCode Optional. The language of training phrases, parameters and rich messages
      *                             defined in `intent`. If not specified, the agent's default language is
      *                             used. [Many
-     *                             languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *                             languages](https://cloud.google.com/dialogflow/docs/reference/language)
      *                             are supported. Note: languages must be enabled in the agent before they can
      *                             be used.
      * @param array  $optionalArgs {
@@ -811,7 +811,7 @@ class IntentsGapicClient
      * @param string $languageCode Optional. The language of training phrases, parameters and rich messages
      *                             defined in `intents`. If not specified, the agent's default language is
      *                             used. [Many
-     *                             languages](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *                             languages](https://cloud.google.com/dialogflow/docs/reference/language)
      *                             are supported. Note: languages must be enabled in the agent before they can
      *                             be used.
      * @param array  $optionalArgs {

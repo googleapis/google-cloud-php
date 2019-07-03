@@ -51,7 +51,7 @@ namespace Google\Cloud\Dialogflow\V2;
  *
  * For more information about intents, see the
  * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow-enterprise/docs/intents-overview).
+ * documentation](https://cloud.google.com/dialogflow/docs/intents-overview).
  */
 class IntentsGrpcClient extends \Grpc\BaseStub {
 

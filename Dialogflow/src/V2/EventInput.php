@@ -33,7 +33,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
     private $parameters = null;
     /**
      * Required. The language of this query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -53,7 +53,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *           Optional. The collection of parameters associated with the event.
      *     @type string $language_code
      *           Required. The language of this query. See [Language
-     *           Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
      * }
@@ -117,7 +117,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
@@ -131,7 +131,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The language of this query. See [Language
-     * Support](https://cloud.google.com/dialogflow-enterprise/docs/reference/language)
+     * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *

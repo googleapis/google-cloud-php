@@ -38,6 +38,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\Agent;
+use Google\Cloud\Dialogflow\V2\DeleteAgentRequest;
 use Google\Cloud\Dialogflow\V2\ExportAgentRequest;
 use Google\Cloud\Dialogflow\V2\ExportAgentResponse;
 use Google\Cloud\Dialogflow\V2\GetAgentRequest;
@@ -45,8 +46,11 @@ use Google\Cloud\Dialogflow\V2\ImportAgentRequest;
 use Google\Cloud\Dialogflow\V2\RestoreAgentRequest;
 use Google\Cloud\Dialogflow\V2\SearchAgentsRequest;
 use Google\Cloud\Dialogflow\V2\SearchAgentsResponse;
+use Google\Cloud\Dialogflow\V2\SetAgentRequest;
 use Google\Cloud\Dialogflow\V2\TrainAgentRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Agents are best described as Natural Language Understanding (NLU) modules
@@ -62,7 +66,7 @@ use Google\LongRunning\Operation;
  * You can create an agent using both Dialogflow Standard Edition and
  * Dialogflow Enterprise Edition. For details, see
  * [Dialogflow
- * Editions](https://cloud.google.com/dialogflow-enterprise/docs/editions).
+ * Editions](https://cloud.google.com/dialogflow/docs/editions).
  *
  * You can save your agent for backup or versioning by exporting the agent by
  * using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent] method. You can import a saved
@@ -70,13 +74,13 @@ use Google\LongRunning\Operation;
  *
  * Dialogflow provides several
  * [prebuilt
- * agents](https://cloud.google.com/dialogflow-enterprise/docs/agents-prebuilt)
+ * agents](https://cloud.google.com/dialogflow/docs/agents-prebuilt)
  * for common conversation scenarios such as determining a date and time,
  * converting currency, and so on.
  *
  * For more information about agents, see the
  * [Dialogflow
- * documentation](https://cloud.google.com/dialogflow-enterprise/docs/agents-overview).
+ * documentation](https://cloud.google.com/dialogflow/docs/agents-overview).
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -84,8 +88,8 @@ use Google\LongRunning\Operation;
  * ```
  * $agentsClient = new AgentsClient();
  * try {
- *     $formattedParent = $agentsClient->projectName('[PROJECT]');
- *     $response = $agentsClient->getAgent($formattedParent);
+ *     $agent = new Agent();
+ *     $response = $agentsClient->setAgent($agent);
  * } finally {
  *     $agentsClient->close();
  * }
@@ -322,6 +326,110 @@ class AgentsGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Creates/updates the specified agent.
+     *
+     * Sample code:
+     * ```
+     * $agentsClient = new AgentsClient();
+     * try {
+     *     $agent = new Agent();
+     *     $response = $agentsClient->setAgent($agent);
+     * } finally {
+     *     $agentsClient->close();
+     * }
+     * ```
+     *
+     * @param Agent $agent        Required. The agent to update.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          Optional. The mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\Agent
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function setAgent($agent, array $optionalArgs = [])
+    {
+        $request = new SetAgentRequest();
+        $request->setAgent($agent);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'agent.parent' => $request->getAgent()->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'SetAgent',
+            Agent::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the specified agent.
+     *
+     * Sample code:
+     * ```
+     * $agentsClient = new AgentsClient();
+     * try {
+     *     $formattedParent = $agentsClient->projectName('[PROJECT]');
+     *     $agentsClient->deleteAgent($formattedParent);
+     * } finally {
+     *     $agentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project that the agent to delete is associated with.
+     *                             Format: `projects/<Project ID>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteAgent($parent, array $optionalArgs = [])
+    {
+        $request = new DeleteAgentRequest();
+        $request->setParent($parent);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteAgent',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

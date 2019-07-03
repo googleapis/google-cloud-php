@@ -25,7 +25,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
+     * `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
      * caller to choose an appropriate `Session ID`. It can be a random number or
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 characters.
@@ -88,7 +88,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $session
      *           Required. The name of the session the query is sent to.
      *           Format of the session name:
-     *           `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
+     *           `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
      *           caller to choose an appropriate `Session ID`. It can be a random number or
      *           some type of user identifier (preferably hashed). The length of the session
      *           ID must not exceed 36 characters.
@@ -127,7 +127,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
+     * `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
      * caller to choose an appropriate `Session ID`. It can be a random number or
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 characters.
@@ -143,7 +143,7 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the session the query is sent to.
      * Format of the session name:
-     * `projects/<Project ID>/agent/sessions/<Session ID>`. It’s up to the API
+     * `projects/<Project ID>/agent/sessions/<Session ID>`. It's up to the API
      * caller to choose an appropriate `Session ID`. It can be a random number or
      * some type of user identifier (preferably hashed). The length of the session
      * ID must not exceed 36 characters.
