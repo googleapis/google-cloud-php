@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Dev\DocGenerator;
 
-use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
-use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
 use phpDocumentor\Reflection\ClassReflector;
 use phpDocumentor\Reflection\FileReflector;
 use phpDocumentor\Reflection\InterfaceReflector;

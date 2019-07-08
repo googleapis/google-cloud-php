@@ -64,7 +64,7 @@ class CodeParser implements ParserInterface
         $this->register = $register;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
-        $this->externalTypes = json_decode(file_get_contents($this->projectRoot . '/docs/external-classes.json'), true);
+        $this->externalTypes = include $this->projectRoot . '/docs/external-classes.php';
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
