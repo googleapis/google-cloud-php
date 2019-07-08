@@ -20,16 +20,12 @@ namespace Google\Cloud\Dev\DocGenerator\Command;
 use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Dev\Command\GoogleCloudCommand;
 use Google\Cloud\Dev\DocGenerator\DocGenerator;
-use Google\Cloud\Dev\DocGenerator\GuideGenerator;
 use Google\Cloud\Dev\DocGenerator\TableOfContents;
 use Google\Cloud\Dev\DocGenerator\TypeGenerator;
 use Google\Cloud\Dev\GetComponentsTrait;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use RecursiveRegexIterator;
-use RegexIterator;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -81,6 +77,7 @@ class Docs extends GoogleCloudCommand
             'tests',
             'metadata',
             'CONTRIBUTING.md',
+            'CHANGELOG.md',
             'bootstrap.php',
             'vendor/'
         ];
