@@ -27,17 +27,15 @@ use PHPUnit\Framework\TestCase;
  */
 class SignedUrlConformanceTest extends TestCase
 {
+    const TESTDATA_PATH = 'conformance/v1';
+
     /**
      * @dataProvider signedUrlConformanceCases
      */
-    public function testSignedUrlConformance(array $testdata)
+    public function testSignedUrlConformance(StorageClient $client, array $testdata)
     {
-        $client = new StorageClient([
-            'keyFilePath' => __DIR__ . '/data/signed-url-v4-service-account.json'
-        ]);
-
         $signingObject = $client->bucket($testdata['bucket']);
-        if ($testdata['object']) {
+        if (isset($testdata['object']) && $testdata['object']) {
             $signingObject = $signingObject->object($testdata['object']);
         }
 
@@ -45,7 +43,13 @@ class SignedUrlConformanceTest extends TestCase
             ? 'signedUploadUrl'
             : 'signedUrl';
 
-        $generationTimestamp = \DateTimeImmutable::createFromFormat('Ymd\THis\Z', $testdata['timestamp']);
+        $generationTimestamp = \DateTimeImmutable::createFromFormat(
+            \DateTimeInterface::RFC3339,
+            $testdata['timestamp']
+        );
+
+        $testdata['timestamp'] = $generationTimestamp->format('Ymd\THis\Z');
+
         $expiration = $generationTimestamp->format('U') + $testdata['expiration'];
 
         $expectedUrl = $testdata['expectedUrl'];
@@ -65,12 +69,17 @@ class SignedUrlConformanceTest extends TestCase
 
     public function signedUrlConformanceCases()
     {
-        $cases = json_decode(file_get_contents(__DIR__ . '/data/signed-url-v4-testdata.json'), true);
+        $testDataPath = __DIR__ . '/' . self::TESTDATA_PATH . '/';
+        $client = new StorageClient([
+            'keyFilePath' => $testDataPath . 'service-account.json'
+        ]);
+
+        $cases = json_decode(file_get_contents($testDataPath . 'v4-signatures.json'), true);
 
         // rekey with description for more useful error reporting.
         $out = [];
-        foreach ($cases as $key => $case) {
-            $out[$case['description']] = [$case];
+        foreach ($cases['signingV4Tests'] as $key => $case) {
+            $out[$case['description']] = [$client, $case];
             unset($case['description']);
         }
 
