@@ -283,7 +283,7 @@ class Subscription
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteSubscription($options + [
+        return $this->connection->deleteSubscription($options + [
             'subscription' => $this->name
         ]);
     }
@@ -441,7 +441,7 @@ class Subscription
      */
     public function acknowledge(Message $message, array $options = [])
     {
-        $this->acknowledgeBatch([$message], $options);
+        return $this->acknowledgeBatch([$message], $options);
     }
 
     /**
@@ -469,7 +469,7 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
-        $this->connection->acknowledge($options + [
+        return $this->connection->acknowledge($options + [
             'subscription' => $this->name,
             'ackIds' => $this->getMessageAckIds($messages)
         ]);
@@ -512,7 +512,7 @@ class Subscription
      */
     public function modifyAckDeadline(Message $message, $seconds, array $options = [])
     {
-        $this->modifyAckDeadlineBatch([$message], $seconds, $options);
+        return $this->modifyAckDeadlineBatch([$message], $seconds, $options);
     }
 
     /**
@@ -553,7 +553,7 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
-        $this->connection->modifyAckDeadline($options + [
+        return $this->connection->modifyAckDeadline($options + [
             'subscription' => $this->name,
             'ackIds' => $this->getMessageAckIds($messages),
             'ackDeadlineSeconds' => $seconds
@@ -589,7 +589,7 @@ class Subscription
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])
     {
-        $this->connection->modifyPushConfig($options + [
+        return $this->connection->modifyPushConfig($options + [
             'subscription' => $this->name,
             'pushConfig' => $pushConfig
         ]);
