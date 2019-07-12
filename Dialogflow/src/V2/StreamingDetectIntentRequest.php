@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * `StreamingDetectIntent` method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain `session`, `query_input` plus optionally
- *     `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
+ *     `query_params`. The message must not contain `input_audio`.
  * 2.  If `query_input` was set to a streaming input audio config,
  *     all subsequent messages must contain only `input_audio`.
  *     Otherwise, finish the request stream.
@@ -50,16 +50,16 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_input = null;
     /**
-     * Optional. If `false` (default), recognition does not cease until the
-     * client closes the stream.
-     * If `true`, the recognizer will detect a single spoken utterance in input
-     * audio. Recognition ceases when it detects the audio's voice has
-     * stopped or paused. In this case, once a detected intent is received, the
-     * client should close the stream and start a new request with a new stream as
-     * needed.
+     * DEPRECATED. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     * Optional. If `false` (default), recognition does not cease until
+     * the client closes the stream. If `true`, the recognizer will detect a
+     * single spoken utterance in input audio. Recognition ceases when it detects
+     * the audio's voice has stopped or paused. In this case, once a detected
+     * intent is received, the client should close the stream and start a new
+     * request with a new stream as needed.
      * This setting is ignored when `query_input` is a piece of text or an event.
      *
-     * Generated from protobuf field <code>bool single_utterance = 4;</code>
+     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      */
     private $single_utterance = false;
     /**
@@ -101,13 +101,13 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           2.  a conversational query in the form of text, or
      *           3.  an event that specifies which intent to trigger.
      *     @type bool $single_utterance
-     *           Optional. If `false` (default), recognition does not cease until the
-     *           client closes the stream.
-     *           If `true`, the recognizer will detect a single spoken utterance in input
-     *           audio. Recognition ceases when it detects the audio's voice has
-     *           stopped or paused. In this case, once a detected intent is received, the
-     *           client should close the stream and start a new request with a new stream as
-     *           needed.
+     *           DEPRECATED. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     *           Optional. If `false` (default), recognition does not cease until
+     *           the client closes the stream. If `true`, the recognizer will detect a
+     *           single spoken utterance in input audio. Recognition ceases when it detects
+     *           the audio's voice has stopped or paused. In this case, once a detected
+     *           intent is received, the client should close the stream and start a new
+     *           request with a new stream as needed.
      *           This setting is ignored when `query_input` is a piece of text or an event.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
      *           Optional. Instructs the speech synthesizer how to generate the output
@@ -221,16 +221,16 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If `false` (default), recognition does not cease until the
-     * client closes the stream.
-     * If `true`, the recognizer will detect a single spoken utterance in input
-     * audio. Recognition ceases when it detects the audio's voice has
-     * stopped or paused. In this case, once a detected intent is received, the
-     * client should close the stream and start a new request with a new stream as
-     * needed.
+     * DEPRECATED. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     * Optional. If `false` (default), recognition does not cease until
+     * the client closes the stream. If `true`, the recognizer will detect a
+     * single spoken utterance in input audio. Recognition ceases when it detects
+     * the audio's voice has stopped or paused. In this case, once a detected
+     * intent is received, the client should close the stream and start a new
+     * request with a new stream as needed.
      * This setting is ignored when `query_input` is a piece of text or an event.
      *
-     * Generated from protobuf field <code>bool single_utterance = 4;</code>
+     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      * @return bool
      */
     public function getSingleUtterance()
@@ -239,16 +239,16 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If `false` (default), recognition does not cease until the
-     * client closes the stream.
-     * If `true`, the recognizer will detect a single spoken utterance in input
-     * audio. Recognition ceases when it detects the audio's voice has
-     * stopped or paused. In this case, once a detected intent is received, the
-     * client should close the stream and start a new request with a new stream as
-     * needed.
+     * DEPRECATED. Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
+     * Optional. If `false` (default), recognition does not cease until
+     * the client closes the stream. If `true`, the recognizer will detect a
+     * single spoken utterance in input audio. Recognition ceases when it detects
+     * the audio's voice has stopped or paused. In this case, once a detected
+     * intent is received, the client should close the stream and start a new
+     * request with a new stream as needed.
      * This setting is ignored when `query_input` is a piece of text or an event.
      *
-     * Generated from protobuf field <code>bool single_utterance = 4;</code>
+     * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      * @param bool $var
      * @return $this
      */
