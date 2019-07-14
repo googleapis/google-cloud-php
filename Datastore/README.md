@@ -69,11 +69,10 @@ any minor or patch releases. We will address issues and requests with the highes
 
 This component is compatible with PHP projects on Google App Engine in the Standard or Flexible environments. To maximize the performance of datastore operations in your app, we recommend the following configuration:
 1. PHP 7 runtime
-2. Require grpc via Composer
-3. Enable grpc.so and protobuf.so in your php.ini file
-4. Set your DatastoreClient object's 'transport' option to 'grpc'
+2. Enable grpc.so and protobuf.so in your php.ini file
+3. Set your DatastoreClient object's 'transport' option to 'grpc'
 
-You are likely to experience less optimal datastore performance using the PHP 5 runtime.
+You are likely to experience less optimal datastore performance using the PHP 5 runtime on App Engine standard due to the lack of the protobuf extension.
 
 
 ### Next Steps
