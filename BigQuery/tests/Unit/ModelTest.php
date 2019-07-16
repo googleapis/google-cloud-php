@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Model;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -29,6 +30,8 @@ use Prophecy\Argument;
 class ModelTest extends TestCase
 {
     private $connection;
+    private $model;
+
     const PROJECT_ID = 'myProjectId';
     const DATASET_ID = 'myDatasetId';
     const MODEL_ID = 'myModelId';
@@ -36,16 +39,12 @@ class ModelTest extends TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-    }
-
-    public function getModel($connection, array $info = [])
-    {
-        return new Model(
-            $connection->reveal(),
+        $this->model = TestHelpers::stub(Model::class, [
+            $this->connection->reveal(),
             self::MODEL_ID,
             self::DATASET_ID,
             self::PROJECT_ID
-        );
+        ], ['connection', 'info']);
     }
 
     public function testDoesExistTrue()
@@ -54,8 +53,8 @@ class ModelTest extends TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $model = $this->getModel($this->connection);
-        $this->assertTrue($model->exists());
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->assertTrue($this->model->exists());
     }
 
     public function testDoesExistFalse()
@@ -64,24 +63,24 @@ class ModelTest extends TestCase
             ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
 
-        $model = $this->getModel($this->connection);
-        $this->assertFalse($model->exists());
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->assertFalse($this->model->exists());
     }
 
     public function testGetsId()
     {
-        $model = $this->getModel($this->connection);
-        $this->assertEquals('myModelId', $model->id());
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->assertEquals('myModelId', $this->model->id());
     }
 
     public function testIdentity()
     {
-        $model = $this->getModel($this->connection);
+        $this->model->___setProperty('connection', $this->connection->reveal());
         $this->assertEquals([
             'modelId' => self::MODEL_ID,
             'datasetId' => self::DATASET_ID,
             'projectId' => self::PROJECT_ID,
-        ], $model->identity());
+        ], $this->model->identity());
     }
 
     public function testGetsInfo()
@@ -91,9 +90,8 @@ class ModelTest extends TestCase
             ->willReturn($info)
             ->shouldBeCalledTimes(1);
 
-        $model = $this->getModel($this->connection);
-
-        $this->assertEquals($info, $model->info());
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->assertEquals($info, $this->model->info());
     }
 
     public function testReload()
@@ -103,17 +101,17 @@ class ModelTest extends TestCase
             ->willReturn($info)
             ->shouldBeCalledTimes(1);
 
-        $model = $this->getModel($this->connection);
-
-        $this->assertEquals($info, $model->reload());
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->assertEquals($info, $this->model->reload());
     }
 
     public function testDelete()
     {
         $this->connection->deleteModel(Argument::any())
             ->shouldBeCalledTimes(1);
-        $model = $this->getModel($this->connection);
-        $this->assertNull($model->delete());
+
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->assertNull($this->model->delete());
     }
 
     public function testUpdatesData()
@@ -123,9 +121,26 @@ class ModelTest extends TestCase
         $this->connection->patchModel(Argument::any())
             ->willReturn($data)
             ->shouldBeCalledTimes(1);
-        $dataset = $this->getModel($this->connection, ['friendlyName' => 'Original Name']);
-        $dataset->update($data);
 
-        $this->assertEquals('Updated Name', $dataset->info()['friendlyName']);
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->model->___setProperty('info', ['friendlyName' => 'Original Name']);
+
+        $this->model->update($data);
+        $this->assertEquals('Updated Name', $this->model->info()['friendlyName']);
+    }
+
+    public function testUpdatesDataWithEtag()
+    {
+        $updateData = ['friendlyName' => 'wow a name', 'etag' => 'foo'];
+        $this->connection->patchModel(Argument::that(function ($args) {
+            return $args['restOptions']['headers']['If-Match'] === 'foo';
+        }))->willReturn($updateData)->shouldBeCalledTimes(1);
+
+        $this->model->___setProperty('connection', $this->connection->reveal());
+        $this->model->___setProperty('info', ['friendlyName' => 'another name']);
+
+        $this->model->update($updateData);
+
+        $this->assertEquals($updateData['friendlyName'], $this->model->info()['friendlyName']);
     }
 }

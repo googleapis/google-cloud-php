@@ -17,9 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
-use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Model;
-use Google\Cloud\Core\ExponentialBackoff;
 
 /**
  * @group bigquery
@@ -28,12 +26,13 @@ use Google\Cloud\Core\ExponentialBackoff;
 class ManageModelsTest extends BigQueryTestCase
 {
     private static $model;
+    private static $modelId;
 
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
 
-        $modelId = uniqid(self::TESTING_PREFIX);
+        self::$modelId = uniqid(self::TESTING_PREFIX);
 
         $queryTpl = "CREATE MODEL `%s.%s`" .
             " OPTIONS (" .
@@ -47,19 +46,16 @@ class ManageModelsTest extends BigQueryTestCase
               " SELECT 'b' AS f2, 3.8 AS label " .
             ")";
 
-        $query = sprintf($queryTpl, self::$dataset->id(), $modelId);
+        $query = sprintf($queryTpl, self::$dataset->id(), self::$modelId);
         $config = self::$client->query($query);
         self::$client->runQuery($config);
 
-        $model = self::$dataset->model($modelId);
+        $model = self::$dataset->model(self::$modelId);
 
-        $backoff = new ExponentialBackoff(8);
-        $backoff->execute(function () use ($model) {
-            $model->reload();
-            if (!$model->exists()) {
-                throw new \Exception();
-            }
-        });
+        $model->reload();
+        if (!$model->exists()) {
+            throw new \Exception();
+        }
 
         self::$deletionQueue->add($model);
 
@@ -82,5 +78,14 @@ class ManageModelsTest extends BigQueryTestCase
 
         $info = $model->info();
         $this->assertEquals('update model test name', $info['friendlyName']);
+    }
+
+    public function testListModels()
+    {
+        $models = iterator_to_array(self::$dataset->models());
+        $this->assertContainsOnlyInstancesOf(Model::class, $models);
+        $this->assertNotEmpty(array_filter($models, function ($model) {
+            return $model->id() === self::$modelId;
+        }));
     }
 }

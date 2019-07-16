@@ -54,7 +54,8 @@ class Model
         ConnectionInterface $connection,
         $id,
         $datasetId,
-        $projectId
+        $projectId,
+        $info = []
     ) {
         $this->connection = $connection;
         $this->identity = [
@@ -62,11 +63,16 @@ class Model
             'datasetId' => $datasetId,
             'projectId' => $projectId
         ];
+        $this->info = $info;
     }
 
     /**
      * Retrieves the model's details. If no model data is cached, a network request
      * will be made to retrieve it.
+     *
+     * Please note that Model instances created by list calls may not contain a
+     * full representation of the model resource. To obtain a full resource on a
+     * Model instance, call {@see Google\Cloud\BigQuery\Model::reload()}.
      *
      * Example:
      * ```
@@ -101,7 +107,7 @@ class Model
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getModel($options + $this->identity);
+        return $this->info = $this->connection->getModel($this->identity + $options);
     }
 
     /**
@@ -154,9 +160,9 @@ class Model
     public function delete(array $options = [])
     {
         $this->connection->deleteModel(
-            $options
+            $this->identity
             + ['retries' => 0]
-            + $this->identity
+            + $options
         );
     }
 

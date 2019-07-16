@@ -391,21 +391,27 @@ class Dataset
      * echo $model->id();
      * ```
      *
-     * @param $id string The model's ID.
+     * @param string $id The model's ID.
+     * @param array $info [optional] The model resource data.
      * @return Model
      */
-    public function model($id)
+    public function model($id, array $info = [])
     {
         return new Model(
             $this->connection,
             $id,
-            $this->id(),
-            $this->identity['projectId']
+            $this->identity['datasetId'],
+            $this->identity['projectId'],
+            $info
         );
     }
 
     /**
      * Fetches all of the models in the dataset.
+     *
+     * Please note that Model instances created by list calls may not contain a
+     * full representation of the model resource. To obtain a full resource on a
+     * Model instance, call {@see Google\Cloud\BigQuery\Model::reload()}.
      *
      * Example:
      * ```
@@ -432,16 +438,16 @@ class Dataset
     public function models(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $datasetId = $this->id();
+        $datasetId = $this->identity['datasetId'];
         $projectId = $this->identity['projectId'];
 
         return new ItemIterator(
             new PageIterator(
                 function (array $model) {
-                    return $this->model($model['modelReference']['modelId']);
+                    return $this->model($model['modelReference']['modelId'], $model);
                 },
                 [$this->connection, 'listModels'],
-                $options + ['projectId' => $projectId, 'datasetId' => $datasetId],
+                ['projectId' => $projectId, 'datasetId' => $datasetId] + $options,
                 [
                     'itemsKey' => 'models',
                     'resultLimit' => $resultLimit
