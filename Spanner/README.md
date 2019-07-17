@@ -37,7 +37,7 @@ for more information on how to configure the extension.
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
-### Sample
+### Sample Query
 
 ```php
 require 'vendor/autoload.php';
@@ -57,6 +57,52 @@ $userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
 $user = $userQuery->rows()->current();
 
 echo 'Hello ' . $user['firstName'];
+```
+
+### Sample DML Insert
+
+```php
+
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Transaction;
+
+function insert_data_with_dml($instanceId, $databaseId)
+{
+    $spanner = new SpannerClient();
+    $instance = $spanner->instance($instanceId);
+    $database = $instance->database($databaseId);
+
+    $database->runTransaction(function (Transaction $t) use ($spanner) {
+        $rowCount = $t->executeUpdate(
+            "INSERT Singers (SingerId, FirstName, LastName) "
+            . " VALUES (10, 'Virginia', 'Watson')");
+        $t->commit();
+        printf('Inserted %d row(s).' . PHP_EOL, $rowCount);
+    });
+}
+```
+
+### Sample DML Update
+
+```php
+use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Transaction;
+
+function update_data_with_dml($instanceId, $databaseId)
+{
+    $spanner = new SpannerClient();
+    $instance = $spanner->instance($instanceId);
+    $database = $instance->database($databaseId);
+
+    $database->runTransaction(function (Transaction $t) use ($spanner) {
+        $rowCount = $t->executeUpdate(
+            "UPDATE Albums "
+            . "SET MarketingBudget = MarketingBudget * 2 "
+            . "WHERE SingerId = 1 and AlbumId = 1");
+        $t->commit();
+        printf('Updated %d row(s).' . PHP_EOL, $rowCount);
+    });
+}
 ```
 
 ### Session warmup
