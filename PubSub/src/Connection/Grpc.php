@@ -185,18 +185,23 @@ class Grpc implements ConnectionInterface
      */
     public function updateSubscription(array $args)
     {
-        // Get a list of keys used before building subscription, which modifies $args
-        $mask = array_keys($args);
+        $updateMaskPaths = [];
+        foreach (explode(',', $this->pluck('updateMask', $args)) as $path) {
+            $updateMaskPaths[] = Serializer::toSnakeCase($path);
+        }
 
-        // Remove immutable properties.
-        $mask = array_values(array_diff($mask, ['name', 'topic']));
+        $fieldMask = new FieldMask([
+            'paths' => $updateMaskPaths
+        ]);
 
-        $fieldMask = $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+        $subscription = $this->serializer->decodeMessage(
+            new Subscription,
+            $this->pluck('subscription', $args)
+        );
 
-        $subscriptionObject = $this->buildSubscription($args);
-
+        unset($args['name']);
         return $this->send([$this->subscriberClient, 'updateSubscription'], [
-            $subscriptionObject,
+            $subscription,
             $fieldMask,
             $args
         ]);
@@ -433,29 +438,5 @@ class Grpc implements ConnectionInterface
     private function buildPushConfig(array $pushConfig)
     {
         return $this->serializer->decodeMessage(new PushConfig(), $pushConfig);
-    }
-
-    /**
-     * Create a Subscription proto message from an array of arguments.
-     *
-     * @param array $args
-     * @param bool $required
-     * @return Subscription
-     */
-    private function buildSubscription(array &$args, $required = false)
-    {
-        $pushConfig = $this->pluck('pushConfig', $args, $required);
-        $pushConfig = $pushConfig
-            ? $this->buildPushConfig($pushConfig)
-            : null;
-
-        return $this->serializer->decodeMessage(new Subscription(), array_filter([
-            'name' => $this->pluck('name', $args, $required),
-            'topic' => $this->pluck('topic', $args, $required),
-            'pushConfig' => $pushConfig,
-            'ackDeadlineSeconds' => $this->pluck('ackDeadlineSeconds', $args, $required),
-            'retainAckedMessages' => $this->pluck('retainAckedMessages', $args, $required),
-            'messageRetentionDuration' => $this->pluck('messageRetentionDuration', $args, $required),
-        ]));
     }
 }

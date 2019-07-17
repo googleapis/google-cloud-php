@@ -34,8 +34,8 @@ class PubSubTestCase extends SystemTestCase
         self::setUpBeforeClass();
 
         return [
-            [self::$restClient],
-            [self::$grpcClient]
+            'grpc' => [self::$restClient],
+            'rest' => [self::$grpcClient]
         ];
     }
 

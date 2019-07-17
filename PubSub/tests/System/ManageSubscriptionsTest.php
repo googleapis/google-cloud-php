@@ -60,10 +60,10 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $shortName = uniqid(self::TESTING_PREFIX);
         $this->assertFalse($topic->subscription($shortName)->exists());
 
-        $sub = $client->subscribe($shortName, $topic->name());
+        $sub = $topic->subscribe($shortName);
         self::$deletionQueue->add($sub);
 
-        $this->assertTrue($topic->subscription($shortName)->exists());
+        $this->assertTrue($sub->exists());
         $this->assertEquals($sub->name(), $sub->reload()['name']);
     }
 
@@ -101,6 +101,56 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $sub->seekToSnapshot($client->snapshot($snapName));
 
         $sub->seekToTime($client->timestamp(new \DateTime));
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testUpdateSubscription($client)
+    {
+        $subs = $client->subscriptions();
+        $sub = $subs->current();
+        $ackDeadlineSeconds = isset($sub->info()['ackDeadlineSeconds'])
+            ? $sub->info()['ackDeadlineSeconds']
+            : false;
+
+        $newDeadline = rand(10, 200);
+        $sub->update([
+            'ackDeadlineSeconds' => $newDeadline
+        ]);
+
+        $this->assertEquals($newDeadline, $sub->info()['ackDeadlineSeconds']);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testUpdateSubscriptionWithUpdateMask($client)
+    {
+        $subs = $client->subscriptions();
+        $sub = $subs->current();
+
+        $labels = [
+            'foo' => 'bar',
+            'bat' => 'baz'
+        ];
+
+        $sub->update([
+            'labels' => $labels,
+            'pushConfig' => [
+                'attributes' => [
+                    'x-goog-version' => 'v1beta1'
+                ]
+            ]
+        ], [
+            'updateMask' => [
+                'labels',
+                'pushConfig.attributes'
+            ]
+        ]);
+
+        $this->assertEquals($labels, $sub->info()['labels']);
+        $this->assertEquals('v1beta1', $sub->info()['pushConfig']['attributes']['x-goog-version']);
     }
 
     private function assertSubsFound($class, $expectedSubs)

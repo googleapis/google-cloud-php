@@ -34,6 +34,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group pubsub
+ * @group pubsub-connection
  */
 class GrpcTest extends TestCase
 {
@@ -108,7 +109,7 @@ class GrpcTest extends TestCase
         $subscription->setRetainAckedMessages(true);
 
         $serializer = new Serializer();
-        $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['retainAckedMessages']]);
+        $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['retain_acked_messages']]);
 
         $time = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
         $timestamp = $serializer->decodeMessage(new Timestamp(), $this->formatTimestampForApi($time));
@@ -116,7 +117,13 @@ class GrpcTest extends TestCase
         return [
             [
                 'updateSubscription',
-                ['name' => 'projects/foo/subscriptions/bar', 'retainAckedMessages' => true],
+                [
+                    'subscription' => [
+                        'name' => 'projects/foo/subscriptions/bar',
+                        'retainAckedMessages' => true
+                    ],
+                    'updateMask' => 'retainAckedMessages'
+                ],
                 [$subscription, $fieldMask, []]
             ],
             [
