@@ -3,7 +3,7 @@ dist: trusty
 
 jobs:
   include:
-    - php: hhvm-3.24
+    - php: hhvm
       fast_finish: true
       install:
         - composer self-update
