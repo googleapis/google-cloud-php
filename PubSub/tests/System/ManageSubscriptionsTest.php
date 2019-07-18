@@ -31,8 +31,8 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testCreateAndListSubscriptions($client)
     {
-        $topicName = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($topicName);
+        $topicId = uniqid(self::TESTING_PREFIX);
+        $topic = $client->createTopic($topicId);
         self::$deletionQueue->add($topic);
 
         $subsToCreate = [
@@ -41,7 +41,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
         ];
 
         foreach ($subsToCreate as $subToCreate) {
-            self::$deletionQueue->add($client->subscribe($subToCreate, $topicName));
+            self::$deletionQueue->add($client->subscribe($subToCreate, $topicId));
         }
 
         $this->assertSubsFound($client, $subsToCreate);
@@ -51,20 +51,28 @@ class ManageSubscriptionsTest extends PubSubTestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testReloadSub($client)
+    public function testSubscribeAndReload($client)
     {
-        $topicName = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($topicName);
+        $topicId = uniqid(self::TESTING_PREFIX);
+        $topic = $client->createTopic($topicId);
+
+        $subscriptionId = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse($topic->subscription($subscriptionId)->exists());
+
+        // Subscribe via the topic.
+        $subscription = $topic->subscribe($subscriptionId);
+        $this->assertTrue($subscription->exists());
+
+        $subscriptionId2 = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse($topic->subscription($subscriptionId2)->exists());
+
+        // Subscribe via pubsubclient
+        $subscription2 = $client->subscribe($subscriptionId2, $topicId);
+        $this->assertTrue($subscription2->exists());
+
         self::$deletionQueue->add($topic);
-
-        $shortName = uniqid(self::TESTING_PREFIX);
-        $this->assertFalse($topic->subscription($shortName)->exists());
-
-        $sub = $topic->subscribe($shortName);
-        self::$deletionQueue->add($sub);
-
-        $this->assertTrue($sub->exists());
-        $this->assertEquals($sub->name(), $sub->reload()['name']);
+        self::$deletionQueue->add($subscription);
+        self::$deletionQueue->add($subscription2);
     }
 
     /**
@@ -75,18 +83,18 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $subs = $client->subscriptions();
         $sub = $subs->current();
 
-        $snapName = uniqid(self::TESTING_PREFIX);
+        $snapshotId = uniqid(self::TESTING_PREFIX);
 
-        $snap = $client->createSnapshot($snapName, $sub);
+        $snap = $client->createSnapshot($snapshotId, $sub);
         self::$deletionQueue->add($snap);
 
         $this->assertInstanceOf(Snapshot::class, $snap);
 
         $backoff = new ExponentialBackoff(8);
-        $hasFoundSub = $backoff->execute(function () use ($client, $snapName) {
+        $hasFoundSub = $backoff->execute(function () use ($client, $snapshotId) {
             $snaps = $client->snapshots();
-            $filtered = array_filter(iterator_to_array($snaps), function ($snap) use ($snapName) {
-                return strpos($snap->name(), $snapName) !== false;
+            $filtered = array_filter(iterator_to_array($snaps), function ($snap) use ($snapshotId) {
+                return strpos($snap->name(), $snapshotId) !== false;
             });
 
             if (count($filtered) === 1) {
@@ -98,7 +106,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
 
         $this->assertTrue($hasFoundSub);
 
-        $sub->seekToSnapshot($client->snapshot($snapName));
+        $sub->seekToSnapshot($client->snapshot($snapshotId));
 
         $sub->seekToTime($client->timestamp(new \DateTime));
     }
