@@ -49,7 +49,7 @@ class Model
      * @param string $id The model's ID.
      * @param string $datasetId The dataset's ID.
      * @param string $projectId The project's ID.
-     * @param array $info
+     * @param array $info The model data.
      */
     public function __construct(
         ConnectionInterface $connection,
