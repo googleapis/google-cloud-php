@@ -17,14 +17,15 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
-use Google\Cloud\Core\ValidateTrait;
 use InvalidArgumentException;
 
 /**
@@ -57,6 +58,7 @@ use InvalidArgumentException;
  */
 class Subscription
 {
+    use ArrayTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
     use ValidateTrait;
@@ -235,6 +237,25 @@ class Subscription
      * ]);
      * ```
      *
+     * ```
+     * // Updating labels and push config attributes with explicit update masks.
+     * $subscription->update([
+     *     'labels' => [
+     *         'label-1' => 'value'
+     *     ],
+     *     'pushConfig' => [
+     *         'attributes' => [
+     *             'x-goog-version' => 1
+     *         ]
+     *     ]
+     * ], [
+     *     'updateMask' => [
+     *         'labels',
+     *         'pushConfig.attributes'
+     *     ]
+     * ]);
+     * ```
+     *
      * @param array $subscription {
      *     The Subscription data.
      *
@@ -257,15 +278,42 @@ class Subscription
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
+     *     @type array $updateMask A list of field paths to be modified. Nested
+     *           key names should be dot-separated, e.g. `pushConfig.pushEndpoint`.
+     *           Google Cloud PHP will attempt to infer this value on your
+     *           behalf, however modification of map fields with arbitrary keys
+     *           (such as labels or push config attributes) requires an explicit
+     *           update mask.
      * }
      * @param array $options [optional] Configuration options.
      * @return array The subscription info.
      */
     public function update(array $subscription, array $options = [])
     {
+        $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
+        if (!$updateMaskPaths) {
+            $excludes = ['name', 'topic'];
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($subscription));
+            foreach ($iterator as $leafValue) {
+                $keys = [];
+                foreach (range(0, $iterator->getDepth()) as $depth) {
+                    $keys[] = $iterator->getSubIterator($depth)->key();
+                }
+
+                $path = implode('.', $keys);
+                if (!in_array($path, $excludes)) {
+                    $updateMaskPaths[] = $path;
+                }
+            }
+        }
+
         return $this->info = $this->connection->updateSubscription([
-            'name' => $this->name
-        ] + $options + $subscription);
+            'name' => $this->name,
+            'subscription' => [
+                'name' => $this->name
+            ] + $subscription,
+            'updateMask' => implode(',', $updateMaskPaths)
+        ] + $options);
     }
 
     /**

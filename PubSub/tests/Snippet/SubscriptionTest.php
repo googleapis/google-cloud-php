@@ -108,6 +108,21 @@ class SubscriptionTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    public function testUpdateWithMask()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'update', 1);
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $this->connection->updateSubscription(Argument::allOf(
+            Argument::withKey('subscription'),
+            Argument::withKey('updateMask')
+        ))->shouldBeCalled();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Subscription::class, 'delete');

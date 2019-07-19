@@ -19,7 +19,6 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
@@ -94,24 +93,22 @@ class SubscriptionTest extends TestCase
 
     public function testUpdate()
     {
-        $args = [
+        $this->connection->updateSubscription(Argument::allOf(
+            Argument::withEntry('subscription', [
+                'name' => $this->subscription->name(),
+                'foo' => 'bar'
+            ]),
+            Argument::withEntry('updateMask', 'foo')
+        ))->shouldBeCalled()->willReturn([
             'foo' => 'bar'
-        ];
-
-        $argsWithName = $args + [
-            'name' => $this->subscription->name()
-        ];
-
-        $this->connection->updateSubscription($argsWithName)
-            ->shouldBeCalled()
-            ->willReturn($argsWithName);
+        ]);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->subscription->update($args);
+        $res = $this->subscription->update(['foo' => 'bar']);
 
-        $this->assertEquals($res, $argsWithName);
-        $this->assertEquals($this->subscription->info(), $argsWithName);
+        $this->assertEquals(['foo' => 'bar'], $res);
+        $this->assertEquals('bar', $this->subscription->info()['foo']);
     }
 
     public function testDelete()
