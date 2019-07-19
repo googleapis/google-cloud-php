@@ -409,9 +409,11 @@ class Dataset
     /**
      * Fetches all of the models in the dataset.
      *
-     * Please note that Model instances created by list calls may not contain a
-     * full representation of the model resource. To obtain a full resource on a
-     * Model instance, call {@see Google\Cloud\BigQuery\Model::reload()}.
+     * Please note that Model instances obtained from this method contain only a
+     * subset of the resource representation. Fields returned include
+     * `modelReference`, `modelType`, `creationTime`, `lastModifiedTime` and
+     * `labels`. To obtain a full representation, call
+     * {@see Google\Cloud\BigQuery\Model::reload()}.
      *
      * Example:
      * ```

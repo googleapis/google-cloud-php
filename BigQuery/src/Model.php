@@ -46,16 +46,17 @@ class Model
 
     /**
      * @param ConnectionInterface $connection Represents a connection to BigQuery.
-     * @param $id string The model's ID.
-     * @param $datasetId string The dataset's ID.
-     * @param $projectId string The project's ID.
+     * @param string $id The model's ID.
+     * @param string $datasetId The dataset's ID.
+     * @param string $projectId The project's ID.
+     * @param array $info
      */
     public function __construct(
         ConnectionInterface $connection,
         $id,
         $datasetId,
         $projectId,
-        $info = []
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->identity = [
