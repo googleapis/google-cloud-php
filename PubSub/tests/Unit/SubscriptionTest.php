@@ -121,7 +121,7 @@ class SubscriptionTest extends TestCase
                 'expirationPolicy' => [
                     'ttl' => '2.1s'
                 ]
-            ]),
+            ])
         ))->shouldBeCalled()->willReturn([
             'foo' => 'bar'
         ]);
