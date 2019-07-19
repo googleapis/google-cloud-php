@@ -190,6 +190,8 @@ class Subscription
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type array $pushConfig.oidcToken Contains information needed for generating
+     *           an OpenIDConnect token.
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
@@ -202,6 +204,15 @@ class Subscription
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
+     *     @type array $expirationPolicy A policy that specifies the conditions
+     *           for resource expiration (i.e., automatic resource deletion).
+     *     @type string $expiration.ttl Specifies the "time-to-live" duration
+     *           for an associated resource. The resource expires if it is not
+     *           active for a period of `ttl`. The definition of "activity"
+     *           depends on the type of the associated resource. The minimum
+     *           and maximum allowed values for `ttl` depend on the type of the
+     *           associated resource, as well. If `ttl` is not set, the
+     *           associated resource never expires.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -278,6 +289,15 @@ class Subscription
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
+     *     @type array $expirationPolicy A policy that specifies the conditions
+     *           for resource expiration (i.e., automatic resource deletion).
+     *     @type string $expiration.ttl Specifies the "time-to-live" duration
+     *           for an associated resource. The resource expires if it is not
+     *           active for a period of `ttl`. The definition of "activity"
+     *           depends on the type of the associated resource. The minimum
+     *           and maximum allowed values for `ttl` depend on the type of the
+     *           associated resource, as well. If `ttl` is not set, the
+     *           associated resource never expires.
      *     @type array $updateMask A list of field paths to be modified. Nested
      *           key names should be dot-separated, e.g. `pushConfig.pushEndpoint`.
      *           Google Cloud PHP will attempt to infer this value on your

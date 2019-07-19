@@ -38,7 +38,7 @@ class MessageTest extends TestCase
             'publishTime' => $this->time,
             'attributes' => [
                 'foo' => 'bar'
-            ]
+            ],
         ], [
             'ackId' => 1234,
             'subscription' => $this->prophesize(Subscription::class)->reveal()

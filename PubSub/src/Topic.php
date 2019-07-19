@@ -92,7 +92,18 @@ class Topic
      * @param string $projectId The project Id
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
-     * @param array $info [optional] A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @param array $info {
+     *     A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
+     *
+     *     @type string name The name of the topic.
+     *     @type array $labels Key value pairs used to organize your resources.
+     *     @type string $kmsKeyName The resource name of the Cloud KMS
+     *           CryptoKey to be used to protect access to messages published on this
+     *           topic. The expected format is
+     *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *           This is an experimental feature and is not recommended for production use.
+     * }
+     *
      * @param array $clientConfig [optional] Configuration options for the
      *        PubSub client used to handle processing of batch items through the
      *        daemon. For valid options please see
@@ -147,7 +158,19 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
-     * @param array $options [optional] Configuration Options
+     * @param array $options  {
+     *     Configuration Options
+     *
+     *     @type string name The name of the topic.
+     *     @type array $labels Key value pairs used to organize your
+     *           resources.
+     *     @type string $kmsKeyName The resource name of the Cloud KMS
+     *           CryptoKey to be used to protect access to messages published on this
+     *           topic. The expected format is
+     *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *           This is an experimental feature and is not recommended for production use.
+     * }
+     *
      * @return array Topic information
      */
     public function create(array $options = [])
