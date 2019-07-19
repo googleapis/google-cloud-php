@@ -206,7 +206,7 @@ class Subscription
      *           **Defaults to** 7 days.
      *     @type array $expirationPolicy A policy that specifies the conditions
      *           for resource expiration (i.e., automatic resource deletion).
-     *     @type string $expiration.ttl Specifies the "time-to-live" duration
+     *     @type Duration $expiration.ttl Specifies the "time-to-live" duration
      *           for an associated resource. The resource expires if it is not
      *           active for a period of `ttl`. The definition of "activity"
      *           depends on the type of the associated resource. The minimum
@@ -223,9 +223,12 @@ class Subscription
         // it may or may not have a topic name. This is fine for most API
         // interactions, but a topic name is required to create a subscription.
         if (!$this->topicName) {
-            throw new InvalidArgumentException('A topic name is required to
-                create a subscription.');
+            throw new InvalidArgumentException(
+                'A topic name is required to create a subscription.'
+            );
         }
+
+        $options = $this->formatSubscriptionDurations($options);
 
         $this->info = $this->connection->createSubscription($options + [
             'name' => $this->name,
@@ -291,7 +294,7 @@ class Subscription
      *           **Defaults to** 7 days.
      *     @type array $expirationPolicy A policy that specifies the conditions
      *           for resource expiration (i.e., automatic resource deletion).
-     *     @type string $expiration.ttl Specifies the "time-to-live" duration
+     *     @type Duration $expiration.ttl Specifies the "time-to-live" duration
      *           for an associated resource. The resource expires if it is not
      *           active for a period of `ttl`. The definition of "activity"
      *           depends on the type of the associated resource. The minimum
@@ -326,6 +329,8 @@ class Subscription
                 }
             }
         }
+
+        $subscription = $this->formatSubscriptionDurations($subscription);
 
         return $this->info = $this->connection->updateSubscription([
             'name' => $this->name,
@@ -755,6 +760,35 @@ class Subscription
         }
 
         return $ackIds;
+    }
+
+    /**
+     * Format any Duration objects for the subscriptions rest API
+     *
+     * @param array $options
+     * @return array
+     */
+    private function formatSubscriptionDurations(array $options)
+    {
+        if (isset($options['messageRetentionDuration']) && $options['messageRetentionDuration'] instanceof Duration) {
+            $duration = $options['messageRetentionDuration']->get();
+            $options['messageRetentionDuration'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $duration['nanos']
+            );
+        }
+
+        if (isset($options['expirationPolicy']['ttl']) && $options['expirationPolicy']['ttl'] instanceof Duration) {
+            $duration = $options['expirationPolicy']['ttl']->get();
+            $options['expirationPolicy']['ttl'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $duration['nanos']
+            );
+        }
+
+        return $options;
     }
 
     /**

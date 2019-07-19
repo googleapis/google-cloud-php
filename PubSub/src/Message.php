@@ -58,12 +58,12 @@ class Message
      *
      *     @type string $data The message data field. If this is empty, the message must
      *           contain at least one attribute.
-     *     @type array $attributes Optional attributes for this message
-     *     @type array $messageId ID of this message, assigned by the
+     *     @type array $attributes Optional attributes for this message.
+     *     @type string $messageId ID of this message, assigned by the
      *           server when the message is published.
-     *     @type \DateTimeInterface $publishTime The time at which the message
-     *           was published, populated by the server when it receives the
-     *           publish call.
+     *     @type string $publishTime The time at which the message was
+     *           published, populated by the server when it receives the publish
+     *           call.
      * }
      * @param array $metadata {
      *     Message metadata

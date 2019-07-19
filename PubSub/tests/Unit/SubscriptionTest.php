@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\Unit;
 
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -109,6 +110,42 @@ class SubscriptionTest extends TestCase
 
         $this->assertEquals(['foo' => 'bar'], $res);
         $this->assertEquals('bar', $this->subscription->info()['foo']);
+    }
+
+    public function testDurations()
+    {
+        $this->connection->updateSubscription(Argument::allOf(
+            Argument::withEntry('subscription', [
+                'name' => $this->subscription->name(),
+                'messageRetentionDuration' => '1.1s',
+                'expirationPolicy' => [
+                    'ttl' => '2.1s'
+                ]
+            ]),
+        ))->shouldBeCalled()->willReturn([
+            'foo' => 'bar'
+        ]);
+
+        $this->connection->createSubscription(Argument::allOf(
+            Argument::withEntry('messageRetentionDuration', '1.1s'),
+            Argument::withEntry('expirationPolicy', [
+                'ttl' => '2.1s'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'foo' => 'bar'
+        ]);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+
+        $args = [
+            'messageRetentionDuration' => new Duration(1, 1),
+            'expirationPolicy' => [
+                'ttl' => new Duration(2, 1)
+            ]
+        ];
+
+        $this->subscription->update($args);
+        $this->subscription->create($args);
     }
 
     public function testDelete()

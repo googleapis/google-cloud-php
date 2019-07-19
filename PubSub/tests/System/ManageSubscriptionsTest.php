@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\PubSub\Tests\System;
 
-use Google\Cloud\PubSub\Snapshot;
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\PubSub\Snapshot;
 
 /**
  * @group pubsub
@@ -159,6 +160,62 @@ class ManageSubscriptionsTest extends PubSubTestCase
 
         $this->assertEquals($labels, $sub->info()['labels']);
         $this->assertEquals('v1beta1', $sub->info()['pushConfig']['attributes']['x-goog-version']);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testSubscriptionDurations($client)
+    {
+        $durationSeconds = 129600;
+        $durationNanos = 1001;
+
+        $resourceId = uniqid(self::TESTING_PREFIX);
+        $topic = $client->createTopic($resourceId);
+        $sub = $topic->subscribe($resourceId, [
+            'expirationPolicy' => [
+                'ttl' => new Duration($durationSeconds, $durationNanos)
+            ],
+            'messageRetentionDuration' => new Duration($durationSeconds, $durationNanos)
+        ]);
+
+        self::$deletionQueue->add($topic);
+        self::$deletionQueue->add($sub);
+
+        $info = $sub->info();
+        if (!isset($info['messageRetentionDuration']) || !isset($info['expirationPolicy']['ttl'])) {
+            $this->assertTrue(false, 'Missing expected response data');
+        }
+
+        if (is_string($info['messageRetentionDuration'])) {
+            $d = explode('.', trim($info['messageRetentionDuration'], 's'));
+            if (count($d) !== 2) {
+                return null;
+            }
+
+            $info['messageRetentionDuration'] = [
+                'seconds' => (int) $d[0],
+                'nanos' => (int) trim((string) $d[1], '0')
+            ];
+        }
+
+        $this->assertEquals($durationSeconds, $info['messageRetentionDuration']['seconds']);
+        $this->assertEquals($durationNanos, $info['messageRetentionDuration']['nanos']);
+
+        if (is_string($info['expirationPolicy']['ttl'])) {
+            $d = explode('.', trim($info['expirationPolicy']['ttl'], 's'));
+            if (count($d) !== 2) {
+                return null;
+            }
+
+            $info['expirationPolicy']['ttl'] = [
+                'seconds' => (int) $d[0],
+                'nanos' => (int) trim((string) $d[1], '0')
+            ];
+        }
+
+        $this->assertEquals($durationSeconds, $info['expirationPolicy']['ttl']['seconds']);
+        $this->assertEquals($durationNanos, $info['expirationPolicy']['ttl']['nanos']);
     }
 
     private function assertSubsFound($class, $expectedSubs)
