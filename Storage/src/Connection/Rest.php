@@ -475,7 +475,7 @@ class Rest implements ConnectionInterface
         }
 
         // is crc32c available in `hash()`?
-        if ($this->supportsBuiltinCrc32()) {
+        if ($this->supportsBuiltinCrc32c()) {
             return 'crc32';
         }
 
@@ -517,7 +517,7 @@ class Rest implements ConnectionInterface
      */
     protected function crc32cExtensionLoaded()
     {
-        return function_exists('crc32c');
+        return extension_loaded('crc32c');
     }
 
     /**
@@ -527,7 +527,7 @@ class Rest implements ConnectionInterface
      *
      * @return bool
      */
-    protected function supportsBuiltinCrc32()
+    protected function supportsBuiltinCrc32c()
     {
         return Builtin::supports(CRC32::CASTAGNOLI);
     }

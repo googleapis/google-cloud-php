@@ -23,7 +23,6 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
-use Google\Cloud\Storage\StorageClient;
 use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -34,7 +33,6 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Rize\UriTemplate;
 
 /**
  * @group storage
@@ -206,7 +204,7 @@ class RestTest extends TestCase
         $expectedUploaderType,
         $expectedContentType,
         array $expectedMetadata,
-        array $metadataDoesNotHave = []
+        array $metadataKeysWhichShouldNotBeSet = []
     ) {
         $actualRequest = null;
         $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
@@ -238,9 +236,9 @@ class RestTest extends TestCase
             $this->assertEquals($value, $metadata[$key]);
         }
 
-        if ($metadataDoesNotHave) {
+        if ($metadataKeysWhichShouldNotBeSet) {
             $metadataKeys = array_keys($metadata);
-            foreach ($metadataDoesNotHave as $key) {
+            foreach ($metadataKeysWhichShouldNotBeSet as $key) {
                 $this->assertArrayNotHasKey($key, $metadataKeys);
             }
         }
@@ -368,7 +366,7 @@ class RestTest extends TestCase
      */
     public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
     {
-        $rest = new RestCrc32Stub;
+        $rest = new RestCrc32cStub;
         $rest->extensionLoaded = $extensionLoaded;
         $rest->supportsBuiltin = $supportsBuiltin;
 
@@ -447,7 +445,7 @@ class RestTest extends TestCase
 }
 
 //@codingStandardsIgnoreStart
-class RestCrc32Stub extends Rest
+class RestCrc32cStub extends Rest
 {
     public $extensionLoaded = false;
     public $supportsBuiltin = false;
@@ -457,7 +455,7 @@ class RestCrc32Stub extends Rest
         return $this->extensionLoaded;
     }
 
-    protected function supportsBuiltinCrc32()
+    protected function supportsBuiltinCrc32c()
     {
         return $this->supportsBuiltin;
     }

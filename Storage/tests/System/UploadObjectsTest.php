@@ -129,13 +129,13 @@ class UploadObjectsTest extends StorageTestCase
     /**
      * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
-    public function testCrc32ChecksumFails()
+    public function testCrc32cChecksumFails()
     {
         $path = __DIR__ . '/data/5mb.txt';
 
-        $crc32 = CRC32::create(CRC32::CASTAGNOLI);
-        $crc32->update('foobar');
-        $badChecksum = base64_encode($crc32->hash(true));
+        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
+        $crc32c->update('foobar');
+        $badChecksum = base64_encode($crc32c->hash(true));
 
         self::$bucket->upload($path, [
             'name' => uniqid(),
