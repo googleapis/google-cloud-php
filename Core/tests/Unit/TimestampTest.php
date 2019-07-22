@@ -232,4 +232,30 @@ class TimestampTest extends TestCase
             ['Africa/Johannesburg'],
         ];
     }
+
+    /**
+     * @dataProvider nanoseconds
+     */
+    public function testNanoConversion($nanos, $expected = null)
+    {
+        $this->assertEquals(
+            $expected ?: $nanos,
+            $this->convertFractionToNanoSeconds(
+                $this->convertNanoSecondsToFraction(
+                    $nanos
+                )
+            )
+        );
+    }
+
+    public function nanoseconds()
+    {
+        return [
+            [1],
+            [9999990],
+            [999999999],
+            [1555000],
+            ['002222', 2222]
+        ];
+    }
 }

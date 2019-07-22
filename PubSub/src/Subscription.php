@@ -22,6 +22,7 @@ use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
@@ -61,6 +62,7 @@ class Subscription
     use ArrayTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
+    use TimeTrait;
     use ValidateTrait;
 
     const MAX_MESSAGES = 1000;
@@ -763,7 +765,7 @@ class Subscription
     }
 
     /**
-     * Format any Duration objects for the subscriptions rest API
+     * Format Duration objects for the API.
      *
      * @param array $options
      * @return array
@@ -775,7 +777,7 @@ class Subscription
             $options['messageRetentionDuration'] = sprintf(
                 '%s.%ss',
                 $duration['seconds'],
-                $duration['nanos']
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
             );
         }
 
@@ -784,7 +786,7 @@ class Subscription
             $options['expirationPolicy']['ttl'] = sprintf(
                 '%s.%ss',
                 $duration['seconds'],
-                $duration['nanos']
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
             );
         }
 

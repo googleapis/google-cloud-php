@@ -22,6 +22,7 @@ use Google\Cloud\Core\Duration as CoreDuration;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
@@ -42,6 +43,7 @@ class Grpc implements ConnectionInterface
 {
     use EmulatorTrait;
     use GrpcTrait;
+    use TimeTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
@@ -469,7 +471,7 @@ class Grpc implements ConnectionInterface
             }
 
             $seconds = (int) $d[0];
-            $nanos = (int) $d[1];
+            $nanos = $this->convertFractionToNanoSeconds($d[1]);
         } elseif ($v instanceof CoreDuration) {
             $d = $v->get();
             $seconds = $d['seconds'];

@@ -138,9 +138,9 @@ class SubscriptionTest extends TestCase
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $args = [
-            'messageRetentionDuration' => new Duration(1, 1),
+            'messageRetentionDuration' => new Duration(1, 1e+9),
             'expirationPolicy' => [
-                'ttl' => new Duration(2, 1)
+                'ttl' => new Duration(2, 1e+9)
             ]
         ];
 
