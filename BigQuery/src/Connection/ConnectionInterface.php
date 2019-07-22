@@ -144,4 +144,28 @@ interface ConnectionInterface
      * @return array
      */
     public function getServiceAccount(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function getModel(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function deleteModel(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function patchModel(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function listModels(array $args = []);
 }

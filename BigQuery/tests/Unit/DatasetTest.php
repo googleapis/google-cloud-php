@@ -19,9 +19,11 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
+use Google\Cloud\BigQuery\Model;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
 
@@ -35,6 +37,7 @@ class DatasetTest extends TestCase
     public $projectId = 'myProjectId';
     public $datasetId = 'myDatasetId';
     public $tableId = 'myTableId';
+    public $modelId = 'testModelId';
 
     public function setUp()
     {
@@ -216,5 +219,54 @@ class DatasetTest extends TestCase
 
         $this->assertEquals($this->datasetId, $dataset->identity()['datasetId']);
         $this->assertEquals($this->projectId, $dataset->identity()['projectId']);
+    }
+
+    public function testsGetsModel()
+    {
+        $dataset = $this->getDataset($this->connection);
+        $model = $dataset->model($this->modelId);
+        $this->assertInstanceOf(Model::class, $model);
+        $this->assertEquals($this->datasetId, $model->identity()['datasetId']);
+        $this->assertEquals($this->projectId, $model->identity()['projectId']);
+        $this->assertEquals($this->modelId, $model->id());
+    }
+
+    public function testsGetsModelsWithoutToken()
+    {
+        $this->connection->listModels(Argument::any())
+            ->willReturn([
+                'models' => [
+                    ['modelReference' => ['modelId' => $this->modelId]]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $dataset = $this->getDataset($this->connection);
+        $models = $dataset->models();
+        $this->assertInstanceOf(ItemIterator::class, $models);
+        $modelsArray = iterator_to_array($models);
+
+        $this->assertEquals($this->modelId, $modelsArray[0]->id());
+    }
+
+    public function testGetsModelsWithToken()
+    {
+        $this->connection->listModels(Argument::any())
+            ->willReturn([
+                'nextPageToken' => 'token',
+                'models' => [
+                    ['modelReference' => ['modelId' => $this->modelId]]
+                ]
+            ], [
+                'models' => [
+                    ['modelReference' => ['modelId' => 'testModelId2']]
+                ]
+            ])->shouldBeCalledTimes(2);
+
+        $dataset = $this->getDataset($this->connection);
+        $models = iterator_to_array($dataset->models());
+
+        $this->assertEquals($this->modelId, $models[0]->id());
+        $this->assertEquals('testModelId2', $models[1]->id());
     }
 }
