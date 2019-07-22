@@ -27,9 +27,12 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
+use Google\CRC32\Builtin;
+use Google\CRC32\CRC32;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Implementation of the
@@ -304,9 +307,11 @@ class Rest implements ConnectionInterface
             $args['name'] = basename($args['data']->getMetadata('uri'));
         }
 
-        // @todo add support for rolling hash
-        if ($args['validate'] && !isset($args['metadata']['md5Hash'])) {
+        $validate = $this->chooseValidationMethod($args);
+        if ($validate === 'md5') {
             $args['metadata']['md5Hash'] = base64_encode(Psr7\hash($args['data'], 'md5', true));
+        } elseif ($validate === 'crc32') {
+            $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
         }
 
         $args['metadata']['name'] = $args['name'];
@@ -438,5 +443,92 @@ class Rest implements ConnectionInterface
             new Request('GET', Psr7\uri_for($uri)),
             $requestOptions
         ];
+    }
+
+    /**
+     * Choose a upload validation method based on user input and platform
+     * requirements.
+     *
+     * @param array $args
+     * @return bool|string
+     */
+    private function chooseValidationMethod(array $args)
+    {
+        // If the user provided a hash, skip hashing.
+        if (isset($args['metadata']['md5']) || isset($args['metadata']['crc32c'])) {
+            return false;
+        }
+
+        $validate = $args['validate'];
+        if (in_array($validate, [false, 'crc32', 'md5'], true)) {
+            return $validate;
+        }
+
+        // not documented, but the feature is called crc32c, so let's accept that as input anyways.
+        if ($validate === 'crc32c') {
+            return 'crc32';
+        }
+
+        // is the extension loaded?
+        if ($this->crc32cExtensionLoaded()) {
+            return 'crc32';
+        }
+
+        // is crc32c available in `hash()`?
+        if ($this->supportsBuiltinCrc32c()) {
+            return 'crc32';
+        }
+
+        return 'md5';
+    }
+
+    /**
+     * Generate a CRC32c checksum from a stream.
+     *
+     * @param StreamInterface $data
+     * @return string
+     */
+    private function crcFromStream(StreamInterface $data)
+    {
+        $pos = $data->tell();
+
+        if ($pos > 0) {
+            $data->rewind();
+        }
+
+        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
+
+        $data->rewind();
+        while (!$data->eof()) {
+            $crc32c->update($data->read(1048576));
+        }
+
+        $data->seek($pos);
+
+        return base64_encode($crc32c->hash(true));
+    }
+
+    /**
+     * Check if the crc32c extension is available.
+     *
+     * Protected access for unit testing.
+     *
+     * @return bool
+     */
+    protected function crc32cExtensionLoaded()
+    {
+        return extension_loaded('crc32c');
+    }
+
+    /**
+     * Check if hash() supports crc32c.
+     *
+     * Protected access for unit testing.
+     *
+     * @return bool
+     */
+    protected function supportsBuiltinCrc32c()
+    {
+        return Builtin::supports(CRC32::CASTAGNOLI);
     }
 }

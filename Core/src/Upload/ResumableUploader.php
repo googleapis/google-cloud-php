@@ -18,6 +18,8 @@
 namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Exception\UploadException;
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7;
@@ -139,8 +141,11 @@ class ResumableUploader extends AbstractUploader
     /**
      * Triggers the upload process.
      *
+     * Errors are of form [`google.rpc.Status`](https://cloud.google.com/apis/design/errors#error_model),
+     * and may be obtained via {@see Google\Cloud\Core\Exception\ServiceException::getMetadata()}.
+     *
      * @return array
-     * @throws GoogleException
+     * @throws ServiceException
      */
     public function upload()
     {
@@ -176,9 +181,11 @@ class ResumableUploader extends AbstractUploader
             try {
                 $response = $this->requestWrapper->send($request, $this->requestOptions);
             } catch (GoogleException $ex) {
-                throw new GoogleException(
+                throw new ServiceException(
                     "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
-                    $ex->getCode()
+                    $ex->getCode(),
+                    null,
+                    json_decode($ex->getMessage(), true) ?: []
                 );
             }
 

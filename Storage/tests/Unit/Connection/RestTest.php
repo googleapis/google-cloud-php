@@ -23,17 +23,16 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
-use Google\Cloud\Storage\StorageClient;
+use Google\CRC32\CRC32;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use Rize\UriTemplate;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group storage
@@ -204,7 +203,8 @@ class RestTest extends TestCase
         array $options,
         $expectedUploaderType,
         $expectedContentType,
-        array $expectedMetadata
+        array $expectedMetadata,
+        array $metadataKeysWhichShouldNotBeSet = []
     ) {
         $actualRequest = null;
         $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
@@ -235,6 +235,13 @@ class RestTest extends TestCase
         foreach ($expectedMetadata as $key => $value) {
             $this->assertEquals($value, $metadata[$key]);
         }
+
+        if ($metadataKeysWhichShouldNotBeSet) {
+            $metadataKeys = array_keys($metadata);
+            foreach ($metadataKeysWhichShouldNotBeSet as $key) {
+                $this->assertArrayNotHasKey($key, $metadataKeys);
+            }
+        }
     }
 
     public function insertObjectProvider()
@@ -243,20 +250,26 @@ class RestTest extends TestCase
         $tempFile->write(str_repeat('0', 5000001));
         $logoFile = Psr7\stream_for(fopen(__DIR__ . '/../data/logo.svg', 'r'));
 
+        $crc32c = CRC32::create(CRC32::CASTAGNOLI);
+        $crc32c->update((string) $logoFile);
+        $crcHash = base64_encode($crc32c->hash(true));
+
         return [
             [
                 [
                     'data' => $tempFile,
                     'name' => 'file.txt',
                     'predefinedAcl' => 'private',
-                    'metadata' => ['contentType' => 'text/plain']
+                    'metadata' => ['contentType' => 'text/plain'],
+                    'validate' => 'md5'
                 ],
                 ResumableUploader::class,
                 'text/plain',
                 [
                     'md5Hash' => base64_encode(Psr7\hash($tempFile, 'md5', true)),
                     'name' => 'file.txt'
-                ]
+                ],
+                ['crc32c']
             ],
             [
                 [
@@ -267,7 +280,8 @@ class RestTest extends TestCase
                 'image/svg+xml',
                 [
                     'name' => 'logo.svg'
-                ]
+                ],
+                ['md5Hash', 'crc32c']
             ],
             [
                 [
@@ -289,7 +303,8 @@ class RestTest extends TestCase
                     'metadata' => [
                         'here' => 'wego'
                     ]
-                ]
+                ],
+                ['md5Hash', 'crc32c']
             ],
             [
                 [
@@ -311,7 +326,101 @@ class RestTest extends TestCase
                     'metadata' => [
                         'here' => 'wego'
                     ]
-                ]
+                ],
+                ['md5Hash', 'crc32c']
+            ],
+            [
+                [
+                    'data' => $logoFile,
+                    'name' => 'logo.svg',
+                    'validate' => 'crc32'
+                ],
+                MultipartUploader::class,
+                'image/svg+xml',
+                [
+                    'name' => 'logo.svg',
+                    'crc32c' => $crcHash
+                ],
+                ['md5Hash']
+            ],
+            [
+                [
+                    'data' => $logoFile,
+                    'name' => 'logo.svg',
+                    'resumable' => true,
+                    'validate' => 'crc32'
+                ],
+                ResumableUploader::class,
+                'image/svg+xml',
+                [
+                    'name' => 'logo.svg',
+                    'crc32c' => $crcHash
+                ],
+                ['md5Hash']
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider validationMethod
+     */
+    public function testChooseValidationMethod($args, $extensionLoaded, $supportsBuiltin, $expected)
+    {
+        $rest = new RestCrc32cStub;
+        $rest->extensionLoaded = $extensionLoaded;
+        $rest->supportsBuiltin = $supportsBuiltin;
+
+        $this->assertEquals($expected, $rest->chooseValidationMethodProxy($args));
+    }
+
+    public function validationMethod()
+    {
+        return [
+            [
+                ['validate' => true],
+                false,
+                false,
+                'md5'
+            ], [
+                ['validate' => true],
+                true,
+                false,
+                'crc32'
+            ], [
+                ['validate' => true],
+                false,
+                true,
+                'crc32'
+            ], [
+                ['validate' => 'md5'],
+                true,
+                true,
+                'md5'
+            ], [
+                ['validate' => 'crc32'],
+                false,
+                false,
+                'crc32'
+            ], [
+                ['validate' => 'crc32c'],
+                false,
+                false,
+                'crc32'
+            ], [
+                ['validate' => false],
+                true,
+                true,
+                false
+            ], [
+                ['validate' => 'md5', 'metadata' => ['md5' => 'foo']],
+                true,
+                true,
+                false
+            ], [
+                ['validate' => 'md5', 'metadata' => ['crc32c' => 'foo']],
+                true,
+                true,
+                false
             ]
         ];
     }
@@ -332,5 +441,32 @@ class RestTest extends TestCase
             trim(explode(':', $lines[7])[1]),
             json_decode($lines[5], true)
         ];
+    }
+}
+
+//@codingStandardsIgnoreStart
+class RestCrc32cStub extends Rest
+{
+    public $extensionLoaded = false;
+    public $supportsBuiltin = false;
+
+    protected function crc32cExtensionLoaded()
+    {
+        return $this->extensionLoaded;
+    }
+
+    protected function supportsBuiltinCrc32c()
+    {
+        return $this->supportsBuiltin;
+    }
+
+    public function chooseValidationMethodProxy(array $args)
+    {
+        $chooseValidationMethod = function () {
+            return call_user_func_array([$this, 'chooseValidationMethod'], func_get_args());
+        };
+
+        $call = $chooseValidationMethod->bindTo($this, Rest::class);
+        return $call($args);
     }
 }
