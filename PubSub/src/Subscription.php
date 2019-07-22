@@ -199,22 +199,26 @@ class Subscription
      *           message.
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
-     *     @type Duration $messageRetentionDuration How long to retain
+     *     @type Duration|string $messageRetentionDuration How long to retain
      *           unacknowledged messages in the subscription's backlog, from the
      *           moment a message is published. If `$retainAckedMessages` is
      *           true, then this also configures the retention of acknowledged
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
-     *           **Defaults to** 7 days.
+     *           If a string is provided, it should be as a duration in seconds
+     *           with up to nine fractional digits, terminated by 's', e.g
+     *           "3.5s". **Defaults to** 7 days.
      *     @type array $expirationPolicy A policy that specifies the conditions
      *           for resource expiration (i.e., automatic resource deletion).
-     *     @type Duration $expiration.ttl Specifies the "time-to-live" duration
-     *           for an associated resource. The resource expires if it is not
-     *           active for a period of `ttl`. The definition of "activity"
-     *           depends on the type of the associated resource. The minimum
-     *           and maximum allowed values for `ttl` depend on the type of the
-     *           associated resource, as well. If `ttl` is not set, the
-     *           associated resource never expires.
+     *     @type Duration|string $expiration.ttl Specifies the "time-to-live"
+     *           duration for an associated resource. The resource expires if it
+     *           is not active for a period of `ttl`. The definition of
+     *           "activity" depends on the type of the associated resource. The
+     *           minimum and maximum allowed values for `ttl` depend on the type
+     *           of the associated resource, as well. If `ttl` is not set, the
+     *           associated resource never expires. If a string is provided, it
+     *           should be as a duration in seconds with up to nine fractional
+     *           digits, terminated by 's', e.g "3.5s".
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
