@@ -519,6 +519,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/list Datasets list API documentation.
      *
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -529,7 +530,14 @@ class BigQueryClient
      *           **Defaults to** `0` (return all results).
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
+     *     @type string $filter An expression for filtering the results of the
+     *           request by label. The syntax is "labels.<name>[:<value>]".
+     *           Multiple filters can be ANDed together by connecting with a
+     *           space. Example: "labels.department:receiving labels.active".
+     *           See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/labeling-datasets#filtering_datasets_using_labels)
+     *           for details.
      * }
+     * @codingStandardsIgnoreEnd
      * @return ItemIterator<Dataset>
      */
     public function datasets(array $options = [])
