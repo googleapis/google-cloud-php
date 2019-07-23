@@ -48,6 +48,41 @@ class ManageDatasetsTest extends BigQueryTestCase
         $this->assertEquals($datasetsToCreate, $foundDatasets);
     }
 
+    public function testListDatasetsWithFilter()
+    {
+        $foundDatasets = [];
+        $datasetsToCreate = [
+            uniqid(self::TESTING_PREFIX),
+        ];
+
+        $labelKey = uniqid(self::TESTING_PREFIX);
+        $labelValue = uniqid(self::TESTING_PREFIX);
+
+        foreach ($datasetsToCreate as $datasetToCreate) {
+            $this->createDataset(self::$client, $datasetToCreate, [
+                'metadata' => [
+                    'labels' => [
+                        $labelKey => $labelValue
+                    ]
+                ]
+            ]);
+        }
+
+        $datasets = self::$client->datasets([
+            'filter' => 'labels.' . $labelKey . ':' . $labelValue
+        ]);
+
+        foreach ($datasets as $dataset) {
+            foreach ($datasetsToCreate as $key => $datasetToCreate) {
+                if ($dataset->id() === $datasetToCreate) {
+                    $foundDatasets[$key] = $dataset->id();
+                }
+            }
+        }
+
+        $this->assertEquals($datasetsToCreate, $foundDatasets);
+    }
+
     public function testCreatesDataset()
     {
         $id = uniqid(self::TESTING_PREFIX);
