@@ -45,7 +45,7 @@ trait TimeTrait
 
         $dt = new \DateTimeImmutable($timestamp);
 
-        $nanos = (int) str_pad($subSeconds, 9, '0', STR_PAD_RIGHT);
+        $nanos = $this->convertFractionToNanoSeconds($subSeconds);
 
         return [$dt, $nanos];
     }
@@ -79,15 +79,9 @@ trait TimeTrait
         if ($ns === null) {
             return $dateTime->format(Timestamp::FORMAT);
         } else {
-            $ns = (string) $ns;
-            $ns = str_pad($ns, 9, '0', STR_PAD_LEFT);
-            if (substr($ns, 6, 3) === '000') {
-                $ns = substr($ns, 0, 6);
-            }
-
             return sprintf(
                 $dateTime->format(Timestamp::FORMAT_INTERPOLATE),
-                $ns
+                $this->convertNanoSecondsToFraction($ns)
             );
         }
     }
@@ -109,5 +103,43 @@ trait TimeTrait
             'seconds' => (int) $dateTime->format('U'),
             'nanos' => (int) $ns
         ];
+    }
+
+    /**
+     * Convert subseconds, expressed as a decimal to nanoseconds.
+     *
+     * @param int|string $subseconds Provide value as a whole number (i.e.
+     *     provide 0.1 as 1).
+     * @return int
+     */
+    private function convertFractionToNanoSeconds($subseconds)
+    {
+        return (int) str_pad($subseconds, 9, '0', STR_PAD_RIGHT);
+    }
+
+    /**
+     * Convert nanoseconds to subseconds.
+     *
+     * Note that result should be used as a fraction of one second, but is
+     * given as an integer.
+     *
+     * @param int|string $nanos
+     * @param bool $rpad Whether to right-pad to 6 or 9 digits. **Defaults to**
+     *     `true`.
+     * @return string
+     */
+    private function convertNanoSecondsToFraction($nanos, $rpad = true)
+    {
+        $nanos = (string) $nanos;
+        $res = str_pad($nanos, 9, '0', STR_PAD_LEFT);
+        if (substr($res, 6, 3) === '000') {
+            $res = substr($res, 0, 6);
+        }
+
+        if (!$rpad) {
+            $res = rtrim($res, '0');
+        }
+
+        return $res;
     }
 }

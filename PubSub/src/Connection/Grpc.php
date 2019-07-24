@@ -18,16 +18,19 @@
 namespace Google\Cloud\PubSub\Connection;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\Duration as CoreDuration;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\V1\ExpirationPolicy;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
+use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
@@ -68,6 +71,10 @@ class Grpc implements ConnectionInterface
             },
             'expiration_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
+            }
+        ], [], [], [
+            'google.protobuf.Duration' => function ($v) {
+                return $this->transformDuration($v);
             }
         ]);
 
@@ -171,6 +178,19 @@ class Grpc implements ConnectionInterface
     {
         if (isset($args['pushConfig'])) {
             $args['pushConfig'] = $this->buildPushConfig($args['pushConfig']);
+        }
+
+        if (isset($args['expirationPolicy'])) {
+            $args['expirationPolicy'] = $this->serializer->decodeMessage(
+                new ExpirationPolicy,
+                $args['expirationPolicy']
+            );
+        }
+
+        if (isset($args['messageRetentionDuration'])) {
+            $args['messageRetentionDuration'] = new Duration(
+                $this->transformDuration($args['messageRetentionDuration'])
+            );
         }
 
         return $this->send([$this->subscriberClient, 'createSubscription'], [
@@ -438,5 +458,27 @@ class Grpc implements ConnectionInterface
     private function buildPushConfig(array $pushConfig)
     {
         return $this->serializer->decodeMessage(new PushConfig(), $pushConfig);
+    }
+
+    private function transformDuration($v)
+    {
+        if (is_string($v)) {
+            $d = explode('.', trim($v, 's'));
+            if (count($d) !== 2) {
+                return null;
+            }
+
+            $seconds = (int) $d[0];
+            $nanos = $this->convertFractionToNanoSeconds($d[1]);
+        } elseif ($v instanceof CoreDuration) {
+            $d = $v->get();
+            $seconds = $d['seconds'];
+            $nanos = $d['nanos'];
+        }
+
+        return [
+            'seconds' => $seconds,
+            'nanos' => $nanos
+        ];
     }
 }

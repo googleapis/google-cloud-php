@@ -22,6 +22,7 @@ use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
@@ -61,6 +62,7 @@ class Subscription
     use ArrayTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
+    use TimeTrait;
     use ValidateTrait;
 
     const MAX_MESSAGES = 1000;
@@ -190,18 +192,33 @@ class Subscription
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type array $pushConfig.oidcToken Contains information needed for generating
+     *           an OpenIDConnect token.
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
-     *     @type Duration $messageRetentionDuration How long to retain
+     *     @type Duration|string $messageRetentionDuration How long to retain
      *           unacknowledged messages in the subscription's backlog, from the
      *           moment a message is published. If `$retainAckedMessages` is
      *           true, then this also configures the retention of acknowledged
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
-     *           **Defaults to** 7 days.
+     *           If a string is provided, it should be as a duration in seconds
+     *           with up to nine fractional digits, terminated by 's', e.g
+     *           "3.5s". **Defaults to** 7 days.
+     *     @type array $expirationPolicy A policy that specifies the conditions
+     *           for resource expiration (i.e., automatic resource deletion).
+     *     @type Duration|string $expiration.ttl Specifies the "time-to-live"
+     *           duration for an associated resource. The resource expires if it
+     *           is not active for a period of `ttl`. The definition of
+     *           "activity" depends on the type of the associated resource. The
+     *           minimum and maximum allowed values for `ttl` depend on the type
+     *           of the associated resource, as well. If `ttl` is not set, the
+     *           associated resource never expires. If a string is provided, it
+     *           should be as a duration in seconds with up to nine fractional
+     *           digits, terminated by 's', e.g "3.5s".
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -212,9 +229,12 @@ class Subscription
         // it may or may not have a topic name. This is fine for most API
         // interactions, but a topic name is required to create a subscription.
         if (!$this->topicName) {
-            throw new InvalidArgumentException('A topic name is required to
-                create a subscription.');
+            throw new InvalidArgumentException(
+                'A topic name is required to create a subscription.'
+            );
         }
+
+        $options = $this->formatSubscriptionDurations($options);
 
         $this->info = $this->connection->createSubscription($options + [
             'name' => $this->name,
@@ -278,6 +298,15 @@ class Subscription
      *           messages, and thus configures how far back in time a `Seek`
      *           can be done. Cannot be more than 7 days or less than 10 minutes.
      *           **Defaults to** 7 days.
+     *     @type array $expirationPolicy A policy that specifies the conditions
+     *           for resource expiration (i.e., automatic resource deletion).
+     *     @type Duration $expiration.ttl Specifies the "time-to-live" duration
+     *           for an associated resource. The resource expires if it is not
+     *           active for a period of `ttl`. The definition of "activity"
+     *           depends on the type of the associated resource. The minimum
+     *           and maximum allowed values for `ttl` depend on the type of the
+     *           associated resource, as well. If `ttl` is not set, the
+     *           associated resource never expires.
      *     @type array $updateMask A list of field paths to be modified. Nested
      *           key names should be dot-separated, e.g. `pushConfig.pushEndpoint`.
      *           Google Cloud PHP will attempt to infer this value on your
@@ -306,6 +335,8 @@ class Subscription
                 }
             }
         }
+
+        $subscription = $this->formatSubscriptionDurations($subscription);
 
         return $this->info = $this->connection->updateSubscription([
             'name' => $this->name,
@@ -735,6 +766,35 @@ class Subscription
         }
 
         return $ackIds;
+    }
+
+    /**
+     * Format Duration objects for the API.
+     *
+     * @param array $options
+     * @return array
+     */
+    private function formatSubscriptionDurations(array $options)
+    {
+        if (isset($options['messageRetentionDuration']) && $options['messageRetentionDuration'] instanceof Duration) {
+            $duration = $options['messageRetentionDuration']->get();
+            $options['messageRetentionDuration'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+            );
+        }
+
+        if (isset($options['expirationPolicy']['ttl']) && $options['expirationPolicy']['ttl'] instanceof Duration) {
+            $duration = $options['expirationPolicy']['ttl']->get();
+            $options['expirationPolicy']['ttl'] = sprintf(
+                '%s.%ss',
+                $duration['seconds'],
+                $this->convertNanoSecondsToFraction($duration['nanos'], false)
+            );
+        }
+
+        return $options;
     }
 
     /**
