@@ -172,6 +172,19 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $diarization_speaker_count = 0;
     /**
+     * *Optional* Config to enable speaker diarization and set additional
+     * parameters to make diarization better suited for your application.
+     * Note: When this is enabled, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive STREAMING responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time.
+     * For non-streaming requests, the diarization results will be provided only
+     * in the top alternative of the FINAL SpeechRecognitionResult.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeakerDiarizationConfig diarization_config = 19;</code>
+     */
+    private $diarization_config = null;
+    /**
      * *Optional* Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
@@ -332,6 +345,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           If set, specifies the estimated number of speakers in the conversation.
      *           If not set, defaults to '2'.
      *           Ignored unless enable_speaker_diarization is set to true."
+     *     @type \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig $diarization_config
+     *           *Optional* Config to enable speaker diarization and set additional
+     *           parameters to make diarization better suited for your application.
+     *           Note: When this is enabled, we send all the words from the beginning of the
+     *           audio for the top alternative in every consecutive STREAMING responses.
+     *           This is done in order to improve our speaker tags as our models learn to
+     *           identify the speakers in the conversation over time.
+     *           For non-streaming requests, the diarization results will be provided only
+     *           in the top alternative of the FINAL SpeechRecognitionResult.
      *     @type \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata $metadata
      *           *Optional* Metadata regarding this request.
      *     @type string $model
@@ -884,6 +906,46 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->diarization_speaker_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * *Optional* Config to enable speaker diarization and set additional
+     * parameters to make diarization better suited for your application.
+     * Note: When this is enabled, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive STREAMING responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time.
+     * For non-streaming requests, the diarization results will be provided only
+     * in the top alternative of the FINAL SpeechRecognitionResult.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeakerDiarizationConfig diarization_config = 19;</code>
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig
+     */
+    public function getDiarizationConfig()
+    {
+        return $this->diarization_config;
+    }
+
+    /**
+     * *Optional* Config to enable speaker diarization and set additional
+     * parameters to make diarization better suited for your application.
+     * Note: When this is enabled, we send all the words from the beginning of the
+     * audio for the top alternative in every consecutive STREAMING responses.
+     * This is done in order to improve our speaker tags as our models learn to
+     * identify the speakers in the conversation over time.
+     * For non-streaming requests, the diarization results will be provided only
+     * in the top alternative of the FINAL SpeechRecognitionResult.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeakerDiarizationConfig diarization_config = 19;</code>
+     * @param \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig $var
+     * @return $this
+     */
+    public function setDiarizationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig::class);
+        $this->diarization_config = $var;
 
         return $this;
     }
