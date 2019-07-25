@@ -331,6 +331,7 @@ class Transaction implements TransactionalReadInterface
      *         'id' => 10
      *     ]
      * ]);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
