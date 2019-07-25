@@ -7,10 +7,10 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotMetadata',
-                    'initialPollDelayMillis' => '500',
+                    'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'maxPollDelayMillis' => '60000',
+                    'totalPollTimeoutMillis' => '3600000',
                 ],
             ],
             'SnapshotTable' => [
@@ -20,7 +20,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '600000',
                 ],
             ],
             'ListTables' => [

@@ -10,7 +10,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '600000',
                 ],
             ],
             'PartialUpdateInstance' => [
@@ -20,17 +20,17 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '600000',
                 ],
             ],
             'CreateCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata',
-                    'initialPollDelayMillis' => '500',
+                    'initialPollDelayMillis' => '5000',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'maxPollDelayMillis' => '60000',
+                    'totalPollTimeoutMillis' => '21600000',
                 ],
             ],
             'UpdateCluster' => [
@@ -40,17 +40,17 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '600000',
                 ],
             ],
             'UpdateAppProfile' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\AppProfile',
                     'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileMetadata',
-                    'initialPollDelayMillis' => '5',
+                    'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '600000',
                 ],
             ],
             'ListAppProfiles' => [
