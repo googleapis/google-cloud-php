@@ -20,15 +20,15 @@ use Google\Protobuf\Internal\GPBUtil;
  *     is_final: true
  * 5.  transcript: " that's"
  * 6.  transcript: " that is"
- * 7.  message_type: `MESSAGE_TYPE_END_OF_SINGLE_UTTERANCE`
+ * 7.  message_type: `END_OF_SINGLE_UTTERANCE`
  * 8.  transcript: " that is the question"
  *     is_final: true
  * Only two of the responses contain final results (#4 and #8 indicated by
  * `is_final: true`). Concatenating these generates the full transcript: "to be
  * or not to be that is the question".
  * In each response we populate:
- * *  for `MESSAGE_TYPE_TRANSCRIPT`: `transcript` and possibly `is_final`.
- * *  for `MESSAGE_TYPE_END_OF_SINGLE_UTTERANCE`: only `message_type`.
+ * *  for `TRANSCRIPT`: `transcript` and possibly `is_final`.
+ * *  for `END_OF_SINGLE_UTTERANCE`: only `message_type`.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.StreamingRecognitionResult</code>
  */
@@ -42,7 +42,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     private $message_type = 0;
     /**
      * Transcript text representing the words that the user spoke.
-     * Populated if and only if `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     * Populated if and only if `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>string transcript = 2;</code>
      */
@@ -51,7 +51,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
      * any further hypotheses about this piece of the audio. May only be populated
-     * for `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     * for `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>bool is_final = 3;</code>
      */
@@ -78,12 +78,12 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *           Type of the result message.
      *     @type string $transcript
      *           Transcript text representing the words that the user spoke.
-     *           Populated if and only if `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     *           Populated if and only if `message_type` = `TRANSCRIPT`.
      *     @type bool $is_final
      *           If `false`, the `StreamingRecognitionResult` represents an
      *           interim result that may change. If `true`, the recognizer will not return
      *           any further hypotheses about this piece of the audio. May only be populated
-     *           for `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     *           for `message_type` = `TRANSCRIPT`.
      *     @type float $confidence
      *           The Speech confidence between 0.0 and 1.0 for the current portion of audio.
      *           A higher number indicates an estimated greater likelihood that the
@@ -126,7 +126,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Transcript text representing the words that the user spoke.
-     * Populated if and only if `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     * Populated if and only if `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>string transcript = 2;</code>
      * @return string
@@ -138,7 +138,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Transcript text representing the words that the user spoke.
-     * Populated if and only if `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     * Populated if and only if `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>string transcript = 2;</code>
      * @param string $var
@@ -156,7 +156,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
      * any further hypotheses about this piece of the audio. May only be populated
-     * for `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     * for `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>bool is_final = 3;</code>
      * @return bool
@@ -170,7 +170,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * If `false`, the `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, the recognizer will not return
      * any further hypotheses about this piece of the audio. May only be populated
-     * for `message_type` = `MESSAGE_TYPE_TRANSCRIPT`.
+     * for `message_type` = `TRANSCRIPT`.
      *
      * Generated from protobuf field <code>bool is_final = 3;</code>
      * @param bool $var
