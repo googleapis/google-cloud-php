@@ -152,23 +152,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * *Optional* If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
-     * Note: When this is true, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive STREAMING responses.
-     * This is done in order to improve our speaker tags as our models learn to
-     * identify the speakers in the conversation over time.
-     * For non-streaming requests, the diarization results will be provided only
-     * in the top alternative of the FINAL SpeechRecognitionResult.
+     * Note: Use diarization_config instead.
      *
-     * Generated from protobuf field <code>bool enable_speaker_diarization = 16;</code>
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      */
     private $enable_speaker_diarization = false;
     /**
      * *Optional*
      * If set, specifies the estimated number of speakers in the conversation.
-     * If not set, defaults to '2'.
-     * Ignored unless enable_speaker_diarization is set to true."
+     * Defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
+     * Note: Use diarization_config instead.
      *
-     * Generated from protobuf field <code>int32 diarization_speaker_count = 17;</code>
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      */
     private $diarization_speaker_count = 0;
     /**
@@ -334,17 +329,12 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           *Optional* If 'true', enables speaker detection for each recognized word in
      *           the top alternative of the recognition result using a speaker_tag provided
      *           in the WordInfo.
-     *           Note: When this is true, we send all the words from the beginning of the
-     *           audio for the top alternative in every consecutive STREAMING responses.
-     *           This is done in order to improve our speaker tags as our models learn to
-     *           identify the speakers in the conversation over time.
-     *           For non-streaming requests, the diarization results will be provided only
-     *           in the top alternative of the FINAL SpeechRecognitionResult.
+     *           Note: Use diarization_config instead.
      *     @type int $diarization_speaker_count
      *           *Optional*
      *           If set, specifies the estimated number of speakers in the conversation.
-     *           If not set, defaults to '2'.
-     *           Ignored unless enable_speaker_diarization is set to true."
+     *           Defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
+     *           Note: Use diarization_config instead.
      *     @type \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig $diarization_config
      *           *Optional* Config to enable speaker diarization and set additional
      *           parameters to make diarization better suited for your application.
@@ -840,14 +830,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * *Optional* If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
-     * Note: When this is true, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive STREAMING responses.
-     * This is done in order to improve our speaker tags as our models learn to
-     * identify the speakers in the conversation over time.
-     * For non-streaming requests, the diarization results will be provided only
-     * in the top alternative of the FINAL SpeechRecognitionResult.
+     * Note: Use diarization_config instead.
      *
-     * Generated from protobuf field <code>bool enable_speaker_diarization = 16;</code>
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      * @return bool
      */
     public function getEnableSpeakerDiarization()
@@ -859,14 +844,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * *Optional* If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
-     * Note: When this is true, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive STREAMING responses.
-     * This is done in order to improve our speaker tags as our models learn to
-     * identify the speakers in the conversation over time.
-     * For non-streaming requests, the diarization results will be provided only
-     * in the top alternative of the FINAL SpeechRecognitionResult.
+     * Note: Use diarization_config instead.
      *
-     * Generated from protobuf field <code>bool enable_speaker_diarization = 16;</code>
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      * @param bool $var
      * @return $this
      */
@@ -881,10 +861,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * *Optional*
      * If set, specifies the estimated number of speakers in the conversation.
-     * If not set, defaults to '2'.
-     * Ignored unless enable_speaker_diarization is set to true."
+     * Defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
+     * Note: Use diarization_config instead.
      *
-     * Generated from protobuf field <code>int32 diarization_speaker_count = 17;</code>
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      * @return int
      */
     public function getDiarizationSpeakerCount()
@@ -895,10 +875,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * *Optional*
      * If set, specifies the estimated number of speakers in the conversation.
-     * If not set, defaults to '2'.
-     * Ignored unless enable_speaker_diarization is set to true."
+     * Defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
+     * Note: Use diarization_config instead.
      *
-     * Generated from protobuf field <code>int32 diarization_speaker_count = 17;</code>
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      * @param int $var
      * @return $this
      */

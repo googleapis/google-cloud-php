@@ -22,7 +22,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_speaker_diarization = false;
     /**
-     * *Optional* Only used if diarization_speaker_count is not set.
+     * *Optional*
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 2.
@@ -31,7 +31,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      */
     private $min_speaker_count = 0;
     /**
-     * *Optional* Only used if diarization_speaker_count is not set.
+     * *Optional*
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 6.
@@ -51,12 +51,12 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *           the top alternative of the recognition result using a speaker_tag provided
      *           in the WordInfo.
      *     @type int $min_speaker_count
-     *           *Optional* Only used if diarization_speaker_count is not set.
+     *           *Optional*
      *           Minimum number of speakers in the conversation. This range gives you more
      *           flexibility by allowing the system to automatically determine the correct
      *           number of speakers. If not set, the default value is 2.
      *     @type int $max_speaker_count
-     *           *Optional* Only used if diarization_speaker_count is not set.
+     *           *Optional*
      *           Maximum number of speakers in the conversation. This range gives you more
      *           flexibility by allowing the system to automatically determine the correct
      *           number of speakers. If not set, the default value is 6.
@@ -98,7 +98,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Only used if diarization_speaker_count is not set.
+     * *Optional*
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 2.
@@ -112,7 +112,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Only used if diarization_speaker_count is not set.
+     * *Optional*
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 2.
@@ -130,7 +130,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Only used if diarization_speaker_count is not set.
+     * *Optional*
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 6.
@@ -144,7 +144,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Only used if diarization_speaker_count is not set.
+     * *Optional*
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 6.
