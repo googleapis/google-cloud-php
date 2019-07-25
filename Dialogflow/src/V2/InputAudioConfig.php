@@ -57,6 +57,21 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant model_variant = 10;</code>
      */
     private $model_variant = 0;
+    /**
+     * Optional. If `false` (default), recognition does not cease until the
+     * client closes the stream.
+     * If `true`, the recognizer will detect a single spoken utterance in input
+     * audio. Recognition ceases when it detects the audio's voice has
+     * stopped or paused. In this case, once a detected intent is received, the
+     * client should close the stream and start a new request with a new stream as
+     * needed.
+     * Note: This setting is relevant only for streaming methods.
+     * Note: When specified, InputAudioConfig.single_utterance takes precedence
+     * over StreamingDetectIntentRequest.single_utterance.
+     *
+     * Generated from protobuf field <code>bool single_utterance = 8;</code>
+     */
+    private $single_utterance = false;
 
     /**
      * Constructor.
@@ -86,6 +101,17 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           for more details.
      *     @type int $model_variant
      *           Optional. Which variant of the [Speech model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
+     *     @type bool $single_utterance
+     *           Optional. If `false` (default), recognition does not cease until the
+     *           client closes the stream.
+     *           If `true`, the recognizer will detect a single spoken utterance in input
+     *           audio. Recognition ceases when it detects the audio's voice has
+     *           stopped or paused. In this case, once a detected intent is received, the
+     *           client should close the stream and start a new request with a new stream as
+     *           needed.
+     *           Note: This setting is relevant only for streaming methods.
+     *           Note: When specified, InputAudioConfig.single_utterance takes precedence
+     *           over StreamingDetectIntentRequest.single_utterance.
      * }
      */
     public function __construct($data = NULL) {
@@ -243,6 +269,50 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SpeechModelVariant::class);
         $this->model_variant = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `false` (default), recognition does not cease until the
+     * client closes the stream.
+     * If `true`, the recognizer will detect a single spoken utterance in input
+     * audio. Recognition ceases when it detects the audio's voice has
+     * stopped or paused. In this case, once a detected intent is received, the
+     * client should close the stream and start a new request with a new stream as
+     * needed.
+     * Note: This setting is relevant only for streaming methods.
+     * Note: When specified, InputAudioConfig.single_utterance takes precedence
+     * over StreamingDetectIntentRequest.single_utterance.
+     *
+     * Generated from protobuf field <code>bool single_utterance = 8;</code>
+     * @return bool
+     */
+    public function getSingleUtterance()
+    {
+        return $this->single_utterance;
+    }
+
+    /**
+     * Optional. If `false` (default), recognition does not cease until the
+     * client closes the stream.
+     * If `true`, the recognizer will detect a single spoken utterance in input
+     * audio. Recognition ceases when it detects the audio's voice has
+     * stopped or paused. In this case, once a detected intent is received, the
+     * client should close the stream and start a new request with a new stream as
+     * needed.
+     * Note: This setting is relevant only for streaming methods.
+     * Note: When specified, InputAudioConfig.single_utterance takes precedence
+     * over StreamingDetectIntentRequest.single_utterance.
+     *
+     * Generated from protobuf field <code>bool single_utterance = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSingleUtterance($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->single_utterance = $var;
 
         return $this;
     }
