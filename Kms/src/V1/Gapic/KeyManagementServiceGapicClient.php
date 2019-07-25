@@ -37,6 +37,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
@@ -2092,6 +2093,9 @@ class KeyManagementServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type GetPolicyOptions $options
+     *          OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *          `GetIamPolicy`. This field is only used by Cloud IAM.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2108,6 +2112,9 @@ class KeyManagementServiceGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
