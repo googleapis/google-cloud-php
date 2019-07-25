@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_message_suggestions","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_Message_Suggestions","name":"Intent_Message_Suggestions","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\Message\\Suggestions instead.<\/p>","examples":[],"resources":[],"methods":[]}
