@@ -121,6 +121,7 @@ class DataTransferServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $locationNameTemplate;
     private static $projectNameTemplate;
     private static $projectDataSourceNameTemplate;
     private static $projectRunNameTemplate;
@@ -144,6 +145,15 @@ class DataTransferServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getLocationNameTemplate()
+    {
+        if (null == self::$locationNameTemplate) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -186,6 +196,7 @@ class DataTransferServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectDataSource' => self::getProjectDataSourceNameTemplate(),
                 'projectRun' => self::getProjectRunNameTemplate(),
@@ -194,6 +205,24 @@ class DataTransferServiceGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -272,6 +301,7 @@ class DataTransferServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
      * - projectDataSource: projects/{project}/dataSources/{data_source}
      * - projectRun: projects/{project}/transferConfigs/{transfer_config}/runs/{run}
