@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.106.1
+
+<details><summary>google/cloud-spanner 1.16.1</summary>
+
+
+
+### Bug Fixes
+
+* close code snippet ([#2140](https://www.github.com/googleapis/google-cloud-php/issues/2140)) ([e71b29c](https://www.github.com/googleapis/google-cloud-php/commit/e71b29c))
+
+</details>
+
 ## 0.106.0
 
 <details><summary>google/cloud-bigquery 1.8.0</summary>
