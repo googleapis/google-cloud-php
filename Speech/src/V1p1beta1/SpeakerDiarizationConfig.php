@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * *Optional* Config to enable speaker diarization.
+ *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.SpeakerDiarizationConfig</code>
  */
 class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
