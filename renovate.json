@@ -1,5 +1,25 @@
 {
-  "extends": [
-    "config:base"
-  ]
+    "extends": [
+        "config:base"
+    ],
+    "packageRules": [
+        {
+            "packageNames": [
+                "phpunit/phpunit"
+            ],
+            "allowedVersions": "<5"
+        },
+        {
+            "packageNames": [
+                "squizlabs/php-codesniffer"
+            ],
+            "allowedVersions": "<3"
+        },
+        {
+            "packageNames": [
+                "symfony/console"
+            ],
+            "allowedVersion": "<4"
+        }
+    ]
 }
