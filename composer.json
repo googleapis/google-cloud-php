@@ -94,7 +94,7 @@
         "google/cloud-redis": "0.9.0",
         "google/cloud-scheduler": "1.0.1",
         "google/cloud-security-center": "0.1.1",
-        "google/cloud-spanner": "1.16.0",
+        "google/cloud-spanner": "1.16.1",
         "google/cloud-speech": "0.25.0",
         "google/cloud-storage": "1.13.0",
         "google/cloud-talent": "0.4.0",
