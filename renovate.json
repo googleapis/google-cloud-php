@@ -7,19 +7,19 @@
             "packageNames": [
                 "phpunit/phpunit"
             ],
-            "allowedVersions": "<5"
+            "allowedVersions": "< 5.0"
         },
         {
             "packageNames": [
                 "squizlabs/php-codesniffer"
             ],
-            "allowedVersions": "<3"
+            "allowedVersions": "< 3.0"
         },
         {
             "packageNames": [
                 "symfony/console"
             ],
-            "allowedVersion": "<4"
+            "allowedVersion": "< 4.0"
         }
     ]
 }
