@@ -19,7 +19,7 @@
             "packageNames": [
                 "symfony/console"
             ],
-            "allowedVersion": "< 4.0"
+            "allowedVersions": "< 4.0"
         }
     ]
 }
