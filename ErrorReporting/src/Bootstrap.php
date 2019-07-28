@@ -144,7 +144,8 @@ class Bootstrap
                 ]
             ]);
         } else {
-            fwrite(fopen('php://stderr', 'w'), $message . PHP_EOL);
+            $stderr = defined('STDERR') ? STDERR : fopen('php://stderr', 'w');
+            fwrite($stderr, $message . PHP_EOL);
         }
     }
 
