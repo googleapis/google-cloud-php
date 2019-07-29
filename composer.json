@@ -82,7 +82,7 @@
         "google/cloud-debugger": "0.18.5",
         "google/cloud-dialogflow": "0.9.0",
         "google/cloud-dlp": "0.21.0",
-        "google/cloud-error-reporting": "0.14.5",
+        "google/cloud-error-reporting": "0.14.6",
         "google/cloud-firestore": "1.6.2",
         "google/cloud-iot": "0.8.0",
         "google/cloud-kms": "1.5.0",
