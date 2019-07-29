@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.106.2
+
+<details><summary>google/cloud-error-reporting 0.14.6</summary>
+
+
+
+### Bug Fixes
+
+* Removes STDERR const, which is defined by CLI SAPI ([#2147](https://www.github.com/googleapis/google-cloud-php/issues/2147)) ([3dc62b4](https://www.github.com/googleapis/google-cloud-php/commit/3dc62b4))
+
+</details>
+
 ## 0.106.1
 
 <details><summary>google/cloud-spanner 1.16.1</summary>
