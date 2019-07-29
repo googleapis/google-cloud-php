@@ -11,7 +11,7 @@
         },
         {
             "packageNames": [
-                "squizlabs/php-codesniffer"
+                "squizlabs/php_codesniffer"
             ],
             "allowedVersions": "< 3.0"
         },
