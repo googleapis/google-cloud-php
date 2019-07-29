@@ -210,15 +210,15 @@ class Subscription
      *           "3.5s". **Defaults to** 7 days.
      *     @type array $expirationPolicy A policy that specifies the conditions
      *           for resource expiration (i.e., automatic resource deletion).
-     *     @type Duration|string $expiration.ttl Specifies the "time-to-live"
-     *           duration for an associated resource. The resource expires if it
-     *           is not active for a period of `ttl`. The definition of
-     *           "activity" depends on the type of the associated resource. The
-     *           minimum and maximum allowed values for `ttl` depend on the type
-     *           of the associated resource, as well. If `ttl` is not set, the
-     *           associated resource never expires. If a string is provided, it
-     *           should be as a duration in seconds with up to nine fractional
-     *           digits, terminated by 's', e.g "3.5s".
+     *     @type Duration|string $expirationPolicy.ttl Specifies the
+     *           "time-to-live" duration for an associated resource. The
+     *           resource expires if it is not active for a period of `ttl`. The
+     *           definition of "activity" depends on the type of the associated
+     *           resource. The minimum and maximum allowed values for `ttl`
+     *           depend on the type of the associated resource, as well. If
+     *           `ttl` is not set, the associated resource never expires. If a
+     *           string is provided, it should be as a duration in seconds with
+     *           up to nine fractional digits, terminated by 's', e.g "3.5s".
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -300,13 +300,15 @@ class Subscription
      *           **Defaults to** 7 days.
      *     @type array $expirationPolicy A policy that specifies the conditions
      *           for resource expiration (i.e., automatic resource deletion).
-     *     @type Duration $expiration.ttl Specifies the "time-to-live" duration
-     *           for an associated resource. The resource expires if it is not
-     *           active for a period of `ttl`. The definition of "activity"
-     *           depends on the type of the associated resource. The minimum
-     *           and maximum allowed values for `ttl` depend on the type of the
-     *           associated resource, as well. If `ttl` is not set, the
-     *           associated resource never expires.
+     *     @type Duration|string $expirationPolicy.ttl Specifies the
+     *           "time-to-live" duration for an associated resource. The
+     *           resource expires if it is not active for a period of `ttl`. The
+     *           definition of "activity" depends on the type of the associated
+     *           resource. The minimum and maximum allowed values for `ttl`
+     *           depend on the type of the associated resource, as well. If
+     *           `ttl` is not set, the associated resource never expires. If a
+     *           string is provided, it should be as a duration in seconds with
+     *           up to nine fractional digits, terminated by 's', e.g "3.5s".
      *     @type array $updateMask A list of field paths to be modified. Nested
      *           key names should be dot-separated, e.g. `pushConfig.pushEndpoint`.
      *           Google Cloud PHP will attempt to infer this value on your
