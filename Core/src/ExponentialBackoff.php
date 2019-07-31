@@ -54,7 +54,7 @@ class ExponentialBackoff
         $this->retryFunction = $retryFunction;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
-        $this->delayFunction = function ($delay) {
+        $this->delayFunction = static function ($delay) {
             usleep($delay);
         };
         // @codeCoverageIgnoreEnd

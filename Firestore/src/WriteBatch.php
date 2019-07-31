@@ -660,115 +660,124 @@ class WriteBatch
      */
     private function filterFields(array $fields, array $inputPaths = [])
     {
-        $sentinels = [];
-        $metadata = [
-            'hasTransform' => false,
-            'hasUpdateMask' => false,
-            'hasDelete' => false,
-        ];
+        return $this->filterFieldsRecursive(
+            $fields,
+            [],
+            [
+                'hasTransform' => false,
+                'hasUpdateMask' => false,
+                'hasDelete' => false
+            ],
+            $inputPaths,
+            new FieldPath([])
+        );
+    }
 
-        // Recurses through the fields list, filtering for sentinel values
-        // and performing common validation.
-        $filterFn = function (
-            array $fields,
-            FieldPath $path = null,
-            $inArray = false
-        ) use (
-            &$sentinels,
-            &$filterFn,
-            &$metadata,
-            $inputPaths
-        ) {
-            if (!$path) {
-                $path = new FieldPath([]);
-            }
+    /**
+     * Recurses through the fields, filtering out sentinel values and
+     * performing common validation.
+     *
+     * @param array $fields The original structured fields.
+     * @param array $sentinels A list of sentinel values.
+     * @param array $metadata A set of metadata describing the provided fields.
+     * @param FieldPath[] $inputPaths The paths provided by update-paths.
+     * @param FieldPath $path A field path instance used to track the current
+     *        working path.
+     * @param bool $inArray [optional] Whether or not we are recursing within
+     *        an array.
+     * @return array An array containing the output fields, a sentinels list,
+     *         and metadata.
+     * @throws \InvalidArgumentException
+     */
+    private function filterFieldsRecursive(
+        array $fields,
+        array $sentinels,
+        array $metadata,
+        array $inputPaths,
+        FieldPath $path,
+        $inArray = false
+    ) {
+        foreach ($fields as $key => $value) {
+            $currentPath = $path->child($key);
 
-            foreach ($fields as $key => $value) {
-                $currentPath = $path->child($key);
-                if (is_array($value)) {
-                    // If a sentinel appears in or descends from an array, we need to track that.
-                    $localInArray = $inArray
-                        ? $inArray
-                        : !$this->isAssoc($value);
+            if (is_array($value) && !empty($value)) {
+                list($fields[$key], $sentinels, $metadata) = $this->filterFieldsRecursive(
+                    $value,
+                    $sentinels,
+                    $metadata,
+                    $inputPaths,
+                    $currentPath,
+                    $inArray ?: !$this->isAssoc($value)
+                );
 
-                    $isEmptyBeforeFiltering = empty($fields[$key]);
+                if (empty($fields[$key])) {
+                    unset($fields[$key]);
+                }
+            } elseif ($value instanceof FieldValueInterface) {
+                $value->setFieldPath($currentPath);
+                $sentinels[] = $value;
 
-                    $fields[$key] = $filterFn($value, $currentPath, $localInArray);
-                    if (!$isEmptyBeforeFiltering && empty($fields[$key])) {
-                        unset($fields[$key]);
-                    }
-                } else {
-                    if ($value instanceof FieldValueInterface) {
-                        $value->setFieldPath($currentPath);
-                        $sentinels[] = $value;
+                // Sentinels cannot be used within a non-associative array.
+                if ($inArray) {
+                    throw new \InvalidArgumentException(sprintf(
+                        '%s values cannot be used anywhere within a non-associative array value. ' .
+                        'Invalid value found at %s.',
+                        FieldValue::class,
+                        $currentPath->pathString()
+                    ));
+                }
 
-                        // Sentinels cannot be used within a non-associative array.
-                        if ($inArray) {
-                            throw new \InvalidArgumentException(sprintf(
-                                '%s values cannot be used anywhere within a non-associative array value. ' .
-                                'Invalid value found at %s.',
-                                FieldValue::class,
-                                $currentPath->pathString()
-                            ));
-                        }
+                // Delete cannot be nested in update-paths
+                // (i.e. the only case where `$inputPaths` would be available)
+                $illegalNestedDelete = $inputPaths
+                    && $value instanceof DeleteFieldValue
+                    && !in_array($currentPath, $inputPaths);
 
-                        // Delete cannot be nested in update-paths
-                        // (i.e. the only case where `$inputPaths` would be available)
-                        $illegalNestedDelete = $inputPaths
-                            && $value instanceof DeleteFieldValue
-                            && !in_array($currentPath, $inputPaths);
+                if ($illegalNestedDelete) {
+                    throw new \InvalidArgumentException(sprintf(
+                        '%s::deleteField() values cannot be nested. ' .
+                        'Invalid value found at %s.',
+                        FieldValue::class,
+                        $currentPath->pathString()
+                    ));
+                }
 
-                        if ($illegalNestedDelete) {
-                            throw new \InvalidArgumentException(sprintf(
-                                '%s::deleteField() values cannot be nested. ' .
-                                'Invalid value found at %s.',
-                                FieldValue::class,
-                                $currentPath->pathString()
-                            ));
-                        }
-
-                        // Values of type `DocumentTransformInterface` cannot contain nested transforms.
-                        if ($value instanceof DocumentTransformInterface) {
-                            $args = $value->args();
-                            if (is_array($args) && !$this->isAssoc($args)) {
-                                foreach ($args as $arg) {
-                                    if ($arg instanceof DocumentTransformInterface) {
-                                        throw new \InvalidArgumentException(sprintf(
-                                            'Document transforms cannot contain %s values. ' .
-                                            'Invalid value found at %s.',
-                                            FieldValue::class,
-                                            $currentPath->pathString()
-                                        ));
-                                    }
-                                }
+                // Values of type `DocumentTransformInterface` cannot contain nested transforms.
+                if ($value instanceof DocumentTransformInterface) {
+                    $args = $value->args();
+                    if (is_array($args) && !$this->isAssoc($args)) {
+                        foreach ($args as $arg) {
+                            if ($arg instanceof DocumentTransformInterface) {
+                                throw new \InvalidArgumentException(sprintf(
+                                    'Document transforms cannot contain %s values. ' .
+                                    'Invalid value found at %s.',
+                                    FieldValue::class,
+                                    $currentPath->pathString()
+                                ));
                             }
-                        }
-
-                        // Remove the sentinel value from the fields array.
-                        unset($fields[$key]);
-
-                        // Record whether the mutation contains a transform value.
-                        if (!$metadata['hasTransform'] && $value instanceof DocumentTransformInterface) {
-                            $metadata['hasTransform'] = true;
-                        }
-
-                        // Record whether an update mask is required.
-                        if (!$metadata['hasUpdateMask'] && $value->includeInUpdateMask()) {
-                            $metadata['hasUpdateMask'] = true;
-                        }
-
-                        // Record whether a field delete is provided.
-                        if (!$metadata['hasDelete'] && $value instanceof DeleteFieldValue) {
-                            $metadata['hasDelete'] = true;
                         }
                     }
                 }
+
+                // Remove the sentinel value from the fields array.
+                unset($fields[$key]);
+
+                // Record whether the mutation contains a transform value.
+                if (!$metadata['hasTransform'] && $value instanceof DocumentTransformInterface) {
+                    $metadata['hasTransform'] = true;
+                }
+
+                // Record whether an update mask is required.
+                if (!$metadata['hasUpdateMask'] && $value->includeInUpdateMask()) {
+                    $metadata['hasUpdateMask'] = true;
+                }
+
+                // Record whether a field delete is provided.
+                if (!$metadata['hasDelete'] && $value instanceof DeleteFieldValue) {
+                    $metadata['hasDelete'] = true;
+                }
             }
-
-            return $fields;
-        };
-
-        $fields = $filterFn($fields);
+        }
 
         return [$fields, $sentinels, $metadata];
     }
