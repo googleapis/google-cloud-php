@@ -23,14 +23,20 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     private $input_uri = '';
     /**
-     * Label annotations on video level or user specified segment level.
+     * Video segment on which the annotation is run.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 10;</code>
+     */
+    private $segment = null;
+    /**
+     * Topical label annotations on video level or user specified segment level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_label_annotations = 2;</code>
      */
     private $segment_label_annotations;
     /**
-     * Label annotations on shot level.
+     * Topical label annotations on shot level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_label_annotations = 3;</code>
@@ -98,11 +104,13 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *     @type string $input_uri
      *           Video file location in
      *           [Google Cloud Storage](https://cloud.google.com/storage/).
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
+     *           Video segment on which the annotation is run.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $segment_label_annotations
-     *           Label annotations on video level or user specified segment level.
+     *           Topical label annotations on video level or user specified segment level.
      *           There is exactly one element for each unique label.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $shot_label_annotations
-     *           Label annotations on shot level.
+     *           Topical label annotations on shot level.
      *           There is exactly one element for each unique label.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $frame_label_annotations
      *           Label annotations on frame level.
@@ -160,7 +168,33 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label annotations on video level or user specified segment level.
+     * Video segment on which the annotation is run.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 10;</code>
+     * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment
+     */
+    public function getSegment()
+    {
+        return $this->segment;
+    }
+
+    /**
+     * Video segment on which the annotation is run.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 10;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment $var
+     * @return $this
+     */
+    public function setSegment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\VideoSegment::class);
+        $this->segment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Topical label annotations on video level or user specified segment level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_label_annotations = 2;</code>
@@ -172,7 +206,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label annotations on video level or user specified segment level.
+     * Topical label annotations on video level or user specified segment level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_label_annotations = 2;</code>
@@ -188,7 +222,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label annotations on shot level.
+     * Topical label annotations on shot level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_label_annotations = 3;</code>
@@ -200,7 +234,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Label annotations on shot level.
+     * Topical label annotations on shot level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_label_annotations = 3;</code>

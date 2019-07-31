@@ -13,12 +13,6 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/operations'
-                    ]
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -33,8 +27,8 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/operations/{name=*}'
-                    ]
+                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -50,8 +44,8 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
-                        'uriTemplate' => '/v1/operations/{name=*}'
-                    ]
+                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -64,13 +58,14 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/operations/{name=*}:cancel'
-                    ]
+                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
                 ],
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

@@ -41,6 +41,20 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
     private $update_time = null;
+    /**
+     * Specifies which feature is being tracked if the request contains more than
+     * one features.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
+     */
+    private $feature = 0;
+    /**
+     * Specifies which segment is being tracked if the request contains more than
+     * one segments.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
+     */
+    private $segment = null;
 
     /**
      * Constructor.
@@ -58,6 +72,12 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      *           Time when the request was received.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Time of the most recent update.
+     *     @type int $feature
+     *           Specifies which feature is being tracked if the request contains more than
+     *           one features.
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
+     *           Specifies which segment is being tracked if the request contains more than
+     *           one segments.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,6 +189,62 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which feature is being tracked if the request contains more than
+     * one features.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
+     * @return int
+     */
+    public function getFeature()
+    {
+        return $this->feature;
+    }
+
+    /**
+     * Specifies which feature is being tracked if the request contains more than
+     * one features.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFeature($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VideoIntelligence\V1\Feature::class);
+        $this->feature = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which segment is being tracked if the request contains more than
+     * one segments.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
+     * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment
+     */
+    public function getSegment()
+    {
+        return $this->segment;
+    }
+
+    /**
+     * Specifies which segment is being tracked if the request contains more than
+     * one segments.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment $var
+     * @return $this
+     */
+    public function setSegment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\VideoSegment::class);
+        $this->segment = $var;
 
         return $this;
     }

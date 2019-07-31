@@ -22,18 +22,20 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      */
     private $transcript = '';
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
-     * correct. This field is typically provided only for the top hypothesis, and
-     * only for `is_final=true` results. Clients should not rely on the
-     * `confidence` field as it is not guaranteed to be accurate or consistent.
+     * correct. This field is set only for the top alternative.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
     private $confidence = 0.0;
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
+     * Note: When `enable_speaker_diarization` is true, you will see all the words
+     * from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3;</code>
      */
@@ -48,14 +50,16 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *     @type string $transcript
      *           Transcript text representing the words that the user spoke.
      *     @type float $confidence
-     *           The confidence estimate between 0.0 and 1.0. A higher number
+     *           Output only. The confidence estimate between 0.0 and 1.0. A higher number
      *           indicates an estimated greater likelihood that the recognized words are
-     *           correct. This field is typically provided only for the top hypothesis, and
-     *           only for `is_final=true` results. Clients should not rely on the
-     *           `confidence` field as it is not guaranteed to be accurate or consistent.
+     *           correct. This field is set only for the top alternative.
+     *           This field is not guaranteed to be accurate and users should not rely on it
+     *           to be always provided.
      *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *     @type \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
-     *           A list of word-specific information for each recognized word.
+     *           Output only. A list of word-specific information for each recognized word.
+     *           Note: When `enable_speaker_diarization` is true, you will see all the words
+     *           from the beginning of the audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,11 +94,11 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
-     * correct. This field is typically provided only for the top hypothesis, and
-     * only for `is_final=true` results. Clients should not rely on the
-     * `confidence` field as it is not guaranteed to be accurate or consistent.
+     * correct. This field is set only for the top alternative.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
@@ -106,11 +110,11 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The confidence estimate between 0.0 and 1.0. A higher number
+     * Output only. The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
-     * correct. This field is typically provided only for the top hypothesis, and
-     * only for `is_final=true` results. Clients should not rely on the
-     * `confidence` field as it is not guaranteed to be accurate or consistent.
+     * correct. This field is set only for the top alternative.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
@@ -126,7 +130,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
+     * Note: When `enable_speaker_diarization` is true, you will see all the words
+     * from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -137,7 +143,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of word-specific information for each recognized word.
+     * Output only. A list of word-specific information for each recognized word.
+     * Note: When `enable_speaker_diarization` is true, you will see all the words
+     * from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3;</code>
      * @param \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
