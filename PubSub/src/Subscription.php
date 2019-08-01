@@ -462,7 +462,7 @@ class Subscription
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.Pull Pull Messages 
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.Pull Pull Messages
      *
      * @param array $options [optional] {
      *      Configuration Options
