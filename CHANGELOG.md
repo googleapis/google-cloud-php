@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.107.0
+
+<details><summary>google/cloud-core 1.30.1</summary>
+
+
+
+### Bug Fixes
+
+* Address Firestore memory leak (affects long running processes) ([#2153](https://www.github.com/googleapis/google-cloud-php/issues/2153)) ([6d9c47f](https://www.github.com/googleapis/google-cloud-php/commit/6d9c47f))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.14.6</summary>
+
+
+
+### Bug Fixes
+
+* Removes STDERR const, which is defined by CLI SAPI ([#2147](https://www.github.com/googleapis/google-cloud-php/issues/2147)) ([3dc62b4](https://www.github.com/googleapis/google-cloud-php/commit/3dc62b4))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.6.3</summary>
+
+
+
+### Bug Fixes
+
+* Address Firestore memory leak (affects long running processes) ([#2153](https://www.github.com/googleapis/google-cloud-php/issues/2153)) ([6d9c47f](https://www.github.com/googleapis/google-cloud-php/commit/6d9c47f))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.17.0</summary>
+
+
+
+### Features
+
+* Add support for notification channel verification codes. ([#2155](https://www.github.com/googleapis/google-cloud-php/issues/2155)) ([da3d412](https://www.github.com/googleapis/google-cloud-php/commit/da3d412))
+
+</details>
+
 ## 0.106.1
 
 <details><summary>google/cloud-spanner 1.16.1</summary>
