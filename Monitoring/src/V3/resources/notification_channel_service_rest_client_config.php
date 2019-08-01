@@ -83,6 +83,42 @@ return [
                     ],
                 ],
             ],
+            'SendNotificationChannelVerificationCode' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:sendVerificationCode',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNotificationChannelVerificationCode' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:getVerificationCode',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'VerifyNotificationChannel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:verify',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];
