@@ -172,7 +172,7 @@ class PubSubClient
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.CreateTopic Create Topics
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.CreateTopic Create Topic
      *
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options
