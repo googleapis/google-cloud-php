@@ -172,7 +172,7 @@ class PubSubClient
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.CreateTopic Create Topics
      *
      * @param string $name The topic name
      * @param array $options [optional] Configuration Options
@@ -221,7 +221,7 @@ class PubSubClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/list List Topics
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.ListTopics List Topics
      *
      * @param array $options [optional] {
      *     Configuration Options
@@ -268,7 +268,7 @@ class PubSubClient
      * $subscription = $pubsub->subscribe('my-new-subscription', 'my-topic-name');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.CreateSubscription Create Subscription
      *
      * @param string $name A subscription name
      * @param string $topicName The topic to which the new subscription will be subscribed.
@@ -320,7 +320,7 @@ class PubSubClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/list List Subscriptions
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ListSubscriptions List Subscriptions
      *
      * @param array $options [optional] {
      *     Configuration Options
@@ -516,7 +516,7 @@ class PubSubClient
      * @param string $name The topic name
      * @param array  $info [optional] Information about the topic. Used internally to
      *        populate topic objects with an API result. Should be
-     *        a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     *        a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic).
      * @return Topic
      * @codingStandardsIgnoreEnd
      */
@@ -540,7 +540,7 @@ class PubSubClient
      * @param string $topicName [optional] The topic name
      * @param array  $info [optional] Information about the subscription. Used
      *        to populate subscriptons with an API result. Should be a
-     *        representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
+     *        representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#subscription).
      * @return Subscription
      * @codingStandardsIgnoreEnd
      */

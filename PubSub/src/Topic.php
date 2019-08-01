@@ -93,7 +93,7 @@ class Topic
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
      * @param array $info {
-     *     A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics
+     *     A [Topic](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic
      *
      *     @type string name The name of the topic.
      *     @type array $labels Key value pairs used to organize your resources.
@@ -156,7 +156,7 @@ class Topic
      * $topicInfo = $topic->create();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/create Create Topic
      *
      * @param array $options  {
      *     Configuration Options
@@ -190,7 +190,7 @@ class Topic
      * $topic->delete();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/delete Delete Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/delete Delete Topic
      *
      * @param array $options [optional] Configuration Options
      * @return void
@@ -247,11 +247,11 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopic Get Topic
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration Options
-     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic)
      * @codingStandardsIgnoreEnd
      */
     public function info(array $options = [])
@@ -282,11 +282,11 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopic Get Topic
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration Options
-     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic)
      * @codingStandardsIgnoreEnd
      */
     public function reload(array $options = [])
@@ -313,9 +313,9 @@ class Topic
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/publish Publish Message
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs
      */
@@ -348,10 +348,10 @@ class Topic
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/publish Publish Message
      *
      * @param array $messages A list of messages. Each message must be in the correct
-     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs.
      */
@@ -438,7 +438,7 @@ class Topic
      * $subscription = $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.CreateSubscription Create Subscription
      *
      * @param string $name The subscription name
      * @param array $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
@@ -483,7 +483,7 @@ class Topic
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics.subscriptions/list List Topic Subscriptions
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic.subscriptions/list List Topic Subscriptions
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -526,9 +526,9 @@ class Topic
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopicIamPolicy Get Topic IAM Policy
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/setIamPolicy Set Topic IAM Policy
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/testIamPermissions Test Topic Permissions
      * @codingStandardsIgnoreEnd
      *
      * @return Iam
@@ -591,7 +591,7 @@ class Topic
      * @codingStandardsIgnoreStart
      * @param  string $name
      * @param  array $info [optional] A representation of a
-     *         [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription)
+     *         [Subscription](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#subscription)
      * @return Subscription
      * @codingStandardsIgnoreEnd
      */

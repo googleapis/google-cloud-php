@@ -54,7 +54,7 @@ class Message
      * @param array $message {
      *     Message Options
      *
-     *     See [PubsubMessage](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     *     See [PubsubMessage](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      *
      *     @type string $data The message data field. If this is empty, the message must
      *           contain at least one attribute.
