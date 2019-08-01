@@ -39,15 +39,20 @@ use Google\Cloud\Monitoring\V3\CreateNotificationChannelRequest;
 use Google\Cloud\Monitoring\V3\DeleteNotificationChannelRequest;
 use Google\Cloud\Monitoring\V3\GetNotificationChannelDescriptorRequest;
 use Google\Cloud\Monitoring\V3\GetNotificationChannelRequest;
+use Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeRequest;
+use Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsResponse;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelsRequest;
 use Google\Cloud\Monitoring\V3\ListNotificationChannelsResponse;
 use Google\Cloud\Monitoring\V3\NotificationChannel;
 use Google\Cloud\Monitoring\V3\NotificationChannelDescriptor;
+use Google\Cloud\Monitoring\V3\SendNotificationChannelVerificationCodeRequest;
 use Google\Cloud\Monitoring\V3\UpdateNotificationChannelRequest;
+use Google\Cloud\Monitoring\V3\VerifyNotificationChannelRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: The Notification Channel API provides access to configuration that
@@ -811,6 +816,201 @@ class NotificationChannelServiceGapicClient
         return $this->startCall(
             'DeleteNotificationChannel',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Causes a verification code to be delivered to the channel. The code
+     * can then be supplied in `VerifyNotificationChannel` to verify the channel.
+     *
+     * Sample code:
+     * ```
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
+     * try {
+     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
+     *     $notificationChannelServiceClient->sendNotificationChannelVerificationCode($formattedName);
+     * } finally {
+     *     $notificationChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The notification channel to which to send a verification code.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function sendNotificationChannelVerificationCode($name, array $optionalArgs = [])
+    {
+        $request = new SendNotificationChannelVerificationCodeRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'SendNotificationChannelVerificationCode',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Requests a verification code for an already verified channel that can then
+     * be used in a call to VerifyNotificationChannel() on a different channel
+     * with an equivalent identity in the same or in a different project. This
+     * makes it possible to copy a channel between projects without requiring
+     * manual reverification of the channel. If the channel is not in the
+     * verified state, this method will fail (in other words, this may only be
+     * used if the SendNotificationChannelVerificationCode and
+     * VerifyNotificationChannel paths have already been used to put the given
+     * channel into the verified state).
+     *
+     * There is no guarantee that the verification codes returned by this method
+     * will be of a similar structure or form as the ones that are delivered
+     * to the channel via SendNotificationChannelVerificationCode; while
+     * VerifyNotificationChannel() will recognize both the codes delivered via
+     * SendNotificationChannelVerificationCode() and returned from
+     * GetNotificationChannelVerificationCode(), it is typically the case that
+     * the verification codes delivered via
+     * SendNotificationChannelVerificationCode() will be shorter and also
+     * have a shorter expiration (e.g. codes such as "G-123456") whereas
+     * GetVerificationCode() will typically return a much longer, websafe base
+     * 64 encoded string that has a longer expiration time.
+     *
+     * Sample code:
+     * ```
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
+     * try {
+     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
+     *     $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode($formattedName);
+     * } finally {
+     *     $notificationChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The notification channel for which a verification code is to be generated
+     *                             and retrieved. This must name a channel that is already verified; if
+     *                             the specified channel is not verified, the request will fail.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Timestamp $expireTime
+     *          The desired expiration time. If specified, the API will guarantee that
+     *          the returned code will not be valid after the specified timestamp;
+     *          however, the API cannot guarantee that the returned code will be
+     *          valid for at least as long as the requested time (the API puts an upper
+     *          bound on the amount of time for which a code may be valid). If omitted,
+     *          a default expiration will be used, which may be less than the max
+     *          permissible expiration (so specifying an expiration may extend the
+     *          code's lifetime over omitting an expiration, even though the API does
+     *          impose an upper limit on the maximum expiration that is permitted).
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getNotificationChannelVerificationCode($name, array $optionalArgs = [])
+    {
+        $request = new GetNotificationChannelVerificationCodeRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['expireTime'])) {
+            $request->setExpireTime($optionalArgs['expireTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetNotificationChannelVerificationCode',
+            GetNotificationChannelVerificationCodeResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Verifies a `NotificationChannel` by proving receipt of the code
+     * delivered to the channel as a result of calling
+     * `SendNotificationChannelVerificationCode`.
+     *
+     * Sample code:
+     * ```
+     * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
+     * try {
+     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
+     *     $code = '';
+     *     $response = $notificationChannelServiceClient->verifyNotificationChannel($formattedName, $code);
+     * } finally {
+     *     $notificationChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The notification channel to verify.
+     * @param string $code         The verification code that was delivered to the channel as
+     *                             a result of invoking the `SendNotificationChannelVerificationCode` API
+     *                             method or that was retrieved from a verified channel via
+     *                             `GetNotificationChannelVerificationCode`. For example, one might have
+     *                             "G-123456" or "TKNZGhhd2EyN3I1MnRnMjRv" (in general, one is only
+     *                             guaranteed that the code is valid UTF-8; one should not
+     *                             make any assumptions regarding the structure or format of the code).
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\NotificationChannel
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function verifyNotificationChannel($name, $code, array $optionalArgs = [])
+    {
+        $request = new VerifyNotificationChannelRequest();
+        $request->setName($name);
+        $request->setCode($code);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'VerifyNotificationChannel',
+            NotificationChannel::class,
             $optionalArgs,
             $request
         )->wait();
