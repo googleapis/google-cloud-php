@@ -306,20 +306,16 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the tenant under which the company is created.
+     * @param string $parent Required. Resource name of the tenant under which the company is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
      *
      * Tenant id is optional and a default tenant is created if unspecified, for
      * example, "projects/api-test-project".
-     * @param Company $company Required.
-     *
-     * The company to be created.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Company $company      Required. The company to be created.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -368,9 +364,7 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the company to be retrieved.
+     * @param string $name Required. The resource name of the company to be retrieved.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
@@ -427,21 +421,24 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param Company $company Required.
-     *
-     * The company resource to replace the current resource in the system.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Company $company      Required. The company resource to replace the current resource in the
+     *                              system.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
      *     @type FieldMask $updateMask
      *          Optional but strongly recommended for the best service
      *          experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     *          If
+     *          [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     *          is provided, only the specified fields in
+     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     *          updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the company fields to be updated. Only
-     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     *          supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -492,9 +489,7 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the company to be deleted.
+     * @param string $name Required. The resource name of the company to be deleted.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
@@ -564,9 +559,7 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the tenant under which the company is created.
+     * @param string $parent Required. Resource name of the tenant under which the company is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
@@ -586,14 +579,13 @@ class CompanyServiceGapicClient
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
      *     @type bool $requireOpenJobs
-     *          Optional.
-     *
-     *          Set to true if the companies requested must have open jobs.
+     *          Optional. Set to true if the companies requested must have open jobs.
      *
      *          Defaults to false.
      *
-     *          If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     *          only those with open jobs are returned.
+     *          If true, at most
+     *          [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     *          companies are fetched, among which only those with open jobs are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

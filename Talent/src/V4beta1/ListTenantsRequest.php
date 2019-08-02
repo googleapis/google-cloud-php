@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTenantsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
      * "projects/api-test-project".
      *
@@ -25,15 +24,13 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional.
-     * The starting indicator from which to return results.
+     * Optional. The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
     private $page_token = '';
     /**
-     * Optional.
-     * The maximum number of tenants to be returned, at most 100.
+     * Optional. The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -47,16 +44,13 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           Resource name of the project under which the tenant is created.
+     *           Required. Resource name of the project under which the tenant is created.
      *           The format is "projects/{project_id}", for example,
      *           "projects/api-test-project".
      *     @type string $page_token
-     *           Optional.
-     *           The starting indicator from which to return results.
+     *           Optional. The starting indicator from which to return results.
      *     @type int $page_size
-     *           Optional.
-     *           The maximum number of tenants to be returned, at most 100.
+     *           Optional. The maximum number of tenants to be returned, at most 100.
      *           Default is 100 if a non-positive number is provided.
      * }
      */
@@ -66,8 +60,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
      * "projects/api-test-project".
      *
@@ -80,8 +73,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
      * "projects/api-test-project".
      *
@@ -98,8 +90,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The starting indicator from which to return results.
+     * Optional. The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -110,8 +101,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The starting indicator from which to return results.
+     * Optional. The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var
@@ -126,8 +116,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The maximum number of tenants to be returned, at most 100.
+     * Optional. The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -139,8 +128,7 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The maximum number of tenants to be returned, at most 100.
+     * Optional. The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>

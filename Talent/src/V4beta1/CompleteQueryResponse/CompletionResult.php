@@ -29,7 +29,8 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * The URI of the company image for [CompletionType.COMPANY_NAME][].
+     * The URI of the company image for
+     * [COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME].
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      */
@@ -46,7 +47,8 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           The completion topic.
      *     @type string $image_uri
-     *           The URI of the company image for [CompletionType.COMPANY_NAME][].
+     *           The URI of the company image for
+     *           [COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME].
      * }
      */
     public function __construct($data = NULL) {
@@ -107,7 +109,8 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the company image for [CompletionType.COMPANY_NAME][].
+     * The URI of the company image for
+     * [COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME].
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      * @return string
@@ -118,7 +121,8 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the company image for [CompletionType.COMPANY_NAME][].
+     * The URI of the company image for
+     * [COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME].
      *
      * Generated from protobuf field <code>string image_uri = 3;</code>
      * @param string $var

@@ -16,70 +16,61 @@ use Google\Protobuf\Internal\GPBUtil;
 class Patent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * Name of the patent.
+     * Optional. Name of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
     private $display_name = '';
     /**
-     * Optional.
-     * A list of inventors' names.
+     * Optional. A list of inventors' names.
      * Number of characters allowed for each is 100.
      *
      * Generated from protobuf field <code>repeated string inventors = 2;</code>
      */
     private $inventors;
     /**
-     * Optional.
-     * The status of the patent.
+     * Optional. The status of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_status = 3;</code>
      */
     private $patent_status = '';
     /**
-     * Optional.
-     * The date the last time the status of the patent was checked.
+     * Optional. The date the last time the status of the patent was checked.
      *
      * Generated from protobuf field <code>.google.type.Date patent_status_date = 4;</code>
      */
     private $patent_status_date = null;
     /**
-     * Optional.
-     * The date that the patent was filed.
+     * Optional. The date that the patent was filed.
      *
      * Generated from protobuf field <code>.google.type.Date patent_filing_date = 5;</code>
      */
     private $patent_filing_date = null;
     /**
-     * Optional.
-     * The name of the patent office.
+     * Optional. The name of the patent office.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_office = 6;</code>
      */
     private $patent_office = '';
     /**
-     * Optional.
-     * The number of the patent.
+     * Optional. The number of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_number = 7;</code>
      */
     private $patent_number = '';
     /**
-     * Optional.
-     * The description of the patent.
+     * Optional. The description of the patent.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string patent_description = 8;</code>
      */
     private $patent_description = '';
     /**
-     * Optional.
-     * The skills used in this patent.
+     * Optional. The skills used in this patent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 9;</code>
      */
@@ -92,38 +83,29 @@ class Patent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Optional.
-     *           Name of the patent.
+     *           Optional. Name of the patent.
      *           Number of characters allowed is 100.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $inventors
-     *           Optional.
-     *           A list of inventors' names.
+     *           Optional. A list of inventors' names.
      *           Number of characters allowed for each is 100.
      *     @type string $patent_status
-     *           Optional.
-     *           The status of the patent.
+     *           Optional. The status of the patent.
      *           Number of characters allowed is 100.
      *     @type \Google\Type\Date $patent_status_date
-     *           Optional.
-     *           The date the last time the status of the patent was checked.
+     *           Optional. The date the last time the status of the patent was checked.
      *     @type \Google\Type\Date $patent_filing_date
-     *           Optional.
-     *           The date that the patent was filed.
+     *           Optional. The date that the patent was filed.
      *     @type string $patent_office
-     *           Optional.
-     *           The name of the patent office.
+     *           Optional. The name of the patent office.
      *           Number of characters allowed is 100.
      *     @type string $patent_number
-     *           Optional.
-     *           The number of the patent.
+     *           Optional. The number of the patent.
      *           Number of characters allowed is 100.
      *     @type string $patent_description
-     *           Optional.
-     *           The description of the patent.
+     *           Optional. The description of the patent.
      *           Number of characters allowed is 100,000.
      *     @type \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $skills_used
-     *           Optional.
-     *           The skills used in this patent.
+     *           Optional. The skills used in this patent.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,8 +114,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Name of the patent.
+     * Optional. Name of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
@@ -145,8 +126,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Name of the patent.
+     * Optional. Name of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
@@ -162,8 +142,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of inventors' names.
+     * Optional. A list of inventors' names.
      * Number of characters allowed for each is 100.
      *
      * Generated from protobuf field <code>repeated string inventors = 2;</code>
@@ -175,8 +154,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of inventors' names.
+     * Optional. A list of inventors' names.
      * Number of characters allowed for each is 100.
      *
      * Generated from protobuf field <code>repeated string inventors = 2;</code>
@@ -192,8 +170,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The status of the patent.
+     * Optional. The status of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_status = 3;</code>
@@ -205,8 +182,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The status of the patent.
+     * Optional. The status of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_status = 3;</code>
@@ -222,8 +198,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The date the last time the status of the patent was checked.
+     * Optional. The date the last time the status of the patent was checked.
      *
      * Generated from protobuf field <code>.google.type.Date patent_status_date = 4;</code>
      * @return \Google\Type\Date
@@ -234,8 +209,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The date the last time the status of the patent was checked.
+     * Optional. The date the last time the status of the patent was checked.
      *
      * Generated from protobuf field <code>.google.type.Date patent_status_date = 4;</code>
      * @param \Google\Type\Date $var
@@ -250,8 +224,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The date that the patent was filed.
+     * Optional. The date that the patent was filed.
      *
      * Generated from protobuf field <code>.google.type.Date patent_filing_date = 5;</code>
      * @return \Google\Type\Date
@@ -262,8 +235,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The date that the patent was filed.
+     * Optional. The date that the patent was filed.
      *
      * Generated from protobuf field <code>.google.type.Date patent_filing_date = 5;</code>
      * @param \Google\Type\Date $var
@@ -278,8 +250,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The name of the patent office.
+     * Optional. The name of the patent office.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_office = 6;</code>
@@ -291,8 +262,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The name of the patent office.
+     * Optional. The name of the patent office.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_office = 6;</code>
@@ -308,8 +278,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The number of the patent.
+     * Optional. The number of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_number = 7;</code>
@@ -321,8 +290,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The number of the patent.
+     * Optional. The number of the patent.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string patent_number = 7;</code>
@@ -338,8 +306,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The description of the patent.
+     * Optional. The description of the patent.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string patent_description = 8;</code>
@@ -351,8 +318,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The description of the patent.
+     * Optional. The description of the patent.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string patent_description = 8;</code>
@@ -368,8 +334,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The skills used in this patent.
+     * Optional. The skills used in this patent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -380,8 +345,7 @@ class Patent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The skills used in this patent.
+     * Optional. The skills used in this patent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 9;</code>
      * @param \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $var

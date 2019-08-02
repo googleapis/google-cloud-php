@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the job to be deleted.
+     * Required. The resource name of the job to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
      * example, "projects/api-test-project/tenants/foo/jobs/1234".
@@ -36,8 +35,7 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The resource name of the job to be deleted.
+     *           Required. The resource name of the job to be deleted.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
      *           example, "projects/api-test-project/tenants/foo/jobs/1234".
@@ -51,8 +49,7 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the job to be deleted.
+     * Required. The resource name of the job to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
      * example, "projects/api-test-project/tenants/foo/jobs/1234".
@@ -68,8 +65,7 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the job to be deleted.
+     * Required. The resource name of the job to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
      * example, "projects/api-test-project/tenants/foo/jobs/1234".

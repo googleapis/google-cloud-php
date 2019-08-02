@@ -29,27 +29,28 @@ class Tenant extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required.
-     * Client side tenant identifier, used to uniquely identify the tenant.
+     * Required. Client side tenant identifier, used to uniquely identify the
+     * tenant.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 2;</code>
      */
     private $external_id = '';
     /**
-     * Optional.
-     * Indicates whether data owned by this tenant may be used to provide product
-     * improvements across other tenants.
-     * Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
+     * Optional. Indicates whether data owned by this tenant may be used to
+     * provide product improvements across other tenants.
+     * Defaults behavior is
+     * [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
+     * if it's unset.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant.DataUsageType usage_type = 3;</code>
      */
     private $usage_type = 0;
     /**
-     * Optional.
-     * A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
-     * corresponding `string_values` are used in keyword searches. Profiles with
-     * `string_values` under these specified field keys are returned if any
+     * Optional. A list of keys of filterable
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes],
+     * whose corresponding `string_values` are used in keyword searches. Profiles
+     * with `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
      * and must be surrounded by quotes.
@@ -71,19 +72,20 @@ class Tenant extends \Google\Protobuf\Internal\Message
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      *           "projects/api-test-project/tenants/foo".
      *     @type string $external_id
-     *           Required.
-     *           Client side tenant identifier, used to uniquely identify the tenant.
+     *           Required. Client side tenant identifier, used to uniquely identify the
+     *           tenant.
      *           The maximum number of allowed characters is 255.
      *     @type int $usage_type
-     *           Optional.
-     *           Indicates whether data owned by this tenant may be used to provide product
-     *           improvements across other tenants.
-     *           Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
+     *           Optional. Indicates whether data owned by this tenant may be used to
+     *           provide product improvements across other tenants.
+     *           Defaults behavior is
+     *           [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
+     *           if it's unset.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_profile_custom_attributes
-     *           Optional.
-     *           A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
-     *           corresponding `string_values` are used in keyword searches. Profiles with
-     *           `string_values` under these specified field keys are returned if any
+     *           Optional. A list of keys of filterable
+     *           [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes],
+     *           whose corresponding `string_values` are used in keyword searches. Profiles
+     *           with `string_values` under these specified field keys are returned if any
      *           of the values match the search keyword. Custom field values with
      *           parenthesis, brackets and special symbols are not searchable as-is,
      *           and must be surrounded by quotes.
@@ -129,8 +131,8 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side tenant identifier, used to uniquely identify the tenant.
+     * Required. Client side tenant identifier, used to uniquely identify the
+     * tenant.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 2;</code>
@@ -142,8 +144,8 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side tenant identifier, used to uniquely identify the tenant.
+     * Required. Client side tenant identifier, used to uniquely identify the
+     * tenant.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string external_id = 2;</code>
@@ -159,10 +161,11 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Indicates whether data owned by this tenant may be used to provide product
-     * improvements across other tenants.
-     * Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
+     * Optional. Indicates whether data owned by this tenant may be used to
+     * provide product improvements across other tenants.
+     * Defaults behavior is
+     * [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
+     * if it's unset.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant.DataUsageType usage_type = 3;</code>
      * @return int
@@ -173,10 +176,11 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Indicates whether data owned by this tenant may be used to provide product
-     * improvements across other tenants.
-     * Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
+     * Optional. Indicates whether data owned by this tenant may be used to
+     * provide product improvements across other tenants.
+     * Defaults behavior is
+     * [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED]
+     * if it's unset.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant.DataUsageType usage_type = 3;</code>
      * @param int $var
@@ -191,10 +195,10 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
-     * corresponding `string_values` are used in keyword searches. Profiles with
-     * `string_values` under these specified field keys are returned if any
+     * Optional. A list of keys of filterable
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes],
+     * whose corresponding `string_values` are used in keyword searches. Profiles
+     * with `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
      * and must be surrounded by quotes.
@@ -208,10 +212,10 @@ class Tenant extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
-     * corresponding `string_values` are used in keyword searches. Profiles with
-     * `string_values` under these specified field keys are returned if any
+     * Optional. A list of keys of filterable
+     * [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes],
+     * whose corresponding `string_values` are used in keyword searches. Profiles
+     * with `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
      * and must be surrounded by quotes.

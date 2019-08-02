@@ -11,26 +11,28 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Input only.
  * Application Date Range Filter.
- * The API matches profiles with [Application.application_date][google.cloud.talent.v4beta1.Application.application_date] between
- * start date and end date (both boundaries are inclusive). The filter is
- * ignored if both [start_date][google.cloud.talent.v4beta1.ApplicationDateFilter.start_date] and [end_date][google.cloud.talent.v4beta1.ApplicationDateFilter.end_date] are missing.
+ * The API matches profiles with
+ * [Application.application_date][google.cloud.talent.v4beta1.Application.application_date]
+ * between start date and end date (both boundaries are inclusive). The filter
+ * is ignored if both
+ * [start_date][google.cloud.talent.v4beta1.ApplicationDateFilter.start_date]
+ * and [end_date][google.cloud.talent.v4beta1.ApplicationDateFilter.end_date]
+ * are missing.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ApplicationDateFilter</code>
  */
 class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * Start date. If it's missing, The API matches profiles with application date
-     * not after the end date.
+     * Optional. Start date. If it's missing, The API matches profiles with
+     * application date not after the end date.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      */
     private $start_date = null;
     /**
-     * Optional.
-     * End date. If it's missing, The API matches profiles with application date
-     * not before the start date.
+     * Optional. End date. If it's missing, The API matches profiles with
+     * application date not before the start date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      */
@@ -43,13 +45,11 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Type\Date $start_date
-     *           Optional.
-     *           Start date. If it's missing, The API matches profiles with application date
-     *           not after the end date.
+     *           Optional. Start date. If it's missing, The API matches profiles with
+     *           application date not after the end date.
      *     @type \Google\Type\Date $end_date
-     *           Optional.
-     *           End date. If it's missing, The API matches profiles with application date
-     *           not before the start date.
+     *           Optional. End date. If it's missing, The API matches profiles with
+     *           application date not before the start date.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +58,8 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Start date. If it's missing, The API matches profiles with application date
-     * not after the end date.
+     * Optional. Start date. If it's missing, The API matches profiles with
+     * application date not after the end date.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @return \Google\Type\Date
@@ -71,9 +70,8 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Start date. If it's missing, The API matches profiles with application date
-     * not after the end date.
+     * Optional. Start date. If it's missing, The API matches profiles with
+     * application date not after the end date.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @param \Google\Type\Date $var
@@ -88,9 +86,8 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * End date. If it's missing, The API matches profiles with application date
-     * not before the start date.
+     * Optional. End date. If it's missing, The API matches profiles with
+     * application date not before the start date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      * @return \Google\Type\Date
@@ -101,9 +98,8 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * End date. If it's missing, The API matches profiles with application date
-     * not before the start date.
+     * Optional. End date. If it's missing, The API matches profiles with
+     * application date not before the start date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      * @param \Google\Type\Date $var

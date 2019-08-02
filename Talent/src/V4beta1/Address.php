@@ -16,15 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Address extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * The usage of the address. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
     private $usage = 0;
     /**
-     * Optional.
-     * Indicates if it's the person's current address.
+     * Optional. Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      */
@@ -38,21 +36,17 @@ class Address extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $usage
-     *           Optional.
-     *           The usage of the address. For example, SCHOOL, WORK, PERSONAL.
+     *           Optional. The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *     @type string $unstructured_address
-     *           Optional.
-     *           Unstructured address.
+     *           Optional. Unstructured address.
      *           For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
      *           "Sunnyvale, California".
      *           Number of characters allowed is 100.
      *     @type \Google\Type\PostalAddress $structured_address
-     *           Optional.
-     *           Structured address that contains street address, city, state, country,
-     *           and so on.
+     *           Optional. Structured address that contains street address, city, state,
+     *           country, and so on.
      *     @type \Google\Protobuf\BoolValue $current
-     *           Optional.
-     *           Indicates if it's the person's current address.
+     *           Optional. Indicates if it's the person's current address.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,8 +55,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The usage of the address. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      * @return int
@@ -73,8 +66,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The usage of the address. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      * @param int $var
@@ -89,8 +81,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Unstructured address.
+     * Optional. Unstructured address.
      * For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
      * "Sunnyvale, California".
      * Number of characters allowed is 100.
@@ -104,8 +95,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Unstructured address.
+     * Optional. Unstructured address.
      * For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
      * "Sunnyvale, California".
      * Number of characters allowed is 100.
@@ -123,9 +113,8 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Structured address that contains street address, city, state, country,
-     * and so on.
+     * Optional. Structured address that contains street address, city, state,
+     * country, and so on.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress structured_address = 3;</code>
      * @return \Google\Type\PostalAddress
@@ -136,9 +125,8 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Structured address that contains street address, city, state, country,
-     * and so on.
+     * Optional. Structured address that contains street address, city, state,
+     * country, and so on.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress structured_address = 3;</code>
      * @param \Google\Type\PostalAddress $var
@@ -153,8 +141,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Indicates if it's the person's current address.
+     * Optional. Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @return \Google\Protobuf\BoolValue
@@ -167,8 +154,7 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getCurrent()</code>
 
-     * Optional.
-     * Indicates if it's the person's current address.
+     * Optional. Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @return bool|null
@@ -180,8 +166,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Indicates if it's the person's current address.
+     * Optional. Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -198,8 +183,7 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional.
-     * Indicates if it's the person's current address.
+     * Optional. Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @param bool|null $var

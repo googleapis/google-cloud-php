@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Resource name of the profile to get.
+     * Required. Resource name of the profile to get.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      * for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -33,8 +32,7 @@ class GetProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           Resource name of the profile to get.
+     *           Required. Resource name of the profile to get.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -46,8 +44,7 @@ class GetProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the profile to get.
+     * Required. Resource name of the profile to get.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      * for example, "projects/api-test-project/tenants/foo/profiles/bar".
@@ -61,8 +58,7 @@ class GetProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the profile to get.
+     * Required. Resource name of the profile to get.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      * for example, "projects/api-test-project/tenants/foo/profiles/bar".

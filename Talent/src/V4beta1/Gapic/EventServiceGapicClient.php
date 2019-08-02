@@ -273,21 +273,17 @@ class EventServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the tenant under which the event is created.
+     * @param string $parent Required. Resource name of the tenant under which the event is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
      *
      * Tenant id is optional and a default tenant is created if unspecified, for
      * example, "projects/api-test-project".
-     * @param ClientEvent $clientEvent Required.
-     *
-     * Events issued when end user interacts with customer's application that
-     * uses Cloud Talent Solution.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param ClientEvent $clientEvent  Required. Events issued when end user interacts with customer's application
+     *                                  that uses Cloud Talent Solution.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

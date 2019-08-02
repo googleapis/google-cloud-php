@@ -66,7 +66,9 @@ class JobEventType
      * submitted an application for a job with a single click without
      * entering information. If a job seeker performs this action, send only
      * this event to the service. Do not also send
-     * [JobEventType.APPLICATION_START][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_START] or [JobEventType.APPLICATION_FINISH][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_FINISH]
+     * [JobEventType.APPLICATION_START][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_START]
+     * or
+     * [JobEventType.APPLICATION_FINISH][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_FINISH]
      * events.
      *
      * Generated from protobuf enum <code>APPLICATION_QUICK_SUBMISSION = 6;</code>
@@ -95,8 +97,12 @@ class JobEventType
      * (without viewing the details of the job posting), and is redirected
      * to a different website to complete the application. If a candidate
      * performs this action, send only this event to the service. Do not also
-     * send [JobEventType.APPLICATION_START][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_START],
-     * [JobEventType.APPLICATION_FINISH][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_FINISH] or [JobEventType.VIEW][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] events.
+     * send
+     * [JobEventType.APPLICATION_START][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_START],
+     * [JobEventType.APPLICATION_FINISH][google.cloud.talent.v4beta1.JobEvent.JobEventType.APPLICATION_FINISH]
+     * or
+     * [JobEventType.VIEW][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW]
+     * events.
      *
      * Generated from protobuf enum <code>APPLICATION_REDIRECT_FROM_SEARCH = 9;</code>
      */
@@ -152,13 +158,6 @@ class JobEventType
      * Generated from protobuf enum <code>INTERVIEW_GRANTED = 15;</code>
      */
     const INTERVIEW_GRANTED = 15;
-    /**
-     * The job seeker or other entity interacting with the service showed
-     * no interest in the job.
-     *
-     * Generated from protobuf enum <code>NOT_INTERESTED = 16;</code>
-     */
-    const NOT_INTERESTED = 16;
 
     private static $valueToName = [
         self::JOB_EVENT_TYPE_UNSPECIFIED => 'JOB_EVENT_TYPE_UNSPECIFIED',
@@ -177,7 +176,6 @@ class JobEventType
         self::HIRED => 'HIRED',
         self::SENT_CV => 'SENT_CV',
         self::INTERVIEW_GRANTED => 'INTERVIEW_GRANTED',
-        self::NOT_INTERESTED => 'NOT_INTERESTED',
     ];
 
     public static function name($value)

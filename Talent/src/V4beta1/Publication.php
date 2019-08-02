@@ -16,71 +16,62 @@ use Google\Protobuf\Internal\GPBUtil;
 class Publication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * A list of author names.
+     * Optional. A list of author names.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>repeated string authors = 1;</code>
      */
     private $authors;
     /**
-     * Optional.
-     * The title of the publication.
+     * Optional. The title of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string title = 2;</code>
      */
     private $title = '';
     /**
-     * Optional.
-     * The description of the publication.
+     * Optional. The description of the publication.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
     private $description = '';
     /**
-     * Optional.
-     * The journal name of the publication.
+     * Optional. The journal name of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string journal = 4;</code>
      */
     private $journal = '';
     /**
-     * Optional.
-     * Volume number.
+     * Optional. Volume number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string volume = 5;</code>
      */
     private $volume = '';
     /**
-     * Optional.
-     * The publisher of the journal.
+     * Optional. The publisher of the journal.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publisher = 6;</code>
      */
     private $publisher = '';
     /**
-     * Optional.
-     * The publication date.
+     * Optional. The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
      */
     private $publication_date = null;
     /**
-     * Optional.
-     * The publication type.
+     * Optional. The publication type.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publication_type = 8;</code>
      */
     private $publication_type = '';
     /**
-     * Optional.
-     * ISBN number.
+     * Optional. ISBN number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string isbn = 9;</code>
@@ -94,39 +85,30 @@ class Publication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $authors
-     *           Optional.
-     *           A list of author names.
+     *           Optional. A list of author names.
      *           Number of characters allowed is 100.
      *     @type string $title
-     *           Optional.
-     *           The title of the publication.
+     *           Optional. The title of the publication.
      *           Number of characters allowed is 100.
      *     @type string $description
-     *           Optional.
-     *           The description of the publication.
+     *           Optional. The description of the publication.
      *           Number of characters allowed is 100,000.
      *     @type string $journal
-     *           Optional.
-     *           The journal name of the publication.
+     *           Optional. The journal name of the publication.
      *           Number of characters allowed is 100.
      *     @type string $volume
-     *           Optional.
-     *           Volume number.
+     *           Optional. Volume number.
      *           Number of characters allowed is 100.
      *     @type string $publisher
-     *           Optional.
-     *           The publisher of the journal.
+     *           Optional. The publisher of the journal.
      *           Number of characters allowed is 100.
      *     @type \Google\Type\Date $publication_date
-     *           Optional.
-     *           The publication date.
+     *           Optional. The publication date.
      *     @type string $publication_type
-     *           Optional.
-     *           The publication type.
+     *           Optional. The publication type.
      *           Number of characters allowed is 100.
      *     @type string $isbn
-     *           Optional.
-     *           ISBN number.
+     *           Optional. ISBN number.
      *           Number of characters allowed is 100.
      * }
      */
@@ -136,8 +118,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of author names.
+     * Optional. A list of author names.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>repeated string authors = 1;</code>
@@ -149,8 +130,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of author names.
+     * Optional. A list of author names.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>repeated string authors = 1;</code>
@@ -166,8 +146,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The title of the publication.
+     * Optional. The title of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string title = 2;</code>
@@ -179,8 +158,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The title of the publication.
+     * Optional. The title of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string title = 2;</code>
@@ -196,8 +174,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The description of the publication.
+     * Optional. The description of the publication.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 3;</code>
@@ -209,8 +186,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The description of the publication.
+     * Optional. The description of the publication.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 3;</code>
@@ -226,8 +202,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The journal name of the publication.
+     * Optional. The journal name of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string journal = 4;</code>
@@ -239,8 +214,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The journal name of the publication.
+     * Optional. The journal name of the publication.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string journal = 4;</code>
@@ -256,8 +230,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Volume number.
+     * Optional. Volume number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string volume = 5;</code>
@@ -269,8 +242,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Volume number.
+     * Optional. Volume number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string volume = 5;</code>
@@ -286,8 +258,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The publisher of the journal.
+     * Optional. The publisher of the journal.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publisher = 6;</code>
@@ -299,8 +270,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The publisher of the journal.
+     * Optional. The publisher of the journal.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publisher = 6;</code>
@@ -316,8 +286,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The publication date.
+     * Optional. The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
      * @return \Google\Type\Date
@@ -328,8 +297,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The publication date.
+     * Optional. The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
      * @param \Google\Type\Date $var
@@ -344,8 +312,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The publication type.
+     * Optional. The publication type.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publication_type = 8;</code>
@@ -357,8 +324,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The publication type.
+     * Optional. The publication type.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string publication_type = 8;</code>
@@ -374,8 +340,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * ISBN number.
+     * Optional. ISBN number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string isbn = 9;</code>
@@ -387,8 +352,7 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * ISBN number.
+     * Optional. ISBN number.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string isbn = 9;</code>

@@ -27,11 +27,11 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Talent\V4beta1\HistogramQueryResult;
 use Google\Cloud\Talent\V4beta1\ListProfilesResponse;
 use Google\Cloud\Talent\V4beta1\Profile;
 use Google\Cloud\Talent\V4beta1\RequestMetadata;
 use Google\Cloud\Talent\V4beta1\SearchProfilesResponse;
+use Google\Cloud\Talent\V4beta1\SummarizedProfile;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -52,14 +52,22 @@ class ProfileServiceClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return ProfileServiceClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new ProfileServiceClient($options);
@@ -487,12 +495,14 @@ class ProfileServiceClientTest extends GeneratedTest
         // Mock response
         $estimatedTotalSize = 1882144769;
         $nextPageToken = '';
-        $histogramQueryResultsElement = new HistogramQueryResult();
-        $histogramQueryResults = [$histogramQueryResultsElement];
+        $resultSetId = 'resultSetId-770306950';
+        $summarizedProfilesElement = new SummarizedProfile();
+        $summarizedProfiles = [$summarizedProfilesElement];
         $expectedResponse = new SearchProfilesResponse();
         $expectedResponse->setEstimatedTotalSize($estimatedTotalSize);
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setHistogramQueryResults($histogramQueryResults);
+        $expectedResponse->setResultSetId($resultSetId);
+        $expectedResponse->setSummarizedProfiles($summarizedProfiles);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -503,7 +513,7 @@ class ProfileServiceClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getHistogramQueryResults()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSummarizedProfiles()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));

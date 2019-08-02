@@ -18,15 +18,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeviceInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * Type of the device.
+     * Optional. Type of the device.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo.DeviceType device_type = 1;</code>
      */
     private $device_type = 0;
     /**
-     * Optional.
-     * A device-specific ID. The ID must be a unique identifier that
+     * Optional. A device-specific ID. The ID must be a unique identifier that
      * distinguishes the device from other devices.
      *
      * Generated from protobuf field <code>string id = 2;</code>
@@ -40,11 +38,9 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $device_type
-     *           Optional.
-     *           Type of the device.
+     *           Optional. Type of the device.
      *     @type string $id
-     *           Optional.
-     *           A device-specific ID. The ID must be a unique identifier that
+     *           Optional. A device-specific ID. The ID must be a unique identifier that
      *           distinguishes the device from other devices.
      * }
      */
@@ -54,8 +50,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Type of the device.
+     * Optional. Type of the device.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo.DeviceType device_type = 1;</code>
      * @return int
@@ -66,8 +61,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Type of the device.
+     * Optional. Type of the device.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo.DeviceType device_type = 1;</code>
      * @param int $var
@@ -82,8 +76,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A device-specific ID. The ID must be a unique identifier that
+     * Optional. A device-specific ID. The ID must be a unique identifier that
      * distinguishes the device from other devices.
      *
      * Generated from protobuf field <code>string id = 2;</code>
@@ -95,8 +88,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A device-specific ID. The ID must be a unique identifier that
+     * Optional. A device-specific ID. The ID must be a unique identifier that
      * distinguishes the device from other devices.
      *
      * Generated from protobuf field <code>string id = 2;</code>

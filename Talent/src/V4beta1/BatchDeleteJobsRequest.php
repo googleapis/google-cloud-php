@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the tenant under which the job is created.
+     * Required. The resource name of the tenant under which the job is created.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
      * Tenant id is optional and the default tenant is used if unspecified, for
@@ -28,8 +27,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required.
-     * The filter string specifies the jobs to be deleted.
+     * Required. The filter string specifies the jobs to be deleted.
      * Supported operator: =, AND
      * The fields eligible for filtering are:
      * * `companyName` (Required)
@@ -48,15 +46,13 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The resource name of the tenant under which the job is created.
+     *           Required. The resource name of the tenant under which the job is created.
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      *           "projects/api-test-project/tenant/foo".
      *           Tenant id is optional and the default tenant is used if unspecified, for
      *           example, "projects/api-test-project".
      *     @type string $filter
-     *           Required.
-     *           The filter string specifies the jobs to be deleted.
+     *           Required. The filter string specifies the jobs to be deleted.
      *           Supported operator: =, AND
      *           The fields eligible for filtering are:
      *           * `companyName` (Required)
@@ -71,8 +67,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the tenant under which the job is created.
+     * Required. The resource name of the tenant under which the job is created.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
      * Tenant id is optional and the default tenant is used if unspecified, for
@@ -87,8 +82,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the tenant under which the job is created.
+     * Required. The resource name of the tenant under which the job is created.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
      * Tenant id is optional and the default tenant is used if unspecified, for
@@ -107,8 +101,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The filter string specifies the jobs to be deleted.
+     * Required. The filter string specifies the jobs to be deleted.
      * Supported operator: =, AND
      * The fields eligible for filtering are:
      * * `companyName` (Required)
@@ -125,8 +118,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The filter string specifies the jobs to be deleted.
+     * Required. The filter string specifies the jobs to be deleted.
      * Supported operator: =, AND
      * The fields eligible for filtering are:
      * * `companyName` (Required)

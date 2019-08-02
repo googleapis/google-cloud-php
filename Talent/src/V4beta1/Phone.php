@@ -16,22 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class Phone extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
     private $usage = 0;
     /**
-     * Optional.
-     * The phone type. For example, LANDLINE, MOBILE, FAX.
+     * Optional. The phone type. For example, LANDLINE, MOBILE, FAX.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Phone.PhoneType type = 2;</code>
      */
     private $type = 0;
     /**
-     * Optional.
-     * Phone number.
+     * Optional. Phone number.
      * Any phone formats are supported and only exact matches are performed on
      * searches. For example, if a phone number in profile is provided in the
      * format of "(xxx)xxx-xxxx", in profile searches the same phone format
@@ -42,8 +39,8 @@ class Phone extends \Google\Protobuf\Internal\Message
      */
     private $number = '';
     /**
-     * Optional.
-     * When this number is available. Any descriptive string is expected.
+     * Optional. When this number is available. Any descriptive string is
+     * expected.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string when_available = 4;</code>
@@ -57,22 +54,19 @@ class Phone extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $usage
-     *           Optional.
-     *           The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
+     *           Optional. The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
      *     @type int $type
-     *           Optional.
-     *           The phone type. For example, LANDLINE, MOBILE, FAX.
+     *           Optional. The phone type. For example, LANDLINE, MOBILE, FAX.
      *     @type string $number
-     *           Optional.
-     *           Phone number.
+     *           Optional. Phone number.
      *           Any phone formats are supported and only exact matches are performed on
      *           searches. For example, if a phone number in profile is provided in the
      *           format of "(xxx)xxx-xxxx", in profile searches the same phone format
      *           has to be provided.
      *           Number of characters allowed is 20.
      *     @type string $when_available
-     *           Optional.
-     *           When this number is available. Any descriptive string is expected.
+     *           Optional. When this number is available. Any descriptive string is
+     *           expected.
      *           Number of characters allowed is 100.
      * }
      */
@@ -82,8 +76,7 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      * @return int
@@ -94,8 +87,7 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the phone. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      * @param int $var
@@ -110,8 +102,7 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The phone type. For example, LANDLINE, MOBILE, FAX.
+     * Optional. The phone type. For example, LANDLINE, MOBILE, FAX.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Phone.PhoneType type = 2;</code>
      * @return int
@@ -122,8 +113,7 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The phone type. For example, LANDLINE, MOBILE, FAX.
+     * Optional. The phone type. For example, LANDLINE, MOBILE, FAX.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Phone.PhoneType type = 2;</code>
      * @param int $var
@@ -138,8 +128,7 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Phone number.
+     * Optional. Phone number.
      * Any phone formats are supported and only exact matches are performed on
      * searches. For example, if a phone number in profile is provided in the
      * format of "(xxx)xxx-xxxx", in profile searches the same phone format
@@ -155,8 +144,7 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Phone number.
+     * Optional. Phone number.
      * Any phone formats are supported and only exact matches are performed on
      * searches. For example, if a phone number in profile is provided in the
      * format of "(xxx)xxx-xxxx", in profile searches the same phone format
@@ -176,8 +164,8 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * When this number is available. Any descriptive string is expected.
+     * Optional. When this number is available. Any descriptive string is
+     * expected.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string when_available = 4;</code>
@@ -189,8 +177,8 @@ class Phone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * When this number is available. Any descriptive string is expected.
+     * Optional. When this number is available. Any descriptive string is
+     * expected.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string when_available = 4;</code>
