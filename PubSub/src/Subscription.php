@@ -180,7 +180,8 @@ class Subscription
      * $result = $subscription->create();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.CreateSubscription Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.CreateSubscription
+     *      Create Subscription
      *
      * @param array $options [optional] {
      *     Configuration Options
@@ -357,7 +358,8 @@ class Subscription
      * $subscription->delete();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.DeleteSubscription Delete Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.DeleteSubscription
+     *      Delete Subscription
      *
      * @param array $options [optional] Configuration Options.
      * @return void
@@ -412,7 +414,8 @@ class Subscription
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.GetSubscription Get Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.GetSubscription
+     *      Get Subscription
      *
      * @param array $options [optional] Configuration Options
      * @return array Subscription data
@@ -439,7 +442,8 @@ class Subscription
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.GetSubscription Get Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.GetSubscription
+     *      Get Subscription
      *
      * @param array $options [optional] Configuration Options
      * @return array Subscription data
@@ -462,7 +466,8 @@ class Subscription
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.Pull Pull Messages
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.Pull
+     *      Pull Messages
      *
      * @param array $options [optional] {
      *      Configuration Options
@@ -578,7 +583,8 @@ class Subscription
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ModifyAckDeadline Modify Ack Deadline
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ModifyAckDeadline
+     *      Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
      * @param Message $message A message object
@@ -617,7 +623,8 @@ class Subscription
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ModifyAckDeadline Modify Ack Deadline
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ModifyAckDeadline
+     *      Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
      * @param Message[] $messages An array of messages
@@ -652,7 +659,8 @@ class Subscription
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ModifyPushConfig Modify Push Config
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.ModifyPushConfig 
+     *      Modify Push Config
      * @codingStandardsIgnoreEnd
      *
      * @param array $pushConfig {

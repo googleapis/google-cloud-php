@@ -247,7 +247,8 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopic Get Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopic
+     *      Get Topic
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration Options
@@ -282,7 +283,8 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopic Get Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Publisher.GetTopic
+     *      Get Topic
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration Options
@@ -315,7 +317,8 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#topic/publish Publish Message
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     * @param array $message [Message Format]
+     *              (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs
      */
@@ -438,7 +441,8 @@ class Topic
      * $subscription = $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.CreateSubscription Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#google.pubsub.v1.Subscriber.CreateSubscription
+     *      Create Subscription
      *
      * @param string $name The subscription name
      * @param array $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}

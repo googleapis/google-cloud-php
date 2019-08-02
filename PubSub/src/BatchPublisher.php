@@ -82,7 +82,8 @@ class BatchPublisher
      * ]);
      * ```
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
+     * @param array $message [Message Format]
+     *              (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      * @return bool
      */
     public function publish(array $message)
