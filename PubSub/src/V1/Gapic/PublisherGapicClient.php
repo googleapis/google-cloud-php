@@ -328,20 +328,14 @@ class PublisherGapicClient
      *          See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      *          managing labels</a>.
      *     @type MessageStoragePolicy $messageStoragePolicy
-     *          Policy constraining how messages published to the topic may be stored. It
-     *          is determined when the topic is created based on the policy configured at
-     *          the project level. It must not be set by the caller in the request to
-     *          CreateTopic or to UpdateTopic. This field will be populated in the
-     *          responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
-     *          response, then no constraints are in effect.
+     *          Policy constraining the set of Google Cloud Platform regions where messages
+     *          published to the topic may be stored. If not present, then no constraints
+     *          are in effect.
      *     @type string $kmsKeyName
      *          The resource name of the Cloud KMS CryptoKey to be used to protect access
      *          to messages published on this topic.
      *
      *          The expected format is `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
-     *          <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     *          API might be changed in backward-incompatible ways and is not recommended
-     *          for production use. It is not subject to any SLA or deprecation policy.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
