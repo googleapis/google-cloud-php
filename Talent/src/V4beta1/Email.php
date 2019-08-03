@@ -16,15 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Email extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * The usage of the email address. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the email address. For example, SCHOOL, WORK,
+     * PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
     private $usage = 0;
     /**
-     * Optional.
-     * Email address.
+     * Optional. Email address.
      * Number of characters allowed is 4,000.
      *
      * Generated from protobuf field <code>string email_address = 2;</code>
@@ -38,11 +37,10 @@ class Email extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $usage
-     *           Optional.
-     *           The usage of the email address. For example, SCHOOL, WORK, PERSONAL.
+     *           Optional. The usage of the email address. For example, SCHOOL, WORK,
+     *           PERSONAL.
      *     @type string $email_address
-     *           Optional.
-     *           Email address.
+     *           Optional. Email address.
      *           Number of characters allowed is 4,000.
      * }
      */
@@ -52,8 +50,8 @@ class Email extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The usage of the email address. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the email address. For example, SCHOOL, WORK,
+     * PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      * @return int
@@ -64,8 +62,8 @@ class Email extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The usage of the email address. For example, SCHOOL, WORK, PERSONAL.
+     * Optional. The usage of the email address. For example, SCHOOL, WORK,
+     * PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      * @param int $var
@@ -80,8 +78,7 @@ class Email extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Email address.
+     * Optional. Email address.
      * Number of characters allowed is 4,000.
      *
      * Generated from protobuf field <code>string email_address = 2;</code>
@@ -93,8 +90,7 @@ class Email extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Email address.
+     * Optional. Email address.
      * Number of characters allowed is 4,000.
      *
      * Generated from protobuf field <code>string email_address = 2;</code>

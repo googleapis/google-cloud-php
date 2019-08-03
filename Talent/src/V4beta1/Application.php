@@ -27,8 +27,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required.
-     * Client side application identifier, used to uniquely identify the
+     * Required. Client side application identifier, used to uniquely identify the
      * application.
      * The maximum number of allowed characters is 255.
      *
@@ -65,16 +64,14 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $company = '';
     /**
-     * Optional.
-     * The application date.
+     * Optional. The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
      */
     private $application_date = null;
     /**
-     * Required.
-     * What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -82,54 +79,48 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $stage = 0;
     /**
-     * Optional.
-     * The application state.
+     * Optional. The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
      */
     private $state = 0;
     /**
-     * Optional.
-     * All interviews (screen, onsite, and so on) conducted as part of this
-     * application (includes details such as user conducting the interview,
+     * Optional. All interviews (screen, onsite, and so on) conducted as part of
+     * this application (includes details such as user conducting the interview,
      * timestamp, feedback, and so on).
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Interview interviews = 16;</code>
      */
     private $interviews;
     /**
-     * Optional.
-     * If the candidate is referred by a employee.
+     * Optional. If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      */
     private $referral = null;
     /**
-     * Required.
-     * Reflects the time that the application was created.
+     * Required. Reflects the time that the application was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19;</code>
      */
     private $create_time = null;
     /**
-     * Optional.
-     * The last update timestamp.
+     * Optional. The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
      */
     private $update_time = null;
     /**
-     * Optional.
-     * Free text reason behind the recruitement outcome (for example, reason for
-     * withdraw / reject, reason for an unsuccessful finish, and so on).
+     * Optional. Free text reason behind the recruitement outcome (for example,
+     * reason for withdraw / reject, reason for an unsuccessful finish, and so
+     * on).
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string outcome_notes = 21;</code>
      */
     private $outcome_notes = '';
     /**
-     * Optional.
-     * Outcome positiveness shows how positive the outcome is.
+     * Optional. Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
      */
@@ -165,8 +156,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *           for example,
      *           "projects/api-test-project/tenants/foo/profiles/bar/applications/baz".
      *     @type string $external_id
-     *           Required.
-     *           Client side application identifier, used to uniquely identify the
+     *           Required. Client side application identifier, used to uniquely identify the
      *           application.
      *           The maximum number of allowed characters is 255.
      *     @type string $profile
@@ -187,39 +177,31 @@ class Application extends \Google\Protobuf\Internal\Message
      *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
      *           for example, "projects/api-test-project/tenants/foo/companies/bar".
      *     @type \Google\Type\Date $application_date
-     *           Optional.
-     *           The application date.
+     *           Optional. The application date.
      *     @type int $stage
-     *           Required.
-     *           What is the most recent stage of the application (that is, new, screen,
-     *           send cv, hired, finished work)?  This field is intentionally not
+     *           Required. What is the most recent stage of the application (that is, new,
+     *           screen, send cv, hired, finished work)?  This field is intentionally not
      *           comprehensive of every possible status, but instead, represents statuses
      *           that would be used to indicate to the ML models good / bad matches.
      *     @type int $state
-     *           Optional.
-     *           The application state.
+     *           Optional. The application state.
      *     @type \Google\Cloud\Talent\V4beta1\Interview[]|\Google\Protobuf\Internal\RepeatedField $interviews
-     *           Optional.
-     *           All interviews (screen, onsite, and so on) conducted as part of this
-     *           application (includes details such as user conducting the interview,
+     *           Optional. All interviews (screen, onsite, and so on) conducted as part of
+     *           this application (includes details such as user conducting the interview,
      *           timestamp, feedback, and so on).
      *     @type \Google\Protobuf\BoolValue $referral
-     *           Optional.
-     *           If the candidate is referred by a employee.
+     *           Optional. If the candidate is referred by a employee.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Required.
-     *           Reflects the time that the application was created.
+     *           Required. Reflects the time that the application was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Optional.
-     *           The last update timestamp.
+     *           Optional. The last update timestamp.
      *     @type string $outcome_notes
-     *           Optional.
-     *           Free text reason behind the recruitement outcome (for example, reason for
-     *           withdraw / reject, reason for an unsuccessful finish, and so on).
+     *           Optional. Free text reason behind the recruitement outcome (for example,
+     *           reason for withdraw / reject, reason for an unsuccessful finish, and so
+     *           on).
      *           Number of characters allowed is 100.
      *     @type int $outcome
-     *           Optional.
-     *           Outcome positiveness shows how positive the outcome is.
+     *           Optional. Outcome positiveness shows how positive the outcome is.
      *     @type \Google\Protobuf\BoolValue $is_match
      *           Output only. Indicates whether this job application is a match to
      *           application related filters. This value is only applicable in profile
@@ -272,8 +254,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side application identifier, used to uniquely identify the
+     * Required. Client side application identifier, used to uniquely identify the
      * application.
      * The maximum number of allowed characters is 255.
      *
@@ -286,8 +267,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side application identifier, used to uniquely identify the
+     * Required. Client side application identifier, used to uniquely identify the
      * application.
      * The maximum number of allowed characters is 255.
      *
@@ -404,8 +384,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The application date.
+     * Optional. The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
      * @return \Google\Type\Date
@@ -416,8 +395,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The application date.
+     * Optional. The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
      * @param \Google\Type\Date $var
@@ -432,9 +410,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -447,9 +424,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
@@ -466,8 +442,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The application state.
+     * Optional. The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
      * @return int
@@ -478,8 +453,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The application state.
+     * Optional. The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
      * @param int $var
@@ -494,9 +468,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * All interviews (screen, onsite, and so on) conducted as part of this
-     * application (includes details such as user conducting the interview,
+     * Optional. All interviews (screen, onsite, and so on) conducted as part of
+     * this application (includes details such as user conducting the interview,
      * timestamp, feedback, and so on).
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Interview interviews = 16;</code>
@@ -508,9 +481,8 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * All interviews (screen, onsite, and so on) conducted as part of this
-     * application (includes details such as user conducting the interview,
+     * Optional. All interviews (screen, onsite, and so on) conducted as part of
+     * this application (includes details such as user conducting the interview,
      * timestamp, feedback, and so on).
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Interview interviews = 16;</code>
@@ -526,8 +498,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * If the candidate is referred by a employee.
+     * Optional. If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      * @return \Google\Protobuf\BoolValue
@@ -540,8 +511,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getReferral()</code>
 
-     * Optional.
-     * If the candidate is referred by a employee.
+     * Optional. If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      * @return bool|null
@@ -553,8 +523,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * If the candidate is referred by a employee.
+     * Optional. If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -571,8 +540,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional.
-     * If the candidate is referred by a employee.
+     * Optional. If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      * @param bool|null $var
@@ -585,8 +553,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Reflects the time that the application was created.
+     * Required. Reflects the time that the application was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19;</code>
      * @return \Google\Protobuf\Timestamp
@@ -597,8 +564,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Reflects the time that the application was created.
+     * Required. Reflects the time that the application was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -613,8 +579,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The last update timestamp.
+     * Optional. The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
      * @return \Google\Protobuf\Timestamp
@@ -625,8 +590,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The last update timestamp.
+     * Optional. The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -641,9 +605,9 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Free text reason behind the recruitement outcome (for example, reason for
-     * withdraw / reject, reason for an unsuccessful finish, and so on).
+     * Optional. Free text reason behind the recruitement outcome (for example,
+     * reason for withdraw / reject, reason for an unsuccessful finish, and so
+     * on).
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string outcome_notes = 21;</code>
@@ -655,9 +619,9 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Free text reason behind the recruitement outcome (for example, reason for
-     * withdraw / reject, reason for an unsuccessful finish, and so on).
+     * Optional. Free text reason behind the recruitement outcome (for example,
+     * reason for withdraw / reject, reason for an unsuccessful finish, and so
+     * on).
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string outcome_notes = 21;</code>
@@ -673,8 +637,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Outcome positiveness shows how positive the outcome is.
+     * Optional. Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
      * @return int
@@ -685,8 +648,7 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Outcome positiveness shows how positive the outcome is.
+     * Optional. Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
      * @param int $var

@@ -302,17 +302,13 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the project under which the tenant is created.
+     * @param string $parent Required. Resource name of the project under which the tenant is created.
      *
      * The format is "projects/{project_id}", for example,
      * "projects/api-test-project".
-     * @param Tenant $tenant Required.
-     *
-     * The tenant to be created.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Tenant $tenant       Required. The tenant to be created.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -361,9 +357,7 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the tenant to be retrieved.
+     * @param string $name Required. The resource name of the tenant to be retrieved.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenants/foo".
@@ -416,21 +410,24 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param Tenant $tenant Required.
-     *
-     * The tenant resource to replace the current resource in the system.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Tenant $tenant       Required. The tenant resource to replace the current resource in the
+     *                             system.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type FieldMask $updateMask
      *          Optional but strongly recommended for the best service
      *          experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask] is provided, only the specified fields in
-     *          [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are updated. Otherwise all the fields are updated.
+     *          If
+     *          [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
+     *          is provided, only the specified fields in
+     *          [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are
+     *          updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the tenant fields to be updated. Only
-     *          top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are supported.
+     *          top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are
+     *          supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -480,9 +477,7 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the tenant to be deleted.
+     * @param string $name Required. The resource name of the tenant to be deleted.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenants/foo".
@@ -548,9 +543,7 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the project under which the tenant is created.
+     * @param string $parent Required. Resource name of the project under which the tenant is created.
      *
      * The format is "projects/{project_id}", for example,
      * "projects/api-test-project".

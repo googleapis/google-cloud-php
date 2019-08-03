@@ -17,54 +17,53 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * The address name, such as "Mountain View" or "Bay Area".
+     * Optional. The address name, such as "Mountain View" or "Bay Area".
      *
      * Generated from protobuf field <code>string address = 1;</code>
      */
     private $address = '';
     /**
-     * Optional.
-     * CLDR region code of the country/region of the address. This is used
-     * to address ambiguity of the user-input location, for example, "Liverpool"
-     * against "Liverpool, NY, US" or "Liverpool, UK".
+     * Optional. CLDR region code of the country/region of the address. This is
+     * used to address ambiguity of the user-input location, for example,
+     * "Liverpool" against "Liverpool, NY, US" or "Liverpool, UK".
      * Set this field if all the jobs to search against are from a same region,
      * or jobs are world-wide, but the job seeker is from a specific region.
      * See http://cldr.unicode.org/ and
      * http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
      * for details. Example: "CH" for Switzerland.
+     * Note that this filter is not applicable for Profile Search related queries.
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      */
     private $region_code = '';
     /**
-     * Optional.
-     * The latitude and longitude of the geographic center from which to
+     * Optional. The latitude and longitude of the geographic center from which to
      * search. This field's ignored if `address` is provided.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
      */
     private $lat_lng = null;
     /**
-     * Optional.
-     * The distance_in_miles is applied when the location being searched for is
-     * identified as a city or smaller. When the location being searched for is a
-     * state or larger, this field is ignored.
+     * Optional. The distance_in_miles is applied when the location being searched
+     * for is identified as a city or smaller. When the location being searched
+     * for is a state or larger, this field is ignored.
      *
      * Generated from protobuf field <code>double distance_in_miles = 4;</code>
      */
     private $distance_in_miles = 0.0;
     /**
-     * Optional.
-     * Allows the client to return jobs without a
-     * set location, specifically, telecommuting jobs (telecomuting is considered
+     * Optional. Allows the client to return jobs without a
+     * set location, specifically, telecommuting jobs (telecommuting is considered
      * by the service as a special location.
-     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
-     * If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     * telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
-     * ignored. If not set or set to
-     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
-     * searched.
+     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
+     * indicates if a job permits telecommuting. If this field is set to
+     * [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     * telecommuting jobs are searched, and
+     * [address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     * [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
+     * If not set or set to
+     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
+     * telecommute job are not searched.
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -76,9 +75,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      */
     private $telecommute_preference = 0;
     /**
-     * Optional.
-     * Whether to apply negation to the filter so profiles matching the filter
-     * are excluded.
+     * Optional. Whether to apply negation to the filter so profiles matching the
+     * filter are excluded.
      * Currently only supported in profile search.
      *
      * Generated from protobuf field <code>bool negated = 6;</code>
@@ -92,38 +90,37 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $address
-     *           Optional.
-     *           The address name, such as "Mountain View" or "Bay Area".
+     *           Optional. The address name, such as "Mountain View" or "Bay Area".
      *     @type string $region_code
-     *           Optional.
-     *           CLDR region code of the country/region of the address. This is used
-     *           to address ambiguity of the user-input location, for example, "Liverpool"
-     *           against "Liverpool, NY, US" or "Liverpool, UK".
+     *           Optional. CLDR region code of the country/region of the address. This is
+     *           used to address ambiguity of the user-input location, for example,
+     *           "Liverpool" against "Liverpool, NY, US" or "Liverpool, UK".
      *           Set this field if all the jobs to search against are from a same region,
      *           or jobs are world-wide, but the job seeker is from a specific region.
      *           See http://cldr.unicode.org/ and
      *           http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
      *           for details. Example: "CH" for Switzerland.
+     *           Note that this filter is not applicable for Profile Search related queries.
      *     @type \Google\Type\LatLng $lat_lng
-     *           Optional.
-     *           The latitude and longitude of the geographic center from which to
+     *           Optional. The latitude and longitude of the geographic center from which to
      *           search. This field's ignored if `address` is provided.
      *     @type float $distance_in_miles
-     *           Optional.
-     *           The distance_in_miles is applied when the location being searched for is
-     *           identified as a city or smaller. When the location being searched for is a
-     *           state or larger, this field is ignored.
+     *           Optional. The distance_in_miles is applied when the location being searched
+     *           for is identified as a city or smaller. When the location being searched
+     *           for is a state or larger, this field is ignored.
      *     @type int $telecommute_preference
-     *           Optional.
-     *           Allows the client to return jobs without a
-     *           set location, specifically, telecommuting jobs (telecomuting is considered
+     *           Optional. Allows the client to return jobs without a
+     *           set location, specifically, telecommuting jobs (telecommuting is considered
      *           by the service as a special location.
-     *           [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
-     *           If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     *           telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
-     *           ignored. If not set or set to
-     *           [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
-     *           searched.
+     *           [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
+     *           indicates if a job permits telecommuting. If this field is set to
+     *           [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     *           telecommuting jobs are searched, and
+     *           [address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     *           [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
+     *           If not set or set to
+     *           [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
+     *           telecommute job are not searched.
      *           This filter can be used by itself to search exclusively for telecommuting
      *           jobs, or it can be combined with another location
      *           filter to search for a combination of job locations,
@@ -131,9 +128,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      *           combination with other location filters, telecommuting jobs can be
      *           treated as less relevant than other jobs in the search response.
      *     @type bool $negated
-     *           Optional.
-     *           Whether to apply negation to the filter so profiles matching the filter
-     *           are excluded.
+     *           Optional. Whether to apply negation to the filter so profiles matching the
+     *           filter are excluded.
      *           Currently only supported in profile search.
      * }
      */
@@ -143,8 +139,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The address name, such as "Mountain View" or "Bay Area".
+     * Optional. The address name, such as "Mountain View" or "Bay Area".
      *
      * Generated from protobuf field <code>string address = 1;</code>
      * @return string
@@ -155,8 +150,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The address name, such as "Mountain View" or "Bay Area".
+     * Optional. The address name, such as "Mountain View" or "Bay Area".
      *
      * Generated from protobuf field <code>string address = 1;</code>
      * @param string $var
@@ -171,15 +165,15 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * CLDR region code of the country/region of the address. This is used
-     * to address ambiguity of the user-input location, for example, "Liverpool"
-     * against "Liverpool, NY, US" or "Liverpool, UK".
+     * Optional. CLDR region code of the country/region of the address. This is
+     * used to address ambiguity of the user-input location, for example,
+     * "Liverpool" against "Liverpool, NY, US" or "Liverpool, UK".
      * Set this field if all the jobs to search against are from a same region,
      * or jobs are world-wide, but the job seeker is from a specific region.
      * See http://cldr.unicode.org/ and
      * http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
      * for details. Example: "CH" for Switzerland.
+     * Note that this filter is not applicable for Profile Search related queries.
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      * @return string
@@ -190,15 +184,15 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * CLDR region code of the country/region of the address. This is used
-     * to address ambiguity of the user-input location, for example, "Liverpool"
-     * against "Liverpool, NY, US" or "Liverpool, UK".
+     * Optional. CLDR region code of the country/region of the address. This is
+     * used to address ambiguity of the user-input location, for example,
+     * "Liverpool" against "Liverpool, NY, US" or "Liverpool, UK".
      * Set this field if all the jobs to search against are from a same region,
      * or jobs are world-wide, but the job seeker is from a specific region.
      * See http://cldr.unicode.org/ and
      * http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html
      * for details. Example: "CH" for Switzerland.
+     * Note that this filter is not applicable for Profile Search related queries.
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      * @param string $var
@@ -213,8 +207,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The latitude and longitude of the geographic center from which to
+     * Optional. The latitude and longitude of the geographic center from which to
      * search. This field's ignored if `address` is provided.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
@@ -226,8 +219,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The latitude and longitude of the geographic center from which to
+     * Optional. The latitude and longitude of the geographic center from which to
      * search. This field's ignored if `address` is provided.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
@@ -243,10 +235,9 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The distance_in_miles is applied when the location being searched for is
-     * identified as a city or smaller. When the location being searched for is a
-     * state or larger, this field is ignored.
+     * Optional. The distance_in_miles is applied when the location being searched
+     * for is identified as a city or smaller. When the location being searched
+     * for is a state or larger, this field is ignored.
      *
      * Generated from protobuf field <code>double distance_in_miles = 4;</code>
      * @return float
@@ -257,10 +248,9 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The distance_in_miles is applied when the location being searched for is
-     * identified as a city or smaller. When the location being searched for is a
-     * state or larger, this field is ignored.
+     * Optional. The distance_in_miles is applied when the location being searched
+     * for is identified as a city or smaller. When the location being searched
+     * for is a state or larger, this field is ignored.
      *
      * Generated from protobuf field <code>double distance_in_miles = 4;</code>
      * @param float $var
@@ -275,16 +265,18 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Allows the client to return jobs without a
-     * set location, specifically, telecommuting jobs (telecomuting is considered
+     * Optional. Allows the client to return jobs without a
+     * set location, specifically, telecommuting jobs (telecommuting is considered
      * by the service as a special location.
-     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
-     * If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     * telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
-     * ignored. If not set or set to
-     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
-     * searched.
+     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
+     * indicates if a job permits telecommuting. If this field is set to
+     * [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     * telecommuting jobs are searched, and
+     * [address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     * [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
+     * If not set or set to
+     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
+     * telecommute job are not searched.
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -301,16 +293,18 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Allows the client to return jobs without a
-     * set location, specifically, telecommuting jobs (telecomuting is considered
+     * Optional. Allows the client to return jobs without a
+     * set location, specifically, telecommuting jobs (telecommuting is considered
      * by the service as a special location.
-     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region] indicates if a job permits telecommuting.
-     * If this field is set to [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
-     * telecommuting jobs are searched, and [address][google.cloud.talent.v4beta1.LocationFilter.address] and [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are
-     * ignored. If not set or set to
-     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED], telecommute job are not
-     * searched.
+     * [Job.posting_region][google.cloud.talent.v4beta1.Job.posting_region]
+     * indicates if a job permits telecommuting. If this field is set to
+     * [TelecommutePreference.TELECOMMUTE_ALLOWED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_ALLOWED],
+     * telecommuting jobs are searched, and
+     * [address][google.cloud.talent.v4beta1.LocationFilter.address] and
+     * [lat_lng][google.cloud.talent.v4beta1.LocationFilter.lat_lng] are ignored.
+     * If not set or set to
+     * [TelecommutePreference.TELECOMMUTE_EXCLUDED][google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference.TELECOMMUTE_EXCLUDED],
+     * telecommute job are not searched.
      * This filter can be used by itself to search exclusively for telecommuting
      * jobs, or it can be combined with another location
      * filter to search for a combination of job locations,
@@ -331,9 +325,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Whether to apply negation to the filter so profiles matching the filter
-     * are excluded.
+     * Optional. Whether to apply negation to the filter so profiles matching the
+     * filter are excluded.
      * Currently only supported in profile search.
      *
      * Generated from protobuf field <code>bool negated = 6;</code>
@@ -345,9 +338,8 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Whether to apply negation to the filter so profiles matching the filter
-     * are excluded.
+     * Optional. Whether to apply negation to the filter so profiles matching the
+     * filter are excluded.
      * Currently only supported in profile search.
      *
      * Generated from protobuf field <code>bool negated = 6;</code>

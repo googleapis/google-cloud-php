@@ -17,24 +17,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class EmployerFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The name of the employer, for example "Google", "Alphabet".
+     * Required. The name of the employer, for example "Google", "Alphabet".
      *
      * Generated from protobuf field <code>string employer = 1;</code>
      */
     private $employer = '';
     /**
-     * Optional.
-     * Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     * Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     * Optional. Define set of
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     * against.
+     * Defaults to
+     * [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode mode = 2;</code>
      */
     private $mode = 0;
     /**
-     * Optional.
-     * Whether to apply negation to the filter so profiles matching the filter
-     * is excluded.
+     * Optional. Whether to apply negation to the filter so profiles matching the
+     * filter is excluded.
      *
      * Generated from protobuf field <code>bool negated = 3;</code>
      */
@@ -47,16 +47,16 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $employer
-     *           Required.
-     *           The name of the employer, for example "Google", "Alphabet".
+     *           Required. The name of the employer, for example "Google", "Alphabet".
      *     @type int $mode
-     *           Optional.
-     *           Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     *           Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     *           Optional. Define set of
+     *           [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     *           against.
+     *           Defaults to
+     *           [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *     @type bool $negated
-     *           Optional.
-     *           Whether to apply negation to the filter so profiles matching the filter
-     *           is excluded.
+     *           Optional. Whether to apply negation to the filter so profiles matching the
+     *           filter is excluded.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,8 +65,7 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the employer, for example "Google", "Alphabet".
+     * Required. The name of the employer, for example "Google", "Alphabet".
      *
      * Generated from protobuf field <code>string employer = 1;</code>
      * @return string
@@ -77,8 +76,7 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the employer, for example "Google", "Alphabet".
+     * Required. The name of the employer, for example "Google", "Alphabet".
      *
      * Generated from protobuf field <code>string employer = 1;</code>
      * @param string $var
@@ -93,9 +91,11 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     * Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     * Optional. Define set of
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     * against.
+     * Defaults to
+     * [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode mode = 2;</code>
      * @return int
@@ -106,9 +106,11 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Define set of [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search against.
-     * Defaults to [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
+     * Optional. Define set of
+     * [EmploymentRecord][google.cloud.talent.v4beta1.EmploymentRecord]s to search
+     * against.
+     * Defaults to
+     * [EmployerFilterMode.ALL_EMPLOYMENT_RECORDS][google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode.ALL_EMPLOYMENT_RECORDS].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.EmployerFilter.EmployerFilterMode mode = 2;</code>
      * @param int $var
@@ -123,9 +125,8 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Whether to apply negation to the filter so profiles matching the filter
-     * is excluded.
+     * Optional. Whether to apply negation to the filter so profiles matching the
+     * filter is excluded.
      *
      * Generated from protobuf field <code>bool negated = 3;</code>
      * @return bool
@@ -136,9 +137,8 @@ class EmployerFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Whether to apply negation to the filter so profiles matching the filter
-     * is excluded.
+     * Optional. Whether to apply negation to the filter so profiles matching the
+     * filter is excluded.
      *
      * Generated from protobuf field <code>bool negated = 3;</code>
      * @param bool $var

@@ -17,25 +17,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProfileEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Type of event.
+     * Required. Type of event.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1;</code>
      */
     private $type = 0;
     /**
-     * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     * Required. The [profile name(s)][google.cloud.talent.v4beta1.Profile.name]
+     * associated with this client event.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      */
     private $profiles;
     /**
-     * Optional.
-     * The job ID associated with this client event if there is one. Leave it
-     * empty if the event isn't associated with a job.
-     * The job ID should be consistent with the
-     * [JobApplication.job.requisition_id][] in the profile.
+     * Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     * associated with this client event. Leave it empty if the event isn't
+     * associated with a job.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     * example, "projects/api-test-project/tenants/foo/jobs/1234".
      *
      * Generated from protobuf field <code>repeated string jobs = 6;</code>
      */
@@ -48,17 +51,20 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $type
-     *           Required.
-     *           Type of event.
+     *           Required. Type of event.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $profiles
-     *           Required.
-     *           The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     *           Required. The [profile name(s)][google.cloud.talent.v4beta1.Profile.name]
+     *           associated with this client event.
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           Optional.
-     *           The job ID associated with this client event if there is one. Leave it
-     *           empty if the event isn't associated with a job.
-     *           The job ID should be consistent with the
-     *           [JobApplication.job.requisition_id][] in the profile.
+     *           Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     *           associated with this client event. Leave it empty if the event isn't
+     *           associated with a job.
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     *           example, "projects/api-test-project/tenants/foo/jobs/1234".
      * }
      */
     public function __construct($data = NULL) {
@@ -67,8 +73,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Type of event.
+     * Required. Type of event.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1;</code>
      * @return int
@@ -79,8 +84,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Type of event.
+     * Required. Type of event.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1;</code>
      * @param int $var
@@ -95,8 +99,11 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     * Required. The [profile name(s)][google.cloud.talent.v4beta1.Profile.name]
+     * associated with this client event.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,8 +114,11 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The [profile name(s)][google.cloud.talent.v4beta1.Profile.name] associated with this client event.
+     * Required. The [profile name(s)][google.cloud.talent.v4beta1.Profile.name]
+     * associated with this client event.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -123,11 +133,12 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The job ID associated with this client event if there is one. Leave it
-     * empty if the event isn't associated with a job.
-     * The job ID should be consistent with the
-     * [JobApplication.job.requisition_id][] in the profile.
+     * Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     * associated with this client event. Leave it empty if the event isn't
+     * associated with a job.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     * example, "projects/api-test-project/tenants/foo/jobs/1234".
      *
      * Generated from protobuf field <code>repeated string jobs = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -138,11 +149,12 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The job ID associated with this client event if there is one. Leave it
-     * empty if the event isn't associated with a job.
-     * The job ID should be consistent with the
-     * [JobApplication.job.requisition_id][] in the profile.
+     * Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     * associated with this client event. Leave it empty if the event isn't
+     * associated with a job.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     * example, "projects/api-test-project/tenants/foo/jobs/1234".
      *
      * Generated from protobuf field <code>repeated string jobs = 6;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

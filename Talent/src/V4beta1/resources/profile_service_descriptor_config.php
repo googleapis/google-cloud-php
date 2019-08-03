@@ -20,7 +20,7 @@ return [
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getHistogramQueryResults',
+                    'resourcesGetMethod' => 'getSummarizedProfiles',
                 ],
             ],
         ],

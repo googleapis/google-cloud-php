@@ -17,23 +17,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     * Required. The type of the event (see
+     * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
      */
     private $type = 0;
     /**
-     * Required.
-     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     * For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     * this field contains the identifiers of all jobs shown to the job seeker.
-     * If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     * identifier of the viewed job.
+     * Required. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     * associated with this event. For example, if this is an
+     * [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     * event, this field contains the identifiers of all jobs shown to the job
+     * seeker. If this was a
+     * [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     * field contains the identifier of the viewed job.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     * example, "projects/api-test-project/tenants/foo/jobs/1234".
      *
      * Generated from protobuf field <code>repeated string jobs = 2;</code>
      */
     private $jobs;
+    /**
+     * Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
+     * associated with this client event.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *
+     * Generated from protobuf field <code>string profile = 3;</code>
+     */
+    private $profile = '';
 
     /**
      * Constructor.
@@ -42,15 +56,25 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $type
-     *           Required.
-     *           The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     *           Required. The type of the event (see
+     *           [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           Required.
-     *           The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     *           For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     *           this field contains the identifiers of all jobs shown to the job seeker.
-     *           If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     *           identifier of the viewed job.
+     *           Required. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     *           associated with this event. For example, if this is an
+     *           [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     *           event, this field contains the identifiers of all jobs shown to the job
+     *           seeker. If this was a
+     *           [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     *           field contains the identifier of the viewed job.
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     *           example, "projects/api-test-project/tenants/foo/jobs/1234".
+     *     @type string $profile
+     *           Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
+     *           associated with this client event.
+     *           The format is
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
      * }
      */
     public function __construct($data = NULL) {
@@ -59,8 +83,8 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     * Required. The type of the event (see
+     * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
      * @return int
@@ -71,8 +95,8 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
+     * Required. The type of the event (see
+     * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
      * @param int $var
@@ -87,12 +111,16 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     * For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     * this field contains the identifiers of all jobs shown to the job seeker.
-     * If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     * identifier of the viewed job.
+     * Required. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     * associated with this event. For example, if this is an
+     * [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     * event, this field contains the identifiers of all jobs shown to the job
+     * seeker. If this was a
+     * [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     * field contains the identifier of the viewed job.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     * example, "projects/api-test-project/tenants/foo/jobs/1234".
      *
      * Generated from protobuf field <code>repeated string jobs = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -103,12 +131,16 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
-     * For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
-     * this field contains the identifiers of all jobs shown to the job seeker.
-     * If this was a [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this field contains the
-     * identifier of the viewed job.
+     * Required. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
+     * associated with this event. For example, if this is an
+     * [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION]
+     * event, this field contains the identifiers of all jobs shown to the job
+     * seeker. If this was a
+     * [view][google.cloud.talent.v4beta1.JobEvent.JobEventType.VIEW] event, this
+     * field contains the identifier of the viewed job.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
+     * example, "projects/api-test-project/tenants/foo/jobs/1234".
      *
      * Generated from protobuf field <code>repeated string jobs = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -118,6 +150,40 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->jobs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
+     * associated with this client event.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *
+     * Generated from protobuf field <code>string profile = 3;</code>
+     * @return string
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
+     * associated with this client event.
+     * The format is
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
+     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *
+     * Generated from protobuf field <code>string profile = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProfile($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->profile = $var;
 
         return $this;
     }

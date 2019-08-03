@@ -36,6 +36,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Talent\V4beta1\CompleteQueryRequest;
+use Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope;
+use Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType;
 use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
 
 /**
@@ -302,52 +304,51 @@ class CompletionGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of tenant the completion is performed within.
+     * @param string $parent Required. Resource name of tenant the completion is performed within.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenant/foo".
      *
      * Tenant id is optional and the default tenant is used if unspecified, for
      * example, "projects/api-test-project".
-     * @param string $query Required.
-     *
-     * The query used to generate suggestions.
+     * @param string $query Required. The query used to generate suggestions.
      *
      * The maximum number of allowed characters is 255.
-     * @param int $pageSize Required.
-     *
-     * Completion result count.
+     * @param int $pageSize Required. Completion result count.
      *
      * The maximum allowed page size is 10.
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type string[] $languageCodes
-     *          Optional.
-     *
-     *          The list of languages of the query. This is
+     *          Optional. The list of languages of the query. This is
      *          the BCP-47 language code, such as "en-US" or "sr-Latn".
      *          For more information, see
      *          [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *
-     *          For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *          For
+     *          [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
+     *          type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
-     *          For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
-     *          only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
-     *          returned.
+     *          For
+     *          [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
+     *          type, only companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
-     *          For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *          For
+     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
+     *          type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          or companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
      *          The maximum number of allowed characters is 255.
      *     @type string $company
-     *          Optional.
-     *
-     *          If provided, restricts completion to specified company.
+     *          Optional. If provided, restricts completion to specified company.
      *
      *          The format is
      *          "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
@@ -356,14 +357,12 @@ class CompletionGapicClient
      *          Tenant id is optional and the default tenant is used if unspecified, for
      *          example, "projects/api-test-project/companies/bar".
      *     @type int $scope
-     *          Optional.
-     *
-     *          The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *          Optional. The scope of the completion. The defaults is
+     *          [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope}
      *     @type int $type
-     *          Optional.
-     *
-     *          The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *          Optional. The completion topic. The default is
+     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

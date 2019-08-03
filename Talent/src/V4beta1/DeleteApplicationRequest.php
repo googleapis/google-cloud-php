@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the application to be deleted.
+     * Required. The resource name of the application to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
      * for example,
@@ -34,8 +33,7 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The resource name of the application to be deleted.
+     *           Required. The resource name of the application to be deleted.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
      *           for example,
@@ -48,8 +46,7 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the application to be deleted.
+     * Required. The resource name of the application to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
      * for example,
@@ -64,8 +61,7 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the application to be deleted.
+     * Required. The resource name of the application to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
      * for example,

@@ -17,16 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProcessingOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * If set to `true`, the service does not attempt to resolve a
+     * Optional. If set to `true`, the service does not attempt to resolve a
      * more precise address for the job.
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
      */
     private $disable_street_address_resolution = false;
     /**
-     * Optional.
-     * Option for job HTML content sanitization. Applied fields are:
+     * Optional. Option for job HTML content sanitization. Applied fields are:
      * * description
      * * applicationInfo.instruction
      * * incentives
@@ -34,7 +32,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      * * responsibilities
      * HTML tags in these fields may be stripped if sanitiazation isn't
      * disabled.
-     * Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     * Defaults to
+     * [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.HtmlSanitization html_sanitization = 2;</code>
      */
@@ -47,12 +46,10 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $disable_street_address_resolution
-     *           Optional.
-     *           If set to `true`, the service does not attempt to resolve a
+     *           Optional. If set to `true`, the service does not attempt to resolve a
      *           more precise address for the job.
      *     @type int $html_sanitization
-     *           Optional.
-     *           Option for job HTML content sanitization. Applied fields are:
+     *           Optional. Option for job HTML content sanitization. Applied fields are:
      *           * description
      *           * applicationInfo.instruction
      *           * incentives
@@ -60,7 +57,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      *           * responsibilities
      *           HTML tags in these fields may be stripped if sanitiazation isn't
      *           disabled.
-     *           Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     *           Defaults to
+     *           [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      * }
      */
     public function __construct($data = NULL) {
@@ -69,8 +67,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * If set to `true`, the service does not attempt to resolve a
+     * Optional. If set to `true`, the service does not attempt to resolve a
      * more precise address for the job.
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
@@ -82,8 +79,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * If set to `true`, the service does not attempt to resolve a
+     * Optional. If set to `true`, the service does not attempt to resolve a
      * more precise address for the job.
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
@@ -99,8 +95,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Option for job HTML content sanitization. Applied fields are:
+     * Optional. Option for job HTML content sanitization. Applied fields are:
      * * description
      * * applicationInfo.instruction
      * * incentives
@@ -108,7 +103,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      * * responsibilities
      * HTML tags in these fields may be stripped if sanitiazation isn't
      * disabled.
-     * Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     * Defaults to
+     * [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.HtmlSanitization html_sanitization = 2;</code>
      * @return int
@@ -119,8 +115,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Option for job HTML content sanitization. Applied fields are:
+     * Optional. Option for job HTML content sanitization. Applied fields are:
      * * description
      * * applicationInfo.instruction
      * * incentives
@@ -128,7 +123,8 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      * * responsibilities
      * HTML tags in these fields may be stripped if sanitiazation isn't
      * disabled.
-     * Defaults to [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
+     * Defaults to
+     * [HtmlSanitization.SIMPLE_FORMATTING_ONLY][google.cloud.talent.v4beta1.HtmlSanitization.SIMPLE_FORMATTING_ONLY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.HtmlSanitization html_sanitization = 2;</code>
      * @param int $var

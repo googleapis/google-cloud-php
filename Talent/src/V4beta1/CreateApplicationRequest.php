@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Resource name of the profile under which the application is created.
+     * Required. Resource name of the profile under which the application is
+     * created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
@@ -26,8 +26,7 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required.
-     * The application to be created.
+     * Required. The application to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application application = 2;</code>
      */
@@ -40,14 +39,13 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           Resource name of the profile under which the application is created.
+     *           Required. Resource name of the profile under which the application is
+     *           created.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      *           example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
      *     @type \Google\Cloud\Talent\V4beta1\Application $application
-     *           Required.
-     *           The application to be created.
+     *           Required. The application to be created.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,8 +54,8 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the profile under which the application is created.
+     * Required. Resource name of the profile under which the application is
+     * created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
@@ -71,8 +69,8 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the profile under which the application is created.
+     * Required. Resource name of the profile under which the application is
+     * created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
@@ -90,8 +88,7 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The application to be created.
+     * Required. The application to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application application = 2;</code>
      * @return \Google\Cloud\Talent\V4beta1\Application
@@ -102,8 +99,7 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The application to be created.
+     * Required. The application to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application application = 2;</code>
      * @param \Google\Cloud\Talent\V4beta1\Application $var

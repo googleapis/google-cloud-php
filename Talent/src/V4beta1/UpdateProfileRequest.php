@@ -16,40 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Profile to be updated.
+     * Required. Profile to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1;</code>
      */
     private $profile = null;
     /**
-     * Optional.
-     * A field mask to specify the profile fields to update.
+     * Optional. A field mask to specify the profile fields to update.
      * A full update is performed if it is unset.
      * Valid values are:
-     * * externalId
+     * * external_id
      * * source
      * * uri
-     * * isHirable
-     * * createTime
-     * * updateTime
-     * * resumeHrxml
-     * * personNames
+     * * is_hirable
+     * * create_time
+     * * update_time
+     * * resume
+     * * person_names
      * * addresses
-     * * emailAddresses
-     * * phoneNumbers
-     * * personalUris
-     * * additionalContactInfo
-     * * employmentRecords
-     * * educationRecords
+     * * email_addresses
+     * * phone_numbers
+     * * personal_uris
+     * * additional_contact_info
+     * * employment_records
+     * * education_records
      * * skills
      * * projects
      * * publications
      * * patents
      * * certifications
-     * * recruitingNotes
-     * * customAttributes
-     * * groupId
+     * * recruiting_notes
+     * * custom_attributes
+     * * group_id
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -62,36 +60,34 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Profile $profile
-     *           Required.
-     *           Profile to be updated.
+     *           Required. Profile to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional.
-     *           A field mask to specify the profile fields to update.
+     *           Optional. A field mask to specify the profile fields to update.
      *           A full update is performed if it is unset.
      *           Valid values are:
-     *           * externalId
+     *           * external_id
      *           * source
      *           * uri
-     *           * isHirable
-     *           * createTime
-     *           * updateTime
-     *           * resumeHrxml
-     *           * personNames
+     *           * is_hirable
+     *           * create_time
+     *           * update_time
+     *           * resume
+     *           * person_names
      *           * addresses
-     *           * emailAddresses
-     *           * phoneNumbers
-     *           * personalUris
-     *           * additionalContactInfo
-     *           * employmentRecords
-     *           * educationRecords
+     *           * email_addresses
+     *           * phone_numbers
+     *           * personal_uris
+     *           * additional_contact_info
+     *           * employment_records
+     *           * education_records
      *           * skills
      *           * projects
      *           * publications
      *           * patents
      *           * certifications
-     *           * recruitingNotes
-     *           * customAttributes
-     *           * groupId
+     *           * recruiting_notes
+     *           * custom_attributes
+     *           * group_id
      * }
      */
     public function __construct($data = NULL) {
@@ -100,8 +96,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Profile to be updated.
+     * Required. Profile to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1;</code>
      * @return \Google\Cloud\Talent\V4beta1\Profile
@@ -112,8 +107,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Profile to be updated.
+     * Required. Profile to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1;</code>
      * @param \Google\Cloud\Talent\V4beta1\Profile $var
@@ -128,33 +122,32 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A field mask to specify the profile fields to update.
+     * Optional. A field mask to specify the profile fields to update.
      * A full update is performed if it is unset.
      * Valid values are:
-     * * externalId
+     * * external_id
      * * source
      * * uri
-     * * isHirable
-     * * createTime
-     * * updateTime
-     * * resumeHrxml
-     * * personNames
+     * * is_hirable
+     * * create_time
+     * * update_time
+     * * resume
+     * * person_names
      * * addresses
-     * * emailAddresses
-     * * phoneNumbers
-     * * personalUris
-     * * additionalContactInfo
-     * * employmentRecords
-     * * educationRecords
+     * * email_addresses
+     * * phone_numbers
+     * * personal_uris
+     * * additional_contact_info
+     * * employment_records
+     * * education_records
      * * skills
      * * projects
      * * publications
      * * patents
      * * certifications
-     * * recruitingNotes
-     * * customAttributes
-     * * groupId
+     * * recruiting_notes
+     * * custom_attributes
+     * * group_id
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -165,33 +158,32 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A field mask to specify the profile fields to update.
+     * Optional. A field mask to specify the profile fields to update.
      * A full update is performed if it is unset.
      * Valid values are:
-     * * externalId
+     * * external_id
      * * source
      * * uri
-     * * isHirable
-     * * createTime
-     * * updateTime
-     * * resumeHrxml
-     * * personNames
+     * * is_hirable
+     * * create_time
+     * * update_time
+     * * resume
+     * * person_names
      * * addresses
-     * * emailAddresses
-     * * phoneNumbers
-     * * personalUris
-     * * additionalContactInfo
-     * * employmentRecords
-     * * educationRecords
+     * * email_addresses
+     * * phone_numbers
+     * * personal_uris
+     * * additional_contact_info
+     * * employment_records
+     * * education_records
      * * skills
      * * projects
      * * publications
      * * patents
      * * certifications
-     * * recruitingNotes
-     * * customAttributes
-     * * groupId
+     * * recruiting_notes
+     * * custom_attributes
+     * * group_id
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

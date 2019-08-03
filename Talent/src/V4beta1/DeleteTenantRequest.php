@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteTenantRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the tenant to be deleted.
+     * Required. The resource name of the tenant to be deleted.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenants/foo".
      *
@@ -32,8 +31,7 @@ class DeleteTenantRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The resource name of the tenant to be deleted.
+     *           Required. The resource name of the tenant to be deleted.
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      *           "projects/api-test-project/tenants/foo".
      * }
@@ -44,8 +42,7 @@ class DeleteTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the tenant to be deleted.
+     * Required. The resource name of the tenant to be deleted.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenants/foo".
      *
@@ -58,8 +55,7 @@ class DeleteTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the tenant to be deleted.
+     * Required. The resource name of the tenant to be deleted.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
      * "projects/api-test-project/tenants/foo".
      *

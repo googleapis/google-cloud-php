@@ -150,6 +150,44 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchCreate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchUpdate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchUpdate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

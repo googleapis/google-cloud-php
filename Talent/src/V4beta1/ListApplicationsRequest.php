@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Resource name of the profile under which the application is created.
+     * Required. Resource name of the profile under which the application is
+     * created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
@@ -26,15 +26,13 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional.
-     * The starting indicator from which to return results.
+     * Optional. The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
     private $page_token = '';
     /**
-     * Optional.
-     * The maximum number of applications to be returned, at most 100.
+     * Optional. The maximum number of applications to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -48,17 +46,15 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           Resource name of the profile under which the application is created.
+     *           Required. Resource name of the profile under which the application is
+     *           created.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      *           example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
      *     @type string $page_token
-     *           Optional.
-     *           The starting indicator from which to return results.
+     *           Optional. The starting indicator from which to return results.
      *     @type int $page_size
-     *           Optional.
-     *           The maximum number of applications to be returned, at most 100.
+     *           Optional. The maximum number of applications to be returned, at most 100.
      *           Default is 100 if a non-positive number is provided.
      * }
      */
@@ -68,8 +64,8 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the profile under which the application is created.
+     * Required. Resource name of the profile under which the application is
+     * created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
@@ -83,8 +79,8 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the profile under which the application is created.
+     * Required. Resource name of the profile under which the application is
+     * created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
      * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
@@ -102,8 +98,7 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The starting indicator from which to return results.
+     * Optional. The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
@@ -114,8 +109,7 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The starting indicator from which to return results.
+     * Optional. The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var
@@ -130,8 +124,7 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The maximum number of applications to be returned, at most 100.
+     * Optional. The maximum number of applications to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -143,8 +136,7 @@ class ListApplicationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The maximum number of applications to be returned, at most 100.
+     * Optional. The maximum number of applications to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>

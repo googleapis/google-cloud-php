@@ -17,17 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class TimeFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * Start timestamp, matching profiles with the start time. If this field
-     * missing, The API matches profiles with create / update timestamp before the
-     * end timestamp.
+     * Optional. Start timestamp, matching profiles with the start time. If this
+     * field missing, The API matches profiles with create / update timestamp
+     * before the end timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
     /**
-     * Optional.
-     * End timestamp, matching profiles with the end time. If this field
+     * Optional. End timestamp, matching profiles with the end time. If this field
      * missing, The API matches profiles with create / update timestamp after the
      * start timestamp.
      *
@@ -35,9 +33,9 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
-     * Optional.
-     * Specifies which time field to filter profiles.
-     * Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     * Optional. Specifies which time field to filter profiles.
+     * Defaults to
+     * [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimeFilter.TimeField time_field = 3;</code>
      */
@@ -50,19 +48,17 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Optional.
-     *           Start timestamp, matching profiles with the start time. If this field
-     *           missing, The API matches profiles with create / update timestamp before the
-     *           end timestamp.
+     *           Optional. Start timestamp, matching profiles with the start time. If this
+     *           field missing, The API matches profiles with create / update timestamp
+     *           before the end timestamp.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Optional.
-     *           End timestamp, matching profiles with the end time. If this field
+     *           Optional. End timestamp, matching profiles with the end time. If this field
      *           missing, The API matches profiles with create / update timestamp after the
      *           start timestamp.
      *     @type int $time_field
-     *           Optional.
-     *           Specifies which time field to filter profiles.
-     *           Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     *           Optional. Specifies which time field to filter profiles.
+     *           Defaults to
+     *           [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      * }
      */
     public function __construct($data = NULL) {
@@ -71,10 +67,9 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Start timestamp, matching profiles with the start time. If this field
-     * missing, The API matches profiles with create / update timestamp before the
-     * end timestamp.
+     * Optional. Start timestamp, matching profiles with the start time. If this
+     * field missing, The API matches profiles with create / update timestamp
+     * before the end timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
@@ -85,10 +80,9 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Start timestamp, matching profiles with the start time. If this field
-     * missing, The API matches profiles with create / update timestamp before the
-     * end timestamp.
+     * Optional. Start timestamp, matching profiles with the start time. If this
+     * field missing, The API matches profiles with create / update timestamp
+     * before the end timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -103,8 +97,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * End timestamp, matching profiles with the end time. If this field
+     * Optional. End timestamp, matching profiles with the end time. If this field
      * missing, The API matches profiles with create / update timestamp after the
      * start timestamp.
      *
@@ -117,8 +110,7 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * End timestamp, matching profiles with the end time. If this field
+     * Optional. End timestamp, matching profiles with the end time. If this field
      * missing, The API matches profiles with create / update timestamp after the
      * start timestamp.
      *
@@ -135,9 +127,9 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Specifies which time field to filter profiles.
-     * Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     * Optional. Specifies which time field to filter profiles.
+     * Defaults to
+     * [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimeFilter.TimeField time_field = 3;</code>
      * @return int
@@ -148,9 +140,9 @@ class TimeFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Specifies which time field to filter profiles.
-     * Defaults to [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
+     * Optional. Specifies which time field to filter profiles.
+     * Defaults to
+     * [TimeField.CREATE_TIME][google.cloud.talent.v4beta1.TimeFilter.TimeField.CREATE_TIME].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimeFilter.TimeField time_field = 3;</code>
      * @param int $var
