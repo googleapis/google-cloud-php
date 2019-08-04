@@ -8,8 +8,8 @@
         "google/cloud-core": "^1.28"
     },
     "require-dev": {
-        "erusev/parsedown": "^1.6",
-        "phpdocumentor/reflection": "^3.0",
+        "erusev/parsedown": "1.7.3",
+        "phpdocumentor/reflection": "3.0.1",
         "phpunit/phpunit": "^4.8|^5.0"
     },
     "suggest": {

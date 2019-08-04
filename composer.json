@@ -57,16 +57,16 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
-        "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^3.0",
-        "symfony/console": "^3.0",
-        "erusev/parsedown": "^1.6",
-        "vierbergenlars/php-semver": "^3.0",
+        "squizlabs/php_codesniffer": "2.9.2",
+        "phpdocumentor/reflection": "3.0.1",
+        "symfony/console": "3.4.30",
+        "erusev/parsedown": "1.7.3",
+        "vierbergenlars/php-semver": "3.0.2",
         "symfony/lock": "3.3.x-dev#1ba6ac9",
-        "phpseclib/phpseclib": "^2",
-        "google/cloud-tools": "^0.6",
-        "opis/closure": "^3.0",
-        "swaggest/json-schema": "^0.12.0"
+        "phpseclib/phpseclib": "2.0.21",
+        "google/cloud-tools": "0.6.9",
+        "opis/closure": "3.3.1",
+        "swaggest/json-schema": "0.12.13"
     },
     "replace": {
         "google/cloud-asset": "0.3.4",
