@@ -18,7 +18,6 @@
 namespace Google\Cloud\Trace\Tests\Unit\Connection;
 
 use Google\Cloud\Trace\Connection\Grpc;
-use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TimestampTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
@@ -44,6 +43,15 @@ class GrpcTest extends TestCase
 
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
+    }
+
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub(['apiEndpoint' => $expected]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
     }
 
     /**
@@ -115,3 +123,17 @@ class GrpcTest extends TestCase
         ];
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

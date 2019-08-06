@@ -64,6 +64,15 @@ class GrpcTest extends TestCase
         $this->serializer = new Serializer;
     }
 
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub(['apiEndpoint' => $expected]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
+    }
+
     public function testAllocateIds()
     {
         $key = [
@@ -527,3 +536,17 @@ class GrpcTest extends TestCase
         $this->assertEquals($result !== '' ? $result : $this->successMessage, $grpc->$method($args));
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

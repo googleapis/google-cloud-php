@@ -85,6 +85,15 @@ class GrpcTest extends TestCase
         $this->lro = $this->prophesize(OperationResponse::class)->reveal();
     }
 
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub(['apiEndpoint' => $expected]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
+    }
+
     public function testListInstanceConfigs()
     {
         $this->assertCallCorrect('listInstanceConfigs', [
@@ -1027,3 +1036,17 @@ class GrpcTest extends TestCase
         ]);
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

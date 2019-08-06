@@ -270,10 +270,28 @@ trait GrpcTrait
         ];
     }
 
+    /**
+     * Return a custom API endpoint, if one is provided by the user.
+     *
+     * @param array $config
+     * @return string|null
+     */
     private function getApiEndpoint(array $config)
     {
         return isset($config['apiEndpoint']) && $config['apiEndpoint']
             ? $config['apiEndpoint']
             : null;
+    }
+
+    /**
+     * Construct a gapic client. Allows for tests to intercept.
+     *
+     * @param string $gapicName
+     * @param array $config
+     * @return mixed
+     */
+    protected function constructGapic($gapicName, array $config)
+    {
+        return new $gapicName($config);
     }
 }

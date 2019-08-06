@@ -82,14 +82,12 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        //@codeCoverageIgnoreStart
         if (isset($config['apiEndpoint'])) {
             $gaxConfig['apiEndpoint'] = $this->getApiEndpoint($config);
         }
-        //@codeCoverageIgnoreEnd
 
-        $this->controllerClient = new Controller2Client($gaxConfig);
-        $this->debuggerClient = new Debugger2Client($gaxConfig);
+        $this->controllerClient = $this->constructGapic(Controller2Client::class, $gaxConfig);
+        $this->debuggerClient = $this->constructGapic(Debugger2Client::class, $gaxConfig);
     }
 
     /**

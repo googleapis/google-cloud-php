@@ -89,12 +89,16 @@ class Grpc implements ConnectionInterface
 
         $config += ['emulatorHost' => null];
 
+        if (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $this->getApiEndpoint($config);
+        }
+
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
 
-        $this->publisherClient = new PublisherClient($grpcConfig);
-        $this->subscriberClient = new SubscriberClient($grpcConfig);
+        $this->publisherClient = $this->constructGapic(PublisherClient::class, $grpcConfig);
+        $this->subscriberClient = $this->constructGapic(SubscriberClient::class, $grpcConfig);
     }
 
     /**
