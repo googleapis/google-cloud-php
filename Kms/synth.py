@@ -37,6 +37,23 @@ s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Kms', f'metadata')
 s.copy(v1_library / f'proto/src/Google/Cloud/Kms', f'src')
 s.copy(v1_library / f'tests')
 
+# document and utilize apiEndpoint instead of serviceAddress
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"@type string \$serviceAddress",
+    r"""@type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint""")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$transportConfig, and any \$serviceAddress",
+    r"$transportConfig, and any `$apiEndpoint`")
+
 # fix copyright year
 s.replace(
     'src/V1/**/*Client.php',
