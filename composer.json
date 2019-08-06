@@ -64,7 +64,7 @@
         "vierbergenlars/php-semver": "^3.0",
         "symfony/lock": "3.3.x-dev#1ba6ac9",
         "phpseclib/phpseclib": "^2",
-        "google/cloud-tools": "^0.6",
+        "google/cloud-tools": "^0.9.0",
         "opis/closure": "^3.0",
         "swaggest/json-schema": "^0.12.0"
     },
