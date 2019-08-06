@@ -81,7 +81,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
     /**
      * Builds a GrpcTransport.
      *
-     * @param string $serviceAddress
+     * @param string $apiEndpoint
      *        The address of the API remote host, for example "example.googleapis.com. May also
      *        include the port, for example "example.googleapis.com:443"
      * @param array $config {
@@ -95,7 +95,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      * @return GrpcTransport
      * @throws ValidationException
      */
-    public static function build($serviceAddress, array $config = [])
+    public static function build($apiEndpoint, array $config = [])
     {
         self::validateGrpcSupport();
         $config += [
@@ -103,7 +103,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             'channel'      => null,
             'interceptors' => [],
         ];
-        list($addr, $port) = self::normalizeServiceAddress($serviceAddress);
+        list($addr, $port) = self::normalizeServiceAddress($apiEndpoint);
         $host = "$addr:$port";
         $stubOpts = $config['stubOpts'];
         // Set the required 'credentials' key in stubOpts if it is not already set. Use

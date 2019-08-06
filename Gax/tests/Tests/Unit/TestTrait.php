@@ -100,7 +100,7 @@ trait TestTrait
         $this->requiresGrpcExtension();
 
         $client = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'scopes' => [],
             'transport' => $transport,
         ]);

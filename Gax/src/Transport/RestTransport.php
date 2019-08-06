@@ -70,7 +70,7 @@ class RestTransport implements TransportInterface
     /**
      * Builds a RestTransport.
      *
-     * @param string $serviceAddress
+     * @param string $apiEndpoint
      *        The address of the API remote host, for example "example.googleapis.com".
      * @param string $restConfigPath
      *        Path to rest config file.
@@ -82,12 +82,12 @@ class RestTransport implements TransportInterface
      * @return RestTransport
      * @throws ValidationException
      */
-    public static function build($serviceAddress, $restConfigPath, array $config = [])
+    public static function build($apiEndpoint, $restConfigPath, array $config = [])
     {
         $config += [
             'httpHandler'  => null,
         ];
-        list($baseUri, $port) = self::normalizeServiceAddress($serviceAddress);
+        list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $requestBuilder = new RequestBuilder("$baseUri:$port", $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync();
         return new RestTransport($requestBuilder, $httpHandler);

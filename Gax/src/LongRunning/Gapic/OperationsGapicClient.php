@@ -77,7 +77,7 @@ use Google\Protobuf\GPBEmpty;
  *
  * ```
  * $options = [
- *     'serviceAddress' => 'my-service-address',
+ *     'apiEndpoint' => 'my-service-address',
  *     'scopes' => ['my-service-scope'],
  * ];
  * $operationsClient = new OperationsClient($options);
@@ -135,7 +135,7 @@ class OperationsGapicClient
      *                       Required. Options for configuring the service API wrapper. Those options
      *                       that must be provided are marked as Required.
      *
-     *     @type string $serviceAddress
+     *     @type string $apiEndpoint
      *           Required. The address of the API remote host. May optionally include the port,
      *           formatted as "<uri>:<port>".
      *     @type string|array $credentials
@@ -163,7 +163,7 @@ class OperationsGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           TransportInterface object. Note that when this objects is provided, any settings in
-     *           $transportConfig, and any $serviceAddress setting, will be ignored.
+     *           $transportConfig, and any $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -191,7 +191,7 @@ class OperationsGapicClient
      * Sample code:
      * ```
      * $options = [
-     *     'serviceAddress' => 'my-service-address',
+     *     'apiEndpoint' => 'my-service-address',
      *     'scopes' => ['my-service-scope'],
      * ];
      * $operationsClient = new OperationsClient($options);
@@ -244,7 +244,7 @@ class OperationsGapicClient
      * Sample code:
      * ```
      * $options = [
-     *     'serviceAddress' => 'my-service-address',
+     *     'apiEndpoint' => 'my-service-address',
      *     'scopes' => ['my-service-scope'],
      * ];
      * $operationsClient = new OperationsClient($options);
@@ -332,7 +332,7 @@ class OperationsGapicClient
      * Sample code:
      * ```
      * $options = [
-     *     'serviceAddress' => 'my-service-address',
+     *     'apiEndpoint' => 'my-service-address',
      *     'scopes' => ['my-service-scope'],
      * ];
      * $operationsClient = new OperationsClient($options);
@@ -382,7 +382,7 @@ class OperationsGapicClient
      * Sample code:
      * ```
      * $options = [
-     *     'serviceAddress' => 'my-service-address',
+     *     'apiEndpoint' => 'my-service-address',
      *     'scopes' => ['my-service-scope'],
      * ];
      * $operationsClient = new OperationsClient($options);

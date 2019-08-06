@@ -59,9 +59,10 @@ class RestTransportTest extends TestCase
             new MockRequest()
         );
     }
-    private function getTransport(callable $httpHandler, $serviceAddress = 'http://www.example.com')
+
+    private function getTransport(callable $httpHandler, $apiEndpoint = 'http://www.example.com')
     {
-        $request = new Request('POST', $serviceAddress);
+        $request = new Request('POST', $apiEndpoint);
         $requestBuilder = $this->getMockBuilder(RequestBuilder::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -80,14 +81,14 @@ class RestTransportTest extends TestCase
     }
 
     /**
-     * @param $serviceAddress
+     * @param $apiEndpoint
      * @dataProvider startUnaryCallDataProvider
      */
-    public function testStartUnaryCall($serviceAddress)
+    public function testStartUnaryCall($apiEndpoint)
     {
         $expectedRequest = new Request(
             'POST',
-            "$serviceAddress",
+            "$apiEndpoint",
             [],
             ""
         );
@@ -105,7 +106,7 @@ class RestTransportTest extends TestCase
             );
         };
 
-        $response = $this->getTransport($httpHandler, $serviceAddress)
+        $response = $this->getTransport($httpHandler, $apiEndpoint)
             ->startUnaryCall($this->call, [])
             ->wait();
 
@@ -167,28 +168,28 @@ class RestTransportTest extends TestCase
     /**
      * @dataProvider buildDataRest
      */
-    public function testBuildRest($serviceAddress, $restConfigPath, $config, $expectedTransport)
+    public function testBuildRest($apiEndpoint, $restConfigPath, $config, $expectedTransport)
     {
-        $actualTransport = RestTransport::build($serviceAddress, $restConfigPath, $config);
+        $actualTransport = RestTransport::build($apiEndpoint, $restConfigPath, $config);
         $this->assertEquals($expectedTransport, $actualTransport);
     }
 
     public function buildDataRest()
     {
         $uri = "address.com";
-        $serviceAddress = "$uri:443";
+        $apiEndpoint = "$uri:443";
         $restConfigPath = __DIR__ . '/../testdata/test_service_rest_client_config.php';
-        $requestBuilder = new RequestBuilder($serviceAddress, $restConfigPath);
+        $requestBuilder = new RequestBuilder($apiEndpoint, $restConfigPath);
         $httpHandler = [HttpHandlerFactory::build(), 'async'];
         return [
             [
-                $serviceAddress,
+                $apiEndpoint,
                 $restConfigPath,
                 ['httpHandler' => $httpHandler],
                 new RestTransport($requestBuilder, $httpHandler)
             ],
             [
-                $serviceAddress,
+                $apiEndpoint,
                 $restConfigPath,
                 [],
                 new RestTransport($requestBuilder, $httpHandler),
@@ -200,9 +201,9 @@ class RestTransportTest extends TestCase
      * @dataProvider buildInvalidData
      * @expectedException \Google\ApiCore\ValidationException
      */
-    public function testBuildInvalid($serviceAddress, $restConfigPath, $args)
+    public function testBuildInvalid($apiEndpoint, $restConfigPath, $args)
     {
-        RestTransport::build($serviceAddress, $restConfigPath, $args);
+        RestTransport::build($apiEndpoint, $restConfigPath, $args);
     }
 
     public function buildInvalidData()
