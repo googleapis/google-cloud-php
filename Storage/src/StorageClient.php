@@ -441,24 +441,33 @@ class StorageClient
      *           DELETED state.
      *     @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
+     *     @type string $projectId The project ID to use, if different from that
+     *           with which the client was created.
      * }
      * @return ItemIterator<HmacKey>
      */
     public function hmacKeys(array $options = [])
     {
-        $this->requireProjectId();
+        $options += [
+            'projectId' => $this->projectId
+        ];
+
+        if (!$options['projectId']) {
+            $this->requireProjectId();
+        }
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
-                function (array $metadata) {
+                function (array $metadata) use ($options) {
                     return $this->hmacKey(
                         $metadata['accessId'],
+                        $options['projectId'],
                         $metadata
                     );
                 },
                 [$this->connection, 'listHmacKeys'],
-                ['projectId' => $this->projectId] + $options,
+                $options,
                 ['resultLimit' => $resultLimit]
             )
         );
@@ -473,14 +482,18 @@ class StorageClient
      * ```
      *
      * @param string $accessId The ID of the HMAC Key.
+     * @param string $projectId [optional] The project ID to use, if different
+     *        from that with which the client was created.
      * @param array $metadata [optional] HMAC key metadata.
      * @return HmacKey
      */
-    public function hmacKey($accessId, array $metadata = [])
+    public function hmacKey($accessId, $projectId = null, array $metadata = [])
     {
-        $this->requireProjectId();
+        if (!$projectId) {
+            $this->requireProjectId();
+        }
 
-        return new HmacKey($this->connection, $this->projectId, $accessId, $metadata);
+        return new HmacKey($this->connection, $projectId ?: $this->projectId, $accessId, $metadata);
     }
 
     /**
@@ -502,21 +515,29 @@ class StorageClient
      *     @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request. **NOTE**: This option is
      *           currently ignored by Cloud Storage.
+     *     @type string $projectId The project ID to use, if different from that
+     *           with which the client was created.
      * }
      * @return CreatedHmacKey
      */
     public function createHmacKey($serviceAccountEmail, array $options = [])
     {
-        $this->requireProjectId();
+        $options += [
+            'projectId' => $this->projectId
+        ];
+
+        if (!$options['projectId']) {
+            $this->requireProjectId();
+        }
 
         $res = $this->connection->createHmacKey([
-            'projectId' => $this->projectId,
+            'projectId' => $options['projectId'],
             'serviceAccountEmail' => $serviceAccountEmail
         ] + $options);
 
         $key = new HmacKey(
             $this->connection,
-            $this->projectId,
+            $options['projectId'],
             $res['metadata']['accessId'],
             $res['metadata']
         );
