@@ -113,7 +113,7 @@ class Grpc implements ConnectionInterface
         );
 
         if (isset($config['apiEndpoint'])) {
-            $gaxConfig['apiEndpoint'] = $this->getApiEndpoint($config);
+            $gaxConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
 
         $this->configClient = $this->constructGapic(ConfigServiceV2Client::class, $gaxConfig);

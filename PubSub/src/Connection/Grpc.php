@@ -90,7 +90,7 @@ class Grpc implements ConnectionInterface
         $config += ['emulatorHost' => null];
 
         if (isset($config['apiEndpoint'])) {
-            $grpcConfig['apiEndpoint'] = $this->getApiEndpoint($config);
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
 
         if ((bool) $config['emulatorHost']) {

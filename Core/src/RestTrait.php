@@ -114,7 +114,7 @@ trait RestTrait
      */
     private function getApiEndpoint($default, array $config)
     {
-        $res = isset($config['apiEndpoint']) && $config['apiEndpoint']
+        $res = isset($config['apiEndpoint'])
             ? $config['apiEndpoint']
             : $default;
 

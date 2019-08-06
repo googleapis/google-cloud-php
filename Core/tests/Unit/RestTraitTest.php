@@ -21,11 +21,12 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
@@ -120,5 +121,36 @@ class RestTraitTest extends TestCase
         }
 
         $this->assertNotContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+    }
+
+    /**
+     * @dataProvider endpoints
+     */
+    public function testGetApiEndpoint($input = null, $expected = null)
+    {
+        $default = 'https://foobar.com/';
+
+        $config = [];
+        if ($input) {
+            $config['apiEndpoint'] = $input;
+        }
+
+        $this->assertEquals(
+            $expected ?: $input ?: $default,
+            TestHelpers::impl(RestTrait::class)->call('getApiEndpoint', [$default, $config])
+        );
+    }
+
+    public function endpoints()
+    {
+        return [
+            [], // use default.
+            ['helloworld.com', 'https://helloworld.com/'],
+            ['https://helloworld.com', 'https://helloworld.com/'],
+            ['https://helloworld.com/'],
+            ['helloworld.com:443', 'https://helloworld.com:443/'],
+            ['hello.world.com', 'https://hello.world.com/'],
+            ['hello.world.com:443', 'https://hello.world.com:443/'],
+        ];
     }
 }

@@ -163,7 +163,7 @@ class Grpc implements ConnectionInterface
         $this->credentialsWrapper = $grpcConfig['credentials'];
 
         if (isset($config['apiEndpoint'])) {
-            $grpcConfig['apiEndpoint'] = $this->getApiEndpoint($config);
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
 
         $this->spannerClient = isset($config['gapicSpannerClient'])
