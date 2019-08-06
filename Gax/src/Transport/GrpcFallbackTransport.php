@@ -72,7 +72,7 @@ class GrpcFallbackTransport implements TransportInterface
     /**
      * Builds a GrpcFallbackTransport.
      *
-     * @param string $serviceAddress
+     * @param string $apiEndpoint
      *        The address of the API remote host, for example "example.googleapis.com".
      * @param array $config {
      *    Config options used to construct the grpc-fallback transport.
@@ -82,12 +82,12 @@ class GrpcFallbackTransport implements TransportInterface
      * @return GrpcFallbackTransport
      * @throws ValidationException
      */
-    public static function build($serviceAddress, array $config = [])
+    public static function build($apiEndpoint, array $config = [])
     {
         $config += [
             'httpHandler'  => null,
         ];
-        list($baseUri, $port) = self::normalizeServiceAddress($serviceAddress);
+        list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync();
         return new GrpcFallbackTransport("$baseUri:$port", $httpHandler);
     }

@@ -371,25 +371,25 @@ class GrpcTransportTest extends TestCase
     /**
      * @dataProvider buildDataGrpc
      */
-    public function testBuildGrpc($serviceAddress, $config, $expectedTransportProvider)
+    public function testBuildGrpc($apiEndpoint, $config, $expectedTransportProvider)
     {
         $expectedTransport = $expectedTransportProvider();
-        $actualTransport = GrpcTransport::build($serviceAddress, $config);
+        $actualTransport = GrpcTransport::build($apiEndpoint, $config);
         $this->assertEquals($expectedTransport, $actualTransport);
     }
 
     public function buildDataGrpc()
     {
         $uri = "address.com";
-        $serviceAddress = "$uri:447";
-        $serviceAddressDefaultPort = "$uri:443";
+        $apiEndpoint = "$uri:447";
+        $apiEndpointDefaultPort = "$uri:443";
         return [
             [
-                $serviceAddress,
+                $apiEndpoint,
                 [],
-                function () use ($serviceAddress) {
+                function () use ($apiEndpoint) {
                     return new GrpcTransport(
-                        $serviceAddress,
+                        $apiEndpoint,
                         [
                             'credentials' => null,
                         ],
@@ -400,9 +400,9 @@ class GrpcTransportTest extends TestCase
             [
                 $uri,
                 [],
-                function () use ($serviceAddressDefaultPort) {
+                function () use ($apiEndpointDefaultPort) {
                     return new GrpcTransport(
-                        $serviceAddressDefaultPort,
+                        $apiEndpointDefaultPort,
                         [
                             'credentials' => null,
                         ],
@@ -417,9 +417,9 @@ class GrpcTransportTest extends TestCase
      * @dataProvider buildInvalidData
      * @expectedException \Google\ApiCore\ValidationException
      */
-    public function testBuildInvalid($serviceAddress, $args)
+    public function testBuildInvalid($apiEndpoint, $args)
     {
-        GrpcTransport::build($serviceAddress, $args);
+        GrpcTransport::build($apiEndpoint, $args);
     }
 
     public function buildInvalidData()
@@ -430,7 +430,7 @@ class GrpcTransportTest extends TestCase
                 [],
             ],
             [
-                'serviceaddress.com',
+                'example.com',
                 [
                     'channel' => 'not a channel',
                 ]
@@ -462,7 +462,7 @@ class GrpcTransportTest extends TestCase
                 return $mockUnaryCall;
             }));
 
-        $transport = GrpcTransport::build('serviceaddress.com', [
+        $transport = GrpcTransport::build('example.com', [
             'stubOpts' => ['grpc_call_invoker' => $mockCallInvoker],
             'interceptors' => [ new TestUnaryInterceptor() ]
         ]);

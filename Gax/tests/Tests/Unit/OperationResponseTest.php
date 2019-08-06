@@ -202,7 +202,7 @@ class OperationResponseTest extends TestCase
             OperationsClient::class,
             ['getOperation'],
             [[
-                'serviceAddress' => '',
+                'apiEndpoint' => '',
                 'scopes' => [],
             ]]
         );

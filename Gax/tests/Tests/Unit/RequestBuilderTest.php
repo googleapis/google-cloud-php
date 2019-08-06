@@ -299,8 +299,16 @@ class RequestBuilderTest extends TestCase
 
         $query = Psr7\parse_query($uri->getQuery());
 
+
         $this->assertEquals('XDAwMA==', $query['bytesValue']);
-        $this->assertEquals('9001.000500000s', $query['durationValue']);
+        // @todo (dwsupplee) Investigate differences in native protobuf implementation
+        // between v3.7.0 and v3.9.0 - this passed previously with the value
+        // "9001.000500000s".
+        if (extension_loaded('protobuf')) {
+            $this->assertEquals('9001.000500000s', $query['durationValue']);
+        } else {
+            $this->assertEquals('9001.000500s', $query['durationValue']);
+        }
         $this->assertEquals('path1,path2', $query['fieldMask']);
         $this->assertEquals(100, $query['int64Value']);
         $this->assertEquals(['val1', 'val2'], $query['listValue']);

@@ -263,14 +263,14 @@ class GapicClientTraitTest extends TestCase
     /**
      * @dataProvider createTransportData
      */
-    public function testCreateTransport($serviceAddress, $transport, $transportConfig, $expectedTransportClass)
+    public function testCreateTransport($apiEndpoint, $transport, $transportConfig, $expectedTransportClass)
     {
         if ($expectedTransportClass == GrpcTransport::class) {
             $this->requiresGrpcExtension();
         }
         $client = new GapicClientTraitStub();
         $transport = $client->call('createTransport', [
-            $serviceAddress,
+            $apiEndpoint,
             $transport,
             $transportConfig
         ]);
@@ -283,7 +283,7 @@ class GapicClientTraitTest extends TestCase
         $defaultTransportClass = extension_loaded('grpc')
             ? GrpcTransport::class
             : RestTransport::class;
-        $serviceAddress = 'address:443';
+        $apiEndpoint = 'address:443';
         $transport = extension_loaded('grpc')
             ? 'grpc'
             : 'rest';
@@ -293,10 +293,10 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
         return [
-            [$serviceAddress, $transport, $transportConfig, $defaultTransportClass],
-            [$serviceAddress, 'grpc', $transportConfig, GrpcTransport::class],
-            [$serviceAddress, 'rest', $transportConfig, RestTransport::class],
-            [$serviceAddress, 'grpc-fallback', $transportConfig, GrpcFallbackTransport::class],
+            [$apiEndpoint, $transport, $transportConfig, $defaultTransportClass],
+            [$apiEndpoint, 'grpc', $transportConfig, GrpcTransport::class],
+            [$apiEndpoint, 'rest', $transportConfig, RestTransport::class],
+            [$apiEndpoint, 'grpc-fallback', $transportConfig, GrpcFallbackTransport::class],
         ];
     }
 
@@ -304,11 +304,11 @@ class GapicClientTraitTest extends TestCase
      * @dataProvider createTransportDataInvalid
      * @expectedException \Google\ApiCore\ValidationException
      */
-    public function testCreateTransportInvalid($serviceAddress, $transport, $transportConfig)
+    public function testCreateTransportInvalid($apiEndpoint, $transport, $transportConfig)
     {
         $client = new GapicClientTraitStub();
         $client->call('createTransport', [
-            $serviceAddress,
+            $apiEndpoint,
             $transport,
             $transportConfig
         ]);
@@ -316,18 +316,31 @@ class GapicClientTraitTest extends TestCase
 
     public function createTransportDataInvalid()
     {
-        $serviceAddress = 'address:443';
+        $apiEndpoint = 'address:443';
         $transportConfig = [
             'rest' => [
                 'restConfigPath' => __DIR__ . '/testdata/test_service_rest_client_config.php',
             ],
         ];
         return [
-            [$serviceAddress, null, $transportConfig],
-            [$serviceAddress, ['transport' => 'weirdstring'], $transportConfig],
-            [$serviceAddress, ['transport' => new \stdClass()], $transportConfig],
-            [$serviceAddress, ['transport' => 'rest'], []],
+            [$apiEndpoint, null, $transportConfig],
+            [$apiEndpoint, ['transport' => 'weirdstring'], $transportConfig],
+            [$apiEndpoint, ['transport' => new \stdClass()], $transportConfig],
+            [$apiEndpoint, ['transport' => 'rest'], []],
         ];
+    }
+
+    public function testServiceAddressAlias()
+    {
+        $client = new GapicClientTraitStub();
+        $apiEndpoint = 'test.address.com:443';
+        $updatedOptions = $client->call('buildClientOptions', [
+            ['serviceAddress' => $apiEndpoint]
+        ]);
+        $client->call('setClientOptions', [$updatedOptions]);
+
+        $this->assertEquals($apiEndpoint, $updatedOptions['apiEndpoint']);
+        $this->assertArrayNotHasKey('serviceAddress', $updatedOptions);
     }
 
     /**
@@ -391,7 +404,7 @@ class GapicClientTraitTest extends TestCase
         $grpcGcpConfig = new Config('test.address.com:443', $apiConfig);
 
         $defaultOptions = [
-            'serviceAddress' => 'test.address.com:443',
+            'apiEndpoint' => 'test.address.com:443',
             'serviceName' => 'test.interface.v1.api',
             'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/testdata/test_service_descriptor_config.php',
@@ -672,7 +685,7 @@ class GapicClientTraitStub
     public static function getClientDefaults()
     {
         return [
-            'serviceAddress' => 'test.address.com:443',
+            'apiEndpoint' => 'test.address.com:443',
             'serviceName' => 'test.interface.v1.api',
             'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/testdata/test_service_descriptor_config.php',
