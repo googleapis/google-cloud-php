@@ -22,6 +22,8 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\CreatedHmacKey;
+use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
@@ -31,6 +33,7 @@ use Prophecy\Argument;
 
 /**
  * @group storage
+ * @group storage-client
  */
 class StorageClientTest extends TestCase
 {
@@ -56,19 +59,6 @@ class StorageClientTest extends TestCase
         $bucket = $this->client->bucket('myBucket', true);
 
         $bucket->reload();
-    }
-
-    /**
-     * @expectedException \Google\Cloud\Core\Exception\GoogleException
-     */
-    public function testGetsBucketsThrowsExceptionWithoutProjectId()
-    {
-        $project = getenv('GCLOUD_PROJECT');
-        putenv('GCLOUD_PROJECT');
-        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
-        $client = new StorageClientStub(['keyFilePath' => $keyFilePath]);
-        $client->buckets();
-        putenv("GCLOUD_PROJECT=$project");
     }
 
     public function testGetsBucketsWithoutToken()
@@ -108,19 +98,6 @@ class StorageClientTest extends TestCase
         $bucket = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->name());
-    }
-
-    /**
-     * @expectedException \Google\Cloud\Core\Exception\GoogleException
-     */
-    public function testCreateBucketThrowsExceptionWithoutProjectId()
-    {
-        $project = getenv('GCLOUD_PROJECT');
-        putenv('GCLOUD_PROJECT');
-        $keyFilePath = __DIR__ . '/../fixtures/empty-json-key-fixture.json';
-        $client = new StorageClientStub(['keyFilePath' => $keyFilePath]);
-        $client->createBucket('bucket');
-        putenv("GCLOUD_PROJECT=$project");
     }
 
     public function testCreatesBucket()
@@ -201,6 +178,86 @@ class StorageClientTest extends TestCase
             $this->client->getServiceAccount(['userProject' => self::PROJECT]),
             $expectedServiceAccount
         );
+    }
+
+    public function testHmacKeys()
+    {
+        $accessId = 'foo';
+        $email = 'foo@bar.com';
+
+        $this->connection->listHmacKeys([
+            'projectId' => self::PROJECT,
+            'serviceAccountEmail' => $email
+        ])->shouldBeCalled()->willReturn([
+            'items' => [
+                [
+                    'accessId' => $accessId
+                ]
+            ]
+        ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $key = iterator_to_array($this->client->hmacKeys([
+            'serviceAccountEmail' => $email
+        ]))[0];
+
+        $this->assertEquals($accessId, $key->accessId());
+        $this->assertEquals(['accessId' => $accessId], $key->info());
+    }
+
+    public function testHmacKey()
+    {
+        $res = $this->client->hmacKey('foo');
+        $this->assertInstanceOf(HmacKey::class, $res);
+        $this->assertEquals('foo', $res->accessId());
+    }
+
+    public function testCreateHmacKey()
+    {
+        $email = 'foo@bar.com';
+        $secret = 'foo';
+        $accessId = 'bar';
+        $this->connection->createHmacKey([
+            'projectId' => self::PROJECT,
+            'serviceAccountEmail' => $email
+        ])->shouldBeCalled()->willReturn([
+            'secret' => $secret,
+            'metadata' => [
+                'accessId' => $accessId
+            ]
+        ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->client->createHmacKey($email);
+        $this->assertInstanceOf(CreatedHmacKey::class, $res);
+        $this->assertEquals($secret, $res->secret());
+        $this->assertEquals($accessId, $res->hmacKey()->accessId());
+        $this->assertEquals(['accessId' => $accessId], $res->hmacKey()->info());
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
+     * @dataProvider requiresProjectIdMethods
+     */
+    public function testMethodsFailWithoutProjectId($method, array $args = [])
+    {
+        $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
+        $client->___setProperty('projectId', null);
+
+        call_user_func_array([$client, $method], $args);
+    }
+
+    public function requiresProjectIdMethods()
+    {
+        return [
+            ['buckets'],
+            ['createBucket', ['foo']],
+            ['hmacKeys'],
+            ['hmacKey', ['foo']],
+            ['createHmacKey', ['foo']]
+        ];
     }
 }
 
