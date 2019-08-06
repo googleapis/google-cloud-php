@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
-use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
@@ -30,7 +30,11 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
-use Google\Cloud\Firestore\Tests\Conformance\TestSuite;
+use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator as CompositFilterOperator;
+use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
+use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
+use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -44,6 +48,7 @@ class ConformanceTest extends TestCase
 {
     use GrpcTestTrait;
     use PathTrait;
+    use TimeTrait;
 
     const SUITE_FILENAME = 'firestore-test-suite.binproto';
 
@@ -109,7 +114,7 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($request))
+            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -131,7 +136,7 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($request))
+            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -160,7 +165,7 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($request))
+            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -169,7 +174,9 @@ class ConformanceTest extends TestCase
             foreach ($test['fieldPaths'] as $key => $val) {
                 $fields[] = [
                     'path' => new FieldPath($val['field']),
-                    'value' => $this->injectSentinel($this->decodeJson($test['jsonValues'][$key], true))
+                    'value' => $this->injectSentinel(
+                        $this->decodeJson($test['jsonValues'][$key], true)
+                    )
                 ];
             }
 
@@ -192,7 +199,7 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($request))
+            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -211,7 +218,7 @@ class ConformanceTest extends TestCase
     public function testQuery($test)
     {
         $query = isset($test['query'])
-            ? $test['query']
+            ? $this->injectPbValues($test['query'])
             : [];
         if (isset($query['from'][0]['allDescendants']) && !$query['from'][0]['allDescendants']) {
             unset($query['from'][0]['allDescendants']);
@@ -369,7 +376,11 @@ class ConformanceTest extends TestCase
             }
 
             if (isset($test['precondition']['updateTime'])) {
-                $test['precondition']['updateTime'] += ['seconds' => 0, 'nanos' => 0];
+                $updateTime = $this->parseTimeString($test['precondition']['updateTime']);
+                $test['precondition']['updateTime'] = [
+                    'seconds' => $updateTime[0]->format('U'),
+                    'nanos' => $updateTime[1]
+                ];
 
                 $options['precondition'] = [
                     'updateTime' => new Timestamp(
@@ -428,6 +439,47 @@ class ConformanceTest extends TestCase
         return $value;
     }
 
+    private function injectPbValues(array $request, $parent = null)
+    {
+        foreach ($request as $key => &$clause) {
+            if (is_array($clause)) {
+                $clause = $this->injectPbValues($clause, $key);
+                continue;
+            }
+
+            if ($key === 'op') {
+                if ($parent === 'fieldFilter') {
+                    $clause = FieldFilterOperator::value($clause);
+                } elseif ($parent === 'unaryFilter') {
+                    $clause = UnaryFilterOperator::value($clause);
+                } elseif ($parent === 'compositeFilter') {
+                    if ($clause === 'AND') {
+                        $clause = 'PBAND';
+                    }
+                    $clause = CompositFilterOperator::value($clause);
+                }
+            }
+
+            if ($key === 'direction') {
+                $clause = Direction::value($clause);
+            }
+
+            if ($key === 'setToServerValue') {
+                $clause = ServerValue::value($clause);
+            }
+
+            if ($key === 'updateTime') {
+                $updateTime = $this->parseTimeString($clause);
+                $clause = [
+                    'seconds' => $updateTime[0]->format('U'),
+                    'nanos' => $updateTime[1]
+                ];
+            }
+        }
+
+        return $request;
+    }
+
     private function injectWhere($value)
     {
         if ($value === 'NaN') {
@@ -449,43 +501,42 @@ class ConformanceTest extends TestCase
         return json_decode($json, true);
     }
 
-    private function setupCases($suite, array $types, array $excludes)
+    private function setupCases(array $types, array $excludes)
     {
         if (self::$cases) {
             return self::$cases;
         }
 
-        $serializer = new Serializer;
-
-        $str = file_get_contents($suite);
-        $suite = new TestSuite;
-        $suite->mergeFromString($str);
+        $files = glob(__DIR__ . '/conformance/v1/*.json');
 
         $cases = [];
-        foreach ($suite->getTests() as $test) {
-            $case = $serializer->encodeMessage($test);
-            $matches = array_values(array_intersect($types, array_keys($case)));
-            if (!$matches) {
-                if (in_array($case['description'], $excludes)) {
-                    self::$skipped[] = [$case['description']];
+        foreach ($files as $fileName) {
+            $file = json_decode(file_get_contents($fileName), true);
+
+            foreach ($file['tests'] as $test) {
+                $matches = array_values(array_intersect($types, array_keys($test)));
+                if (!$matches) {
+                    if (in_array($test['description'], $excludes)) {
+                        self::$skipped[] = [$test['description']];
+                        continue;
+                    }
+
                     continue;
                 }
 
-                continue;
+                $type = $matches[0];
+
+                if (in_array($test['description'], $excludes)) {
+                    self::$skipped[] = [$test['description']];
+                    continue;
+                }
+
+                $cases[] = [
+                    'description' => $test['description'],
+                    'type' => $type,
+                    'test' => $test[$type]
+                ];
             }
-
-            $type = $matches[0];
-
-            if (in_array($case['description'], $excludes)) {
-                self::$skipped[] = [$case['description']];
-                continue;
-            }
-
-            $cases[] = [
-                'description' => $case['description'],
-                'type' => $type,
-                'test' => $case[$type]
-            ];
         }
 
         self::$cases = $cases;
@@ -513,9 +564,8 @@ class ConformanceTest extends TestCase
             $type = lcfirst(str_replace('test', '', $type));
         }
 
-        $suite = __DIR__ . '/../Conformance/proto/'. self::SUITE_FILENAME;
         $cases = array_filter(
-            $this->setupCases($suite, $this->testTypes, $this->excludes),
+            $this->setupCases($this->testTypes, $this->excludes),
             function ($case) use ($type) {
                 return $case['type'] === $type;
             }

@@ -58,7 +58,6 @@ class FieldValueTest extends SnippetTestCase
                     ],
                     "update" => [
                         "name" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fields" => []
                     ]
                 ]
             ]

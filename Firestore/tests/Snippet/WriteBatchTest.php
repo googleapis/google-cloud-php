@@ -130,7 +130,6 @@ class WriteBatchTest extends SnippetTestCase
                 'currentDocument' => ['exists' => true],
                 'update' => [
                     'name' => self::DOCUMENT,
-                    'fields' => []
                 ]
             ], [
                 'transform' => [

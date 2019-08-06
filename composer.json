@@ -229,10 +229,7 @@
             "Google\\Cloud\\Vision\\Tests\\": "Vision/tests",
             "Google\\Cloud\\WebRisk\\Tests\\": "WebRisk/tests",
             "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests"
-        },
-        "files": [
-            "Firestore/tests/Conformance/FirestoreTestGpb.php"
-        ]
+        }
     },
     "scripts": {
         "google-cloud": "dev/google-cloud",

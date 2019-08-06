@@ -51,6 +51,8 @@ class WriteBatch
     use ValidateTrait;
 
     const TYPE_UPDATE = 'update';
+    const TYPE_SET = 'set';
+    const TYPE_CREATE = 'create';
     const TYPE_DELETE = 'delete';
     const TYPE_TRANSFORM = 'transform';
 
@@ -137,7 +139,7 @@ class WriteBatch
         // or if there are still fields after filtering.
         $transformOptions = [];
         if (!empty($fields) || $emptyDocument) {
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, [
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_CREATE, $document, [
                 'fields' => $this->valueMapper->encodeValues($fields),
                 'precondition' => $precondition
             ] + $options);
@@ -226,7 +228,7 @@ class WriteBatch
                 $write['updateMask'] = $this->pathsToStrings($this->encodeFieldPaths($fields), $sentinels);
             }
 
-            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $document, array_merge($options, $write));
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_SET, $document, array_merge($options, $write));
         }
 
         // document transform operations are enqueued as a separate mutation.
@@ -614,9 +616,20 @@ class WriteBatch
         switch ($type) {
             case self::TYPE_UPDATE:
                 return [
+                    'update' => $this->arrayFilterRemoveNull([
+                        'name' => $document,
+                        // empty array -> set to null and filter for conformance.
+                        'fields' => $this->pluck('fields', $options, false) ?: null
+                    ])
+                ];
+                break;
+
+            case self::TYPE_SET:
+            case self::TYPE_CREATE:
+                return [
                     'update' => [
                         'name' => $document,
-                        'fields' => $this->pluck('fields', $options)
+                        'fields' => $this->pluck('fields', $options, false) ?: []
                     ]
                 ];
                 break;
