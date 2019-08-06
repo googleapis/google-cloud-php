@@ -64,6 +64,10 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        $config += [
+            'emulatorHost' => null
+        ];
+
         //@codeCoverageIgnoreStart
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
@@ -92,7 +96,10 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        $config += ['emulatorHost' => null];
+        if (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $this->getApiEndpoint($config);
+        }
+
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }

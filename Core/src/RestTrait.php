@@ -104,4 +104,21 @@ trait RestTrait
             throw $e;
         }
     }
+
+    private function getApiEndpoint($default, array $config)
+    {
+        $res = isset($config['apiEndpoint']) && $config['apiEndpoint']
+            ? $config['apiEndpoint']
+            : $default;
+
+        if (substr($res, -1) !== '/') {
+            $res = $res . '/';
+        }
+
+        if (strpos($res, '//') === false) {
+            $res = 'https://' . $res;
+        }
+
+        return $res;
+    }
 }

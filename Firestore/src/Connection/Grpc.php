@@ -84,9 +84,11 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
-        //@codeCoverageIgnoreEnd
 
-        //@codeCoverageIgnoreStart
+        if (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $this->getApiEndpoint($config);
+        }
+
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
