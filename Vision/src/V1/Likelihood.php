@@ -21,31 +21,31 @@ class Likelihood
      */
     const UNKNOWN = 0;
     /**
-     * It is very unlikely that the image belongs to the specified vertical.
+     * It is very unlikely.
      *
      * Generated from protobuf enum <code>VERY_UNLIKELY = 1;</code>
      */
     const VERY_UNLIKELY = 1;
     /**
-     * It is unlikely that the image belongs to the specified vertical.
+     * It is unlikely.
      *
      * Generated from protobuf enum <code>UNLIKELY = 2;</code>
      */
     const UNLIKELY = 2;
     /**
-     * It is possible that the image belongs to the specified vertical.
+     * It is possible.
      *
      * Generated from protobuf enum <code>POSSIBLE = 3;</code>
      */
     const POSSIBLE = 3;
     /**
-     * It is likely that the image belongs to the specified vertical.
+     * It is likely.
      *
      * Generated from protobuf enum <code>LIKELY = 4;</code>
      */
     const LIKELY = 4;
     /**
-     * It is very likely that the image belongs to the specified vertical.
+     * It is very likely.
      *
      * Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
      */

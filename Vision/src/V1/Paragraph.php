@@ -42,7 +42,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      */
     private $bounding_box = null;
     /**
-     * List of words in this paragraph.
+     * List of all words in this paragraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
      */
@@ -79,7 +79,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *                1----0
      *             and the vertex order will still be (0, 1, 2, 3).
      *     @type \Google\Cloud\Vision\V1\Word[]|\Google\Protobuf\Internal\RepeatedField $words
-     *           List of words in this paragraph.
+     *           List of all words in this paragraph.
      *     @type float $confidence
      *           Confidence of the OCR results for the paragraph. Range [0, 1].
      * }
@@ -170,7 +170,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of words in this paragraph.
+     * List of all words in this paragraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -181,7 +181,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of words in this paragraph.
+     * List of all words in this paragraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
      * @param \Google\Cloud\Vision\V1\Word[]|\Google\Protobuf\Internal\RepeatedField $var

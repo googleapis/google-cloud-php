@@ -28,6 +28,12 @@ class GroupedResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 2;</code>
      */
     private $results;
+    /**
+     * List of generic predictions for the object in the bounding box.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.ObjectAnnotation object_annotations = 3;</code>
+     */
+    private $object_annotations;
 
     /**
      * Constructor.
@@ -39,6 +45,8 @@ class GroupedResult extends \Google\Protobuf\Internal\Message
      *           The bounding polygon around the product detected in the query image.
      *     @type \Google\Cloud\Vision\V1\ProductSearchResults\Result[]|\Google\Protobuf\Internal\RepeatedField $results
      *           List of results, one for each product match.
+     *     @type \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation[]|\Google\Protobuf\Internal\RepeatedField $object_annotations
+     *           List of generic predictions for the object in the bounding box.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +102,32 @@ class GroupedResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\ProductSearchResults\Result::class);
         $this->results = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of generic predictions for the object in the bounding box.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.ObjectAnnotation object_annotations = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getObjectAnnotations()
+    {
+        return $this->object_annotations;
+    }
+
+    /**
+     * List of generic predictions for the object in the bounding box.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.ObjectAnnotation object_annotations = 3;</code>
+     * @param \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setObjectAnnotations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::class);
+        $this->object_annotations = $arr;
 
         return $this;
     }
