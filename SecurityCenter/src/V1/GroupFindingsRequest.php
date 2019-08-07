@@ -42,6 +42,20 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * string literals in quotes.
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
+     * The following field and operator combinations are supported:
+     * name | `=`
+     * parent | '=', ':'
+     * resource_name | '=', ':'
+     * state | '=', ':'
+     * category | '=', ':'
+     * external_uri | '=', ':'
+     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "event_time = \"2019-06-10T16:07:18-07:00\""
+     *     "event_time = 1560208038000"
+     * security_marks | '=', ':'
+     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -55,8 +69,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * resource_name
      * * category
      * * state
-     * * state_change
      * * parent
+     * The following fields are supported when compare_duration is set:
+     * * state_change
      *
      * Generated from protobuf field <code>string group_by = 3;</code>
      */
@@ -141,6 +156,20 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * string literals in quotes.
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
+     *           The following field and operator combinations are supported:
+     *           name | `=`
+     *           parent | '=', ':'
+     *           resource_name | '=', ':'
+     *           state | '=', ':'
+     *           category | '=', ':'
+     *           external_uri | '=', ':'
+     *           event_time | `=`, `>`, `<`, `>=`, `<=`
+     *             Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *             Examples:
+     *               "event_time = \"2019-06-10T16:07:18-07:00\""
+     *               "event_time = 1560208038000"
+     *           security_marks | '=', ':'
+     *           source_properties | '=', ':', `>`, `<`, `>=`, `<=`
      *           For example, `source_properties.size = 100` is a valid filter string.
      *     @type string $group_by
      *           Expression that defines what assets fields to use for grouping (including
@@ -150,8 +179,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * resource_name
      *           * category
      *           * state
-     *           * state_change
      *           * parent
+     *           The following fields are supported when compare_duration is set:
+     *           * state_change
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Time used as a reference point when filtering findings. The filter is
      *           limited to findings existing at the supplied time and their values are
@@ -243,6 +273,20 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * string literals in quotes.
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
+     * The following field and operator combinations are supported:
+     * name | `=`
+     * parent | '=', ':'
+     * resource_name | '=', ':'
+     * state | '=', ':'
+     * category | '=', ':'
+     * external_uri | '=', ':'
+     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "event_time = \"2019-06-10T16:07:18-07:00\""
+     *     "event_time = 1560208038000"
+     * security_marks | '=', ':'
+     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -271,6 +315,20 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * string literals in quotes.
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
+     * The following field and operator combinations are supported:
+     * name | `=`
+     * parent | '=', ':'
+     * resource_name | '=', ':'
+     * state | '=', ':'
+     * category | '=', ':'
+     * external_uri | '=', ':'
+     * event_time | `=`, `>`, `<`, `>=`, `<=`
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "event_time = \"2019-06-10T16:07:18-07:00\""
+     *     "event_time = 1560208038000"
+     * security_marks | '=', ':'
+     * source_properties | '=', ':', `>`, `<`, `>=`, `<=`
      * For example, `source_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -293,8 +351,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * resource_name
      * * category
      * * state
-     * * state_change
      * * parent
+     * The following fields are supported when compare_duration is set:
+     * * state_change
      *
      * Generated from protobuf field <code>string group_by = 3;</code>
      * @return string
@@ -312,8 +371,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * resource_name
      * * category
      * * state
-     * * state_change
      * * parent
+     * The following fields are supported when compare_duration is set:
+     * * state_change
      *
      * Generated from protobuf field <code>string group_by = 3;</code>
      * @param string $var
