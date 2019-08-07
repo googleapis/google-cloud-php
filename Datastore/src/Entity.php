@@ -59,7 +59,7 @@ use InvalidArgumentException;
  *     'lastName' => 'Testguy'
  * ]);
  *
- * echo $entity['firstName']; // 'Bob'
+ * $firstName = $entity['firstName']; // 'Bob'
  * $entity['location'] = 'Detroit, MI';
  * ```
  *

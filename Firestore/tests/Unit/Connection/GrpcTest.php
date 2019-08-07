@@ -55,6 +55,19 @@ class GrpcTest extends TestCase
         $this->successMessage = 'success';
     }
 
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub([
+            'apiEndpoint' => $expected,
+            'projectId' => 'test',
+            'database' => 'test'
+        ]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
+    }
+
     public function testBatchGetDocuments()
     {
         $documents = [
@@ -252,3 +265,17 @@ class GrpcTest extends TestCase
         $this->assertEquals($this->successMessage, $connection->$method($args));
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

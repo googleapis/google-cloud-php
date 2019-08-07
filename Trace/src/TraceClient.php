@@ -19,13 +19,9 @@ namespace Google\Cloud\Trace;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Grpc;
 use Google\Cloud\Trace\Connection\Rest;
-use Google\Cloud\Trace\Reporter\AsyncReporter;
-use Google\Cloud\Trace\Reporter\ReporterInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -64,6 +60,8 @@ class TraceClient
      * @param array $config [optional] {
      *     Configuration options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache used storing access

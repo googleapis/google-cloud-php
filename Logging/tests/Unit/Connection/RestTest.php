@@ -19,15 +19,14 @@ namespace Google\Cloud\Logging\Tests\Unit\Connection;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Logging\Connection\Rest;
-use Google\Cloud\Logging\LoggingClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
-use Rize\UriTemplate;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group logging
@@ -41,6 +40,23 @@ class RestTest extends TestCase
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
+    }
+
+    public function testApiEndpoint()
+    {
+        $endpoint = 'https://foobar.com/';
+        $rest = TestHelpers::stub(Rest::class, [
+            [
+                'apiEndpoint' => $endpoint
+            ]
+        ], ['requestBuilder']);
+
+        $rb = $rest->___getProperty('requestBuilder');
+        $r = new \ReflectionObject($rb);
+        $p = $r->getProperty('baseUri');
+        $p->setAccessible(true);
+
+        $this->assertEquals($endpoint, $p->getValue($rb));
     }
 
     /**

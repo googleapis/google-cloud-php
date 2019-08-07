@@ -110,6 +110,9 @@ class PubSubClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $apiEndpoint The hostname with optional port to use in
+     *           place of the default service endpoint. Example:
+     *           `foobar.com` or `foobar.com:1234`.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access

@@ -60,7 +60,7 @@ class BigtableClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type string $serviceAddress The address of the API remote host. May
+     *     @type string $apiEndpoint The address of the API remote host. May
      *           optionally include the port, formatted as "<uri>:<port>".
      *           **Defaults to** 'bigtable.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -89,7 +89,7 @@ class BigtableClient
      *           pass in an already instantiated
      *           {@see Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in
-     *           $config['transportConfig'] and the $config['serviceAddress']
+     *           $config['transportConfig'] and the $config['apiEndpoint']
      *           setting will be ignored.
      *     @type array $transportConfig Configuration options that will be used to
      *           construct the transport. Options for each supported transport type

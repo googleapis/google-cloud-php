@@ -81,14 +81,16 @@ class Grpc implements ConnectionInterface
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
-        //@codeCoverageIgnoreStart
         $grpcConfig = $this->getGaxConfig(
             ManualFirestoreClient::VERSION,
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
                 : null
         );
-        //@codeCoverageIgnoreEnd
+
+        if (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
+        }
 
         //@codeCoverageIgnoreStart
         $config += ['emulatorHost' => null];
@@ -97,7 +99,7 @@ class Grpc implements ConnectionInterface
         }
         //@codeCoverageIgnoreEnd
 
-        $this->firestore = new FirestoreClient($grpcConfig);
+        $this->firestore = $this->constructGapic(FirestoreClient::class, $grpcConfig);
 
         $this->resourcePrefixHeader = FirestoreClient::databaseRootName(
             $this->pluck('projectId', $config),

@@ -81,8 +81,13 @@ class Grpc implements ConnectionInterface
                 ? $config['authHttpHandler']
                 : null
         );
-        $this->controllerClient = new Controller2Client($gaxConfig);
-        $this->debuggerClient = new Debugger2Client($gaxConfig);
+
+        if (isset($config['apiEndpoint'])) {
+            $gaxConfig['apiEndpoint'] = $config['apiEndpoint'];
+        }
+
+        $this->controllerClient = $this->constructGapic(Controller2Client::class, $gaxConfig);
+        $this->debuggerClient = $this->constructGapic(Debugger2Client::class, $gaxConfig);
     }
 
     /**

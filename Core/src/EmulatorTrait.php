@@ -37,7 +37,7 @@ trait EmulatorTrait
         }
 
         return [
-            'serviceAddress' => $emulatorHost,
+            'apiEndpoint' => $emulatorHost,
             'transportConfig' => [
                 'grpc' => [
                     'stubOpts' => [

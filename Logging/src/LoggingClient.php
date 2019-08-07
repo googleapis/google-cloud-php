@@ -98,6 +98,8 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type string $messageKey The key in the `jsonPayload` used to contain
      *           the logged message. **Defaults to** `message`.
      *     @type array $resource The

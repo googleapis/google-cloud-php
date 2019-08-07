@@ -29,6 +29,7 @@ class Coverage
 {
     private static $snippetExcludeList = [
         '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
+        '/\\\GcTestListener/'
     ];
 
     /**
