@@ -686,6 +686,7 @@ class GapicClientTraitStub
     {
         return [
             'apiEndpoint' => 'test.address.com:443',
+            'serviceAddress' => 'test.address.com:443',
             'serviceName' => 'test.interface.v1.api',
             'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/testdata/test_service_descriptor_config.php',

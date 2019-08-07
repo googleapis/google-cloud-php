@@ -164,10 +164,6 @@ trait GapicClientTrait
             'rest' => [],
             'grpc-fallback' => [],
         ];
-        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
-        if (isset($options['serviceAddress'])) {
-            $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
-        }
 
         // Merge defaults into $options starting from top level
         // variables, then going into deeper nesting, so that
@@ -181,6 +177,11 @@ trait GapicClientTrait
         $options['transportConfig']['grpc-fallback'] += $defaultOptions['transportConfig']['grpc-fallback'];
 
         $this->modifyClientOptions($options);
+
+        // serviceAddress is now deprecated and acts as an alias for apiEndpoint
+        if (isset($options['serviceAddress'])) {
+            $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
+        }
 
         if (extension_loaded('sysvshm')
                 && isset($options['gcpApiConfigPath'])
