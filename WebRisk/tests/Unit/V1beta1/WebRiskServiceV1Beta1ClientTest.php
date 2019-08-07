@@ -27,7 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest_Constraints;
+use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints;
 use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffResponse;
 use Google\Cloud\WebRisk\V1beta1\SearchHashesResponse;
 use Google\Cloud\WebRisk\V1beta1\SearchUrisResponse;
@@ -51,14 +51,22 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return WebRiskServiceV1Beta1Client
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new WebRiskServiceV1Beta1Client($options);
@@ -82,7 +90,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
 
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-        $constraints = new ComputeThreatListDiffRequest_Constraints();
+        $constraints = new Constraints();
 
         $response = $client->computeThreatListDiff($threatType, $constraints);
         $this->assertEquals($expectedResponse, $response);
@@ -126,7 +134,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
 
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-        $constraints = new ComputeThreatListDiffRequest_Constraints();
+        $constraints = new Constraints();
 
         try {
             $client->computeThreatListDiff($threatType, $constraints);
