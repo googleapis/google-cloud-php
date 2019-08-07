@@ -27,7 +27,9 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Profile's id in client system if available.
+     * Optional. Profile's id in client system if available. This value is not
+     * required to be unique to each profile. However, providing unique values
+     * makes it easier to specify individual profiles when filing support tickets.
      * The maximum number of bytes allowed is 100.
      *
      * Generated from protobuf field <code>string external_id = 2;</code>
@@ -303,7 +305,9 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
      *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
      *     @type string $external_id
-     *           Optional. Profile's id in client system if available.
+     *           Optional. Profile's id in client system if available. This value is not
+     *           required to be unique to each profile. However, providing unique values
+     *           makes it easier to specify individual profiles when filing support tickets.
      *           The maximum number of bytes allowed is 100.
      *     @type string $source
      *           Optional. The source description indicating where the profile is acquired.
@@ -499,7 +503,9 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Profile's id in client system if available.
+     * Optional. Profile's id in client system if available. This value is not
+     * required to be unique to each profile. However, providing unique values
+     * makes it easier to specify individual profiles when filing support tickets.
      * The maximum number of bytes allowed is 100.
      *
      * Generated from protobuf field <code>string external_id = 2;</code>
@@ -511,7 +517,9 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Profile's id in client system if available.
+     * Optional. Profile's id in client system if available. This value is not
+     * required to be unique to each profile. However, providing unique values
+     * makes it easier to specify individual profiles when filing support tickets.
      * The maximum number of bytes allowed is 100.
      *
      * Generated from protobuf field <code>string external_id = 2;</code>
