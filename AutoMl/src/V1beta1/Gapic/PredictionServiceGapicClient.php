@@ -56,7 +56,7 @@ use Google\LongRunning\Operation;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $predictionServiceClient = new PredictionServiceClient();
+ * $predictionServiceClient = new Google\Cloud\AutoMl\V1beta1\PredictionServiceClient();
  * try {
  *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
  *     $payload = new ExamplePayload();
@@ -326,7 +326,7 @@ class PredictionServiceGapicClient
      *
      * Sample code:
      * ```
-     * $predictionServiceClient = new PredictionServiceClient();
+     * $predictionServiceClient = new Google\Cloud\AutoMl\V1beta1\PredictionServiceClient();
      * try {
      *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     $payload = new ExamplePayload();
@@ -411,11 +411,11 @@ class PredictionServiceGapicClient
      *
      * Sample code:
      * ```
-     * $predictionServiceClient = new PredictionServiceClient();
+     * $predictionServiceClient = new Google\Cloud\AutoMl\V1beta1\PredictionServiceClient();
      * try {
      *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $inputConfig = new BatchPredictInputConfig();
-     *     $outputConfig = new BatchPredictOutputConfig();
+     *     $inputConfig = new Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig();
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig();
      *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
