@@ -1,5 +1,386 @@
 # Changelog
 
+## 0.107.0
+
+<details><summary>google/cloud-asset 0.4.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-automl 0.3.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.9.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 0.13.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-bigtable 0.15.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-container 0.11.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-core 1.31.0</summary>
+
+
+
+### Bug Fixes
+
+* Address Firestore memory leak (affects long running processes) ([#2153](https://www.github.com/googleapis/google-cloud-php/issues/2153)) ([6d9c47f](https://www.github.com/googleapis/google-cloud-php/commit/6d9c47f))
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.13.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.10.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.19.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.10.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-dlp 0.22.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.15.0</summary>
+
+
+
+### Bug Fixes
+
+* Removes STDERR const, which is defined by CLI SAPI ([#2147](https://www.github.com/googleapis/google-cloud-php/issues/2147)) ([3dc62b4](https://www.github.com/googleapis/google-cloud-php/commit/3dc62b4))
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.7.0</summary>
+
+
+
+### Bug Fixes
+
+* Address Firestore memory leak (affects long running processes) ([#2153](https://www.github.com/googleapis/google-cloud-php/issues/2153)) ([6d9c47f](https://www.github.com/googleapis/google-cloud-php/commit/6d9c47f))
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-iot 0.9.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-kms 1.6.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-language 0.20.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-logging 1.17.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.17.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+* Add support for notification channel verification codes. ([#2155](https://www.github.com/googleapis/google-cloud-php/issues/2155)) ([da3d412](https://www.github.com/googleapis/google-cloud-php/commit/da3d412))
+
+</details>
+
+<details><summary>google/cloud-oslogin 0.10.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.15.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-redis 0.10.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.1.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-security-center 0.2.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.17.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-speech 0.26.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-storage 1.14.0</summary>
+
+
+
+### Features
+
+* **storage:** Add support for service account HMAC keys ([#1938](https://www.github.com/googleapis/google-cloud-php/issues/1938)) ([104c8ba](https://www.github.com/googleapis/google-cloud-php/commit/104c8ba))
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-talent 0.5.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+* Update Talent v4beta1 Client. ([#2157](https://www.github.com/googleapis/google-cloud-php/issues/2157)) ([a2fcf0f](https://www.github.com/googleapis/google-cloud-php/commit/a2fcf0f))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.3.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 0.5.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-trace 0.15.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-translate 1.3.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.7.0</summary>
+
+
+
+### Features
+
+* Add feature/segment to VideoAnnotationProgress. ([#2154](https://www.github.com/googleapis/google-cloud-php/issues/2154)) ([fb06ec6](https://www.github.com/googleapis/google-cloud-php/commit/fb06ec6))
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-vision 0.23.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-web-risk 0.2.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.2.0</summary>
+
+
+
+### Features
+
+* Add support for custom service hostnames. ([#2163](https://www.github.com/googleapis/google-cloud-php/issues/2163)) ([2a8a0c4](https://www.github.com/googleapis/google-cloud-php/commit/2a8a0c4))
+
+</details>
+
 ## 0.106.1
 
 <details><summary>google/cloud-spanner 1.16.1</summary>
