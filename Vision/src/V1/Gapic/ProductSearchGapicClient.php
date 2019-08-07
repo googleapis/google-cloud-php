@@ -61,6 +61,8 @@ use Google\Cloud\Vision\V1\ListReferenceImagesRequest;
 use Google\Cloud\Vision\V1\ListReferenceImagesResponse;
 use Google\Cloud\Vision\V1\Product;
 use Google\Cloud\Vision\V1\ProductSet;
+use Google\Cloud\Vision\V1\ProductSetPurgeConfig;
+use Google\Cloud\Vision\V1\PurgeProductsRequest;
 use Google\Cloud\Vision\V1\ReferenceImage;
 use Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest;
 use Google\Cloud\Vision\V1\UpdateProductRequest;
@@ -151,7 +153,7 @@ class ProductSearchGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/product_search_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/product_search_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/product_search_grpc_config.json',
@@ -382,6 +384,9 @@ class ProductSearchGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'vision.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -409,7 +414,7 @@ class ProductSearchGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -1694,6 +1699,124 @@ class ProductSearchGapicClient
 
         return $this->startOperationsCall(
             'ImportProductSets',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Asynchronous API to delete all Products in a ProductSet or all Products
+     * that are in no ProductSet.
+     *
+     * If a Product is a member of the specified ProductSet in addition to other
+     * ProductSets, the Product will still be deleted.
+     *
+     * It is recommended to not delete the specified ProductSet until after this
+     * operation has completed. It is also recommended to not add any of the
+     * Products involved in the batch delete to a new ProductSet while this
+     * operation is running because those Products may still end up deleted.
+     *
+     * It's not possible to undo the PurgeProducts operation. Therefore, it is
+     * recommended to keep the csv files used in ImportProductSets (if that was
+     * how you originally built the Product Set) before starting PurgeProducts, in
+     * case you need to re-import the data after deletion.
+     *
+     * If the plan is to purge all of the Products from a ProductSet and then
+     * re-use the empty ProductSet to re-import new Products into the empty
+     * ProductSet, you must wait until the PurgeProducts operation has finished
+     * for that ProductSet.
+     *
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
+     * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     *
+     * Sample code:
+     * ```
+     * $productSearchClient = new ProductSearchClient();
+     * try {
+     *     $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $productSearchClient->purgeProducts($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $productSearchClient->resumeOperation($operationName, 'purgeProducts');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $productSearchClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent The project and location in which the Products should be deleted.
+     *
+     * Format is `projects/PROJECT_ID/locations/LOC_ID`.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type ProductSetPurgeConfig $productSetPurgeConfig
+     *          Specify which ProductSet contains the Products to be deleted.
+     *     @type bool $deleteOrphanProducts
+     *          If delete_orphan_products is true, all Products that are not in any
+     *          ProductSet will be deleted.
+     *     @type bool $force
+     *          The default value is false. Override this value to true to actually perform
+     *          the purge.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function purgeProducts($parent, array $optionalArgs = [])
+    {
+        $request = new PurgeProductsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['productSetPurgeConfig'])) {
+            $request->setProductSetPurgeConfig($optionalArgs['productSetPurgeConfig']);
+        }
+        if (isset($optionalArgs['deleteOrphanProducts'])) {
+            $request->setDeleteOrphanProducts($optionalArgs['deleteOrphanProducts']);
+        }
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'PurgeProducts',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
