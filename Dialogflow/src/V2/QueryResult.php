@@ -111,7 +111,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The intent that matched the conversational query. Some, not
      * all fields are filled in this message, including but not limited to:
-     * `name`, `display_name` and `webhook_state`.
+     * `name`, `display_name`, `end_interaction` and `is_fallback`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 11;</code>
      */
@@ -203,7 +203,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\Intent $intent
      *           The intent that matched the conversational query. Some, not
      *           all fields are filled in this message, including but not limited to:
-     *           `name`, `display_name` and `webhook_state`.
+     *           `name`, `display_name`, `end_interaction` and `is_fallback`.
      *     @type float $intent_detection_confidence
      *           The intent detection confidence. Values range from 0.0
      *           (completely uncertain) to 1.0 (completely certain).
@@ -570,7 +570,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The intent that matched the conversational query. Some, not
      * all fields are filled in this message, including but not limited to:
-     * `name`, `display_name` and `webhook_state`.
+     * `name`, `display_name`, `end_interaction` and `is_fallback`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 11;</code>
      * @return \Google\Cloud\Dialogflow\V2\Intent
@@ -583,7 +583,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The intent that matched the conversational query. Some, not
      * all fields are filled in this message, including but not limited to:
-     * `name`, `display_name` and `webhook_state`.
+     * `name`, `display_name`, `end_interaction` and `is_fallback`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 11;</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent $var
