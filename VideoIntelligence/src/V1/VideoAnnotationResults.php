@@ -36,12 +36,28 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     private $segment_label_annotations;
     /**
+     * Presence label annotations on video level or user specified segment level.
+     * There is exactly one element for each unique label. This will eventually
+     * get publicly exposed and the restriction will be removed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
+     */
+    private $segment_presence_label_annotations;
+    /**
      * Topical label annotations on shot level.
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_label_annotations = 3;</code>
      */
     private $shot_label_annotations;
+    /**
+     * Presence label annotations on shot level. There is exactly one element for
+     * each unique label. This will eventually get publicly exposed and the
+     * restriction will be removed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
+     */
+    private $shot_presence_label_annotations;
     /**
      * Label annotations on frame level.
      * There is exactly one element for each unique label.
@@ -109,9 +125,17 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $segment_label_annotations
      *           Topical label annotations on video level or user specified segment level.
      *           There is exactly one element for each unique label.
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $segment_presence_label_annotations
+     *           Presence label annotations on video level or user specified segment level.
+     *           There is exactly one element for each unique label. This will eventually
+     *           get publicly exposed and the restriction will be removed.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $shot_label_annotations
      *           Topical label annotations on shot level.
      *           There is exactly one element for each unique label.
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $shot_presence_label_annotations
+     *           Presence label annotations on shot level. There is exactly one element for
+     *           each unique label. This will eventually get publicly exposed and the
+     *           restriction will be removed.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $frame_label_annotations
      *           Label annotations on frame level.
      *           There is exactly one element for each unique label.
@@ -222,6 +246,36 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Presence label annotations on video level or user specified segment level.
+     * There is exactly one element for each unique label. This will eventually
+     * get publicly exposed and the restriction will be removed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSegmentPresenceLabelAnnotations()
+    {
+        return $this->segment_presence_label_annotations;
+    }
+
+    /**
+     * Presence label annotations on video level or user specified segment level.
+     * There is exactly one element for each unique label. This will eventually
+     * get publicly exposed and the restriction will be removed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSegmentPresenceLabelAnnotations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\LabelAnnotation::class);
+        $this->segment_presence_label_annotations = $arr;
+
+        return $this;
+    }
+
+    /**
      * Topical label annotations on shot level.
      * There is exactly one element for each unique label.
      *
@@ -245,6 +299,36 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\LabelAnnotation::class);
         $this->shot_label_annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Presence label annotations on shot level. There is exactly one element for
+     * each unique label. This will eventually get publicly exposed and the
+     * restriction will be removed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getShotPresenceLabelAnnotations()
+    {
+        return $this->shot_presence_label_annotations;
+    }
+
+    /**
+     * Presence label annotations on shot level. There is exactly one element for
+     * each unique label. This will eventually get publicly exposed and the
+     * restriction will be removed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setShotPresenceLabelAnnotations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\LabelAnnotation::class);
+        $this->shot_presence_label_annotations = $arr;
 
         return $this;
     }
