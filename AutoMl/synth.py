@@ -68,3 +68,31 @@ s.replace(
     'tests/**/V1beta1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
+
+# Fix class references in gapic samples
+for version in ['V1beta1']:
+    pathExprs = [
+        'src/' + version + '/Gapic/AutoMlGapicClient.php',
+        'src/' + version + '/Gapic/PredictionServiceGapicClient.php'
+    ]
+
+    for pathExpr in pathExprs:
+        types = {
+            'new AutoMlClient': r'new Google\\Cloud\\AutoMl\\' + version + r'\\AutoMlClient',
+            'new PredictionServiceClient': r'new Google\\Cloud\\AutoMl\\' + version + r'\\PredictionServiceClient',
+            '= AudioEncoding::': r'= Google\\Cloud\\Speech\\' + version + r'\\RecognitionConfig\\AudioEncoding::',
+            'new Dataset': r'new Google\\Cloud\\AutoMl\\' + version + r'\\Dataset',
+            '= new ModelExportOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ModelExportOutputConfig',
+            '= new ExportEvaluatedExamplesOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ExportEvaluatedExamplesOutputConfig',
+            '= new ExportEvaluatedExamplesOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ExportEvaluatedExamplesOutputConfig',
+            '= new TableSpec': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\TableSpec',
+            '= new ColumnSpec': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\ColumnSpec',
+            '= new BatchPredictInputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\BatchPredictInputConfig',
+            '= new BatchPredictOutputConfig': r'= new Google\\Cloud\\AutoMl\\' + version + r'\\BatchPredictOutputConfig',
+        }
+
+        for search, replace in types.items():
+            s.replace(
+                pathExpr,
+                search,
+                replace)

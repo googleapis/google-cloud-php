@@ -100,10 +100,10 @@ use Google\Protobuf\FieldMask;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $autoMlClient = new AutoMlClient();
+ * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
  * try {
  *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
- *     $dataset = new Dataset();
+ *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
  *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
  * } finally {
  *     $autoMlClient->close();
@@ -554,10 +554,10 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $dataset = new Dataset();
+     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
      *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
      * } finally {
      *     $autoMlClient->close();
@@ -607,9 +607,9 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $dataset = new Dataset();
+     *     $dataset = new Google\Cloud\AutoMl\V1beta1\Dataset();
      *     $response = $autoMlClient->updateDataset($dataset);
      * } finally {
      *     $autoMlClient->close();
@@ -667,7 +667,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     $response = $autoMlClient->getDataset($formattedName);
@@ -717,7 +717,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
@@ -812,7 +812,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     $operationResponse = $autoMlClient->deleteDataset($formattedName);
@@ -896,7 +896,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     $inputConfig = new InputConfig();
@@ -979,7 +979,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     $outputConfig = new OutputConfig();
@@ -1062,7 +1062,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
      *     $model = new Model();
@@ -1143,7 +1143,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     $response = $autoMlClient->getModel($formattedName);
@@ -1193,7 +1193,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
@@ -1290,7 +1290,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     $operationResponse = $autoMlClient->deleteModel($formattedName);
@@ -1377,7 +1377,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     $operationResponse = $autoMlClient->deployModel($formattedName);
@@ -1464,7 +1464,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     $operationResponse = $autoMlClient->undeployModel($formattedName);
@@ -1540,7 +1540,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
      *     $response = $autoMlClient->getModelEvaluation($formattedName);
@@ -1597,10 +1597,10 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $outputConfig = new ModelExportOutputConfig();
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ModelExportOutputConfig();
      *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -1689,10 +1689,10 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $outputConfig = new ExportEvaluatedExamplesOutputConfig();
+     *     $outputConfig = new Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig();
      *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -1769,7 +1769,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
      *     // Iterate over pages of elements
@@ -1866,7 +1866,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
      *     $response = $autoMlClient->getAnnotationSpec($formattedName);
@@ -1916,7 +1916,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
      *     $response = $autoMlClient->getTableSpec($formattedName);
@@ -1971,7 +1971,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
      *     // Iterate over pages of elements
@@ -2061,9 +2061,9 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $tableSpec = new TableSpec();
+     *     $tableSpec = new Google\Cloud\AutoMl\V1beta1\TableSpec();
      *     $response = $autoMlClient->updateTableSpec($tableSpec);
      * } finally {
      *     $autoMlClient->close();
@@ -2121,7 +2121,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
      *     $response = $autoMlClient->getColumnSpec($formattedName);
@@ -2176,7 +2176,7 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
      *     $formattedParent = $autoMlClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
      *     // Iterate over pages of elements
@@ -2266,9 +2266,9 @@ class AutoMlGapicClient
      *
      * Sample code:
      * ```
-     * $autoMlClient = new AutoMlClient();
+     * $autoMlClient = new Google\Cloud\AutoMl\V1beta1\AutoMlClient();
      * try {
-     *     $columnSpec = new ColumnSpec();
+     *     $columnSpec = new Google\Cloud\AutoMl\V1beta1\ColumnSpec();
      *     $response = $autoMlClient->updateColumnSpec($columnSpec);
      * } finally {
      *     $autoMlClient->close();
