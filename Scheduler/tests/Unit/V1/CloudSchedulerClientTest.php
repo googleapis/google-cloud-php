@@ -36,7 +36,7 @@ use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group cloudscheduler
+ * @group scheduler
  * @group gapic
  */
 class CloudSchedulerClientTest extends GeneratedTest
@@ -50,14 +50,22 @@ class CloudSchedulerClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return CloudSchedulerClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new CloudSchedulerClient($options);
