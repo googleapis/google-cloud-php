@@ -43,6 +43,42 @@ s.move(library / f'tests/')
 # copy GPBMetadata file to metadata
 s.move(library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
 
+# Spanner Database Admin also lives here
+admin_library = gapic.php_library(
+    service='spanner-admin-database',
+    version='v1',
+    config_path='/google/spanner/admin/database/artman_spanner_admin_database.yaml',
+    artman_output_name='google-cloud-spanner-admin-database-v1')
+
+# copy all src except handwritten partial veneers
+s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic')
+s.move(admin_library / f'src/V1/resources', f'src/Admin/Database/V1/resources')
+
+# copy proto files to src also
+s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/')
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Database')
+
+# copy GPBMetadata file to metadata
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
+
+# Spanner Instance Admin also lives here
+admin_library = gapic.php_library(
+    service='spanner-admin-instance',
+    version='v1',
+    config_path='/google/spanner/admin/instance/artman_spanner_admin_instance.yaml',
+    artman_output_name='google-cloud-spanner-admin-instance-v1')
+
+# copy all src except handwritten partial veneers
+s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic')
+s.move(admin_library / f'src/V1/resources', f'src/Admin/Instance/V1/resources')
+
+# copy proto files to src also
+s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/')
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance')
+
+# copy GPBMetadata file to metadata
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
+
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
@@ -69,73 +105,6 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
-
-# Spanner Database Admin also lives here
-admin_library = gapic.php_library(
-    service='spanner-admin-database',
-    version='v1',
-    config_path='/google/spanner/admin/database/artman_spanner_admin_database.yaml',
-    artman_output_name='google-cloud-spanner-admin-database-v1')
-
-# copy all src except handwritten partial veneers
-s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic')
-s.move(admin_library / f'src/V1/resources', f'src/Admin/Database/V1/resources')
-
-# copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Database')
-
-# copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/Admin/Database/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-
-# Spanner Instance Admin also lives here
-admin_library = gapic.php_library(
-    service='spanner-admin-instance',
-    version='v1',
-    config_path='/google/spanner/admin/instance/artman_spanner_admin_instance.yaml',
-    artman_output_name='google-cloud-spanner-admin-instance-v1')
-
-# copy all src except handwritten partial veneers
-s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic')
-s.move(admin_library / f'src/V1/resources', f'src/Admin/Instance/V1/resources')
-
-# copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance')
-
-# copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/Admin/Instance/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-
-# Use new namespaces
-s.replace(
-    'src/V1/Gapic/SpannerGapicClient.php',
-    r'ExecuteSqlRequest_QueryMode',
-    'ExecuteSqlRequest\\QueryMode')
-
-s.replace(
-    'src/V1/Gapic/SpannerGapicClient.php',
-    r'ExecuteBatchDmlRequest_Statement',
-    'ExecuteBatchDmlRequest\\Statement')
 
 # Fix test namespaces
 s.replace(
