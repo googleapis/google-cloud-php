@@ -51,6 +51,23 @@ for v in versions:
     # copy GPBMetadata file to metadata
     s.move(library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
 
+# Firestore Admin also lives here
+admin_library = gapic.php_library(
+    service='firestore-admin',
+    version='v1',
+    config_path='/google/firestore/admin/artman_firestore_v1.yaml',
+    artman_output_name='google-cloud-firestore-admin-v1')
+
+# copy all src
+s.move(admin_library / f'src', 'src/Admin')
+
+# copy proto files to src also
+s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
+
+# copy GPBMetadata file to metadata
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
+
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
@@ -95,23 +112,6 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2019')
-
-# Firestore Admin also lives here
-admin_library = gapic.php_library(
-    service='firestore-admin',
-    version='v1',
-    config_path='/google/firestore/admin/artman_firestore_v1.yaml',
-    artman_output_name='google-cloud-firestore-admin-v1')
-
-# copy all src
-s.move(admin_library / f'src', 'src/Admin')
-
-# copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
-
-# copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
 
 # fix year
 s.replace(
