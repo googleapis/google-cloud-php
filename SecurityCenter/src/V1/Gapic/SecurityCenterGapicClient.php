@@ -32,11 +32,13 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
@@ -125,13 +127,14 @@ class SecurityCenterGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $organizationNameTemplate;
+    private static $assetNameTemplate;
     private static $assetSecurityMarksNameTemplate;
+    private static $findingNameTemplate;
     private static $findingSecurityMarksNameTemplate;
+    private static $organizationNameTemplate;
     private static $organizationSettingsNameTemplate;
     private static $organizationSourcesNameTemplate;
     private static $sourceNameTemplate;
-    private static $findingNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -140,7 +143,7 @@ class SecurityCenterGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/security_center_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/security_center_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/security_center_grpc_config.json',
@@ -155,13 +158,13 @@ class SecurityCenterGapicClient
         ];
     }
 
-    private static function getOrganizationNameTemplate()
+    private static function getAssetNameTemplate()
     {
-        if (null == self::$organizationNameTemplate) {
-            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        if (null == self::$assetNameTemplate) {
+            self::$assetNameTemplate = new PathTemplate('organizations/{organization}/assets/{asset}');
         }
 
-        return self::$organizationNameTemplate;
+        return self::$assetNameTemplate;
     }
 
     private static function getAssetSecurityMarksNameTemplate()
@@ -173,6 +176,15 @@ class SecurityCenterGapicClient
         return self::$assetSecurityMarksNameTemplate;
     }
 
+    private static function getFindingNameTemplate()
+    {
+        if (null == self::$findingNameTemplate) {
+            self::$findingNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}');
+        }
+
+        return self::$findingNameTemplate;
+    }
+
     private static function getFindingSecurityMarksNameTemplate()
     {
         if (null == self::$findingSecurityMarksNameTemplate) {
@@ -180,6 +192,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$findingSecurityMarksNameTemplate;
+    }
+
+    private static function getOrganizationNameTemplate()
+    {
+        if (null == self::$organizationNameTemplate) {
+            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        }
+
+        return self::$organizationNameTemplate;
     }
 
     private static function getOrganizationSettingsNameTemplate()
@@ -209,26 +230,18 @@ class SecurityCenterGapicClient
         return self::$sourceNameTemplate;
     }
 
-    private static function getFindingNameTemplate()
-    {
-        if (null == self::$findingNameTemplate) {
-            self::$findingNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}');
-        }
-
-        return self::$findingNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'organization' => self::getOrganizationNameTemplate(),
+                'asset' => self::getAssetNameTemplate(),
                 'assetSecurityMarks' => self::getAssetSecurityMarksNameTemplate(),
+                'finding' => self::getFindingNameTemplate(),
                 'findingSecurityMarks' => self::getFindingSecurityMarksNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSources' => self::getOrganizationSourcesNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
-                'finding' => self::getFindingNameTemplate(),
             ];
         }
 
@@ -237,17 +250,19 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a organization resource.
+     * a asset resource.
      *
      * @param string $organization
+     * @param string $asset
      *
-     * @return string The formatted organization resource.
+     * @return string The formatted asset resource.
      * @experimental
      */
-    public static function organizationName($organization)
+    public static function assetName($organization, $asset)
     {
-        return self::getOrganizationNameTemplate()->render([
+        return self::getAssetNameTemplate()->render([
             'organization' => $organization,
+            'asset' => $asset,
         ]);
     }
 
@@ -271,6 +286,26 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a finding resource.
+     *
+     * @param string $organization
+     * @param string $source
+     * @param string $finding
+     *
+     * @return string The formatted finding resource.
+     * @experimental
+     */
+    public static function findingName($organization, $source, $finding)
+    {
+        return self::getFindingNameTemplate()->render([
+            'organization' => $organization,
+            'source' => $source,
+            'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a finding_security_marks resource.
      *
      * @param string $organization
@@ -286,6 +321,22 @@ class SecurityCenterGapicClient
             'organization' => $organization,
             'source' => $source,
             'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     * @experimental
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -340,36 +391,17 @@ class SecurityCenterGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a finding resource.
-     *
-     * @param string $organization
-     * @param string $source
-     * @param string $finding
-     *
-     * @return string The formatted finding resource.
-     * @experimental
-     */
-    public static function findingName($organization, $source, $finding)
-    {
-        return self::getFindingNameTemplate()->render([
-            'organization' => $organization,
-            'source' => $source,
-            'finding' => $finding,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - organization: organizations/{organization}
+     * - asset: organizations/{organization}/assets/{asset}
      * - assetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - findingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
+     * - organization: organizations/{organization}
      * - organizationSettings: organizations/{organization}/organizationSettings
      * - organizationSources: organizations/{organization}/sources/-
-     * - source: organizations/{organization}/sources/{source}
-     * - finding: organizations/{organization}/sources/{source}/findings/{finding}.
+     * - source: organizations/{organization}/sources/{source}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -448,6 +480,9 @@ class SecurityCenterGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'securitycenter.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -475,7 +510,7 @@ class SecurityCenterGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -540,6 +575,13 @@ class SecurityCenterGapicClient
         $request->setParent($parent);
         $request->setSource($source);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateSource',
             Source::class,
@@ -594,6 +636,13 @@ class SecurityCenterGapicClient
         $request->setFindingId($findingId);
         $request->setFinding($finding);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateFinding',
             Finding::class,
@@ -617,11 +666,13 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $resource     REQUIRED: The resource for which the policy is being requested.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
+     *                             See the operation documentation for the appropriate value for this field.
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type GetPolicyOptions $options
+     *          OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *          `GetIamPolicy`. This field is only used by Cloud IAM.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -638,6 +689,16 @@ class SecurityCenterGapicClient
     {
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetIamPolicy',
@@ -683,6 +744,13 @@ class SecurityCenterGapicClient
         $request = new GetOrganizationSettingsRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetOrganizationSettings',
             OrganizationSettings::class,
@@ -726,6 +794,13 @@ class SecurityCenterGapicClient
     {
         $request = new GetSourceRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetSource',
@@ -812,6 +887,31 @@ class SecurityCenterGapicClient
      *          * integer literals without quotes.
      *          * boolean literals `true` and `false` without quotes.
      *
+     *          The following field and operator combinations are supported:
+     *          name | '='
+     *          update_time | '=', '>', '<', '>=', '<='
+     *
+     *            Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *            Examples:
+     *              "update_time = \"2019-06-10T16:07:18-07:00\""
+     *              "update_time = 1560208038000"
+     *
+     *          create_time |  '=', '>', '<', '>=', '<='
+     *
+     *            Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *            Examples:
+     *              "create_time = \"2019-06-10T16:07:18-07:00\""
+     *              "create_time = 1560208038000"
+     *
+     *          iam_policy.policy_blob | '=', ':'
+     *          resource_properties | '=', ':', '>', '<', '>=', '<='
+     *          security_marks | '=', ':'
+     *          security_center_properties.resource_name | '=', ':'
+     *          security_center_properties.resource_type | '=', ':'
+     *          security_center_properties.resource_parent | '=', ':'
+     *          security_center_properties.resource_project | '=', ':'
+     *          security_center_properties.resource_owners | '=', ':'
+     *
      *          For example, `resource_properties.size = 100` is a valid filter string.
      *     @type Duration $compareDuration
      *          When compare_duration is set, the GroupResult's "state_change" property is
@@ -888,6 +988,13 @@ class SecurityCenterGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'GroupAssets',
             $optionalArgs,
@@ -943,8 +1050,11 @@ class SecurityCenterGapicClient
      * * resource_name
      * * category
      * * state
-     * * state_change
      * * parent
+     *
+     * The following fields are supported when compare_duration is set:
+     *
+     * * state_change
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -972,6 +1082,23 @@ class SecurityCenterGapicClient
      *          * string literals in quotes.
      *          * integer literals without quotes.
      *          * boolean literals `true` and `false` without quotes.
+     *
+     *          The following field and operator combinations are supported:
+     *          name | `=`
+     *          parent | '=', ':'
+     *          resource_name | '=', ':'
+     *          state | '=', ':'
+     *          category | '=', ':'
+     *          external_uri | '=', ':'
+     *          event_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *            Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *            Examples:
+     *              "event_time = \"2019-06-10T16:07:18-07:00\""
+     *              "event_time = 1560208038000"
+     *
+     *          security_marks | '=', ':'
+     *          source_properties | '=', ':', `>`, `<`, `>=`, `<=`
      *
      *          For example, `source_properties.size = 100` is a valid filter string.
      *     @type Timestamp $readTime
@@ -1048,6 +1175,13 @@ class SecurityCenterGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'GroupFindings',
             $optionalArgs,
@@ -1117,6 +1251,31 @@ class SecurityCenterGapicClient
      *          * integer literals without quotes.
      *          * boolean literals `true` and `false` without quotes.
      *
+     *          The following are the allowed field and operator combinations:
+     *          name | `=`
+     *          update_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *            Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *            Examples:
+     *              "update_time = \"2019-06-10T16:07:18-07:00\""
+     *              "update_time = 1560208038000"
+     *
+     *          create_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *            Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *            Examples:
+     *              "create_time = \"2019-06-10T16:07:18-07:00\""
+     *              "create_time = 1560208038000"
+     *
+     *          iam_policy.policy_blob | '=', ':'
+     *          resource_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     *          security_marks | '=', ':'
+     *          security_center_properties.resource_name | '=', ':'
+     *          security_center_properties.resource_type | '=', ':'
+     *          security_center_properties.resource_parent | '=', ':'
+     *          security_center_properties.resource_project | '=', ':'
+     *          security_center_properties.resource_owners | '=', ':'
+     *
      *          For example, `resource_properties.size = 100` is a valid filter string.
      *     @type string $orderBy
      *          Expression that defines what fields and order to use for sorting. The
@@ -1127,6 +1286,16 @@ class SecurityCenterGapicClient
      *          desc,resource_properties.a_property". Redundant space characters in the
      *          syntax are insignificant. "name desc,resource_properties.a_property" and "
      *          name     desc  ,   resource_properties.a_property  " are equivalent.
+     *
+     *          The following fields are supported:
+     *          name
+     *          update_time
+     *          resource_properties
+     *          security_marks
+     *          security_center_properties.resource_name
+     *          security_center_properties.resource_parent
+     *          security_center_properties.resource_project
+     *          security_center_properties.resource_type
      *     @type Timestamp $readTime
      *          Time used as a reference point when filtering assets. The filter is limited
      *          to assets existing at the supplied time and their values are those at that
@@ -1210,6 +1379,13 @@ class SecurityCenterGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListAssets',
             $optionalArgs,
@@ -1282,6 +1458,23 @@ class SecurityCenterGapicClient
      *          * integer literals without quotes.
      *          * boolean literals `true` and `false` without quotes.
      *
+     *          The following field and operator combinations are supported:
+     *          name | `=`
+     *          parent | '=', ':'
+     *          resource_name | '=', ':'
+     *          state | '=', ':'
+     *          category | '=', ':'
+     *          external_uri | '=', ':'
+     *          event_time | `=`, `>`, `<`, `>=`, `<=`
+     *
+     *            Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *            Examples:
+     *              "event_time = \"2019-06-10T16:07:18-07:00\""
+     *              "event_time = 1560208038000"
+     *
+     *          security_marks | '=', ':'
+     *          source_properties | '=', ':', `>`, `<`, `>=`, `<=`
+     *
      *          For example, `source_properties.size = 100` is a valid filter string.
      *     @type string $orderBy
      *          Expression that defines what fields and order to use for sorting. The
@@ -1292,6 +1485,16 @@ class SecurityCenterGapicClient
      *          desc,source_properties.a_property". Redundant space characters in the
      *          syntax are insignificant. "name desc,source_properties.a_property" and "
      *          name     desc  ,   source_properties.a_property  " are equivalent.
+     *
+     *          The following fields are supported:
+     *          name
+     *          parent
+     *          state
+     *          category
+     *          resource_name
+     *          event_time
+     *          source_properties
+     *          security_marks
      *     @type Timestamp $readTime
      *          Time used as a reference point when filtering findings. The filter is
      *          limited to findings existing at the supplied time and their values are
@@ -1374,6 +1577,13 @@ class SecurityCenterGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListFindings',
             $optionalArgs,
@@ -1448,6 +1658,13 @@ class SecurityCenterGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListSources',
             $optionalArgs,
@@ -1472,7 +1689,8 @@ class SecurityCenterGapicClient
      *     $operationResponse = $securityCenterClient->runAssetDiscovery($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1491,7 +1709,8 @@ class SecurityCenterGapicClient
      *         $newOperationResponse->reload();
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
-     *       // operation succeeded and returns no value
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
      *     } else {
      *       $error = $newOperationResponse->getError();
      *       // handleError($error)
@@ -1523,6 +1742,13 @@ class SecurityCenterGapicClient
         $request = new RunAssetDiscoveryRequest();
         $request->setParent($parent);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'RunAssetDiscovery',
             $optionalArgs,
@@ -1539,7 +1765,7 @@ class SecurityCenterGapicClient
      * $securityCenterClient = new SecurityCenterClient();
      * try {
      *     $formattedName = $securityCenterClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-     *     $state = Finding\State::STATE_UNSPECIFIED;
+     *     $state = State::STATE_UNSPECIFIED;
      *     $startTime = new Timestamp();
      *     $response = $securityCenterClient->setFindingState($formattedName, $state, $startTime);
      * } finally {
@@ -1576,6 +1802,13 @@ class SecurityCenterGapicClient
         $request->setState($state);
         $request->setStartTime($startTime);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetFindingState',
             Finding::class,
@@ -1600,8 +1833,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $resource     REQUIRED: The resource for which the policy is being specified.
-     *                             `resource` is usually specified as a path. For example, a Project
-     *                             resource is specified as `projects/{project}`.
+     *                             See the operation documentation for the appropriate value for this field.
      * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
      *                             the policy is limited to a few 10s of KB. An empty policy is a
      *                             valid policy but certain Cloud Platform services (such as Projects)
@@ -1627,6 +1859,13 @@ class SecurityCenterGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'SetIamPolicy',
             Policy::class,
@@ -1651,8 +1890,7 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               `resource` is usually specified as a path. For example, a Project
-     *                               resource is specified as `projects/{project}`.
+     *                               See the operation documentation for the appropriate value for this field.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
      *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
@@ -1677,6 +1915,13 @@ class SecurityCenterGapicClient
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
         $request->setPermissions($permissions);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'resource' => $request->getResource(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'TestIamPermissions',
@@ -1738,6 +1983,13 @@ class SecurityCenterGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'finding.name' => $request->getFinding()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateFinding',
             Finding::class,
@@ -1788,6 +2040,13 @@ class SecurityCenterGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'organization_settings.name' => $request->getOrganizationSettings()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'UpdateOrganizationSettings',
             OrganizationSettings::class,
@@ -1837,6 +2096,13 @@ class SecurityCenterGapicClient
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'source.name' => $request->getSource()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'UpdateSource',
@@ -1896,6 +2162,13 @@ class SecurityCenterGapicClient
         if (isset($optionalArgs['startTime'])) {
             $request->setStartTime($optionalArgs['startTime']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'security_marks.name' => $request->getSecurityMarks()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'UpdateSecurityMarks',
