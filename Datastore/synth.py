@@ -40,7 +40,7 @@ s.move(library / 'proto/src/Google/Cloud/Datastore', 'src/')
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Datastore', 'metadata/')
+s.move(library / 'proto/src/GPBMetadata/Google/Datastore', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -73,84 +73,18 @@ s.replace(
     r'Copyright \d{4}',
     'Copyright 2018')
 
-# Use new namespace in the doc sample. See
-# https://github.com/googleapis/gapic-generator/issues/2141
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) CommitRequest_',
-    r'\1 ')
+# Fix class references in gapic samples
+for version in ['V1']:
+    pathExpr = 'src/' + version + '/Gapic/DatastoreGapicClient.php'
 
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'CommitRequest_',
-    r'CommitRequest\\')
+    types = {
+        '= new DatastoreClient': r'= new Google\\Cloud\\Datastore\\' + version + r'\\DatastoreClient',
+        '= Mode::': r'= Google\\Cloud\\Datastore\\' + version + r'\\CommitRequest\\Mode::',
+        'new PartitionId': r'new Google\\Cloud\\Datastore\\' + version + r'\\PartitionId',
+    }
 
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) CompositeFilter_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'CompositeFilter_',
-    r'CompositeFilter\\')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) EntityResult_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'EntityResult_',
-    r'EntityResult\\')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) Key_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'Key_',
-    r'Key\\')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) PropertyFilter_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'PropertyFilter_',
-    r'PropertyFilter\\')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) PropertyOrder_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'PropertyOrder_',
-    r'PropertyOrder\\')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) QueryResultBatch_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'QueryResultBatch_',
-    r'QueryResultBatch\\')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'(\@type|\@param) ReadOptions_',
-    r'\1 ')
-
-s.replace(
-    'src/V1/Gapic/*.php',
-    r'ReadOptions_',
-    r'ReadOptions\\')
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace)
