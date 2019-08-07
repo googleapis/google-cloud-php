@@ -160,7 +160,7 @@ class InstanceAdminGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/instance_admin_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/instance_admin_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/instance_admin_grpc_config.json',
@@ -352,6 +352,9 @@ class InstanceAdminGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'spanner.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -379,7 +382,7 @@ class InstanceAdminGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
