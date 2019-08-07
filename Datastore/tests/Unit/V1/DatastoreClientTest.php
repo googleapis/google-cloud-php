@@ -29,7 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Datastore\V1\AllocateIdsResponse;
 use Google\Cloud\Datastore\V1\BeginTransactionResponse;
-use Google\Cloud\Datastore\V1\CommitRequest_Mode;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CommitResponse;
 use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\PartitionId;
@@ -55,14 +55,22 @@ class DatastoreClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return DatastoreClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new DatastoreClient($options);
@@ -311,7 +319,7 @@ class DatastoreClientTest extends GeneratedTest
 
         // Mock request
         $projectId = 'projectId-1969970175';
-        $mode = CommitRequest_Mode::MODE_UNSPECIFIED;
+        $mode = Mode::MODE_UNSPECIFIED;
         $mutations = [];
 
         $response = $client->commit($projectId, $mode, $mutations);
@@ -359,7 +367,7 @@ class DatastoreClientTest extends GeneratedTest
 
         // Mock request
         $projectId = 'projectId-1969970175';
-        $mode = CommitRequest_Mode::MODE_UNSPECIFIED;
+        $mode = Mode::MODE_UNSPECIFIED;
         $mutations = [];
 
         try {
