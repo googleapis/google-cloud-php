@@ -25,13 +25,20 @@ class Dataset extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The name of the dataset to show in the interface. The name can be
-     * up to 32 characters
-     * long and can consist only of ASCII Latin letters A-Z and a-z, underscores
+     * up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     * and a-z, underscores
      * (_), and ASCII digits 0-9.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
+    /**
+     * User-provided description of the dataset. The description can be up to
+     * 25000 characters long.
+     *
+     * Generated from protobuf field <code>string description = 3;</code>
+     */
+    private $description = '';
     /**
      * Output only. The number of examples in the dataset.
      *
@@ -44,6 +51,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
      */
     private $create_time = null;
+    /**
+     * Used to perform consistent read-modify-write updates. If not set, a blind
+     * "overwrite" update happens.
+     *
+     * Generated from protobuf field <code>string etag = 17;</code>
+     */
+    private $etag = '';
     protected $dataset_metadata;
 
     /**
@@ -58,18 +72,36 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           Metadata for a dataset used for image classification.
      *     @type \Google\Cloud\AutoMl\V1beta1\TextClassificationDatasetMetadata $text_classification_dataset_metadata
      *           Metadata for a dataset used for text classification.
+     *     @type \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionDatasetMetadata $image_object_detection_dataset_metadata
+     *           Metadata for a dataset used for image object detection.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoClassificationDatasetMetadata $video_classification_dataset_metadata
+     *           Metadata for a dataset used for video classification.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingDatasetMetadata $video_object_tracking_dataset_metadata
+     *           Metadata for a dataset used for video object tracking.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextExtractionDatasetMetadata $text_extraction_dataset_metadata
+     *           Metadata for a dataset used for text extraction.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextSentimentDatasetMetadata $text_sentiment_dataset_metadata
+     *           Metadata for a dataset used for text sentiment.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TablesDatasetMetadata $tables_dataset_metadata
+     *           Metadata for a dataset used for Tables.
      *     @type string $name
      *           Output only. The resource name of the dataset.
      *           Form: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`
      *     @type string $display_name
      *           Required. The name of the dataset to show in the interface. The name can be
-     *           up to 32 characters
-     *           long and can consist only of ASCII Latin letters A-Z and a-z, underscores
+     *           up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     *           and a-z, underscores
      *           (_), and ASCII digits 0-9.
+     *     @type string $description
+     *           User-provided description of the dataset. The description can be up to
+     *           25000 characters long.
      *     @type int $example_count
      *           Output only. The number of examples in the dataset.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this dataset was created.
+     *     @type string $etag
+     *           Used to perform consistent read-modify-write updates. If not set, a blind
+     *           "overwrite" update happens.
      * }
      */
     public function __construct($data = NULL) {
@@ -156,6 +188,162 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Metadata for a dataset used for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionDatasetMetadata image_object_detection_dataset_metadata = 26;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionDatasetMetadata
+     */
+    public function getImageObjectDetectionDatasetMetadata()
+    {
+        return $this->readOneof(26);
+    }
+
+    /**
+     * Metadata for a dataset used for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionDatasetMetadata image_object_detection_dataset_metadata = 26;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionDatasetMetadata $var
+     * @return $this
+     */
+    public function setImageObjectDetectionDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionDatasetMetadata::class);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for video classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationDatasetMetadata video_classification_dataset_metadata = 31;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationDatasetMetadata
+     */
+    public function getVideoClassificationDatasetMetadata()
+    {
+        return $this->readOneof(31);
+    }
+
+    /**
+     * Metadata for a dataset used for video classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationDatasetMetadata video_classification_dataset_metadata = 31;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoClassificationDatasetMetadata $var
+     * @return $this
+     */
+    public function setVideoClassificationDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoClassificationDatasetMetadata::class);
+        $this->writeOneof(31, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for video object tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingDatasetMetadata video_object_tracking_dataset_metadata = 29;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingDatasetMetadata
+     */
+    public function getVideoObjectTrackingDatasetMetadata()
+    {
+        return $this->readOneof(29);
+    }
+
+    /**
+     * Metadata for a dataset used for video object tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingDatasetMetadata video_object_tracking_dataset_metadata = 29;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingDatasetMetadata $var
+     * @return $this
+     */
+    public function setVideoObjectTrackingDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingDatasetMetadata::class);
+        $this->writeOneof(29, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for text extraction.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionDatasetMetadata text_extraction_dataset_metadata = 28;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionDatasetMetadata
+     */
+    public function getTextExtractionDatasetMetadata()
+    {
+        return $this->readOneof(28);
+    }
+
+    /**
+     * Metadata for a dataset used for text extraction.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionDatasetMetadata text_extraction_dataset_metadata = 28;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextExtractionDatasetMetadata $var
+     * @return $this
+     */
+    public function setTextExtractionDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextExtractionDatasetMetadata::class);
+        $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for text sentiment.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentDatasetMetadata text_sentiment_dataset_metadata = 30;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentDatasetMetadata
+     */
+    public function getTextSentimentDatasetMetadata()
+    {
+        return $this->readOneof(30);
+    }
+
+    /**
+     * Metadata for a dataset used for text sentiment.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentDatasetMetadata text_sentiment_dataset_metadata = 30;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextSentimentDatasetMetadata $var
+     * @return $this
+     */
+    public function setTextSentimentDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextSentimentDatasetMetadata::class);
+        $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for a dataset used for Tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesDatasetMetadata tables_dataset_metadata = 33;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TablesDatasetMetadata
+     */
+    public function getTablesDatasetMetadata()
+    {
+        return $this->readOneof(33);
+    }
+
+    /**
+     * Metadata for a dataset used for Tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesDatasetMetadata tables_dataset_metadata = 33;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TablesDatasetMetadata $var
+     * @return $this
+     */
+    public function setTablesDatasetMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TablesDatasetMetadata::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. The resource name of the dataset.
      * Form: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`
      *
@@ -185,8 +373,8 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the dataset to show in the interface. The name can be
-     * up to 32 characters
-     * long and can consist only of ASCII Latin letters A-Z and a-z, underscores
+     * up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     * and a-z, underscores
      * (_), and ASCII digits 0-9.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -199,8 +387,8 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the dataset to show in the interface. The name can be
-     * up to 32 characters
-     * long and can consist only of ASCII Latin letters A-Z and a-z, underscores
+     * up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     * and a-z, underscores
      * (_), and ASCII digits 0-9.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -211,6 +399,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * User-provided description of the dataset. The description can be up to
+     * 25000 characters long.
+     *
+     * Generated from protobuf field <code>string description = 3;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * User-provided description of the dataset. The description can be up to
+     * 25000 characters long.
+     *
+     * Generated from protobuf field <code>string description = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
 
         return $this;
     }
@@ -263,6 +479,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Used to perform consistent read-modify-write updates. If not set, a blind
+     * "overwrite" update happens.
+     *
+     * Generated from protobuf field <code>string etag = 17;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Used to perform consistent read-modify-write updates. If not set, a blind
+     * "overwrite" update happens.
+     *
+     * Generated from protobuf field <code>string etag = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

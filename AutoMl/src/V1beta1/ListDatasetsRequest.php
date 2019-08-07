@@ -23,8 +23,8 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * An expression for filtering the results of the request.
-     *   * `dataset_metadata` - for existence of the case.
-     * An example of using the filter is:
+     *   * `dataset_metadata` - for existence of the case (e.g.
+     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
      *                                          translation_dataset_metadata.
      *
@@ -58,8 +58,8 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *           The resource name of the project from which to list datasets.
      *     @type string $filter
      *           An expression for filtering the results of the request.
-     *             * `dataset_metadata` - for existence of the case.
-     *           An example of using the filter is:
+     *             * `dataset_metadata` - for existence of the case (e.g.
+     *                       image_classification_dataset_metadata:*). Some examples of using the filter are:
      *             * `translation_dataset_metadata:*` --> The dataset has
      *                                                    translation_dataset_metadata.
      *     @type int $page_size
@@ -105,8 +105,8 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An expression for filtering the results of the request.
-     *   * `dataset_metadata` - for existence of the case.
-     * An example of using the filter is:
+     *   * `dataset_metadata` - for existence of the case (e.g.
+     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
      *                                          translation_dataset_metadata.
      *
@@ -120,8 +120,8 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An expression for filtering the results of the request.
-     *   * `dataset_metadata` - for existence of the case.
-     * An example of using the filter is:
+     *   * `dataset_metadata` - for existence of the case (e.g.
+     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
      *                                          translation_dataset_metadata.
      *

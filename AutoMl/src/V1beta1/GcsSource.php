@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The GCS location for the input content.
+ * The Google Cloud Storage location for the input content.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.GcsSource</code>
  */
@@ -18,7 +18,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Google Cloud Storage URIs to input files, up to 2000 characters
      * long. Accepted forms:
-     * * Full object path: gs://bucket/directory/object.csv
+     * * Full object path, e.g. gs://bucket/directory/object.csv
      *
      * Generated from protobuf field <code>repeated string input_uris = 1;</code>
      */
@@ -33,7 +33,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_uris
      *           Required. Google Cloud Storage URIs to input files, up to 2000 characters
      *           long. Accepted forms:
-     *           * Full object path: gs://bucket/directory/object.csv
+     *           * Full object path, e.g. gs://bucket/directory/object.csv
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Google Cloud Storage URIs to input files, up to 2000 characters
      * long. Accepted forms:
-     * * Full object path: gs://bucket/directory/object.csv
+     * * Full object path, e.g. gs://bucket/directory/object.csv
      *
      * Generated from protobuf field <code>repeated string input_uris = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +57,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Google Cloud Storage URIs to input files, up to 2000 characters
      * long. Accepted forms:
-     * * Full object path: gs://bucket/directory/object.csv
+     * * Full object path, e.g. gs://bucket/directory/object.csv
      *
      * Generated from protobuf field <code>repeated string input_uris = 1;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

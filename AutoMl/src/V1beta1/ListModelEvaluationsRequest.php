@@ -45,7 +45,7 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained via
-     * `ListModelEvaluationsResponse.next_page_token` of the previous
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1beta1.ListModelEvaluationsResponse.next_page_token] of the previous
      * [AutoMl.ListModelEvaluations][google.cloud.automl.v1beta1.AutoMl.ListModelEvaluations] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -76,7 +76,7 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token identifying a page of results for the server to return.
      *           Typically obtained via
-     *           `ListModelEvaluationsResponse.next_page_token` of the previous
+     *           [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1beta1.ListModelEvaluationsResponse.next_page_token] of the previous
      *           [AutoMl.ListModelEvaluations][google.cloud.automl.v1beta1.AutoMl.ListModelEvaluations] call.
      * }
      */
@@ -184,7 +184,7 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained via
-     * `ListModelEvaluationsResponse.next_page_token` of the previous
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1beta1.ListModelEvaluationsResponse.next_page_token] of the previous
      * [AutoMl.ListModelEvaluations][google.cloud.automl.v1beta1.AutoMl.ListModelEvaluations] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -198,7 +198,7 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained via
-     * `ListModelEvaluationsResponse.next_page_token` of the previous
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1beta1.ListModelEvaluationsResponse.next_page_token] of the previous
      * [AutoMl.ListModelEvaluations][google.cloud.automl.v1beta1.AutoMl.ListModelEvaluations] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>

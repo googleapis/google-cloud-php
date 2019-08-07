@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The GCS location where the output must be written to
+ * The Google Cloud Storage location where the output is to be written to.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.GcsDestination</code>
  */

@@ -10,9 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response message for [PredictionService.Predict][google.cloud.automl.v1beta1.PredictionService.Predict].
- * Currently, this is only
- * used to return an image recognition prediction result. More prediction
- * output metadata might be introduced in the future.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.PredictResponse</code>
  */
@@ -20,12 +17,25 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Prediction result.
+     * Translation and Text Sentiment will return precisely one payload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.AnnotationPayload payload = 1;</code>
      */
     private $payload;
     /**
      * Additional domain-specific prediction response metadata.
+     * * For Image Object Detection:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      image could have been returned.
+     * * For Text Sentiment:
+     *  `sentiment_score` - (float, deprecated) A value between -1 and 1,
+     *      -1 maps to least positive sentiment, while 1 maps to the most positive
+     *      one and the higher the score, the more positive the sentiment in the
+     *      document is. Yet these values are relative to the training data, so
+     *      e.g. if all data was positive then -1 will be also positive (though
+     *      the least).
+     *      The sentiment_score shouldn't be confused with "score" or "magnitude"
+     *      from the previous Natural Language Sentiment Analysis API.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 2;</code>
      */
@@ -39,8 +49,21 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\AnnotationPayload[]|\Google\Protobuf\Internal\RepeatedField $payload
      *           Prediction result.
+     *           Translation and Text Sentiment will return precisely one payload.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Additional domain-specific prediction response metadata.
+     *           * For Image Object Detection:
+     *            `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *                image could have been returned.
+     *           * For Text Sentiment:
+     *            `sentiment_score` - (float, deprecated) A value between -1 and 1,
+     *                -1 maps to least positive sentiment, while 1 maps to the most positive
+     *                one and the higher the score, the more positive the sentiment in the
+     *                document is. Yet these values are relative to the training data, so
+     *                e.g. if all data was positive then -1 will be also positive (though
+     *                the least).
+     *                The sentiment_score shouldn't be confused with "score" or "magnitude"
+     *                from the previous Natural Language Sentiment Analysis API.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,6 +73,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Prediction result.
+     * Translation and Text Sentiment will return precisely one payload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.AnnotationPayload payload = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,6 +85,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Prediction result.
+     * Translation and Text Sentiment will return precisely one payload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.AnnotationPayload payload = 1;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\AnnotationPayload[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -76,6 +101,18 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
+     * * For Image Object Detection:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      image could have been returned.
+     * * For Text Sentiment:
+     *  `sentiment_score` - (float, deprecated) A value between -1 and 1,
+     *      -1 maps to least positive sentiment, while 1 maps to the most positive
+     *      one and the higher the score, the more positive the sentiment in the
+     *      document is. Yet these values are relative to the training data, so
+     *      e.g. if all data was positive then -1 will be also positive (though
+     *      the least).
+     *      The sentiment_score shouldn't be confused with "score" or "magnitude"
+     *      from the previous Natural Language Sentiment Analysis API.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -87,6 +124,18 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Additional domain-specific prediction response metadata.
+     * * For Image Object Detection:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      image could have been returned.
+     * * For Text Sentiment:
+     *  `sentiment_score` - (float, deprecated) A value between -1 and 1,
+     *      -1 maps to least positive sentiment, while 1 maps to the most positive
+     *      one and the higher the score, the more positive the sentiment in the
+     *      document is. Yet these values are relative to the training data, so
+     *      e.g. if all data was positive then -1 will be also positive (though
+     *      the least).
+     *      The sentiment_score shouldn't be confused with "score" or "magnitude"
+     *      from the previous Natural Language Sentiment Analysis API.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

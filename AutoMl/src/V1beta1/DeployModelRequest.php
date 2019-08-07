@@ -21,6 +21,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
+    protected $model_deployment_metadata;
 
     /**
      * Constructor.
@@ -28,6 +29,8 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata $image_object_detection_model_deployment_metadata
+     *           Model deployment metadata specific to Image Object Detection.
      *     @type string $name
      *           Resource name of the model to deploy.
      * }
@@ -35,6 +38,32 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Service::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Model deployment metadata specific to Image Object Detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata image_object_detection_model_deployment_metadata = 2;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata
+     */
+    public function getImageObjectDetectionModelDeploymentMetadata()
+    {
+        return $this->readOneof(2);
+    }
+
+    /**
+     * Model deployment metadata specific to Image Object Detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata image_object_detection_model_deployment_metadata = 2;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata $var
+     * @return $this
+     */
+    public function setImageObjectDetectionModelDeploymentMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata::class);
+        $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
@@ -61,6 +90,14 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
         $this->name = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getModelDeploymentMetadata()
+    {
+        return $this->whichOneof("model_deployment_metadata");
     }
 
 }
