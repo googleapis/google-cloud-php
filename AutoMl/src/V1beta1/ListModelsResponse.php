@@ -23,7 +23,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
     private $model;
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModels.page_token][] to obtain that page.
+     * Pass to [ListModelsRequest.page_token][google.cloud.automl.v1beta1.ListModelsRequest.page_token] to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -39,7 +39,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      *           List of models in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
-     *           Pass to [ListModels.page_token][] to obtain that page.
+     *           Pass to [ListModelsRequest.page_token][google.cloud.automl.v1beta1.ListModelsRequest.page_token] to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModels.page_token][] to obtain that page.
+     * Pass to [ListModelsRequest.page_token][google.cloud.automl.v1beta1.ListModelsRequest.page_token] to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to [ListModels.page_token][] to obtain that page.
+     * Pass to [ListModelsRequest.page_token][google.cloud.automl.v1beta1.ListModelsRequest.page_token] to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

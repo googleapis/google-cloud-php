@@ -23,7 +23,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The desired input location.
+     * Required. The desired input location and its domain specific semantics,
+     * if any.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3;</code>
      */
@@ -39,7 +40,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           Required. Dataset name. Dataset must already exist. All imported
      *           annotations and examples will be added.
      *     @type \Google\Cloud\AutoMl\V1beta1\InputConfig $input_config
-     *           Required. The desired input location.
+     *           Required. The desired input location and its domain specific semantics,
+     *           if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +78,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired input location.
+     * Required. The desired input location and its domain specific semantics,
+     * if any.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3;</code>
      * @return \Google\Cloud\AutoMl\V1beta1\InputConfig
@@ -87,7 +90,8 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired input location.
+     * Required. The desired input location and its domain specific semantics,
+     * if any.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 3;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\InputConfig $var
