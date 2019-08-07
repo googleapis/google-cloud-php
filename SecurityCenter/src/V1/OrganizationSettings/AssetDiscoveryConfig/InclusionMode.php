@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig;
 
+use UnexpectedValueException;
+
 /**
  * The mode of inclusion when running Asset Discovery.
  * Asset discovery can be limited by explicitly identifying projects to be
@@ -39,6 +41,32 @@ class InclusionMode
      * Generated from protobuf enum <code>EXCLUDE = 2;</code>
      */
     const EXCLUDE = 2;
+
+    private static $valueToName = [
+        self::INCLUSION_MODE_UNSPECIFIED => 'INCLUSION_MODE_UNSPECIFIED',
+        self::INCLUDE_ONLY => 'INCLUDE_ONLY',
+        self::EXCLUDE => 'EXCLUDE',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

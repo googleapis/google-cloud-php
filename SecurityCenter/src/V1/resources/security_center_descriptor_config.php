@@ -5,7 +5,7 @@ return [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
             'RunAssetDiscovery' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'operationReturnType' => '\Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse',
                     'metadataReturnType' => '\Google\Protobuf\GPBEmpty',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',

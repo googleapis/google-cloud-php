@@ -31,22 +31,22 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecurityCenter\V1\Finding;
-use Google\Cloud\SecurityCenter\V1\Finding_State;
+use Google\Cloud\SecurityCenter\V1\Finding\State;
 use Google\Cloud\SecurityCenter\V1\GroupAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\GroupFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\GroupResult;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
-use Google\Cloud\SecurityCenter\V1\ListAssetsResponse_ListAssetsResult;
+use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
-use Google\Cloud\SecurityCenter\V1\ListFindingsResponse_ListFindingsResult;
+use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
 use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
+use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
@@ -66,14 +66,22 @@ class SecurityCenterClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return SecurityCenterClient
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new SecurityCenterClient($options);
@@ -664,7 +672,7 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $totalSize = 705419236;
-        $listAssetsResultsElement = new ListAssetsResponse_ListAssetsResult();
+        $listAssetsResultsElement = new ListAssetsResult();
         $listAssetsResults = [$listAssetsResultsElement];
         $expectedResponse = new ListAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -745,7 +753,7 @@ class SecurityCenterClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $totalSize = 705419236;
-        $listFindingsResultsElement = new ListFindingsResponse_ListFindingsResult();
+        $listFindingsResultsElement = new ListFindingsResult();
         $listFindingsResults = [$listFindingsResultsElement];
         $expectedResponse = new ListFindingsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -901,6 +909,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -916,7 +925,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/runAssetDiscoveryTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $expectedResponse = new GPBEmpty();
+        $expectedResponse = new RunAssetDiscoveryResponse();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -974,6 +983,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $operationsClient = new OperationsClient([
             'serviceAddress' => '',
             'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -1056,7 +1066,7 @@ class SecurityCenterClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-        $state = Finding_State::STATE_UNSPECIFIED;
+        $state = State::STATE_UNSPECIFIED;
         $startTime = new Timestamp();
 
         $response = $client->setFindingState($formattedName, $state, $startTime);
@@ -1104,7 +1114,7 @@ class SecurityCenterClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
-        $state = Finding_State::STATE_UNSPECIFIED;
+        $state = State::STATE_UNSPECIFIED;
         $startTime = new Timestamp();
 
         try {

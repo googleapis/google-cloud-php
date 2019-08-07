@@ -42,6 +42,26 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * string literals in quotes.
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
+     * The following field and operator combinations are supported:
+     * name | '='
+     * update_time | '=', '>', '<', '>=', '<='
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "update_time = \"2019-06-10T16:07:18-07:00\""
+     *     "update_time = 1560208038000"
+     * create_time |  '=', '>', '<', '>=', '<='
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "create_time = \"2019-06-10T16:07:18-07:00\""
+     *     "create_time = 1560208038000"
+     * iam_policy.policy_blob | '=', ':'
+     * resource_properties | '=', ':', '>', '<', '>=', '<='
+     * security_marks | '=', ':'
+     * security_center_properties.resource_name | '=', ':'
+     * security_center_properties.resource_type | '=', ':'
+     * security_center_properties.resource_parent | '=', ':'
+     * security_center_properties.resource_project | '=', ':'
+     * security_center_properties.resource_owners | '=', ':'
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -143,6 +163,26 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      *           * string literals in quotes.
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
+     *           The following field and operator combinations are supported:
+     *           name | '='
+     *           update_time | '=', '>', '<', '>=', '<='
+     *             Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *             Examples:
+     *               "update_time = \"2019-06-10T16:07:18-07:00\""
+     *               "update_time = 1560208038000"
+     *           create_time |  '=', '>', '<', '>=', '<='
+     *             Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *             Examples:
+     *               "create_time = \"2019-06-10T16:07:18-07:00\""
+     *               "create_time = 1560208038000"
+     *           iam_policy.policy_blob | '=', ':'
+     *           resource_properties | '=', ':', '>', '<', '>=', '<='
+     *           security_marks | '=', ':'
+     *           security_center_properties.resource_name | '=', ':'
+     *           security_center_properties.resource_type | '=', ':'
+     *           security_center_properties.resource_parent | '=', ':'
+     *           security_center_properties.resource_project | '=', ':'
+     *           security_center_properties.resource_owners | '=', ':'
      *           For example, `resource_properties.size = 100` is a valid filter string.
      *     @type string $group_by
      *           Expression that defines what assets fields to use for grouping. The string
@@ -245,6 +285,26 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * string literals in quotes.
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
+     * The following field and operator combinations are supported:
+     * name | '='
+     * update_time | '=', '>', '<', '>=', '<='
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "update_time = \"2019-06-10T16:07:18-07:00\""
+     *     "update_time = 1560208038000"
+     * create_time |  '=', '>', '<', '>=', '<='
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "create_time = \"2019-06-10T16:07:18-07:00\""
+     *     "create_time = 1560208038000"
+     * iam_policy.policy_blob | '=', ':'
+     * resource_properties | '=', ':', '>', '<', '>=', '<='
+     * security_marks | '=', ':'
+     * security_center_properties.resource_name | '=', ':'
+     * security_center_properties.resource_type | '=', ':'
+     * security_center_properties.resource_parent | '=', ':'
+     * security_center_properties.resource_project | '=', ':'
+     * security_center_properties.resource_owners | '=', ':'
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -275,6 +335,26 @@ class GroupAssetsRequest extends \Google\Protobuf\Internal\Message
      * * string literals in quotes.
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
+     * The following field and operator combinations are supported:
+     * name | '='
+     * update_time | '=', '>', '<', '>=', '<='
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "update_time = \"2019-06-10T16:07:18-07:00\""
+     *     "update_time = 1560208038000"
+     * create_time |  '=', '>', '<', '>=', '<='
+     *   Usage: This should be milliseconds since epoch or an RFC3339 string.
+     *   Examples:
+     *     "create_time = \"2019-06-10T16:07:18-07:00\""
+     *     "create_time = 1560208038000"
+     * iam_policy.policy_blob | '=', ':'
+     * resource_properties | '=', ':', '>', '<', '>=', '<='
+     * security_marks | '=', ':'
+     * security_center_properties.resource_name | '=', ':'
+     * security_center_properties.resource_type | '=', ':'
+     * security_center_properties.resource_parent | '=', ':'
+     * security_center_properties.resource_project | '=', ':'
+     * security_center_properties.resource_owners | '=', ':'
      * For example, `resource_properties.size = 100` is a valid filter string.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
