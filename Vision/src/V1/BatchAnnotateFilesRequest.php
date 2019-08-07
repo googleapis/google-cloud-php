@@ -22,6 +22,19 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1;</code>
      */
     private $requests;
+    /**
+     * Optional. Target project and location to make a call.
+     * Format: `projects/{project-id}/locations/{location-id}`.
+     * If no parent is specified, a region will be chosen automatically.
+     * Supported location-ids:
+     *     `us`: USA country only,
+     *     `asia`: East asia areas, like Japan, Taiwan,
+     *     `eu`: The European Union.
+     * Example: `projects/project-A/locations/eu`.
+     *
+     * Generated from protobuf field <code>string parent = 3;</code>
+     */
+    private $parent = '';
 
     /**
      * Constructor.
@@ -32,6 +45,15 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Vision\V1\AnnotateFileRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
      *           The list of file annotation requests. Right now we support only one
      *           AnnotateFileRequest in BatchAnnotateFilesRequest.
+     *     @type string $parent
+     *           Optional. Target project and location to make a call.
+     *           Format: `projects/{project-id}/locations/{location-id}`.
+     *           If no parent is specified, a region will be chosen automatically.
+     *           Supported location-ids:
+     *               `us`: USA country only,
+     *               `asia`: East asia areas, like Japan, Taiwan,
+     *               `eu`: The European Union.
+     *           Example: `projects/project-A/locations/eu`.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +85,46 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Vision\V1\AnnotateFileRequest::class);
         $this->requests = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Target project and location to make a call.
+     * Format: `projects/{project-id}/locations/{location-id}`.
+     * If no parent is specified, a region will be chosen automatically.
+     * Supported location-ids:
+     *     `us`: USA country only,
+     *     `asia`: East asia areas, like Japan, Taiwan,
+     *     `eu`: The European Union.
+     * Example: `projects/project-A/locations/eu`.
+     *
+     * Generated from protobuf field <code>string parent = 3;</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Optional. Target project and location to make a call.
+     * Format: `projects/{project-id}/locations/{location-id}`.
+     * If no parent is specified, a region will be chosen automatically.
+     * Supported location-ids:
+     *     `us`: USA country only,
+     *     `asia`: East asia areas, like Japan, Taiwan,
+     *     `eu`: The European Union.
+     * Example: `projects/project-A/locations/eu`.
+     *
+     * Generated from protobuf field <code>string parent = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

@@ -211,6 +211,18 @@ return [
                     ],
                 ],
             ],
+            'PurgeProducts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/products:purge',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [

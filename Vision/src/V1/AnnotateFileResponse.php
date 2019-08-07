@@ -23,7 +23,8 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      */
     private $input_config = null;
     /**
-     * Individual responses to images found within the file.
+     * Individual responses to images found within the file. This field will be
+     * empty if the `error` field is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
      */
@@ -34,6 +35,13 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_pages = 3;</code>
      */
     private $total_pages = 0;
+    /**
+     * If set, represents the error message for the failed request. The
+     * `responses` field will not be set in this case.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
+     */
+    private $error = null;
 
     /**
      * Constructor.
@@ -44,9 +52,13 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Vision\V1\InputConfig $input_config
      *           Information about the file for which this response is generated.
      *     @type \Google\Cloud\Vision\V1\AnnotateImageResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
-     *           Individual responses to images found within the file.
+     *           Individual responses to images found within the file. This field will be
+     *           empty if the `error` field is set.
      *     @type int $total_pages
      *           This field gives the total number of pages in the file.
+     *     @type \Google\Rpc\Status $error
+     *           If set, represents the error message for the failed request. The
+     *           `responses` field will not be set in this case.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +93,8 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Individual responses to images found within the file.
+     * Individual responses to images found within the file. This field will be
+     * empty if the `error` field is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +105,8 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Individual responses to images found within the file.
+     * Individual responses to images found within the file. This field will be
+     * empty if the `error` field is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
      * @param \Google\Cloud\Vision\V1\AnnotateImageResponse[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -128,6 +142,34 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_pages = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set, represents the error message for the failed request. The
+     * `responses` field will not be set in this case.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
+     * @return \Google\Rpc\Status
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * If set, represents the error message for the failed request. The
+     * `responses` field will not be set in this case.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
+     * @param \Google\Rpc\Status $var
+     * @return $this
+     */
+    public function setError($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
+        $this->error = $var;
 
         return $this;
     }
