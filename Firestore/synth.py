@@ -51,6 +51,23 @@ for v in versions:
     # copy GPBMetadata file to metadata
     s.move(library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
 
+# document and utilize apiEndpoint instead of serviceAddress
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"@type string \$serviceAddress",
+    r"""@type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint""")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$transportConfig, and any \$serviceAddress",
+    r"$transportConfig, and any `$apiEndpoint`")
+
 # fix year
 s.replace(
     '**/V1beta1/Gapic/*GapicClient.php',

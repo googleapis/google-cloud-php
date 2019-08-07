@@ -45,6 +45,23 @@ for version in ['V1', 'V1p1beta1']:
     # copy GPBMetadata file to metadata
     s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Speech', f'metadata/')
 
+# document and utilize apiEndpoint instead of serviceAddress
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"@type string \$serviceAddress",
+    r"""@type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint""")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$transportConfig, and any \$serviceAddress",
+    r"$transportConfig, and any `$apiEndpoint`")
+
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
