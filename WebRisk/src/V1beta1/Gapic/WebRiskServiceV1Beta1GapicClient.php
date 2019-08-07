@@ -50,10 +50,10 @@ use Google\Cloud\WebRisk\V1beta1\ThreatType;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+ * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
  * try {
- *     $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
- *     $constraints = new Constraints();
+ *     $threatType = Google\Cloud\WebRisk\V1beta1\ThreatType::THREAT_TYPE_UNSPECIFIED;
+ *     $constraints = new Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints();
  *     $response = $webRiskServiceV1Beta1Client->computeThreatListDiff($threatType, $constraints);
  * } finally {
  *     $webRiskServiceV1Beta1Client->close();
@@ -178,10 +178,10 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * Sample code:
      * ```
-     * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+     * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
-     *     $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-     *     $constraints = new Constraints();
+     *     $threatType = Google\Cloud\WebRisk\V1beta1\ThreatType::THREAT_TYPE_UNSPECIFIED;
+     *     $constraints = new Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints();
      *     $response = $webRiskServiceV1Beta1Client->computeThreatListDiff($threatType, $constraints);
      * } finally {
      *     $webRiskServiceV1Beta1Client->close();
@@ -231,7 +231,7 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * Sample code:
      * ```
-     * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+     * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
      *     $uri = '';
      *     $threatTypes = [];
@@ -282,7 +282,7 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * Sample code:
      * ```
-     * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+     * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
      *     $response = $webRiskServiceV1Beta1Client->searchHashes();
      * } finally {
