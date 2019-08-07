@@ -1,0 +1,1 @@
+{"id":"firestore\/admin\/v1\/index\/indexfield\/arrayconfig","type":"","title":"Google\\Cloud\\Firestore\\Admin\\V1\\Index\\IndexField\\ArrayConfig","name":"ArrayConfig","description":"<p>The supported array value configurations.<\/p>\n<p>Protobuf type <code>google.firestore.admin.v1.Index.IndexField.ArrayConfig<\/code><\/p>","examples":[],"resources":[],"methods":[]}
