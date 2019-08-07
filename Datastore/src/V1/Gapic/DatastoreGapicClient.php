@@ -69,7 +69,7 @@ use Google\Cloud\Datastore\V1\TransactionOptions;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $datastoreClient = new DatastoreClient();
+ * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
  * try {
  *     $projectId = '';
  *     $keys = [];
@@ -198,7 +198,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $keys = [];
@@ -256,10 +256,10 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $partitionId = new PartitionId();
+     *     $partitionId = new Google\Cloud\Datastore\V1\PartitionId();
      *     $response = $datastoreClient->runQuery($projectId, $partitionId);
      * } finally {
      *     $datastoreClient->close();
@@ -327,7 +327,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $response = $datastoreClient->beginTransaction($projectId);
@@ -383,10 +383,10 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $mode = Mode::MODE_UNSPECIFIED;
+     *     $mode = Google\Cloud\Datastore\V1\CommitRequest\Mode::MODE_UNSPECIFIED;
      *     $mutations = [];
      *     $response = $datastoreClient->commit($projectId, $mode, $mutations);
      * } finally {
@@ -459,7 +459,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $transaction = '';
@@ -514,7 +514,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $keys = [];
@@ -569,7 +569,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $keys = [];
