@@ -17,8 +17,9 @@ class Row extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Value of the specific cell in the confusion matrix.
-     * The number of values each row is equal to the size of
-     * annotatin_spec_id.
+     * The number of values each row has (i.e. the length of the row) is equal
+     * to the length of the `annotation_spec_id` field or, if that one is not
+     * populated, length of the [display_name][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
      *
      * Generated from protobuf field <code>repeated int32 example_count = 1;</code>
      */
@@ -32,8 +33,9 @@ class Row extends \Google\Protobuf\Internal\Message
      *
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $example_count
      *           Output only. Value of the specific cell in the confusion matrix.
-     *           The number of values each row is equal to the size of
-     *           annotatin_spec_id.
+     *           The number of values each row has (i.e. the length of the row) is equal
+     *           to the length of the `annotation_spec_id` field or, if that one is not
+     *           populated, length of the [display_name][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +45,9 @@ class Row extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Value of the specific cell in the confusion matrix.
-     * The number of values each row is equal to the size of
-     * annotatin_spec_id.
+     * The number of values each row has (i.e. the length of the row) is equal
+     * to the length of the `annotation_spec_id` field or, if that one is not
+     * populated, length of the [display_name][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
      *
      * Generated from protobuf field <code>repeated int32 example_count = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,8 +59,9 @@ class Row extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Value of the specific cell in the confusion matrix.
-     * The number of values each row is equal to the size of
-     * annotatin_spec_id.
+     * The number of values each row has (i.e. the length of the row) is equal
+     * to the length of the `annotation_spec_id` field or, if that one is not
+     * populated, length of the [display_name][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
      *
      * Generated from protobuf field <code>repeated int32 example_count = 1;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var

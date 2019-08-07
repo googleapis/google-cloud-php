@@ -29,17 +29,28 @@ namespace Google\Cloud\AutoMl\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig;
+use Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig;
+use Google\Cloud\AutoMl\V1beta1\BatchPredictRequest;
+use Google\Cloud\AutoMl\V1beta1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1beta1\ExamplePayload;
 use Google\Cloud\AutoMl\V1beta1\PredictRequest;
 use Google\Cloud\AutoMl\V1beta1\PredictResponse;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: AutoML Prediction API.
+ *
+ * On any input that is documented to expect a string parameter in
+ * snake_case or kebab-case, either of those cases is accepted.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -95,11 +106,13 @@ class PredictionServiceGapicClient
     private static $modelNameTemplate;
     private static $pathTemplateMap;
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/prediction_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/prediction_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/prediction_service_grpc_config.json',
@@ -116,7 +129,7 @@ class PredictionServiceGapicClient
 
     private static function getModelNameTemplate()
     {
-        if (self::$modelNameTemplate == null) {
+        if (null == self::$modelNameTemplate) {
             self::$modelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}');
         }
 
@@ -125,7 +138,7 @@ class PredictionServiceGapicClient
 
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'model' => self::getModelNameTemplate(),
             ];
@@ -196,12 +209,50 @@ class PredictionServiceGapicClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
+    }
+
+    /**
      * Constructor.
      *
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'automl.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -229,7 +280,7 @@ class PredictionServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -251,10 +302,27 @@ class PredictionServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
-     * Perform a prediction.
+     * Perform an online prediction. The prediction result will be directly
+     * returned in the response.
+     * Available for following ML problems, and their expected request payloads:
+     * * Image Classification - Image in .JPEG, .GIF or .PNG format, image_bytes
+     *                          up to 30MB.
+     * * Image Object Detection - Image in .JPEG, .GIF or .PNG format, image_bytes
+     *                            up to 30MB.
+     * * Text Classification - TextSnippet, content up to 60,000 characters,
+     *                         UTF-8 encoded.
+     * * Text Extraction - TextSnippet, content up to 30,000 characters,
+     *                     UTF-8 NFC encoded.
+     * * Translation - TextSnippet, content up to 25,000 characters, UTF-8
+     *                 encoded.
+     * * Tables - Row, with column values matching the columns of the model,
+     *            up to 5MB. Not available for FORECASTING.
+     *
+     * [prediction_type][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type].
      *
      * Sample code:
      * ```
@@ -282,9 +350,16 @@ class PredictionServiceGapicClient
      *          *  For Image Classification:
      *
      *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *              makes predictions for an
-     *              image, it will only produce results that have at least this confidence
-     *              score threshold. The default is 0.5.
+     *              makes predictions for an image, it will only produce results that have
+     *              at least this confidence score. The default is 0.5.
+     *          *  For Tables:
+     *             `feature_importance` - (boolean) Whether
+     *
+     *          [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
+     *                 should be populated in the returned
+     *
+     *          [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *                 The default is false.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -306,11 +381,158 @@ class PredictionServiceGapicClient
             $request->setParams($optionalArgs['params']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'Predict',
             PredictResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Perform a batch prediction. Unlike the online [Predict][google.cloud.automl.v1beta1.PredictionService.Predict], batch
+     * prediction result won't be immediately available in the response. Instead,
+     * a long running operation object is returned. User can poll the operation
+     * result via [GetOperation][google.longrunning.Operations.GetOperation]
+     * method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1beta1.BatchPredictResult] is returned in
+     * the [response][google.longrunning.Operation.response] field.
+     * Available for following ML problems:
+     * * Video Classification
+     * * Video Object Tracking
+     * * Text Extraction
+     * * Tables.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new PredictionServiceClient();
+     * try {
+     *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $inputConfig = new BatchPredictInputConfig();
+     *     $outputConfig = new BatchPredictOutputConfig();
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $predictionServiceClient->resumeOperation($operationName, 'batchPredict');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                   $name         Name of the model requested to serve the batch prediction.
+     * @param BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
+     * @param BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
+     *                                               be written.
+     * @param array                    $optionalArgs {
+     *                                               Optional.
+     *
+     *     @type array $params
+     *          Additional domain-specific parameters for the predictions, any string must
+     *          be up to 25000 characters long.
+     *
+     *          *  For Video Classification :
+     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *                 makes predictions for a video, it will only produce results that
+     *                 have at least this confidence score. The default is 0.5.
+     *             `segment_classification` - (boolean) Set to true to request
+     *                 segment-level classification. AutoML Video Intelligence returns
+     *                 labels and their confidence scores for the entire segment of the
+     *                 video that user specified in the request configuration.
+     *                 The default is "true".
+     *             `shot_classification` - (boolean) Set to true to request shot-level
+     *                 classification. AutoML Video Intelligence determines the boundaries
+     *                 for each camera shot in the entire segment of the video that user
+     *                 specified in the request configuration. AutoML Video Intelligence
+     *                 then returns labels and their confidence scores for each detected
+     *                 shot, along with the start and end time of the shot.
+     *                 WARNING: Model evaluation is not done for this classification type,
+     *                 the quality of it depends on training data, but there are no metrics
+     *                 provided to describe that quality. The default is "false".
+     *             `1s_interval_classification` - (boolean) Set to true to request
+     *                 classification for a video at one-second intervals. AutoML Video
+     *                 Intelligence returns labels and their confidence scores for each
+     *                 second of the entire segment of the video that user specified in the
+     *                 request configuration.
+     *                 WARNING: Model evaluation is not done for this classification
+     *                 type, the quality of it depends on training data, but there are no
+     *                 metrics provided to describe that quality. The default is
+     *                 "false".
+     *
+     *          *  For Video Object Tracking:
+     *             `score_threshold` - (float) When Model detects objects on video frames,
+     *                 it will only produce bounding boxes which have at least this
+     *                 confidence score. Value in 0 to 1 range, default is 0.5.
+     *             `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                 boxes will be returned per frame. Default is 100, the requested
+     *                 value may be limited by server.
+     *             `min_bounding_box_size` - (float) Only bounding boxes with shortest edge
+     *               at least that long as a relative value of video frame size will be
+     *               returned. Value in 0 to 1 range. Default is 0.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchPredict($name, $inputConfig, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new BatchPredictRequest();
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+        $request->setOutputConfig($outputConfig);
+        if (isset($optionalArgs['params'])) {
+            $request->setParams($optionalArgs['params']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'BatchPredict',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

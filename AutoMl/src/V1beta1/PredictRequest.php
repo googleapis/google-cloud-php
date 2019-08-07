@@ -34,9 +34,14 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * characters long.
      * *  For Image Classification:
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *     makes predictions for an
-     *     image, it will only produce results that have at least this confidence
-     *     score threshold. The default is 0.5.
+     *     makes predictions for an image, it will only produce results that have
+     *     at least this confidence score. The default is 0.5.
+     * *  For Tables:
+     *    `feature_importance` - (boolean) Whether
+     * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
+     *        should be populated in the returned
+     * [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *        The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      */
@@ -59,9 +64,14 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *           characters long.
      *           *  For Image Classification:
      *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *               makes predictions for an
-     *               image, it will only produce results that have at least this confidence
-     *               score threshold. The default is 0.5.
+     *               makes predictions for an image, it will only produce results that have
+     *               at least this confidence score. The default is 0.5.
+     *           *  For Tables:
+     *              `feature_importance` - (boolean) Whether
+     *           [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
+     *                  should be populated in the returned
+     *           [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *                  The default is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,9 +140,14 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * characters long.
      * *  For Image Classification:
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *     makes predictions for an
-     *     image, it will only produce results that have at least this confidence
-     *     score threshold. The default is 0.5.
+     *     makes predictions for an image, it will only produce results that have
+     *     at least this confidence score. The default is 0.5.
+     * *  For Tables:
+     *    `feature_importance` - (boolean) Whether
+     * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
+     *        should be populated in the returned
+     * [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *        The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -147,9 +162,14 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * characters long.
      * *  For Image Classification:
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
-     *     makes predictions for an
-     *     image, it will only produce results that have at least this confidence
-     *     score threshold. The default is 0.5.
+     *     makes predictions for an image, it will only produce results that have
+     *     at least this confidence score. The default is 0.5.
+     * *  For Tables:
+     *    `feature_importance` - (boolean) Whether
+     * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
+     *        should be populated in the returned
+     * [TablesAnnotation(-s)][[google.cloud.automl.v1beta1.TablesAnnotation].
+     *        The default is false.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

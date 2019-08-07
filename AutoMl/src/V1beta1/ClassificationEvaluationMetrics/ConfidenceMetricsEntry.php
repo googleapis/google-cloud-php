@@ -16,23 +16,39 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The confidence threshold value used to compute the metrics.
+     * Output only. Metrics are computed with an assumption that the model
+     * never returns predictions with score lower than this value.
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
      */
     private $confidence_threshold = 0.0;
     /**
-     * Output only. Recall under the given confidence threshold.
+     * Output only. Metrics are computed with an assumption that the model
+     * always returns at most this many predictions (ordered by their score,
+     * descendingly), but they all still need to meet the confidence_threshold.
+     *
+     * Generated from protobuf field <code>int32 position_threshold = 14;</code>
+     */
+    private $position_threshold = 0;
+    /**
+     * Output only. Recall (True Positive Rate) for the given confidence
+     * threshold.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      */
     private $recall = 0.0;
     /**
-     * Output only. Precision under the given confidence threshold.
+     * Output only. Precision for the given confidence threshold.
      *
      * Generated from protobuf field <code>float precision = 3;</code>
      */
     private $precision = 0.0;
+    /**
+     * Output only. False Positive Rate for the given confidence threshold.
+     *
+     * Generated from protobuf field <code>float false_positive_rate = 8;</code>
+     */
+    private $false_positive_rate = 0.0;
     /**
      * Output only. The harmonic mean of recall and precision.
      *
@@ -40,27 +56,63 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      */
     private $f1_score = 0.0;
     /**
-     * Output only. The recall when only considering the label that has the
-     * highest prediction score and not below the confidence threshold for each
-     * example.
+     * Output only. The Recall (True Positive Rate) when only considering the
+     * label that has the highest prediction score and not below the confidence
+     * threshold for each example.
      *
      * Generated from protobuf field <code>float recall_at1 = 5;</code>
      */
     private $recall_at1 = 0.0;
     /**
      * Output only. The precision when only considering the label that has the
-     * highest predictionscore and not below the confidence threshold for each
+     * highest prediction score and not below the confidence threshold for each
      * example.
      *
      * Generated from protobuf field <code>float precision_at1 = 6;</code>
      */
     private $precision_at1 = 0.0;
     /**
+     * Output only. The False Positive Rate when only considering the label that
+     * has the highest prediction score and not below the confidence threshold
+     * for each example.
+     *
+     * Generated from protobuf field <code>float false_positive_rate_at1 = 9;</code>
+     */
+    private $false_positive_rate_at1 = 0.0;
+    /**
      * Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
      *
      * Generated from protobuf field <code>float f1_score_at1 = 7;</code>
      */
     private $f1_score_at1 = 0.0;
+    /**
+     * Output only. The number of model created labels that match a ground truth
+     * label.
+     *
+     * Generated from protobuf field <code>int64 true_positive_count = 10;</code>
+     */
+    private $true_positive_count = 0;
+    /**
+     * Output only. The number of model created labels that do not match a
+     * ground truth label.
+     *
+     * Generated from protobuf field <code>int64 false_positive_count = 11;</code>
+     */
+    private $false_positive_count = 0;
+    /**
+     * Output only. The number of ground truth labels that are not matched
+     * by a model created label.
+     *
+     * Generated from protobuf field <code>int64 false_negative_count = 12;</code>
+     */
+    private $false_negative_count = 0;
+    /**
+     * Output only. The number of labels that were not created by the model,
+     * but if they would, they would not match a ground truth label.
+     *
+     * Generated from protobuf field <code>int64 true_negative_count = 13;</code>
+     */
+    private $true_negative_count = 0;
 
     /**
      * Constructor.
@@ -69,23 +121,47 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $confidence_threshold
-     *           Output only. The confidence threshold value used to compute the metrics.
+     *           Output only. Metrics are computed with an assumption that the model
+     *           never returns predictions with score lower than this value.
+     *     @type int $position_threshold
+     *           Output only. Metrics are computed with an assumption that the model
+     *           always returns at most this many predictions (ordered by their score,
+     *           descendingly), but they all still need to meet the confidence_threshold.
      *     @type float $recall
-     *           Output only. Recall under the given confidence threshold.
+     *           Output only. Recall (True Positive Rate) for the given confidence
+     *           threshold.
      *     @type float $precision
-     *           Output only. Precision under the given confidence threshold.
+     *           Output only. Precision for the given confidence threshold.
+     *     @type float $false_positive_rate
+     *           Output only. False Positive Rate for the given confidence threshold.
      *     @type float $f1_score
      *           Output only. The harmonic mean of recall and precision.
      *     @type float $recall_at1
-     *           Output only. The recall when only considering the label that has the
-     *           highest prediction score and not below the confidence threshold for each
-     *           example.
+     *           Output only. The Recall (True Positive Rate) when only considering the
+     *           label that has the highest prediction score and not below the confidence
+     *           threshold for each example.
      *     @type float $precision_at1
      *           Output only. The precision when only considering the label that has the
-     *           highest predictionscore and not below the confidence threshold for each
+     *           highest prediction score and not below the confidence threshold for each
      *           example.
+     *     @type float $false_positive_rate_at1
+     *           Output only. The False Positive Rate when only considering the label that
+     *           has the highest prediction score and not below the confidence threshold
+     *           for each example.
      *     @type float $f1_score_at1
      *           Output only. The harmonic mean of [recall_at1][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.recall_at1] and [precision_at1][google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry.precision_at1].
+     *     @type int|string $true_positive_count
+     *           Output only. The number of model created labels that match a ground truth
+     *           label.
+     *     @type int|string $false_positive_count
+     *           Output only. The number of model created labels that do not match a
+     *           ground truth label.
+     *     @type int|string $false_negative_count
+     *           Output only. The number of ground truth labels that are not matched
+     *           by a model created label.
+     *     @type int|string $true_negative_count
+     *           Output only. The number of labels that were not created by the model,
+     *           but if they would, they would not match a ground truth label.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +170,8 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The confidence threshold value used to compute the metrics.
+     * Output only. Metrics are computed with an assumption that the model
+     * never returns predictions with score lower than this value.
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
      * @return float
@@ -105,7 +182,8 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The confidence threshold value used to compute the metrics.
+     * Output only. Metrics are computed with an assumption that the model
+     * never returns predictions with score lower than this value.
      *
      * Generated from protobuf field <code>float confidence_threshold = 1;</code>
      * @param float $var
@@ -120,7 +198,38 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Recall under the given confidence threshold.
+     * Output only. Metrics are computed with an assumption that the model
+     * always returns at most this many predictions (ordered by their score,
+     * descendingly), but they all still need to meet the confidence_threshold.
+     *
+     * Generated from protobuf field <code>int32 position_threshold = 14;</code>
+     * @return int
+     */
+    public function getPositionThreshold()
+    {
+        return $this->position_threshold;
+    }
+
+    /**
+     * Output only. Metrics are computed with an assumption that the model
+     * always returns at most this many predictions (ordered by their score,
+     * descendingly), but they all still need to meet the confidence_threshold.
+     *
+     * Generated from protobuf field <code>int32 position_threshold = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPositionThreshold($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->position_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Recall (True Positive Rate) for the given confidence
+     * threshold.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      * @return float
@@ -131,7 +240,8 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Recall under the given confidence threshold.
+     * Output only. Recall (True Positive Rate) for the given confidence
+     * threshold.
      *
      * Generated from protobuf field <code>float recall = 2;</code>
      * @param float $var
@@ -146,7 +256,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Precision under the given confidence threshold.
+     * Output only. Precision for the given confidence threshold.
      *
      * Generated from protobuf field <code>float precision = 3;</code>
      * @return float
@@ -157,7 +267,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Precision under the given confidence threshold.
+     * Output only. Precision for the given confidence threshold.
      *
      * Generated from protobuf field <code>float precision = 3;</code>
      * @param float $var
@@ -167,6 +277,32 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->precision = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. False Positive Rate for the given confidence threshold.
+     *
+     * Generated from protobuf field <code>float false_positive_rate = 8;</code>
+     * @return float
+     */
+    public function getFalsePositiveRate()
+    {
+        return $this->false_positive_rate;
+    }
+
+    /**
+     * Output only. False Positive Rate for the given confidence threshold.
+     *
+     * Generated from protobuf field <code>float false_positive_rate = 8;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFalsePositiveRate($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->false_positive_rate = $var;
 
         return $this;
     }
@@ -198,9 +334,9 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The recall when only considering the label that has the
-     * highest prediction score and not below the confidence threshold for each
-     * example.
+     * Output only. The Recall (True Positive Rate) when only considering the
+     * label that has the highest prediction score and not below the confidence
+     * threshold for each example.
      *
      * Generated from protobuf field <code>float recall_at1 = 5;</code>
      * @return float
@@ -211,9 +347,9 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The recall when only considering the label that has the
-     * highest prediction score and not below the confidence threshold for each
-     * example.
+     * Output only. The Recall (True Positive Rate) when only considering the
+     * label that has the highest prediction score and not below the confidence
+     * threshold for each example.
      *
      * Generated from protobuf field <code>float recall_at1 = 5;</code>
      * @param float $var
@@ -229,7 +365,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The precision when only considering the label that has the
-     * highest predictionscore and not below the confidence threshold for each
+     * highest prediction score and not below the confidence threshold for each
      * example.
      *
      * Generated from protobuf field <code>float precision_at1 = 6;</code>
@@ -242,7 +378,7 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The precision when only considering the label that has the
-     * highest predictionscore and not below the confidence threshold for each
+     * highest prediction score and not below the confidence threshold for each
      * example.
      *
      * Generated from protobuf field <code>float precision_at1 = 6;</code>
@@ -253,6 +389,36 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->precision_at1 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The False Positive Rate when only considering the label that
+     * has the highest prediction score and not below the confidence threshold
+     * for each example.
+     *
+     * Generated from protobuf field <code>float false_positive_rate_at1 = 9;</code>
+     * @return float
+     */
+    public function getFalsePositiveRateAt1()
+    {
+        return $this->false_positive_rate_at1;
+    }
+
+    /**
+     * Output only. The False Positive Rate when only considering the label that
+     * has the highest prediction score and not below the confidence threshold
+     * for each example.
+     *
+     * Generated from protobuf field <code>float false_positive_rate_at1 = 9;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFalsePositiveRateAt1($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->false_positive_rate_at1 = $var;
 
         return $this;
     }
@@ -279,6 +445,118 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->f1_score_at1 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of model created labels that match a ground truth
+     * label.
+     *
+     * Generated from protobuf field <code>int64 true_positive_count = 10;</code>
+     * @return int|string
+     */
+    public function getTruePositiveCount()
+    {
+        return $this->true_positive_count;
+    }
+
+    /**
+     * Output only. The number of model created labels that match a ground truth
+     * label.
+     *
+     * Generated from protobuf field <code>int64 true_positive_count = 10;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTruePositiveCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->true_positive_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of model created labels that do not match a
+     * ground truth label.
+     *
+     * Generated from protobuf field <code>int64 false_positive_count = 11;</code>
+     * @return int|string
+     */
+    public function getFalsePositiveCount()
+    {
+        return $this->false_positive_count;
+    }
+
+    /**
+     * Output only. The number of model created labels that do not match a
+     * ground truth label.
+     *
+     * Generated from protobuf field <code>int64 false_positive_count = 11;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setFalsePositiveCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->false_positive_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of ground truth labels that are not matched
+     * by a model created label.
+     *
+     * Generated from protobuf field <code>int64 false_negative_count = 12;</code>
+     * @return int|string
+     */
+    public function getFalseNegativeCount()
+    {
+        return $this->false_negative_count;
+    }
+
+    /**
+     * Output only. The number of ground truth labels that are not matched
+     * by a model created label.
+     *
+     * Generated from protobuf field <code>int64 false_negative_count = 12;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setFalseNegativeCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->false_negative_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of labels that were not created by the model,
+     * but if they would, they would not match a ground truth label.
+     *
+     * Generated from protobuf field <code>int64 true_negative_count = 13;</code>
+     * @return int|string
+     */
+    public function getTrueNegativeCount()
+    {
+        return $this->true_negative_count;
+    }
+
+    /**
+     * Output only. The number of labels that were not created by the model,
+     * but if they would, they would not match a ground truth label.
+     *
+     * Generated from protobuf field <code>int64 true_negative_count = 13;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTrueNegativeCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->true_negative_count = $var;
 
         return $this;
     }

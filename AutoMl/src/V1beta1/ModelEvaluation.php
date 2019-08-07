@@ -27,14 +27,33 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     /**
      * Output only.
      * The ID of the annotation spec that the model evaluation applies to. The
-     * ID is empty for overall model evaluation.
-     * NOTE: Currently there is no way to obtain the display_name of the
-     * annotation spec from its ID. To see the display_names, review the model
-     * evaluations in the UI.
+     * The ID is empty for the overall model evaluation.
+     * For Tables annotation specs in the dataset do not exist and this ID is
+     * always not set, but for CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     * the
+     * [display_name][google.cloud.automl.v1beta1.ModelEvaluation.display_name]
+     * field is used.
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      */
     private $annotation_spec_id = '';
+    /**
+     * Output only. The value of
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     * the moment when the model was trained. Because this field returns a value
+     * at model training time, for different models trained from the same dataset,
+     * the values may differ, since display names could had been changed between
+     * the two model's trainings.
+     * For Tables CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     * distinct values of the target column at the moment of the model evaluation
+     * are populated here.
+     * The display_name is empty for the overall model evaluation.
+     *
+     * Generated from protobuf field <code>string display_name = 15;</code>
+     */
+    private $display_name = '';
     /**
      * Output only.
      * Timestamp when this model evaluation was created.
@@ -43,7 +62,15 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. The number of examples used for model evaluation.
+     * Output only.
+     * The number of examples used for model evaluation, i.e. for
+     * which ground truth from time of model creation is compared against the
+     * predicted annotations created by the model.
+     * For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
+     * the total number of all examples used for evaluation.
+     * Otherwise, this is the count of examples that according to the ground
+     * truth were annotated by the
+     * [annotation_spec_id][google.cloud.automl.v1beta1.ModelEvaluation.annotation_spec_id].
      *
      * Generated from protobuf field <code>int32 evaluated_example_count = 6;</code>
      */
@@ -57,9 +84,24 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics $classification_evaluation_metrics
-     *           Evaluation metrics for models on classification problems models.
+     *           Model evaluation metrics for image, text, video and tables
+     *           classification.
+     *           Tables problem is considered a classification when the target column
+     *           is CATEGORY DataType.
+     *     @type \Google\Cloud\AutoMl\V1beta1\RegressionEvaluationMetrics $regression_evaluation_metrics
+     *           Model evaluation metrics for Tables regression.
+     *           Tables problem is considered a regression when the target column
+     *           has FLOAT64 DataType.
      *     @type \Google\Cloud\AutoMl\V1beta1\TranslationEvaluationMetrics $translation_evaluation_metrics
-     *           Evaluation metrics for models on translation models.
+     *           Model evaluation metrics for translation.
+     *     @type \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionEvaluationMetrics $image_object_detection_evaluation_metrics
+     *           Model evaluation metrics for image object detection.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingEvaluationMetrics $video_object_tracking_evaluation_metrics
+     *           Model evaluation metrics for video object tracking.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextSentimentEvaluationMetrics $text_sentiment_evaluation_metrics
+     *           Evaluation metrics for text sentiment models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics $text_extraction_evaluation_metrics
+     *           Evaluation metrics for text extraction models.
      *     @type string $name
      *           Output only.
      *           Resource name of the model evaluation.
@@ -68,15 +110,38 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     @type string $annotation_spec_id
      *           Output only.
      *           The ID of the annotation spec that the model evaluation applies to. The
-     *           ID is empty for overall model evaluation.
-     *           NOTE: Currently there is no way to obtain the display_name of the
-     *           annotation spec from its ID. To see the display_names, review the model
-     *           evaluations in the UI.
+     *           The ID is empty for the overall model evaluation.
+     *           For Tables annotation specs in the dataset do not exist and this ID is
+     *           always not set, but for CLASSIFICATION
+     *           [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     *           the
+     *           [display_name][google.cloud.automl.v1beta1.ModelEvaluation.display_name]
+     *           field is used.
+     *     @type string $display_name
+     *           Output only. The value of
+     *           [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     *           the moment when the model was trained. Because this field returns a value
+     *           at model training time, for different models trained from the same dataset,
+     *           the values may differ, since display names could had been changed between
+     *           the two model's trainings.
+     *           For Tables CLASSIFICATION
+     *           [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     *           distinct values of the target column at the moment of the model evaluation
+     *           are populated here.
+     *           The display_name is empty for the overall model evaluation.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only.
      *           Timestamp when this model evaluation was created.
      *     @type int $evaluated_example_count
-     *           Output only. The number of examples used for model evaluation.
+     *           Output only.
+     *           The number of examples used for model evaluation, i.e. for
+     *           which ground truth from time of model creation is compared against the
+     *           predicted annotations created by the model.
+     *           For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
+     *           the total number of all examples used for evaluation.
+     *           Otherwise, this is the count of examples that according to the ground
+     *           truth were annotated by the
+     *           [annotation_spec_id][google.cloud.automl.v1beta1.ModelEvaluation.annotation_spec_id].
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +150,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Evaluation metrics for models on classification problems models.
+     * Model evaluation metrics for image, text, video and tables
+     * classification.
+     * Tables problem is considered a classification when the target column
+     * is CATEGORY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics classification_evaluation_metrics = 8;</code>
      * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics
@@ -96,7 +164,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Evaluation metrics for models on classification problems models.
+     * Model evaluation metrics for image, text, video and tables
+     * classification.
+     * Tables problem is considered a classification when the target column
+     * is CATEGORY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics classification_evaluation_metrics = 8;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics $var
@@ -111,7 +182,37 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Evaluation metrics for models on translation models.
+     * Model evaluation metrics for Tables regression.
+     * Tables problem is considered a regression when the target column
+     * has FLOAT64 DataType.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.RegressionEvaluationMetrics regression_evaluation_metrics = 24;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\RegressionEvaluationMetrics
+     */
+    public function getRegressionEvaluationMetrics()
+    {
+        return $this->readOneof(24);
+    }
+
+    /**
+     * Model evaluation metrics for Tables regression.
+     * Tables problem is considered a regression when the target column
+     * has FLOAT64 DataType.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.RegressionEvaluationMetrics regression_evaluation_metrics = 24;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\RegressionEvaluationMetrics $var
+     * @return $this
+     */
+    public function setRegressionEvaluationMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\RegressionEvaluationMetrics::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Model evaluation metrics for translation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationEvaluationMetrics translation_evaluation_metrics = 9;</code>
      * @return \Google\Cloud\AutoMl\V1beta1\TranslationEvaluationMetrics
@@ -122,7 +223,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Evaluation metrics for models on translation models.
+     * Model evaluation metrics for translation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationEvaluationMetrics translation_evaluation_metrics = 9;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\TranslationEvaluationMetrics $var
@@ -132,6 +233,110 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TranslationEvaluationMetrics::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Model evaluation metrics for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionEvaluationMetrics image_object_detection_evaluation_metrics = 12;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionEvaluationMetrics
+     */
+    public function getImageObjectDetectionEvaluationMetrics()
+    {
+        return $this->readOneof(12);
+    }
+
+    /**
+     * Model evaluation metrics for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionEvaluationMetrics image_object_detection_evaluation_metrics = 12;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionEvaluationMetrics $var
+     * @return $this
+     */
+    public function setImageObjectDetectionEvaluationMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionEvaluationMetrics::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Model evaluation metrics for video object tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingEvaluationMetrics video_object_tracking_evaluation_metrics = 14;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingEvaluationMetrics
+     */
+    public function getVideoObjectTrackingEvaluationMetrics()
+    {
+        return $this->readOneof(14);
+    }
+
+    /**
+     * Model evaluation metrics for video object tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingEvaluationMetrics video_object_tracking_evaluation_metrics = 14;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingEvaluationMetrics $var
+     * @return $this
+     */
+    public function setVideoObjectTrackingEvaluationMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingEvaluationMetrics::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Evaluation metrics for text sentiment models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentEvaluationMetrics text_sentiment_evaluation_metrics = 11;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentEvaluationMetrics
+     */
+    public function getTextSentimentEvaluationMetrics()
+    {
+        return $this->readOneof(11);
+    }
+
+    /**
+     * Evaluation metrics for text sentiment models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentEvaluationMetrics text_sentiment_evaluation_metrics = 11;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextSentimentEvaluationMetrics $var
+     * @return $this
+     */
+    public function setTextSentimentEvaluationMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextSentimentEvaluationMetrics::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Evaluation metrics for text extraction models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionEvaluationMetrics text_extraction_evaluation_metrics = 13;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics
+     */
+    public function getTextExtractionEvaluationMetrics()
+    {
+        return $this->readOneof(13);
+    }
+
+    /**
+     * Evaluation metrics for text extraction models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionEvaluationMetrics text_extraction_evaluation_metrics = 13;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics $var
+     * @return $this
+     */
+    public function setTextExtractionEvaluationMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }
@@ -171,10 +376,13 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     /**
      * Output only.
      * The ID of the annotation spec that the model evaluation applies to. The
-     * ID is empty for overall model evaluation.
-     * NOTE: Currently there is no way to obtain the display_name of the
-     * annotation spec from its ID. To see the display_names, review the model
-     * evaluations in the UI.
+     * The ID is empty for the overall model evaluation.
+     * For Tables annotation specs in the dataset do not exist and this ID is
+     * always not set, but for CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     * the
+     * [display_name][google.cloud.automl.v1beta1.ModelEvaluation.display_name]
+     * field is used.
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      * @return string
@@ -187,10 +395,13 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     /**
      * Output only.
      * The ID of the annotation spec that the model evaluation applies to. The
-     * ID is empty for overall model evaluation.
-     * NOTE: Currently there is no way to obtain the display_name of the
-     * annotation spec from its ID. To see the display_names, review the model
-     * evaluations in the UI.
+     * The ID is empty for the overall model evaluation.
+     * For Tables annotation specs in the dataset do not exist and this ID is
+     * always not set, but for CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     * the
+     * [display_name][google.cloud.automl.v1beta1.ModelEvaluation.display_name]
+     * field is used.
      *
      * Generated from protobuf field <code>string annotation_spec_id = 2;</code>
      * @param string $var
@@ -200,6 +411,52 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->annotation_spec_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The value of
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     * the moment when the model was trained. Because this field returns a value
+     * at model training time, for different models trained from the same dataset,
+     * the values may differ, since display names could had been changed between
+     * the two model's trainings.
+     * For Tables CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     * distinct values of the target column at the moment of the model evaluation
+     * are populated here.
+     * The display_name is empty for the overall model evaluation.
+     *
+     * Generated from protobuf field <code>string display_name = 15;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Output only. The value of
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     * the moment when the model was trained. Because this field returns a value
+     * at model training time, for different models trained from the same dataset,
+     * the values may differ, since display names could had been changed between
+     * the two model's trainings.
+     * For Tables CLASSIFICATION
+     * [prediction_type-s][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type]
+     * distinct values of the target column at the moment of the model evaluation
+     * are populated here.
+     * The display_name is empty for the overall model evaluation.
+     *
+     * Generated from protobuf field <code>string display_name = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
@@ -233,7 +490,15 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of examples used for model evaluation.
+     * Output only.
+     * The number of examples used for model evaluation, i.e. for
+     * which ground truth from time of model creation is compared against the
+     * predicted annotations created by the model.
+     * For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
+     * the total number of all examples used for evaluation.
+     * Otherwise, this is the count of examples that according to the ground
+     * truth were annotated by the
+     * [annotation_spec_id][google.cloud.automl.v1beta1.ModelEvaluation.annotation_spec_id].
      *
      * Generated from protobuf field <code>int32 evaluated_example_count = 6;</code>
      * @return int
@@ -244,7 +509,15 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The number of examples used for model evaluation.
+     * Output only.
+     * The number of examples used for model evaluation, i.e. for
+     * which ground truth from time of model creation is compared against the
+     * predicted annotations created by the model.
+     * For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
+     * the total number of all examples used for evaluation.
+     * Otherwise, this is the count of examples that according to the ground
+     * truth were annotated by the
+     * [annotation_spec_id][google.cloud.automl.v1beta1.ModelEvaluation.annotation_spec_id].
      *
      * Generated from protobuf field <code>int32 evaluated_example_count = 6;</code>
      * @param int $var

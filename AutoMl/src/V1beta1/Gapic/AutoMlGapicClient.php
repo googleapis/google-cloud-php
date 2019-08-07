@@ -32,10 +32,13 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AutoMl\V1beta1\AnnotationSpec;
+use Google\Cloud\AutoMl\V1beta1\ColumnSpec;
 use Google\Cloud\AutoMl\V1beta1\CreateDatasetRequest;
 use Google\Cloud\AutoMl\V1beta1\CreateModelRequest;
 use Google\Cloud\AutoMl\V1beta1\Dataset;
@@ -43,22 +46,39 @@ use Google\Cloud\AutoMl\V1beta1\DeleteDatasetRequest;
 use Google\Cloud\AutoMl\V1beta1\DeleteModelRequest;
 use Google\Cloud\AutoMl\V1beta1\DeployModelRequest;
 use Google\Cloud\AutoMl\V1beta1\ExportDataRequest;
+use Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig;
+use Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesRequest;
+use Google\Cloud\AutoMl\V1beta1\ExportModelRequest;
+use Google\Cloud\AutoMl\V1beta1\GetAnnotationSpecRequest;
+use Google\Cloud\AutoMl\V1beta1\GetColumnSpecRequest;
 use Google\Cloud\AutoMl\V1beta1\GetDatasetRequest;
 use Google\Cloud\AutoMl\V1beta1\GetModelEvaluationRequest;
 use Google\Cloud\AutoMl\V1beta1\GetModelRequest;
+use Google\Cloud\AutoMl\V1beta1\GetTableSpecRequest;
+use Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata;
 use Google\Cloud\AutoMl\V1beta1\ImportDataRequest;
 use Google\Cloud\AutoMl\V1beta1\InputConfig;
+use Google\Cloud\AutoMl\V1beta1\ListColumnSpecsRequest;
+use Google\Cloud\AutoMl\V1beta1\ListColumnSpecsResponse;
 use Google\Cloud\AutoMl\V1beta1\ListDatasetsRequest;
 use Google\Cloud\AutoMl\V1beta1\ListDatasetsResponse;
 use Google\Cloud\AutoMl\V1beta1\ListModelEvaluationsRequest;
 use Google\Cloud\AutoMl\V1beta1\ListModelEvaluationsResponse;
 use Google\Cloud\AutoMl\V1beta1\ListModelsRequest;
 use Google\Cloud\AutoMl\V1beta1\ListModelsResponse;
+use Google\Cloud\AutoMl\V1beta1\ListTableSpecsRequest;
+use Google\Cloud\AutoMl\V1beta1\ListTableSpecsResponse;
 use Google\Cloud\AutoMl\V1beta1\Model;
 use Google\Cloud\AutoMl\V1beta1\ModelEvaluation;
+use Google\Cloud\AutoMl\V1beta1\ModelExportOutputConfig;
 use Google\Cloud\AutoMl\V1beta1\OutputConfig;
+use Google\Cloud\AutoMl\V1beta1\TableSpec;
 use Google\Cloud\AutoMl\V1beta1\UndeployModelRequest;
+use Google\Cloud\AutoMl\V1beta1\UpdateColumnSpecRequest;
+use Google\Cloud\AutoMl\V1beta1\UpdateDatasetRequest;
+use Google\Cloud\AutoMl\V1beta1\UpdateTableSpecRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: AutoML Server API.
@@ -70,6 +90,11 @@ use Google\LongRunning\Operation;
  * An ID of a resource is the last element of the item's resource name. For
  * `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}`, then
  * the id for the item is `{dataset_id}`.
+ *
+ * Currently the only supported `location_id` is "us-central1".
+ *
+ * On any input that is documented to expect a string parameter in
+ * snake_case or kebab-case, either of those cases is accepted.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -122,10 +147,13 @@ class AutoMlGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $locationNameTemplate;
+    private static $annotationSpecNameTemplate;
+    private static $columnSpecNameTemplate;
     private static $datasetNameTemplate;
+    private static $locationNameTemplate;
     private static $modelNameTemplate;
     private static $modelEvaluationNameTemplate;
+    private static $tableSpecNameTemplate;
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -134,7 +162,7 @@ class AutoMlGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/auto_ml_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/auto_ml_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/auto_ml_grpc_config.json',
@@ -149,27 +177,45 @@ class AutoMlGapicClient
         ];
     }
 
-    private static function getLocationNameTemplate()
+    private static function getAnnotationSpecNameTemplate()
     {
-        if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        if (null == self::$annotationSpecNameTemplate) {
+            self::$annotationSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}');
         }
 
-        return self::$locationNameTemplate;
+        return self::$annotationSpecNameTemplate;
+    }
+
+    private static function getColumnSpecNameTemplate()
+    {
+        if (null == self::$columnSpecNameTemplate) {
+            self::$columnSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}/columnSpecs/{column_spec}');
+        }
+
+        return self::$columnSpecNameTemplate;
     }
 
     private static function getDatasetNameTemplate()
     {
-        if (self::$datasetNameTemplate == null) {
+        if (null == self::$datasetNameTemplate) {
             self::$datasetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}');
         }
 
         return self::$datasetNameTemplate;
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (null == self::$locationNameTemplate) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getModelNameTemplate()
     {
-        if (self::$modelNameTemplate == null) {
+        if (null == self::$modelNameTemplate) {
             self::$modelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}');
         }
 
@@ -178,21 +224,33 @@ class AutoMlGapicClient
 
     private static function getModelEvaluationNameTemplate()
     {
-        if (self::$modelEvaluationNameTemplate == null) {
+        if (null == self::$modelEvaluationNameTemplate) {
             self::$modelEvaluationNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}/modelEvaluations/{model_evaluation}');
         }
 
         return self::$modelEvaluationNameTemplate;
     }
 
+    private static function getTableSpecNameTemplate()
+    {
+        if (null == self::$tableSpecNameTemplate) {
+            self::$tableSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}');
+        }
+
+        return self::$tableSpecNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateMap == null) {
+        if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'location' => self::getLocationNameTemplate(),
+                'annotationSpec' => self::getAnnotationSpecNameTemplate(),
+                'columnSpec' => self::getColumnSpecNameTemplate(),
                 'dataset' => self::getDatasetNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'model' => self::getModelNameTemplate(),
                 'modelEvaluation' => self::getModelEvaluationNameTemplate(),
+                'tableSpec' => self::getTableSpecNameTemplate(),
             ];
         }
 
@@ -201,19 +259,47 @@ class AutoMlGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a location resource.
+     * a annotation_spec resource.
      *
      * @param string $project
      * @param string $location
+     * @param string $dataset
+     * @param string $annotationSpec
      *
-     * @return string The formatted location resource.
+     * @return string The formatted annotation_spec resource.
      * @experimental
      */
-    public static function locationName($project, $location)
+    public static function annotationSpecName($project, $location, $dataset, $annotationSpec)
     {
-        return self::getLocationNameTemplate()->render([
+        return self::getAnnotationSpecNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+            'dataset' => $dataset,
+            'annotation_spec' => $annotationSpec,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a column_spec resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $tableSpec
+     * @param string $columnSpec
+     *
+     * @return string The formatted column_spec resource.
+     * @experimental
+     */
+    public static function columnSpecName($project, $location, $dataset, $tableSpec, $columnSpec)
+    {
+        return self::getColumnSpecNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'table_spec' => $tableSpec,
+            'column_spec' => $columnSpec,
         ]);
     }
 
@@ -234,6 +320,24 @@ class AutoMlGapicClient
             'project' => $project,
             'location' => $location,
             'dataset' => $dataset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
         ]);
     }
 
@@ -280,13 +384,38 @@ class AutoMlGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a table_spec resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $tableSpec
+     *
+     * @return string The formatted table_spec resource.
+     * @experimental
+     */
+    public static function tableSpecName($project, $location, $dataset, $tableSpec)
+    {
+        return self::getTableSpecNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'table_spec' => $tableSpec,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - location: projects/{project}/locations/{location}
+     * - annotationSpec: projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}
+     * - columnSpec: projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}/columnSpecs/{column_spec}
      * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
+     * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
-     * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/modelEvaluations/{model_evaluation}.
+     * - modelEvaluation: projects/{project}/locations/{location}/models/{model}/modelEvaluations/{model_evaluation}
+     * - tableSpec: projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -365,6 +494,9 @@ class AutoMlGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'automl.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -392,7 +524,7 @@ class AutoMlGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -455,8 +587,75 @@ class AutoMlGapicClient
         $request->setParent($parent);
         $request->setDataset($dataset);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'CreateDataset',
+            Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a dataset.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $dataset = new Dataset();
+     *     $response = $autoMlClient->updateDataset($dataset);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param Dataset $dataset      The dataset which replaces the resource on the server.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          The update mask applies to the resource. For the `FieldMask` definition,
+     *          see
+     *
+     *          https:
+     *          //developers.google.com/protocol-buffers
+     *          // /docs/reference/google.protobuf#fieldmask
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\Dataset
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateDataset($dataset, array $optionalArgs = [])
+    {
+        $request = new UpdateDatasetRequest();
+        $request->setDataset($dataset);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'dataset.name' => $request->getDataset()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateDataset',
             Dataset::class,
             $optionalArgs,
             $request
@@ -497,6 +696,13 @@ class AutoMlGapicClient
     {
         $request = new GetDatasetRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetDataset',
@@ -542,9 +748,8 @@ class AutoMlGapicClient
      *     @type string $filter
      *          An expression for filtering the results of the request.
      *
-     *            * `dataset_metadata` - for existence of the case.
-     *
-     *          An example of using the filter is:
+     *            * `dataset_metadata` - for existence of the case (e.g.
+     *                      image_classification_dataset_metadata:*). Some examples of using the filter are:
      *
      *            * `translation_dataset_metadata:*` --> The dataset has
      *                                                   translation_dataset_metadata.
@@ -582,6 +787,13 @@ class AutoMlGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
             'ListDatasets',
@@ -656,6 +868,13 @@ class AutoMlGapicClient
         $request = new DeleteDatasetRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'DeleteDataset',
             $optionalArgs,
@@ -666,6 +885,12 @@ class AutoMlGapicClient
 
     /**
      * Imports data into a dataset.
+     * For Tables this method can only be called on an empty Dataset.
+     *
+     * For Tables:
+     * *   A
+     * [schema_inference_version][google.cloud.automl.v1beta1.InputConfig.params]
+     *     parameter must be explicitly set.
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
@@ -709,7 +934,8 @@ class AutoMlGapicClient
      *
      * @param string      $name         Required. Dataset name. Dataset must already exist. All imported
      *                                  annotations and examples will be added.
-     * @param InputConfig $inputConfig  Required. The desired input location.
+     * @param InputConfig $inputConfig  Required. The desired input location and its domain specific semantics,
+     *                                  if any.
      * @param array       $optionalArgs {
      *                                  Optional.
      *
@@ -731,6 +957,13 @@ class AutoMlGapicClient
         $request->setName($name);
         $request->setInputConfig($inputConfig);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'ImportData',
             $optionalArgs,
@@ -740,7 +973,7 @@ class AutoMlGapicClient
     }
 
     /**
-     * Exports dataset's data to a Google Cloud Storage bucket.
+     * Exports dataset's data to the provided output location.
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
@@ -804,6 +1037,13 @@ class AutoMlGapicClient
         $request = new ExportDataRequest();
         $request->setName($name);
         $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startOperationsCall(
             'ExportData',
@@ -883,6 +1123,13 @@ class AutoMlGapicClient
         $request->setParent($parent);
         $request->setModel($model);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'CreateModel',
             $optionalArgs,
@@ -925,6 +1172,13 @@ class AutoMlGapicClient
     {
         $request = new GetModelRequest();
         $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'GetModel',
@@ -970,15 +1224,13 @@ class AutoMlGapicClient
      *     @type string $filter
      *          An expression for filtering the results of the request.
      *
-     *            * `model_metadata` - for existence of the case.
-     *            * `dataset_id` - for = or !=.
-     *
-     *          Some examples of using the filter are:
+     *            * `model_metadata` - for existence of the case (e.g.
+     *                      video_classification_model_metadata:*).
+     *            * `dataset_id` - for = or !=. Some examples of using the filter are:
      *
      *            * `image_classification_model_metadata:*` --> The model has
      *                                                 image_classification_model_metadata.
-     *            * `dataset_id=5` --> The model was created from a sibling dataset with
-     *                             ID 5.
+     *            * `dataset_id=5` --> The model was created from a dataset with ID 5.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -1014,6 +1266,13 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListModels',
             $optionalArgs,
@@ -1024,9 +1283,6 @@ class AutoMlGapicClient
 
     /**
      * Deletes a model.
-     * If a model is already deployed, this only deletes the model in AutoML BE,
-     * and does not change the status of the deployed model in the production
-     * environment.
      * Returns `google.protobuf.Empty` in the
      * [response][google.longrunning.Operation.response] field when it completes,
      * and `delete_details` in the
@@ -1090,6 +1346,13 @@ class AutoMlGapicClient
         $request = new DeleteModelRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startOperationsCall(
             'DeleteModel',
             $optionalArgs,
@@ -1099,8 +1362,17 @@ class AutoMlGapicClient
     }
 
     /**
-     * Deploys model.
-     * Returns a [DeployModelResponse][] in the
+     * Deploys a model. If a model is already deployed, deploying it with the
+     * same parameters has no effect. Deploying with different parametrs
+     * (as e.g. changing.
+     *
+     * [node_number][google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata.node_number])
+     *  will reset the deployment state without pausing the model's availability.
+     *
+     * Only applicable for Text Classification, Image Object Detection and Tables;
+     * all other domains manage deployment automatically.
+     *
+     * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
      * Sample code:
@@ -1108,7 +1380,33 @@ class AutoMlGapicClient
      * $autoMlClient = new AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $response = $autoMlClient->deployModel($formattedName);
+     *     $operationResponse = $autoMlClient->deployModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->deployModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deployModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $autoMlClient->close();
      * }
@@ -1118,6 +1416,8 @@ class AutoMlGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type ImageObjectDetectionModelDeploymentMetadata $imageObjectDetectionModelDeploymentMetadata
+     *          Model deployment metadata specific to Image Object Detection.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1125,7 +1425,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1134,18 +1434,32 @@ class AutoMlGapicClient
     {
         $request = new DeployModelRequest();
         $request->setName($name);
+        if (isset($optionalArgs['imageObjectDetectionModelDeploymentMetadata'])) {
+            $request->setImageObjectDetectionModelDeploymentMetadata($optionalArgs['imageObjectDetectionModelDeploymentMetadata']);
+        }
 
-        return $this->startCall(
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
             'DeployModel',
-            Operation::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
     /**
-     * Undeploys model.
-     * Returns an `UndeployModelResponse` in the
+     * Undeploys a model. If the model is not deployed this method has no effect.
+     *
+     * Only applicable for Text Classification, Image Object Detection and Tables;
+     * all other domains manage deployment automatically.
+     *
+     * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
      *
      * Sample code:
@@ -1153,7 +1467,33 @@ class AutoMlGapicClient
      * $autoMlClient = new AutoMlClient();
      * try {
      *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-     *     $response = $autoMlClient->undeployModel($formattedName);
+     *     $operationResponse = $autoMlClient->undeployModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->undeployModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'undeployModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $autoMlClient->close();
      * }
@@ -1170,7 +1510,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1180,11 +1520,18 @@ class AutoMlGapicClient
         $request = new UndeployModelRequest();
         $request->setName($name);
 
-        return $this->startCall(
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
             'UndeployModel',
-            Operation::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -1223,11 +1570,197 @@ class AutoMlGapicClient
         $request = new GetModelEvaluationRequest();
         $request->setName($name);
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->startCall(
             'GetModelEvaluation',
             ModelEvaluation::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Exports a trained, "export-able", model to a user specified Google Cloud
+     * Storage location. A model is considered export-able if and only if it has
+     * an export format defined for it in.
+     *
+     * [ModelExportOutputConfig][google.cloud.automl.v1beta1.ModelExportOutputConfig].
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new ModelExportOutputConfig();
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string                  $name         Required. The resource name of the model to export.
+     * @param ModelExportOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                   $optionalArgs {
+     *                                              Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function exportModel($name, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportModelRequest();
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ExportModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Exports examples on which the model was evaluated (i.e. which were in the
+     * TEST set of the dataset the model was created from), together with their
+     * ground truth annotations and the annotations created (predicted) by the
+     * model.
+     * The examples, ground truth and predictions are exported in the state
+     * they were at the moment the model was evaluated.
+     *
+     * This export is available only for 30 days since the model evaluation is
+     * created.
+     *
+     * Currently only available for Tables.
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new ExportEvaluatedExamplesOutputConfig();
+     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->exportEvaluatedExamples($formattedName, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportEvaluatedExamples');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string                              $name         Required. The resource name of the model whose evaluated examples are to
+     *                                                          be exported.
+     * @param ExportEvaluatedExamplesOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                               $optionalArgs {
+     *                                                          Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function exportEvaluatedExamples($name, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportEvaluatedExamplesRequest();
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ExportEvaluatedExamples',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -1313,11 +1846,478 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
         return $this->getPagedListResponse(
             'ListModelEvaluations',
             $optionalArgs,
             ListModelEvaluationsResponse::class,
             $request
         );
+    }
+
+    /**
+     * Gets an annotation spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+     *     $response = $autoMlClient->getAnnotationSpec($formattedName);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The resource name of the annotation spec to retrieve.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\AnnotationSpec
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getAnnotationSpec($name, array $optionalArgs = [])
+    {
+        $request = new GetAnnotationSpecRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetAnnotationSpec',
+            AnnotationSpec::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a table spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+     *     $response = $autoMlClient->getTableSpec($formattedName);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The resource name of the table spec to retrieve.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type FieldMask $fieldMask
+     *          Mask specifying which fields to read.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\TableSpec
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getTableSpec($name, array $optionalArgs = [])
+    {
+        $request = new GetTableSpecRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetTableSpec',
+            TableSpec::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists table specs in a dataset.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedParent = $autoMlClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $autoMlClient->listTableSpecs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $autoMlClient->listTableSpecs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       The resource name of the dataset to list table specs from.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type FieldMask $fieldMask
+     *          Mask specifying which fields to read.
+     *     @type string $filter
+     *          Filter expression, see go/filtering.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listTableSpecs($parent, array $optionalArgs = [])
+    {
+        $request = new ListTableSpecsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListTableSpecs',
+            $optionalArgs,
+            ListTableSpecsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Updates a table spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $tableSpec = new TableSpec();
+     *     $response = $autoMlClient->updateTableSpec($tableSpec);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param TableSpec $tableSpec    The table spec which replaces the resource on the server.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          The update mask applies to the resource. For the `FieldMask` definition,
+     *          see
+     *
+     *          https:
+     *          //developers.google.com/protocol-buffers
+     *          // /docs/reference/google.protobuf#fieldmask
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\TableSpec
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateTableSpec($tableSpec, array $optionalArgs = [])
+    {
+        $request = new UpdateTableSpecRequest();
+        $request->setTableSpec($tableSpec);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'table_spec.name' => $request->getTableSpec()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateTableSpec',
+            TableSpec::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a column spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
+     *     $response = $autoMlClient->getColumnSpec($formattedName);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The resource name of the column spec to retrieve.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type FieldMask $fieldMask
+     *          Mask specifying which fields to read.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getColumnSpec($name, array $optionalArgs = [])
+    {
+        $request = new GetColumnSpecRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetColumnSpec',
+            ColumnSpec::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists column specs in a table spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $formattedParent = $autoMlClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $autoMlClient->listColumnSpecs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $autoMlClient->listColumnSpecs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       The resource name of the table spec to list column specs from.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type FieldMask $fieldMask
+     *          Mask specifying which fields to read.
+     *     @type string $filter
+     *          Filter expression, see go/filtering.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listColumnSpecs($parent, array $optionalArgs = [])
+    {
+        $request = new ListColumnSpecsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListColumnSpecs',
+            $optionalArgs,
+            ListColumnSpecsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Updates a column spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new AutoMlClient();
+     * try {
+     *     $columnSpec = new ColumnSpec();
+     *     $response = $autoMlClient->updateColumnSpec($columnSpec);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param ColumnSpec $columnSpec   The column spec which replaces the resource on the server.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type FieldMask $updateMask
+     *          The update mask applies to the resource. For the `FieldMask` definition,
+     *          see
+     *
+     *          https:
+     *          //developers.google.com/protocol-buffers
+     *          // /docs/reference/google.protobuf#fieldmask
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateColumnSpec($columnSpec, array $optionalArgs = [])
+    {
+        $request = new UpdateColumnSpecRequest();
+        $request->setColumnSpec($columnSpec);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'column_spec.name' => $request->getColumnSpec()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateColumnSpec',
+            ColumnSpec::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

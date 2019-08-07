@@ -23,10 +23,9 @@ class TextSnippet extends \Google\Protobuf\Internal\Message
      */
     private $content = '';
     /**
-     * The format of the source text. For example, "text/html" or
-     * "text/plain". If left blank the format is automatically determined from
-     * the type of the uploaded content. The default is "text/html". Up to 25000
-     * characters long.
+     * The format of the source text. Currently the only two allowed values are
+     * "text/html" and "text/plain". If left blank the format is automatically
+     * determined from the type of the uploaded content.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      */
@@ -48,10 +47,9 @@ class TextSnippet extends \Google\Protobuf\Internal\Message
      *           Required. The content of the text snippet as a string. Up to 250000
      *           characters long.
      *     @type string $mime_type
-     *           The format of the source text. For example, "text/html" or
-     *           "text/plain". If left blank the format is automatically determined from
-     *           the type of the uploaded content. The default is "text/html". Up to 25000
-     *           characters long.
+     *           The format of the source text. Currently the only two allowed values are
+     *           "text/html" and "text/plain". If left blank the format is automatically
+     *           determined from the type of the uploaded content.
      *     @type string $content_uri
      *           Output only. HTTP URI where you can download the content.
      * }
@@ -90,10 +88,9 @@ class TextSnippet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The format of the source text. For example, "text/html" or
-     * "text/plain". If left blank the format is automatically determined from
-     * the type of the uploaded content. The default is "text/html". Up to 25000
-     * characters long.
+     * The format of the source text. Currently the only two allowed values are
+     * "text/html" and "text/plain". If left blank the format is automatically
+     * determined from the type of the uploaded content.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @return string
@@ -104,10 +101,9 @@ class TextSnippet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The format of the source text. For example, "text/html" or
-     * "text/plain". If left blank the format is automatically determined from
-     * the type of the uploaded content. The default is "text/html". Up to 25000
-     * characters long.
+     * The format of the source text. Currently the only two allowed values are
+     * "text/html" and "text/plain". If left blank the format is automatically
+     * determined from the type of the uploaded content.
      *
      * Generated from protobuf field <code>string mime_type = 2;</code>
      * @param string $var
