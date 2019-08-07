@@ -68,7 +68,19 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2019')
 
-s.replace(
-    'src/V1beta1/Gapic/*.php',
-    r'ComputeThreatListDiffRequest_',
-    r'ComputeThreatListDiffRequest\\')
+# Fix class references in gapic samples
+for version in ['V1beta1']:
+    pathExpr = 'src/' + version + '/Gapic/WebRiskServiceV1Beta1GapicClient.php'
+
+    types = {
+        'new Constraints': r'new Google\\Cloud\\WebRisk\\' + version + r'\\ComputeThreatListDiffRequest\\Constraints',
+        '= ThreatType::': r'= Google\\Cloud\\WebRisk\\' + version + r'\\ThreatType::',
+        '= new WebRiskServiceV1Beta1Client': r'= new Google\\Cloud\\WebRisk\\' + version + r'\\WebRiskServiceV1Beta1Client'
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)
