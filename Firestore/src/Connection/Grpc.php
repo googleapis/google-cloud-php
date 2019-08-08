@@ -53,6 +53,11 @@ class Grpc implements ConnectionInterface
     private $resourcePrefixHeader;
 
     /**
+     * @var bool
+     */
+    private $isUsingEmulator = false;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -95,6 +100,7 @@ class Grpc implements ConnectionInterface
         //@codeCoverageIgnoreStart
         $config += ['emulatorHost' => null];
         if ((bool) $config['emulatorHost']) {
+            $this->isUsingEmulator = true;
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
         //@codeCoverageIgnoreEnd
@@ -115,7 +121,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'batchGetDocuments'], [
             $this->pluck('database', $args),
             $this->pluck('documents', $args),
-            $this->addResourcePrefixHeader($args)
+            $this->addRequestHeaders($args)
         ]);
     }
 
@@ -135,7 +141,7 @@ class Grpc implements ConnectionInterface
 
         return $this->send([$this->firestore, 'beginTransaction'], [
             $this->pluck('database', $args),
-            $this->addResourcePrefixHeader($args)
+            $this->addRequestHeaders($args)
         ]);
     }
 
@@ -152,7 +158,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'commit'], [
             $this->pluck('database', $args),
             $writes,
-            $this->addResourcePrefixHeader($args)
+            $this->addRequestHeaders($args)
         ]);
     }
 
@@ -163,7 +169,7 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->firestore, 'listCollectionIds'], [
             $this->pluck('parent', $args),
-            $this->addResourcePrefixHeader($args)
+            $this->addRequestHeaders($args)
         ]);
     }
 
@@ -181,7 +187,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'listDocuments'], [
             $this->pluck('parent', $args),
             $this->pluck('collectionId', $args),
-            $this->addResourcePrefixHeader([
+            $this->addRequestHeaders([
                 'showMissing' => true
             ] + $args)
         ]);
@@ -195,7 +201,7 @@ class Grpc implements ConnectionInterface
         return $this->send([$this->firestore, 'rollback'], [
             $this->pluck('database', $args),
             $this->pluck('transaction', $args),
-            $this->addResourcePrefixHeader($args)
+            $this->addRequestHeaders($args)
         ]);
     }
 
@@ -211,7 +217,7 @@ class Grpc implements ConnectionInterface
 
         return $this->send([$this->firestore, 'runQuery'], [
             $this->pluck('parent', $args),
-            $this->addResourcePrefixHeader($args)
+            $this->addRequestHeaders($args)
         ]);
     }
 
@@ -223,16 +229,23 @@ class Grpc implements ConnectionInterface
     }
 
     /**
-     * Add the `google-cloud-resource-prefix` header value to the request.
+     * Add required headers to the request.
      *
      * @param array $args
      * @return array
      */
-    private function addResourcePrefixHeader(array $args)
+    private function addRequestHeaders(array $args)
     {
-        $args['headers'] = [
-            'google-cloud-resource-prefix' => [$this->resourcePrefixHeader]
+        $args += [
+            'headers' => []
         ];
+
+        $args['headers']['google-cloud-resource-prefix'] = [$this->resourcePrefixHeader];
+
+        // Provide authentication header for requests when emulator is enabled.
+        if ($this->isUsingEmulator) {
+            $args['headers']['Authorization'] = ['Bearer owner'];
+        }
 
         return $args;
     }
