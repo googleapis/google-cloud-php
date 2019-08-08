@@ -201,6 +201,9 @@ class ResumeServiceGapicClient
      *           **Deprecated**. This option will be removed in a future major release. Please
      *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
