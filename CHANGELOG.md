@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.107.1
+
+<details><summary>google/cloud-firestore 1.7.1</summary>
+
+
+
+### Bug Fixes
+
+* Provide headers required for Firestore emulator. ([#2239](https://www.github.com/googleapis/google-cloud-php/issues/2239)) ([85c09a1](https://www.github.com/googleapis/google-cloud-php/commit/85c09a1))
+* Remove autoload of non-existant file ([#2234](https://www.github.com/googleapis/google-cloud-php/issues/2234)) ([2bb362e](https://www.github.com/googleapis/google-cloud-php/commit/2bb362e))
+
+</details>
+
 ## 0.107.0
 
 <details><summary>google/cloud-asset 0.4.0</summary>
