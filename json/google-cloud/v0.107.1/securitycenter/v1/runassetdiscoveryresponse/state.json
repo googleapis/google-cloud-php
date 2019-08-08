@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/runassetdiscoveryresponse\/state","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\RunAssetDiscoveryResponse\\State","name":"State","description":"<p>The state of an asset discovery run.<\/p>\n<p>Protobuf type <code>google.cloud.securitycenter.v1.RunAssetDiscoveryResponse.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

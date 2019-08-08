@@ -1,0 +1,1 @@
+{"id":"websecurityscanner\/v1beta\/scanconfig_authentication","type":"","title":"Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig_Authentication","name":"ScanConfig_Authentication","description":"<p>This class is deprecated. Use Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig\\Authentication instead.<\/p>","examples":[],"resources":[],"methods":[]}

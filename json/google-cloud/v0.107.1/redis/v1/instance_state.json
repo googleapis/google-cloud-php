@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/instance_state","type":"","title":"Google\\Cloud\\Redis\\V1\\Instance_State","name":"Instance_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Redis\\V1\\Instance\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

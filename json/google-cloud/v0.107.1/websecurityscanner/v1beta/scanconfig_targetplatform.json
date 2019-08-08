@@ -1,0 +1,1 @@
+{"id":"websecurityscanner\/v1beta\/scanconfig_targetplatform","type":"","title":"Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig_TargetPlatform","name":"ScanConfig_TargetPlatform","description":"<p>This class is deprecated. Use Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig\\TargetPlatform instead.<\/p>","examples":[],"resources":[],"methods":[]}
