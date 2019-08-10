@@ -17,6 +17,18 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class BatchPredictResult extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Additional domain-specific prediction response metadata.
+     * *  For Image Object Detection:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      image could have been returned.
+     * *  For Video Object Tracking:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      frame could have been returned.
+     *
+     * Generated from protobuf field <code>map<string, string> metadata = 1;</code>
+     */
+    private $metadata;
 
     /**
      * Constructor.
@@ -24,11 +36,57 @@ class BatchPredictResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type array|\Google\Protobuf\Internal\MapField $metadata
+     *           Additional domain-specific prediction response metadata.
+     *           *  For Image Object Detection:
+     *            `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *                image could have been returned.
+     *           *  For Video Object Tracking:
+     *            `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *                frame could have been returned.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\PredictionService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Additional domain-specific prediction response metadata.
+     * *  For Image Object Detection:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      image could have been returned.
+     * *  For Video Object Tracking:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      frame could have been returned.
+     *
+     * Generated from protobuf field <code>map<string, string> metadata = 1;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    /**
+     * Additional domain-specific prediction response metadata.
+     * *  For Image Object Detection:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      image could have been returned.
+     * *  For Video Object Tracking:
+     *  `max_bounding_box_count` - (int64) At most that many bounding boxes per
+     *      frame could have been returned.
+     *
+     * Generated from protobuf field <code>map<string, string> metadata = 1;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->metadata = $arr;
+
+        return $this;
     }
 
 }

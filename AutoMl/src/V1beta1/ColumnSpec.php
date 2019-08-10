@@ -51,12 +51,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     private $data_stats = null;
     /**
-     * Output only. Top 10 most correlated with this column columns of the table,
-     * ordered by
-     * [cramers_v][google.cloud.automl.v1beta1.CorrelationStats.cramers_v] metric.
-     * This field may be stale, see the ancestor's
-     * Dataset.tables_dataset_metadata.stats_update_time field
-     * for the timestamp at which these stats were last updated.
+     * Deprecated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec.CorrelatedColumn top_correlated_columns = 5;</code>
      */
@@ -92,12 +87,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      *           Dataset.tables_dataset_metadata.stats_update_time field
      *           for the timestamp at which these stats were last updated.
      *     @type \Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn[]|\Google\Protobuf\Internal\RepeatedField $top_correlated_columns
-     *           Output only. Top 10 most correlated with this column columns of the table,
-     *           ordered by
-     *           [cramers_v][google.cloud.automl.v1beta1.CorrelationStats.cramers_v] metric.
-     *           This field may be stale, see the ancestor's
-     *           Dataset.tables_dataset_metadata.stats_update_time field
-     *           for the timestamp at which these stats were last updated.
+     *           Deprecated.
      *     @type string $etag
      *           Used to perform consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
@@ -229,12 +219,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Top 10 most correlated with this column columns of the table,
-     * ordered by
-     * [cramers_v][google.cloud.automl.v1beta1.CorrelationStats.cramers_v] metric.
-     * This field may be stale, see the ancestor's
-     * Dataset.tables_dataset_metadata.stats_update_time field
-     * for the timestamp at which these stats were last updated.
+     * Deprecated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec.CorrelatedColumn top_correlated_columns = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -245,12 +230,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Top 10 most correlated with this column columns of the table,
-     * ordered by
-     * [cramers_v][google.cloud.automl.v1beta1.CorrelationStats.cramers_v] metric.
-     * This field may be stale, see the ancestor's
-     * Dataset.tables_dataset_metadata.stats_update_time field
-     * for the timestamp at which these stats were last updated.
+     * Deprecated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec.CorrelatedColumn top_correlated_columns = 5;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn[]|\Google\Protobuf\Internal\RepeatedField $var

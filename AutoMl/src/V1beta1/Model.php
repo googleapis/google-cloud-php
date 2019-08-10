@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Model extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
-     * Resource name of the model.
+     * Output only. Resource name of the model.
      * Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -33,23 +32,20 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Required.
-     * The resource ID of the dataset used to create the model. The dataset must
+     * Required. The resource ID of the dataset used to create the model. The dataset must
      * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
      */
     private $dataset_id = '';
     /**
-     * Output only.
-     * Timestamp when the model training finished  and can be used for prediction.
+     * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
     private $create_time = null;
     /**
-     * Output only.
-     * Timestamp when this model was last updated.
+     * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
@@ -88,8 +84,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1beta1\TextSentimentModelMetadata $text_sentiment_model_metadata
      *           Metadata for text sentiment models.
      *     @type string $name
-     *           Output only.
-     *           Resource name of the model.
+     *           Output only. Resource name of the model.
      *           Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *     @type string $display_name
      *           Required. The name of the model to show in the interface. The name can be
@@ -97,15 +92,12 @@ class Model extends \Google\Protobuf\Internal\Message
      *           and a-z, underscores
      *           (_), and ASCII digits 0-9. It must start with a letter.
      *     @type string $dataset_id
-     *           Required.
-     *           The resource ID of the dataset used to create the model. The dataset must
+     *           Required. The resource ID of the dataset used to create the model. The dataset must
      *           come from the same ancestor project and location.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only.
-     *           Timestamp when the model training finished  and can be used for prediction.
+     *           Output only. Timestamp when the model training finished  and can be used for prediction.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only.
-     *           Timestamp when this model was last updated.
+     *           Output only. Timestamp when this model was last updated.
      *     @type int $deployment_state
      *           Output only. Deployment state of the model. A model can only serve
      *           prediction requests after it gets deployed.
@@ -351,8 +343,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Resource name of the model.
+     * Output only. Resource name of the model.
      * Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -364,8 +355,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Resource name of the model.
+     * Output only. Resource name of the model.
      * Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -413,8 +403,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource ID of the dataset used to create the model. The dataset must
+     * Required. The resource ID of the dataset used to create the model. The dataset must
      * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
@@ -426,8 +415,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource ID of the dataset used to create the model. The dataset must
+     * Required. The resource ID of the dataset used to create the model. The dataset must
      * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
@@ -443,8 +431,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when the model training finished  and can be used for prediction.
+     * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      * @return \Google\Protobuf\Timestamp
@@ -455,8 +442,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when the model training finished  and can be used for prediction.
+     * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -471,8 +457,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model was last updated.
+     * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @return \Google\Protobuf\Timestamp
@@ -483,8 +468,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model was last updated.
+     * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @param \Google\Protobuf\Timestamp $var

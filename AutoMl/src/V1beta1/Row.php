@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Row extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input Only.
      * The resource IDs of the column specs describing the columns of the row.
-     * If set must contain, but possibly in a different order, all input feature
+     * If set must contain, but possibly in a different order, all input
+     * feature
      * [column_spec_ids][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      * of the Model this row is being passed to.
      * Note: The below `values` field must match order of this field, if this
@@ -28,9 +28,9 @@ class Row extends \Google\Protobuf\Internal\Message
      */
     private $column_spec_ids;
     /**
-     * Input Only.
-     * The values of the row cells, given in the same order as the
-     * column_spec_ids, or, if not set, then in the same order as input feature
+     * Required. The values of the row cells, given in the same order as the
+     * column_spec_ids, or, if not set, then in the same order as input
+     * feature
      * [column_specs][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      * of the Model this row is being passed to.
      *
@@ -45,17 +45,17 @@ class Row extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $column_spec_ids
-     *           Input Only.
      *           The resource IDs of the column specs describing the columns of the row.
-     *           If set must contain, but possibly in a different order, all input feature
+     *           If set must contain, but possibly in a different order, all input
+     *           feature
      *           [column_spec_ids][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      *           of the Model this row is being passed to.
      *           Note: The below `values` field must match order of this field, if this
      *           field is set.
      *     @type \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $values
-     *           Input Only.
-     *           The values of the row cells, given in the same order as the
-     *           column_spec_ids, or, if not set, then in the same order as input feature
+     *           Required. The values of the row cells, given in the same order as the
+     *           column_spec_ids, or, if not set, then in the same order as input
+     *           feature
      *           [column_specs][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      *           of the Model this row is being passed to.
      * }
@@ -66,9 +66,9 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input Only.
      * The resource IDs of the column specs describing the columns of the row.
-     * If set must contain, but possibly in a different order, all input feature
+     * If set must contain, but possibly in a different order, all input
+     * feature
      * [column_spec_ids][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      * of the Model this row is being passed to.
      * Note: The below `values` field must match order of this field, if this
@@ -83,9 +83,9 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input Only.
      * The resource IDs of the column specs describing the columns of the row.
-     * If set must contain, but possibly in a different order, all input feature
+     * If set must contain, but possibly in a different order, all input
+     * feature
      * [column_spec_ids][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      * of the Model this row is being passed to.
      * Note: The below `values` field must match order of this field, if this
@@ -104,9 +104,9 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input Only.
-     * The values of the row cells, given in the same order as the
-     * column_spec_ids, or, if not set, then in the same order as input feature
+     * Required. The values of the row cells, given in the same order as the
+     * column_spec_ids, or, if not set, then in the same order as input
+     * feature
      * [column_specs][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      * of the Model this row is being passed to.
      *
@@ -119,9 +119,9 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input Only.
-     * The values of the row cells, given in the same order as the
-     * column_spec_ids, or, if not set, then in the same order as input feature
+     * Required. The values of the row cells, given in the same order as the
+     * column_spec_ids, or, if not set, then in the same order as input
+     * feature
      * [column_specs][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      * of the Model this row is being passed to.
      *

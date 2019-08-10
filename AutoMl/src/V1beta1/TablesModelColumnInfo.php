@@ -31,8 +31,7 @@ class TablesModelColumnInfo extends \Google\Protobuf\Internal\Message
      */
     private $column_display_name = '';
     /**
-     * Output only.
-     * When given as part of a Model (always populated):
+     * Output only. When given as part of a Model (always populated):
      * Measurement of how much model predictions correctness on the TEST data
      * depend on values in this column. A value between 0 and 1, higher means
      * higher influence. These values are normalized - for all input feature
@@ -65,8 +64,7 @@ class TablesModelColumnInfo extends \Google\Protobuf\Internal\Message
      *           Output only. The display name of the column (same as the display_name of
      *           its ColumnSpec).
      *     @type float $feature_importance
-     *           Output only.
-     *           When given as part of a Model (always populated):
+     *           Output only. When given as part of a Model (always populated):
      *           Measurement of how much model predictions correctness on the TEST data
      *           depend on values in this column. A value between 0 and 1, higher means
      *           higher influence. These values are normalized - for all input feature
@@ -145,8 +143,7 @@ class TablesModelColumnInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * When given as part of a Model (always populated):
+     * Output only. When given as part of a Model (always populated):
      * Measurement of how much model predictions correctness on the TEST data
      * depend on values in this column. A value between 0 and 1, higher means
      * higher influence. These values are normalized - for all input feature
@@ -171,8 +168,7 @@ class TablesModelColumnInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * When given as part of a Model (always populated):
+     * Output only. When given as part of a Model (always populated):
      * Measurement of how much model predictions correctness on the TEST data
      * depend on values in this column. A value between 0 and 1, higher means
      * higher influence. These values are normalized - for all input feature
