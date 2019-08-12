@@ -22,8 +22,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required.
-     * Payload to perform a prediction on. The payload must match the
+     * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2;</code>
@@ -36,6 +35,13 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
      *     makes predictions for an image, it will only produce results that have
      *     at least this confidence score. The default is 0.5.
+     *  *  For Image Object Detection:
+     *    `score_threshold` - (float) When Model detects objects on the image,
+     *        it will only produce bounding boxes which have at least this
+     *        confidence score. Value in 0 to 1 range, default is 0.5.
+     *    `max_bounding_box_count` - (int64) No more than this number of bounding
+     *        boxes will be returned in the response. Default is 100, the
+     *        requested value may be limited by server.
      * *  For Tables:
      *    `feature_importance` - (boolean) Whether
      * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
@@ -56,8 +62,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the model requested to serve the prediction.
      *     @type \Google\Cloud\AutoMl\V1beta1\ExamplePayload $payload
-     *           Required.
-     *           Payload to perform a prediction on. The payload must match the
+     *           Required. Payload to perform a prediction on. The payload must match the
      *           problem type that the model was trained to solve.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional domain-specific parameters, any string must be up to 25000
@@ -66,6 +71,13 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
      *               makes predictions for an image, it will only produce results that have
      *               at least this confidence score. The default is 0.5.
+     *            *  For Image Object Detection:
+     *              `score_threshold` - (float) When Model detects objects on the image,
+     *                  it will only produce bounding boxes which have at least this
+     *                  confidence score. Value in 0 to 1 range, default is 0.5.
+     *              `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                  boxes will be returned in the response. Default is 100, the
+     *                  requested value may be limited by server.
      *           *  For Tables:
      *              `feature_importance` - (boolean) Whether
      *           [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
@@ -106,8 +118,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Payload to perform a prediction on. The payload must match the
+     * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2;</code>
@@ -119,8 +130,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Payload to perform a prediction on. The payload must match the
+     * Required. Payload to perform a prediction on. The payload must match the
      * problem type that the model was trained to solve.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload payload = 2;</code>
@@ -142,6 +152,13 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
      *     makes predictions for an image, it will only produce results that have
      *     at least this confidence score. The default is 0.5.
+     *  *  For Image Object Detection:
+     *    `score_threshold` - (float) When Model detects objects on the image,
+     *        it will only produce bounding boxes which have at least this
+     *        confidence score. Value in 0 to 1 range, default is 0.5.
+     *    `max_bounding_box_count` - (int64) No more than this number of bounding
+     *        boxes will be returned in the response. Default is 100, the
+     *        requested value may be limited by server.
      * *  For Tables:
      *    `feature_importance` - (boolean) Whether
      * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]
@@ -164,6 +181,13 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
      *     makes predictions for an image, it will only produce results that have
      *     at least this confidence score. The default is 0.5.
+     *  *  For Image Object Detection:
+     *    `score_threshold` - (float) When Model detects objects on the image,
+     *        it will only produce bounding boxes which have at least this
+     *        confidence score. Value in 0 to 1 range, default is 0.5.
+     *    `max_bounding_box_count` - (int64) No more than this number of bounding
+     *        boxes will be returned in the response. Default is 100, the
+     *        requested value may be limited by server.
      * *  For Tables:
      *    `feature_importance` - (boolean) Whether
      * [feature_importance][[google.cloud.automl.v1beta1.TablesModelColumnInfo.feature_importance]

@@ -28,7 +28,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      * (otherwise model creation will error):
      * * CATEGORY
      * * FLOAT64
-     * Furthermore, if the type is CATEGORY , then only up to
+     * If the type is CATEGORY , only up to
      * 100 unique values may exist in that column across all rows.
      * NOTE: Updates of this field will instantly affect any other users
      * concurrently working with the dataset.
@@ -82,11 +82,12 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      */
     private $target_column_correlations;
     /**
-     * The most recent timestamp when target_column_correlations field and all
-     * descendant ColumnSpec.data_stats and ColumnSpec.top_correlated_columns
-     * fields were last (re-)generated. Any changes that happened to the dataset
-     * afterwards are not reflected in these fields values. The regeneration
-     * happens in the background on a best effort basis.
+     * Output only. The most recent timestamp when target_column_correlations
+     * field and all descendant ColumnSpec.data_stats and
+     * ColumnSpec.top_correlated_columns fields were last (re-)generated. Any
+     * changes that happened to the dataset afterwards are not reflected in these
+     * fields values. The regeneration happens in the background on a best effort
+     * basis.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stats_update_time = 7;</code>
      */
@@ -107,7 +108,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *           (otherwise model creation will error):
      *           * CATEGORY
      *           * FLOAT64
-     *           Furthermore, if the type is CATEGORY , then only up to
+     *           If the type is CATEGORY , only up to
      *           100 unique values may exist in that column across all rows.
      *           NOTE: Updates of this field will instantly affect any other users
      *           concurrently working with the dataset.
@@ -145,11 +146,12 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      *           This field may be stale, see the stats_update_time field for
      *           for the timestamp at which these stats were last updated.
      *     @type \Google\Protobuf\Timestamp $stats_update_time
-     *           The most recent timestamp when target_column_correlations field and all
-     *           descendant ColumnSpec.data_stats and ColumnSpec.top_correlated_columns
-     *           fields were last (re-)generated. Any changes that happened to the dataset
-     *           afterwards are not reflected in these fields values. The regeneration
-     *           happens in the background on a best effort basis.
+     *           Output only. The most recent timestamp when target_column_correlations
+     *           field and all descendant ColumnSpec.data_stats and
+     *           ColumnSpec.top_correlated_columns fields were last (re-)generated. Any
+     *           changes that happened to the dataset afterwards are not reflected in these
+     *           fields values. The regeneration happens in the background on a best effort
+     *           basis.
      * }
      */
     public function __construct($data = NULL) {
@@ -190,7 +192,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      * (otherwise model creation will error):
      * * CATEGORY
      * * FLOAT64
-     * Furthermore, if the type is CATEGORY , then only up to
+     * If the type is CATEGORY , only up to
      * 100 unique values may exist in that column across all rows.
      * NOTE: Updates of this field will instantly affect any other users
      * concurrently working with the dataset.
@@ -210,7 +212,7 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
      * (otherwise model creation will error):
      * * CATEGORY
      * * FLOAT64
-     * Furthermore, if the type is CATEGORY , then only up to
+     * If the type is CATEGORY , only up to
      * 100 unique values may exist in that column across all rows.
      * NOTE: Updates of this field will instantly affect any other users
      * concurrently working with the dataset.
@@ -360,11 +362,12 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The most recent timestamp when target_column_correlations field and all
-     * descendant ColumnSpec.data_stats and ColumnSpec.top_correlated_columns
-     * fields were last (re-)generated. Any changes that happened to the dataset
-     * afterwards are not reflected in these fields values. The regeneration
-     * happens in the background on a best effort basis.
+     * Output only. The most recent timestamp when target_column_correlations
+     * field and all descendant ColumnSpec.data_stats and
+     * ColumnSpec.top_correlated_columns fields were last (re-)generated. Any
+     * changes that happened to the dataset afterwards are not reflected in these
+     * fields values. The regeneration happens in the background on a best effort
+     * basis.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stats_update_time = 7;</code>
      * @return \Google\Protobuf\Timestamp
@@ -375,11 +378,12 @@ class TablesDatasetMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The most recent timestamp when target_column_correlations field and all
-     * descendant ColumnSpec.data_stats and ColumnSpec.top_correlated_columns
-     * fields were last (re-)generated. Any changes that happened to the dataset
-     * afterwards are not reflected in these fields values. The regeneration
-     * happens in the background on a best effort basis.
+     * Output only. The most recent timestamp when target_column_correlations
+     * field and all descendant ColumnSpec.data_stats and
+     * ColumnSpec.top_correlated_columns fields were last (re-)generated. Any
+     * changes that happened to the dataset afterwards are not reflected in these
+     * fields values. The regeneration happens in the background on a best effort
+     * basis.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stats_update_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -328,8 +328,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * [node_number][google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata.node_number])
      *  will reset the deployment state without pausing the model's availability.
      *
-     * Only applicable for Text Classification, Image Object Detection and Tables;
-     * all other domains manage deployment automatically.
+     * Only applicable for Text Classification, Image Object Detection and Tables; all other domains manage deployment automatically.
      *
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.

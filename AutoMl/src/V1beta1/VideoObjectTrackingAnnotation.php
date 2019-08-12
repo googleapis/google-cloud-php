@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
-     * The instance of the object, expressed as a positive integer. Used to tell
+     * Optional. The instance of the object, expressed as a positive integer. Used to tell
      * apart objects of the same type (i.e. AnnotationSpec) when multiple are
      * present on a single example.
      * NOTE: Instance ID prediction quality is not a part of model evaluation and
@@ -43,8 +42,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $bounding_box = null;
     /**
-     * Output only.
-     * The confidence that this annotation is positive for the video at
+     * Output only. The confidence that this annotation is positive for the video at
      * the time_offset, value in [0, 1], higher means higher positivity
      * confidence. For annotations created by the user the score is 1. When
      * user approves an annotation, the original float score is kept (and not
@@ -61,8 +59,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_id
-     *           Optional.
-     *           The instance of the object, expressed as a positive integer. Used to tell
+     *           Optional. The instance of the object, expressed as a positive integer. Used to tell
      *           apart objects of the same type (i.e. AnnotationSpec) when multiple are
      *           present on a single example.
      *           NOTE: Instance ID prediction quality is not a part of model evaluation and
@@ -76,8 +73,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *           Required. The rectangle representing the object location on the frame (i.e.
      *           at the time_offset of the video).
      *     @type float $score
-     *           Output only.
-     *           The confidence that this annotation is positive for the video at
+     *           Output only. The confidence that this annotation is positive for the video at
      *           the time_offset, value in [0, 1], higher means higher positivity
      *           confidence. For annotations created by the user the score is 1. When
      *           user approves an annotation, the original float score is kept (and not
@@ -90,8 +86,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The instance of the object, expressed as a positive integer. Used to tell
+     * Optional. The instance of the object, expressed as a positive integer. Used to tell
      * apart objects of the same type (i.e. AnnotationSpec) when multiple are
      * present on a single example.
      * NOTE: Instance ID prediction quality is not a part of model evaluation and
@@ -108,8 +103,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * The instance of the object, expressed as a positive integer. Used to tell
+     * Optional. The instance of the object, expressed as a positive integer. Used to tell
      * apart objects of the same type (i.e. AnnotationSpec) when multiple are
      * present on a single example.
      * NOTE: Instance ID prediction quality is not a part of model evaluation and
@@ -186,8 +180,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The confidence that this annotation is positive for the video at
+     * Output only. The confidence that this annotation is positive for the video at
      * the time_offset, value in [0, 1], higher means higher positivity
      * confidence. For annotations created by the user the score is 1. When
      * user approves an annotation, the original float score is kept (and not
@@ -202,8 +195,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The confidence that this annotation is positive for the video at
+     * Output only. The confidence that this annotation is positive for the video at
      * the time_offset, value in [0, 1], higher means higher positivity
      * confidence. For annotations created by the user the score is 1. When
      * user approves an annotation, the original float score is kept (and not

@@ -54,6 +54,8 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      *            up to 5MB. Not available for FORECASTING
      *
      * [prediction_type][google.cloud.automl.v1beta1.TablesModelMetadata.prediction_type].
+     * * Text Sentiment - TextSnippet, content up 500 characters, UTF-8
+     *                     encoded.
      * @param \Google\Cloud\AutoMl\V1beta1\PredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -74,9 +76,10 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * method. Once the operation is done, [BatchPredictResult][google.cloud.automl.v1beta1.BatchPredictResult] is returned in
      * the [response][google.longrunning.Operation.response] field.
      * Available for following ML problems:
+     * * Image Classification
+     * * Image Object Detection
      * * Video Classification
-     * * Video Object Tracking
-     * * Text Extraction
+     * * Video Object Tracking * Text Extraction
      * * Tables
      * @param \Google\Cloud\AutoMl\V1beta1\BatchPredictRequest $argument input argument
      * @param array $metadata metadata

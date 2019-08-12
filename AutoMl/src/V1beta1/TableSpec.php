@@ -51,6 +51,13 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      */
     private $row_count = 0;
     /**
+     * Output only. The number of valid rows (i.e. without values that don't match
+     * DataType-s of their columns).
+     *
+     * Generated from protobuf field <code>int64 valid_row_count = 4;</code>
+     */
+    private $valid_row_count = 0;
+    /**
      * Output only. The number of columns of the table. That is, the number of
      * child ColumnSpec-s.
      *
@@ -93,6 +100,9 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *           affect any other users concurrently working with the dataset.
      *     @type int|string $row_count
      *           Output only. The number of rows (i.e. examples) in the table.
+     *     @type int|string $valid_row_count
+     *           Output only. The number of valid rows (i.e. without values that don't match
+     *           DataType-s of their columns).
      *     @type int|string $column_count
      *           Output only. The number of columns of the table. That is, the number of
      *           child ColumnSpec-s.
@@ -201,6 +211,34 @@ class TableSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->row_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of valid rows (i.e. without values that don't match
+     * DataType-s of their columns).
+     *
+     * Generated from protobuf field <code>int64 valid_row_count = 4;</code>
+     * @return int|string
+     */
+    public function getValidRowCount()
+    {
+        return $this->valid_row_count;
+    }
+
+    /**
+     * Output only. The number of valid rows (i.e. without values that don't match
+     * DataType-s of their columns).
+     *
+     * Generated from protobuf field <code>int64 valid_row_count = 4;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setValidRowCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->valid_row_count = $var;
 
         return $this;
     }

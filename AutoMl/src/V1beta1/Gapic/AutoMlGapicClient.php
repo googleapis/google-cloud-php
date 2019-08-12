@@ -621,12 +621,7 @@ class AutoMlGapicClient
      *                              Optional.
      *
      *     @type FieldMask $updateMask
-     *          The update mask applies to the resource. For the `FieldMask` definition,
-     *          see
-     *
-     *          https:
-     *          //developers.google.com/protocol-buffers
-     *          // /docs/reference/google.protobuf#fieldmask
+     *          The update mask applies to the resource.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1369,8 +1364,7 @@ class AutoMlGapicClient
      * [node_number][google.cloud.automl.v1beta1.ImageObjectDetectionModelDeploymentMetadata.node_number])
      *  will reset the deployment state without pausing the model's availability.
      *
-     * Only applicable for Text Classification, Image Object Detection and Tables;
-     * all other domains manage deployment automatically.
+     * Only applicable for Text Classification, Image Object Detection and Tables; all other domains manage deployment automatically.
      *
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
@@ -2075,12 +2069,7 @@ class AutoMlGapicClient
      *                                Optional.
      *
      *     @type FieldMask $updateMask
-     *          The update mask applies to the resource. For the `FieldMask` definition,
-     *          see
-     *
-     *          https:
-     *          //developers.google.com/protocol-buffers
-     *          // /docs/reference/google.protobuf#fieldmask
+     *          The update mask applies to the resource.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2280,12 +2269,7 @@ class AutoMlGapicClient
      *                                 Optional.
      *
      *     @type FieldMask $updateMask
-     *          The update mask applies to the resource. For the `FieldMask` definition,
-     *          see
-     *
-     *          https:
-     *          //developers.google.com/protocol-buffers
-     *          // /docs/reference/google.protobuf#fieldmask
+     *          The update mask applies to the resource.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

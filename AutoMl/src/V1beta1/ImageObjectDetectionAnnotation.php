@@ -16,15 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
-     * The rectangle representing the object location.
+     * Output only. The rectangle representing the object location.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 1;</code>
      */
     private $bounding_box = null;
     /**
-     * Output only.
-     * The confidence that this annotation is positive for the parent example,
+     * Output only. The confidence that this annotation is positive for the parent example,
      * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>
@@ -38,11 +36,9 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\BoundingPoly $bounding_box
-     *           Output only.
-     *           The rectangle representing the object location.
+     *           Output only. The rectangle representing the object location.
      *     @type float $score
-     *           Output only.
-     *           The confidence that this annotation is positive for the parent example,
+     *           Output only. The confidence that this annotation is positive for the parent example,
      *           value in [0, 1], higher means higher positivity confidence.
      * }
      */
@@ -52,8 +48,7 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The rectangle representing the object location.
+     * Output only. The rectangle representing the object location.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 1;</code>
      * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly
@@ -64,8 +59,7 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The rectangle representing the object location.
+     * Output only. The rectangle representing the object location.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 1;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\BoundingPoly $var
@@ -80,8 +74,7 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The confidence that this annotation is positive for the parent example,
+     * Output only. The confidence that this annotation is positive for the parent example,
      * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>
@@ -93,8 +86,7 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The confidence that this annotation is positive for the parent example,
+     * Output only. The confidence that this annotation is positive for the parent example,
      * value in [0, 1], higher means higher positivity confidence.
      *
      * Generated from protobuf field <code>float score = 2;</code>

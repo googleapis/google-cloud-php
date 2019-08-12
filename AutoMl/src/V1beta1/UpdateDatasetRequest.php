@@ -22,11 +22,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      */
     private $dataset = null;
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -41,11 +37,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1beta1\Dataset $dataset
      *           The dataset which replaces the resource on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The update mask applies to the resource. For the `FieldMask` definition,
-     *           see
-     *           https:
-     *           //developers.google.com/protocol-buffers
-     *           // /docs/reference/google.protobuf#fieldmask
+     *           The update mask applies to the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,11 +72,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -95,11 +83,7 @@ class UpdateDatasetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update mask applies to the resource. For the `FieldMask` definition,
-     * see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

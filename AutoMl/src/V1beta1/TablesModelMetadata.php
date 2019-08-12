@@ -40,11 +40,11 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * [ml_use_column][google.cloud.automl.v1beta1.TablesDatasetMetadata.ml_use_column_spec_id]
      * must never be included here.
      * Only 3 fields are used:
-     * name - May be set on CreateModel, if set only the columns specified are
-     *        used, otherwise all primary table's columns (except the ones listed
-     *        above) are used for the training and prediction input.
-     * display_name - Output only.
-     * data_type - Output only.
+     * * name - May be set on CreateModel, if set only the columns specified are
+     *   used, otherwise all primary table's columns (except the ones listed
+     *   above) are used for the training and prediction input.
+     * * display_name - Output only.
+     * * data_type - Output only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec input_feature_column_specs = 3;</code>
      */
@@ -70,9 +70,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *   "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
      *   "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *   "MINIMIZE_RMSLE" - Minimize root-mean-squared log error (RMSLE).
-     * FORECASTING:
-     *   "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
-     *   "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *
      * Generated from protobuf field <code>string optimization_objective = 4;</code>
      */
@@ -116,7 +113,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_early_stopping = 12;</code>
      */
     private $disable_early_stopping = false;
-    protected $additional_optimization_objective_config;
 
     /**
      * Constructor.
@@ -145,11 +141,11 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *           [ml_use_column][google.cloud.automl.v1beta1.TablesDatasetMetadata.ml_use_column_spec_id]
      *           must never be included here.
      *           Only 3 fields are used:
-     *           name - May be set on CreateModel, if set only the columns specified are
-     *                  used, otherwise all primary table's columns (except the ones listed
-     *                  above) are used for the training and prediction input.
-     *           display_name - Output only.
-     *           data_type - Output only.
+     *           * name - May be set on CreateModel, if set only the columns specified are
+     *             used, otherwise all primary table's columns (except the ones listed
+     *             above) are used for the training and prediction input.
+     *           * display_name - Output only.
+     *           * data_type - Output only.
      *     @type string $optimization_objective
      *           Objective function the model is optimizing towards. The training process
      *           creates a model that maximizes/minimizes the value of the objective
@@ -171,15 +167,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *             "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
      *             "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *             "MINIMIZE_RMSLE" - Minimize root-mean-squared log error (RMSLE).
-     *           FORECASTING:
-     *             "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
-     *             "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
-     *     @type float $optimization_objective_recall_value
-     *           Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
-     *           Must be between 0 and 1, inclusive.
-     *     @type float $optimization_objective_precision_value
-     *           Required when optimization_objective is "MAXIMIZE_RECALL_AT_PRECISION".
-     *           Must be between 0 and 1, inclusive.
      *     @type \Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo[]|\Google\Protobuf\Internal\RepeatedField $tables_model_column_info
      *           Output only. Auxiliary information for each of the
      *           input_feature_column_specs with respect to this particular model.
@@ -263,11 +250,11 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * [ml_use_column][google.cloud.automl.v1beta1.TablesDatasetMetadata.ml_use_column_spec_id]
      * must never be included here.
      * Only 3 fields are used:
-     * name - May be set on CreateModel, if set only the columns specified are
-     *        used, otherwise all primary table's columns (except the ones listed
-     *        above) are used for the training and prediction input.
-     * display_name - Output only.
-     * data_type - Output only.
+     * * name - May be set on CreateModel, if set only the columns specified are
+     *   used, otherwise all primary table's columns (except the ones listed
+     *   above) are used for the training and prediction input.
+     * * display_name - Output only.
+     * * data_type - Output only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec input_feature_column_specs = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -288,11 +275,11 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * [ml_use_column][google.cloud.automl.v1beta1.TablesDatasetMetadata.ml_use_column_spec_id]
      * must never be included here.
      * Only 3 fields are used:
-     * name - May be set on CreateModel, if set only the columns specified are
-     *        used, otherwise all primary table's columns (except the ones listed
-     *        above) are used for the training and prediction input.
-     * display_name - Output only.
-     * data_type - Output only.
+     * * name - May be set on CreateModel, if set only the columns specified are
+     *   used, otherwise all primary table's columns (except the ones listed
+     *   above) are used for the training and prediction input.
+     * * display_name - Output only.
+     * * data_type - Output only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec input_feature_column_specs = 3;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ColumnSpec[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -327,9 +314,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *   "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
      *   "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *   "MINIMIZE_RMSLE" - Minimize root-mean-squared log error (RMSLE).
-     * FORECASTING:
-     *   "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
-     *   "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *
      * Generated from protobuf field <code>string optimization_objective = 4;</code>
      * @return string
@@ -360,9 +344,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *   "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
      *   "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *   "MINIMIZE_RMSLE" - Minimize root-mean-squared log error (RMSLE).
-     * FORECASTING:
-     *   "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
-     *   "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *
      * Generated from protobuf field <code>string optimization_objective = 4;</code>
      * @param string $var
@@ -372,62 +353,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->optimization_objective = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
-     * Must be between 0 and 1, inclusive.
-     *
-     * Generated from protobuf field <code>float optimization_objective_recall_value = 17;</code>
-     * @return float
-     */
-    public function getOptimizationObjectiveRecallValue()
-    {
-        return $this->readOneof(17);
-    }
-
-    /**
-     * Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
-     * Must be between 0 and 1, inclusive.
-     *
-     * Generated from protobuf field <code>float optimization_objective_recall_value = 17;</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setOptimizationObjectiveRecallValue($var)
-    {
-        GPBUtil::checkFloat($var);
-        $this->writeOneof(17, $var);
-
-        return $this;
-    }
-
-    /**
-     * Required when optimization_objective is "MAXIMIZE_RECALL_AT_PRECISION".
-     * Must be between 0 and 1, inclusive.
-     *
-     * Generated from protobuf field <code>float optimization_objective_precision_value = 18;</code>
-     * @return float
-     */
-    public function getOptimizationObjectivePrecisionValue()
-    {
-        return $this->readOneof(18);
-    }
-
-    /**
-     * Required when optimization_objective is "MAXIMIZE_RECALL_AT_PRECISION".
-     * Must be between 0 and 1, inclusive.
-     *
-     * Generated from protobuf field <code>float optimization_objective_precision_value = 18;</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setOptimizationObjectivePrecisionValue($var)
-    {
-        GPBUtil::checkFloat($var);
-        $this->writeOneof(18, $var);
 
         return $this;
     }
@@ -564,14 +489,6 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
         $this->disable_early_stopping = $var;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAdditionalOptimizationObjectiveConfig()
-    {
-        return $this->whichOneof("additional_optimization_objective_config");
     }
 
 }

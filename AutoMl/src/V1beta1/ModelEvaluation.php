@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModelEvaluation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
-     * Resource name of the model evaluation.
+     * Output only. Resource name of the model evaluation.
      * Format:
      * `projects/{project_id}/locations/{location_id}/models/{model_id}/modelEvaluations/{model_evaluation_id}`
      *
@@ -25,8 +24,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only.
-     * The ID of the annotation spec that the model evaluation applies to. The
+     * Output only. The ID of the annotation spec that the model evaluation applies to. The
      * The ID is empty for the overall model evaluation.
      * For Tables annotation specs in the dataset do not exist and this ID is
      * always not set, but for CLASSIFICATION
@@ -40,7 +38,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     private $annotation_spec_id = '';
     /**
      * Output only. The value of
-     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] at
      * the moment when the model was trained. Because this field returns a value
      * at model training time, for different models trained from the same dataset,
      * the values may differ, since display names could had been changed between
@@ -55,15 +53,13 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only.
-     * Timestamp when this model evaluation was created.
+     * Output only. Timestamp when this model evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      */
     private $create_time = null;
     /**
-     * Output only.
-     * The number of examples used for model evaluation, i.e. for
+     * Output only. The number of examples used for model evaluation, i.e. for
      * which ground truth from time of model creation is compared against the
      * predicted annotations created by the model.
      * For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
@@ -103,13 +99,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics $text_extraction_evaluation_metrics
      *           Evaluation metrics for text extraction models.
      *     @type string $name
-     *           Output only.
-     *           Resource name of the model evaluation.
+     *           Output only. Resource name of the model evaluation.
      *           Format:
      *           `projects/{project_id}/locations/{location_id}/models/{model_id}/modelEvaluations/{model_evaluation_id}`
      *     @type string $annotation_spec_id
-     *           Output only.
-     *           The ID of the annotation spec that the model evaluation applies to. The
+     *           Output only. The ID of the annotation spec that the model evaluation applies to. The
      *           The ID is empty for the overall model evaluation.
      *           For Tables annotation specs in the dataset do not exist and this ID is
      *           always not set, but for CLASSIFICATION
@@ -119,7 +113,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *           field is used.
      *     @type string $display_name
      *           Output only. The value of
-     *           [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     *           [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] at
      *           the moment when the model was trained. Because this field returns a value
      *           at model training time, for different models trained from the same dataset,
      *           the values may differ, since display names could had been changed between
@@ -130,11 +124,9 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *           are populated here.
      *           The display_name is empty for the overall model evaluation.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only.
-     *           Timestamp when this model evaluation was created.
+     *           Output only. Timestamp when this model evaluation was created.
      *     @type int $evaluated_example_count
-     *           Output only.
-     *           The number of examples used for model evaluation, i.e. for
+     *           Output only. The number of examples used for model evaluation, i.e. for
      *           which ground truth from time of model creation is compared against the
      *           predicted annotations created by the model.
      *           For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
@@ -342,8 +334,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Resource name of the model evaluation.
+     * Output only. Resource name of the model evaluation.
      * Format:
      * `projects/{project_id}/locations/{location_id}/models/{model_id}/modelEvaluations/{model_evaluation_id}`
      *
@@ -356,8 +347,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Resource name of the model evaluation.
+     * Output only. Resource name of the model evaluation.
      * Format:
      * `projects/{project_id}/locations/{location_id}/models/{model_id}/modelEvaluations/{model_evaluation_id}`
      *
@@ -374,8 +364,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The ID of the annotation spec that the model evaluation applies to. The
+     * Output only. The ID of the annotation spec that the model evaluation applies to. The
      * The ID is empty for the overall model evaluation.
      * For Tables annotation specs in the dataset do not exist and this ID is
      * always not set, but for CLASSIFICATION
@@ -393,8 +382,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The ID of the annotation spec that the model evaluation applies to. The
+     * Output only. The ID of the annotation spec that the model evaluation applies to. The
      * The ID is empty for the overall model evaluation.
      * For Tables annotation specs in the dataset do not exist and this ID is
      * always not set, but for CLASSIFICATION
@@ -417,7 +405,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The value of
-     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] at
      * the moment when the model was trained. Because this field returns a value
      * at model training time, for different models trained from the same dataset,
      * the values may differ, since display names could had been changed between
@@ -438,7 +426,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The value of
-     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.dispay_name] at
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] at
      * the moment when the model was trained. Because this field returns a value
      * at model training time, for different models trained from the same dataset,
      * the values may differ, since display names could had been changed between
@@ -462,8 +450,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model evaluation was created.
+     * Output only. Timestamp when this model evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      * @return \Google\Protobuf\Timestamp
@@ -474,8 +461,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model evaluation was created.
+     * Output only. Timestamp when this model evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -490,8 +476,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The number of examples used for model evaluation, i.e. for
+     * Output only. The number of examples used for model evaluation, i.e. for
      * which ground truth from time of model creation is compared against the
      * predicted annotations created by the model.
      * For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
@@ -509,8 +494,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The number of examples used for model evaluation, i.e. for
+     * Output only. The number of examples used for model evaluation, i.e. for
      * which ground truth from time of model creation is compared against the
      * predicted annotations created by the model.
      * For overall ModelEvaluation (i.e. with annotation_spec_id not set) this is
