@@ -61,15 +61,19 @@ class RequestBuilder
         $this->resourceRoot = $resourceRoot;
 
         // Append service definition base path if bare apiEndpoint domain is given.
-        $uriParts = parse_url($baseUri) + ['path' => null];
-        if ((!$uriParts['path'] || $uriParts['path'] === '/') && isset($this->service['basePath'])) {
-            $uriParts['path'] = $this->service['basePath'];
+        if (isset($this->service['basePath'])) {
+            $uriParts = parse_url($baseUri) + ['path' => null];
+            if (!$uriParts['path'] || $uriParts['path'] === '/') {
+                $uriParts['path'] = $this->service['basePath'];
 
-            // Recreate the URI from its modified parts and ensure it ends in a single slash.
-            $this->baseUri = rtrim((string) Uri::fromParts($uriParts), '/') . '/';
-        } else {
-            $this->baseUri = rtrim($baseUri, '/') . '/';
+                // Recreate the URI from its modified parts and ensure it ends in a single slash.
+                $this->baseUri = rtrim((string) Uri::fromParts($uriParts), '/') . '/';
+
+                return;
+            }
         }
+
+        $this->baseUri = rtrim($baseUri, '/') . '/';
     }
 
     /**
