@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.107.2
+
 ## 0.107.1
 
 <details><summary>google/cloud-firestore 1.7.1</summary>
