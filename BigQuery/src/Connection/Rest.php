@@ -66,13 +66,15 @@ class Rest implements ConnectionInterface
             'apiEndpoint' => self::DEFAULT_API_ENDPOINT
         ];
 
+        $apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config)
+            $apiEndpoint
         ));
 
-        $this->apiEndpoint = $config['apiEndpoint'];
+        $this->apiEndpoint = $apiEndpoint;
     }
 
     /**
