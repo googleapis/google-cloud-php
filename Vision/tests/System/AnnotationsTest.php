@@ -144,7 +144,7 @@ class AnnotationsTest extends VisionTestCase
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
         $this->assertInstanceOf(Entity::class, $res->text()[0]);
-        $this->assertEquals("Hello World.", explode("\n", $res->text()[0]->description())[0]);
+        $this->assertEquals("Hello World", explode("\n", $res->text()[0]->description())[0]);
         $this->assertEquals("Goodby World!", explode("\n", $res->text()[0]->description())[1]);
     }
 
