@@ -36,8 +36,24 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
+    /**
+     * @deprecated
+     */
     const BASE_URI = 'https://www.googleapis.com/bigquery/v2/';
+
+    const DEFAULT_API_ENDPOINT = 'https://www.googleapis.com';
+
+    /**
+     * @deprecated
+     */
     const UPLOAD_URI = 'https://www.googleapis.com/upload/bigquery/v2/projects/{projectId}/jobs';
+
+    const UPLOAD_PATH = 'upload/bigquery/v2/projects/{projectId}/jobs';
+
+    /**
+     * @var string
+     */
+    private $apiEndpoint;
 
     /**
      * @param array $config
@@ -46,14 +62,19 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json',
-            'componentVersion' => BigQueryClient::VERSION
+            'componentVersion' => BigQueryClient::VERSION,
+            'apiEndpoint' => self::DEFAULT_API_ENDPOINT
         ];
+
+        $apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
 
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            self::BASE_URI
+            $apiEndpoint
         ));
+
+        $this->apiEndpoint = $apiEndpoint;
     }
 
     /**
@@ -230,7 +251,7 @@ class Rest implements ConnectionInterface
         return new MultipartUploader(
             $this->requestWrapper,
             $args['data'],
-            $this->expandUri(self::UPLOAD_URI, ['projectId' => $args['projectId']]),
+            $this->expandUri($this->apiEndpoint . self::UPLOAD_PATH, ['projectId' => $args['projectId']]),
             $args['uploaderOptions']
         );
     }

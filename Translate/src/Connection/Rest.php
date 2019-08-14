@@ -32,7 +32,12 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
+    /**
+     * @deprecated
+     */
     const BASE_URI = 'https://translation.googleapis.com/language/translate/';
+
+    const DEFAULT_API_ENDPOINT = 'https://translation.googleapis.com';
 
     /**
      * @param array $config
@@ -47,7 +52,7 @@ class Rest implements ConnectionInterface
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            $this->getApiEndpoint(self::BASE_URI, $config)
+            $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config)
         ));
     }
 

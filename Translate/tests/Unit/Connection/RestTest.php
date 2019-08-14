@@ -56,7 +56,7 @@ class RestTest extends TestCase
         $p = $r->getProperty('baseUri');
         $p->setAccessible(true);
 
-        $this->assertEquals($endpoint, $p->getValue($rb));
+        $this->assertEquals($endpoint . 'language/translate/', $p->getValue($rb));
     }
 
     /**
