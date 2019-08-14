@@ -251,7 +251,7 @@ class Rest implements ConnectionInterface
         return new MultipartUploader(
             $this->requestWrapper,
             $args['data'],
-            $this->expandUri($this->apiEndpoint . '/' . self::UPLOAD_PATH, ['projectId' => $args['projectId']]),
+            $this->expandUri($this->apiEndpoint . self::UPLOAD_PATH, ['projectId' => $args['projectId']]),
             $args['uploaderOptions']
         );
     }
