@@ -161,7 +161,6 @@ class Topic
      * @param array $options  {
      *     Configuration Options
      *
-     *     @type string name The name of the topic.
      *     @type array $labels Key value pairs used to organize your
      *           resources.
      *     @type string $kmsKeyName The resource name of the Cloud KMS
@@ -187,9 +186,9 @@ class Topic
      */
     public function create(array $options = [])
     {
-        $this->info = $this->connection->createTopic($options + [
+        $this->info = $this->connection->createTopic([
             'name' => $this->name
-        ]);
+        ] + $options);
 
         return $this->info;
     }
