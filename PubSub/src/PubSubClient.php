@@ -178,7 +178,9 @@ class PubSubClient
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
      * @param string $name The topic name
-     * @param array $options [optional] Configuration Options
+     * @param array $options [optional] Configuration Options. For available
+     *        configuration options, refer to
+     *        {@see Google\Cloud\PubSub\Topic::create()}.
      * @return Topic
      */
     public function createTopic($name, array $options = [])
