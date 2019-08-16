@@ -367,7 +367,6 @@ class Debuggee
     public function info()
     {
         $info = [
-            'id' => $this->id,
             'project' => $this->project,
             'uniquifier' => $this->uniquifier,
             'description' => $this->description,
@@ -383,6 +382,11 @@ class Debuggee
                 return is_array($esc) ? $esc : $esc->info();
             }, $this->extSourceContexts)
         ];
+
+        // Do not include the ID unless it is set.
+        if ($this->id) {
+            $info['id'] = $this->id;
+        }
 
         if ($this->status instanceof StatusMessage) {
             $info['status'] = $this->status->info();

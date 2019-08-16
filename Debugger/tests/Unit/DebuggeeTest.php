@@ -139,7 +139,7 @@ class DebuggeeTest extends TestCase
     public function testRegisterSetsDebuggeeId()
     {
         $this->connection->registerDebuggee(Argument::that(function ($args) {
-            return $args['debuggee']['id'] == null;
+            return !isset($args['debuggee']['id']);
         }), Argument::any())->willReturn([
             'debuggee' => [
                 'id' => 'debuggee1'
