@@ -149,18 +149,19 @@ class Debuggee
             'extSourceContexts' => [],
             'uniquifier' => null,
             'description' => null,
-            'labels' => []
+            'labels' => [],
+            'project' => null
         ];
 
         $this->id = $info['id'];
-        $this->project = $info['project'];
+        $this->isInactive = $info['isInactive'];
+        $this->agentVersion = $info['agentVersion'];
+        $this->status = $info['status'];
+        $this->extSourceContexts = $info['extSourceContexts'];
         $this->uniquifier = $info['uniquifier'];
         $this->description = $info['description'];
-        $this->status = $info['status'];
-        $this->agentVersion = $info['agentVersion'];
-        $this->isInactive = $info['isInactive'];
-        $this->extSourceContexts = $info['extSourceContexts'];
         $this->labels = $info['labels'];
+        $this->project = $info['project'];
     }
 
     /**

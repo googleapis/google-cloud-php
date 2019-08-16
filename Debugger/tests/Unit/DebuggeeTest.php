@@ -167,4 +167,15 @@ class DebuggeeTest extends TestCase
         $this->assertArrayHasKey('sourceContexts', $info);
         $this->assertCount(1, $info['sourceContexts']);
     }
+
+    public function testDebuggeeOmitsId()
+    {
+        $debuggee = new Debuggee($this->connection->reveal(), []);
+        $this->assertArrayNotHasKey('id', $debuggee->info());
+
+        $debuggee = new Debuggee($this->connection->reveal(), [
+            'id' => 'foo'
+        ]);
+        $this->assertArrayHasKey('id', $debuggee->info());
+    }
 }
