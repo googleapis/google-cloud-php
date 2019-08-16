@@ -41,6 +41,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateTopic(array $args);
+
+    /**
+     * @param array $args
+     */
     public function listTopics(array $args);
 
     /**

@@ -183,6 +183,65 @@ class Topic
     }
 
     /**
+     * Update the topic.
+     *
+     * Note that the topic's name is an immutable property and may not be modified.
+     *
+     * Example:
+     * ```
+     * $topic->update([
+     *    'labels' => [ 'foo' => 'bar' ]
+     * ]);
+     * ```
+     *
+     * @param array $topic {
+     *     The Topic data.
+     *
+     *    @type array $labels Key value pairs used to organize your resources.
+     *    @type string $kmsKeyName The resource name of the Cloud KMS
+     *          CryptoKey to be used to protect access to messages published on this
+     *          topic. The expected format is:
+     *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
+     *          This is an experimental feature and is not recommended for production use.
+     *    @type array $messageStoragePolicy
+     *    @type array $messageStoragePolicy.allowedPersistenceRegions A list of IDs of GCP
+     *    regions where messages that are published to the topic may be persisted in storage.
+     *    Messages published by publishers running in non-allowed GCP regions (or running outside
+     *    of GCP altogether) will be routed for storage in one of the allowed regions. An empty
+     *    list means that no regions are allowed, and is not a valid configuration.
+     * }
+     * @param array $options
+     */
+    public function update(array $topic, array $options = [])
+    {
+        $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
+
+        if (!$updateMaskPaths) {
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($topic));
+            foreach ($iterator as $leafValue) {
+                $excludes = ['name'];
+                $keys = [];
+                foreach (range(0, $iterator->getDepth()) as $depth) {
+                    $keys[] = $iterator->getSubIterator($depth)->key();
+                }
+
+                $path = implode('.', $keys);
+                if (!in_array($path, $excludes)) {
+                    $updateMaskPaths[] = $path;
+                }
+            }
+        }
+
+        return $this->info = $this->connection->updateTopic([
+            'name' => $this->name,
+            'topic' => [
+                'name' => $this->name,
+            ] + $topic,
+            'updateMask' => implode(',', $updateMaskPaths)
+        ] + $options);
+    }
+
+    /**
      * Delete a topic.
      *
      * Example:
