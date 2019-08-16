@@ -309,6 +309,10 @@ class Subscription
      *           `ttl` is not set, the associated resource never expires. If a
      *           string is provided, it should be as a duration in seconds with
      *           up to nine fractional digits, terminated by 's', e.g "3.5s".
+     * }
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
      *     @type array $updateMask A list of field paths to be modified. Nested
      *           key names should be dot-separated, e.g. `pushConfig.pushEndpoint`.
      *           Google Cloud PHP will attempt to infer this value on your
@@ -316,7 +320,6 @@ class Subscription
      *           (such as labels or push config attributes) requires an explicit
      *           update mask.
      * }
-     * @param array $options [optional] Configuration options.
      * @return array The subscription info.
      */
     public function update(array $subscription, array $options = [])
