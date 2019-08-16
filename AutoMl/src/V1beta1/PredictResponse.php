@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [PredictionService.Predict][google.cloud.automl.v1beta1.PredictionService.Predict].
+ * Response message for
+ * [PredictionService.Predict][google.cloud.automl.v1beta1.PredictionService.Predict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.PredictResponse</code>
  */
@@ -22,6 +23,16 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.AnnotationPayload payload = 1;</code>
      */
     private $payload;
+    /**
+     * The preprocessed example that AutoML actually makes prediction on.
+     * Empty if AutoML does not preprocess the input example.
+     * * For Text Extraction:
+     *   If the input is a .pdf file, the OCR'ed text will be provided in
+     *   [document_text][google.cloud.automl.v1beta1.Document.document_text].
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload preprocessed_input = 3;</code>
+     */
+    private $preprocessed_input = null;
     /**
      * Additional domain-specific prediction response metadata.
      * * For Image Object Detection:
@@ -50,6 +61,12 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1beta1\AnnotationPayload[]|\Google\Protobuf\Internal\RepeatedField $payload
      *           Prediction result.
      *           Translation and Text Sentiment will return precisely one payload.
+     *     @type \Google\Cloud\AutoMl\V1beta1\ExamplePayload $preprocessed_input
+     *           The preprocessed example that AutoML actually makes prediction on.
+     *           Empty if AutoML does not preprocess the input example.
+     *           * For Text Extraction:
+     *             If the input is a .pdf file, the OCR'ed text will be provided in
+     *             [document_text][google.cloud.automl.v1beta1.Document.document_text].
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Additional domain-specific prediction response metadata.
      *           * For Image Object Detection:
@@ -95,6 +112,40 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AutoMl\V1beta1\AnnotationPayload::class);
         $this->payload = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The preprocessed example that AutoML actually makes prediction on.
+     * Empty if AutoML does not preprocess the input example.
+     * * For Text Extraction:
+     *   If the input is a .pdf file, the OCR'ed text will be provided in
+     *   [document_text][google.cloud.automl.v1beta1.Document.document_text].
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload preprocessed_input = 3;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ExamplePayload
+     */
+    public function getPreprocessedInput()
+    {
+        return $this->preprocessed_input;
+    }
+
+    /**
+     * The preprocessed example that AutoML actually makes prediction on.
+     * Empty if AutoML does not preprocess the input example.
+     * * For Text Extraction:
+     *   If the input is a .pdf file, the OCR'ed text will be provided in
+     *   [document_text][google.cloud.automl.v1beta1.Document.document_text].
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExamplePayload preprocessed_input = 3;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ExamplePayload $var
+     * @return $this
+     */
+    public function setPreprocessedInput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ExamplePayload::class);
+        $this->preprocessed_input = $var;
 
         return $this;
     }
