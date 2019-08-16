@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [PredictionService.BatchPredict][google.cloud.automl.v1beta1.PredictionService.BatchPredict].
+ * Request message for
+ * [PredictionService.BatchPredict][google.cloud.automl.v1beta1.PredictionService.BatchPredict].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.BatchPredictRequest</code>
  */
