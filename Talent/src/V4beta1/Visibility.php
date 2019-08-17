@@ -7,6 +7,7 @@ namespace Google\Cloud\Talent\V4beta1;
 use UnexpectedValueException;
 
 /**
+ * Deprecated. All resources are only visible to the owner.
  * An enum that represents who has view access to the resource.
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.Visibility</code>

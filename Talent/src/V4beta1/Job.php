@@ -239,12 +239,13 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $posting_region = 0;
     /**
-     * Optional. The visibility of the job.
+     * Deprecated. The job is only visible to the owner.
+     * The visibility of the job.
      * Defaults to
      * [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
      * if not specified.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      */
     private $visibility = 0;
     /**
@@ -497,7 +498,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           setting job [Job.addresses][google.cloud.talent.v4beta1.Job.addresses] to
      *           the same location level as this field is strongly recommended.
      *     @type int $visibility
-     *           Optional. The visibility of the job.
+     *           Deprecated. The job is only visible to the owner.
+     *           The visibility of the job.
      *           Defaults to
      *           [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
      *           if not specified.
@@ -1295,12 +1297,13 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The visibility of the job.
+     * Deprecated. The job is only visible to the owner.
+     * The visibility of the job.
      * Defaults to
      * [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
      * if not specified.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      * @return int
      */
     public function getVisibility()
@@ -1309,12 +1312,13 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The visibility of the job.
+     * Deprecated. The job is only visible to the owner.
+     * The visibility of the job.
      * Defaults to
      * [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY]
      * if not specified.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      * @param int $var
      * @return $this
      */
