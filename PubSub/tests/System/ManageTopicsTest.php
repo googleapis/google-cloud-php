@@ -77,4 +77,23 @@ class ManageTopicsTest extends PubSubTestCase
         $this->assertTrue($client->topic($shortName)->exists());
         $this->assertEquals($topic->name(), $topic->reload()['name']);
     }
+
+    /**
+     * @dataProvider $client
+     */
+    public function testUpdateTopic($client)
+    {
+        $topics = $client->topics();
+        $topic = $topics->current();
+
+        $policy = [
+                'allowedPersistenceRegions' => ['us-central1', 'us-east1']
+        ];
+
+        $topic->update([
+            'messageStoragePolicy' => $policy
+        ]);
+
+        $this->assertEquals($policy, $topic->info()['messageStoragePolicy']);
+    }
 }

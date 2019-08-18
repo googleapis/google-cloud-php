@@ -91,6 +91,31 @@ class TopicTest extends TestCase
         $this->assertEquals('bar', $this->topic->info()['foo']);
     }
 
+    public function testUpdateWithImmutableFields()
+    {
+        $this->connection->updateTopic(Argument::allOf(
+            Argument::withEntry('topic', [
+                'name' => $this->topic->name(),
+                'foo' => 'bar',
+                'kmsKeyName' => 'example-key'
+            ]),
+            Argument::withEntry('updateMask', 'foo')
+        ))->shouldBeCalled()->willReturn([
+            'foo' => 'bar'
+        ]);
+
+        $this->topic->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->topic->update([
+            'foo' => 'bar',
+            'name' => $this->topic->name(),
+            'kmsKeyName' => 'example-key'
+        ]);
+
+        $this->assertEquals(['foo' => 'bar'], $res);
+        $this->assertEquals('bar', $this->topic->info()['foo']);
+    }
+
     public function testDelete()
     {
         $this->connection->deleteTopic(Argument::withEntry('foo', 'bar'))

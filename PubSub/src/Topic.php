@@ -185,12 +185,23 @@ class Topic
     /**
      * Update the topic.
      *
-     * Note that the topic's name is an immutable property and may not be modified.
+     * Note that the topic's name and kms key name are immutable properties and may not be modified.
      *
      * Example:
      * ```
      * $topic->update([
+     *    'messageStoragePolicy' => [
+     *       'allowedPersistenceRegions' => ['us-central1']
+     *    ]
+     * ]);
+     * ```
+     *
+     *```
+     * // Updating labels with an explicit update mask
+     * $topic->update([
      *    'labels' => [ 'foo' => 'bar' ]
+     * ], [
+     *    'updateMask' => [ 'labels' ]
      * ]);
      * ```
      *
@@ -210,7 +221,14 @@ class Topic
      *    of GCP altogether) will be routed for storage in one of the allowed regions. An empty
      *    list means that no regions are allowed, and is not a valid configuration.
      * }
-     * @param array $options
+     * @param array $options [optional] Configuration options.
+     * @param array $options.updateMask A list of field paths to be modified. Nested
+     *    key names should be dot-separated, e.g. `messageStoragePolicy.allowedPersistenceRegions`.
+     *    Google Cloud PHP will attempt to infer this value on your
+     *    behalf, however modification of map fields with arbitrary keys
+     *    (such as labels or push config attributes) requires an explicit
+     *    update mask.
+     * @return array The topic info.
      */
     public function update(array $topic, array $options = [])
     {
@@ -219,10 +237,14 @@ class Topic
         if (!$updateMaskPaths) {
             $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($topic));
             foreach ($iterator as $leafValue) {
-                $excludes = ['name'];
+                $excludes = ['name', 'kmsKeyName'];
                 $keys = [];
                 foreach (range(0, $iterator->getDepth()) as $depth) {
-                    $keys[] = $iterator->getSubIterator($depth)->key();
+                    $key = $iterator->getSubIterator($depth)->key();
+                    if (!is_string($key)) {
+                        break;
+                    }
+                    $keys[] = $key;
                 }
 
                 $path = implode('.', $keys);
