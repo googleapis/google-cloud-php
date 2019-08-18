@@ -79,7 +79,7 @@ class ManageTopicsTest extends PubSubTestCase
     }
 
     /**
-     * @dataProvider $client
+     * @dataProvider clientProvider
      */
     public function testUpdateTopic($client)
     {
@@ -98,7 +98,7 @@ class ManageTopicsTest extends PubSubTestCase
     }
 
     /**
-     * @param $client
+     * @dataProvider clientProvider
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
@@ -106,9 +106,7 @@ class ManageTopicsTest extends PubSubTestCase
         $topic = $topics->current();
 
         $labels = [
-            'labels' => [
-                'foo' => 'bar'
-            ]
+            'foo' => 'bar'
         ];
 
         $topic->update([

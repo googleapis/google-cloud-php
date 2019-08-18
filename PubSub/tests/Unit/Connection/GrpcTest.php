@@ -161,6 +161,11 @@ class GrpcTest extends TestCase
                 [$value, []]
             ],
             [
+                'updateTopic',
+                ['name' => $value],
+                [$value, []]
+            ],
+            [
                 'getTopic',
                 ['topic' => $value],
                 [$value, []]

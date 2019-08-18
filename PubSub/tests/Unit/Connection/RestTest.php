@@ -94,6 +94,7 @@ class RestTest extends TestCase
             ['createTopic'],
             ['getTopic'],
             ['deleteTopic'],
+            ['updateTopic'],
             ['listTopics'],
             ['publishMessage'],
             ['listSubscriptionsByTopic'],
