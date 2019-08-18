@@ -96,4 +96,27 @@ class ManageTopicsTest extends PubSubTestCase
 
         $this->assertEquals($policy, $topic->info()['messageStoragePolicy']);
     }
+
+    /**
+     * @param $client
+     */
+    public function testUpdateTopicWithUpdateMask($client)
+    {
+        $topics = $client->topics();
+        $topic = $topics->current();
+
+        $labels = [
+            'labels' => [
+                'foo' => 'bar'
+            ]
+        ];
+
+        $topic->update([
+            'labels' => $labels
+        ], [
+            'updateMask' => [ 'labels' ]
+        ]);
+
+        $this->assertEquals($labels, $topic->info()['labels']);
+    }
 }
