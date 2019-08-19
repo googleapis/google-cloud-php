@@ -30,6 +30,7 @@ use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
+use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
@@ -130,6 +131,33 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->publisherClient, 'deleteTopic'], [
             $this->pluck('topic', $args),
+            $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateTopic(array $args)
+    {
+        $updateMaskPaths = [];
+        foreach (explode(',', $this->pluck('updateMask', $args)) as $path) {
+            $updateMaskPaths[] = Serializer::toSnakeCase($path);
+        }
+
+        $fieldMask = new FieldMask([
+            'paths' => $updateMaskPaths
+        ]);
+
+        $topic = $this->serializer->decodeMessage(
+            new Topic,
+            $this->pluck('topic', $args)
+        );
+
+        unset($args['name']);
+        return $this->send([$this->publisherClient, 'updateTopic'], [
+            $topic,
+            $fieldMask,
             $args
         ]);
     }
