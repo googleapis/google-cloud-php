@@ -210,7 +210,7 @@ class Topic
      * ```
      *
      * @param array $topic {
-     *     The Topic data.
+     *    The Topic data.
      *
      *    @type array $labels Key value pairs used to organize your resources.
      *    @type string $kmsKeyName The resource name of the Cloud KMS
