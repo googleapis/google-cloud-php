@@ -203,12 +203,14 @@ class Topic
      *         'foo' => 'bar'
      *     ]
      * ], [
-     *     'updateMask' => [ 'labels' ]
+     *     'updateMask' => [
+     *         'labels'
+     *     ]
      * ]);
      * ```
      *
      * @param array $topic {
-     *     The Topic data.
+     *    The Topic data.
      *
      *    @type array $labels Key value pairs used to organize your resources.
      *    @type array $messageStoragePolicy Policy constraining the set of
