@@ -203,7 +203,9 @@ class Topic
      *         'foo' => 'bar'
      *     ]
      * ], [
-     *     'updateMask' => [ 'labels' ]
+     *     'updateMask' => [
+     *         'labels'
+     *     ]
      * ]);
      * ```
      *
