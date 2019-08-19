@@ -196,7 +196,7 @@ class Topic
      * ]);
      * ```
      *
-     *```
+     * ```
      * // Updating labels with an explicit update mask
      * $topic->update([
      *     'labels' => [ 'foo' => 'bar' ]
