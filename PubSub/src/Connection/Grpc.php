@@ -25,6 +25,7 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
+use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
@@ -106,6 +107,13 @@ class Grpc implements ConnectionInterface
      */
     public function createTopic(array $args)
     {
+        if (isset($args['messageStoragePolicy'])) {
+            $args['messageStoragePolicy'] = $this->serializer->decodeMessage(
+                new MessageStoragePolicy,
+                $args['messageStoragePolicy']
+            );
+        }
+
         return $this->send([$this->publisherClient, 'createTopic'], [
             $this->pluck('name', $args),
             $args
