@@ -83,11 +83,13 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopic($client)
     {
-        $topics = $client->topics();
-        $topic = $topics->current();
+        $shortName = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse($client->topic($shortName)->exists());
+        $topic = $client->createTopic($shortName);
+        self::$deletionQueue->add($topic);
 
         $policy = [
-                'allowedPersistenceRegions' => ['us-central1', 'us-east1']
+            'allowedPersistenceRegions' => ['us-central1', 'us-east1']
         ];
 
         $topic->update([

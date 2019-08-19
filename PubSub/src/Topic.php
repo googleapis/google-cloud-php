@@ -211,11 +211,6 @@ class Topic
      *     The Topic data.
      *
      *    @type array $labels Key value pairs used to organize your resources.
-     *    @type string $kmsKeyName The resource name of the Cloud KMS
-     *          CryptoKey to be used to protect access to messages published on this
-     *          topic. The expected format is:
-     *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *          This is an experimental feature and is not recommended for production use.
      *    @type array $messageStoragePolicy Policy constraining the set of
      *          Google Cloud Platform regions where messages published to the
      *          topic may be stored. If not present, then no constraints are in
@@ -228,13 +223,17 @@ class Topic
      *          the allowed regions. An empty list means that no regions are
      *          allowed, and is not a valid configuration.
      * }
-     * @param array $options [optional] Configuration options.
-     * @param array $options.updateMask A list of field paths to be modified. Nested
-     *    key names should be dot-separated, e.g. `messageStoragePolicy.allowedPersistenceRegions`.
-     *    Google Cloud PHP will attempt to infer this value on your
-     *    behalf, however modification of map fields with arbitrary keys
-     *    (such as labels or push config attributes) requires an explicit
-     *    update mask.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *     
+     *     @type array $updateMask A list of field paths to be modified. Nested
+     *           key names should be dot-separated, e.g. 
+     *           `messageStoragePolicy.allowedPersistenceRegions`. Google Cloud
+     *           PHP will attempt to infer this value on your behalf, however 
+     *           modification of map fields with arbitrary keys (such as labels
+     *           or message storage policy) requires an explicit update mask.
+     * }
+     *
      * @return array The topic info.
      */
     public function update(array $topic, array $options = [])
@@ -244,7 +243,7 @@ class Topic
         if (!$updateMaskPaths) {
             $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($topic));
             foreach ($iterator as $leafValue) {
-                $excludes = ['name', 'kmsKeyName'];
+                $excludes = ['name'];
                 $keys = [];
                 foreach (range(0, $iterator->getDepth()) as $depth) {
                     $key = $iterator->getSubIterator($depth)->key();
