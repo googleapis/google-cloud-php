@@ -101,7 +101,6 @@ class Topic
      *           CryptoKey to be used to protect access to messages published on this
      *           topic. The expected format is
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           This is an experimental feature and is not recommended for production use.
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -167,8 +166,6 @@ class Topic
      *           CryptoKey to be used to protect access to messages published on
      *           this topic. The expected format is
      *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           This is an experimental feature and is not recommended for
-     *           production use.
      *     @type array $messageStoragePolicy Policy constraining the set of
      *           Google Cloud Platform regions where messages published to the
      *           topic may be stored. If not present, then no constraints are in
