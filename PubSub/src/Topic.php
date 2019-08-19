@@ -226,7 +226,8 @@ class Topic
      *          publishers running in non-allowed GCP regions (or running
      *          outside of GCP altogether) will be routed for storage in one of
      *          the allowed regions. An empty list means that no regions are
-     *          allowed, and is not a valid configuration.    * }
+     *          allowed, and is not a valid configuration.
+     * }
      * @param array $options [optional] Configuration options.
      * @param array $options.updateMask A list of field paths to be modified. Nested
      *    key names should be dot-separated, e.g. `messageStoragePolicy.allowedPersistenceRegions`.
