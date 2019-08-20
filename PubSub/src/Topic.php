@@ -101,7 +101,6 @@ class Topic
      *           CryptoKey to be used to protect access to messages published on this
      *           topic. The expected format is
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           This is an experimental feature and is not recommended for production use.
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -161,23 +160,32 @@ class Topic
      * @param array $options  {
      *     Configuration Options
      *
-     *     @type string name The name of the topic.
      *     @type array $labels Key value pairs used to organize your
      *           resources.
      *     @type string $kmsKeyName The resource name of the Cloud KMS
-     *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is
+     *           CryptoKey to be used to protect access to messages published on
+     *           this topic. The expected format is
      *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           This is an experimental feature and is not recommended for production use.
+     *     @type array $messageStoragePolicy Policy constraining the set of
+     *           Google Cloud Platform regions where messages published to the
+     *           topic may be stored. If not present, then no constraints are in
+     *           effect.
+     *     @type string[] $messageStoragePolicy.allowedPersistenceRegions A list
+     *           of IDs of GCP regions where messages that are published to the
+     *           topic may be persisted in storage. Messages published by
+     *           publishers running in non-allowed GCP regions (or running
+     *           outside of GCP altogether) will be routed for storage in one of
+     *           the allowed regions. An empty list means that no regions are
+     *           allowed, and is not a valid configuration.
      * }
      *
      * @return array Topic information
      */
     public function create(array $options = [])
     {
-        $this->info = $this->connection->createTopic($options + [
+        $this->info = $this->connection->createTopic([
             'name' => $this->name
-        ]);
+        ] + $options);
 
         return $this->info;
     }
