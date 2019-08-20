@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.108.0",
                 "v0.107.1",
                 "v0.107.0",
                 "v0.106.1",
@@ -176,6 +177,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.0",
                 "v0.2.2",
                 "v0.2.1",
@@ -189,6 +191,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.10.0",
                 "v1.9.0",
                 "v1.8.0",
                 "v1.7.0",
@@ -364,6 +367,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.32.0",
                 "v1.31.0",
                 "v1.30.0",
                 "v1.29.0",
@@ -526,6 +530,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v0.19.1",
                 "v0.19.0",
                 "v0.18.5",
                 "v0.18.4",
@@ -808,6 +813,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v1.7.0",
                 "v1.6.0",
                 "v1.5.0",
                 "v1.4.0",
@@ -1051,6 +1057,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.16.0",
                 "v1.15.0",
                 "v1.14.0",
                 "v1.13.0",
@@ -1480,6 +1487,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.4.0",
                 "v1.3.0",
                 "v1.2.9",
                 "v1.2.8",
