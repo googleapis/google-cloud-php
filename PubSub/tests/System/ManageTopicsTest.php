@@ -122,6 +122,9 @@ class ManageTopicsTest extends PubSubTestCase
         $this->assertEquals($labels, $topic->info()['labels']);
     }
 
+    /**
+     * @dataProvider clientProvider
+     */
     public function testMessageStoragePolicyAllowedPersistenceRegions($client)
     {
         $region = 'us-central1';
