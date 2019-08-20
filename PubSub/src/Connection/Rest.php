@@ -73,6 +73,9 @@ class Rest implements ConnectionInterface
         return $this->send('topics', 'create', $args);
     }
 
+    /**
+     * @param array $args
+     */
     public function updateTopic(array $args)
     {
         return $this->send('topics', 'patch', $args);

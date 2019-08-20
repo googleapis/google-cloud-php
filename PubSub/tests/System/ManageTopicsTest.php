@@ -104,8 +104,10 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
-        $topics = $client->topics();
-        $topic = $topics->current();
+        $shortName = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse($client->topic($shortName)->exists());
+        $topic = $client->createTopic($shortName);
+        self::$deletionQueue->add($topic);
 
         $labels = [
             'foo' => 'bar'

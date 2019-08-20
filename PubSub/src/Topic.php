@@ -208,6 +208,7 @@ class Topic
      *     ]
      * ]);
      * ```
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/UpdateTopicRequest Update Topic
      *
      * @param array $topic {
      *    The Topic data.
@@ -227,11 +228,11 @@ class Topic
      * }
      * @param array $options [optional] {
      *     Configuration options.
-     *     
+     *
      *     @type array $updateMask A list of field paths to be modified. Nested
-     *           key names should be dot-separated, e.g. 
+     *           key names should be dot-separated, e.g.
      *           `messageStoragePolicy.allowedPersistenceRegions`. Google Cloud
-     *           PHP will attempt to infer this value on your behalf, however 
+     *           PHP will attempt to infer this value on your behalf, however
      *           modification of map fields with arbitrary keys (such as labels
      *           or message storage policy) requires an explicit update mask.
      * }
