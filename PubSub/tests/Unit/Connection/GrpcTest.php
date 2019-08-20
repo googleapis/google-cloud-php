@@ -22,6 +22,7 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\ApiCore\Serializer;
+use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
@@ -118,12 +119,30 @@ class GrpcTest extends TestCase
         $subscription->setRetainAckedMessages(true);
 
         $serializer = new Serializer();
-        $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['retain_acked_messages']]);
+        $subscriptionFieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['retain_acked_messages']]);
 
         $time = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
         $timestamp = $serializer->decodeMessage(new Timestamp(), $this->formatTimestampForApi($time));
 
+        $topic = new Topic;
+        $topic->setLabels(['foo' => 'bar']);
+        $topic->setName('projects/foo/topics/bar');
+        $topicFieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['labels']]);
+
         return [
+            [
+                'updateTopic',
+                [
+                    'topic' => [
+                        'name' => 'projects/foo/topics/bar',
+                        'labels' => [
+                            'foo' => 'bar'
+                        ]
+                    ],
+                    'updateMask' => 'labels'
+                ],
+                [$topic, $topicFieldMask, []]
+            ],
             [
                 'updateSubscription',
                 [
@@ -133,7 +152,7 @@ class GrpcTest extends TestCase
                     ],
                     'updateMask' => 'retainAckedMessages'
                 ],
-                [$subscription, $fieldMask, []]
+                [$subscription, $subscriptionFieldMask, []]
             ],
             [
                 'listSnapshots',
