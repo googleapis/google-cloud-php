@@ -216,6 +216,7 @@ class Topic
      *     ]
      * ]);
      * ```
+     *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/UpdateTopicRequest Update Topic
      *
      * @param array $topic {
