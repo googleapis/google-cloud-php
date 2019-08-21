@@ -21,6 +21,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * routing](https://cloud.google.com/appengine/docs/standard/python/how-requests-are-routed),
  * and [App Engine Flex request
  * routing](https://cloud.google.com/appengine/docs/flexible/python/how-requests-are-routed).
+ * Using [AppEngineRouting][google.cloud.tasks.v2.AppEngineRouting] requires
+ * [`appengine.applications.get`](https://cloud.google.com/appengine/docs/admin-api/access-control)
+ * Google IAM permission for the project
+ * and the following scope:
+ * `https://www.googleapis.com/auth/cloud-platform`
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2.AppEngineRouting</code>
  */

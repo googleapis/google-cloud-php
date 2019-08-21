@@ -17,11 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteTaskRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The task name. For example:
+     * Required. The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -32,8 +31,7 @@ class DeleteTaskRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The task name. For example:
+     *           Required. The task name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      * }
      */
@@ -43,11 +41,10 @@ class DeleteTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The task name. For example:
+     * Required. The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -56,11 +53,10 @@ class DeleteTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The task name. For example:
+     * Required. The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

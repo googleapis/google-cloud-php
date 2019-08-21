@@ -16,11 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListQueuesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The location name.
+     * Required. The location name.
      * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -68,8 +67,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The location name.
+     *           Required. The location name.
      *           For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *     @type string $filter
      *           `filter` can be used to specify a subset of queues. Any [Queue][google.cloud.tasks.v2.Queue]
@@ -104,11 +102,10 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The location name.
+     * Required. The location name.
      * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -117,11 +114,10 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The location name.
+     * Required. The location name.
      * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
