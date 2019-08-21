@@ -1,5 +1,89 @@
 # Changelog
 
+## 0.108.0
+
+<details><summary>google/cloud-automl 0.4.0</summary>
+
+
+
+### Features
+
+* Refresh V1Beta1 client ([#2242](https://www.github.com/googleapis/google-cloud-php/issues/2242)) ([5390d16](https://www.github.com/googleapis/google-cloud-php/commit/5390d16))
+* Update AutoML v1beta1 client. ([#2251](https://www.github.com/googleapis/google-cloud-php/issues/2251)) ([44225ba](https://www.github.com/googleapis/google-cloud-php/commit/44225ba))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.10.0</summary>
+
+
+
+### Bug Fixes
+
+* Bump core dependency for BigQuery and Translate ([#2249](https://www.github.com/googleapis/google-cloud-php/issues/2249)) ([23c1c8d](https://www.github.com/googleapis/google-cloud-php/commit/23c1c8d))
+
+
+### Features
+
+* Add apiEndpoint support to BigQuery and improve Translate… ([#2241](https://www.github.com/googleapis/google-cloud-php/issues/2241)) ([2b5273f](https://www.github.com/googleapis/google-cloud-php/commit/2b5273f))
+
+</details>
+
+<details><summary>google/cloud-core 1.32.0</summary>
+
+
+
+### Features
+
+* Add apiEndpoint support to BigQuery and improve Translate… ([#2241](https://www.github.com/googleapis/google-cloud-php/issues/2241)) ([2b5273f](https://www.github.com/googleapis/google-cloud-php/commit/2b5273f))
+
+</details>
+
+<details><summary>google/cloud-debugger 0.19.1</summary>
+
+
+
+### Bug Fixes
+
+* Prevent setting null debuggee ID ([#2252](https://www.github.com/googleapis/google-cloud-php/issues/2252)) ([d345456](https://www.github.com/googleapis/google-cloud-php/commit/d345456))
+
+</details>
+
+<details><summary>google/cloud-kms 1.7.0</summary>
+
+
+
+### Features
+
+* Add INTERNAL as a retryable error code. ([#2248](https://www.github.com/googleapis/google-cloud-php/issues/2248)) ([428d976](https://www.github.com/googleapis/google-cloud-php/commit/428d976))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.16.0</summary>
+
+
+
+### Features
+
+* Add support for Message Storage Policy ([#2250](https://www.github.com/googleapis/google-cloud-php/issues/2250)) ([223560a](https://www.github.com/googleapis/google-cloud-php/commit/223560a))
+* Allow for topics to updated via a new method ([#2256](https://www.github.com/googleapis/google-cloud-php/issues/2256)) ([e19138a](https://www.github.com/googleapis/google-cloud-php/commit/e19138a))
+
+</details>
+
+<details><summary>google/cloud-translate 1.4.0</summary>
+
+
+
+### Bug Fixes
+
+* Bump core dependency for BigQuery and Translate ([#2249](https://www.github.com/googleapis/google-cloud-php/issues/2249)) ([23c1c8d](https://www.github.com/googleapis/google-cloud-php/commit/23c1c8d))
+
+
+### Features
+
+* Add apiEndpoint support to BigQuery and improve Translate… ([#2241](https://www.github.com/googleapis/google-cloud-php/issues/2241)) ([2b5273f](https://www.github.com/googleapis/google-cloud-php/commit/2b5273f))
+
+</details>
+
 ## 0.107.1
 
 <details><summary>google/cloud-firestore 1.7.1</summary>
