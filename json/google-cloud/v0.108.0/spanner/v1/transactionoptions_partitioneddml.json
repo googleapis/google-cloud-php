@@ -1,0 +1,1 @@
+{"id":"spanner\/v1\/transactionoptions_partitioneddml","type":"","title":"Google\\Cloud\\Spanner\\V1\\TransactionOptions_PartitionedDml","name":"TransactionOptions_PartitionedDml","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\V1\\TransactionOptions\\PartitionedDml instead.<\/p>","examples":[],"resources":[],"methods":[]}
