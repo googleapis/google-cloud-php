@@ -418,12 +418,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * The location name.
-     * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $parent       Required. The location name.
+     *                             For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string $filter
      *          `filter` can be used to specify a subset of queues. Any [Queue][google.cloud.tasks.v2beta3.Queue]
@@ -501,12 +499,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the queue. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The resource name of the queue. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -566,17 +562,13 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * The location name in which the queue will be created.
-     * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
+     * @param string $parent Required. The location name in which the queue will be created.
+     *                       For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *
      * The list of allowed locations can be obtained by calling Cloud
      * Tasks' implementation of
      * [ListLocations][google.cloud.location.Locations.ListLocations].
-     * @param Queue $queue Required.
-     *
-     * The queue to create.
+     * @param Queue $queue Required. The queue to create.
      *
      * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      * @param array $optionalArgs {
@@ -643,9 +635,7 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param Queue $queue Required.
-     *
-     * The queue to create or update.
+     * @param Queue $queue Required. The queue to create or update.
      *
      * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] must be specified.
      *
@@ -720,12 +710,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The queue name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The queue name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -776,12 +764,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The queue name. For example:
-     * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The queue name. For example:
+     *                             `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -835,12 +821,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The queue name. For example:
-     * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The queue name. For example:
+     *                             `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -900,12 +884,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The queue name. For example:
-     * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The queue name. For example:
+     *                             `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1171,12 +1153,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * The queue name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $parent       Required. The queue name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type int $responseView
      *          The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
@@ -1256,12 +1236,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The task name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The task name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type int $responseView
      *          The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be
@@ -1331,15 +1309,11 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * The queue name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     * @param string $parent Required. The queue name. For example:
+     *                       `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *
      * The queue must already exist.
-     * @param Task $task Required.
-     *
-     * The task to add.
+     * @param Task $task Required. The task to add.
      *
      * Task names have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
@@ -1443,12 +1417,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The task name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The task name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1517,12 +1489,10 @@ class CloudTasksGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The task name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The task name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type int $responseView
      *          The response_view specifies which subset of the [Task][google.cloud.tasks.v2beta3.Task] will be

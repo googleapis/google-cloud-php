@@ -16,14 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The queue to create or update.
+     * Required. The queue to create or update.
      * The queue's [name][google.cloud.tasks.v2.Queue.name] must be specified.
      * Output only fields cannot be modified using UpdateQueue.
      * Any value specified for an output only field will be ignored.
      * The queue's [name][google.cloud.tasks.v2.Queue.name] cannot be changed.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $queue = null;
     /**
@@ -41,8 +40,7 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Tasks\V2\Queue $queue
-     *           Required.
-     *           The queue to create or update.
+     *           Required. The queue to create or update.
      *           The queue's [name][google.cloud.tasks.v2.Queue.name] must be specified.
      *           Output only fields cannot be modified using UpdateQueue.
      *           Any value specified for an output only field will be ignored.
@@ -58,14 +56,13 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The queue to create or update.
+     * Required. The queue to create or update.
      * The queue's [name][google.cloud.tasks.v2.Queue.name] must be specified.
      * Output only fields cannot be modified using UpdateQueue.
      * Any value specified for an output only field will be ignored.
      * The queue's [name][google.cloud.tasks.v2.Queue.name] cannot be changed.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Tasks\V2\Queue
      */
     public function getQueue()
@@ -74,14 +71,13 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The queue to create or update.
+     * Required. The queue to create or update.
      * The queue's [name][google.cloud.tasks.v2.Queue.name] must be specified.
      * Output only fields cannot be modified using UpdateQueue.
      * Any value specified for an output only field will be ignored.
      * The queue's [name][google.cloud.tasks.v2.Queue.name] cannot be changed.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Tasks\V2\Queue $var
      * @return $this
      */

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for leasing tasks using
- * [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
+ * Response message for leasing tasks using [LeaseTasks][google.cloud.tasks.v2beta2.CloudTasks.LeaseTasks].
  *
  * Generated from protobuf message <code>google.cloud.tasks.v2beta2.LeaseTasksResponse</code>
  */

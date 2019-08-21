@@ -16,17 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTaskRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The queue name. For example:
+     * Required. The queue name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      * The queue must already exist.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required.
-     * The task to add.
+     * Required. The task to add.
      * Task names have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
      * The user can optionally specify a task [name][google.cloud.tasks.v2beta3.Task.name]. If a
@@ -55,7 +53,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      * uniform distribution of task ids to store and serve tasks
      * efficiently.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $task = null;
     /**
@@ -81,13 +79,11 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The queue name. For example:
+     *           Required. The queue name. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *           The queue must already exist.
      *     @type \Google\Cloud\Tasks\V2beta3\Task $task
-     *           Required.
-     *           The task to add.
+     *           Required. The task to add.
      *           Task names have the following format:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
      *           The user can optionally specify a task [name][google.cloud.tasks.v2beta3.Task.name]. If a
@@ -134,12 +130,11 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The queue name. For example:
+     * Required. The queue name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      * The queue must already exist.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -148,12 +143,11 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The queue name. For example:
+     * Required. The queue name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      * The queue must already exist.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -166,8 +160,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The task to add.
+     * Required. The task to add.
      * Task names have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
      * The user can optionally specify a task [name][google.cloud.tasks.v2beta3.Task.name]. If a
@@ -196,7 +189,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      * uniform distribution of task ids to store and serve tasks
      * efficiently.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Tasks\V2beta3\Task
      */
     public function getTask()
@@ -205,8 +198,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The task to add.
+     * Required. The task to add.
      * Task names have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
      * The user can optionally specify a task [name][google.cloud.tasks.v2beta3.Task.name]. If a
@@ -235,7 +227,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      * uniform distribution of task ids to store and serve tasks
      * efficiently.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Tasks\V2beta3\Task $var
      * @return $this
      */
