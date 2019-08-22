@@ -23,6 +23,7 @@ use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\Transaction;
 use InvalidArgumentException;
 use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
@@ -165,6 +166,8 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->firestore->collection(self::SESSION_SAVE_PATH)
             ->shouldBeCalledTimes(1)
             ->willReturn($this->collection->reveal());
+        $this->firestore->runTransaction(Argument::type('closure'))
+            ->shouldBeCalledTimes(1);
         $this->collection->document($id)
             ->shouldBeCalledTimes(1)
             ->willReturn($docRef);
@@ -192,10 +195,8 @@ class FirestoreSessionHandlerTest extends TestCase
     public function testWriteWithException()
     {
         $id = self::SESSION_NAME . ':sessionid';
+        $transaction = $this->prophesize(Transaction::class);
         $docRef = $this->prophesize(DocumentReference::class);
-        $docRef->set(Argument::type('array'))
-            ->shouldBeCalledTimes(1)
-            ->willThrow(new Exception());
         $this->firestore->collection(self::SESSION_SAVE_PATH)
             ->shouldBeCalledTimes(1)
             ->willReturn($this->collection->reveal());

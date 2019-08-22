@@ -190,10 +190,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     {
         try {
             $docRef = $this->collection->document($this->formatId($id));
-            $docRef->set([
-                'data' => $data,
-                't' => time()
-            ]);
+            $this->firestore->runTransaction(
+                function (Transaction $transaction) use ($docRef, $data) {
+                    $transaction->set($docRef, [
+                        'data' => $data,
+                        't' => time()
+                    ]);
+                }
+            );
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Firestore upsert failed: %s', $e->getMessage()),
