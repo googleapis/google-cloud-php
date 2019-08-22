@@ -111,7 +111,10 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * Create a custom session handler backed by Cloud Firestore.
      *
      * @param FirestoreClient $firestore Firestore client.
-     * @param int $gcLimit [optional] A number of entities to delete in the
+     * @param int $gcLimit [optional] The number of entities to delete in the
+     *        garbage collection. Values larger than 1000 will be limited to
+     *        1000. **Defaults to** `0`, indicating garbage collection is
+     *        disabled by default.
      *        garbage collection.  Defaults to 0 which means it does nothing.
      *        The value larger than 1000 will be cut down to 1000.
      */
