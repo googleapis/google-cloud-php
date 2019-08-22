@@ -62,13 +62,13 @@ class FirestoreSessionHandlerTest extends TestCase
      */
     public function testOpenNotAllowed()
     {
-        $this->firestore->collection(self::SESSION_SAVE_PATH)
-            ->shouldNotBeCalled()
-            ->willReturn($this->collection->reveal());
+        $this->firestore->collection('invalid/savepath')
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new InvalidArgumentException());
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->firestore->reveal()
         );
-        $firestoreSessionHandler->open('/tmp/sessions', self::SESSION_NAME);
+        $firestoreSessionHandler->open('invalid/savepath', self::SESSION_NAME);
     }
 
 
@@ -166,20 +166,24 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->firestore->collection(self::SESSION_SAVE_PATH)
             ->shouldBeCalledTimes(1)
             ->willReturn($this->collection->reveal());
+        $phpunit = $this;
         $this->firestore->runTransaction(Argument::type('closure'))
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(1)
+            ->will(function($args) use ($phpunit, $docRef) {
+                $transaction = $phpunit->prophesize(Transaction::class);
+                $transaction->set($docRef, Argument::type('array'))
+                    ->will(function ($args) use ($phpunit) {
+                        $phpunit->assertEquals('sessiondata', $args[1]['data']);
+                        $phpunit->assertInternalType('int', $args[1]['t']);
+                        $phpunit->assertGreaterThanOrEqual($args[1]['t'], time());
+                        // 2 seconds grace period should be enough
+                        $phpunit->assertLessThanOrEqual(2, time() - $args[1]['t']);
+                    });
+                $args[0]($transaction->reveal());
+            });
         $this->collection->document($id)
             ->shouldBeCalledTimes(1)
             ->willReturn($docRef);
-        $phpunit = $this;
-        $docRef->set(Argument::type('array'))
-            ->will(function ($args) use ($phpunit) {
-                $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertInternalType('int', $args[0]['t']);
-                $phpunit->assertGreaterThanOrEqual($args[0]['t'], time());
-                // 2 seconds grace period should be enough
-                $phpunit->assertLessThanOrEqual(2, time() - $args[0]['t']);
-            });
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->firestore->reveal()
         );

@@ -138,11 +138,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function open($savePath, $sessionName)
     {
-        if (false !== strpos($savePath, '/')) {
-            throw new InvalidArgumentException(
-                sprintf('The given save_path "%s" not allowed', $savePath)
-            );
-        }
         $this->sessionName = $sessionName;
         $this->collection = $this->firestore->collection($savePath);
         return true;
