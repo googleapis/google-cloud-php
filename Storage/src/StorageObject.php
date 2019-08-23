@@ -549,11 +549,17 @@ class StorageObject
     /**
      * Download an object as a string.
      *
+     * For an example of setting the range header to download a subrange of the
+     * object please see {@see Google\Cloud\Storage\StorageObject::downloadAsStream()}.
+     *
      * Example:
      * ```
      * $string = $object->downloadAsString();
      * echo $string;
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/parameters#range Learn more about the Range header.
      *
      * @param array $options [optional] {
      *     Configuration Options.
@@ -577,10 +583,16 @@ class StorageObject
     /**
      * Download an object to a specified location.
      *
+     * For an example of setting the range header to download a subrange of the
+     * object please see {@see Google\Cloud\Storage\StorageObject::downloadAsStream()}.
+     *
      * Example:
      * ```
      * $stream = $object->downloadToFile(__DIR__ . '/my-file.txt');
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/parameters#range Learn more about the Range header.
      *
      * @param string $path Path to download the file to.
      * @param array $options [optional] {
@@ -620,6 +632,21 @@ class StorageObject
      * echo $stream->getContents();
      * ```
      *
+     * ```
+     * // Set the Range header in order to download a subrange (the first 5 bytes)
+     * // of the object.
+     * $stream = $object->downloadAsStream([
+     *     'restOptions' => [
+     *         'headers' => [
+     *             'Range' => 'bytes=0-4'
+     *         ]
+     *     ]
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/parameters#range Learn more about the Range header.
+     *
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -647,6 +674,9 @@ class StorageObject
 
     /**
      * Asynchronously download an object as a stream.
+     *
+     * For an example of setting the range header to download a subrange of the
+     * object please see {@see Google\Cloud\Storage\StorageObject::downloadAsStream()}.
      *
      * Example:
      * ```
@@ -677,6 +707,8 @@ class StorageObject
      * Promise\unwrap($promises);
      * ```
      *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/parameters#range Learn more about the Range header.
      * @see https://github.com/guzzle/promises Learn more about Guzzle Promises
      *
      * @param array $options [optional] {
