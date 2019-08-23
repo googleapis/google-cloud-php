@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-translate",
-    "description": "Cloud Transation Client for PHP",
+    "description": "Cloud Translation Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
