@@ -23,8 +23,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     private $session = '';
     /**
-     * The transaction to use. If none is provided, the default is a
-     * temporary read-only transaction with strong concurrency.
      * The transaction to use.
      * For queries, if none is provided, the default is a temporary read-only
      * transaction with strong concurrency.
@@ -125,8 +123,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $session
      *           Required. The session in which the SQL query should be performed.
      *     @type \Google\Cloud\Spanner\V1\TransactionSelector $transaction
-     *           The transaction to use. If none is provided, the default is a
-     *           temporary read-only transaction with strong concurrency.
      *           The transaction to use.
      *           For queries, if none is provided, the default is a temporary read-only
      *           transaction with strong concurrency.
@@ -219,8 +215,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transaction to use. If none is provided, the default is a
-     * temporary read-only transaction with strong concurrency.
      * The transaction to use.
      * For queries, if none is provided, the default is a temporary read-only
      * transaction with strong concurrency.
@@ -238,8 +232,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The transaction to use. If none is provided, the default is a
-     * temporary read-only transaction with strong concurrency.
      * The transaction to use.
      * For queries, if none is provided, the default is a temporary read-only
      * transaction with strong concurrency.

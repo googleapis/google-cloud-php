@@ -9,11 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [ExecuteBatchDml][google.spanner.v1.Spanner.ExecuteBatchDml]. Contains a list
- * of [ResultSet][google.spanner.v1.ResultSet], one for each DML statement that has successfully executed.
- * If a statement fails, the error is returned as part of the response payload.
- * Clients can determine whether all DML statements have run successfully, or if
- * a statement failed, using one of the following approaches:
+ * The response for
+ * [ExecuteBatchDml][google.spanner.v1.Spanner.ExecuteBatchDml]. Contains a list
+ * of [ResultSet][google.spanner.v1.ResultSet], one for each DML statement that
+ * has successfully executed. If a statement fails, the error is returned as
+ * part of the response payload. Clients can determine whether all DML
+ * statements have run successfully, or if a statement failed, using one of the
+ * following approaches:
  *   1. Check if 'status' field is OkStatus.
  *   2. Check if result_sets_size() equals the number of statements in
  *      [ExecuteBatchDmlRequest][Spanner.ExecuteBatchDmlRequest].
@@ -32,9 +34,11 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * ResultSets, one for each statement in the request that ran successfully, in
-     * the same order as the statements in the request. Each [ResultSet][google.spanner.v1.ResultSet] will
-     * not contain any rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each [ResultSet][google.spanner.v1.ResultSet] will
-     * contain the number of rows modified by the statement.
+     * the same order as the statements in the request. Each
+     * [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
+     * [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     * [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     * modified by the statement.
      * Only the first ResultSet in the response contains a valid
      * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *
@@ -57,9 +61,11 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\V1\ResultSet[]|\Google\Protobuf\Internal\RepeatedField $result_sets
      *           ResultSets, one for each statement in the request that ran successfully, in
-     *           the same order as the statements in the request. Each [ResultSet][google.spanner.v1.ResultSet] will
-     *           not contain any rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each [ResultSet][google.spanner.v1.ResultSet] will
-     *           contain the number of rows modified by the statement.
+     *           the same order as the statements in the request. Each
+     *           [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
+     *           [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     *           [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     *           modified by the statement.
      *           Only the first ResultSet in the response contains a valid
      *           [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *     @type \Google\Rpc\Status $status
@@ -74,9 +80,11 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * ResultSets, one for each statement in the request that ran successfully, in
-     * the same order as the statements in the request. Each [ResultSet][google.spanner.v1.ResultSet] will
-     * not contain any rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each [ResultSet][google.spanner.v1.ResultSet] will
-     * contain the number of rows modified by the statement.
+     * the same order as the statements in the request. Each
+     * [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
+     * [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     * [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     * modified by the statement.
      * Only the first ResultSet in the response contains a valid
      * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *
@@ -90,9 +98,11 @@ class ExecuteBatchDmlResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * ResultSets, one for each statement in the request that ran successfully, in
-     * the same order as the statements in the request. Each [ResultSet][google.spanner.v1.ResultSet] will
-     * not contain any rows. The [ResultSetStats][google.spanner.v1.ResultSetStats] in each [ResultSet][google.spanner.v1.ResultSet] will
-     * contain the number of rows modified by the statement.
+     * the same order as the statements in the request. Each
+     * [ResultSet][google.spanner.v1.ResultSet] will not contain any rows. The
+     * [ResultSetStats][google.spanner.v1.ResultSetStats] in each
+     * [ResultSet][google.spanner.v1.ResultSet] will contain the number of rows
+     * modified by the statement.
      * Only the first ResultSet in the response contains a valid
      * [ResultSetMetadata][google.spanner.v1.ResultSetMetadata].
      *

@@ -36,6 +36,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
+use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -395,6 +397,74 @@ class SpannerGapicClient
     }
 
     /**
+     * Creates multiple new sessions.
+     *
+     * This API can be used to initialize a session cache on the clients.
+     * See https://goo.gl/TgSFN2 for best practices on session cache management.
+     *
+     * Sample code:
+     * ```
+     * $spannerClient = new SpannerClient();
+     * try {
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $response = $spannerClient->batchCreateSessions($formattedDatabase);
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. The database in which the new sessions are created.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Session $sessionTemplate
+     *          Parameters to be applied to each created session.
+     *     @type int $sessionCount
+     *          Required. The number of sessions to be created in this batch call.
+     *          The API may return fewer than the requested number of sessions. If a
+     *          specific number of sessions are desired, the client can make additional
+     *          calls to BatchCreateSessions (adjusting
+     *          [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     *          as necessary).
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\V1\BatchCreateSessionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchCreateSessions($database, array $optionalArgs = [])
+    {
+        $request = new BatchCreateSessionsRequest();
+        $request->setDatabase($database);
+        if (isset($optionalArgs['sessionTemplate'])) {
+            $request->setSessionTemplate($optionalArgs['sessionTemplate']);
+        }
+        if (isset($optionalArgs['sessionCount'])) {
+            $request->setSessionCount($optionalArgs['sessionCount']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BatchCreateSessions',
+            BatchCreateSessionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets a session. Returns `NOT_FOUND` if the session does not exist.
      * This is mainly useful for determining whether a session is still
      * alive.
@@ -623,9 +693,6 @@ class SpannerGapicClient
      *                             Optional.
      *
      *     @type TransactionSelector $transaction
-     *          The transaction to use. If none is provided, the default is a
-     *          temporary read-only transaction with strong concurrency.
-     *
      *          The transaction to use.
      *
      *          For queries, if none is provided, the default is a temporary read-only
@@ -775,9 +842,6 @@ class SpannerGapicClient
      *                             Optional.
      *
      *     @type TransactionSelector $transaction
-     *          The transaction to use. If none is provided, the default is a
-     *          temporary read-only transaction with strong concurrency.
-     *
      *          The transaction to use.
      *
      *          For queries, if none is provided, the default is a temporary read-only
@@ -903,8 +967,9 @@ class SpannerGapicClient
      *
      * Statements are executed in order, sequentially.
      * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse] will contain a
-     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has successfully executed. If a
-     * statement fails, its error status will be returned as part of the
+     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has
+     * successfully executed. If a statement fails, its error status will be
+     * returned as part of the
      * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse]. Execution will
      * stop at the first failed statement; the remaining statements will not run.
      *
