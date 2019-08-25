@@ -32,8 +32,6 @@ use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use PhpParser\Node\Arg;
-use phpseclib\Crypt\AES;
 use Prophecy\Argument;
 
 /**
