@@ -43,7 +43,10 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
     {
         parent::setUpBeforeClass();
 
-        // mark snippets tested w/ process isolation as covered in the parent process.
+        // Since the tests in this class must run in isolation, they won't be
+        // recognized as having been covered, and will cause a CI error.
+        // We can call `snippetFromClass` in the parent process to mark the
+        // snippets as having been covered.
         self::snippetFromClass(DatastoreSessionHandler::class);
         self::snippetFromClass(DatastoreSessionHandler::class, 1);
     }
