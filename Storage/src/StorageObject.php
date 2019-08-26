@@ -638,7 +638,7 @@ class StorageObject
      *
      * ```
      * // Set the Range header in order to download a subrange of the object. For more examples of
-     * // setting the Range header, please see https://tools.ietf.org/html/rfc7233#section-3.1.
+     * // setting the Range header, please see [RFC7233](https://tools.ietf.org/html/rfc7233#section-3.1).
      * $firstFiveBytes = '0-4'; // Get the first 5 bytes.
      * $fromFifthByteToLastByte = '4-'; // Get the bytes starting with the 5th to the last.
      * $lastFiveBytes = '-5'; // Get the last 5 bytes.
