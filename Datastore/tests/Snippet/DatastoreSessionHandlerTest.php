@@ -39,6 +39,15 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
     private $connection;
     private $client;
 
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+
+        // mark snippets tested w/ process isolation as covered in the parent process.
+        self::snippetFromClass(DatastoreSessionHandler::class);
+        self::snippetFromClass(DatastoreSessionHandler::class, 1);
+    }
+
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
