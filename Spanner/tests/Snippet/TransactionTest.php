@@ -122,7 +122,7 @@ class TransactionTest extends SnippetTestCase
     {
 
         $expectedSql = "UPDATE Posts SET title = 'Updated Title' WHERE " .
-                       "STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
+           "STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
 
         $expectedParams = [
             'post' => ["Updated Title", "Sample Content"]
