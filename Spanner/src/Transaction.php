@@ -336,7 +336,7 @@ class Transaction implements TransactionalReadInterface
      * ```
      *
      * ```
-     * //Example of executeUpdate while using DML Structs
+     * // Example of executeUpdate while using DML Structs
      * $statement = "UPDATE Posts SET title = 'Updated Title' " .
      *     "WHERE STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
      *
