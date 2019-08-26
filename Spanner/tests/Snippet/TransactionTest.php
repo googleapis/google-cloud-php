@@ -120,38 +120,43 @@ class TransactionTest extends SnippetTestCase
 
     public function testExecuteUpdateWithStruct()
     {
-
         $expectedSql = "UPDATE Posts SET title = 'Updated Title' WHERE " .
-           "STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
+            "STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
 
         $expectedParams = [
             'post' => ["Updated Title", "Sample Content"]
         ];
         $expectedStructData = [
-            "fields" => [
-                [
-                    "name" => "Title",
-                    "type" => [
-                        "code" => Database::TYPE_STRING
-                    ]
-                ],
-                [
-                    "name" => "Content",
-                    "type" => [
-                        "code" => Database::TYPE_STRING
-                    ]
+            [
+                "name" => "Title",
+                "type" => [
+                    "code" => Database::TYPE_STRING
+                ]
+            ],
+            [
+                "name" => "Content",
+                "type" => [
+                    "code" => Database::TYPE_STRING
                 ]
             ]
         ];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $expectedSql),
-            Argument::withEntry('params', $expectedParams),
-            Argument::withEntry(
-                'paramTypes',
-                Argument::withEntry('post', Argument::withEntry('structType', $expectedStructData))
+        $this->connection->executeStreamingSql(
+            Argument::allOf(
+                Argument::withEntry('sql', $expectedSql),
+                Argument::withEntry('params', $expectedParams),
+                Argument::withEntry(
+                    'paramTypes',
+                    Argument::withEntry(
+                        'post',
+                        Argument::withEntry(
+                            'structType',
+                            Argument::withEntry('fields', Argument::is($expectedStructData))
+                        )
+                    )
+                )
             )
-        ))
+        )
             ->shouldBeCalled()
             ->willReturn($this->resultGenerator(true));
 
