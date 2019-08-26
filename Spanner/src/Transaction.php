@@ -345,7 +345,7 @@ class Transaction implements TransactionalReadInterface
      * $postValue->add('Title', 'Updated Title');
      * $postValue->add('Content', 'Sample Content');
      *
-     * $postType = new StructType;
+     * $postType = new StructType();
      * $postType->add('Title', Database::TYPE_STRING);
      * $postType->add('Title', Database::TYPE_STRING);
      *
