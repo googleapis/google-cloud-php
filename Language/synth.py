@@ -28,14 +28,18 @@ for version in ['V1', 'V1beta2']:
     library = gapic.php_library(
         service='language',
         version=lower_version,
-        artman_output_name=f'google-cloud-language-{lower_version}')
+        artman_output_name=f'google-cloud-language-{lower_version}',
+        include_samples=True)
 
     # copy all src including partial veneer classes
     s.move(library / 'src')
 
     # copy proto files to src also
     s.move(library / 'proto/src/Google/Cloud/Language', 'src/')
+
+    # copy tests and samples
     s.move(library / 'tests/')
+    s.move(library / 'samples/')
 
     # copy GPBMetadata file to metadata
     s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Language', 'metadata/')
