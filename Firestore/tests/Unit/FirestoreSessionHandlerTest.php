@@ -18,18 +18,20 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Exception;
-use Google\Cloud\Firestore\FirestoreClient;
-use Google\Cloud\Firestore\FirestoreSessionHandler;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Transaction;
 use InvalidArgumentException;
-use Prophecy\Argument;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group firestore
+ * @group firestore-session
  */
 class FirestoreSessionHandlerTest extends TestCase
 {
@@ -119,7 +121,7 @@ class FirestoreSessionHandlerTest extends TestCase
         );
         $this->collection->document(self::SESSION_NAME . ':sessionid')
             ->shouldBeCalledTimes(1)
-            ->willThrow((new Exception()));
+            ->willThrow((new ServiceException('')));
 
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->read('sessionid');
@@ -169,7 +171,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $phpunit = $this;
         $this->firestore->runTransaction(Argument::type('closure'))
             ->shouldBeCalledTimes(1)
-            ->will(function($args) use ($phpunit, $docRef) {
+            ->will(function ($args) use ($phpunit, $docRef) {
                 $transaction = $phpunit->prophesize(Transaction::class);
                 $transaction->set($docRef, Argument::type('array'))
                     ->will(function ($args) use ($phpunit) {
@@ -204,6 +206,9 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->firestore->collection(self::SESSION_SAVE_PATH)
             ->shouldBeCalledTimes(1)
             ->willReturn($this->collection->reveal());
+        $this->firestore->runTransaction(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ServiceException(''));
         $this->collection->document($id)
             ->shouldBeCalledTimes(1)
             ->willReturn($docRef);
@@ -247,7 +252,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $docRef = $this->prophesize(DocumentReference::class);
         $docRef->delete()
             ->shouldBeCalledTimes(1)
-            ->willThrow(new Exception());
+            ->willThrow(new ServiceException(''));
         $this->firestore->collection(self::SESSION_SAVE_PATH)
             ->shouldBeCalledTimes(1)
             ->willReturn($this->collection->reveal());
@@ -345,7 +350,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $docRef = $this->prophesize(DocumentReference::class);
         $docRef->delete()
             ->shouldBeCalledTimes(1)
-            ->willThrow(new Exception());
+            ->willThrow(new ServiceException(''));
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $snapshot->reference()
             ->shouldBeCalledTimes(1)

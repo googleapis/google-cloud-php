@@ -16,68 +16,73 @@
  */
 namespace Google\Cloud\Firestore;
 
-use Exception;
-use InvalidArgumentException;
+use Google\Cloud\Core\Exception\ServiceException;
 use SessionHandlerInterface;
 
 /**
  * Custom session handler backed by Cloud Firestore.
  *
- * Instead of storing the session data in a local file, it stores the data to
- * Cloud Firestore. The biggest benefit of doing this is the data can be
- * shared by multiple instances, so it's suitable for cloud applications.
+ * Instead of storing the session data in a local file, this handler stores the
+ * data in Firestore. The biggest benefit of doing this is the data can be
+ * shared by multiple instances, making it suitable for cloud applications.
  *
- * The downside of using Cloud Firestore is the write operations will cost you
- * some money, so it is highly recommended to minimize the write operations
- * with your session data with this handler. In order to do so, keep the data
- * in the session as limited as possible; for example, it is ok to put only
- * signed-in state and the user id in the session with this handler. However,
- * for example, it is definitely not recommended that you store your
- * application's whole undo history in the session, because every user
- * operations will cause the Firestore write and then it will cost you lot of
- * money.
+ * The downside of using Firestore is that write operations will cost you some
+ * money, so it is highly recommended to minimize the write operations while
+ * using this handler. In order to do so, keep the data in the session as
+ * limited as possible; for example, it is ok to put only signed-in state and
+ * the user id in the session with this handler. However, for example, it is
+ * definitely not recommended that you store your application's whole undo
+ * history in the session, because every user operation will cause a Firestore
+ * write, potentially costing you a lot of money.
+ *
+ * This handler doesn't provide pessimistic lock for session data. Instead, it
+ * uses a Firestore transaction for data consistency. This means that if
+ * multiple requests are modifying the same session data simultaneously, there
+ * will be more probablity that some of the `write` operations will fail.
  *
  * If you are building an AJAX application which may issue multiple requests
- * to the server, please design the session data carefully, in order to avoid
+ * to the server, please design your session data carefully in order to avoid
  * possible data contentions. Also please see the 2nd example below for how to
  * properly handle errors on `write` operations.
  *
- * It uses the session.save_path as the Firestore namespace for isolating the
- * session data from your application data, it also uses the session.name as
- * the Firestore kind, the session id as the Firestore id. By default, it
- * does nothing on gc for reducing the cost. Pass positive value up to 1000
- * for $gcLimit parameter to delete entities in gc.
+ * The handler stores data in a collection provided by the value of
+ * session.save_path, isolating the session data from your application data. It
+ * creates documents in the specified collection where the session name and ID
+ * are concatenated. By default, it does nothing on gc for reducing the cost.
+ * Pass a positive value up to 1000 for $gcLimit parameter to delete entities in
+ * gc.
  *
- *
- * Example without error handling:
- * ```
- * use Google\Cloud\Firestore\FirestoreClient;
- *
- * $firestore = new FirestoreClient(['projectId' => $projectId]);
- *
- * $handler = new FirestoreSessionHandler($firestore);
- *
- * session_set_save_handler($handler, true);
- * session_save_path('sessions');
- * session_start();
- *
- * // Then read and write the $_SESSION array.
- *
- * ```
- *
- * The above example automatically writes the session data. It's handy, but
+ * The first example automatically writes the session data. It's handy, but
  * the code doesn't stop even if it fails to write the session data, because
- * the `write` happens when the code exits. If you want to know the session
- * data is correctly written to the Firestore, you need to call
+ * the `write` happens when the code exits. If you want to know whether the
+ * session data is correctly written to Firestore, you need to call
  * `session_write_close()` explicitly and then handle `E_USER_WARNING`
- * properly like the following example.
+ * properly. See the second example for a demonstration.
  *
- * Example with error handling:
- *
+ * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
+ * use Google\Cloud\Firestore\FirestoreSessionHandler;
  *
- * $firestore = new FirestoreClient(['projectId' => $projectId]);
+ * $firestore = new FirestoreClient();
+ *
+ * $handler = new FirestoreSessionHandler($firestore);
+ *
+ * session_set_save_handler($handler, true);
+ * session_save_path('sessions');
+ * session_start();
+ *
+ * // Then write and read the $_SESSION array.
+ * $_SESSION['name'] = 'Bob';
+ * echo $_SESSION['name'];
+ * ```
+ *
+ * ```
+ * // Session handler with error handling:
+ * use Google\Cloud\Firestore\FirestoreClient;
+ * use Google\Cloud\Firestore\FirestoreSessionHandler;
+ *
+ * $firestore = new FirestoreClient();
  *
  * $handler = new FirestoreSessionHandler($firestore);
  * session_set_save_handler($handler, true);
@@ -85,17 +90,25 @@ use SessionHandlerInterface;
  * session_start();
  *
  * // Then read and write the $_SESSION array.
+ * $_SESSION['name'] = 'Bob';
  *
  * function handle_session_error($errNo, $errStr, $errFile, $errLine) {
- *     # We throw an exception here, but you can do whatever you need.
- *     throw new Exception("$errStr in $errFile on line $errLine", $errNo);
+ *     // We throw an exception here, but you can do whatever you need.
+ *     throw new RuntimeException(
+ *         "$errStr in $errFile on line $errLine",
+ *         $errNo
+ *     );
  * }
  * set_error_handler('handle_session_error', E_USER_WARNING);
+ *
  * // If `write` fails for any reason, an exception will be thrown.
  * session_write_close();
  * restore_error_handler();
+ *
  * // You can still read the $_SESSION array after closing the session.
+ * echo $_SESSION['name'];
  * ```
+ *
  * @see http://php.net/manual/en/class.sessionhandlerinterface.php SessionHandlerInterface
  */
 class FirestoreSessionHandler implements SessionHandlerInterface
@@ -165,7 +178,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             if ($snapshot->exists() && isset($snapshot['data'])) {
                 return $snapshot->get('data');
             }
-        } catch (Exception $e) {
+        } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore lookup failed: %s', $e->getMessage()),
                 E_USER_WARNING
@@ -193,7 +206,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                     ]);
                 }
             );
-        } catch (Exception $e) {
+        } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore upsert failed: %s', $e->getMessage()),
                 E_USER_WARNING
@@ -213,7 +226,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     {
         try {
             $this->collection->document($this->formatId($id))->delete();
-        } catch (Exception $e) {
+        } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore delete failed: %s', $e->getMessage()),
                 E_USER_WARNING
@@ -243,7 +256,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             foreach ($query->documents() as $snapshot) {
                 $snapshot->reference()->delete();
             }
-        } catch (Exception $e) {
+        } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Session gc failed: %s', $e->getMessage()),
                 E_USER_WARNING
