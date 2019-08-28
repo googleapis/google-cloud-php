@@ -86,7 +86,7 @@ s.replace(
 
 # prevent proto messages from being marked final
 s.replace(
-    "src/V*/**/*.php",
+    ["src/Admin/**/*.php", "src/V*/**/*.php"],
     r"final class",
     r"class")
 
