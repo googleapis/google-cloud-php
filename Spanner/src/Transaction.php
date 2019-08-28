@@ -341,7 +341,7 @@ class Transaction implements TransactionalReadInterface
      * $statement = "UPDATE Posts SET title = 'Updated Title' " .
      *     "WHERE STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
      *
-     * $postValue = new StructValue;
+     * $postValue = new StructValue();
      * $postValue->add('Title', 'Updated Title');
      * $postValue->add('Content', 'Sample Content');
      *
