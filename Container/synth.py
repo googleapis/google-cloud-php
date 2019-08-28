@@ -15,8 +15,6 @@
 """This script is used to synthesize generated parts of this library."""
 
 import os
-# https://github.com/googleapis/artman/pull/655#issuecomment-507784277
-os.environ["SYNTHTOOL_ARTMAN_VERSION"] = "0.29.1"
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -59,6 +57,12 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
+
+# prevent proto messages from being marked final
+s.replace(
+    "src/V*/**/*.php",
+    r"final class",
+    r"class")
 
 # fix year
 s.replace(
