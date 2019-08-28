@@ -59,7 +59,7 @@ class SnippetTestCase extends TestCase
      * @experimental
      * @internal
      */
-    public function snippetFromClass($class, $indexOrName = 0)
+    public static function snippetFromClass($class, $indexOrName = 0)
     {
         $identifier = self::$parser->createIdentifier($class, $indexOrName);
 
@@ -85,7 +85,7 @@ class SnippetTestCase extends TestCase
      * @experimental
      * @internal
      */
-    public function snippetFromMagicMethod($class, $method, $indexOrName = 0)
+    public static function snippetFromMagicMethod($class, $method, $indexOrName = 0)
     {
         $name = $class .'::'. $method;
         $identifier = self::$parser->createIdentifier($name, $indexOrName);
@@ -111,7 +111,7 @@ class SnippetTestCase extends TestCase
      * @experimental
      * @internal
      */
-    public function snippetFromMethod($class, $method, $indexOrName = 0)
+    public static function snippetFromMethod($class, $method, $indexOrName = 0)
     {
         $name = $class .'::'. $method;
         $identifier = self::$parser->createIdentifier($name, $indexOrName);

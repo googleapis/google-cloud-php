@@ -24,19 +24,18 @@ use SessionHandlerInterface;
 /**
  * Custom session handler backed by Cloud Datastore.
  *
- * Instead of storing the session data in a local file, it stores the data to
- * Cloud Datastore. The biggest benefit of doing this is the data can be
- * shared by multiple instances, so it's suitable for cloud applications.
+ * Instead of storing the session data in a local file, this handler stores the
+ * data in Cloud Datastore. The biggest benefit of doing this is the data can be
+ * shared by multiple instances, making it suitable for cloud applications.
  *
- * The downside of using Cloud Datastore is the write operations will cost you
+ * The downside of using Cloud Datastore is that write operations will cost you
  * some money, so it is highly recommended to minimize the write operations
- * with your session data with this handler. In order to do so, keep the data
- * in the session as limited as possible; for example, it is ok to put only
- * signed-in state and the user id in the session with this handler. However,
- * for example, it is definitely not recommended that you store your
- * application's whole undo history in the session, because every user
- * operations will cause the Datastore write and then it will cost you lot of
- * money.
+ * while using this handler. In order to do so, keep the data in the session as
+ * limited as possible; for example, it is ok to put only signed-in state and
+ * the user id in the session with this handler. However, for example, it is
+ * definitely not recommended that you store your application's whole undo
+ * history in the session, because every user operation will cause a Datastore
+ * write, potentially costing you a lot of money.
  *
  * This handler doesn't provide pessimistic lock for session data. Instead, it
  * uses Datastore Transaction for data consistency. This means that if
@@ -44,22 +43,30 @@ use SessionHandlerInterface;
  * will be more probablity that some of the `write` operations will fail.
  *
  * If you are building an ajax application which may issue multiple requests
- * to the server, please design the session data carefully, in order to avoid
+ * to the server, please design your session data carefully in order to avoid
  * possible data contentions. Also please see the 2nd example below for how to
  * properly handle errors on `write` operations.
  *
- * It uses the session.save_path as the Datastore namespace for isolating the
- * session data from your application data, it also uses the session.name as
- * the Datastore kind, the session id as the Datastore id. By default, it
- * does nothing on gc for reducing the cost. Pass positive value up to 1000
- * for $gcLimit parameter to delete entities in gc.
+ * The handler sets the Datastore namespace to the value of session.save_path,
+ * isolating the session data from your application data, it also uses the
+ * session.name as the Datastore kind, and the session id as the Datastore id.
+ * By default, it does nothing on gc for reducing the cost. Pass positive value
+ * up to 1000 for $gcLimit parameter to delete entities in gc.
  *
  * Note: The datastore transaction only lasts 60 seconds. If this handler is
  * used for long running requests, it will fail on `write`.
  *
- * Example without error handling:
+ * The first example automatically writes the session data. It's handy, but
+ * the code doesn't stop even if it fails to write the session data, because
+ * the `write` happens when the code exits. If you want to know whether the
+ * session data is correctly written to the Datastore, you need to call
+ * `session_write_close()` explicitly and then handle `E_USER_WARNING`
+ * properly. See the second example for a demonstration.
+ *
+ * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
+ * use Google\Cloud\Datastore\DatastoreSessionHandler;
  *
  * $datastore = new DatastoreClient();
  *
@@ -69,23 +76,17 @@ use SessionHandlerInterface;
  * session_save_path('sessions');
  * session_start();
  *
- * // Then read and write the $_SESSION array.
- *
+ * // Then write and read the $_SESSION array.
+ * $_SESSION['name'] = 'Bob';
+ * echo $_SESSION['name'];
  * ```
  *
- * The above example automatically writes the session data. It's handy, but
- * the code doesn't stop even if it fails to write the session data, because
- * the `write` happens when the code exits. If you want to know the session
- * data is correctly written to the Datastore, you need to call
- * `session_write_close()` explicitly and then handle `E_USER_WARNING`
- * properly like the following example.
- *
- * Example with error handling:
- *
  * ```
+ * // Session Handler with Error Handling
  * use Google\Cloud\Datastore\DatastoreClient;
+ * use Google\Cloud\Datastore\DatastoreSessionHandler;
  *
- * $datastore = new DatastoreClient;
+ * $datastore = new DatastoreClient();
  *
  * $handler = new DatastoreSessionHandler($datastore);
  * session_set_save_handler($handler, true);
@@ -93,17 +94,22 @@ use SessionHandlerInterface;
  * session_start();
  *
  * // Then read and write the $_SESSION array.
+ * $_SESSION['name'] = 'Bob';
  *
  * function handle_session_error($errNo, $errStr, $errFile, $errLine) {
- *     # We throw an exception here, but you can do whatever you need.
- *     throw new Exception("$errStr in $errFile on line $errLine", $errNo);
+ *     // We throw an exception here, but you can do whatever you need.
+ *     throw new RuntimeException("$errStr in $errFile on line $errLine", $errNo);
  * }
+ *
  * set_error_handler('handle_session_error', E_USER_WARNING);
  * // If `write` fails for any reason, an exception will be thrown.
  * session_write_close();
  * restore_error_handler();
+ *
  * // You can still read the $_SESSION array after closing the session.
+ * echo $_SESSION['name'];
  * ```
+ *
  * @see http://php.net/manual/en/class.sessionhandlerinterface.php SessionHandlerInterface
  */
 class DatastoreSessionHandler implements SessionHandlerInterface

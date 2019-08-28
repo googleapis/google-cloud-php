@@ -118,6 +118,21 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
      */
     private $expiration_policy = null;
+    /**
+     * A policy that specifies the conditions for dead lettering messages in
+     * this subscription. If dead_letter_policy is not set, dead lettering
+     * is disabled.
+     * The Cloud Pub/Sub service account associated with this subscriptions's
+     * parent project (i.e.,
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * permission to Acknowledge() messages on this subscription.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
+     */
+    private $dead_letter_policy = null;
 
     /**
      * Constructor.
@@ -192,6 +207,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           operations on the subscription. If `expiration_policy` is not set, a
      *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *           value for `expiration_policy.ttl` is 1 day.
+     *     @type \Google\Cloud\PubSub\V1\DeadLetterPolicy $dead_letter_policy
+     *           A policy that specifies the conditions for dead lettering messages in
+     *           this subscription. If dead_letter_policy is not set, dead lettering
+     *           is disabled.
+     *           The Cloud Pub/Sub service account associated with this subscriptions's
+     *           parent project (i.e.,
+     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     *           permission to Acknowledge() messages on this subscription.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -527,6 +553,50 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\ExpirationPolicy::class);
         $this->expiration_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * A policy that specifies the conditions for dead lettering messages in
+     * this subscription. If dead_letter_policy is not set, dead lettering
+     * is disabled.
+     * The Cloud Pub/Sub service account associated with this subscriptions's
+     * parent project (i.e.,
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * permission to Acknowledge() messages on this subscription.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
+     * @return \Google\Cloud\PubSub\V1\DeadLetterPolicy
+     */
+    public function getDeadLetterPolicy()
+    {
+        return $this->dead_letter_policy;
+    }
+
+    /**
+     * A policy that specifies the conditions for dead lettering messages in
+     * this subscription. If dead_letter_policy is not set, dead lettering
+     * is disabled.
+     * The Cloud Pub/Sub service account associated with this subscriptions's
+     * parent project (i.e.,
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * permission to Acknowledge() messages on this subscription.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
+     * @param \Google\Cloud\PubSub\V1\DeadLetterPolicy $var
+     * @return $this
+     */
+    public function setDeadLetterPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\DeadLetterPolicy::class);
+        $this->dead_letter_policy = $var;
 
         return $this;
     }

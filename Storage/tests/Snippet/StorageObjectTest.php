@@ -304,6 +304,26 @@ class StorageObjectTest extends SnippetTestCase
         $this->assertEquals('test', $res->output());
     }
 
+    public function testDownloadAsStreamWithRangeHeaders()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'downloadAsStream', 1);
+        $snippet->addLocal('object', $this->object);
+        $this->connection->downloadObject([
+                'restOptions' => [
+                    'headers' => [
+                        'Range' => 'bytes=0-4'
+                    ]
+                ],
+                'bucket' => 'my-bucket',
+                'object' => 'my-object'
+            ])
+            ->shouldBeCalled()
+            ->willReturn(Psr7\stream_for('test'));
+        $this->object->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+    }
+
     public function testDownloadAsStreamAsync()
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'downloadAsStreamAsync');

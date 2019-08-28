@@ -27,6 +27,24 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
      */
     private $message = null;
+    /**
+     * Delivery attempt counter is 1 + (the sum of number of NACKs and number of
+     * ack_deadline exceeds) for this message.
+     * A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
+     * exceeds event is whenever a message is not acknowledged within
+     * ack_deadline. Note that ack_deadline is initially
+     * Subscription.ackDeadlineSeconds, but may get extended automatically by
+     * the client library.
+     * The first delivery of a given message will have this value as 1. The value
+     * is calculated at best effort and is approximate.
+     * If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
+     */
+    private $delivery_attempt = 0;
 
     /**
      * Constructor.
@@ -38,6 +56,20 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      *           This ID can be used to acknowledge the received message.
      *     @type \Google\Cloud\PubSub\V1\PubsubMessage $message
      *           The message.
+     *     @type int $delivery_attempt
+     *           Delivery attempt counter is 1 + (the sum of number of NACKs and number of
+     *           ack_deadline exceeds) for this message.
+     *           A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
+     *           exceeds event is whenever a message is not acknowledged within
+     *           ack_deadline. Note that ack_deadline is initially
+     *           Subscription.ackDeadlineSeconds, but may get extended automatically by
+     *           the client library.
+     *           The first delivery of a given message will have this value as 1. The value
+     *           is calculated at best effort and is approximate.
+     *           If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *           API might be changed in backward-incompatible ways and is not recommended
+     *           for production use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +125,56 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PubsubMessage::class);
         $this->message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Delivery attempt counter is 1 + (the sum of number of NACKs and number of
+     * ack_deadline exceeds) for this message.
+     * A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
+     * exceeds event is whenever a message is not acknowledged within
+     * ack_deadline. Note that ack_deadline is initially
+     * Subscription.ackDeadlineSeconds, but may get extended automatically by
+     * the client library.
+     * The first delivery of a given message will have this value as 1. The value
+     * is calculated at best effort and is approximate.
+     * If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
+     * @return int
+     */
+    public function getDeliveryAttempt()
+    {
+        return $this->delivery_attempt;
+    }
+
+    /**
+     * Delivery attempt counter is 1 + (the sum of number of NACKs and number of
+     * ack_deadline exceeds) for this message.
+     * A NACK is any call to ModifyAckDeadline with a 0 deadline. An ack_deadline
+     * exceeds event is whenever a message is not acknowledged within
+     * ack_deadline. Note that ack_deadline is initially
+     * Subscription.ackDeadlineSeconds, but may get extended automatically by
+     * the client library.
+     * The first delivery of a given message will have this value as 1. The value
+     * is calculated at best effort and is approximate.
+     * If a DeadLetterPolicy is not set on the subscription, this will be 0.
+     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     * API might be changed in backward-incompatible ways and is not recommended
+     * for production use. It is not subject to any SLA or deprecation policy.
+     *
+     * Generated from protobuf field <code>int32 delivery_attempt = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeliveryAttempt($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->delivery_attempt = $var;
 
         return $this;
     }
