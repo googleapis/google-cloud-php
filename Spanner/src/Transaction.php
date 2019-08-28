@@ -312,7 +312,7 @@ class Transaction implements TransactionalReadInterface
      *
      * Data Manipulation Language (DML) allows you to execute statements which
      * modify the state of the database (i.e. inserting, updating or deleting
-     * rows). For example, DML supports INSERT, UPDATE and DELETE statements. For
+     * rows). DML supports INSERT, UPDATE and DELETE statements. For
      * more on DML syntax, visit the
      * [DML syntax guide](https://cloud.google.com/spanner/docs/dml-syntax).
      *
@@ -340,7 +340,7 @@ class Transaction implements TransactionalReadInterface
      * $statement = "UPDATE Posts SET title = 'Updated Title' " .
      *     "WHERE STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
      *
-     * $postValue = new StructValue;
+     * $postValue = new StructValue();
      * $postValue->add('Title', 'Updated Title');
      * $postValue->add('Content', 'Sample Content');
      *
