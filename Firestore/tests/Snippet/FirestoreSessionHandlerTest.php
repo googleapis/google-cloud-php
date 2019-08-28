@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -31,6 +32,8 @@ use Prophecy\Argument;
  */
 class FirestoreSessionHandlerTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const TRANSACTION = 'transaction-id';
 
     private $connection;
@@ -50,6 +53,8 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(FirestoreClient::class);
     }
