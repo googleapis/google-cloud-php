@@ -1,0 +1,38 @@
+type: manifest/samples
+schema_version: 3
+base: &common
+  env: 'php'
+  bin: 'php'
+  chdir: '{@manifest_dir}/../..'
+  basepath: '.'
+samples:
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeAsync.php'
+  sample: 'speech_transcribe_async'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeAsyncGcs.php'
+  sample: 'speech_transcribe_async_gcs'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeAsyncWordTimeOffsetsGcs.php'
+  sample: 'speech_transcribe_async_word_time_offsets_gcs'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeEnhancedModel.php'
+  sample: 'speech_transcribe_enhanced_model'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeModelSelection.php'
+  sample: 'speech_transcribe_model_selection'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeModelSelectionGcs.php'
+  sample: 'speech_transcribe_model_selection_gcs'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeMultichannel.php'
+  sample: 'speech_transcribe_multichannel'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeMultichannelGcs.php'
+  sample: 'speech_transcribe_multichannel_gcs'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeSync.php'
+  sample: 'speech_transcribe_sync'
+- <<: *common
+  path: '{basepath}/V1/SpeechTranscribeSyncGcs.php'
+  sample: 'speech_transcribe_sync_gcs'

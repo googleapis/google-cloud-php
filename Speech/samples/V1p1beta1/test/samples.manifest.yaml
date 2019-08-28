@@ -1,0 +1,32 @@
+type: manifest/samples
+schema_version: 3
+base: &common
+  env: 'php'
+  bin: 'php'
+  chdir: '{@manifest_dir}/../..'
+  basepath: '.'
+samples:
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechAdaptationBeta.php'
+  sample: 'speech_adaptation_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechContextsClassesBeta.php'
+  sample: 'speech_contexts_classes_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechQuickstartBeta.php'
+  sample: 'speech_quickstart_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechTranscribeAutoPunctuationBeta.php'
+  sample: 'speech_transcribe_auto_punctuation_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechTranscribeDiarizationBeta.php'
+  sample: 'speech_transcribe_diarization_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechTranscribeMultilanguageBeta.php'
+  sample: 'speech_transcribe_multilanguage_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechTranscribeRecognitionMetadataBeta.php'
+  sample: 'speech_transcribe_recognition_metadata_beta'
+- <<: *common
+  path: '{basepath}/V1p1beta1/SpeechTranscribeWordLevelConfidenceBeta.php'
+  sample: 'speech_transcribe_word_level_confidence_beta'
