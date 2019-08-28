@@ -128,8 +128,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      *        garbage collection. Values larger than 1000 will be limited to
      *        1000. **Defaults to** `0`, indicating garbage collection is
      *        disabled by default.
-     *        garbage collection.  Defaults to 0 which means it does nothing.
-     *        The value larger than 1000 will be cut down to 1000.
      */
     public function __construct(
         FirestoreClient $firestore,
