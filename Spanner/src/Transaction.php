@@ -315,7 +315,6 @@ class Transaction implements TransactionalReadInterface
      * rows). For example, DML supports INSERT, UPDATE and DELETE statements. For
      * more on DML syntax, visit the
      * [DML syntax guide](https://cloud.google.com/spanner/docs/dml-syntax).
-     * {@see https://cloud.google.com/spanner/docs/dml-syntax}
      *
      * To execute a SQL query (such as a SELECT), use
      * {@see Google\Cloud\Spanner\Transaction::execute()}.
@@ -360,8 +359,8 @@ class Transaction implements TransactionalReadInterface
      * ```
      *
      * @codingStandardsIgnoreStart
-     *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
+     * @see https://cloud.google.com/spanner/docs/dml-syntax DML Syntax Guide
      * @codingStandardsIgnoreEnd
      *
      * @param string $sql The query string to execute.
