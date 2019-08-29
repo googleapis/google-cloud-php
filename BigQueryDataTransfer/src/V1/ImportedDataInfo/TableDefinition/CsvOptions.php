@@ -98,7 +98,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue field_delimiter = 1;</code>
      * @return string|null
      */
-    public function getFieldDelimiterValue()
+    public function getFieldDelimiterUnwrapped()
     {
         $wrapper = $this->getFieldDelimiter();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -130,7 +130,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setFieldDelimiterValue($var)
+    public function setFieldDelimiterUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
         return $this->setFieldDelimiter($wrappedVar);
@@ -157,7 +157,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_quoted_newlines = 2;</code>
      * @return bool|null
      */
-    public function getAllowQuotedNewlinesValue()
+    public function getAllowQuotedNewlinesUnwrapped()
     {
         $wrapper = $this->getAllowQuotedNewlines();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -189,7 +189,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAllowQuotedNewlinesValue($var)
+    public function setAllowQuotedNewlinesUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setAllowQuotedNewlines($wrappedVar);
@@ -218,7 +218,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.StringValue quote_char = 3;</code>
      * @return string|null
      */
-    public function getQuoteCharValue()
+    public function getQuoteCharUnwrapped()
     {
         $wrapper = $this->getQuoteChar();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -252,7 +252,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * @param string|null $var
      * @return $this
      */
-    public function setQuoteCharValue($var)
+    public function setQuoteCharUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\StringValue(['value' => $var]);
         return $this->setQuoteChar($wrappedVar);
@@ -277,7 +277,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value skip_leading_rows = 4;</code>
      * @return int|string|null
      */
-    public function getSkipLeadingRowsValue()
+    public function getSkipLeadingRowsUnwrapped()
     {
         $wrapper = $this->getSkipLeadingRows();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -307,7 +307,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setSkipLeadingRowsValue($var)
+    public function setSkipLeadingRowsUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int64Value(['value' => $var]);
         return $this->setSkipLeadingRows($wrappedVar);
@@ -332,7 +332,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue allow_jagged_rows = 5;</code>
      * @return bool|null
      */
-    public function getAllowJaggedRowsValue()
+    public function getAllowJaggedRowsUnwrapped()
     {
         $wrapper = $this->getAllowJaggedRows();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -362,7 +362,7 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setAllowJaggedRowsValue($var)
+    public function setAllowJaggedRowsUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setAllowJaggedRows($wrappedVar);

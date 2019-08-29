@@ -122,6 +122,9 @@ class DataTransferServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
     private static $locationNameTemplate;
+    private static $locationDataSourceNameTemplate;
+    private static $locationRunNameTemplate;
+    private static $locationTransferConfigNameTemplate;
     private static $projectNameTemplate;
     private static $projectDataSourceNameTemplate;
     private static $projectRunNameTemplate;
@@ -154,6 +157,33 @@ class DataTransferServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getLocationDataSourceNameTemplate()
+    {
+        if (null == self::$locationDataSourceNameTemplate) {
+            self::$locationDataSourceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataSources/{data_source}');
+        }
+
+        return self::$locationDataSourceNameTemplate;
+    }
+
+    private static function getLocationRunNameTemplate()
+    {
+        if (null == self::$locationRunNameTemplate) {
+            self::$locationRunNameTemplate = new PathTemplate('projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}');
+        }
+
+        return self::$locationRunNameTemplate;
+    }
+
+    private static function getLocationTransferConfigNameTemplate()
+    {
+        if (null == self::$locationTransferConfigNameTemplate) {
+            self::$locationTransferConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/transferConfigs/{transfer_config}');
+        }
+
+        return self::$locationTransferConfigNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -197,6 +227,9 @@ class DataTransferServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
+                'locationDataSource' => self::getLocationDataSourceNameTemplate(),
+                'locationRun' => self::getLocationRunNameTemplate(),
+                'locationTransferConfig' => self::getLocationTransferConfigNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectDataSource' => self::getProjectDataSourceNameTemplate(),
                 'projectRun' => self::getProjectRunNameTemplate(),
@@ -222,6 +255,68 @@ class DataTransferServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_data_source resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataSource
+     *
+     * @return string The formatted location_data_source resource.
+     * @experimental
+     */
+    public static function locationDataSourceName($project, $location, $dataSource)
+    {
+        return self::getLocationDataSourceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'data_source' => $dataSource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_run resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $transferConfig
+     * @param string $run
+     *
+     * @return string The formatted location_run resource.
+     * @experimental
+     */
+    public static function locationRunName($project, $location, $transferConfig, $run)
+    {
+        return self::getLocationRunNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'transfer_config' => $transferConfig,
+            'run' => $run,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_transfer_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $transferConfig
+     *
+     * @return string The formatted location_transfer_config resource.
+     * @experimental
+     */
+    public static function locationTransferConfigName($project, $location, $transferConfig)
+    {
+        return self::getLocationTransferConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'transfer_config' => $transferConfig,
         ]);
     }
 
@@ -302,6 +397,9 @@ class DataTransferServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
+     * - locationDataSource: projects/{project}/locations/{location}/dataSources/{data_source}
+     * - locationRun: projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}
+     * - locationTransferConfig: projects/{project}/locations/{location}/transferConfigs/{transfer_config}
      * - project: projects/{project}
      * - projectDataSource: projects/{project}/dataSources/{data_source}
      * - projectRun: projects/{project}/transferConfigs/{transfer_config}/runs/{run}

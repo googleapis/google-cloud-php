@@ -393,7 +393,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
      * @return float|null
      */
-    public function getMinValueValue()
+    public function getMinValueUnwrapped()
     {
         $wrapper = $this->getMinValue();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -423,7 +423,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setMinValueValue($var)
+    public function setMinValueUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
         return $this->setMinValue($wrappedVar);
@@ -448,7 +448,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @return float|null
      */
-    public function getMaxValueValue()
+    public function getMaxValueUnwrapped()
     {
         $wrapper = $this->getMaxValue();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -478,7 +478,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setMaxValueValue($var)
+    public function setMaxValueUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
         return $this->setMaxValue($wrappedVar);

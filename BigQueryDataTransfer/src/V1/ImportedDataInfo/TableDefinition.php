@@ -319,7 +319,7 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue ignore_unknown_values = 10;</code>
      * @return bool|null
      */
-    public function getIgnoreUnknownValuesValue()
+    public function getIgnoreUnknownValuesUnwrapped()
     {
         $wrapper = $this->getIgnoreUnknownValues();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -351,7 +351,7 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIgnoreUnknownValuesValue($var)
+    public function setIgnoreUnknownValuesUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIgnoreUnknownValues($wrappedVar);
