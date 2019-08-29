@@ -97,6 +97,8 @@ class CompletionGapicClient
         'https://www.googleapis.com/auth/jobs',
     ];
     private static $companyNameTemplate;
+    private static $companyWithoutTenantNameTemplate;
+    private static $projectNameTemplate;
     private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
@@ -128,6 +130,24 @@ class CompletionGapicClient
         return self::$companyNameTemplate;
     }
 
+    private static function getCompanyWithoutTenantNameTemplate()
+    {
+        if (null == self::$companyWithoutTenantNameTemplate) {
+            self::$companyWithoutTenantNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+        }
+
+        return self::$companyWithoutTenantNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (null == self::$tenantNameTemplate) {
@@ -142,6 +162,8 @@ class CompletionGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'company' => self::getCompanyNameTemplate(),
+                'companyWithoutTenant' => self::getCompanyWithoutTenantNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
             ];
         }
@@ -171,6 +193,40 @@ class CompletionGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a company_without_tenant resource.
+     *
+     * @param string $project
+     * @param string $company
+     *
+     * @return string The formatted company_without_tenant resource.
+     * @experimental
+     */
+    public static function companyWithoutTenantName($project, $company)
+    {
+        return self::getCompanyWithoutTenantNameTemplate()->render([
+            'project' => $project,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a tenant resource.
      *
      * @param string $project
@@ -192,6 +248,8 @@ class CompletionGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - company: projects/{project}/tenants/{tenant}/companies/{company}
+     * - companyWithoutTenant: projects/{project}/companies/{company}
+     * - project: projects/{project}
      * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
