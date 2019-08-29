@@ -42,7 +42,7 @@ This split occurs when a new version of Google Cloud PHP is released. Upon relea
 
 Tests are a very important part of Google Cloud PHP. All contributions should include tests that ensure the contributed code behaves as expected.
 
-Google Cloud PHP includes several distinct but equally important test suites: Unit tests, snippet (documentation) tests, system tests, and code style tests.
+Google Cloud PHP includes several distinct but equally important test suites: Unit tests, snippet (documentation) tests, generated sample tests, system tests, and code style tests.
 
 To run all tests except system tests, the following command may be invoked:
 
@@ -75,6 +75,31 @@ $ vendor/bin/phpunit -c phpunit-snippets.xml.dist
 As with the unit test suite, tests are organized into groups.
 
 If any snippets are not covered by the snippet test suite, PHPUnit will report an error and exit with a failure code.
+
+### Generated Sample Tests
+
+Generated samples are tested using [sample-tester](https://sample-tester.readthedocs.io).
+
+Generated sample tests verify code sample correctness using live Google Cloud Platform APIs.
+
+To run the tests for generated samples:
+
+```sh
+$ sample-tester
+```
+
+Groups of generated sample tests can be run by providing specific directories:
+
+```sh
+$ sample-tester Speech/samples/
+```
+
+Generated sample test project and credentials should be provided via environment variables:
+
+```sh
+$ export GOOGLE_APPLICATION_CREDENTIALS='/path/to/keyfile.json'
+$ export PROJECT_ID='[Google Cloud Project ID]'
+```
 
 ### System Tests
 
