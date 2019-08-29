@@ -661,7 +661,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_hirable = 6;</code>
      * @return bool|null
      */
-    public function getIsHirableValue()
+    public function getIsHirableUnwrapped()
     {
         $wrapper = $this->getIsHirable();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -691,7 +691,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIsHirableValue($var)
+    public function setIsHirableUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsHirable($wrappedVar);

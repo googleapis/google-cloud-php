@@ -516,7 +516,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      * @return bool|null
      */
-    public function getReferralValue()
+    public function getReferralUnwrapped()
     {
         $wrapper = $this->getReferral();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -546,7 +546,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setReferralValue($var)
+    public function setReferralUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setReferral($wrappedVar);
@@ -685,7 +685,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28;</code>
      * @return bool|null
      */
-    public function getIsMatchValue()
+    public function getIsMatchUnwrapped()
     {
         $wrapper = $this->getIsMatch();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -719,7 +719,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIsMatchValue($var)
+    public function setIsMatchUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsMatch($wrappedVar);

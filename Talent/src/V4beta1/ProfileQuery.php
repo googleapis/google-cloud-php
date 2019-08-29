@@ -964,7 +964,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue hirable_filter = 9;</code>
      * @return bool|null
      */
-    public function getHirableFilterValue()
+    public function getHirableFilterUnwrapped()
     {
         $wrapper = $this->getHirableFilter();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -996,7 +996,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setHirableFilterValue($var)
+    public function setHirableFilterUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setHirableFilter($wrappedVar);

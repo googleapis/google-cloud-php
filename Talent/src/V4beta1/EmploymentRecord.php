@@ -386,7 +386,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @return bool|null
      */
-    public function getIsSupervisorValue()
+    public function getIsSupervisorUnwrapped()
     {
         $wrapper = $this->getIsSupervisor();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -416,7 +416,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIsSupervisorValue($var)
+    public function setIsSupervisorUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsSupervisor($wrappedVar);
@@ -441,7 +441,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
      * @return bool|null
      */
-    public function getIsSelfEmployedValue()
+    public function getIsSelfEmployedUnwrapped()
     {
         $wrapper = $this->getIsSelfEmployed();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -471,7 +471,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIsSelfEmployedValue($var)
+    public function setIsSelfEmployedUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsSelfEmployed($wrappedVar);
@@ -496,7 +496,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
      * @return bool|null
      */
-    public function getIsCurrentValue()
+    public function getIsCurrentUnwrapped()
     {
         $wrapper = $this->getIsCurrent();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -526,7 +526,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIsCurrentValue($var)
+    public function setIsCurrentUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsCurrent($wrappedVar);

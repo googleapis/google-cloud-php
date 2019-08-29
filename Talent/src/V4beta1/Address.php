@@ -159,7 +159,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
      * @return bool|null
      */
-    public function getCurrentValue()
+    public function getCurrentUnwrapped()
     {
         $wrapper = $this->getCurrent();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -189,7 +189,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setCurrentValue($var)
+    public function setCurrentUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setCurrent($wrappedVar);

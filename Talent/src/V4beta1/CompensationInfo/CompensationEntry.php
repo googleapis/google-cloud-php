@@ -289,7 +289,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.DoubleValue expected_units_per_year = 6;</code>
      * @return float|null
      */
-    public function getExpectedUnitsPerYearValue()
+    public function getExpectedUnitsPerYearUnwrapped()
     {
         $wrapper = $this->getExpectedUnitsPerYear();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -337,7 +337,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * @param float|null $var
      * @return $this
      */
-    public function setExpectedUnitsPerYearValue($var)
+    public function setExpectedUnitsPerYearUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\DoubleValue(['value' => $var]);
         return $this->setExpectedUnitsPerYear($wrappedVar);

@@ -367,7 +367,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
      * @return bool|null
      */
-    public function getIsCurrentValue()
+    public function getIsCurrentUnwrapped()
     {
         $wrapper = $this->getIsCurrent();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -397,7 +397,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setIsCurrentValue($var)
+    public function setIsCurrentUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setIsCurrent($wrappedVar);
