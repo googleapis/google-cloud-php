@@ -67,7 +67,7 @@ s.replace(
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
     "src/V*/**/*.php",
-    r"public function (\w{0,})Unwrapped",
+    r"public function ([s|g]\w{3,})Unwrapped",
     r"public function \1Value"
 )
 
@@ -96,9 +96,3 @@ s.replace(
     r'@type RiskAnalysisJobConfig \$riskJob\n',
     '@type RiskAnalysisJobConfig $riskJob The configuration details for a risk\n'
     '     *          analysis job. Only one of $inspectJob and $riskJob may be provided.\n')
-
-# Use new namespaces
-s.replace(
-    'src/V2/Gapic/DlpServiceGapicClient.php',
-    r'RedactImageRequest_ImageRedactionConfig',
-    'RedactImageRequest\\ImageRedactionConfig')

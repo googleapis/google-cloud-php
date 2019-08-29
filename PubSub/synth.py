@@ -67,7 +67,7 @@ s.replace(
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
     "src/V*/**/*.php",
-    r"public function (\w{0,})Unwrapped",
+    r"public function ([s|g]\w{3,})Unwrapped",
     r"public function \1Value"
 )
 
