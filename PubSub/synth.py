@@ -64,6 +64,13 @@ s.replace(
     r"final class",
     r"class")
 
+# Replace "Unwrapped" with "Value" for method names.
+s.replace(
+    "src/V*/**/*.php",
+    r"public function (\w{0,})Unwrapped",
+    r"public function \1Value"
+)
+
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
