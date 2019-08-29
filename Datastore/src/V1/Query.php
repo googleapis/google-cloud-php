@@ -380,7 +380,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 12;</code>
      * @return int|null
      */
-    public function getLimitValue()
+    public function getLimitUnwrapped()
     {
         $wrapper = $this->getLimit();
         return is_null($wrapper) ? null : $wrapper->getValue();
@@ -416,7 +416,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setLimitValue($var)
+    public function setLimitUnwrapped($var)
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\Int32Value(['value' => $var]);
         return $this->setLimit($wrappedVar);
