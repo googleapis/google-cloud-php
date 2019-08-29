@@ -1,5 +1,68 @@
 # Changelog
 
+## 0.109.0
+
+<details><summary>google/cloud-bigquerydatatransfer 0.14.0</summary>
+
+
+
+### Features
+
+* Support new location based data sources. ([#2285](https://www.github.com/googleapis/google-cloud-php/issues/2285)) ([0e71591](https://www.github.com/googleapis/google-cloud-php/commit/0e71591))
+
+</details>
+
+<details><summary>google/cloud-logging 1.18.0</summary>
+
+
+
+### Features
+
+* Add support for new billing/folder/organization resources. ([#2287](https://www.github.com/googleapis/google-cloud-php/issues/2287)) ([985feb5](https://www.github.com/googleapis/google-cloud-php/commit/985feb5))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.17.0</summary>
+
+
+
+### Features
+
+* Add DeadLetterPolicy support. ([#2260](https://www.github.com/googleapis/google-cloud-php/issues/2260)) ([2709478](https://www.github.com/googleapis/google-cloud-php/commit/2709478))
+* Add delivery attempt counter to message. ([#2270](https://www.github.com/googleapis/google-cloud-php/issues/2270)) ([829de13](https://www.github.com/googleapis/google-cloud-php/commit/829de13))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.18.0</summary>
+
+
+
+### Features
+
+* Add BatchCreateSessions RPC. ([#2262](https://www.github.com/googleapis/google-cloud-php/issues/2262)) ([970104b](https://www.github.com/googleapis/google-cloud-php/commit/970104b))
+
+</details>
+
+<details><summary>google/cloud-talent 0.6.0</summary>
+
+
+
+### Features
+
+* Add support for new companyWithoutTenant/jobWithoutTenant/project resources. ([#2288](https://www.github.com/googleapis/google-cloud-php/issues/2288)) ([f463b7e](https://www.github.com/googleapis/google-cloud-php/commit/f463b7e))
+
+</details>
+
+<details><summary>google/cloud-translate 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* Fix typo in description in composer.json ([#2264](https://www.github.com/googleapis/google-cloud-php/issues/2264)) ([3bbebc1](https://www.github.com/googleapis/google-cloud-php/commit/3bbebc1))
+
+</details>
+
 ## 0.108.0
 
 <details><summary>google/cloud-automl 0.4.0</summary>
