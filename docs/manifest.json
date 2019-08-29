@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.109.0",
                 "v0.108.0",
                 "v0.107.1",
                 "v0.107.0",
@@ -234,6 +235,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v0.14.0",
                 "v0.13.0",
                 "v0.12.1",
                 "v0.12.0",
@@ -901,6 +903,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.18.0",
                 "v1.17.0",
                 "v1.16.5",
                 "v1.16.4",
@@ -1057,6 +1060,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.17.0",
                 "v1.16.0",
                 "v1.15.0",
                 "v1.14.0",
@@ -1188,6 +1192,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.18.0",
                 "v1.17.0",
                 "v1.16.1",
                 "v1.16.0",
@@ -1366,6 +1371,7 @@
             "name": "google/cloud-talent",
             "defaultService": "talent/readme",
             "versions": [
+                "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
                 "v0.3.1",
@@ -1487,6 +1493,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.4.1",
                 "v1.4.0",
                 "v1.3.0",
                 "v1.2.9",
