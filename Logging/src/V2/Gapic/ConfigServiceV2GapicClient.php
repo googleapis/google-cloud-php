@@ -125,7 +125,16 @@ class ConfigServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
+    private static $billingNameTemplate;
+    private static $billingExclusionNameTemplate;
+    private static $billingSinkNameTemplate;
     private static $exclusionNameTemplate;
+    private static $folderNameTemplate;
+    private static $folderExclusionNameTemplate;
+    private static $folderSinkNameTemplate;
+    private static $organizationNameTemplate;
+    private static $organizationExclusionNameTemplate;
+    private static $organizationSinkNameTemplate;
     private static $projectNameTemplate;
     private static $sinkNameTemplate;
     private static $pathTemplateMap;
@@ -149,6 +158,33 @@ class ConfigServiceV2GapicClient
         ];
     }
 
+    private static function getBillingNameTemplate()
+    {
+        if (null == self::$billingNameTemplate) {
+            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        }
+
+        return self::$billingNameTemplate;
+    }
+
+    private static function getBillingExclusionNameTemplate()
+    {
+        if (null == self::$billingExclusionNameTemplate) {
+            self::$billingExclusionNameTemplate = new PathTemplate('billingAccounts/{billing_account}/exclusions/{exclusion}');
+        }
+
+        return self::$billingExclusionNameTemplate;
+    }
+
+    private static function getBillingSinkNameTemplate()
+    {
+        if (null == self::$billingSinkNameTemplate) {
+            self::$billingSinkNameTemplate = new PathTemplate('billingAccounts/{billing_account}/sinks/{sink}');
+        }
+
+        return self::$billingSinkNameTemplate;
+    }
+
     private static function getExclusionNameTemplate()
     {
         if (null == self::$exclusionNameTemplate) {
@@ -156,6 +192,60 @@ class ConfigServiceV2GapicClient
         }
 
         return self::$exclusionNameTemplate;
+    }
+
+    private static function getFolderNameTemplate()
+    {
+        if (null == self::$folderNameTemplate) {
+            self::$folderNameTemplate = new PathTemplate('folders/{folder}');
+        }
+
+        return self::$folderNameTemplate;
+    }
+
+    private static function getFolderExclusionNameTemplate()
+    {
+        if (null == self::$folderExclusionNameTemplate) {
+            self::$folderExclusionNameTemplate = new PathTemplate('folders/{folder}/exclusions/{exclusion}');
+        }
+
+        return self::$folderExclusionNameTemplate;
+    }
+
+    private static function getFolderSinkNameTemplate()
+    {
+        if (null == self::$folderSinkNameTemplate) {
+            self::$folderSinkNameTemplate = new PathTemplate('folders/{folder}/sinks/{sink}');
+        }
+
+        return self::$folderSinkNameTemplate;
+    }
+
+    private static function getOrganizationNameTemplate()
+    {
+        if (null == self::$organizationNameTemplate) {
+            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        }
+
+        return self::$organizationNameTemplate;
+    }
+
+    private static function getOrganizationExclusionNameTemplate()
+    {
+        if (null == self::$organizationExclusionNameTemplate) {
+            self::$organizationExclusionNameTemplate = new PathTemplate('organizations/{organization}/exclusions/{exclusion}');
+        }
+
+        return self::$organizationExclusionNameTemplate;
+    }
+
+    private static function getOrganizationSinkNameTemplate()
+    {
+        if (null == self::$organizationSinkNameTemplate) {
+            self::$organizationSinkNameTemplate = new PathTemplate('organizations/{organization}/sinks/{sink}');
+        }
+
+        return self::$organizationSinkNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -180,13 +270,74 @@ class ConfigServiceV2GapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'billing' => self::getBillingNameTemplate(),
+                'billingExclusion' => self::getBillingExclusionNameTemplate(),
+                'billingSink' => self::getBillingSinkNameTemplate(),
                 'exclusion' => self::getExclusionNameTemplate(),
+                'folder' => self::getFolderNameTemplate(),
+                'folderExclusion' => self::getFolderExclusionNameTemplate(),
+                'folderSink' => self::getFolderSinkNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
+                'organizationExclusion' => self::getOrganizationExclusionNameTemplate(),
+                'organizationSink' => self::getOrganizationSinkNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'sink' => self::getSinkNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing resource.
+     *
+     * @param string $billingAccount
+     *
+     * @return string The formatted billing resource.
+     * @experimental
+     */
+    public static function billingName($billingAccount)
+    {
+        return self::getBillingNameTemplate()->render([
+            'billing_account' => $billingAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing_exclusion resource.
+     *
+     * @param string $billingAccount
+     * @param string $exclusion
+     *
+     * @return string The formatted billing_exclusion resource.
+     * @experimental
+     */
+    public static function billingExclusionName($billingAccount, $exclusion)
+    {
+        return self::getBillingExclusionNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'exclusion' => $exclusion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing_sink resource.
+     *
+     * @param string $billingAccount
+     * @param string $sink
+     *
+     * @return string The formatted billing_sink resource.
+     * @experimental
+     */
+    public static function billingSinkName($billingAccount, $sink)
+    {
+        return self::getBillingSinkNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'sink' => $sink,
+        ]);
     }
 
     /**
@@ -204,6 +355,110 @@ class ConfigServiceV2GapicClient
         return self::getExclusionNameTemplate()->render([
             'project' => $project,
             'exclusion' => $exclusion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder resource.
+     * @experimental
+     */
+    public static function folderName($folder)
+    {
+        return self::getFolderNameTemplate()->render([
+            'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_exclusion resource.
+     *
+     * @param string $folder
+     * @param string $exclusion
+     *
+     * @return string The formatted folder_exclusion resource.
+     * @experimental
+     */
+    public static function folderExclusionName($folder, $exclusion)
+    {
+        return self::getFolderExclusionNameTemplate()->render([
+            'folder' => $folder,
+            'exclusion' => $exclusion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_sink resource.
+     *
+     * @param string $folder
+     * @param string $sink
+     *
+     * @return string The formatted folder_sink resource.
+     * @experimental
+     */
+    public static function folderSinkName($folder, $sink)
+    {
+        return self::getFolderSinkNameTemplate()->render([
+            'folder' => $folder,
+            'sink' => $sink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     * @experimental
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_exclusion resource.
+     *
+     * @param string $organization
+     * @param string $exclusion
+     *
+     * @return string The formatted organization_exclusion resource.
+     * @experimental
+     */
+    public static function organizationExclusionName($organization, $exclusion)
+    {
+        return self::getOrganizationExclusionNameTemplate()->render([
+            'organization' => $organization,
+            'exclusion' => $exclusion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_sink resource.
+     *
+     * @param string $organization
+     * @param string $sink
+     *
+     * @return string The formatted organization_sink resource.
+     * @experimental
+     */
+    public static function organizationSinkName($organization, $sink)
+    {
+        return self::getOrganizationSinkNameTemplate()->render([
+            'organization' => $organization,
+            'sink' => $sink,
         ]);
     }
 
@@ -245,7 +500,16 @@ class ConfigServiceV2GapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - billing: billingAccounts/{billing_account}
+     * - billingExclusion: billingAccounts/{billing_account}/exclusions/{exclusion}
+     * - billingSink: billingAccounts/{billing_account}/sinks/{sink}
      * - exclusion: projects/{project}/exclusions/{exclusion}
+     * - folder: folders/{folder}
+     * - folderExclusion: folders/{folder}/exclusions/{exclusion}
+     * - folderSink: folders/{folder}/sinks/{sink}
+     * - organization: organizations/{organization}
+     * - organizationExclusion: organizations/{organization}/exclusions/{exclusion}
+     * - organizationSink: organizations/{organization}/sinks/{sink}
      * - project: projects/{project}
      * - sink: projects/{project}/sinks/{sink}.
      *
