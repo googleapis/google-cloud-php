@@ -16,6 +16,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Cloud Firestore](#cloud-firestore-ga) (GA)
 * [Cloud Spanner](#cloud-spanner-ga) (GA)
 * [Google BigQuery](#google-bigquery-ga) (GA)
+* [Google Bigtable](#google-bigtable-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud KMS](#google-cloud-kms-ga) (GA)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-ga) (GA)
@@ -29,7 +30,6 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Cloud AutoML](#cloud-automl-beta) (Beta)
-* [Google Bigtable](#google-bigtable-beta) (Beta)
 * [Google Cloud Asset](#google-cloud-asset-beta) (Beta)
 * [Google Cloud Container](#google-cloud-container-beta) (Beta)
 * [Google Cloud Dataproc](#google-cloud-dataproc-beta) (Beta)
@@ -226,6 +226,35 @@ foreach ($queryResults as $row) {
 
 ```
 $ composer require google/cloud-bigquery
+```
+
+## Google Bigtable (GA)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
+- [Official Documentation](https://cloud.google.com/bigtable/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Bigtable\BigtableClient;
+
+$bigtable = new BigtableClient();
+$table = $bigtable->table('my-instance', 'my-table');
+$rows = $table->readRows();
+
+foreach ($rows as $row) {
+    print_r($row) . PHP_EOL;
+}
+```
+
+#### google/cloud-bigtable
+
+[Google Bigtable](https://github.com/googleapis/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
+
+```
+$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud Datastore (GA)
@@ -717,35 +746,6 @@ $response = $autoMlClient->createDataset($formattedParent, $dataset);
 
 ```
 $ composer require google/cloud-firestore
-```
-
-## Google Bigtable (Beta)
-
-- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/bigtable/readme)
-- [Official Documentation](https://cloud.google.com/bigtable/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Bigtable\BigtableClient;
-
-$bigtable = new BigtableClient();
-$table = $bigtable->table('my-instance', 'my-table');
-$rows = $table->readRows();
-
-foreach ($rows as $row) {
-    print_r($row) . PHP_EOL;
-}
-```
-
-#### google/cloud-bigtable
-
-[Google Bigtable](https://github.com/googleapis/google-cloud-php-bigtable) can be installed separately by requiring the [`google/cloud-bigtable`](https://packagist.org/packages/google/cloud-bigtable) composer package:
-
-```
-$ composer require google/cloud-bigtable
 ```
 
 ## Google Cloud Asset (Beta)
