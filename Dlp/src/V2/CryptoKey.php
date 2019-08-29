@@ -63,7 +63,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.UnwrappedCryptoKey unwrapped = 2;</code>
      * @return \Google\Cloud\Dlp\V2\UnwrappedCryptoKey
      */
-    public function getUnwrapped()
+    public function getValue()
     {
         return $this->readOneof(2);
     }
@@ -73,7 +73,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\Dlp\V2\UnwrappedCryptoKey $var
      * @return $this
      */
-    public function setUnwrapped($var)
+    public function setValue($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\UnwrappedCryptoKey::class);
         $this->writeOneof(2, $var);
