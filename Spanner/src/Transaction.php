@@ -341,12 +341,12 @@ class Transaction implements TransactionalReadInterface
      *     "WHERE STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
      *
      * $postValue = new StructValue();
-     * $postValue->add('Title', 'Updated Title');
-     * $postValue->add('Content', 'Sample Content');
+     * $postValue->add('Title', 'Updated Title')
+     *           ->add('Content', 'Sample Content');
      *
      * $postType = new StructType();
-     * $postType->add('Title', Database::TYPE_STRING);
-     * $postType->add('Title', Database::TYPE_STRING);
+     * $postType->add('Title', Database::TYPE_STRING)
+     *          ->add('Content', Database::TYPE_STRING);
      *
      * $modifiedRowCount = $transaction->executeUpdate($statement, [
      *     'parameters' => [
