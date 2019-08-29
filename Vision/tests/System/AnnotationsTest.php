@@ -57,7 +57,7 @@ class AnnotationsTest extends VisionTestCase
 
         // Landmarks
         $this->assertInstanceOf(Entity::class, $res->landmarks()[0]);
-        $this->assertEquals('Eiffel Tower', $res->landmarks()[0]->description());
+        $this->assertEquals('statue of liberty', strtolower($res->landmarks()[0]->description()));
 
         // Safe Search
         $this->assertInstanceOf(SafeSearch::class, $res->safeSearch());
