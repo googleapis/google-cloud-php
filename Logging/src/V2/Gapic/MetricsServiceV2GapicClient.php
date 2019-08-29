@@ -116,7 +116,10 @@ class MetricsServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
+    private static $billingNameTemplate;
+    private static $folderNameTemplate;
     private static $metricNameTemplate;
+    private static $organizationNameTemplate;
     private static $projectNameTemplate;
     private static $pathTemplateMap;
 
@@ -139,6 +142,24 @@ class MetricsServiceV2GapicClient
         ];
     }
 
+    private static function getBillingNameTemplate()
+    {
+        if (null == self::$billingNameTemplate) {
+            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        }
+
+        return self::$billingNameTemplate;
+    }
+
+    private static function getFolderNameTemplate()
+    {
+        if (null == self::$folderNameTemplate) {
+            self::$folderNameTemplate = new PathTemplate('folders/{folder}');
+        }
+
+        return self::$folderNameTemplate;
+    }
+
     private static function getMetricNameTemplate()
     {
         if (null == self::$metricNameTemplate) {
@@ -146,6 +167,15 @@ class MetricsServiceV2GapicClient
         }
 
         return self::$metricNameTemplate;
+    }
+
+    private static function getOrganizationNameTemplate()
+    {
+        if (null == self::$organizationNameTemplate) {
+            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        }
+
+        return self::$organizationNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -161,12 +191,47 @@ class MetricsServiceV2GapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'billing' => self::getBillingNameTemplate(),
+                'folder' => self::getFolderNameTemplate(),
                 'metric' => self::getMetricNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing resource.
+     *
+     * @param string $billingAccount
+     *
+     * @return string The formatted billing resource.
+     * @experimental
+     */
+    public static function billingName($billingAccount)
+    {
+        return self::getBillingNameTemplate()->render([
+            'billing_account' => $billingAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder resource.
+     * @experimental
+     */
+    public static function folderName($folder)
+    {
+        return self::getFolderNameTemplate()->render([
+            'folder' => $folder,
+        ]);
     }
 
     /**
@@ -184,6 +249,22 @@ class MetricsServiceV2GapicClient
         return self::getMetricNameTemplate()->render([
             'project' => $project,
             'metric' => $metric,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     * @experimental
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -207,7 +288,10 @@ class MetricsServiceV2GapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - billing: billingAccounts/{billing_account}
+     * - folder: folders/{folder}
      * - metric: projects/{project}/metrics/{metric}
+     * - organization: organizations/{organization}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
