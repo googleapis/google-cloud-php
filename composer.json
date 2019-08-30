@@ -47,7 +47,7 @@
         "rize/uri-template": "~0.3",
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
-        "monolog/monolog": "~1",
+        "monolog/monolog": "~2",
         "psr/http-message": "1.0.*",
         "ramsey/uuid": "~3",
         "google/gax": "^1.1",
