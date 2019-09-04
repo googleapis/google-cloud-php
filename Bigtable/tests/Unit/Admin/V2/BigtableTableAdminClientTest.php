@@ -34,6 +34,8 @@ use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesResponse;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\Table;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -822,6 +824,237 @@ class BigtableTableAdminClientTest extends GeneratedTest
 
         try {
             $client->checkConsistency($formattedName, $consistencyToken);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $version = 351608024;
+        $etag = 'etag3123477';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+
+        $response = $client->getIamPolicy($formattedResource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetIamPolicy', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getResource();
+
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+
+        try {
+            $client->getIamPolicy($formattedResource);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $version = 351608024;
+        $etag = 'etag3123477';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $policy = new Policy();
+
+        $response = $client->setIamPolicy($formattedResource, $policy);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/SetIamPolicy', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getResource();
+
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+
+        $this->assertProtobufEquals($policy, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $policy = new Policy();
+
+        try {
+            $client->setIamPolicy($formattedResource, $policy);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new TestIamPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $permissions = [];
+
+        $response = $client->testIamPermissions($formattedResource, $permissions);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/TestIamPermissions', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getResource();
+
+        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+
+        $this->assertProtobufEquals($permissions, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedResource = $client->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $permissions = [];
+
+        try {
+            $client->testIamPermissions($formattedResource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

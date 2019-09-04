@@ -108,6 +108,42 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:getIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'SnapshotTable' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:snapshot',
