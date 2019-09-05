@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@ namespace Google\Cloud\Core\Logger;
 use Monolog\Formatter\LineFormatter;
 
 /**
- * Monolog 1.x formatter for formatting logs on App Engine flexible environment.
+ * Monolog 2.x formatter for formatting logs on App Engine flexible environment.
  *
- * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatterV2} instead.
+ * If you are using Monolog 1.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexFormatter} instead.
  */
-class AppEngineFlexFormatter extends LineFormatter
+class AppEngineFlexFormatterV2 extends LineFormatter
 {
     use FormatterTrait;
 
@@ -44,7 +44,7 @@ class AppEngineFlexFormatter extends LineFormatter
      * @param array $record A record to format
      * @return string The formatted record
      */
-    public function format(array $record)
+    public function format(array $record): string
     {
         return $this->formatPayload($record, parent::format($record));
     }

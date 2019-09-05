@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,17 @@
  */
 namespace Google\Cloud\Core\Logger;
 
-use Monolog\Formatter\FormatterInterface;
-use Monolog\Handler\StreamHandler;
+use Exception;
 use Monolog\Logger;
 
 /**
- * Monolog 1.x handler for logging on App Engine flexible environment.
- *
- * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV2} instead.
+ * Factory to build out an AppEngineFlexHandler for the installed version of Monolog.
  */
-class AppEngineFlexHandler extends StreamHandler
+class AppEngineFlexHandlerFactory
 {
     /**
+     * Builds out an AppEngineFlexHandler for the installed version of Monolog.
+     *
      * @param int $level [optional] The minimum logging level at which this
      *        handler will be triggered.
      * @param Boolean $bubble [optional] Whether the messages that are handled
@@ -37,34 +36,27 @@ class AppEngineFlexHandler extends StreamHandler
      * @param Boolean $useLocking [optional] Try to lock log file before doing
      *        any writes.
      * @param resource|string|null $stream [optional]
+     *
+     * @throws Exception
+     *
+     * @return AppEngineFlexHandler|AppEngineFlexHandlerV2
      */
-    public function __construct(
+    public static function build(
         $level = Logger::INFO,
         $bubble = true,
         $filePermission = 0640,
         $useLocking = false,
         $stream = null
     ) {
-        if ($stream === null) {
-            $pid = posix_getpid();
-            $stream = "file:///var/log/app_engine/app.$pid.json";
-        }
-        parent::__construct(
-            $stream,
-            $level,
-            $bubble,
-            $filePermission,
-            $useLocking
-        );
-    }
+        $version = defined('Monolog\Logger::API') ? Logger::API : 1;
 
-    /**
-     * Get the default formatter.
-     *
-     * @return FormatterInterface
-     */
-    protected function getDefaultFormatter()
-    {
-        return new AppEngineFlexFormatter();
+        switch ($version) {
+            case 1:
+                return new AppEngineFlexHandler($level, $bubble, $filePermission, $useLocking, $stream);
+            case 2:
+                return new AppEngineFlexHandlerV2($level, $bubble, $filePermission, $useLocking, $stream);
+            default:
+                throw new Exception('Version not supported');
+        }
     }
 }
