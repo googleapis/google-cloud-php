@@ -38,6 +38,10 @@ namespace Google\ApiCore;
 class RequestParamsHeaderDescriptor
 {
     const HEADER_KEY = 'x-goog-request-params';
+
+    /**
+     * @var array
+     */
     private $header;
 
     /**
@@ -48,6 +52,8 @@ class RequestParamsHeaderDescriptor
      */
     public function __construct($requestParams)
     {
+        $headerKey = self::HEADER_KEY;
+
         $headerValue = '';
         foreach ($requestParams as $key => $value) {
             if ('' !== $headerValue) {
@@ -55,7 +61,14 @@ class RequestParamsHeaderDescriptor
             }
             $headerValue .= $key . '=' . strval($value);
         }
-        $this->header = [self::HEADER_KEY => [$headerValue]];
+
+        // If the value contains non-ASCII characters, suffix the header key with `-bin`.
+        // see https://grpc.github.io/grpc/python/glossary.html#term-metadata
+        if (preg_match('/[^\x00-\x7F]/', $headerValue) !== 0) {
+            $headerKey = $headerKey . '-bin';
+        }
+
+        $this->header = [$headerKey => [$headerValue]];
     }
 
     /**

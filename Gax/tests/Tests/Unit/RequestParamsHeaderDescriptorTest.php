@@ -71,4 +71,17 @@ class RequestParamsHeaderDescriptorTest extends TestCase
 
         $this->assertSame($expectedHeader, $header);
     }
+
+    public function testNonAsciiCharsAppendsBinToHeaderKey()
+    {
+        $val = 'こんにちは';
+        $expectedHeader = [
+            RequestParamsHeaderDescriptor::HEADER_KEY . '-bin' => ['field1=' . $val]
+        ];
+
+        $agentHeaderDescriptor = new RequestParamsHeaderDescriptor(['field1' => $val]);
+        $header = $agentHeaderDescriptor->getHeader();
+
+        $this->assertSame($expectedHeader, $header);
+    }
 }
