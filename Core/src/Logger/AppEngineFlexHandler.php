@@ -46,7 +46,7 @@ class AppEngineFlexHandler extends StreamHandler
         $stream = null
     ) {
         if ($stream === null) {
-            $pid = posix_getpid();
+            $pid = getmypid();
             $stream = "file:///var/log/app_engine/app.$pid.json";
         }
         parent::__construct(
