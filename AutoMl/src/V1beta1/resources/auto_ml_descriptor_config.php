@@ -20,7 +20,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
             'ExportData' => [
@@ -40,7 +40,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
             'DeleteModel' => [
@@ -60,7 +60,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '3600000',
                 ],
             ],
             'UndeployModel' => [
@@ -70,7 +70,7 @@ return [
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
+                    'totalPollTimeoutMillis' => '3600000',
                 ],
             ],
             'ExportModel' => [
