@@ -10,19 +10,20 @@
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/promises": "^1.3",
         "guzzlehttp/psr7": "^1.2",
-        "monolog/monolog": "~1",
         "psr/http-message": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
+        "monolog/monolog": "^1.0|^2.0",
         "erusev/parsedown": "^1.6",
         "google/gax": "^1.1",
         "opis/closure": "^3",
         "google/common-protos": "^1.0"
     },
     "suggest": {
+        "monolog/monolog": "May be used to log messages over the AppEngineFlexHandler. Please require version ^1.0|^2.0",
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
         "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
     },
