@@ -41,7 +41,7 @@ class Rest implements ConnectionInterface
      */
     const BASE_URI = 'https://www.googleapis.com/bigquery/v2/';
 
-    const DEFAULT_API_ENDPOINT = 'https://www.googleapis.com';
+    const DEFAULT_API_ENDPOINT = 'https://bigquery.googleapis.com';
 
     /**
      * @deprecated
