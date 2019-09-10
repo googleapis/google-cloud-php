@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.110.0",
                 "v0.109.0",
                 "v0.108.0",
                 "v0.107.1",
@@ -192,6 +193,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.11.0",
                 "v1.10.0",
                 "v1.9.0",
                 "v1.8.0",
@@ -273,6 +275,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.0",
                 "v0.15.0",
                 "v0.14.0",
@@ -1266,6 +1269,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.27.0",
                 "v0.26.0",
                 "v0.25.0",
                 "v0.24.1",
@@ -1641,6 +1645,7 @@
             "name": "google/cloud-web-risk",
             "defaultService": "webrisk/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
