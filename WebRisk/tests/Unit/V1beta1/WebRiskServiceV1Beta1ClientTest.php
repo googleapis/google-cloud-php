@@ -240,13 +240,20 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse = new SearchHashesResponse();
         $transport->addResponse($expectedResponse);
 
-        $response = $client->searchHashes();
+        // Mock request
+        $threatTypes = [];
+
+        $response = $client->searchHashes($threatTypes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchHashes', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getThreatTypes();
+
+        $this->assertProtobufEquals($threatTypes, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -273,8 +280,11 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $threatTypes = [];
+
         try {
-            $client->searchHashes();
+            $client->searchHashes($threatTypes);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

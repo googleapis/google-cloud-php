@@ -284,21 +284,21 @@ class WebRiskServiceV1Beta1GapicClient
      * ```
      * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
-     *     $response = $webRiskServiceV1Beta1Client->searchHashes();
+     *     $threatTypes = [];
+     *     $response = $webRiskServiceV1Beta1Client->searchHashes($threatTypes);
      * } finally {
      *     $webRiskServiceV1Beta1Client->close();
      * }
      * ```
      *
+     * @param int[] $threatTypes  Required. The ThreatLists to search in.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type string $hashPrefix
      *          A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      *          hash. For JSON requests, this field is base64-encoded.
-     *     @type int[] $threatTypes
-     *          Required. The ThreatLists to search in.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -311,14 +311,12 @@ class WebRiskServiceV1Beta1GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function searchHashes(array $optionalArgs = [])
+    public function searchHashes($threatTypes, array $optionalArgs = [])
     {
         $request = new SearchHashesRequest();
+        $request->setThreatTypes($threatTypes);
         if (isset($optionalArgs['hashPrefix'])) {
             $request->setHashPrefix($optionalArgs['hashPrefix']);
-        }
-        if (isset($optionalArgs['threatTypes'])) {
-            $request->setThreatTypes($optionalArgs['threatTypes']);
         }
 
         return $this->startCall(
