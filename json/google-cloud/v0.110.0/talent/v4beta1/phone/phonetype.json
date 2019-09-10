@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/phone\/phonetype","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\Phone\\PhoneType","name":"PhoneType","description":"<p>Enum that represents the type of the telephone.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.Phone.PhoneType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

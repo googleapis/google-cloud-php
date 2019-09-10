@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/employmenttype","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\EmploymentType","name":"EmploymentType","description":"<p>An enum that represents the employment type of a job.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.EmploymentType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
