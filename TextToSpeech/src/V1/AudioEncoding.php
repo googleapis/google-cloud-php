@@ -28,7 +28,7 @@ class AudioEncoding
      */
     const LINEAR16 = 1;
     /**
-     * MP3 audio.
+     * MP3 audio at 32kbps.
      *
      * Generated from protobuf enum <code>MP3 = 2;</code>
      */

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The language (and optionally also the region) of the voice expressed as a
+     * Required. The language (and potentially also the region) of the voice expressed as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g.
-     * "en-US". Required. This should not include a script tag (e.g. use
+     * "en-US". This should not include a script tag (e.g. use
      * "cmn-cn" rather than "cmn-Hant-cn"), because the script will be inferred
      * from the input provided in the SynthesisInput.  The TTS service
      * will use this parameter to help choose an appropriate voice.  Note that
@@ -28,18 +28,18 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * available), or even a different language, e.g. using "nb" (Norwegian
      * Bokmal) instead of "no" (Norwegian)".
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
     /**
-     * The name of the voice. Optional; if not set, the service will choose a
+     * The name of the voice. If not set, the service will choose a
      * voice based on the other parameters such as language_code and gender.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
     private $name = '';
     /**
-     * The preferred gender of the voice. Optional; if not set, the service will
+     * The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
      * name. Note that this is only a preference, not requirement; if a
      * voice of the appropriate gender is not available, the synthesizer should
@@ -56,9 +56,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           The language (and optionally also the region) of the voice expressed as a
+     *           Required. The language (and potentially also the region) of the voice expressed as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g.
-     *           "en-US". Required. This should not include a script tag (e.g. use
+     *           "en-US". This should not include a script tag (e.g. use
      *           "cmn-cn" rather than "cmn-Hant-cn"), because the script will be inferred
      *           from the input provided in the SynthesisInput.  The TTS service
      *           will use this parameter to help choose an appropriate voice.  Note that
@@ -68,10 +68,10 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *           available), or even a different language, e.g. using "nb" (Norwegian
      *           Bokmal) instead of "no" (Norwegian)".
      *     @type string $name
-     *           The name of the voice. Optional; if not set, the service will choose a
+     *           The name of the voice. If not set, the service will choose a
      *           voice based on the other parameters such as language_code and gender.
      *     @type int $ssml_gender
-     *           The preferred gender of the voice. Optional; if not set, the service will
+     *           The preferred gender of the voice. If not set, the service will
      *           choose a voice based on the other parameters such as language_code and
      *           name. Note that this is only a preference, not requirement; if a
      *           voice of the appropriate gender is not available, the synthesizer should
@@ -84,9 +84,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The language (and optionally also the region) of the voice expressed as a
+     * Required. The language (and potentially also the region) of the voice expressed as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g.
-     * "en-US". Required. This should not include a script tag (e.g. use
+     * "en-US". This should not include a script tag (e.g. use
      * "cmn-cn" rather than "cmn-Hant-cn"), because the script will be inferred
      * from the input provided in the SynthesisInput.  The TTS service
      * will use this parameter to help choose an appropriate voice.  Note that
@@ -96,7 +96,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * available), or even a different language, e.g. using "nb" (Norwegian
      * Bokmal) instead of "no" (Norwegian)".
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -105,9 +105,9 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The language (and optionally also the region) of the voice expressed as a
+     * Required. The language (and potentially also the region) of the voice expressed as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g.
-     * "en-US". Required. This should not include a script tag (e.g. use
+     * "en-US". This should not include a script tag (e.g. use
      * "cmn-cn" rather than "cmn-Hant-cn"), because the script will be inferred
      * from the input provided in the SynthesisInput.  The TTS service
      * will use this parameter to help choose an appropriate voice.  Note that
@@ -117,7 +117,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * available), or even a different language, e.g. using "nb" (Norwegian
      * Bokmal) instead of "no" (Norwegian)".
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -130,7 +130,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the voice. Optional; if not set, the service will choose a
+     * The name of the voice. If not set, the service will choose a
      * voice based on the other parameters such as language_code and gender.
      *
      * Generated from protobuf field <code>string name = 2;</code>
@@ -142,7 +142,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the voice. Optional; if not set, the service will choose a
+     * The name of the voice. If not set, the service will choose a
      * voice based on the other parameters such as language_code and gender.
      *
      * Generated from protobuf field <code>string name = 2;</code>
@@ -158,7 +158,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The preferred gender of the voice. Optional; if not set, the service will
+     * The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
      * name. Note that this is only a preference, not requirement; if a
      * voice of the appropriate gender is not available, the synthesizer should
@@ -173,7 +173,7 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The preferred gender of the voice. Optional; if not set, the service will
+     * The preferred gender of the voice. If not set, the service will
      * choose a voice based on the other parameters such as language_code and
      * name. Note that this is only a preference, not requirement; if a
      * voice of the appropriate gender is not available, the synthesizer should

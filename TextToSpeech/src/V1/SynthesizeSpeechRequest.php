@@ -18,19 +18,19 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input = null;
     /**
      * Required. The desired voice of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $voice = null;
     /**
      * Required. The configuration of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $audio_config = null;
 
@@ -56,7 +56,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\TextToSpeech\V1\SynthesisInput
      */
     public function getInput()
@@ -67,7 +67,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\TextToSpeech\V1\SynthesisInput $var
      * @return $this
      */
@@ -82,7 +82,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired voice of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\TextToSpeech\V1\VoiceSelectionParams
      */
     public function getVoice()
@@ -93,7 +93,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired voice of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\TextToSpeech\V1\VoiceSelectionParams $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The configuration of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\TextToSpeech\V1\AudioConfig
      */
     public function getAudioConfig()
@@ -119,7 +119,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The configuration of the synthesized audio.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\TextToSpeech\V1\AudioConfig $var
      * @return $this
      */
