@@ -104,7 +104,7 @@
         "google/cloud-translate": "1.4.1",
         "google/cloud-videointelligence": "1.7.0",
         "google/cloud-vision": "0.23.0",
-        "google/cloud-web-risk": "0.2.1",
+        "google/cloud-web-risk": "0.3.0",
         "google/cloud-web-security-scanner": "0.2.0"
     },
     "suggest": {
