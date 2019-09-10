@@ -50,7 +50,7 @@ class SpeechClient
 {
     use ClientTrait;
 
-    const VERSION = '0.26.0';
+    const VERSION = '0.27.0';
 
     const SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
