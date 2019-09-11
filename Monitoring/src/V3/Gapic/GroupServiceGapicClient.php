@@ -611,10 +611,6 @@ class GroupServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type bool $recursive
-     *          If this field is true, then the request means to delete a group with all
-     *          its descendants. Otherwise, the request means to delete a group only when
-     *          it has no descendants. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -629,9 +625,6 @@ class GroupServiceGapicClient
     {
         $request = new DeleteGroupRequest();
         $request->setName($name);
-        if (isset($optionalArgs['recursive'])) {
-            $request->setRecursive($optionalArgs['recursive']);
-        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),

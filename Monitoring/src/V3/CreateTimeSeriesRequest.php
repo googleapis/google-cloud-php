@@ -28,7 +28,6 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * point must be more recent than any other point in its time series.  Each
      * `TimeSeries` value must fully specify a unique time series by supplying
      * all label values for the metric and the monitored resource.
-     * The maximum number of `TimeSeries` objects per `Create` request is 200.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
      */
@@ -49,7 +48,6 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *           point must be more recent than any other point in its time series.  Each
      *           `TimeSeries` value must fully specify a unique time series by supplying
      *           all label values for the metric and the monitored resource.
-     *           The maximum number of `TimeSeries` objects per `Create` request is 200.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,7 +89,6 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * point must be more recent than any other point in its time series.  Each
      * `TimeSeries` value must fully specify a unique time series by supplying
      * all label values for the metric and the monitored resource.
-     * The maximum number of `TimeSeries` objects per `Create` request is 200.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,7 +104,6 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * point must be more recent than any other point in its time series.  Each
      * `TimeSeries` value must fully specify a unique time series by supplying
      * all label values for the metric and the monitored resource.
-     * The maximum number of `TimeSeries` objects per `Create` request is 200.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
      * @param \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $var

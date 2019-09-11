@@ -38,7 +38,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * How often, in seconds, the uptime check is performed.
      * Currently, the only supported values are `60s` (1 minute), `300s`
      * (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
-     * defaults to `60s`.
+     * defaults to `300s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      */
@@ -72,11 +72,20 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     private $selected_regions;
     /**
+     * If this is true, then checks are made only from the 'internal_checkers'.
+     * If it is false, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is true,
+     * or to provide 'internal_checkers' when is_internal is false.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15;</code>
+     */
+    private $is_internal = false;
+    /**
      * The internal checkers that this check will egress from. If `is_internal` is
      * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
      */
     private $internal_checkers;
     protected $resource;
@@ -118,7 +127,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           How often, in seconds, the uptime check is performed.
      *           Currently, the only supported values are `60s` (1 minute), `300s`
      *           (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
-     *           defaults to `60s`.
+     *           defaults to `300s`.
      *     @type \Google\Protobuf\Duration $timeout
      *           The maximum amount of time to wait for the request to complete (must be
      *           between 1 and 60 seconds). Required.
@@ -135,6 +144,11 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           3 locations must be provided, or an error message is returned.
      *           Not specifying this field will result in uptime checks running from all
      *           regions.
+     *     @type bool $is_internal
+     *           If this is true, then checks are made only from the 'internal_checkers'.
+     *           If it is false, then checks are made only from the 'selected_regions'.
+     *           It is an error to provide 'selected_regions' when is_internal is true,
+     *           or to provide 'internal_checkers' when is_internal is false.
      *     @type \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $internal_checkers
      *           The internal checkers that this check will egress from. If `is_internal` is
      *           true and this list is empty, the check will egress from all the
@@ -334,7 +348,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * How often, in seconds, the uptime check is performed.
      * Currently, the only supported values are `60s` (1 minute), `300s`
      * (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
-     * defaults to `60s`.
+     * defaults to `300s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      * @return \Google\Protobuf\Duration
@@ -348,7 +362,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * How often, in seconds, the uptime check is performed.
      * Currently, the only supported values are `60s` (1 minute), `300s`
      * (5 minutes), `600s` (10 minutes), and `900s` (15 minutes). Optional,
-     * defaults to `60s`.
+     * defaults to `300s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration period = 7;</code>
      * @param \Google\Protobuf\Duration $var
@@ -461,11 +475,43 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If this is true, then checks are made only from the 'internal_checkers'.
+     * If it is false, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is true,
+     * or to provide 'internal_checkers' when is_internal is false.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15;</code>
+     * @return bool
+     */
+    public function getIsInternal()
+    {
+        return $this->is_internal;
+    }
+
+    /**
+     * If this is true, then checks are made only from the 'internal_checkers'.
+     * If it is false, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is true,
+     * or to provide 'internal_checkers' when is_internal is false.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsInternal($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_internal = $var;
+
+        return $this;
+    }
+
+    /**
      * The internal checkers that this check will egress from. If `is_internal` is
      * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInternalCheckers()
@@ -478,7 +524,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * true and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this CheckConfig.
      *
-     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14 [deprecated = true];</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14;</code>
      * @param \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
