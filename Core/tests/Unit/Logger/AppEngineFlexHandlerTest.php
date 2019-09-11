@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit\Logger;
 
-use Google\Cloud\Core\Logger\AppEngineFlexHandler;
+use Google\Cloud\Core\Logger\AppEngineFlexHandlerFactory;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 
@@ -32,9 +32,10 @@ class AppEngineFlexHandlerTest extends TestCase
 
     public function setUp()
     {
-        $dir = sys_get_temp_dir();
         $this->stream = tmpfile();
-        $handler = new AppEngineFlexHandler(Logger::DEBUG, true, 0640, false, $this->stream);
+
+        $handler = AppEngineFlexHandlerFactory::build(Logger::DEBUG, true, 0640, false, $this->stream);
+
         $this->log = new Logger('gcloud-test');
         $this->log->pushHandler($handler);
     }
@@ -47,7 +48,7 @@ class AppEngineFlexHandlerTest extends TestCase
     public function testOneLine()
     {
         $msg = 'Error message';
-        $this->log->addError($msg);
+        $this->log->error($msg);
         rewind($this->stream);
         $log_text = stream_get_contents($this->stream);
         $log_array = json_decode($log_text, true);
@@ -55,5 +56,23 @@ class AppEngineFlexHandlerTest extends TestCase
         $this->assertInternalType('int', $log_array['timestamp']['seconds']);
         $this->assertInternalType('int', $log_array['timestamp']['nanos']);
         $this->assertEquals('ERROR', $log_array['severity']);
+    }
+
+    public function testOneLineWithTraceContext()
+    {
+        $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'] = 'foo/bar';
+
+        $msg = 'Error message';
+        $this->log->error($msg);
+        rewind($this->stream);
+        $log_text = stream_get_contents($this->stream);
+        $log_array = json_decode($log_text, true);
+        $this->assertContains($msg, $log_array['message']);
+        $this->assertInternalType('int', $log_array['timestamp']['seconds']);
+        $this->assertInternalType('int', $log_array['timestamp']['nanos']);
+        $this->assertEquals('ERROR', $log_array['severity']);
+        $this->assertEquals('foo', $log_array['traceId']);
+
+        unset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']);
     }
 }

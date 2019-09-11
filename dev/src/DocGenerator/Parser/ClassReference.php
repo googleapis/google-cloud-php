@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+namespace Google\Cloud\Dev\DocGenerator\Parser;
 
-namespace Google\Cloud;
-
-use Google\Cloud\Core\ServiceBuilder as CoreServiceBuilder;
-
-/**
- * This class is here to maintain backwards compatibility with previous
- * versions.
- *
- * @deprecated use Google\Cloud\Core\ServiceBuilder instead
- */
-class ServiceBuilder extends CoreServiceBuilder
+class ClassReference
 {
+    /** @var string */
+    private $className;
+
+    /** @var string */
+    private $fileName;
+
+    public function __construct($className, $fileName)
+    {
+        $this->className = $className;
+        $this->fileName = $fileName;
+    }
+
     /**
-     * @deprecated
+     * @return string
      */
-    const VERSION = '0.110.0';
+    public function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
 }

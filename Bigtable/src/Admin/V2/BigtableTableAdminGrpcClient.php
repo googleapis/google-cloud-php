@@ -263,4 +263,48 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Gets the access control policy for an instance resource. Returns an empty
+     * policy if an table exists but does not have a policy set.
+     * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/GetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Sets the access control policy on a table resource. Replaces any existing
+     * policy.
+     * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/SetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns permissions that the caller has on the specified table resource.
+     * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/TestIamPermissions',
+        $argument,
+        ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

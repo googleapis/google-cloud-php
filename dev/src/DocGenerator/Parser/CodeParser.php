@@ -737,7 +737,7 @@ class CodeParser implements ParserInterface
         $type = trim($type, '\\');
 
         if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
-            $ref = $this->getReflectionClass($type);
+            $ref = $this->getClassReference($type);
 
             $vendorPath = $this->projectRoot . 'vendor';
             if (substr($ref->getFileName(), 0, strlen($vendorPath)) === $vendorPath) {
@@ -844,7 +844,7 @@ class CodeParser implements ParserInterface
     private function buildInternalLink($content)
     {
         $componentId = null;
-        $ref = $this->getReflectionClass($content);
+        $ref = $this->getClassReference($content);
         $fileName = $ref->getFileName();
 
         if ($this->isComponent) {
@@ -951,6 +951,36 @@ class CodeParser implements ParserInterface
         $base = $realSrcIndex - 1;
 
         return implode('/', array_slice($filePieces, $base));
+    }
+
+    private function getClassReference($type)
+    {
+        // Depending on the currently used PHP version, the following classes cannot
+        // reliably be reflected. PHP 5.x doesn't support return type hints, some
+        // third party dependencies require type hints and throw a Parse error
+        // when an implementation is not compatible with its parent class or
+        // interface.
+        static $map = [
+            // Monolog 1.x/2.x related classes
+            'Google\Cloud\Core\Logger\AppEngineFlexFormatter' => 'Core/src/Logger/AppEngineFlexFormatter.php',
+            'Google\Cloud\Core\Logger\AppEngineFlexFormatterV2' => 'Core/src/Logger/AppEngineFlexFormatterV2.php',
+            'Google\Cloud\Core\Logger\AppEngineFlexHandler' => 'Core/src/Logger/AppEngineFlexHandler.php',
+            'Google\Cloud\Core\Logger\AppEngineFlexHandlerV2' => 'Core/src/Logger/AppEngineFlexHandlerV2.php',
+        ];
+
+        if (array_key_exists($type, $map)) {
+            return new ClassReference($type, $this->projectRoot.'/'.$map[$type]);
+        }
+
+        foreach ($map as $key => $value) {
+            if (strpos($type, $key) !== false) {
+                return new ClassReference($type, $this->projectRoot.'/'.$value);
+            }
+        }
+
+        $map[$type] = $this->getReflectionClass($type)->getFileName();
+
+        return new ClassReference($type, $this->projectRoot.'/'.$map[$type]);
     }
 
     private function getReflectionClass($type)

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,11 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
 /**
- * Monolog 1.x handler for logging on App Engine flexible environment.
+ * Monolog 2.x handler for logging on App Engine flexible environment.
  *
- * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV2} instead.
+ * If you are using Monolog 1.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandler} instead.
  */
-class AppEngineFlexHandler extends StreamHandler
+class AppEngineFlexHandlerV2 extends StreamHandler
 {
     /**
      * @param int $level [optional] The minimum logging level at which this
@@ -58,13 +58,8 @@ class AppEngineFlexHandler extends StreamHandler
         );
     }
 
-    /**
-     * Get the default formatter.
-     *
-     * @return FormatterInterface
-     */
-    protected function getDefaultFormatter()
+    protected function getDefaultFormatter(): FormatterInterface
     {
-        return new AppEngineFlexFormatter();
+        return new AppEngineFlexFormatterV2();
     }
 }
