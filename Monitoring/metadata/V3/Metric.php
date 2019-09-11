@@ -14,7 +14,7 @@ class Metric
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Distribution::initOnce();
         \GPBMetadata\Google\Api\Label::initOnce();
         \GPBMetadata\Google\Api\Metric::initOnce();
         \GPBMetadata\Google\Api\MonitoredResource::initOnce();
