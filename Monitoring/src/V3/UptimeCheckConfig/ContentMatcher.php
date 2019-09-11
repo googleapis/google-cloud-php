@@ -22,14 +22,6 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string content = 1;</code>
      */
     private $content = '';
-    /**
-     * The matcher representing content match options which the check will run
-     * with. If the field is not specified (in previous versions), the option is
-     * set to be CONTAINS_STRING which performs content substring matching.
-     *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
-     */
-    private $matcher = 0;
 
     /**
      * Constructor.
@@ -39,10 +31,6 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      *
      *     @type string $content
      *           String or regex content to match (max 1024 bytes)
-     *     @type int $matcher
-     *           The matcher representing content match options which the check will run
-     *           with. If the field is not specified (in previous versions), the option is
-     *           set to be CONTAINS_STRING which performs content substring matching.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,36 +60,6 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->content = $var;
-
-        return $this;
-    }
-
-    /**
-     * The matcher representing content match options which the check will run
-     * with. If the field is not specified (in previous versions), the option is
-     * set to be CONTAINS_STRING which performs content substring matching.
-     *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
-     * @return int
-     */
-    public function getMatcher()
-    {
-        return $this->matcher;
-    }
-
-    /**
-     * The matcher representing content match options which the check will run
-     * with. If the field is not specified (in previous versions), the option is
-     * set to be CONTAINS_STRING which performs content substring matching.
-     *
-     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setMatcher($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher_ContentMatcherOption::class);
-        $this->matcher = $var;
 
         return $this;
     }

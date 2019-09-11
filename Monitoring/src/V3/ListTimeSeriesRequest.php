@@ -28,7 +28,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *         metric.labels.instance_name = "my-instance-name"
+     *         metric.label.instance_name = "my-instance-name"
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -96,7 +96,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *           and can additionally specify metric labels and other information. For
      *           example:
      *               metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *                   metric.labels.instance_name = "my-instance-name"
+     *                   metric.label.instance_name = "my-instance-name"
      *     @type \Google\Cloud\Monitoring\V3\TimeInterval $interval
      *           The time interval for which results should be returned. Only time series
      *           that contain data points in the specified interval are included
@@ -161,7 +161,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *         metric.labels.instance_name = "my-instance-name"
+     *         metric.label.instance_name = "my-instance-name"
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -177,7 +177,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *         metric.labels.instance_name = "my-instance-name"
+     *         metric.label.instance_name = "my-instance-name"
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

@@ -88,13 +88,6 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     private $enabled = null;
     /**
-     * Read-only description of how the alert policy is invalid. OK if the alert
-     * policy is valid. If not OK, the alert policy will not generate incidents.
-     *
-     * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
-     */
-    private $validity = null;
-    /**
      * Identifies the notification channels to which notifications should be sent
      * when incidents are opened or closed or when new violations occur on
      * an already opened incident. Each element of this array corresponds to
@@ -170,9 +163,6 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           any assumption about the state if it has not been populated. The
      *           field should always be populated on List and Get operations, unless
      *           a field projection has been specified that strips it out.
-     *     @type \Google\Rpc\Status $validity
-     *           Read-only description of how the alert policy is invalid. OK if the alert
-     *           policy is valid. If not OK, the alert policy will not generate incidents.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           Identifies the notification channels to which notifications should be sent
      *           when incidents are opened or closed or when new violations occur on
@@ -467,34 +457,6 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     {
         $wrappedVar = is_null($var) ? null : new \Google\Protobuf\BoolValue(['value' => $var]);
         return $this->setEnabled($wrappedVar);
-    }
-
-    /**
-     * Read-only description of how the alert policy is invalid. OK if the alert
-     * policy is valid. If not OK, the alert policy will not generate incidents.
-     *
-     * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
-     * @return \Google\Rpc\Status
-     */
-    public function getValidity()
-    {
-        return $this->validity;
-    }
-
-    /**
-     * Read-only description of how the alert policy is invalid. OK if the alert
-     * policy is valid. If not OK, the alert policy will not generate incidents.
-     *
-     * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
-     * @param \Google\Rpc\Status $var
-     * @return $this
-     */
-    public function setValidity($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
-        $this->validity = $var;
-
-        return $this;
     }
 
     /**

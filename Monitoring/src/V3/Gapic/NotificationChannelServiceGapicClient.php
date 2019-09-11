@@ -162,7 +162,7 @@ class NotificationChannelServiceGapicClient
     private static function getNotificationChannelDescriptorNameTemplate()
     {
         if (null == self::$notificationChannelDescriptorNameTemplate) {
-            self::$notificationChannelDescriptorNameTemplate = new PathTemplate('projects/{project}/notificationChannelDescriptors/{notification_channel_descriptor}');
+            self::$notificationChannelDescriptorNameTemplate = new PathTemplate('projects/{project}/notificationChannelDescriptors/{channel_descriptor}');
         }
 
         return self::$notificationChannelDescriptorNameTemplate;
@@ -213,16 +213,16 @@ class NotificationChannelServiceGapicClient
      * a notification_channel_descriptor resource.
      *
      * @param string $project
-     * @param string $notificationChannelDescriptor
+     * @param string $channelDescriptor
      *
      * @return string The formatted notification_channel_descriptor resource.
      * @experimental
      */
-    public static function notificationChannelDescriptorName($project, $notificationChannelDescriptor)
+    public static function notificationChannelDescriptorName($project, $channelDescriptor)
     {
         return self::getNotificationChannelDescriptorNameTemplate()->render([
             'project' => $project,
-            'notification_channel_descriptor' => $notificationChannelDescriptor,
+            'channel_descriptor' => $channelDescriptor,
         ]);
     }
 
@@ -247,7 +247,7 @@ class NotificationChannelServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
-     * - notificationChannelDescriptor: projects/{project}/notificationChannelDescriptors/{notification_channel_descriptor}
+     * - notificationChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -443,7 +443,7 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelDescriptorName('[PROJECT]', '[NOTIFICATION_CHANNEL_DESCRIPTOR]');
+     *     $formattedName = $notificationChannelServiceClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
      *     $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($formattedName);
      * } finally {
      *     $notificationChannelServiceClient->close();

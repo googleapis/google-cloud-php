@@ -24,8 +24,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     /**
      * The path to the page to run the check against. Will be combined with the
      * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to "/"). If the provided path does not
-     * begin with "/", it will be prepended automatically.
+     * full URL. Optional (defaults to "/").
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
@@ -69,14 +68,6 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> headers = 6;</code>
      */
     private $headers;
-    /**
-     * Boolean specifying whether to validate SSL certificates.
-     * Only applies to uptime_url checks. If use_ssl is false, setting this to
-     * true has no effect.
-     *
-     * Generated from protobuf field <code>bool validate_ssl = 7;</code>
-     */
-    private $validate_ssl = false;
 
     /**
      * Constructor.
@@ -89,8 +80,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *     @type string $path
      *           The path to the page to run the check against. Will be combined with the
      *           host (specified within the MonitoredResource) and port to construct the
-     *           full URL. Optional (defaults to "/"). If the provided path does not
-     *           begin with "/", it will be prepended automatically.
+     *           full URL. Optional (defaults to "/").
      *     @type int $port
      *           The port to the page to run the check against. Will be combined with host
      *           (specified within the MonitoredResource) and path to construct the full
@@ -114,10 +104,6 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           Entering two separate headers with the same key in a Create call will
      *           cause the first to be overwritten by the second.
      *           The maximum number of headers allowed is 100.
-     *     @type bool $validate_ssl
-     *           Boolean specifying whether to validate SSL certificates.
-     *           Only applies to uptime_url checks. If use_ssl is false, setting this to
-     *           true has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,8 +140,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     /**
      * The path to the page to run the check against. Will be combined with the
      * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to "/"). If the provided path does not
-     * begin with "/", it will be prepended automatically.
+     * full URL. Optional (defaults to "/").
      *
      * Generated from protobuf field <code>string path = 2;</code>
      * @return string
@@ -168,8 +153,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     /**
      * The path to the page to run the check against. Will be combined with the
      * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to "/"). If the provided path does not
-     * begin with "/", it will be prepended automatically.
+     * full URL. Optional (defaults to "/").
      *
      * Generated from protobuf field <code>string path = 2;</code>
      * @param string $var
@@ -313,36 +297,6 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->headers = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Boolean specifying whether to validate SSL certificates.
-     * Only applies to uptime_url checks. If use_ssl is false, setting this to
-     * true has no effect.
-     *
-     * Generated from protobuf field <code>bool validate_ssl = 7;</code>
-     * @return bool
-     */
-    public function getValidateSsl()
-    {
-        return $this->validate_ssl;
-    }
-
-    /**
-     * Boolean specifying whether to validate SSL certificates.
-     * Only applies to uptime_url checks. If use_ssl is false, setting this to
-     * true has no effect.
-     *
-     * Generated from protobuf field <code>bool validate_ssl = 7;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setValidateSsl($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->validate_ssl = $var;
 
         return $this;
     }
