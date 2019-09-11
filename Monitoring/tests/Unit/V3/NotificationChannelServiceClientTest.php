@@ -175,7 +175,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
+        $formattedName = $client->notificationChannelDescriptorName('[PROJECT]', '[NOTIFICATION_CHANNEL_DESCRIPTOR]');
 
         $response = $client->getNotificationChannelDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -215,7 +215,7 @@ class NotificationChannelServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
+        $formattedName = $client->notificationChannelDescriptorName('[PROJECT]', '[NOTIFICATION_CHANNEL_DESCRIPTOR]');
 
         try {
             $client->getNotificationChannelDescriptor($formattedName);

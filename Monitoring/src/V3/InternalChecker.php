@@ -54,6 +54,12 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      */
     private $peer_project_id = '';
+    /**
+     * The current operational state of the internal checker.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
+     */
+    private $state = 0;
 
     /**
      * Constructor.
@@ -79,6 +85,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *     @type string $peer_project_id
      *           The GCP project_id where the internal checker lives. Not necessary
      *           the same as the workspace project.
+     *     @type int $state
+     *           The current operational state of the internal checker.
      * }
      */
     public function __construct($data = NULL) {
@@ -228,6 +236,32 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current operational state of the internal checker.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * The current operational state of the internal checker.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\InternalChecker_State::class);
+        $this->state = $var;
 
         return $this;
     }
