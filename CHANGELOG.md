@@ -49,8 +49,6 @@
 
 ### Features
 
-* Revert [#2311](https://www.github.com/googleapis/google-cloud-php/issues/2311) ([#2313](https://www.github.com/googleapis/google-cloud-php/issues/2313)) ([86609d0](https://www.github.com/googleapis/google-cloud-php/commit/86609d0))
-* Update Monitoring client. ([#2311](https://www.github.com/googleapis/google-cloud-php/issues/2311)) ([46b32b9](https://www.github.com/googleapis/google-cloud-php/commit/46b32b9))
 * Update Monitoring v3 Client. ([#2317](https://www.github.com/googleapis/google-cloud-php/issues/2317)) ([80d2406](https://www.github.com/googleapis/google-cloud-php/commit/80d2406))
 
 </details>
