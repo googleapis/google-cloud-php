@@ -69,7 +69,8 @@ class ExtractJobConfigurationTest extends TestCase
             'destinationUris' => ['gs://my_bucket/destination.csv'],
             'fieldDelimiter' => ',',
             'printHeader' => true,
-            'sourceTable' => $this->tableIdentity
+            'sourceTable' => $this->tableIdentity,
+            'useAvroLogicalTypes' => true
         ];
         $this->expectedConfig['configuration']['extract'] = $extract
             + $this->expectedConfig['configuration']['extract'];
@@ -79,7 +80,8 @@ class ExtractJobConfigurationTest extends TestCase
             ->destinationUris($extract['destinationUris'])
             ->fieldDelimiter($extract['fieldDelimiter'])
             ->printHeader($extract['printHeader'])
-            ->sourceTable($sourceTable->reveal());
+            ->sourceTable($sourceTable->reveal())
+            ->useAvroLogicalTypes($extract['useAvroLogicalTypes']);
 
         $this->assertEquals(
             $this->expectedConfig,

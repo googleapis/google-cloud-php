@@ -194,6 +194,10 @@ class LoadJobConfigurationTest extends SnippetTestCase
             [
                 'writeDisposition',
                 'WRITE_TRUNCATE'
+            ],
+            [
+                'useAvroLogicalTypes',
+                true
             ]
         ];
     }
