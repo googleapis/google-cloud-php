@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.111.0
+
+<details><summary>google/cloud-automl 0.5.0</summary>
+
+
+
+### Features
+
+* Increase ImportData/CreateModel/BatchPredict/Deploy/Undeploy timeouts. ([#2310](https://www.github.com/googleapis/google-cloud-php/issues/2310)) ([6cc75a9](https://www.github.com/googleapis/google-cloud-php/commit/6cc75a9))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.12.0</summary>
+
+
+
+### Features
+
+* Add useAvroLogicalTypes() to job configuration ([#2319](https://www.github.com/googleapis/google-cloud-php/issues/2319)) ([dc9f9d3](https://www.github.com/googleapis/google-cloud-php/commit/dc9f9d3))
+
+</details>
+
+<details><summary>google/cloud-core 1.33.0</summary>
+
+
+
+### Features
+
+* Add support for Monolog 2.x ([#2302](https://www.github.com/googleapis/google-cloud-php/issues/2302)) ([621ec6f](https://www.github.com/googleapis/google-cloud-php/commit/621ec6f))
+* Bump monolog version in Core/composer.json ([#2320](https://www.github.com/googleapis/google-cloud-php/issues/2320)) ([01d6328](https://www.github.com/googleapis/google-cloud-php/commit/01d6328))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.8.0</summary>
+
+
+
+### Features
+
+* Update Firestore retry timeouts. ([#2316](https://www.github.com/googleapis/google-cloud-php/issues/2316)) ([b2aff58](https://www.github.com/googleapis/google-cloud-php/commit/b2aff58))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.18.0</summary>
+
+
+
+### Features
+
+* Update Monitoring v3 Client. ([#2317](https://www.github.com/googleapis/google-cloud-php/issues/2317)) ([80d2406](https://www.github.com/googleapis/google-cloud-php/commit/80d2406))
+
+</details>
+
 ## 0.110.0
 
 <details><summary>google/cloud-bigquery 1.11.0</summary>
