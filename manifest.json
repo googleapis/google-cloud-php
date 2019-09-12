@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.111.0",
                 "v0.110.0",
                 "v0.109.0",
                 "v0.108.0",
@@ -179,6 +180,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.0",
                 "v0.2.2",
@@ -193,6 +195,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.12.0",
                 "v1.11.0",
                 "v1.10.0",
                 "v1.9.0",
@@ -373,6 +376,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.33.0",
                 "v1.32.0",
                 "v1.31.0",
                 "v1.30.0",
@@ -723,6 +727,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.8.0",
                 "v1.7.1",
                 "v1.7.0",
                 "v1.6.2",
@@ -971,6 +976,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v0.18.0",
                 "v0.17.0",
                 "v0.16.5",
                 "v0.16.4",
