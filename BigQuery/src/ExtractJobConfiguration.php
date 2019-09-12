@@ -164,4 +164,25 @@ class ExtractJobConfiguration implements JobConfigurationInterface
 
         return $this;
     }
+
+    /**
+     * Sets whether to use logical types when extracting to AVRO format.
+     *
+     * If destinationFormat is set to "AVRO", this flag indicates whether to
+     * enable extracting applicable column types (such as TIMESTAMP) to their
+     * corresponding AVRO logical types (timestamp-micros), instead of only
+     * using their raw types (avro-long).
+     *
+     * Example:
+     * ```
+     * $extractJobConfig->useAvroLogicalTypes(true);
+     * ```
+     *
+     * @param bool $useAvroLogicalTypes
+     * @return ExtractJobConfiguration
+     */
+    public function useAvroLogicalTypes($useAvroLogicalTypes)
+    {
+        $this->config['configuration']['extract']['useAvroLogicalTypes'] = $useAvroLogicalTypes;
+    }
 }

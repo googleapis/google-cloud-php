@@ -91,7 +91,8 @@ class LoadJobConfigurationTest extends TestCase
             'timePartitioning' => [
                 'type' => 'DAY'
             ],
-            'writeDisposition' => 'WRITE_TRUNCATE'
+            'writeDisposition' => 'WRITE_TRUNCATE',
+            'useAvroLogicalTypes' => true
         ];
         $this->expectedConfig['configuration']['load'] = $load
             + $this->expectedConfig['configuration']['load'];
@@ -117,7 +118,8 @@ class LoadJobConfigurationTest extends TestCase
             ->sourceFormat($load['sourceFormat'])
             ->sourceUris($load['sourceUris'])
             ->timePartitioning($load['timePartitioning'])
-            ->writeDisposition($load['writeDisposition']);
+            ->writeDisposition($load['writeDisposition'])
+            ->useAvroLogicalTypes($load['useAvroLogicalTypes']);
 
         $this->assertEquals(
             $this->expectedConfig + ['data' => $data],

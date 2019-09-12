@@ -555,4 +555,24 @@ class LoadJobConfiguration implements JobConfigurationInterface
 
         return $this;
     }
+
+    /**
+     * Sets whether to use logical types when loading from AVRO format.
+     *
+     * If sourceFormat is set to "AVRO", indicates whether to enable
+     * interpreting logical types into their corresponding types (ie.
+     * TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->useAvroLogicalTypes(true);
+     * ```
+     *
+     * @param bool $useAvroLogicalTypes
+     * @return LoadJobConfiguration
+     */
+    public function useAvroLogicalTypes($useAvroLogicalTypes)
+    {
+        $this->config['configuration']['load']['useAvroLogicalTypes'] = $useAvroLogicalTypes;
+    }
 }

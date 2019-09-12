@@ -105,6 +105,10 @@ class ExtractJobConfigurationTest extends SnippetTestCase
                     'tableId' => self::TABLE_ID
                 ],
                 $bq
+            ],
+            [
+                'useAvroLogicalTypes',
+                true
             ]
         ];
     }
