@@ -45,6 +45,15 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
     private $iam_policy = null;
+    /**
+     * Representation of the Cloud Organization Policy set on an asset. For each
+     * asset, there could be multiple Organization policies with different
+     * constraints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
+     */
+    private $org_policy;
+    protected $access_context_policy;
 
     /**
      * Constructor.
@@ -65,6 +74,13 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy
      *           Representation of the actual Cloud IAM policy set on a cloud resource. For
      *           each resource, there must be at most one Cloud IAM policy set on it.
+     *     @type \Google\Cloud\Orgpolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $org_policy
+     *           Representation of the Cloud Organization Policy set on an asset. For each
+     *           asset, there could be multiple Organization policies with different
+     *           constraints.
+     *     @type \Google\Identity\Accesscontextmanager\V1\AccessPolicy $access_policy
+     *     @type \Google\Identity\Accesscontextmanager\V1\AccessLevel $access_level
+     *     @type \Google\Identity\Accesscontextmanager\V1\ServicePerimeter $service_perimeter
      * }
      */
     public function __construct($data = NULL) {
@@ -184,6 +200,110 @@ class Asset extends \Google\Protobuf\Internal\Message
         $this->iam_policy = $var;
 
         return $this;
+    }
+
+    /**
+     * Representation of the Cloud Organization Policy set on an asset. For each
+     * asset, there could be multiple Organization policies with different
+     * constraints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOrgPolicy()
+    {
+        return $this->org_policy;
+    }
+
+    /**
+     * Representation of the Cloud Organization Policy set on an asset. For each
+     * asset, there could be multiple Organization policies with different
+     * constraints.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
+     * @param \Google\Cloud\Orgpolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOrgPolicy($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Orgpolicy\V1\Policy::class);
+        $this->org_policy = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
+     * @return \Google\Identity\Accesscontextmanager\V1\AccessPolicy
+     */
+    public function getAccessPolicy()
+    {
+        return $this->readOneof(7);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
+     * @param \Google\Identity\Accesscontextmanager\V1\AccessPolicy $var
+     * @return $this
+     */
+    public function setAccessPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Identity\Accesscontextmanager\V1\AccessPolicy::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
+     * @return \Google\Identity\Accesscontextmanager\V1\AccessLevel
+     */
+    public function getAccessLevel()
+    {
+        return $this->readOneof(8);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
+     * @param \Google\Identity\Accesscontextmanager\V1\AccessLevel $var
+     * @return $this
+     */
+    public function setAccessLevel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Identity\Accesscontextmanager\V1\AccessLevel::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
+     * @return \Google\Identity\Accesscontextmanager\V1\ServicePerimeter
+     */
+    public function getServicePerimeter()
+    {
+        return $this->readOneof(9);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
+     * @param \Google\Identity\Accesscontextmanager\V1\ServicePerimeter $var
+     * @return $this
+     */
+    public function setServicePerimeter($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Identity\Accesscontextmanager\V1\ServicePerimeter::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAccessContextPolicy()
+    {
+        return $this->whichOneof("access_context_policy");
     }
 
 }

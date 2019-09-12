@@ -31,7 +31,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -91,11 +90,6 @@ use Google\Protobuf\Timestamp;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parseName method to extract the individual identifiers contained within formatted names
- * that are returned by the API.
- *
  * @experimental
  */
 class AssetServiceGapicClient
@@ -128,8 +122,6 @@ class AssetServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
-    private static $projectNameTemplate;
-    private static $pathTemplateMap;
 
     private $operationsClient;
 
@@ -150,83 +142,6 @@ class AssetServiceGapicClient
                 ],
             ],
         ];
-    }
-
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
-    private static function getPathTemplateMap()
-    {
-        if (null == self::$pathTemplateMap) {
-            self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
-            ];
-        }
-
-        return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Parses a formatted name string and returns an associative array of the components in the name.
-     * The following name formats are supported:
-     * Template: Pattern
-     * - project: projects/{project}.
-     *
-     * The optional $template argument can be supplied to specify a particular pattern, and must
-     * match one of the templates listed above. If no $template argument is provided, or if the
-     * $template argument does not match one of the templates listed, then parseName will check
-     * each of the supported templates, and return the first match.
-     *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
-     *
-     * @return array An associative array from name component IDs to component values.
-     *
-     * @throws ValidationException If $formattedName could not be matched.
-     * @experimental
-     */
-    public static function parseName($formattedName, $template = null)
-    {
-        $templateMap = self::getPathTemplateMap();
-
-        if ($template) {
-            if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
-            }
-
-            return $templateMap[$template]->match($formattedName);
-        }
-
-        foreach ($templateMap as $templateName => $pathTemplate) {
-            try {
-                return $pathTemplate->match($formattedName);
-            } catch (ValidationException $ex) {
-                // Swallow the exception to continue trying other path templates
-            }
-        }
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -389,8 +304,8 @@ class AssetServiceGapicClient
      *          query may get different results.
      *     @type string[] $assetTypes
      *          A list of asset types of which to take a snapshot for. For example:
-     *          "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     *          See [Introduction to Cloud Asset
+     *          "compute.googleapis.com/Disk". If specified, only matching assets will be
+     *          returned. See [Introduction to Cloud Asset
      *          Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      *          for all supported asset types.
      *     @type int $contentType
@@ -480,7 +395,8 @@ class AssetServiceGapicClient
      *          `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *          See [Resource
      *          Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *          and [Resource Name Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
+     *          and [Resource Name
+     *          Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
      *          for more info.
      *
      *          The request becomes a no-op if the asset name list is empty, and the max

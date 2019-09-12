@@ -36,8 +36,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     private $read_time = null;
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     * See [Introduction to Cloud Asset
+     * "compute.googleapis.com/Disk". If specified, only matching assets will be
+     * returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      * for all supported asset types.
      *
@@ -78,8 +78,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           query may get different results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types of which to take a snapshot for. For example:
-     *           "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     *           See [Introduction to Cloud Asset
+     *           "compute.googleapis.com/Disk". If specified, only matching assets will be
+     *           returned. See [Introduction to Cloud Asset
      *           Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      *           for all supported asset types.
      *     @type int $content_type
@@ -163,8 +163,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     * See [Introduction to Cloud Asset
+     * "compute.googleapis.com/Disk". If specified, only matching assets will be
+     * returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      * for all supported asset types.
      *
@@ -178,8 +178,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of asset types of which to take a snapshot for. For example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-     * See [Introduction to Cloud Asset
+     * "compute.googleapis.com/Disk". If specified, only matching assets will be
+     * returned. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
      * for all supported asset types.
      *

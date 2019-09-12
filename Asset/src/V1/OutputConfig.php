@@ -25,6 +25,11 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\GcsDestination $gcs_destination
      *           Destination on Cloud Storage.
+     *     @type \Google\Cloud\Asset\V1\BigQueryDestination $bigquery_destination
+     *           Destination on BigQuery. The output table stores the fields in asset
+     *           proto as columns in BigQuery. The resource/iam_policy field is converted
+     *           to a record with each field to a column, except metadata to a single JSON
+     *           string.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,6 +59,38 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\GcsDestination::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Destination on BigQuery. The output table stores the fields in asset
+     * proto as columns in BigQuery. The resource/iam_policy field is converted
+     * to a record with each field to a column, except metadata to a single JSON
+     * string.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
+     * @return \Google\Cloud\Asset\V1\BigQueryDestination
+     */
+    public function getBigqueryDestination()
+    {
+        return $this->readOneof(2);
+    }
+
+    /**
+     * Destination on BigQuery. The output table stores the fields in asset
+     * proto as columns in BigQuery. The resource/iam_policy field is converted
+     * to a record with each field to a column, except metadata to a single JSON
+     * string.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
+     * @param \Google\Cloud\Asset\V1\BigQueryDestination $var
+     * @return $this
+     */
+    public function setBigqueryDestination($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\BigQueryDestination::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }
