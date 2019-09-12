@@ -1,0 +1,1 @@
+{"id":"core\/jsontrait","type":"","title":"Google\\Cloud\\Core\\JsonTrait","name":"JsonTrait","description":"<p>Provides wrappers for json_encode\/json_decode that throw exceptions when an\nerror is encountered.<\/p>","examples":[],"resources":[],"methods":[]}

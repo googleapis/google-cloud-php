@@ -1,0 +1,1 @@
+{"id":"automl\/v1beta1\/columnspec_correlatedcolumn","type":"","title":"Google\\Cloud\\AutoMl\\V1beta1\\ColumnSpec_CorrelatedColumn","name":"ColumnSpec_CorrelatedColumn","description":"<p>This class is deprecated. Use Google\\Cloud\\AutoMl\\V1beta1\\ColumnSpec\\CorrelatedColumn instead.<\/p>","examples":[],"resources":[],"methods":[]}

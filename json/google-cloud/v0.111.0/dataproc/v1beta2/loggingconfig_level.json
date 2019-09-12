@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1beta2\/loggingconfig_level","type":"","title":"Google\\Cloud\\Dataproc\\V1beta2\\LoggingConfig_Level","name":"LoggingConfig_Level","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1beta2\\LoggingConfig\\Level instead.<\/p>","examples":[],"resources":[],"methods":[]}

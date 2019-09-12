@@ -1,0 +1,1 @@
+{"id":"spanner\/v1\/mutation_delete","type":"","title":"Google\\Cloud\\Spanner\\V1\\Mutation_Delete","name":"Mutation_Delete","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\V1\\Mutation\\Delete instead.<\/p>","examples":[],"resources":[],"methods":[]}
