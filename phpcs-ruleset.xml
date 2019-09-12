@@ -6,6 +6,7 @@
     <exclude-pattern>Speech/tests/Unit/HttpStreamWrapper.php</exclude-pattern>
   </rule>
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+    <exclude-pattern>*/samples</exclude-pattern>
     <exclude-pattern>Core/src/Testing/Lock/MockValues.php</exclude-pattern>
     <exclude-pattern>ErrorReporting/tests/Unit/BootstrapTest.php</exclude-pattern>
   </rule>
