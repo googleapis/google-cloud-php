@@ -40,9 +40,9 @@ class Product extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * The category for the product identified by the reference image. This should
-     * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     * "homegoods", "apparel", and "toys" are still supported, but these should
-     * not be used for new products.
+     * be either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or
+     * "general-v1" The legacy categories "homegoods", "apparel", and "toys" are
+     * still supported, but these should not be used for new products.
      * This field is immutable.
      *
      * Generated from protobuf field <code>string product_category = 4;</code>
@@ -83,9 +83,9 @@ class Product extends \Google\Protobuf\Internal\Message
      *           characters long.
      *     @type string $product_category
      *           The category for the product identified by the reference image. This should
-     *           be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     *           "homegoods", "apparel", and "toys" are still supported, but these should
-     *           not be used for new products.
+     *           be either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or
+     *           "general-v1" The legacy categories "homegoods", "apparel", and "toys" are
+     *           still supported, but these should not be used for new products.
      *           This field is immutable.
      *     @type \Google\Cloud\Vision\V1\Product\KeyValue[]|\Google\Protobuf\Internal\RepeatedField $product_labels
      *           Key-value pairs that can be attached to a product. At query time,
@@ -195,9 +195,9 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The category for the product identified by the reference image. This should
-     * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     * "homegoods", "apparel", and "toys" are still supported, but these should
-     * not be used for new products.
+     * be either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or
+     * "general-v1" The legacy categories "homegoods", "apparel", and "toys" are
+     * still supported, but these should not be used for new products.
      * This field is immutable.
      *
      * Generated from protobuf field <code>string product_category = 4;</code>
@@ -210,9 +210,9 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The category for the product identified by the reference image. This should
-     * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     * "homegoods", "apparel", and "toys" are still supported, but these should
-     * not be used for new products.
+     * be either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or
+     * "general-v1" The legacy categories "homegoods", "apparel", and "toys" are
+     * still supported, but these should not be used for new products.
      * This field is immutable.
      *
      * Generated from protobuf field <code>string product_category = 4;</code>
