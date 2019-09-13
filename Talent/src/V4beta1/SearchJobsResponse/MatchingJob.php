@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Job entry with metadata inside
  * [SearchJobsResponse][google.cloud.talent.v4beta1.SearchJobsResponse].
  *

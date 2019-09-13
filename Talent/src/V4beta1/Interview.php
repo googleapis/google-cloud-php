@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Interview extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The rating on this interview.
+     * The rating on this interview.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Rating rating = 6;</code>
      */
@@ -25,7 +25,7 @@ class Interview extends \Google\Protobuf\Internal\Message
      * Required. The overall decision resulting from this interview (positive,
      * negative, nuetral).
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $outcome = 0;
 
@@ -36,7 +36,7 @@ class Interview extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Rating $rating
-     *           Optional. The rating on this interview.
+     *           The rating on this interview.
      *     @type int $outcome
      *           Required. The overall decision resulting from this interview (positive,
      *           negative, nuetral).
@@ -48,7 +48,7 @@ class Interview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The rating on this interview.
+     * The rating on this interview.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Rating rating = 6;</code>
      * @return \Google\Cloud\Talent\V4beta1\Rating
@@ -59,7 +59,7 @@ class Interview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The rating on this interview.
+     * The rating on this interview.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Rating rating = 6;</code>
      * @param \Google\Cloud\Talent\V4beta1\Rating $var
@@ -77,7 +77,7 @@ class Interview extends \Google\Protobuf\Internal\Message
      * Required. The overall decision resulting from this interview (positive,
      * negative, nuetral).
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getOutcome()
@@ -89,7 +89,7 @@ class Interview extends \Google\Protobuf\Internal\Message
      * Required. The overall decision resulting from this interview (positive,
      * negative, nuetral).
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

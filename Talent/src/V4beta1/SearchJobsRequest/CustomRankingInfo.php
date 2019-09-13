@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Custom ranking information for
  * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
  *
@@ -23,7 +22,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      * gets applied to job's final ranking position.
      * An error is thrown if not specified.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $importance_level = 0;
     /**
@@ -42,7 +41,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      * Sample ranking expression
      * (year + 25) * 0.25 - (freshness / 0.5)
      *
-     * Generated from protobuf field <code>string ranking_expression = 2;</code>
+     * Generated from protobuf field <code>string ranking_expression = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ranking_expression = '';
 
@@ -85,7 +84,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      * gets applied to job's final ranking position.
      * An error is thrown if not specified.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getImportanceLevel()
@@ -99,7 +98,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      * gets applied to job's final ranking position.
      * An error is thrown if not specified.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo.ImportanceLevel importance_level = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -127,7 +126,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      * Sample ranking expression
      * (year + 25) * 0.25 - (freshness / 0.5)
      *
-     * Generated from protobuf field <code>string ranking_expression = 2;</code>
+     * Generated from protobuf field <code>string ranking_expression = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRankingExpression()
@@ -151,7 +150,7 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
      * Sample ranking expression
      * (year + 25) * 0.25 - (freshness / 0.5)
      *
-     * Generated from protobuf field <code>string ranking_expression = 2;</code>
+     * Generated from protobuf field <code>string ranking_expression = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

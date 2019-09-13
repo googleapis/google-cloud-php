@@ -18,40 +18,40 @@ use Google\Protobuf\Internal\GPBUtil;
 class Activity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Activity display name.
+     * Activity display name.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
      */
     private $display_name = '';
     /**
-     * Optional. Activity description.
+     * Activity description.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
     private $description = '';
     /**
-     * Optional. Activity URI.
+     * Activity URI.
      * Number of characters allowed is 4,000.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      */
     private $uri = '';
     /**
-     * Optional. The first creation date of the activity.
+     * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
      */
     private $create_date = null;
     /**
-     * Optional. The last update date of the activity.
+     * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
      */
     private $update_date = null;
     /**
-     * Optional. A list of team members involved in this activity.
+     * A list of team members involved in this activity.
      * Number of characters allowed is 100.
      * The limitation for max number of team members is 50.
      *
@@ -59,7 +59,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      */
     private $team_members;
     /**
-     * Optional. A list of skills used in this activity.
+     * A list of skills used in this activity.
      * The limitation for max number of skills used is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 7;</code>
@@ -72,7 +72,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_name_snippet = 8;</code>
+     * Generated from protobuf field <code>string activity_name_snippet = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $activity_name_snippet = '';
     /**
@@ -82,7 +82,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [description][google.cloud.talent.v4beta1.Activity.description] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_description_snippet = 9;</code>
+     * Generated from protobuf field <code>string activity_description_snippet = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $activity_description_snippet = '';
     /**
@@ -92,7 +92,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
      * related to the search query.
      *
-     * Generated from protobuf field <code>repeated string skills_used_snippet = 10;</code>
+     * Generated from protobuf field <code>repeated string skills_used_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $skills_used_snippet;
 
@@ -103,24 +103,24 @@ class Activity extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Optional. Activity display name.
+     *           Activity display name.
      *           Number of characters allowed is 100.
      *     @type string $description
-     *           Optional. Activity description.
+     *           Activity description.
      *           Number of characters allowed is 100,000.
      *     @type string $uri
-     *           Optional. Activity URI.
+     *           Activity URI.
      *           Number of characters allowed is 4,000.
      *     @type \Google\Type\Date $create_date
-     *           Optional. The first creation date of the activity.
+     *           The first creation date of the activity.
      *     @type \Google\Type\Date $update_date
-     *           Optional. The last update date of the activity.
+     *           The last update date of the activity.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $team_members
-     *           Optional. A list of team members involved in this activity.
+     *           A list of team members involved in this activity.
      *           Number of characters allowed is 100.
      *           The limitation for max number of team members is 50.
      *     @type \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $skills_used
-     *           Optional. A list of skills used in this activity.
+     *           A list of skills used in this activity.
      *           The limitation for max number of skills used is 50.
      *     @type string $activity_name_snippet
      *           Output only. Activity name snippet shows how the
@@ -148,7 +148,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Activity display name.
+     * Activity display name.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
@@ -160,7 +160,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Activity display name.
+     * Activity display name.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string display_name = 1;</code>
@@ -176,7 +176,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Activity description.
+     * Activity description.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 2;</code>
@@ -188,7 +188,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Activity description.
+     * Activity description.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 2;</code>
@@ -204,7 +204,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Activity URI.
+     * Activity URI.
      * Number of characters allowed is 4,000.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
@@ -216,7 +216,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Activity URI.
+     * Activity URI.
      * Number of characters allowed is 4,000.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
@@ -232,7 +232,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The first creation date of the activity.
+     * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
      * @return \Google\Type\Date
@@ -243,7 +243,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The first creation date of the activity.
+     * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
      * @param \Google\Type\Date $var
@@ -258,7 +258,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The last update date of the activity.
+     * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
      * @return \Google\Type\Date
@@ -269,7 +269,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The last update date of the activity.
+     * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
      * @param \Google\Type\Date $var
@@ -284,7 +284,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of team members involved in this activity.
+     * A list of team members involved in this activity.
      * Number of characters allowed is 100.
      * The limitation for max number of team members is 50.
      *
@@ -297,7 +297,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of team members involved in this activity.
+     * A list of team members involved in this activity.
      * Number of characters allowed is 100.
      * The limitation for max number of team members is 50.
      *
@@ -314,7 +314,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of skills used in this activity.
+     * A list of skills used in this activity.
      * The limitation for max number of skills used is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 7;</code>
@@ -326,7 +326,7 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of skills used in this activity.
+     * A list of skills used in this activity.
      * The limitation for max number of skills used is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 7;</code>
@@ -348,7 +348,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_name_snippet = 8;</code>
+     * Generated from protobuf field <code>string activity_name_snippet = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getActivityNameSnippet()
@@ -363,7 +363,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_name_snippet = 8;</code>
+     * Generated from protobuf field <code>string activity_name_snippet = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -382,7 +382,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [description][google.cloud.talent.v4beta1.Activity.description] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_description_snippet = 9;</code>
+     * Generated from protobuf field <code>string activity_description_snippet = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getActivityDescriptionSnippet()
@@ -397,7 +397,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [description][google.cloud.talent.v4beta1.Activity.description] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_description_snippet = 9;</code>
+     * Generated from protobuf field <code>string activity_description_snippet = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -416,7 +416,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
      * related to the search query.
      *
-     * Generated from protobuf field <code>repeated string skills_used_snippet = 10;</code>
+     * Generated from protobuf field <code>repeated string skills_used_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSkillsUsedSnippet()
@@ -431,7 +431,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
      * related to the search query.
      *
-     * Generated from protobuf field <code>repeated string skills_used_snippet = 10;</code>
+     * Generated from protobuf field <code>repeated string skills_used_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

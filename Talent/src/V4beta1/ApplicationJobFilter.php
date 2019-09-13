@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Filter on the job information of Application.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ApplicationJobFilter</code>
@@ -17,24 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The job requisition id in the application. The API does an exact
-     * match on the
-     * [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
+     * The job requisition id in the application. The API does an exact match on
+     * the [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
      * [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *
      * Generated from protobuf field <code>string job_requisition_id = 2;</code>
      */
     private $job_requisition_id = '';
     /**
-     * Optional. The job title in the application. The API does an exact match on
-     * the [Job.title][google.cloud.talent.v4beta1.Job.title] of
+     * The job title in the application. The API does an exact match on the
+     * [Job.title][google.cloud.talent.v4beta1.Job.title] of
      * [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *
      * Generated from protobuf field <code>string job_title = 3;</code>
      */
     private $job_title = '';
     /**
-     * Optional. If true, the API excludes all profiles with any
+     * If true, the API excludes all profiles with any
      * [Application.job][google.cloud.talent.v4beta1.Application.job] matching the
      * filters.
      *
@@ -49,16 +47,15 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $job_requisition_id
-     *           Optional. The job requisition id in the application. The API does an exact
-     *           match on the
-     *           [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
+     *           The job requisition id in the application. The API does an exact match on
+     *           the [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
      *           [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *     @type string $job_title
-     *           Optional. The job title in the application. The API does an exact match on
-     *           the [Job.title][google.cloud.talent.v4beta1.Job.title] of
+     *           The job title in the application. The API does an exact match on the
+     *           [Job.title][google.cloud.talent.v4beta1.Job.title] of
      *           [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *     @type bool $negated
-     *           Optional. If true, the API excludes all profiles with any
+     *           If true, the API excludes all profiles with any
      *           [Application.job][google.cloud.talent.v4beta1.Application.job] matching the
      *           filters.
      * }
@@ -69,9 +66,8 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The job requisition id in the application. The API does an exact
-     * match on the
-     * [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
+     * The job requisition id in the application. The API does an exact match on
+     * the [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
      * [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *
      * Generated from protobuf field <code>string job_requisition_id = 2;</code>
@@ -83,9 +79,8 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The job requisition id in the application. The API does an exact
-     * match on the
-     * [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
+     * The job requisition id in the application. The API does an exact match on
+     * the [Job.requisition_id][google.cloud.talent.v4beta1.Job.requisition_id] of
      * [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *
      * Generated from protobuf field <code>string job_requisition_id = 2;</code>
@@ -101,8 +96,8 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The job title in the application. The API does an exact match on
-     * the [Job.title][google.cloud.talent.v4beta1.Job.title] of
+     * The job title in the application. The API does an exact match on the
+     * [Job.title][google.cloud.talent.v4beta1.Job.title] of
      * [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *
      * Generated from protobuf field <code>string job_title = 3;</code>
@@ -114,8 +109,8 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The job title in the application. The API does an exact match on
-     * the [Job.title][google.cloud.talent.v4beta1.Job.title] of
+     * The job title in the application. The API does an exact match on the
+     * [Job.title][google.cloud.talent.v4beta1.Job.title] of
      * [Application.job][google.cloud.talent.v4beta1.Application.job] in profiles.
      *
      * Generated from protobuf field <code>string job_title = 3;</code>
@@ -131,7 +126,7 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the API excludes all profiles with any
+     * If true, the API excludes all profiles with any
      * [Application.job][google.cloud.talent.v4beta1.Application.job] matching the
      * filters.
      *
@@ -144,7 +139,7 @@ class ApplicationJobFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, the API excludes all profiles with any
+     * If true, the API excludes all profiles with any
      * [Application.job][google.cloud.talent.v4beta1.Application.job] matching the
      * filters.
      *

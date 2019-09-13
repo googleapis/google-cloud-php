@@ -16,17 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CompensationRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The maximum amount of compensation. If left empty, the value is
-     * set to a maximal compensation value and the currency code is set to match
-     * the [currency code][google.type.Money.currency_code] of min_compensation.
+     * The maximum amount of compensation. If left empty, the value is set
+     * to a maximal compensation value and the currency code is set to
+     * match the [currency code][google.type.Money.currency_code] of
+     * min_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money max_compensation = 2;</code>
      */
     private $max_compensation = null;
     /**
-     * Optional. The minimum amount of compensation. If left empty, the value is
-     * set to zero and the currency code is set to match the [currency
-     * code][google.type.Money.currency_code] of max_compensation.
+     * The minimum amount of compensation. If left empty, the value is set
+     * to zero and the currency code is set to match the
+     * [currency code][google.type.Money.currency_code] of max_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money min_compensation = 1;</code>
      */
@@ -39,13 +40,14 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Type\Money $max_compensation
-     *           Optional. The maximum amount of compensation. If left empty, the value is
-     *           set to a maximal compensation value and the currency code is set to match
-     *           the [currency code][google.type.Money.currency_code] of min_compensation.
+     *           The maximum amount of compensation. If left empty, the value is set
+     *           to a maximal compensation value and the currency code is set to
+     *           match the [currency code][google.type.Money.currency_code] of
+     *           min_compensation.
      *     @type \Google\Type\Money $min_compensation
-     *           Optional. The minimum amount of compensation. If left empty, the value is
-     *           set to zero and the currency code is set to match the [currency
-     *           code][google.type.Money.currency_code] of max_compensation.
+     *           The minimum amount of compensation. If left empty, the value is set
+     *           to zero and the currency code is set to match the
+     *           [currency code][google.type.Money.currency_code] of max_compensation.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,9 +56,10 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum amount of compensation. If left empty, the value is
-     * set to a maximal compensation value and the currency code is set to match
-     * the [currency code][google.type.Money.currency_code] of min_compensation.
+     * The maximum amount of compensation. If left empty, the value is set
+     * to a maximal compensation value and the currency code is set to
+     * match the [currency code][google.type.Money.currency_code] of
+     * min_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money max_compensation = 2;</code>
      * @return \Google\Type\Money
@@ -67,9 +70,10 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum amount of compensation. If left empty, the value is
-     * set to a maximal compensation value and the currency code is set to match
-     * the [currency code][google.type.Money.currency_code] of min_compensation.
+     * The maximum amount of compensation. If left empty, the value is set
+     * to a maximal compensation value and the currency code is set to
+     * match the [currency code][google.type.Money.currency_code] of
+     * min_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money max_compensation = 2;</code>
      * @param \Google\Type\Money $var
@@ -84,9 +88,9 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum amount of compensation. If left empty, the value is
-     * set to zero and the currency code is set to match the [currency
-     * code][google.type.Money.currency_code] of max_compensation.
+     * The minimum amount of compensation. If left empty, the value is set
+     * to zero and the currency code is set to match the
+     * [currency code][google.type.Money.currency_code] of max_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money min_compensation = 1;</code>
      * @return \Google\Type\Money
@@ -97,9 +101,9 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum amount of compensation. If left empty, the value is
-     * set to zero and the currency code is set to match the [currency
-     * code][google.type.Money.currency_code] of max_compensation.
+     * The minimum amount of compensation. If left empty, the value is set
+     * to zero and the currency code is set to match the
+     * [currency code][google.type.Money.currency_code] of max_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money min_compensation = 1;</code>
      * @param \Google\Type\Money $var

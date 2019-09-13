@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Metadata used for long running operations returned by CTS batch APIs.
  * It's used to replace
  * [google.longrunning.Operation.metadata][google.longrunning.Operation.metadata].

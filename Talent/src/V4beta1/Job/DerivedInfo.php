@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Derived details about the job posting.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.Job.DerivedInfo</code>

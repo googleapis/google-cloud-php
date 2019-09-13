@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only. A resource that represents a location with full geographic
- * information.
+ * A resource that represents a location with full geographic information.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.Location</code>
  */

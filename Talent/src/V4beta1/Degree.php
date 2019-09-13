@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Degree extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. ISCED degree type.
+     * ISCED degree type.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DegreeType degree_type = 1;</code>
      */
     private $degree_type = 0;
     /**
-     * Optional. Full Degree name.
+     * Full Degree name.
      * For example, "B.S.", "Master of Arts", and so on.
      * Number of characters allowed is 100.
      *
@@ -30,7 +30,7 @@ class Degree extends \Google\Protobuf\Internal\Message
      */
     private $degree_name = '';
     /**
-     * Optional. Fields of study for the degree.
+     * Fields of study for the degree.
      * For example, "Computer science", "engineering".
      * Number of characters allowed is 100.
      *
@@ -45,13 +45,13 @@ class Degree extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $degree_type
-     *           Optional. ISCED degree type.
+     *           ISCED degree type.
      *     @type string $degree_name
-     *           Optional. Full Degree name.
+     *           Full Degree name.
      *           For example, "B.S.", "Master of Arts", and so on.
      *           Number of characters allowed is 100.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $fields_of_study
-     *           Optional. Fields of study for the degree.
+     *           Fields of study for the degree.
      *           For example, "Computer science", "engineering".
      *           Number of characters allowed is 100.
      * }
@@ -62,7 +62,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. ISCED degree type.
+     * ISCED degree type.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DegreeType degree_type = 1;</code>
      * @return int
@@ -73,7 +73,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. ISCED degree type.
+     * ISCED degree type.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DegreeType degree_type = 1;</code>
      * @param int $var
@@ -88,7 +88,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full Degree name.
+     * Full Degree name.
      * For example, "B.S.", "Master of Arts", and so on.
      * Number of characters allowed is 100.
      *
@@ -101,7 +101,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Full Degree name.
+     * Full Degree name.
      * For example, "B.S.", "Master of Arts", and so on.
      * Number of characters allowed is 100.
      *
@@ -118,7 +118,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Fields of study for the degree.
+     * Fields of study for the degree.
      * For example, "Computer science", "engineering".
      * Number of characters allowed is 100.
      *
@@ -131,7 +131,7 @@ class Degree extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Fields of study for the degree.
+     * Fields of study for the degree.
      * For example, "Computer science", "engineering".
      * Number of characters allowed is 100.
      *

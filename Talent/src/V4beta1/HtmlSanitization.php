@@ -7,7 +7,6 @@ namespace Google\Cloud\Talent\V4beta1;
 use UnexpectedValueException;
 
 /**
- * Input only.
  * Option for HTML content sanitization on user input fields, for example, job
  * description. By setting this option, user can determine whether and how
  * sanitization is performed on these fields.

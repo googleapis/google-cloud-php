@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ApplicationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Use this field to specify email address(es) to which resumes or
+     * Use this field to specify email address(es) to which resumes or
      * applications can be sent.
      * The maximum number of allowed characters for each entry is 255.
      *
@@ -24,8 +24,8 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      */
     private $emails;
     /**
-     * Optional. Use this field to provide instructions, such as "Mail your
-     * application to ...", that a candidate can follow to apply for the job.
+     * Use this field to provide instructions, such as "Mail your application
+     * to ...", that a candidate can follow to apply for the job.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 3,000.
@@ -34,8 +34,8 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      */
     private $instruction = '';
     /**
-     * Optional. Use this URI field to direct an applicant to a website, for
-     * example to link to an online application form.
+     * Use this URI field to direct an applicant to a website, for example to
+     * link to an online application form.
      * The maximum number of allowed characters for each entry is 2,000.
      *
      * Generated from protobuf field <code>repeated string uris = 3;</code>
@@ -49,18 +49,18 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $emails
-     *           Optional. Use this field to specify email address(es) to which resumes or
+     *           Use this field to specify email address(es) to which resumes or
      *           applications can be sent.
      *           The maximum number of allowed characters for each entry is 255.
      *     @type string $instruction
-     *           Optional. Use this field to provide instructions, such as "Mail your
-     *           application to ...", that a candidate can follow to apply for the job.
+     *           Use this field to provide instructions, such as "Mail your application
+     *           to ...", that a candidate can follow to apply for the job.
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 3,000.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
-     *           Optional. Use this URI field to direct an applicant to a website, for
-     *           example to link to an online application form.
+     *           Use this URI field to direct an applicant to a website, for example to
+     *           link to an online application form.
      *           The maximum number of allowed characters for each entry is 2,000.
      * }
      */
@@ -70,7 +70,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this field to specify email address(es) to which resumes or
+     * Use this field to specify email address(es) to which resumes or
      * applications can be sent.
      * The maximum number of allowed characters for each entry is 255.
      *
@@ -83,7 +83,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this field to specify email address(es) to which resumes or
+     * Use this field to specify email address(es) to which resumes or
      * applications can be sent.
      * The maximum number of allowed characters for each entry is 255.
      *
@@ -100,8 +100,8 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this field to provide instructions, such as "Mail your
-     * application to ...", that a candidate can follow to apply for the job.
+     * Use this field to provide instructions, such as "Mail your application
+     * to ...", that a candidate can follow to apply for the job.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 3,000.
@@ -115,8 +115,8 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this field to provide instructions, such as "Mail your
-     * application to ...", that a candidate can follow to apply for the job.
+     * Use this field to provide instructions, such as "Mail your application
+     * to ...", that a candidate can follow to apply for the job.
      * This field accepts and sanitizes HTML input, and also accepts
      * bold, italic, ordered list, and unordered list markup tags.
      * The maximum number of allowed characters is 3,000.
@@ -134,8 +134,8 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this URI field to direct an applicant to a website, for
-     * example to link to an online application form.
+     * Use this URI field to direct an applicant to a website, for example to
+     * link to an online application form.
      * The maximum number of allowed characters for each entry is 2,000.
      *
      * Generated from protobuf field <code>repeated string uris = 3;</code>
@@ -147,8 +147,8 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this URI field to direct an applicant to a website, for
-     * example to link to an online application form.
+     * Use this URI field to direct an applicant to a website, for example to
+     * link to an online application form.
      * The maximum number of allowed characters for each entry is 2,000.
      *
      * Generated from protobuf field <code>repeated string uris = 3;</code>

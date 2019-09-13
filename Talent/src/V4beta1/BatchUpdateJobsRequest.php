@@ -17,23 +17,22 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required. The jobs to be updated.
+     * The jobs to be updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2;</code>
      */
     private $jobs;
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience, also increase latency when checking status of batch operation.
+     * Strongly recommended for the best service experience. Be aware that it will
+     * also increase latency when checking the status of a batch operation.
      * If
      * [update_mask][google.cloud.talent.v4beta1.BatchUpdateJobsRequest.update_mask]
      * is provided, only the specified fields in
@@ -61,15 +60,14 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the tenant under which the job is created.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenant/foo".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project".
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     *           is created. For example, "projects/foo".
      *     @type \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           Required. The jobs to be updated.
+     *           The jobs to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional but strongly recommended to be provided for the best service
-     *           experience, also increase latency when checking status of batch operation.
+     *           Strongly recommended for the best service experience. Be aware that it will
+     *           also increase latency when checking the status of a batch operation.
      *           If
      *           [update_mask][google.cloud.talent.v4beta1.BatchUpdateJobsRequest.update_mask]
      *           is provided, only the specified fields in
@@ -93,12 +91,11 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -108,12 +105,11 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -126,7 +122,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The jobs to be updated.
+     * The jobs to be updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -137,7 +133,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The jobs to be updated.
+     * The jobs to be updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2;</code>
      * @param \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -152,8 +148,8 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience, also increase latency when checking status of batch operation.
+     * Strongly recommended for the best service experience. Be aware that it will
+     * also increase latency when checking the status of a batch operation.
      * If
      * [update_mask][google.cloud.talent.v4beta1.BatchUpdateJobsRequest.update_mask]
      * is provided, only the specified fields in
@@ -178,8 +174,8 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience, also increase latency when checking status of batch operation.
+     * Strongly recommended for the best service experience. Be aware that it will
+     * also increase latency when checking the status of a batch operation.
      * If
      * [update_mask][google.cloud.talent.v4beta1.BatchUpdateJobsRequest.update_mask]
      * is provided, only the specified fields in

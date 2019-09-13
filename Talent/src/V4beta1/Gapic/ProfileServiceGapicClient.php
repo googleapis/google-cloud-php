@@ -346,11 +346,29 @@ class ProfileServiceGapicClient
      * @param string $parent Required. The resource name of the tenant under which the profile is
      *                       created.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
+     *     @type string $filter
+     *          The filter string specifies the profiles to be enumerated.
+     *
+     *          Supported operator: =, AND
+     *
+     *          The field(s) eligible for filtering are:
+     *
+     *          * `externalId`
+     *          * `groupId`
+     *
+     *          externalId and groupId cannot be specified at the same time. If both
+     *          externalId and groupId are provided, the API will return a bad request
+     *          error.
+     *
+     *          Sample Query:
+     *
+     *          * externalId = "externalId-1"
+     *          * groupId = "groupId-1"
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -361,8 +379,8 @@ class ProfileServiceGapicClient
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
      *     @type FieldMask $readMask
-     *          Optional. A field mask to specify the profile fields to be listed in
-     *          response. All fields are listed if it is unset.
+     *          A field mask to specify the profile fields to be listed in response.
+     *          All fields are listed if it is unset.
      *
      *          Valid values are:
      *
@@ -383,6 +401,9 @@ class ProfileServiceGapicClient
     {
         $request = new ListProfilesRequest();
         $request->setParent($parent);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -425,8 +446,8 @@ class ProfileServiceGapicClient
      *
      * @param string $parent Required. The name of the tenant this profile belongs to.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      * @param Profile $profile      Required. The profile to be created.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -481,8 +502,8 @@ class ProfileServiceGapicClient
      * @param string $name Required. Resource name of the profile to get.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -537,7 +558,7 @@ class ProfileServiceGapicClient
      *                              Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional. A field mask to specify the profile fields to update.
+     *          A field mask to specify the profile fields to update.
      *
      *          A full update is performed if it is unset.
      *
@@ -640,8 +661,8 @@ class ProfileServiceGapicClient
      * @param string $name Required. Resource name of the profile to be deleted.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -714,8 +735,8 @@ class ProfileServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant to search within.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      * @param RequestMetadata $requestMetadata Required. The meta information collected about the profile search user.
      *                                         This is used to improve the search quality of the service. These values are
      *                                         provided by users, and must be precise and consistent.
@@ -723,7 +744,7 @@ class ProfileServiceGapicClient
      *                                         Optional.
      *
      *     @type ProfileQuery $profileQuery
-     *          Optional. Search query to execute. See
+     *          Search query to execute. See
      *          [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -735,8 +756,8 @@ class ProfileServiceGapicClient
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
      *     @type int $offset
-     *          Optional. An integer that specifies the current offset (that is, starting
-     *          result) in search results. This field is only considered if
+     *          An integer that specifies the current offset (that is, starting result) in
+     *          search results. This field is only considered if
      *          [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
      *          is unset.
      *
@@ -746,12 +767,12 @@ class ProfileServiceGapicClient
      *          search from the 11th profile. This can be used for pagination, for example
      *          pageSize = 10 and offset = 10 means to search from the second page.
      *     @type bool $disableSpellCheck
-     *          Optional. This flag controls the spell-check feature. If `false`, the
+     *          This flag controls the spell-check feature. If `false`, the
      *          service attempts to correct a misspelled query.
      *
      *          For example, "enginee" is corrected to "engineer".
      *     @type string $orderBy
-     *          Optional. The criteria that determines how search results are sorted.
+     *          The criteria that determines how search results are sorted.
      *          Defaults is "relevance desc" if no value is specified.
      *
      *          Supported options are:
@@ -781,16 +802,15 @@ class ProfileServiceGapicClient
      *          [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
      *            in ascending order.
      *     @type bool $caseSensitiveSort
-     *          Optional. When sort by field is based on alphabetical order, sort values
-     *          case sensitively (based on ASCII) when the value is set to true. Default
-     *          value is case in-sensitive sort (false).
+     *          When sort by field is based on alphabetical order, sort values case
+     *          sensitively (based on ASCII) when the value is set to true. Default value
+     *          is case in-sensitive sort (false).
      *     @type HistogramQuery[] $histogramQueries
-     *          Optional. A list of expressions specifies histogram requests against
-     *          matching profiles for
+     *          A list of expressions specifies histogram requests against matching
+     *          profiles for
      *          [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
-     *          The expression syntax looks like a function definition with optional
-     *          parameters.
+     *          The expression syntax looks like a function definition with parameters.
      *
      *          Function syntax: function_name(histogram_facet[, list of buckets])
      *
@@ -868,7 +888,7 @@ class ProfileServiceGapicClient
      *          * count(numeric_custom_attribute["favorite_number"],
      *          [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])
      *     @type string $resultSetId
-     *          Optional. An id that uniquely identifies the result set of a
+     *          An id that uniquely identifies the result set of a
      *          [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
      *          call. The id should be retrieved from the
      *          [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
@@ -899,7 +919,7 @@ class ProfileServiceGapicClient
      *          [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
      *          to page through the results.
      *     @type bool $strictKeywordsSearch
-     *          Optional. This flag is used to indicate whether the service will attempt to
+     *          This flag is used to indicate whether the service will attempt to
      *          understand synonyms and terms related to the search query or treat the
      *          query "as is" when it generates a set of results. By default this flag is
      *          set to false, thus allowing expanded results to also be returned. For

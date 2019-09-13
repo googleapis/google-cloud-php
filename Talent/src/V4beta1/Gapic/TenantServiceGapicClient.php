@@ -308,7 +308,7 @@ class TenantServiceGapicClient
      * @param string $parent Required. Resource name of the project under which the tenant is created.
      *
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      * @param Tenant $tenant       Required. The tenant to be created.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -363,7 +363,7 @@ class TenantServiceGapicClient
      * @param string $name Required. The resource name of the tenant to be retrieved.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -419,8 +419,7 @@ class TenantServiceGapicClient
      *                             Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
      *          If
      *          [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
@@ -483,7 +482,7 @@ class TenantServiceGapicClient
      * @param string $name Required. The resource name of the tenant to be deleted.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -549,7 +548,7 @@ class TenantServiceGapicClient
      * @param string $parent Required. Resource name of the project under which the tenant is created.
      *
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      * @param array $optionalArgs {
      *                            Optional.
      *

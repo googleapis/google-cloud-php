@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Create job request.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CreateJobRequest</code>
@@ -18,18 +17,17 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
      * Required. The Job to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job = null;
 
@@ -41,10 +39,9 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the tenant under which the job is created.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenant/foo".
-     *           Tenant id is optional and a default tenant is created if unspecified, for
-     *           example, "projects/api-test-project".
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+     *           is created. For example, "projects/foo".
      *     @type \Google\Cloud\Talent\V4beta1\Job $job
      *           Required. The Job to be created.
      * }
@@ -56,12 +53,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -71,12 +67,11 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -91,7 +86,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Job to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Job
      */
     public function getJob()
@@ -102,7 +97,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Job to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Job $var
      * @return $this
      */

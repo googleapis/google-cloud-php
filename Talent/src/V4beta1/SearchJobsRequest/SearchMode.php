@@ -15,7 +15,8 @@ use UnexpectedValueException;
 class SearchMode
 {
     /**
-     * The mode of the search method isn't specified.
+     * The mode of the search method isn't specified. The default search
+     * behavior is identical to JOB_SEARCH search behavior.
      *
      * Generated from protobuf enum <code>SEARCH_MODE_UNSPECIFIED = 0;</code>
      */

@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Profile entry with metadata inside
  * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
  *

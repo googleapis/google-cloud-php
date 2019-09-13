@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Work experience filter.
  * This filter is used to search for profiles with working experience length
  * between
@@ -22,13 +21,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The minimum duration of the work experience (inclusive).
+     * The minimum duration of the work experience (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_experience = 1;</code>
      */
     private $min_experience = null;
     /**
-     * Optional. The maximum duration of the work experience (exclusive).
+     * The maximum duration of the work experience (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_experience = 2;</code>
      */
@@ -41,9 +40,9 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $min_experience
-     *           Optional. The minimum duration of the work experience (inclusive).
+     *           The minimum duration of the work experience (inclusive).
      *     @type \Google\Protobuf\Duration $max_experience
-     *           Optional. The maximum duration of the work experience (exclusive).
+     *           The maximum duration of the work experience (exclusive).
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +51,7 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum duration of the work experience (inclusive).
+     * The minimum duration of the work experience (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_experience = 1;</code>
      * @return \Google\Protobuf\Duration
@@ -63,7 +62,7 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum duration of the work experience (inclusive).
+     * The minimum duration of the work experience (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_experience = 1;</code>
      * @param \Google\Protobuf\Duration $var
@@ -78,7 +77,7 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum duration of the work experience (exclusive).
+     * The maximum duration of the work experience (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_experience = 2;</code>
      * @return \Google\Protobuf\Duration
@@ -89,7 +88,7 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum duration of the work experience (exclusive).
+     * The maximum duration of the work experience (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_experience = 2;</code>
      * @param \Google\Protobuf\Duration $var

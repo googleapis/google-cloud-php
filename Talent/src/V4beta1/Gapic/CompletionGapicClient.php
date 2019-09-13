@@ -368,10 +368,10 @@ class CompletionGapicClient
      * @param string $parent Required. Resource name of tenant the completion is performed within.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
+     * "projects/foo/tenant/bar".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      * @param string $query Required. The query used to generate suggestions.
      *
      * The maximum number of allowed characters is 255.
@@ -382,7 +382,7 @@ class CompletionGapicClient
      *                            Optional.
      *
      *     @type string[] $languageCodes
-     *          Optional. The list of languages of the query. This is
+     *          The list of languages of the query. This is
      *          the BCP-47 language code, such as "en-US" or "sr-Latn".
      *          For more information, see
      *          [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
@@ -409,20 +409,20 @@ class CompletionGapicClient
      *
      *          The maximum number of allowed characters is 255.
      *     @type string $company
-     *          Optional. If provided, restricts completion to specified company.
+     *          If provided, restricts completion to specified company.
      *
      *          The format is
      *          "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *          example, "projects/api-test-project/tenants/foo/companies/bar".
+     *          example, "projects/foo/tenants/bar/companies/baz".
      *
-     *          Tenant id is optional and the default tenant is used if unspecified, for
-     *          example, "projects/api-test-project/companies/bar".
+     *          If tenant id is unspecified, the default tenant is used, for
+     *          example, "projects/foo".
      *     @type int $scope
-     *          Optional. The scope of the completion. The defaults is
+     *          The scope of the completion. The defaults is
      *          [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope}
      *     @type int $type
-     *          Optional. The completion topic. The default is
+     *          The completion topic. The default is
      *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType}
      *     @type RetrySettings|array $retrySettings

@@ -20,7 +20,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * Required. The type of the event (see
      * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $type = 0;
     /**
@@ -33,17 +33,17 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * field contains the identifier of the viewed job.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>repeated string jobs = 2;</code>
+     * Generated from protobuf field <code>repeated string jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $jobs;
     /**
-     * Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
-     * associated with this client event.
+     * The [profile name][google.cloud.talent.v4beta1.Profile.name] associated
+     * with this client event.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * for example, "projects/foo/tenants/bar/profiles/baz".
      *
      * Generated from protobuf field <code>string profile = 3;</code>
      */
@@ -68,13 +68,13 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *           field contains the identifier of the viewed job.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     *           example, "projects/api-test-project/tenants/foo/jobs/1234".
+     *           example, "projects/foo/tenants/bar/jobs/baz".
      *     @type string $profile
-     *           Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
-     *           associated with this client event.
+     *           The [profile name][google.cloud.talent.v4beta1.Profile.name] associated
+     *           with this client event.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *           for example, "projects/foo/tenants/bar/profiles/baz".
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +86,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * Required. The type of the event (see
      * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
@@ -98,7 +98,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * Required. The type of the event (see
      * [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobEvent.JobEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -120,9 +120,9 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * field contains the identifier of the viewed job.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>repeated string jobs = 2;</code>
+     * Generated from protobuf field <code>repeated string jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJobs()
@@ -140,9 +140,9 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * field contains the identifier of the viewed job.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
-     * Generated from protobuf field <code>repeated string jobs = 2;</code>
+     * Generated from protobuf field <code>repeated string jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -155,11 +155,11 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
-     * associated with this client event.
+     * The [profile name][google.cloud.talent.v4beta1.Profile.name] associated
+     * with this client event.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * for example, "projects/foo/tenants/bar/profiles/baz".
      *
      * Generated from protobuf field <code>string profile = 3;</code>
      * @return string
@@ -170,11 +170,11 @@ class JobEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [profile name][google.cloud.talent.v4beta1.Profile.name]
-     * associated with this client event.
+     * The [profile name][google.cloud.talent.v4beta1.Profile.name] associated
+     * with this client event.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * for example, "projects/foo/tenants/bar/profiles/baz".
      *
      * Generated from protobuf field <code>string profile = 3;</code>
      * @param string $var

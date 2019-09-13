@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class EducationRecord extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The start date of the education.
+     * The start date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      */
     private $start_date = null;
     /**
-     * Optional. The end date of the education.
+     * The end date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      */
     private $end_date = null;
     /**
-     * Optional. The expected graduation date if currently pursuing a degree.
+     * The expected graduation date if currently pursuing a degree.
      *
      * Generated from protobuf field <code>.google.type.Date expected_graduation_date = 3;</code>
      */
     private $expected_graduation_date = null;
     /**
-     * Optional. The name of the school or institution.
+     * The name of the school or institution.
      * For example, "Stanford University", "UC Berkeley", and so on.
      * Number of characters allowed is 250.
      *
@@ -42,20 +42,20 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     private $school_name = '';
     /**
-     * Optional. The physical address of the education institution.
+     * The physical address of the education institution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
      */
     private $address = null;
     /**
-     * Optional. The description of the education.
+     * The description of the education.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 8;</code>
      */
     private $description = '';
     /**
-     * Optional. If this education is current.
+     * If this education is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
      */
@@ -67,7 +67,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string school_name_snippet = 10;</code>
+     * Generated from protobuf field <code>string school_name_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $school_name_snippet = '';
     /**
@@ -77,7 +77,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
      * query.
      *
-     * Generated from protobuf field <code>string degree_snippet = 11;</code>
+     * Generated from protobuf field <code>string degree_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $degree_snippet = '';
     protected $degree;
@@ -89,28 +89,28 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Type\Date $start_date
-     *           Optional. The start date of the education.
+     *           The start date of the education.
      *     @type \Google\Type\Date $end_date
-     *           Optional. The end date of the education.
+     *           The end date of the education.
      *     @type \Google\Type\Date $expected_graduation_date
-     *           Optional. The expected graduation date if currently pursuing a degree.
+     *           The expected graduation date if currently pursuing a degree.
      *     @type string $school_name
-     *           Optional. The name of the school or institution.
+     *           The name of the school or institution.
      *           For example, "Stanford University", "UC Berkeley", and so on.
      *           Number of characters allowed is 250.
      *     @type \Google\Cloud\Talent\V4beta1\Address $address
-     *           Optional. The physical address of the education institution.
+     *           The physical address of the education institution.
      *     @type string $degree_description
-     *           Optional. The full description of the degree.
+     *           The full description of the degree.
      *           For example, "Master of Science in Computer Science", "B.S in Math".
      *           Number of characters allowed is 100.
      *     @type \Google\Cloud\Talent\V4beta1\Degree $structured_degree
-     *           Optional. The structured notation of the degree.
+     *           The structured notation of the degree.
      *     @type string $description
-     *           Optional. The description of the education.
+     *           The description of the education.
      *           Number of characters allowed is 100,000.
      *     @type \Google\Protobuf\BoolValue $is_current
-     *           Optional. If this education is current.
+     *           If this education is current.
      *     @type string $school_name_snippet
      *           Output only. The school name snippet shows how the
      *           [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name] is
@@ -131,7 +131,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The start date of the education.
+     * The start date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @return \Google\Type\Date
@@ -142,7 +142,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The start date of the education.
+     * The start date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @param \Google\Type\Date $var
@@ -157,7 +157,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The end date of the education.
+     * The end date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      * @return \Google\Type\Date
@@ -168,7 +168,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The end date of the education.
+     * The end date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      * @param \Google\Type\Date $var
@@ -183,7 +183,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The expected graduation date if currently pursuing a degree.
+     * The expected graduation date if currently pursuing a degree.
      *
      * Generated from protobuf field <code>.google.type.Date expected_graduation_date = 3;</code>
      * @return \Google\Type\Date
@@ -194,7 +194,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The expected graduation date if currently pursuing a degree.
+     * The expected graduation date if currently pursuing a degree.
      *
      * Generated from protobuf field <code>.google.type.Date expected_graduation_date = 3;</code>
      * @param \Google\Type\Date $var
@@ -209,7 +209,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the school or institution.
+     * The name of the school or institution.
      * For example, "Stanford University", "UC Berkeley", and so on.
      * Number of characters allowed is 250.
      *
@@ -222,7 +222,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the school or institution.
+     * The name of the school or institution.
      * For example, "Stanford University", "UC Berkeley", and so on.
      * Number of characters allowed is 250.
      *
@@ -239,7 +239,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The physical address of the education institution.
+     * The physical address of the education institution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
      * @return \Google\Cloud\Talent\V4beta1\Address
@@ -250,7 +250,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The physical address of the education institution.
+     * The physical address of the education institution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
      * @param \Google\Cloud\Talent\V4beta1\Address $var
@@ -265,7 +265,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The full description of the degree.
+     * The full description of the degree.
      * For example, "Master of Science in Computer Science", "B.S in Math".
      * Number of characters allowed is 100.
      *
@@ -278,7 +278,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The full description of the degree.
+     * The full description of the degree.
      * For example, "Master of Science in Computer Science", "B.S in Math".
      * Number of characters allowed is 100.
      *
@@ -295,7 +295,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The structured notation of the degree.
+     * The structured notation of the degree.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Degree structured_degree = 7;</code>
      * @return \Google\Cloud\Talent\V4beta1\Degree
@@ -306,7 +306,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The structured notation of the degree.
+     * The structured notation of the degree.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Degree structured_degree = 7;</code>
      * @param \Google\Cloud\Talent\V4beta1\Degree $var
@@ -321,7 +321,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of the education.
+     * The description of the education.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 8;</code>
@@ -333,7 +333,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of the education.
+     * The description of the education.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string description = 8;</code>
@@ -349,7 +349,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this education is current.
+     * If this education is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
      * @return \Google\Protobuf\BoolValue
@@ -362,7 +362,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getIsCurrent()</code>
 
-     * Optional. If this education is current.
+     * If this education is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
      * @return bool|null
@@ -374,7 +374,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this education is current.
+     * If this education is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -391,7 +391,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional. If this education is current.
+     * If this education is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
      * @param bool|null $var
@@ -410,7 +410,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string school_name_snippet = 10;</code>
+     * Generated from protobuf field <code>string school_name_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSchoolNameSnippet()
@@ -425,7 +425,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * [school_name][google.cloud.talent.v4beta1.EducationRecord.school_name]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string school_name_snippet = 10;</code>
+     * Generated from protobuf field <code>string school_name_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -444,7 +444,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
      * query.
      *
-     * Generated from protobuf field <code>string degree_snippet = 11;</code>
+     * Generated from protobuf field <code>string degree_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDegreeSnippet()
@@ -459,7 +459,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * [Degree][google.cloud.talent.v4beta1.Degree] isn't related to the search
      * query.
      *
-     * Generated from protobuf field <code>string degree_snippet = 11;</code>
+     * Generated from protobuf field <code>string degree_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

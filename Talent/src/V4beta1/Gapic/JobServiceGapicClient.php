@@ -488,11 +488,9 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant under which the job is created.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+     * is created. For example, "projects/foo".
      * @param Job   $job          Required. The Job to be created.
      * @param array $optionalArgs {
      *                            Optional.
@@ -548,11 +546,11 @@ class JobServiceGapicClient
      * @param string $name Required. The resource name of the job to retrieve.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/jobs/1234".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/jobs/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -610,8 +608,7 @@ class JobServiceGapicClient
      *                            Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended to be provided for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
      *          If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]
      *          is provided, only the specified fields in
@@ -675,11 +672,11 @@ class JobServiceGapicClient
      * @param string $name Required. The resource name of the job to be deleted.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/jobs/1234".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/jobs/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -745,11 +742,9 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant under which the job is created.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      * @param string $filter Required. The filter string specifies the jobs to be enumerated.
      *
      * Supported operator: =, AND
@@ -757,16 +752,16 @@ class JobServiceGapicClient
      * The fields eligible for filtering are:
      *
      * * `companyName` (Required)
-     * * `requisitionId` (Optional)
-     * * `status` (Optional) Available values: OPEN, EXPIRED, ALL. Defaults to
+     * * `requisitionId`
+     * * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
      * OPEN if no value is specified.
      *
      * Sample Query:
      *
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz"
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * requisitionId = "req-1"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * status = "EXPIRED"
      * @param array $optionalArgs {
      *                            Optional.
@@ -781,7 +776,7 @@ class JobServiceGapicClient
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
      *     @type int $jobView
-     *          Optional. The desired job attributes returned for jobs in the
+     *          The desired job attributes returned for jobs in the
      *          search response. Defaults to
      *          [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL]
      *          if no value is specified.
@@ -845,11 +840,9 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant under which the job is created.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      * @param string $filter Required. The filter string specifies the jobs to be deleted.
      *
      * Supported operator: =, AND
@@ -859,7 +852,7 @@ class JobServiceGapicClient
      * * `companyName` (Required)
      * * `requisitionId` (Required)
      *
-     * Sample Query: companyName = "projects/api-test-project/companies/123" AND
+     * Sample Query: companyName = "projects/foo/companies/bar" AND
      * requisitionId = "req-1"
      * @param array $optionalArgs {
      *                            Optional.
@@ -933,11 +926,9 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant to search within.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      * @param RequestMetadata $requestMetadata Required. The meta information collected about the job searcher, used to
      *                                         improve the search quality of the service. The identifiers (such as
      *                                         `user_id`) are provided by users, and must be unique and consistent.
@@ -945,23 +936,22 @@ class JobServiceGapicClient
      *                                         Optional.
      *
      *     @type int $searchMode
-     *          Optional. Mode of a search.
+     *          Mode of a search.
      *
      *          Defaults to
      *          [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode}
      *     @type JobQuery $jobQuery
-     *          Optional. Query used to search against jobs, such as keyword, location
-     *          filters, etc.
+     *          Query used to search against jobs, such as keyword, location filters, etc.
      *     @type bool $enableBroadening
-     *          Optional. Controls whether to broaden the search when it produces sparse
-     *          results. Broadened queries append results to the end of the matching
-     *          results list.
+     *          Controls whether to broaden the search when it produces sparse results.
+     *          Broadened queries append results to the end of the matching results
+     *          list.
      *
      *          Defaults to false.
      *     @type bool $requirePreciseResultSize
-     *          Optional. Controls if the search job request requires the return of a
-     *          precise count of the first 300 results. Setting this to `true` ensures
+     *          Controls if the search job request requires the return of a precise
+     *          count of the first 300 results. Setting this to `true` ensures
      *          consistency in the number of results per page. Best practice is to set this
      *          value to true if a client allows users to jump directly to a
      *          non-sequential search results page.
@@ -970,8 +960,7 @@ class JobServiceGapicClient
      *
      *          Defaults to false.
      *     @type HistogramQuery[] $histogramQueries
-     *          Optional. An expression specifies a histogram request against matching
-     *          jobs.
+     *          An expression specifies a histogram request against matching jobs.
      *
      *          Expression syntax is an aggregation function call with histogram facets and
      *          other options.
@@ -1079,14 +1068,14 @@ class JobServiceGapicClient
      *          * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
      *            [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
      *     @type int $jobView
-     *          Optional. The desired job attributes returned for jobs in the search
-     *          response. Defaults to
+     *          The desired job attributes returned for jobs in the search response.
+     *          Defaults to
      *          [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL]
      *          if no value is specified.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\JobView}
      *     @type int $offset
-     *          Optional. An integer that specifies the current offset (that is, starting
-     *          result location, amongst the jobs deemed by the API as relevant) in search
+     *          An integer that specifies the current offset (that is, starting result
+     *          location, amongst the jobs deemed by the API as relevant) in search
      *          results. This field is only considered if
      *          [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
      *          unset.
@@ -1105,8 +1094,7 @@ class JobServiceGapicClient
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
      *     @type string $orderBy
-     *          Optional. The criteria determining how search results are sorted. Default
-     *          is
+     *          The criteria determining how search results are sorted. Default is
      *          `"relevance desc"`.
      *
      *          Supported options are:
@@ -1161,8 +1149,8 @@ class JobServiceGapicClient
      *            still applied unless explicitly disabled in
      *            [diversification_level][google.cloud.talent.v4beta1.SearchJobsRequest.diversification_level].
      *     @type int $diversificationLevel
-     *          Optional. Controls whether highly similar jobs are returned next to each
-     *          other in the search results. Jobs are identified as highly similar based on
+     *          Controls whether highly similar jobs are returned next to each other in
+     *          the search results. Jobs are identified as highly similar based on
      *          their titles, job categories, and locations. Highly similar results are
      *          clustered so that only one representative job of the cluster is
      *          displayed to the job seeker higher up in the results, with the other jobs
@@ -1173,10 +1161,10 @@ class JobServiceGapicClient
      *          if no value is specified.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel}
      *     @type CustomRankingInfo $customRankingInfo
-     *          Optional. Controls over how job documents get ranked on top of existing
-     *          relevance score (determined by API algorithm).
+     *          Controls over how job documents get ranked on top of existing relevance
+     *          score (determined by API algorithm).
      *     @type bool $disableKeywordMatch
-     *          Optional. Controls whether to disable exact keyword match on
+     *          Controls whether to disable exact keyword match on
      *          [Job.title][google.cloud.talent.v4beta1.Job.title],
      *          [Job.description][google.cloud.talent.v4beta1.Job.description],
      *          [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
@@ -1315,11 +1303,9 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant to search within.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      * @param RequestMetadata $requestMetadata Required. The meta information collected about the job searcher, used to
      *                                         improve the search quality of the service. The identifiers (such as
      *                                         `user_id`) are provided by users, and must be unique and consistent.
@@ -1327,23 +1313,22 @@ class JobServiceGapicClient
      *                                         Optional.
      *
      *     @type int $searchMode
-     *          Optional. Mode of a search.
+     *          Mode of a search.
      *
      *          Defaults to
      *          [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode}
      *     @type JobQuery $jobQuery
-     *          Optional. Query used to search against jobs, such as keyword, location
-     *          filters, etc.
+     *          Query used to search against jobs, such as keyword, location filters, etc.
      *     @type bool $enableBroadening
-     *          Optional. Controls whether to broaden the search when it produces sparse
-     *          results. Broadened queries append results to the end of the matching
-     *          results list.
+     *          Controls whether to broaden the search when it produces sparse results.
+     *          Broadened queries append results to the end of the matching results
+     *          list.
      *
      *          Defaults to false.
      *     @type bool $requirePreciseResultSize
-     *          Optional. Controls if the search job request requires the return of a
-     *          precise count of the first 300 results. Setting this to `true` ensures
+     *          Controls if the search job request requires the return of a precise
+     *          count of the first 300 results. Setting this to `true` ensures
      *          consistency in the number of results per page. Best practice is to set this
      *          value to true if a client allows users to jump directly to a
      *          non-sequential search results page.
@@ -1352,8 +1337,7 @@ class JobServiceGapicClient
      *
      *          Defaults to false.
      *     @type HistogramQuery[] $histogramQueries
-     *          Optional. An expression specifies a histogram request against matching
-     *          jobs.
+     *          An expression specifies a histogram request against matching jobs.
      *
      *          Expression syntax is an aggregation function call with histogram facets and
      *          other options.
@@ -1461,14 +1445,14 @@ class JobServiceGapicClient
      *          * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
      *            [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
      *     @type int $jobView
-     *          Optional. The desired job attributes returned for jobs in the search
-     *          response. Defaults to
+     *          The desired job attributes returned for jobs in the search response.
+     *          Defaults to
      *          [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL]
      *          if no value is specified.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\JobView}
      *     @type int $offset
-     *          Optional. An integer that specifies the current offset (that is, starting
-     *          result location, amongst the jobs deemed by the API as relevant) in search
+     *          An integer that specifies the current offset (that is, starting result
+     *          location, amongst the jobs deemed by the API as relevant) in search
      *          results. This field is only considered if
      *          [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
      *          unset.
@@ -1487,8 +1471,7 @@ class JobServiceGapicClient
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
      *     @type string $orderBy
-     *          Optional. The criteria determining how search results are sorted. Default
-     *          is
+     *          The criteria determining how search results are sorted. Default is
      *          `"relevance desc"`.
      *
      *          Supported options are:
@@ -1543,8 +1526,8 @@ class JobServiceGapicClient
      *            still applied unless explicitly disabled in
      *            [diversification_level][google.cloud.talent.v4beta1.SearchJobsRequest.diversification_level].
      *     @type int $diversificationLevel
-     *          Optional. Controls whether highly similar jobs are returned next to each
-     *          other in the search results. Jobs are identified as highly similar based on
+     *          Controls whether highly similar jobs are returned next to each other in
+     *          the search results. Jobs are identified as highly similar based on
      *          their titles, job categories, and locations. Highly similar results are
      *          clustered so that only one representative job of the cluster is
      *          displayed to the job seeker higher up in the results, with the other jobs
@@ -1555,10 +1538,10 @@ class JobServiceGapicClient
      *          if no value is specified.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel}
      *     @type CustomRankingInfo $customRankingInfo
-     *          Optional. Controls over how job documents get ranked on top of existing
-     *          relevance score (determined by API algorithm).
+     *          Controls over how job documents get ranked on top of existing relevance
+     *          score (determined by API algorithm).
      *     @type bool $disableKeywordMatch
-     *          Optional. Controls whether to disable exact keyword match on
+     *          Controls whether to disable exact keyword match on
      *          [Job.title][google.cloud.talent.v4beta1.Job.title],
      *          [Job.description][google.cloud.talent.v4beta1.Job.description],
      *          [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
@@ -1699,11 +1682,9 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant under which the job is created.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      * @param Job[] $jobs         Required. The jobs to be created.
      * @param array $optionalArgs {
      *                            Optional.
@@ -1786,18 +1767,16 @@ class JobServiceGapicClient
      *
      * @param string $parent Required. The resource name of the tenant under which the job is created.
      *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
-     * @param Job[] $jobs         Required. The jobs to be updated.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
+     * @param Job[] $jobs         The jobs to be updated.
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended to be provided for the best service
-     *          experience, also increase latency when checking status of batch operation.
+     *          Strongly recommended for the best service experience. Be aware that it will
+     *          also increase latency when checking the status of a batch operation.
      *
      *          If
      *          [update_mask][google.cloud.talent.v4beta1.BatchUpdateJobsRequest.update_mask]

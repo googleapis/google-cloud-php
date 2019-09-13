@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Resume extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Users can create a profile with only this field field, if
+     * Users can create a profile with only this field field, if
      * [resume_type][google.cloud.talent.v4beta1.Resume.resume_type] is
      * [HRXML][google.cloud.talent.v4beta1.Resume.ResumeType.HRXML]. For example,
      * the API parses this field and creates a profile with all structured fields
@@ -32,7 +32,7 @@ class Resume extends \Google\Protobuf\Internal\Message
      */
     private $structured_resume = '';
     /**
-     * Optional. The format of
+     * The format of
      * [structured_resume][google.cloud.talent.v4beta1.Resume.structured_resume].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Resume.ResumeType resume_type = 2;</code>
@@ -46,7 +46,7 @@ class Resume extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $structured_resume
-     *           Optional. Users can create a profile with only this field field, if
+     *           Users can create a profile with only this field field, if
      *           [resume_type][google.cloud.talent.v4beta1.Resume.resume_type] is
      *           [HRXML][google.cloud.talent.v4beta1.Resume.ResumeType.HRXML]. For example,
      *           the API parses this field and creates a profile with all structured fields
@@ -58,7 +58,7 @@ class Resume extends \Google\Protobuf\Internal\Message
      *           data from resumes is an Alpha feature and as such is not covered by any
      *           SLA.
      *     @type int $resume_type
-     *           Optional. The format of
+     *           The format of
      *           [structured_resume][google.cloud.talent.v4beta1.Resume.structured_resume].
      * }
      */
@@ -68,7 +68,7 @@ class Resume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Users can create a profile with only this field field, if
+     * Users can create a profile with only this field field, if
      * [resume_type][google.cloud.talent.v4beta1.Resume.resume_type] is
      * [HRXML][google.cloud.talent.v4beta1.Resume.ResumeType.HRXML]. For example,
      * the API parses this field and creates a profile with all structured fields
@@ -89,7 +89,7 @@ class Resume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Users can create a profile with only this field field, if
+     * Users can create a profile with only this field field, if
      * [resume_type][google.cloud.talent.v4beta1.Resume.resume_type] is
      * [HRXML][google.cloud.talent.v4beta1.Resume.ResumeType.HRXML]. For example,
      * the API parses this field and creates a profile with all structured fields
@@ -114,7 +114,7 @@ class Resume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The format of
+     * The format of
      * [structured_resume][google.cloud.talent.v4beta1.Resume.structured_resume].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Resume.ResumeType resume_type = 2;</code>
@@ -126,7 +126,7 @@ class Resume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The format of
+     * The format of
      * [structured_resume][google.cloud.talent.v4beta1.Resume.structured_resume].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Resume.ResumeType resume_type = 2;</code>

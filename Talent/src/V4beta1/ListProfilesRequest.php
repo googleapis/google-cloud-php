@@ -18,15 +18,30 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the tenant under which the profile is
      * created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. The token that specifies the current offset (that is, starting
-     * result).
+     * The filter string specifies the profiles to be enumerated.
+     * Supported operator: =, AND
+     * The field(s) eligible for filtering are:
+     * * `externalId`
+     * * `groupId`
+     * externalId and groupId cannot be specified at the same time. If both
+     * externalId and groupId are provided, the API will return a bad request
+     * error.
+     * Sample Query:
+     * * externalId = "externalId-1"
+     * * groupId = "groupId-1"
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     */
+    private $filter = '';
+    /**
+     * The token that specifies the current offset (that is, starting result).
      * Please set the value to
      * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
      * to continue the list.
@@ -35,15 +50,15 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. The maximum number of profiles to be returned, at most 100.
+     * The maximum number of profiles to be returned, at most 100.
      * Default is 100 unless a positive number smaller than 100 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A field mask to specify the profile fields to be listed in
-     * response. All fields are listed if it is unset.
+     * A field mask to specify the profile fields to be listed in response.
+     * All fields are listed if it is unset.
      * Valid values are:
      * * name
      *
@@ -60,20 +75,31 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the tenant under which the profile is
      *           created.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenants/foo".
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
+     *     @type string $filter
+     *           The filter string specifies the profiles to be enumerated.
+     *           Supported operator: =, AND
+     *           The field(s) eligible for filtering are:
+     *           * `externalId`
+     *           * `groupId`
+     *           externalId and groupId cannot be specified at the same time. If both
+     *           externalId and groupId are provided, the API will return a bad request
+     *           error.
+     *           Sample Query:
+     *           * externalId = "externalId-1"
+     *           * groupId = "groupId-1"
      *     @type string $page_token
-     *           Optional. The token that specifies the current offset (that is, starting
-     *           result).
+     *           The token that specifies the current offset (that is, starting result).
      *           Please set the value to
      *           [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
      *           to continue the list.
      *     @type int $page_size
-     *           Optional. The maximum number of profiles to be returned, at most 100.
+     *           The maximum number of profiles to be returned, at most 100.
      *           Default is 100 unless a positive number smaller than 100 is specified.
      *     @type \Google\Protobuf\FieldMask $read_mask
-     *           Optional. A field mask to specify the profile fields to be listed in
-     *           response. All fields are listed if it is unset.
+     *           A field mask to specify the profile fields to be listed in response.
+     *           All fields are listed if it is unset.
      *           Valid values are:
      *           * name
      * }
@@ -86,10 +112,10 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the tenant under which the profile is
      * created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -100,10 +126,10 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the tenant under which the profile is
      * created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -116,8 +142,53 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The token that specifies the current offset (that is, starting
-     * result).
+     * The filter string specifies the profiles to be enumerated.
+     * Supported operator: =, AND
+     * The field(s) eligible for filtering are:
+     * * `externalId`
+     * * `groupId`
+     * externalId and groupId cannot be specified at the same time. If both
+     * externalId and groupId are provided, the API will return a bad request
+     * error.
+     * Sample Query:
+     * * externalId = "externalId-1"
+     * * groupId = "groupId-1"
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * The filter string specifies the profiles to be enumerated.
+     * Supported operator: =, AND
+     * The field(s) eligible for filtering are:
+     * * `externalId`
+     * * `groupId`
+     * externalId and groupId cannot be specified at the same time. If both
+     * externalId and groupId are provided, the API will return a bad request
+     * error.
+     * Sample Query:
+     * * externalId = "externalId-1"
+     * * groupId = "groupId-1"
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The token that specifies the current offset (that is, starting result).
      * Please set the value to
      * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
      * to continue the list.
@@ -131,8 +202,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The token that specifies the current offset (that is, starting
-     * result).
+     * The token that specifies the current offset (that is, starting result).
      * Please set the value to
      * [ListProfilesResponse.next_page_token][google.cloud.talent.v4beta1.ListProfilesResponse.next_page_token]
      * to continue the list.
@@ -150,7 +220,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of profiles to be returned, at most 100.
+     * The maximum number of profiles to be returned, at most 100.
      * Default is 100 unless a positive number smaller than 100 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -162,7 +232,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of profiles to be returned, at most 100.
+     * The maximum number of profiles to be returned, at most 100.
      * Default is 100 unless a positive number smaller than 100 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -178,8 +248,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the profile fields to be listed in
-     * response. All fields are listed if it is unset.
+     * A field mask to specify the profile fields to be listed in response.
+     * All fields are listed if it is unset.
      * Valid values are:
      * * name
      *
@@ -192,8 +262,8 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the profile fields to be listed in
-     * response. All fields are listed if it is unset.
+     * A field mask to specify the profile fields to be listed in response.
+     * All fields are listed if it is unset.
      * Valid values are:
      * * name
      *

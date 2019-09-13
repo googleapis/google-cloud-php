@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Auto-complete parameters.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CompleteQueryRequest</code>
@@ -19,22 +18,22 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of tenant the completion is performed within.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * "projects/foo/tenant/bar".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
      * Required. The query used to generate suggestions.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string query = 2;</code>
+     * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $query = '';
     /**
-     * Optional. The list of languages of the query. This is
+     * The list of languages of the query. This is
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
@@ -64,29 +63,29 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. Completion result count.
      * The maximum allowed page size is 10.
      *
-     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. If provided, restricts completion to specified company.
+     * If provided, restricts completion to specified company.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      */
     private $company = '';
     /**
-     * Optional. The scope of the completion. The defaults is
+     * The scope of the completion. The defaults is
      * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
      */
     private $scope = 0;
     /**
-     * Optional. The completion topic. The default is
+     * The completion topic. The default is
      * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
@@ -102,14 +101,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Resource name of tenant the completion is performed within.
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenant/foo".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project".
+     *           "projects/foo/tenant/bar".
+     *           If tenant id is unspecified, the default tenant is used, for
+     *           example, "projects/foo".
      *     @type string $query
      *           Required. The query used to generate suggestions.
      *           The maximum number of allowed characters is 255.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           Optional. The list of languages of the query. This is
+     *           The list of languages of the query. This is
      *           the BCP-47 language code, such as "en-US" or "sr-Latn".
      *           For more information, see
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
@@ -135,17 +134,17 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. Completion result count.
      *           The maximum allowed page size is 10.
      *     @type string $company
-     *           Optional. If provided, restricts completion to specified company.
+     *           If provided, restricts completion to specified company.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *           example, "projects/api-test-project/tenants/foo/companies/bar".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project/companies/bar".
+     *           example, "projects/foo/tenants/bar/companies/baz".
+     *           If tenant id is unspecified, the default tenant is used, for
+     *           example, "projects/foo".
      *     @type int $scope
-     *           Optional. The scope of the completion. The defaults is
+     *           The scope of the completion. The defaults is
      *           [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *     @type int $type
-     *           Optional. The completion topic. The default is
+     *           The completion topic. The default is
      *           [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      * }
      */
@@ -157,11 +156,11 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of tenant the completion is performed within.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * "projects/foo/tenant/bar".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -172,11 +171,11 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of tenant the completion is performed within.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * "projects/foo/tenant/bar".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -192,7 +191,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. The query used to generate suggestions.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string query = 2;</code>
+     * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getQuery()
@@ -204,7 +203,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. The query used to generate suggestions.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string query = 2;</code>
+     * Generated from protobuf field <code>string query = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -217,7 +216,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of languages of the query. This is
+     * The list of languages of the query. This is
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
@@ -249,7 +248,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of languages of the query. This is
+     * The list of languages of the query. This is
      * the BCP-47 language code, such as "en-US" or "sr-Latn".
      * For more information, see
      * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
@@ -288,7 +287,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. Completion result count.
      * The maximum allowed page size is 10.
      *
-     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getPageSize()
@@ -300,7 +299,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. Completion result count.
      * The maximum allowed page size is 10.
      *
-     * Generated from protobuf field <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -313,12 +312,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If provided, restricts completion to specified company.
+     * If provided, restricts completion to specified company.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      * @return string
@@ -329,12 +328,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If provided, restricts completion to specified company.
+     * If provided, restricts completion to specified company.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      * @param string $var
@@ -349,7 +348,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The scope of the completion. The defaults is
+     * The scope of the completion. The defaults is
      * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
@@ -361,7 +360,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The scope of the completion. The defaults is
+     * The scope of the completion. The defaults is
      * [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope scope = 6;</code>
@@ -377,7 +376,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The completion topic. The default is
+     * The completion topic. The default is
      * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>
@@ -389,7 +388,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The completion topic. The default is
+     * The completion topic. The default is
      * [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType type = 7;</code>

@@ -18,11 +18,10 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the application to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -35,9 +34,8 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the application to be deleted.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     *           for example,
-     *           "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     *           For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      * }
      */
     public function __construct($data = NULL) {
@@ -48,11 +46,10 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the application to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -63,11 +60,10 @@ class DeleteApplicationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the application to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
