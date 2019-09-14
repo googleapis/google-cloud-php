@@ -75,18 +75,16 @@ use Google\Protobuf\GPBEmpty;
  * Service Description: Manages Products and ProductSets of reference images for use in product
  * search. It uses the following resource model:.
  *
- * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet]
- * resources, named `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way
- * to put different products into groups to limit identification.
+ * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named
+ * `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way to put different
+ * products into groups to limit identification.
  *
  * In parallel,
  *
- * - The API has a collection of [Product][google.cloud.vision.v1.Product]
- * resources, named
+ * - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named
  *   `projects/&#42;/locations/&#42;/products/*`
  *
- * - Each [Product][google.cloud.vision.v1.Product] has a collection of
- * [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
+ * - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
  *   `projects/&#42;/locations/&#42;/products/&#42;/referenceImages/*`
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -459,10 +457,10 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent The project in which the ProductSet should be created.
+     * @param string $parent Required. The project in which the ProductSet should be created.
      *
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param ProductSet $productSet   The ProductSet to create.
+     * @param ProductSet $productSet   Required. The ProductSet to create.
      * @param array      $optionalArgs {
      *                                 Optional.
      *
@@ -541,7 +539,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent The project from which ProductSets should be listed.
+     * @param string $parent Required. The project from which ProductSets should be listed.
      *
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param array $optionalArgs {
@@ -612,7 +610,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name Resource name of the ProductSet to get.
+     * @param string $name Required. Resource name of the ProductSet to get.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
@@ -672,7 +670,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param ProductSet $productSet   The ProductSet resource which replaces the one on the server.
+     * @param ProductSet $productSet   Required. The ProductSet resource which replaces the one on the server.
      * @param array      $optionalArgs {
      *                                 Optional.
      *
@@ -733,7 +731,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name Resource name of the ProductSet to delete.
+     * @param string $name Required. Resource name of the ProductSet to delete.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
@@ -792,11 +790,11 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent The project in which the Product should be created.
+     * @param string $parent Required. The project in which the Product should be created.
      *
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param Product $product      The product to create.
+     * @param Product $product      Required. The product to create.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -874,7 +872,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent The project OR ProductSet from which Products should be listed.
+     * @param string $parent Required. The project OR ProductSet from which Products should be listed.
      *
      * Format:
      * `projects/PROJECT_ID/locations/LOC_ID`
@@ -946,7 +944,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name Resource name of the Product to get.
+     * @param string $name Required. Resource name of the Product to get.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
@@ -1013,7 +1011,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param Product $product      The Product resource which replaces the one on the server.
+     * @param Product $product      Required. The Product resource which replaces the one on the server.
      *                              product.name is immutable.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -1077,7 +1075,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name Resource name of product to delete.
+     * @param string $name Required. Resource name of product to delete.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
@@ -1147,11 +1145,11 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent Resource name of the product in which to create the reference image.
+     * @param string $parent Required. Resource name of the product in which to create the reference image.
      *
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     * @param ReferenceImage $referenceImage The reference image to create.
+     * @param ReferenceImage $referenceImage Required. The reference image to create.
      *                                       If an image ID is specified, it is ignored.
      * @param array          $optionalArgs   {
      *                                       Optional.
@@ -1217,7 +1215,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name The resource name of the reference image to delete.
+     * @param string $name Required. The resource name of the reference image to delete.
      *
      * Format is:
      *
@@ -1290,7 +1288,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent Resource name of the product containing the reference images.
+     * @param string $parent Required. Resource name of the product containing the reference images.
      *
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
@@ -1362,7 +1360,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name The resource name of the ReferenceImage to get.
+     * @param string $name Required. The resource name of the ReferenceImage to get.
      *
      * Format is:
      *
@@ -1424,11 +1422,11 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name The resource name for the ProductSet to modify.
+     * @param string $name Required. The resource name for the ProductSet to modify.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param string $product The resource name for the Product to be added to this ProductSet.
+     * @param string $product Required. The resource name for the Product to be added to this ProductSet.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
@@ -1481,11 +1479,11 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name The resource name for the ProductSet to modify.
+     * @param string $name Required. The resource name for the ProductSet to modify.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param string $product The resource name for the Product to be removed from this ProductSet.
+     * @param string $product Required. The resource name for the Product to be removed from this ProductSet.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
@@ -1558,7 +1556,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $name The ProductSet resource for which to retrieve Products.
+     * @param string $name Required. The ProductSet resource for which to retrieve Products.
      *
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
@@ -1616,8 +1614,8 @@ class ProductSearchGapicClient
      * Asynchronous API that imports a list of reference images to specified
      * product sets based on a list of image information.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
-     * used to keep track of the progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
+     * progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      * `Operation.response` contains `ImportProductSetsResponse`. (results)
      *
@@ -1665,10 +1663,10 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent The project in which the ProductSets should be imported.
+     * @param string $parent Required. The project in which the ProductSets should be imported.
      *
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param ImportProductSetsInputConfig $inputConfig  The input content for the list of requests.
+     * @param ImportProductSetsInputConfig $inputConfig  Required. The input content for the list of requests.
      * @param array                        $optionalArgs {
      *                                                   Optional.
      *
@@ -1727,8 +1725,8 @@ class ProductSearchGapicClient
      * ProductSet, you must wait until the PurgeProducts operation has finished
      * for that ProductSet.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
-     * used to keep track of the progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
+     * progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      *
      * Sample code:
@@ -1768,7 +1766,7 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string $parent The project and location in which the Products should be deleted.
+     * @param string $parent Required. The project and location in which the Products should be deleted.
      *
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      * @param array $optionalArgs {

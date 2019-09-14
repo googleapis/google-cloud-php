@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of file annotation requests. Right now we support only one
+     * Required. The list of file annotation requests. Right now we support only one
      * AnnotateFileRequest in BatchAnnotateFilesRequest.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $requests;
     /**
@@ -43,7 +43,7 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Vision\V1\AnnotateFileRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
-     *           The list of file annotation requests. Right now we support only one
+     *           Required. The list of file annotation requests. Right now we support only one
      *           AnnotateFileRequest in BatchAnnotateFilesRequest.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
@@ -62,10 +62,10 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of file annotation requests. Right now we support only one
+     * Required. The list of file annotation requests. Right now we support only one
      * AnnotateFileRequest in BatchAnnotateFilesRequest.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRequests()
@@ -74,10 +74,10 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of file annotation requests. Right now we support only one
+     * Required. The list of file annotation requests. Right now we support only one
      * AnnotateFileRequest in BatchAnnotateFilesRequest.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\AnnotateFileRequest[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

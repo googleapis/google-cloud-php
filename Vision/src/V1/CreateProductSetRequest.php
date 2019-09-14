@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project in which the ProductSet should be created.
+     * Required. The project in which the ProductSet should be created.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The ProductSet to create.
+     * Required. The ProductSet to create.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $product_set = null;
     /**
@@ -45,10 +45,10 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project in which the ProductSet should be created.
+     *           Required. The project in which the ProductSet should be created.
      *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type \Google\Cloud\Vision\V1\ProductSet $product_set
-     *           The ProductSet to create.
+     *           Required. The ProductSet to create.
      *     @type string $product_set_id
      *           A user-supplied resource id for this ProductSet. If set, the server will
      *           attempt to use this value as the resource id. If it is already in use, an
@@ -62,10 +62,10 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which the ProductSet should be created.
+     * Required. The project in which the ProductSet should be created.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -74,10 +74,10 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which the ProductSet should be created.
+     * Required. The project in which the ProductSet should be created.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -90,9 +90,9 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ProductSet to create.
+     * Required. The ProductSet to create.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\ProductSet
      */
     public function getProductSet()
@@ -101,9 +101,9 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ProductSet to create.
+     * Required. The ProductSet to create.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\ProductSet $var
      * @return $this
      */

@@ -31,8 +31,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
     private $submit_time = null;
     /**
      * The time when the batch request is finished and
-     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
-     * set to true.
+     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to true.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
@@ -50,8 +49,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *           The time when the batch request was submitted to the server.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The time when the batch request is finished and
-     *           [google.longrunning.Operation.done][google.longrunning.Operation.done] is
-     *           set to true.
+     *           [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,8 +111,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time when the batch request is finished and
-     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
-     * set to true.
+     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to true.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
@@ -126,8 +123,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The time when the batch request is finished and
-     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is
-     * set to true.
+     * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to true.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ProductSet resource which replaces the one on the server.
+     * Required. The ProductSet resource which replaces the one on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $product_set = null;
     /**
@@ -38,7 +38,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Vision\V1\ProductSet $product_set
-     *           The ProductSet resource which replaces the one on the server.
+     *           Required. The ProductSet resource which replaces the one on the server.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The [FieldMask][google.protobuf.FieldMask] that specifies which fields to
      *           update.
@@ -52,9 +52,9 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ProductSet resource which replaces the one on the server.
+     * Required. The ProductSet resource which replaces the one on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\ProductSet
      */
     public function getProductSet()
@@ -63,9 +63,9 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ProductSet resource which replaces the one on the server.
+     * Required. The ProductSet resource which replaces the one on the server.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\ProductSet $var
      * @return $this
      */

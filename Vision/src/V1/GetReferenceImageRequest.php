@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetReferenceImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the ReferenceImage to get.
+     * Required. The resource name of the ReferenceImage to get.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -31,7 +31,7 @@ class GetReferenceImageRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the ReferenceImage to get.
+     *           Required. The resource name of the ReferenceImage to get.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      * }
@@ -42,11 +42,11 @@ class GetReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the ReferenceImage to get.
+     * Required. The resource name of the ReferenceImage to get.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -55,11 +55,11 @@ class GetReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the ReferenceImage to get.
+     * Required. The resource name of the ReferenceImage to get.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

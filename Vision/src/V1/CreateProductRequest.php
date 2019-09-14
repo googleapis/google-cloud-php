@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateProductRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project in which the Product should be created.
+     * Required. The project in which the Product should be created.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The product to create.
+     * Required. The product to create.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $product = null;
     /**
@@ -46,11 +46,11 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project in which the Product should be created.
+     *           Required. The project in which the Product should be created.
      *           Format is
      *           `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type \Google\Cloud\Vision\V1\Product $product
-     *           The product to create.
+     *           Required. The product to create.
      *     @type string $product_id
      *           A user-supplied resource id for this Product. If set, the server will
      *           attempt to use this value as the resource id. If it is already in use, an
@@ -64,11 +64,11 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which the Product should be created.
+     * Required. The project in which the Product should be created.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -77,11 +77,11 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which the Product should be created.
+     * Required. The project in which the Product should be created.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -94,9 +94,9 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The product to create.
+     * Required. The product to create.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\Product
      */
     public function getProduct()
@@ -105,9 +105,9 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The product to create.
+     * Required. The product to create.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\Product $var
      * @return $this
      */

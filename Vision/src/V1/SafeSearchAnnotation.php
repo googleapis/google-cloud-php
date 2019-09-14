@@ -54,6 +54,48 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood racy = 9;</code>
      */
     private $racy = 0;
+    /**
+     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float adult_confidence = 16;</code>
+     */
+    private $adult_confidence = 0.0;
+    /**
+     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float spoof_confidence = 18;</code>
+     */
+    private $spoof_confidence = 0.0;
+    /**
+     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float medical_confidence = 20;</code>
+     */
+    private $medical_confidence = 0.0;
+    /**
+     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float violence_confidence = 22;</code>
+     */
+    private $violence_confidence = 0.0;
+    /**
+     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
+     * confident.
+     *
+     * Generated from protobuf field <code>float racy_confidence = 24;</code>
+     */
+    private $racy_confidence = 0.0;
+    /**
+     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
+     * confident.
+     *
+     * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
+     */
+    private $nsfw_confidence = 0.0;
 
     /**
      * Constructor.
@@ -78,6 +120,24 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *           include (but is not limited to) skimpy or sheer clothing, strategically
      *           covered nudity, lewd or provocative poses, or close-ups of sensitive
      *           body areas.
+     *     @type float $adult_confidence
+     *           Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
+     *           very confident.
+     *     @type float $spoof_confidence
+     *           Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
+     *           very confident.
+     *     @type float $medical_confidence
+     *           Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
+     *           very confident.
+     *     @type float $violence_confidence
+     *           Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
+     *           very confident.
+     *     @type float $racy_confidence
+     *           Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
+     *           confident.
+     *     @type float $nsfw_confidence
+     *           Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
+     *           confident.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +285,174 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Vision\V1\Likelihood::class);
         $this->racy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float adult_confidence = 16;</code>
+     * @return float
+     */
+    public function getAdultConfidence()
+    {
+        return $this->adult_confidence;
+    }
+
+    /**
+     * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float adult_confidence = 16;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setAdultConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->adult_confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float spoof_confidence = 18;</code>
+     * @return float
+     */
+    public function getSpoofConfidence()
+    {
+        return $this->spoof_confidence;
+    }
+
+    /**
+     * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float spoof_confidence = 18;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSpoofConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->spoof_confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float medical_confidence = 20;</code>
+     * @return float
+     */
+    public function getMedicalConfidence()
+    {
+        return $this->medical_confidence;
+    }
+
+    /**
+     * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float medical_confidence = 20;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMedicalConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->medical_confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float violence_confidence = 22;</code>
+     * @return float
+     */
+    public function getViolenceConfidence()
+    {
+        return $this->violence_confidence;
+    }
+
+    /**
+     * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
+     * very confident.
+     *
+     * Generated from protobuf field <code>float violence_confidence = 22;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setViolenceConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->violence_confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
+     * confident.
+     *
+     * Generated from protobuf field <code>float racy_confidence = 24;</code>
+     * @return float
+     */
+    public function getRacyConfidence()
+    {
+        return $this->racy_confidence;
+    }
+
+    /**
+     * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
+     * confident.
+     *
+     * Generated from protobuf field <code>float racy_confidence = 24;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setRacyConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->racy_confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
+     * confident.
+     *
+     * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
+     * @return float
+     */
+    public function getNsfwConfidence()
+    {
+        return $this->nsfw_confidence;
+    }
+
+    /**
+     * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
+     * confident.
+     *
+     * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setNsfwConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->nsfw_confidence = $var;
 
         return $this;
     }
