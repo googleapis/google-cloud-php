@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.111.1
+
+<details><summary>google/cloud-bigquery 1.12.1</summary>
+
+
+
+### Bug Fixes
+
+* Fix incorrect return value in LoadJobConfiguration ([#2327](https://www.github.com/googleapis/google-cloud-php/issues/2327)) ([3453a5a](https://www.github.com/googleapis/google-cloud-php/commit/3453a5a))
+
+</details>
+
 ## 0.111.0
 
 <details><summary>google/cloud-automl 0.5.0</summary>
