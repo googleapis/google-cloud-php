@@ -184,5 +184,7 @@ class ExtractJobConfiguration implements JobConfigurationInterface
     public function useAvroLogicalTypes($useAvroLogicalTypes)
     {
         $this->config['configuration']['extract']['useAvroLogicalTypes'] = $useAvroLogicalTypes;
+
+        return $this;
     }
 }
