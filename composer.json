@@ -52,7 +52,7 @@
         "ramsey/uuid": "~3",
         "google/gax": "^1.1",
         "google/common-protos": "^1.0",
-        "google/auth": "^1.5.1",
+        "google/auth": "^1.6",
         "google/crc32": "^0.1.0"
     },
     "require-dev": {
