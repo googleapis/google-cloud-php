@@ -74,7 +74,8 @@ class ExtractJobConfigurationTest extends TestCase
         ];
         $this->expectedConfig['configuration']['extract'] = $extract
             + $this->expectedConfig['configuration']['extract'];
-        $this->config
+
+        $config = $this->config
             ->compression($extract['compression'])
             ->destinationFormat($extract['destinationFormat'])
             ->destinationUris($extract['destinationUris'])
@@ -83,6 +84,7 @@ class ExtractJobConfigurationTest extends TestCase
             ->sourceTable($sourceTable->reveal())
             ->useAvroLogicalTypes($extract['useAvroLogicalTypes']);
 
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
         $this->assertEquals(
             $this->expectedConfig,
             $this->config->toArray()
