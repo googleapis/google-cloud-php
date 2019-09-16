@@ -97,7 +97,7 @@ class LoadJobConfigurationTest extends TestCase
         $this->expectedConfig['configuration']['load'] = $load
             + $this->expectedConfig['configuration']['load'];
 
-        $this->assertInstanceOf(LoadJobConfiguration::class, $this->config
+        $config = $this->config
             ->allowJaggedRows($load['allowJaggedRows'])
             ->allowQuotedNewlines($load['allowQuotedNewlines'])
             ->autodetect($load['autodetect'])
@@ -120,7 +120,9 @@ class LoadJobConfigurationTest extends TestCase
             ->sourceUris($load['sourceUris'])
             ->timePartitioning($load['timePartitioning'])
             ->writeDisposition($load['writeDisposition'])
-            ->useAvroLogicalTypes($load['useAvroLogicalTypes']));
+            ->useAvroLogicalTypes($load['useAvroLogicalTypes']);
+
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
 
         $this->assertEquals(
             $this->expectedConfig + ['data' => $data],
