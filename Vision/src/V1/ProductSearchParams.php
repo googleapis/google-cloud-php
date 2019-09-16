@@ -23,8 +23,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      */
     private $bounding_poly = null;
     /**
-     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     * be searched for similar images.
+     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
@@ -66,8 +65,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      *           The bounding polygon around the area of interest in the image.
      *           Optional. If it is not specified, system discretion will be applied.
      *     @type string $product_set
-     *           The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     *           be searched for similar images.
+     *           The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $product_categories
@@ -122,8 +120,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     * be searched for similar images.
+     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
@@ -136,8 +133,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     * be searched for similar images.
+     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *

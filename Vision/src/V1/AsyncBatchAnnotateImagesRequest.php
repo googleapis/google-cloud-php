@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $requests;
     /**
      * Required. The desired output location and metadata (e.g. format).
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
     /**
@@ -48,7 +48,7 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Vision\V1\AnnotateImageRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
-     *           Individual image annotation requests for this batch.
+     *           Required. Individual image annotation requests for this batch.
      *     @type \Google\Cloud\Vision\V1\OutputConfig $output_config
      *           Required. The desired output location and metadata (e.g. format).
      *     @type string $parent
@@ -68,9 +68,9 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRequests()
@@ -79,9 +79,9 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\AnnotateImageRequest[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -96,7 +96,7 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and metadata (e.g. format).
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\OutputConfig
      */
     public function getOutputConfig()
@@ -107,7 +107,7 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and metadata (e.g. format).
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\OutputConfig $var
      * @return $this
      */

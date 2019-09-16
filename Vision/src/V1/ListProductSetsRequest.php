@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project from which ProductSets should be listed.
+     * Required. The project from which ProductSets should be listed.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -42,7 +42,7 @@ class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project from which ProductSets should be listed.
+     *           Required. The project from which ProductSets should be listed.
      *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type int $page_size
      *           The maximum number of items to return. Default 10, maximum 100.
@@ -56,10 +56,10 @@ class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project from which ProductSets should be listed.
+     * Required. The project from which ProductSets should be listed.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -68,10 +68,10 @@ class ListProductSetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project from which ProductSets should be listed.
+     * Required. The project from which ProductSets should be listed.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

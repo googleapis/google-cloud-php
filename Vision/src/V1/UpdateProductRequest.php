@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateProductRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Product resource which replaces the one on the server.
+     * Required. The Product resource which replaces the one on the server.
      * product.name is immutable.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $product = null;
     /**
@@ -40,7 +40,7 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Vision\V1\Product $product
-     *           The Product resource which replaces the one on the server.
+     *           Required. The Product resource which replaces the one on the server.
      *           product.name is immutable.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The [FieldMask][google.protobuf.FieldMask] that specifies which fields
@@ -56,10 +56,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Product resource which replaces the one on the server.
+     * Required. The Product resource which replaces the one on the server.
      * product.name is immutable.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\Product
      */
     public function getProduct()
@@ -68,10 +68,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Product resource which replaces the one on the server.
+     * Required. The Product resource which replaces the one on the server.
      * product.name is immutable.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\Product $var
      * @return $this
      */

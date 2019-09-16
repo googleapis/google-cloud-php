@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project and location in which the Products should be deleted.
+     * Required. The project and location in which the Products should be deleted.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -43,7 +43,7 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
      *           If delete_orphan_products is true, all Products that are not in any
      *           ProductSet will be deleted.
      *     @type string $parent
-     *           The project and location in which the Products should be deleted.
+     *           Required. The project and location in which the Products should be deleted.
      *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type bool $force
      *           The default value is false. Override this value to true to actually perform
@@ -110,10 +110,10 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and location in which the Products should be deleted.
+     * Required. The project and location in which the Products should be deleted.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -122,10 +122,10 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and location in which the Products should be deleted.
+     * Required. The project and location in which the Products should be deleted.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

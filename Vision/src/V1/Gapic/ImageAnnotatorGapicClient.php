@@ -235,7 +235,7 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     Individual image annotation requests for this batch.
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
      * @param array                  $optionalArgs {
      *                                             Optional.
      *
@@ -307,7 +307,7 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateFileRequest[] $requests     The list of file annotation requests. Right now we support only one
+     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only one
      *                                            AnnotateFileRequest in BatchAnnotateFilesRequest.
      * @param array                 $optionalArgs {
      *                                            Optional.
@@ -411,7 +411,7 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     Individual image annotation requests for this batch.
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
      * @param OutputConfig           $outputConfig Required. The desired output location and metadata (e.g. format).
      * @param array                  $optionalArgs {
      *                                             Optional.
@@ -512,7 +512,7 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AsyncAnnotateFileRequest[] $requests     Individual async file annotation requests for this batch.
+     * @param AsyncAnnotateFileRequest[] $requests     Required. Individual async file annotation requests for this batch.
      * @param array                      $optionalArgs {
      *                                                 Optional.
      *
