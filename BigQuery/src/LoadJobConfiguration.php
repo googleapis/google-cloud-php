@@ -574,5 +574,7 @@ class LoadJobConfiguration implements JobConfigurationInterface
     public function useAvroLogicalTypes($useAvroLogicalTypes)
     {
         $this->config['configuration']['load']['useAvroLogicalTypes'] = $useAvroLogicalTypes;
+        
+        return $this;
     }
 }
