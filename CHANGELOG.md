@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.112.0
+
+<details><summary>google/cloud-bigquery 1.12.1</summary>
+
+
+
+### Bug Fixes
+
+* Fix fluent setter in ExtractJobConfiguration ([#2328](https://www.github.com/googleapis/google-cloud-php/issues/2328)) ([29e58d4](https://www.github.com/googleapis/google-cloud-php/commit/29e58d4))
+* Fix incorrect return value in LoadJobConfiguration ([#2327](https://www.github.com/googleapis/google-cloud-php/issues/2327)) ([3453a5a](https://www.github.com/googleapis/google-cloud-php/commit/3453a5a))
+
+</details>
+
+<details><summary>google/cloud-vision 0.24.0</summary>
+
+
+
+### Features
+
+* Add safe search annotation confidence scores. ([#2326](https://www.github.com/googleapis/google-cloud-php/issues/2326)) ([c32f604](https://www.github.com/googleapis/google-cloud-php/commit/c32f604))
+
+</details>
+
 ## 0.111.0
 
 <details><summary>google/cloud-automl 0.5.0</summary>
