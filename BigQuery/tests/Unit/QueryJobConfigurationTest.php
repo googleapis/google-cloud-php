@@ -132,7 +132,6 @@ class QueryJobConfigurationTest extends TestCase
             ->writeDisposition($query['writeDisposition']);
 
         $this->assertInstanceOf(QueryJobConfiguration::class, $config);
-
         $this->assertEquals($this->expectedConfig, $this->config->toArray());
     }
 

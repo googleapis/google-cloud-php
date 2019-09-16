@@ -85,7 +85,6 @@ class ExtractJobConfigurationTest extends TestCase
             ->useAvroLogicalTypes($extract['useAvroLogicalTypes']);
 
         $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
-
         $this->assertEquals(
             $this->expectedConfig,
             $this->config->toArray()

@@ -123,7 +123,6 @@ class LoadJobConfigurationTest extends TestCase
             ->useAvroLogicalTypes($load['useAvroLogicalTypes']);
 
         $this->assertInstanceOf(LoadJobConfiguration::class, $config);
-
         $this->assertEquals(
             $this->expectedConfig + ['data' => $data],
             $this->config->toArray()
