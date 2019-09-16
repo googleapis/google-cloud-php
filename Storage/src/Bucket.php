@@ -304,6 +304,118 @@ class Bucket
     }
 
     /**
+     * Upload all files from folder.
+     *
+     * Example:
+     * ```
+     * $objects = $bucket->uploadFolder(__DIR__);
+     * ```
+     *
+     * ```
+     * // Upload files in a resumable fashion with content
+     * // language set for the each object.
+     * $options = [
+     *     'resumable' => true,
+     *     'metadata' => [
+     *         'contentLanguage' => 'en'
+     *     ]
+     * ];
+     *
+     * $objects = $bucket->uploadFolder(__DIR__, $options);
+     * ```
+     *```
+     * // Upload folder objects with a customer-supplied encryption key.
+     * $key = base64_encode(openssl_random_pseudo_bytes(32)); // Make sure you remember your key.
+     *
+     * $objects = $bucket->uploadFolder(__DIR__, ['encryptionKey' => $key]);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
+     * uploads.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     * @see https://cloud.google.com/storage/docs/encryption#customer-supplied Customer-supplied encryption keys.
+     * @see https://github.com/google/php-crc32 crc32c PHP extension for hardware-accelerated validation hashes.
+     *
+
+     * @param string $folder The folder, which files must be uploaded
+     * @param array $options [optional] {
+     *     Configuration options for each object.
+     *
+     *     @type bool $resumable Indicates whether or not the upload will be
+     *           performed in a resumable fashion.
+     *     @type bool|string $validate Indicates whether or not validation will
+     *           be applied using md5 or crc32c hashing functionality. If
+     *           enabled, and the calculated hash does not match with those on the
+     *           upstream server, the upload will be rejected. Available options
+     *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
+     *           crc32c will be chosen with respect to your platform. If false, no
+     *           validation hash will be sent. Choose either `md5` or `crc32` to
+     *           force a hash method regardless of performance implications. In
+     *           PHP (v. <7.4), performance will be very
+     *           adversely impacted by using crc32c unless you install the
+     *           `crc32c` PHP extension. **Defaults to** `true`.
+     *     @type int $chunkSize If provided the upload will be done in chunks.
+     *           The size must be in multiples of 262144 bytes. With chunking
+     *           you have increased reliability at the risk of higher overhead.
+     *           It is recommended to not use chunking.
+     *     @type callable $uploadProgressCallback If provided together with
+     *           $resumable == true the given callable function/method will be
+     *           called after each successfully uploaded chunk. The callable
+     *           function/method will receive the number of uploaded bytes
+     *           after each uploaded chunk as a parameter to this callable.
+     *           It's useful if you want to create a progress bar using
+     *           resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called after the successful for each file upload.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
+     *     @type array $metadata The full list of available options are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. If you would prefer to manage encryption
+     *           utilizing the Cloud Key Management Service (KMS) please use the
+     *           `$metadata.kmsKeyName` setting. Please note, if using KMS, the
+     *           key ring must use the same location as the bucket.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
+     * }
+     * @return array StorageObject for each file
+     */
+    public function uploadFolder($folder, array $options = [])
+    {
+        $storages=[];
+        $handle=null;
+        try
+        {
+            if ($handle = opendir($folder))
+            {
+                while (false !== ($name = readdir($handle)))
+                {
+                    if ($name != "." && $name != ".." && is_file($filedest=$folder.DIRECTORY_SEPARATOR.$name)) 
+                    {
+                        $storages[]=$this->upload(
+                            fopen($filedest, 'r'),
+                            ['name'=>$name]+$options
+                        );
+                    }
+                }
+
+            }
+        }
+        finally
+        {
+            closedir($handle);
+        }
+        return $storages;
+    }
+
+    /**
      * Get a resumable uploader which can provide greater control over the
      * upload process. This is recommended when dealing with large files where
      * reliability is key.

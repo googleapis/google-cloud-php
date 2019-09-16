@@ -118,6 +118,47 @@ class BucketTest extends TestCase
         );
     }
 
+    public function testUploadFolderData()
+    {
+        $i=0;
+        while(file_exists( $dir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'google'.$i )){
+            $i++;
+        }
+        mkdir($dir, 0777);
+        tempnam($dir, 'f0');
+        tempnam($dir, 'f1');
+
+        $files=[];
+        if ($handle = opendir($dir))
+        {
+            while (false !== ($name = readdir($handle)))
+            {
+                if ($name != "." && $name != ".." && is_file($dir.DIRECTORY_SEPARATOR.$name))
+                {
+                    $files[$name]=[
+                        'name' => $name,
+                        'generation' => 123
+                    ];
+                }
+            }
+            closedir($handle);
+        }
+        $this->resumableUploader->upload(Argument::any())->willReturn(current($files));
+
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $bucket = $this->getBucket();
+
+        $uploadArray=$bucket->uploadFolder($dir, []);
+        $this->assertTrue(is_array($uploadArray));
+        $this->assertEquals(count($files), count($uploadArray));
+
+        foreach(array_keys($files) as $file)
+        {
+            unlink($dir.DIRECTORY_SEPARATOR.$file);
+        }
+        rmdir($dir);
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
