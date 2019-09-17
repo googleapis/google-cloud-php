@@ -121,7 +121,7 @@ class BucketTest extends TestCase
     public function testUploadFolderData()
     {
         $i=0;
-        while(file_exists( $dir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'google'.$i ))
+        while (file_exists($dir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'google'.$i))
         {
             $i++;
         }
