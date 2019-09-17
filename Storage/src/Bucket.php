@@ -405,7 +405,6 @@ class Bucket
                         );
                     }
                 }
-
             }
         }
         finally
