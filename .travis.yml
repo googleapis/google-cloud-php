@@ -2,14 +2,6 @@ language: php
 
 jobs:
   include:
-    - php: hhvm-3.24
-      fast_finish: true
-      install:
-        - composer self-update
-        - travis_retry composer install
-        - ./dev/google-cloud credentials
-        - composer --no-interaction --dev remove google/protobuf google/gax
-
     - stage: "Push Docs"
       php: 7.2
       install:
@@ -37,7 +29,6 @@ jobs:
           on_failure: always
 
 stages:
-  - test
   - name: "Push Docs"
     if: ((type != pull_request) AND (branch = master)) OR (tag IS present)
   - name: "Split Components"
