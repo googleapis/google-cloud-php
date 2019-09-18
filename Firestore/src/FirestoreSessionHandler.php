@@ -18,6 +18,7 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use SessionHandlerInterface;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * Custom session handler backed by Cloud Firestore.
@@ -62,11 +63,10 @@ use SessionHandlerInterface;
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
- * use Google\Cloud\Firestore\FirestoreSessionHandler;
  *
  * $firestore = new FirestoreClient();
  *
- * $handler = new FirestoreSessionHandler($firestore);
+ * $handler = $firestore->sessionHandler();
  *
  * session_set_save_handler($handler, true);
  * session_save_path('sessions');
@@ -80,11 +80,10 @@ use SessionHandlerInterface;
  * ```
  * // Session handler with error handling:
  * use Google\Cloud\Firestore\FirestoreClient;
- * use Google\Cloud\Firestore\FirestoreSessionHandler;
  *
  * $firestore = new FirestoreClient();
  *
- * $handler = new FirestoreSessionHandler($firestore);
+ * $handler = $firestore->sessionHandler();
  * session_set_save_handler($handler, true);
  * session_save_path('sessions');
  * session_start();
@@ -113,29 +112,62 @@ use SessionHandlerInterface;
  */
 class FirestoreSessionHandler implements SessionHandlerInterface
 {
-    /* @var int */
-    private $gcLimit;
-    /* @var FirestoreClient */
-    private $firestore;
-    /* @var CollectionReference */
-    private $collection;
+    /**
+     * @var ConnectionInterface
+     */
+    private $connection;
+    /**
+     * @var ValueMapper
+     */
+    private $valueMapper;
+    /**
+     * @var string
+     */
+    private $database;
+    /**
+     * @var array
+     */
+    private $options;
+    /**
+     * @var string
+     */
+    private $savePath;
+    /**
+     * @var string
+     */
+    private $sessionName;
+    /**
+     * @var Transaction
+     */
+    private $transaction;
 
     /**
      * Create a custom session handler backed by Cloud Firestore.
      *
-     * @param FirestoreClient $firestore Firestore client.
-     * @param int $gcLimit [optional] The number of entities to delete in the
-     *        garbage collection. Values larger than 1000 will be limited to
-     *        1000. **Defaults to** `0`, indicating garbage collection is
-     *        disabled by default.
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param string $database The current database
+     * @param array $options [optional]
      */
     public function __construct(
-        FirestoreClient $firestore,
-        $gcLimit = 0
+        ConnectionInterface $connection,
+        ValueMapper $valueMapper,
+        $database,
+        array $options = []
     ) {
-        $this->firestore = $firestore;
-        // Cut down to 1000
-        $this->gcLimit = min($gcLimit, 1000);
+        $this->connection = $connection;
+        $this->valueMapper = $valueMapper;
+        $this->database = $database;
+        $this->options = $options + [
+            'begin' => [],
+            'commit' => [],
+            'rollback' => [],
+            'delete' => [],
+            'gcLimit' => 0,
+        ];
+
+        // Cut down gcLimit to 1000
+        $this->options['gcLimit'] = min($this->options['gcLimit'], 1000);
     }
 
     /**
@@ -149,8 +181,20 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function open($savePath, $sessionName)
     {
+        $this->savePath = $savePath;
         $this->sessionName = $sessionName;
-        $this->collection = $this->firestore->collection($savePath);
+
+        $beginTransaction = $this->connection->beginTransaction([
+            'database' => $this->database,
+        ] + $this->options['begin']);
+
+        $this->transaction = new Transaction(
+            $this->connection,
+            $this->valueMapper,
+            $this->database,
+            $beginTransaction['transaction']
+        );
+
         return true;
     }
 
@@ -171,8 +215,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function read($id)
     {
         try {
-            $docRef = $this->collection->document($this->formatId($id));
-            $snapshot = $docRef->snapshot();
+            $snapshot = $this->transaction->snapshot($this->docRef($id));
             if ($snapshot->exists() && isset($snapshot['data'])) {
                 return $snapshot->get('data');
             }
@@ -195,15 +238,11 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function write($id, $data)
     {
         try {
-            $docRef = $this->collection->document($this->formatId($id));
-            $this->firestore->runTransaction(
-                function (Transaction $transaction) use ($docRef, $data) {
-                    $transaction->set($docRef, [
-                        'data' => $data,
-                        't' => time()
-                    ]);
-                }
-            );
+            $this->transaction->set($this->docRef($id), [
+                'data' => $data,
+                't' => time()
+            ]);
+            $this->commitTransaction();
         } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore upsert failed: %s', $e->getMessage()),
@@ -223,7 +262,11 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function destroy($id)
     {
         try {
-            $this->collection->document($this->formatId($id))->delete();
+            $this->transaction->delete(
+                $this->docRef($id),
+                $this->options['delete']
+            );
+            $this->commitTransaction();
         } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore delete failed: %s', $e->getMessage()),
@@ -247,13 +290,20 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             return true;
         }
         try {
-            $query = $this->collection
+            $query = $this->collectionRef()
                 ->limit($this->gcLimit)
                 ->orderBy('t')
-                ->where('t', '<', time() - $maxlifetime);
-            foreach ($query->documents() as $snapshot) {
-                $snapshot->reference()->delete();
+                ->where('t', '<', time() - $maxlifetime)
+                ->where('id', '>=', $this->sessionName . ':')
+                ->where('id', '<', $this->sessionName . chr(ord(':') + 1));
+            $querySnapshot = $this->transaction->runQuery($query);
+            foreach ($querySnapshot as $snapshot) {
+                $this->transaction->delete(
+                    $snapshot->reference(),
+                    $this->options['delete']
+                );
             }
+            $this->commitTransaction();
         } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Session gc failed: %s', $e->getMessage()),
@@ -265,14 +315,61 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     }
 
     /**
-     * Format the Firebase document ID from the PHP session ID and session name.
-     * ex: PHPSESSID:abcdef
+     * Returns a Firestore document reference for the provided PHP session ID.
      *
      * @param string $id Identifier used for the session
-     * @return string
+     * @return DocumentReference
      */
-    private function formatId($id)
+    private function docRef($id)
     {
-        return sprintf('%s:%s', $this->sessionName, $id);
+        // The Firebase document name is derived from the session ID and session
+        // path, ex: "PHPSESSID:abcdef".
+        $collectionRef = $this->collectionRef();
+        $parent = $collectionRef->name();
+        $name = sprintf('%s/%s:%s', $parent, $this->sessionName, $id);
+        return new DocumentReference(
+            $this->connection,
+            $this->valueMapper,
+            $collectionRef,
+            $name
+        );
+    }
+
+    /**
+     * Returns a Firestore collection reference for the provided PHP session ID.
+     *
+     * @return CollectionReference
+     */
+    private function collectionRef()
+    {
+        // The Firebase collection path is derived from the save path.
+        $name = sprintf('%s/documents/%s', $this->database, $this->savePath);
+        return new CollectionReference(
+            $this->connection,
+            $this->valueMapper,
+            $name
+        );
+    }
+
+    /**
+     * Commit a transaction if changes exist, otherwise rollback the
+     * transaction. Also rollback if an exception is thrown.
+     *
+     * @throws \Exception
+     */
+    private function commitTransaction()
+    {
+        try {
+            if (!$this->transaction->writer()->isEmpty()) {
+                $this->transaction->writer()->commit($this->options['commit']);
+            } else {
+                // trigger rollback if no writes exist.
+                $this->transaction->writer()->rollback($this->options['rollback']);
+            }
+        } catch (\Exception $e) {
+            $this->transaction->writer()->rollback($this->options['rollback']);
+
+            throw $e;
+        }
     }
 }

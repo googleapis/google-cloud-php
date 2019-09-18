@@ -443,7 +443,7 @@ class FirestoreClient
             'maxRetries' => self::MAX_RETRIES,
             'begin' => [],
             'commit' => [],
-            'rollback' => []
+            'rollback' => [],
         ];
 
         $retryableErrors = [
@@ -572,5 +572,42 @@ class FirestoreClient
     public function fieldPath(array $fieldNames)
     {
         return new FieldPath($fieldNames);
+    }
+
+    /**
+     * Returns a FirestoreSessionHandler.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Firestore\FirestoreClient;
+     *
+     * $firestore = new FirestoreClient(['projectId' => $projectId]);
+     *
+     * $handler = $firestore->sessionHandler();
+     * session_set_save_handler($handler, true);
+     * session_save_path('sessions');
+     * session_start();
+     * ```
+     *
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type int $gcLimit [optional] The number of entities to delete in the
+     *        garbage collection. Values larger than 1000 will be limited to
+     *        1000. **Defaults to** `0`, indicating garbage collection is
+     *        disabled by default.
+     * @return FirestoreSessionHandler
+     */
+    public function sessionHandler(array $options = [])
+    {
+        return new FirestoreSessionHandler(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseName(
+                $this->projectId,
+                $this->database
+            ),
+            $options
+        );
     }
 }

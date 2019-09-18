@@ -35,7 +35,7 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         $content = 'foo';
         $storedValue = 'name|' . serialize($content);
 
-        $handler = new FirestoreSessionHandler($client);
+        $handler = $client->sessionHandler();
 
         session_set_save_handler($handler, true);
         session_save_path($namespace);
@@ -50,7 +50,7 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         $hasDocument = false;
         $query = $client->collection($namespace);
         foreach ($query->documents() as $snapshot) {
-            self::$deletionQueue->add($snapshot->reference());
+            self::$localDeletionQueue->add($snapshot->reference());
             if (!$hasDocument) {
                 $hasDocument = $snapshot['data'] === $storedValue;
             }

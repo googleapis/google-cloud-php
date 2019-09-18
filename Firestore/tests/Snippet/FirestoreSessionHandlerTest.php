@@ -39,24 +39,19 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-
-        // Since the tests in this class must run in isolation, they won't be
-        // recognized as having been covered, and will cause a CI error.
-        // We can call `snippetFromClass` in the parent process to mark the
-        // snippets as having been covered.
-        self::snippetFromClass(FirestoreSessionHandler::class);
-        self::snippetFromClass(FirestoreSessionHandler::class, 1);
-    }
-
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(FirestoreClient::class);
+
+        // Since the tests in this class must run in isolation, they won't be
+        // recognized as having been covered, and will cause a CI error.
+        // We can call `snippetFromClass` in the parent process to mark the
+        // snippets as having been covered.
+        $this->snippetFromClass(FirestoreSessionHandler::class);
+        $this->snippetFromClass(FirestoreSessionHandler::class, 1);
     }
 
     public function testClass()
@@ -137,5 +132,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();
+
+        $this->assertEquals('Bob', $res->output());
     }
 }
