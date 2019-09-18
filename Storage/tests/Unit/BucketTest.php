@@ -121,8 +121,7 @@ class BucketTest extends TestCase
     public function testUploadFolderData()
     {
         $i=0;
-        while (file_exists($dir = sys_get_temp_dir().DIRECTORY_SEPARATOR.'google'.$i))
-        {
+        while (file_exists($dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'google' . $i)) {
             $i++;
         }
         mkdir($dir, 0777);
@@ -130,12 +129,9 @@ class BucketTest extends TestCase
         tempnam($dir, 'f1');
 
         $files=[];
-        if ($handle = opendir($dir))
-        {
-            while (false !== ($name = readdir($handle)))
-            {
-                if ($name != "." && $name != ".." && is_file($dir.DIRECTORY_SEPARATOR.$name))
-                {
+        if ($handle = opendir($dir)) {
+            while (false !== ($name = readdir($handle))) {
+                if ($name != "." && $name != ".." && is_file($dir . DIRECTORY_SEPARATOR . $name)) {
                     $files[$name]=[
                         'name' => $name,
                         'generation' => 123
@@ -153,9 +149,8 @@ class BucketTest extends TestCase
         $this->assertTrue(is_array($uploadArray));
         $this->assertEquals(count($files), count($uploadArray));
 
-        foreach(array_keys($files) as $file)
-        {
-            unlink($dir.DIRECTORY_SEPARATOR.$file);
+        foreach (array_keys($files) as $file) {
+            unlink($dir . DIRECTORY_SEPARATOR . $file);
         }
         rmdir($dir);
     }

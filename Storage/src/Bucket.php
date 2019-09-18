@@ -391,14 +391,10 @@ class Bucket
     {
         $storages=[];
         $handle=null;
-        try
-        {
-            if ($handle = opendir($folder))
-            {
-                while (false !== ($name = readdir($handle)))
-                {
-                    if ($name != "." && $name != ".." && is_file($filedest=$folder.DIRECTORY_SEPARATOR.$name)) 
-                    {
+        try {
+            if ($handle = opendir($folder)) {
+                while (false !== ($name = readdir($handle))) {
+                    if ($name != "." && $name != ".." && is_file($filedest = $folder . DIRECTORY_SEPARATOR . $name)) {
                         $storages[]=$this->upload(
                             fopen($filedest, 'r'),
                             ['name'=>$name]+$options
@@ -406,9 +402,7 @@ class Bucket
                     }
                 }
             }
-        }
-        finally
-        {
+        } finally {
             closedir($handle);
         }
         return $storages;
