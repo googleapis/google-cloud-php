@@ -603,10 +603,8 @@ class FirestoreClient
         return new FirestoreSessionHandler(
             $this->connection,
             $this->valueMapper,
-            $this->databaseName(
-                $this->projectId,
-                $this->database
-            ),
+            $this->projectId,
+            $this->database
             $options
         );
     }

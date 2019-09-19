@@ -112,6 +112,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class FirestoreSessionHandler implements SessionHandlerInterface
 {
+    use SnapshotTrait;
+
     /**
      * @var ConnectionInterface
      */
@@ -120,6 +122,10 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @var ValueMapper
      */
     private $valueMapper;
+    /**
+     * @var string
+     */
+    private $projectId;
     /**
      * @var string
      */
@@ -146,17 +152,20 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      *
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
-     * @param string $database The current database
+     * @param string $projectId The current project id.
+     * @param string $database The database id.
      * @param array $options [optional]
      */
     public function __construct(
         ConnectionInterface $connection,
         ValueMapper $valueMapper,
+        $projectId,
         $database,
         array $options = []
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
+        $this->projectId = $projectId;
         $this->database = $database;
         $this->options = $options + [
             'begin' => [],
@@ -183,15 +192,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     {
         $this->savePath = $savePath;
         $this->sessionName = $sessionName;
+        $database = $this->databaseName($this->projectId, $this->database);
 
         $beginTransaction = $this->connection->beginTransaction([
-            'database' => $this->database,
+            'database' => $database
         ] + $this->options['begin']);
 
         $this->transaction = new Transaction(
             $this->connection,
             $this->valueMapper,
-            $this->database,
+            $database,
             $beginTransaction['transaction']
         );
 
@@ -215,7 +225,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function read($id)
     {
         try {
-            $snapshot = $this->transaction->snapshot($this->docRef($id));
+            $docRef = $this->getDocumentReference(
+                $this->connection,
+                $this->valueMapper,
+                $this->projectId,
+                $this->database,
+                $this->formatId($id)
+            );
+            $snapshot = $this->transaction->snapshot($docRef);
             if ($snapshot->exists() && isset($snapshot['data'])) {
                 return $snapshot->get('data');
             }
@@ -238,7 +255,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function write($id, $data)
     {
         try {
-            $this->transaction->set($this->docRef($id), [
+            $docRef = $this->getDocumentReference(
+                $this->connection,
+                $this->valueMapper,
+                $this->projectId,
+                $this->database,
+                $this->formatId($id)
+            );
+            $this->transaction->set($docRef, [
                 'data' => $data,
                 't' => time()
             ]);
@@ -262,10 +286,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function destroy($id)
     {
         try {
-            $this->transaction->delete(
-                $this->docRef($id),
-                $this->options['delete']
+            $docRef = $this->getDocumentReference(
+                $this->connection,
+                $this->valueMapper,
+                $this->projectId,
+                $this->database,
+                $this->formatId($id)
             );
+            $this->transaction->delete($docRef, $this->options['delete']);
             $this->commitTransaction();
         } catch (ServiceException $e) {
             trigger_error(
@@ -290,7 +318,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             return true;
         }
         try {
-            $query = $this->collectionRef()
+            $collectionRef = $this->getCollectionReference(
+                $this->connection,
+                $this->valueMapper,
+                $this->projectId,
+                $this->database,
+                $this->savePath
+            );
+            $query = $collectionRef
                 ->limit($this->gcLimit)
                 ->orderBy('t')
                 ->where('t', '<', time() - $maxlifetime)
@@ -315,43 +350,6 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     }
 
     /**
-     * Returns a Firestore document reference for the provided PHP session ID.
-     *
-     * @param string $id Identifier used for the session
-     * @return DocumentReference
-     */
-    private function docRef($id)
-    {
-        // The Firebase document name is derived from the session ID and session
-        // path, ex: "PHPSESSID:abcdef".
-        $collectionRef = $this->collectionRef();
-        $parent = $collectionRef->name();
-        $name = sprintf('%s/%s:%s', $parent, $this->sessionName, $id);
-        return new DocumentReference(
-            $this->connection,
-            $this->valueMapper,
-            $collectionRef,
-            $name
-        );
-    }
-
-    /**
-     * Returns a Firestore collection reference for the provided PHP session ID.
-     *
-     * @return CollectionReference
-     */
-    private function collectionRef()
-    {
-        // The Firebase collection path is derived from the save path.
-        $name = sprintf('%s/documents/%s', $this->database, $this->savePath);
-        return new CollectionReference(
-            $this->connection,
-            $this->valueMapper,
-            $name
-        );
-    }
-
-    /**
      * Commit a transaction if changes exist, otherwise rollback the
      * transaction. Also rollback if an exception is thrown.
      *
@@ -371,5 +369,17 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
             throw $e;
         }
+    }
+
+    /**
+     * Format the Firebase document ID from the PHP session ID and session name.
+     * ex: PHPSESSID:abcdef
+     *
+     * @param string $id Identifier used for the session
+     * @return string
+     */
+    private function formatId($id)
+    {
+        return sprintf('%s/%s:%s', $this->savePath, $this->sessionName, $id);
     }
 }
