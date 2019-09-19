@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Index extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
-     * A server defined name for this index.
+     * Output only. A server defined name for this index.
      * The form of this name for composite indexes will be:
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
      * For single field indexes, this field will be empty.
@@ -52,8 +51,7 @@ class Index extends \Google\Protobuf\Internal\Message
      */
     private $fields;
     /**
-     * Output only.
-     * The serving state of the index.
+     * Output only. The serving state of the index.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.State state = 4;</code>
      */
@@ -66,8 +64,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only.
-     *           A server defined name for this index.
+     *           Output only. A server defined name for this index.
      *           The form of this name for composite indexes will be:
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
      *           For single field indexes, this field will be empty.
@@ -89,8 +86,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *           For single field indexes, this will always be exactly one entry with a
      *           field path equal to the field path of the associated field.
      *     @type int $state
-     *           Output only.
-     *           The serving state of the index.
+     *           Output only. The serving state of the index.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,8 +95,7 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * A server defined name for this index.
+     * Output only. A server defined name for this index.
      * The form of this name for composite indexes will be:
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
      * For single field indexes, this field will be empty.
@@ -114,8 +109,7 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * A server defined name for this index.
+     * Output only. A server defined name for this index.
      * The form of this name for composite indexes will be:
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}`
      * For single field indexes, this field will be empty.
@@ -211,8 +205,7 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The serving state of the index.
+     * Output only. The serving state of the index.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.State state = 4;</code>
      * @return int
@@ -223,8 +216,7 @@ class Index extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * The serving state of the index.
+     * Output only. The serving state of the index.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.State state = 4;</code>
      * @param int $var

@@ -28,10 +28,19 @@ class QueryScope
      * Generated from protobuf enum <code>COLLECTION = 1;</code>
      */
     const COLLECTION = 1;
+    /**
+     * Indexes with a collection group query scope specified allow queries
+     * against all collections that has the collection id specified by the
+     * index.
+     *
+     * Generated from protobuf enum <code>COLLECTION_GROUP = 2;</code>
+     */
+    const COLLECTION_GROUP = 2;
 
     private static $valueToName = [
         self::QUERY_SCOPE_UNSPECIFIED => 'QUERY_SCOPE_UNSPECIFIED',
         self::COLLECTION => 'COLLECTION',
+        self::COLLECTION_GROUP => 'COLLECTION_GROUP',
     ];
 
     public static function name($value)

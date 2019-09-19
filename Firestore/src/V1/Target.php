@@ -16,12 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Target extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A client provided target ID.
-     * If not set, the server will assign an ID for the target.
-     * Used for resuming a target without changing IDs. The IDs can either be
-     * client-assigned or be server-assigned in a previous stream. All targets
-     * with client provided IDs must be added before adding a target that needs
-     * a server-assigned id.
+     * The target ID that identifies the target on the stream. Must be a positive
+     * number and non-zero.
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      */
@@ -52,12 +48,8 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Start listening after a specific `read_time`.
      *           The client must know the state of matching documents at this time.
      *     @type int $target_id
-     *           A client provided target ID.
-     *           If not set, the server will assign an ID for the target.
-     *           Used for resuming a target without changing IDs. The IDs can either be
-     *           client-assigned or be server-assigned in a previous stream. All targets
-     *           with client provided IDs must be added before adding a target that needs
-     *           a server-assigned id.
+     *           The target ID that identifies the target on the stream. Must be a positive
+     *           number and non-zero.
      *     @type bool $once
      *           If the target should be removed once it is current and consistent.
      * }
@@ -176,12 +168,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A client provided target ID.
-     * If not set, the server will assign an ID for the target.
-     * Used for resuming a target without changing IDs. The IDs can either be
-     * client-assigned or be server-assigned in a previous stream. All targets
-     * with client provided IDs must be added before adding a target that needs
-     * a server-assigned id.
+     * The target ID that identifies the target on the stream. Must be a positive
+     * number and non-zero.
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      * @return int
@@ -192,12 +180,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A client provided target ID.
-     * If not set, the server will assign an ID for the target.
-     * Used for resuming a target without changing IDs. The IDs can either be
-     * client-assigned or be server-assigned in a previous stream. All targets
-     * with client provided IDs must be added before adding a target that needs
-     * a server-assigned id.
+     * The target ID that identifies the target on the stream. Must be a positive
+     * number and non-zero.
      *
      * Generated from protobuf field <code>int32 target_id = 5;</code>
      * @param int $var

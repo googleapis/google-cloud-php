@@ -26,7 +26,7 @@ class Operator
      */
     const IS_NAN = 2;
     /**
-     * Test if an exprestion evaluates to Null.
+     * Test if an expression evaluates to Null.
      *
      * Generated from protobuf enum <code>IS_NULL = 3;</code>
      */
