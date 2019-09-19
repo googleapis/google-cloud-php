@@ -24,10 +24,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
     /**
      * The target IDs of targets that have changed.
      * If empty, the change applies to all targets.
-     * For `target_change_type=ADD`, the order of the target IDs matches the order
-     * of the requests to add the targets. This allows clients to unambiguously
-     * associate server-assigned target IDs with added targets.
-     * For other states, the order of the target IDs is not defined.
+     * The order of the target IDs is not defined.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 2;</code>
      */
@@ -71,10 +68,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $target_ids
      *           The target IDs of targets that have changed.
      *           If empty, the change applies to all targets.
-     *           For `target_change_type=ADD`, the order of the target IDs matches the order
-     *           of the requests to add the targets. This allows clients to unambiguously
-     *           associate server-assigned target IDs with added targets.
-     *           For other states, the order of the target IDs is not defined.
+     *           The order of the target IDs is not defined.
      *     @type \Google\Rpc\Status $cause
      *           The error that resulted in this change, if applicable.
      *     @type string $resume_token
@@ -126,10 +120,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
     /**
      * The target IDs of targets that have changed.
      * If empty, the change applies to all targets.
-     * For `target_change_type=ADD`, the order of the target IDs matches the order
-     * of the requests to add the targets. This allows clients to unambiguously
-     * associate server-assigned target IDs with added targets.
-     * For other states, the order of the target IDs is not defined.
+     * The order of the target IDs is not defined.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -142,10 +133,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
     /**
      * The target IDs of targets that have changed.
      * If empty, the change applies to all targets.
-     * For `target_change_type=ADD`, the order of the target IDs matches the order
-     * of the requests to add the targets. This allows clients to unambiguously
-     * associate server-assigned target IDs with added targets.
-     * For other states, the order of the target IDs is not defined.
+     * The order of the target IDs is not defined.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 2;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var

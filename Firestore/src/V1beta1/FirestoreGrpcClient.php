@@ -20,6 +20,8 @@
 namespace Google\Cloud\Firestore\V1beta1;
 
 /**
+ * Specification of the Firestore API.
+ *
  * The Cloud Firestore service.
  *
  * This service exposes several types of comparable timestamps:
