@@ -604,7 +604,7 @@ class FirestoreClient
             $this->connection,
             $this->valueMapper,
             $this->projectId,
-            $this->database
+            $this->database,
             $options
         );
     }
