@@ -29,8 +29,6 @@ final class InMemoryConfigStorage implements
     ConfigStorageInterface,
     ProcessItemInterface
 {
-    use HandleFailureTrait;
-
     /* @var JobConfig */
     private $config;
 
@@ -89,7 +87,6 @@ final class InMemoryConfigStorage implements
     {
         $this->config = new JobConfig();
         $this->created = microtime(true);
-        $this->initFailureFile();
         $this->hasShutdownHookRegistered = false;
     }
 
@@ -191,9 +188,7 @@ final class InMemoryConfigStorage implements
         if (isset($this->items[$idNum])) {
             $job = $this->config->getJobFromIdNum($idNum);
 
-            if (!$job->flush($this->items[$idNum])) {
-                $this->handleFailure($idNum, $this->items[$idNum]);
-            }
+            $job->flush($this->items[$idNum]);
 
             $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = microtime(true);
