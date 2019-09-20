@@ -48,7 +48,7 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         sleep(1);
 
         $hasDocument = false;
-        $query = $client->collection($namespace);
+        $query = $client->collection($namespace . ':' . session_name());
         foreach ($query->documents() as $snapshot) {
             self::$localDeletionQueue->add($snapshot->reference());
             if (!$hasDocument) {
@@ -57,5 +57,31 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         }
 
         $this->assertTrue($hasDocument);
+    }
+
+    public function testSessionHandlerGarbageCollection()
+    {
+        $client = self::$client;
+
+        $namespace = uniqid('sess-' . self::COLLECTION_NAME);
+        $sessionName = 'PHPSESSID';
+        $collection = $client->collection($namespace . ':' . $sessionName);
+        $collection->document('foo1')->set(['data' => 'foo1', 't' => time() - 1]);
+        $collection->document('foo2')->set(['data' => 'foo2', 't' => time() - 1]);
+
+        $count = 0;
+        foreach ($collection->documents() as $doc) $count++;
+        $this->assertEquals(2, $count);
+
+        $handler = $client->sessionHandler([
+            'gcLimit' => 1000,
+            'query' => ['maxRetries' => 0]
+        ]);
+        $handler->open($namespace, $sessionName);
+        $handler->gc(0);
+
+        $count = 0;
+        foreach ($collection->documents() as $doc) $count++;
+        $this->assertEquals(0, $count);
     }
 }

@@ -79,7 +79,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $value = 'name|' . serialize('Bob');
         $this->connection->commit(Argument::allOf(
             Argument::that(function ($args) use ($value) {
-                return strpos($args['writes'][0]['update']['name'], 'PHPSESSID:') !== false
+                return strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
                     && $args['writes'][0]['update']['fields']['data']['stringValue'] === $value
                     && isset($args['writes'][0]['update']['fields']['t']['integerValue']);
             }),

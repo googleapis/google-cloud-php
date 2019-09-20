@@ -55,8 +55,7 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testOpen()
     {
-        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $this->connection->beginTransaction(['database' => $db])
+        $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
@@ -97,16 +96,14 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testReadNothing()
     {
-        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $doc = sprintf('%s/documents/%s/%s:sessionid', $db, self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $this->documents->current()
             ->shouldBeCalledTimes(1)
             ->willReturn(null);
-        $this->connection->beginTransaction(['database' => $db])
+        $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1);
         $this->connection->batchGetDocuments([
-            'database' => $db,
-            'documents' => [$doc],
+            'database' => $this->dbName(),
+            'documents' => [$this->documentName()],
             'transaction' => null,
         ])
             ->shouldBeCalledTimes(1)
@@ -128,13 +125,11 @@ class FirestoreSessionHandlerTest extends TestCase
      */
     public function testReadWithException()
     {
-        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $doc = sprintf('%s/documents/%s/%s:sessionid', $db, self::SESSION_SAVE_PATH, self::SESSION_NAME);
-        $this->connection->beginTransaction(['database' => $db])
+        $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1);
         $this->connection->batchGetDocuments([
-            'database' => $db,
-            'documents' => [$doc],
+            'database' => $this->dbName(),
+            'documents' => [$this->documentName()],
             'transaction' => null,
         ])
             ->shouldBeCalledTimes(1)
@@ -153,8 +148,6 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testReadEntity()
     {
-        $db = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
-        $doc = sprintf('%s/documents/%s/%s:sessionid', $db, self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $this->documents->current()
             ->shouldBeCalledTimes(1)
             ->willReturn([
@@ -168,11 +161,11 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->valueMapper->decodeValues(['data' => 'sessiondata'])
             ->shouldBeCalledTimes(1)
             ->willReturn(['data' => 'sessiondata']);
-        $this->connection->beginTransaction(['database' => $db])
+        $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1);
         $this->connection->batchGetDocuments([
-            'database' => $db,
-            'documents' => [$doc],
+            'database' => $this->dbName(),
+            'documents' => [$this->documentName()],
             'transaction' => null,
         ])
             ->shouldBeCalledTimes(1)
@@ -190,239 +183,257 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertEquals('sessiondata', $ret);
     }
 
-    // public function testWrite()
-    // {
-    //     $id = self::SESSION_NAME . ':sessionid';
-    //     $docRef = $this->prophesize(DocumentReference::class);
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($this->collection->reveal());
-    //     $phpunit = $this;
-    //     $this->firestore->runTransaction(Argument::type('closure'))
-    //         ->shouldBeCalledTimes(1)
-    //         ->will(function ($args) use ($phpunit, $docRef) {
-    //             $transaction = $phpunit->prophesize(Transaction::class);
-    //             $transaction->set($docRef, Argument::type('array'))
-    //                 ->will(function ($args) use ($phpunit) {
-    //                     $phpunit->assertEquals('sessiondata', $args[1]['data']);
-    //                     $phpunit->assertInternalType('int', $args[1]['t']);
-    //                     $phpunit->assertGreaterThanOrEqual($args[1]['t'], time());
-    //                     // 2 seconds grace period should be enough
-    //                     $phpunit->assertLessThanOrEqual(2, time() - $args[1]['t']);
-    //                 });
-    //             $args[0]($transaction->reveal());
-    //         });
-    //     $this->collection->document($id)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef);
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal()
-    //     );
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
+    public function testWrite()
+    {
+        $phpunit = $this;
+        $this->valueMapper->encodeValues(Argument::type('array'))
+            ->will(function ($args) use ($phpunit) {
+                $phpunit->assertEquals('sessiondata', $args[0]['data']);
+                $phpunit->assertTrue(is_int($args[0]['t']));
+                return ['data' => ['stringValue' => 'sessiondata']];
+            });
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1);
+        $this->connection->commit([
+            'database' => $this->dbName(),
+            'writes' => [
+                [
+                    'update' => [
+                        'name' => $this->documentName(),
+                        'fields' => [
+                            'data' => ['stringValue' => 'sessiondata']
+                        ]
+                    ]
+                ]
+            ]
+        ])
+            ->shouldBeCalledTimes(1);
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
 
-    //     $this->assertTrue($ret);
-    // }
+        $this->assertTrue($ret);
+    }
 
-    // /**
-    //  * @expectedException PHPUnit_Framework_Error_Warning
-    //  */
-    // public function testWriteWithException()
-    // {
-    //     $id = self::SESSION_NAME . ':sessionid';
-    //     $transaction = $this->prophesize(Transaction::class);
-    //     $docRef = $this->prophesize(DocumentReference::class);
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($this->collection->reveal());
-    //     $this->firestore->runTransaction(Argument::any())
-    //         ->shouldBeCalledTimes(1)
-    //         ->willThrow(new ServiceException(''));
-    //     $this->collection->document($id)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef);
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testWriteWithException()
+    {
+        $phpunit = $this;
+        $this->valueMapper->encodeValues(Argument::type('array'))
+            ->will(function ($args) use ($phpunit) {
+                $phpunit->assertEquals('sessiondata', $args[0]['data']);
+                $phpunit->assertTrue(is_int($args[0]['t']));
+                return ['data' => ['stringValue' => 'sessiondata']];
+            });
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->rollback([
+            'database' => $this->dbName(),
+            'transaction' => 123
+        ])
+            ->shouldBeCalledTimes(1);
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow((new ServiceException('')));
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
 
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal()
-    //     );
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
+        $this->assertFalse($ret);
+    }
 
-    //     $this->assertFalse($ret);
-    // }
+    public function testDestroy()
+    {
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->commit([
+            'database' => $this->dbName(),
+            'writes' => [
+                [
+                    'delete' => $this->documentName()
+                ]
+            ],
+            'transaction' => 123
+        ])
+            ->shouldBeCalledTimes(1);
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->destroy('sessionid');
 
-    // public function testDestroy()
-    // {
-    //     $id = self::SESSION_NAME . ':sessionid';
-    //     $docRef = $this->prophesize(DocumentReference::class);
-    //     $docRef->delete()
-    //         ->shouldBeCalledTimes(1);
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($this->collection->reveal());
-    //     $this->collection->document($id)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef);
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal()
-    //     );
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->destroy('sessionid');
+        $this->assertTrue($ret);
+    }
 
-    //     $this->assertTrue($ret);
-    // }
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testDestroyWithException()
+    {
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ServiceException(''));
+        $this->connection->rollback([
+            'database' => $this->dbName(),
+            'transaction' => 123
+        ])
+            ->shouldBeCalledTimes(1);
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->destroy('sessionid');
 
-    // /**
-    //  * @expectedException PHPUnit_Framework_Error_Warning
-    //  */
-    // public function testDestroyWithException()
-    // {
-    //     $id = self::SESSION_NAME . ':sessionid';
-    //     $docRef = $this->prophesize(DocumentReference::class);
-    //     $docRef->delete()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willThrow(new ServiceException(''));
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($this->collection->reveal());
-    //     $this->collection->document($id)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef);
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal()
-    //     );
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->destroy('sessionid');
+        $this->assertFalse($ret);
+    }
 
-    //     $this->assertFalse($ret);
-    // }
+    public function testDefaultGcDoesNothing()
+    {
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->commit()->shouldNotBeCalled();
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->gc(100);
 
-    // public function testDefaultGcDoesNothing()
-    // {
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($this->collection->reveal());
-    //     $this->collection->limit()->shouldNotBeCalled();
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal()
-    //     );
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->gc(100);
+        $this->assertTrue($ret);
+    }
 
-    //     $this->assertTrue($ret);
-    // }
+    public function testGc()
+    {
+        $phpunit = $this;
+        $this->documents->valid()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(true, false);
+        $this->documents->current()
+            ->shouldBeCalledTimes(1)
+            ->willReturn([
+                'document' => [
+                    'name' => $this->documentName(),
+                    'fields' => [],
+                    'createTime' => date('Y-m-d'),
+                    'updateTime' => date('Y-m-d'),
+                ],
+                'readTime' => date('Y-m-d'),
+            ]);
+        $this->documents->next()
+            ->shouldBeCalledTimes(1);
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->will(function ($args) use ($phpunit) {
+                $options = $args[0];
+                $phpunit->assertEquals(
+                    $phpunit->dbName() . '/documents',
+                    $options['parent']
+                );
+                $phpunit->assertEquals(999, $options['structuredQuery']['limit']);
+                $phpunit->assertEquals(
+                    self::SESSION_SAVE_PATH . ':' . self::SESSION_NAME,
+                    $options['structuredQuery']['from'][0]['collectionId']
+                );
+                $phpunit->assertEquals(123, $options['transaction']);
+                return $phpunit->documents->reveal();
+            });
+        $this->valueMapper->decodeValues([])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['data' => 'sessiondata']);
+        $this->valueMapper->encodeValue(Argument::type('integer'))
+            ->shouldBeCalledTimes(1);
+        $this->connection->commit([
+            'database' => $this->dbName(),
+            'writes' => [
+                [
+                    'delete' => $this->documentName()
+                ]
+            ],
+            'transaction' => 123
+        ])
+            ->shouldBeCalledTimes(1);
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE,
+            ['gcLimit' => 999, 'query' => ['maxRetries' => 0]]
+        );
 
-    // public function testGc()
-    // {
-    //     $docRef1 = $this->prophesize(DocumentReference::class);
-    //     $docRef1->delete()
-    //         ->shouldBeCalledTimes(1);
-    //     $snapshot1 = $this->prophesize(DocumentSnapshot::class);
-    //     $snapshot1->reference()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef1);
-    //     $docRef2 = $this->prophesize(DocumentReference::class);
-    //     $docRef2->delete()
-    //         ->shouldBeCalledTimes(1);
-    //     $snapshot2 = $this->prophesize(DocumentSnapshot::class);
-    //     $snapshot2->reference()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef2);
-    //     $phpunit = $this;
-    //     $collection = $this->collection;
-    //     $collection->where(
-    //         Argument::type('string'),
-    //         Argument::type('string'),
-    //         Argument::type('int')
-    //     )
-    //         ->shouldBeCalledTimes(1)
-    //         ->will(function ($args) use ($phpunit, $collection) {
-    //             $phpunit->assertEquals('t', $args[0]);
-    //             $phpunit->assertEquals('<', $args[1]);
-    //             $phpunit->assertInternalType('int', $args[2]);
-    //             $diff = time() - $args[2];
-    //             // 2 seconds grace period should be enough
-    //             $phpunit->assertLessThanOrEqual(102, $diff);
-    //             $phpunit->assertGreaterThanOrEqual(100, $diff);
-    //             return $collection->reveal();
-    //         });
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->gc(100);
 
-    //     $collection->orderBy('t')
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($collection->reveal());
-    //     $collection->limit(1000)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($collection->reveal());
-    //     $collection->documents()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn([$snapshot1, $snapshot2]);
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($collection->reveal());
+        $this->assertTrue($ret);
+    }
 
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal(),
-    //         1000
-    //     );
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testGcWithException()
+    {
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ServiceException(''));
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE,
+            ['gcLimit' => 1000, 'query' => ['maxRetries' => 0]]
+        );
 
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->gc(100);
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $ret = $firestoreSessionHandler->gc(100);
 
-    //     $this->assertTrue($ret);
-    // }
+        $this->assertFalse($ret);
+    }
 
-    // /**
-    //  * @expectedException PHPUnit_Framework_Error_Warning
-    //  */
-    // public function testGcWithException()
-    // {
-    //     $docRef = $this->prophesize(DocumentReference::class);
-    //     $docRef->delete()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willThrow(new ServiceException(''));
-    //     $snapshot = $this->prophesize(DocumentSnapshot::class);
-    //     $snapshot->reference()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($docRef);
-    //     $phpunit = $this;
-    //     $collection = $this->collection;
-    //     $collection->where(
-    //         Argument::type('string'),
-    //         Argument::type('string'),
-    //         Argument::type('int')
-    //     )
-    //         ->shouldBeCalledTimes(1)
-    //         ->will(function ($args) use ($phpunit, $collection) {
-    //             $phpunit->assertEquals('t', $args[0]);
-    //             $phpunit->assertEquals('<', $args[1]);
-    //             $phpunit->assertInternalType('int', $args[2]);
-    //             $diff = time() - $args[2];
-    //             // 2 seconds grace period should be enough
-    //             $phpunit->assertLessThanOrEqual(102, $diff);
-    //             $phpunit->assertGreaterThanOrEqual(100, $diff);
-    //             return $collection->reveal();
-    //         });
+    private function dbName()
+    {
+        return sprintf('projects/%s/databases/%s',
+            self::PROJECT,
+            self::DATABASE
+        );
+    }
 
-    //     $collection->orderBy('t')
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($collection->reveal());
-    //     $collection->limit(1000)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($collection->reveal());
-    //     $collection->documents()
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn([$snapshot]);
-    //     $this->firestore->collection(self::SESSION_SAVE_PATH)
-    //         ->shouldBeCalledTimes(1)
-    //         ->willReturn($collection->reveal());
-    //     $firestoreSessionHandler = new FirestoreSessionHandler(
-    //         $this->firestore->reveal(),
-    //         1000
-    //     );
-
-    //     $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
-    //     $ret = $firestoreSessionHandler->gc(100);
-
-    //     $this->assertFalse($ret);
-    // }
+    private function documentName()
+    {
+        return sprintf('%s/documents/%s:%s/sessionid',
+            $this->dbName(),
+            self::SESSION_SAVE_PATH,
+            self::SESSION_NAME
+        );
+    }
 }

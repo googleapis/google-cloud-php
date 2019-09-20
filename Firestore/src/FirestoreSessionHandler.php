@@ -172,6 +172,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             'commit' => [],
             'rollback' => [],
             'delete' => [],
+            'query' => [],
             'gcLimit' => 0,
         ];
 
@@ -230,7 +231,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,
-                $this->formatId($id)
+                $this->docId($id)
             );
             $snapshot = $this->transaction->snapshot($docRef);
             if ($snapshot->exists() && isset($snapshot['data'])) {
@@ -260,7 +261,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,
-                $this->formatId($id)
+                $this->docId($id)
             );
             $this->transaction->set($docRef, [
                 'data' => $data,
@@ -291,7 +292,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,
-                $this->formatId($id)
+                $this->docId($id)
             );
             $this->transaction->delete($docRef, $this->options['delete']);
             $this->commitTransaction();
@@ -314,7 +315,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function gc($maxlifetime)
     {
-        if (0 === $this->gcLimit) {
+        if (0 === $this->options['gcLimit']) {
             return true;
         }
         try {
@@ -323,15 +324,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,
-                $this->savePath
+                $this->collectionId()
             );
             $query = $collectionRef
-                ->limit($this->gcLimit)
-                ->orderBy('t')
+                ->limit($this->options['gcLimit'])
                 ->where('t', '<', time() - $maxlifetime)
-                ->where('id', '>=', $this->sessionName . ':')
-                ->where('id', '<', $this->sessionName . chr(ord(':') + 1));
-            $querySnapshot = $this->transaction->runQuery($query);
+                ->orderBy('t');
+            $querySnapshot = $this->transaction->runQuery(
+                $query,
+                $this->options['query']
+            );
             foreach ($querySnapshot as $snapshot) {
                 $this->transaction->delete(
                     $snapshot->reference(),
@@ -364,7 +366,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 // trigger rollback if no writes exist.
                 $this->transaction->writer()->rollback($this->options['rollback']);
             }
-        } catch (\Exception $e) {
+        } catch (ServiceException $e) {
             $this->transaction->writer()->rollback($this->options['rollback']);
 
             throw $e;
@@ -373,13 +375,25 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
     /**
      * Format the Firebase document ID from the PHP session ID and session name.
-     * ex: PHPSESSID:abcdef
+     * ex: sessions:PHPSESSID/abcdef
      *
      * @param string $id Identifier used for the session
      * @return string
      */
-    private function formatId($id)
+    private function collectionId()
     {
-        return sprintf('%s/%s:%s', $this->savePath, $this->sessionName, $id);
+        return sprintf('%s:%s', $this->savePath, $this->sessionName);
+    }
+
+    /**
+     * Format the Firebase document ID from the PHP session ID and session name.
+     * ex: sessions:PHPSESSID/abcdef
+     *
+     * @param string $id Identifier used for the session
+     * @return string
+     */
+    private function docId($id)
+    {
+        return sprintf('%s/%s', $this->collectionId(), $id);
     }
 }

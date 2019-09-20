@@ -169,11 +169,13 @@ class Query
 
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($options) {
             $query = $this->finalQueryPrepare($this->query);
-            $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
+            $options2 = $this->arrayFilterRemoveNull([
                 'parent' => $this->parent,
                 'structuredQuery' => $query,
                 'retries' => 0
-            ]) + $options);
+            ]) + $options;
+
+            $generator = $this->connection->runQuery($options2);
 
             // cache collection references
             $collections = [];
@@ -207,7 +209,6 @@ class Query
 
                 $generator->next();
             }
-
             return $out;
         });
 
