@@ -643,7 +643,6 @@ class ValueMapperTest extends TestCase
 
     /**
      * @dataProvider simpleTypeValues
-     * @group foo
      */
     public function testEncodeValuesAsSimpleType($value, $expected = null)
     {

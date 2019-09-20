@@ -247,7 +247,13 @@ class CacheSessionPool implements SessionPoolInterface
 
         // Create a session if needed.
         if ($toCreate) {
-            $createdSessions = $this->createSessions(count($toCreate));
+            $createdSessions = [];
+            try {
+                $createdSessions = $this->createSessions(count($toCreate));
+            } catch (\Exception $e) {
+                // no-op
+            }
+
             $hasCreatedSessions = count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
@@ -643,32 +649,31 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function createSessions($count)
     {
-        $args = [
-            'database' => $this->database->name(),
-            'session' => [
-                'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
-            ]
-        ];
-
-        $promises = [];
-
-        for ($i = 0; $i < $count; $i++) {
-            $promises[] = $this->database->connection()->createSessionAsync($args);
-        }
-
-        $results = Promise\settle($promises)->wait();
-
+        $remainToCreate = $count;
+        $created = 0;
         $sessions = [];
 
-        foreach ($results as $result) {
-            if ($result['state'] === 'fulfilled') {
-                $name = $result['value']->getName();
+        // Loop over RPC in case it returns less than the desired number of sessions.
+        // @see https://github.com/googleapis/google-cloud-php/pull/2342#discussion_r327925546
+        do {
+            $remainToCreate = $count - $created;
+            $res = $this->database->connection()->batchCreateSessions([
+                'database' => $this->database->name(),
+                'sessionTemplate' => [
+                    'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+                ],
+                'sessionCount' => $remainToCreate
+            ]);
+
+            foreach ($res['session'] as $result) {
                 $sessions[] = [
-                    'name' => $name,
+                    'name' => $result['name'],
                     'expiration' => $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
                 ];
+
+                $created++;
             }
-        }
+        } while ($count > $created);
 
         return $sessions;
     }

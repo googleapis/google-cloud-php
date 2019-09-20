@@ -344,6 +344,27 @@ class GrpcTest extends TestCase
         $this->assertInstanceOf(PromiseInterface::class, $promise);
     }
 
+    public function testBatchCreateSessions()
+    {
+        $count = 10;
+        $template = [
+            'labels' => [
+                'foo' => 'bar'
+            ]
+        ];
+
+        $this->assertCallCorrect('batchCreateSessions', [
+            'database' => self::DATABASE,
+            'sessionCount' => $count,
+            'sessionTemplate' => $template
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE, [
+                'sessionCount' => $count,
+                'sessionTemplate' => $this->serializer->decodeMessage(new Session, $template)
+            ]
+        ]));
+    }
+
     public function testGetSession()
     {
         $this->assertCallCorrect('getSession', [

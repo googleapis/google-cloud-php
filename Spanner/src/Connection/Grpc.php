@@ -495,6 +495,23 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function batchCreateSessions(array $args)
+    {
+        $args['sessionTemplate'] = $this->serializer->decodeMessage(
+            new Session,
+            $this->pluck('sessionTemplate', $args)
+        );
+
+        $database = $this->pluck('database', $args);
+        return $this->send([$this->spannerClient, 'batchCreateSessions'], [
+            $database,
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getSession(array $args)
     {
         $database = $this->pluck('database', $args);
