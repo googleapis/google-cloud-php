@@ -579,14 +579,16 @@ class FirestoreClient
      *
      * Example:
      * ```
-     * use Google\Cloud\Firestore\FirestoreClient;
-     *
-     * $firestore = new FirestoreClient(['projectId' => $projectId]);
-     *
      * $handler = $firestore->sessionHandler();
+     *
+     * // Configure PHP to use the Firestore session handler.
      * session_set_save_handler($handler, true);
      * session_save_path('sessions');
      * session_start();
+     *
+     * // Then write and read the $_SESSION array.
+     * $_SESSION['name'] = 'Bob';
+     * echo $_SESSION['name'];
      * ```
      *
      * @param array $options {

@@ -43,6 +43,7 @@ class FirestoreClientTest extends SnippetTestCase
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
+    const TRANSACTION = 'transaction-id';
 
     private $connection;
     private $client;

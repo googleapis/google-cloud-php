@@ -39,25 +39,73 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
     private $connection;
     private $client;
 
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+
+        // Since the tests in this class must run in isolation, they won't be
+        // recognized as having been covered, and will cause a CI error.
+        // We can call `snippetFromClass` in the parent process to mark the
+        // snippets as having been covered.
+        self::snippetFromClass(FirestoreSessionHandler::class);
+        self::snippetFromClass(FirestoreSessionHandler::class, 1);
+        self::snippetFromMethod(FirestoreClient::class, 'sessionHandler');
+    }
+
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(FirestoreClient::class);
-
-        // Since the tests in this class must run in isolation, they won't be
-        // recognized as having been covered, and will cause a CI error.
-        // We can call `snippetFromClass` in the parent process to mark the
-        // snippets as having been covered.
-        $this->snippetFromClass(FirestoreSessionHandler::class);
-        $this->snippetFromClass(FirestoreSessionHandler::class, 1);
     }
 
     public function testClass()
     {
         $snippet = $this->snippetFromClass(FirestoreSessionHandler::class);
         $snippet->replace('$firestore = new FirestoreClient();', '');
+
+        $this->connection->batchGetDocuments(Argument::withEntry('documents', Argument::type('array')))
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                'found' => [
+                    [
+                        'name' => '',
+                        'fields' => []
+                    ]
+                ]
+            ]));
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'transaction' => self::TRANSACTION
+            ]);
+
+        $value = 'name|' . serialize('Bob');
+        $this->connection->commit(Argument::allOf(
+            Argument::that(function ($args) use ($value) {
+                return strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
+                    && $args['writes'][0]['update']['fields']['data']['stringValue'] === $value
+                    && isset($args['writes'][0]['update']['fields']['t']['integerValue']);
+            }),
+            Argument::withEntry('transaction', self::TRANSACTION)
+        ))->shouldBeCalled()->willReturn([
+            'writeResults' => []
+        ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $snippet->addLocal('firestore', $this->client);
+
+        $res = $snippet->invoke();
+        session_write_close();
+
+        $this->assertEquals('Bob', $res->output());
+    }
+
+    public function testSessionHandlerMethod()
+    {
+        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'sessionHandler');
 
         $this->connection->batchGetDocuments(Argument::withEntry('documents', Argument::type('array')))
             ->shouldBeCalled()
