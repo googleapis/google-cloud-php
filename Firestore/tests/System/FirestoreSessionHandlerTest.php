@@ -70,7 +70,9 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         $collection->document('foo2')->set(['data' => 'foo2', 't' => time() - 1]);
 
         $count = 0;
-        foreach ($collection->documents() as $doc) $count++;
+        foreach ($collection->documents() as $doc) {
+            $count++;
+        }
         $this->assertEquals(2, $count);
 
         $handler = $client->sessionHandler([
@@ -81,7 +83,9 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         $handler->gc(0);
 
         $count = 0;
-        foreach ($collection->documents() as $doc) $count++;
+        foreach ($collection->documents() as $doc) {
+            $count++;
+        }
         $this->assertEquals(0, $count);
     }
 }

@@ -422,7 +422,8 @@ class FirestoreSessionHandlerTest extends TestCase
 
     private function dbName()
     {
-        return sprintf('projects/%s/databases/%s',
+        return sprintf(
+            'projects/%s/databases/%s',
             self::PROJECT,
             self::DATABASE
         );
@@ -430,7 +431,8 @@ class FirestoreSessionHandlerTest extends TestCase
 
     private function documentName()
     {
-        return sprintf('%s/documents/%s:%s/sessionid',
+        return sprintf(
+            '%s/documents/%s:%s/sessionid',
             $this->dbName(),
             self::SESSION_SAVE_PATH,
             self::SESSION_NAME
