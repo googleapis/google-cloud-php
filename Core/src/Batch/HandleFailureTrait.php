@@ -49,16 +49,16 @@ trait HandleFailureTrait
                 sys_get_temp_dir()
             );
         }
-        if (! is_dir($this->baseDir)) {
-            if (@mkdir($this->baseDir, 0700, true) === false) {
-                throw new \RuntimeException(
-                    sprintf(
-                        'Couuld not create a directory: %s',
-                        $this->baseDir
-                    )
-                );
-            }
+
+        if (!is_dir($this->baseDir) && !@mkdir($this->baseDir, 0700, true) && !is_dir($this->baseDir)) {
+            throw new \RuntimeException(
+                sprintf(
+                    'Could not create a directory: %s',
+                    $this->baseDir
+                )
+            );
         }
+
         // Use getmypid for simplicity.
         $this->failureFile = sprintf(
             '%s/failed-items-%d',
