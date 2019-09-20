@@ -41,6 +41,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google DLP](#google-dlp-beta) (Beta)
 * [Google Stackdriver Error Reporting](#google-stackdriver-error-reporting-beta) (Beta)
 * [Google Stackdriver Monitoring](#google-stackdriver-monitoring-beta) (Beta)
+* [reCAPTCHA Enterprise](#recaptcha-enterprise-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Dialogflow API](#dialogflow-api-alpha) (Alpha)
@@ -1245,6 +1246,40 @@ try {
 
 ```
 $ composer require google/cloud-monitoring
+```
+
+## reCAPTCHA Enterprise (Beta)
+
+- [API Documentation](http://googleapis.github.io/google-cloud-php/#/docs/latest/recaptcha-enterprise/readme)
+- [Official Documentation](https://cloud.google.com/recaptcha-enterprise/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\RecaptchaEnterprise\V1beta1\Assessment;
+use Google\Cloud\RecaptchaEnterprise\V1beta1\Event;
+use Google\Cloud\RecaptchaEnterprise\V1beta1\RecaptchaEnterpriseServiceV1Beta1Client;
+
+$recaptcha = new RecaptchaEnterpriseServiceV1Beta1Client;
+$recaptcha->createAssessment([
+    'parent' => RecaptchaEnterpriseServiceV1Beta1Client::projectName('[PROJECT_ID]'),
+    'assessment' => new Assessment([
+        'event' => new Event([
+            'token' => '[EVENT_TOKEN]',
+            'site_key' => '[SITE_KEY]'
+        ])
+    ])
+]);
+```
+
+#### google/cloud-recaptcha-enterprise
+
+[reCAPTCHA Enterprise](https://github.com/googleapis/google-cloud-php-recaptcha-enterprise) can be installed separately by requiring the [`google/cloud-recaptcha-enterprise`](https://packagist.org/packages/google/cloud-recaptcha-enterprise) composer package:
+
+```
+$ composer require google/cloud-recaptcha-enterprise
 ```
 
 ## Dialogflow API (Alpha)

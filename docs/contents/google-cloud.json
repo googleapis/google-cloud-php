@@ -28,6 +28,7 @@
         "cloud-monitoring",
         "cloud-oslogin",
         "cloud-pubsub",
+        "cloud-recaptcha-enterprise",
         "cloud-redis",
         "cloud-scheduler",
         "cloud-security-center",

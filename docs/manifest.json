@@ -1136,6 +1136,14 @@
             ]
         },
         {
+            "id": "cloud-recaptcha-enterprise",
+            "name": "google/cloud-recaptcha-enterprise",
+            "defaultService": "recaptchaenterprise/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-redis",
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
