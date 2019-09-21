@@ -443,7 +443,7 @@ class FirestoreClient
             'maxRetries' => self::MAX_RETRIES,
             'begin' => [],
             'commit' => [],
-            'rollback' => [],
+            'rollback' => []
         ];
 
         $retryableErrors = [
