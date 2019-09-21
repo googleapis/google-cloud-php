@@ -23,7 +23,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
     private $sinks;
     /**
      * If there might be more results than appear in this response, then
-     * `nextPageToken` is included.  To get the next set of results, call the same
+     * `nextPageToken` is included. To get the next set of results, call the same
      * method again using the value of `nextPageToken` as `pageToken`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -40,7 +40,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      *           A list of sinks.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
-     *           `nextPageToken` is included.  To get the next set of results, call the same
+     *           `nextPageToken` is included. To get the next set of results, call the same
      *           method again using the value of `nextPageToken` as `pageToken`.
      * }
      */
@@ -77,7 +77,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If there might be more results than appear in this response, then
-     * `nextPageToken` is included.  To get the next set of results, call the same
+     * `nextPageToken` is included. To get the next set of results, call the same
      * method again using the value of `nextPageToken` as `pageToken`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -90,7 +90,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * If there might be more results than appear in this response, then
-     * `nextPageToken` is included.  To get the next set of results, call the same
+     * `nextPageToken` is included. To get the next set of results, call the same
      * method again using the value of `nextPageToken` as `pageToken`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
