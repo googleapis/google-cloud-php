@@ -28,7 +28,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Redis\V1beta1\FailoverInstanceRequest\DataProtectionMode;
 use Google\Cloud\Redis\V1beta1\InputConfig;
 use Google\Cloud\Redis\V1beta1\Instance;
 use Google\Cloud\Redis\V1beta1\Instance\Tier;
@@ -76,182 +75,6 @@ class CloudRedisClientTest extends GeneratedTest
         ];
 
         return new CloudRedisClient($options);
-    }
-
-    /**
-     * @test
-     */
-    public function listInstancesTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $instancesElement = new Instance();
-        $instances = [$instancesElement];
-        $expectedResponse = new ListInstancesResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setInstances($instances);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-
-        $response = $client->listInstances($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getInstances()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/ListInstances', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listInstancesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-
-        try {
-            $client->listInstances($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getInstanceTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $displayName = 'displayName1615086568';
-        $locationId = 'locationId552319461';
-        $alternativeLocationId = 'alternativeLocationId-718920621';
-        $redisVersion = 'redisVersion-685310444';
-        $reservedIpRange = 'reservedIpRange-1082940580';
-        $host = 'host3208616';
-        $port = 3446913;
-        $currentLocationId = 'currentLocationId1312712735';
-        $statusMessage = 'statusMessage-239442758';
-        $memorySizeGb = 34199707;
-        $authorizedNetwork = 'authorizedNetwork-1733809270';
-        $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
-        $expectedResponse = new Instance();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setLocationId($locationId);
-        $expectedResponse->setAlternativeLocationId($alternativeLocationId);
-        $expectedResponse->setRedisVersion($redisVersion);
-        $expectedResponse->setReservedIpRange($reservedIpRange);
-        $expectedResponse->setHost($host);
-        $expectedResponse->setPort($port);
-        $expectedResponse->setCurrentLocationId($currentLocationId);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setMemorySizeGb($memorySizeGb);
-        $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
-        $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-        $response = $client->getInstance($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/GetInstance', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getInstanceExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-
-        try {
-            $client->getInstance($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -628,6 +451,182 @@ class CloudRedisClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function listInstancesTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $instancesElement = new Instance();
+        $instances = [$instancesElement];
+        $expectedResponse = new ListInstancesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setInstances($instances);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+
+        $response = $client->listInstances($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getInstances()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/ListInstances', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listInstancesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+
+        try {
+            $client->listInstances($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getInstanceTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $locationId = 'locationId552319461';
+        $alternativeLocationId = 'alternativeLocationId-718920621';
+        $redisVersion = 'redisVersion-685310444';
+        $reservedIpRange = 'reservedIpRange-1082940580';
+        $host = 'host3208616';
+        $port = 3446913;
+        $currentLocationId = 'currentLocationId1312712735';
+        $statusMessage = 'statusMessage-239442758';
+        $memorySizeGb = 34199707;
+        $authorizedNetwork = 'authorizedNetwork-1733809270';
+        $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setAlternativeLocationId($alternativeLocationId);
+        $expectedResponse->setRedisVersion($redisVersion);
+        $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setHost($host);
+        $expectedResponse->setPort($port);
+        $expectedResponse->setCurrentLocationId($currentLocationId);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setMemorySizeGb($memorySizeGb);
+        $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
+        $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+        $response = $client->getInstance($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/GetInstance', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getInstanceExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+        try {
+            $client->getInstance($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function importInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -686,10 +685,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $inputConfig = new InputConfig();
 
-        $response = $client->importInstance($formattedName, $inputConfig);
+        $response = $client->importInstance($name, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -702,7 +701,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/ImportInstance', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualApiRequestObject->getInputConfig();
 
         $this->assertProtobufEquals($inputConfig, $actualValue);
@@ -768,10 +767,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $inputConfig = new InputConfig();
 
-        $response = $client->importInstance($formattedName, $inputConfig);
+        $response = $client->importInstance($name, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -857,10 +856,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportInstance($formattedName, $outputConfig);
+        $response = $client->exportInstance($name, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -873,7 +872,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.redis.v1beta1.CloudRedis/ExportInstance', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualApiRequestObject->getOutputConfig();
 
         $this->assertProtobufEquals($outputConfig, $actualValue);
@@ -939,10 +938,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportInstance($formattedName, $outputConfig);
+        $response = $client->exportInstance($name, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -1029,9 +1028,8 @@ class CloudRedisClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $dataProtectionMode = DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
 
-        $response = $client->failoverInstance($formattedName, $dataProtectionMode);
+        $response = $client->failoverInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1045,9 +1043,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualValue = $actualApiRequestObject->getName();
 
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getDataProtectionMode();
-
-        $this->assertProtobufEquals($dataProtectionMode, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/failoverInstanceTest');
@@ -1111,9 +1106,8 @@ class CloudRedisClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $dataProtectionMode = DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
 
-        $response = $client->failoverInstance($formattedName, $dataProtectionMode);
+        $response = $client->failoverInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 

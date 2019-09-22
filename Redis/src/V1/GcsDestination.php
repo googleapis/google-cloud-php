@@ -19,7 +19,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * Required. Data destination URI (e.g.
      * 'gs://my_bucket/my_object'). Existing files will be overwritten.
      *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $uri = '';
 
@@ -43,7 +43,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * Required. Data destination URI (e.g.
      * 'gs://my_bucket/my_object'). Existing files will be overwritten.
      *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUri()
@@ -55,7 +55,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * Required. Data destination URI (e.g.
      * 'gs://my_bucket/my_object'). Existing files will be overwritten.
      *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -24,7 +24,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * specified in `location_id` or `alternative_location_id` fields when
      * creating a Redis instance.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.redis.v1.ZoneMetadata> available_zones = 1;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.redis.v1.ZoneMetadata> available_zones = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $available_zones;
 
@@ -52,7 +52,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * specified in `location_id` or `alternative_location_id` fields when
      * creating a Redis instance.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.redis.v1.ZoneMetadata> available_zones = 1;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.redis.v1.ZoneMetadata> available_zones = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAvailableZones()
@@ -66,7 +66,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * specified in `location_id` or `alternative_location_id` fields when
      * creating a Redis instance.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.redis.v1.ZoneMetadata> available_zones = 1;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.redis.v1.ZoneMetadata> available_zones = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

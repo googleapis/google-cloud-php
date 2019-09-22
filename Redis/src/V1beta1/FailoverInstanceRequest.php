@@ -20,14 +20,14 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Optional. Available data protection modes that the user can choose. If it's
      * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data_protection_mode = 0;
 
@@ -56,7 +56,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -69,7 +69,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -85,7 +85,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      * Optional. Available data protection modes that the user can choose. If it's
      * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getDataProtectionMode()
@@ -97,7 +97,7 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      * Optional. Available data protection modes that the user can choose. If it's
      * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

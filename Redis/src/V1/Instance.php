@@ -25,7 +25,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -47,7 +47,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * failures. If [alternative_location_id] is also provided, it must be
      * different from [location_id].
      *
-     * Generated from protobuf field <code>string location_id = 4;</code>
+     * Generated from protobuf field <code>string location_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $location_id = '';
     /**
@@ -55,7 +55,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * against zonal failures by provisioning it across two zones. If provided, it
      * must be a different zone from the one provided in [location_id].
      *
-     * Generated from protobuf field <code>string alternative_location_id = 5;</code>
+     * Generated from protobuf field <code>string alternative_location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $alternative_location_id = '';
     /**
@@ -66,7 +66,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *  *   `REDIS_4_0` for Redis 4.0 compatibility (default)
      *  *   `REDIS_3_2` for Redis 3.2 compatibility
      *
-     * Generated from protobuf field <code>string redis_version = 7;</code>
+     * Generated from protobuf field <code>string redis_version = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $redis_version = '';
     /**
@@ -75,20 +75,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
      * and non-overlapping with existing subnets in an authorized network.
      *
-     * Generated from protobuf field <code>string reserved_ip_range = 9;</code>
+     * Generated from protobuf field <code>string reserved_ip_range = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reserved_ip_range = '';
     /**
      * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
-     * Generated from protobuf field <code>string host = 10;</code>
+     * Generated from protobuf field <code>string host = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $host = '';
     /**
      * Output only. The port number of the exposed Redis endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 11;</code>
+     * Generated from protobuf field <code>int32 port = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $port = 0;
     /**
@@ -98,26 +98,26 @@ class Instance extends \Google\Protobuf\Internal\Message
      * this can be either [location_id] or [alternative_location_id] and can
      * change after a failover event.
      *
-     * Generated from protobuf field <code>string current_location_id = 12;</code>
+     * Generated from protobuf field <code>string current_location_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $current_location_id = '';
     /**
      * Output only. The time the instance was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The current state of this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
      * Output only. Additional information about the current status of this
      * instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 15;</code>
+     * Generated from protobuf field <code>string status_message = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status_message = '';
     /**
@@ -132,19 +132,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      *  *   lfu-log-factor
      *  *   lfu-decay-time
      *
-     * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
+     * Generated from protobuf field <code>map<string, string> redis_configs = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $redis_configs;
     /**
      * Required. The service tier of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tier = 0;
     /**
      * Required. Redis memory size in GiB.
      *
-     * Generated from protobuf field <code>int32 memory_size_gb = 18;</code>
+     * Generated from protobuf field <code>int32 memory_size_gb = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $memory_size_gb = 0;
     /**
@@ -153,7 +153,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
-     * Generated from protobuf field <code>string authorized_network = 20;</code>
+     * Generated from protobuf field <code>string authorized_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $authorized_network = '';
     /**
@@ -163,7 +163,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for a given instance so should be checked before each import/export
      * operation.
      *
-     * Generated from protobuf field <code>string persistence_iam_identity = 21;</code>
+     * Generated from protobuf field <code>string persistence_iam_identity = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $persistence_iam_identity = '';
 
@@ -269,7 +269,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -287,7 +287,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * should be provisioned in. Refer to [location_id] and
      * [alternative_location_id] fields for more details.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -358,7 +358,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * failures. If [alternative_location_id] is also provided, it must be
      * different from [location_id].
      *
-     * Generated from protobuf field <code>string location_id = 4;</code>
+     * Generated from protobuf field <code>string location_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLocationId()
@@ -373,7 +373,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * failures. If [alternative_location_id] is also provided, it must be
      * different from [location_id].
      *
-     * Generated from protobuf field <code>string location_id = 4;</code>
+     * Generated from protobuf field <code>string location_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -390,7 +390,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * against zonal failures by provisioning it across two zones. If provided, it
      * must be a different zone from the one provided in [location_id].
      *
-     * Generated from protobuf field <code>string alternative_location_id = 5;</code>
+     * Generated from protobuf field <code>string alternative_location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAlternativeLocationId()
@@ -403,7 +403,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * against zonal failures by provisioning it across two zones. If provided, it
      * must be a different zone from the one provided in [location_id].
      *
-     * Generated from protobuf field <code>string alternative_location_id = 5;</code>
+     * Generated from protobuf field <code>string alternative_location_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -423,7 +423,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *  *   `REDIS_4_0` for Redis 4.0 compatibility (default)
      *  *   `REDIS_3_2` for Redis 3.2 compatibility
      *
-     * Generated from protobuf field <code>string redis_version = 7;</code>
+     * Generated from protobuf field <code>string redis_version = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRedisVersion()
@@ -439,7 +439,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *  *   `REDIS_4_0` for Redis 4.0 compatibility (default)
      *  *   `REDIS_3_2` for Redis 3.2 compatibility
      *
-     * Generated from protobuf field <code>string redis_version = 7;</code>
+     * Generated from protobuf field <code>string redis_version = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -457,7 +457,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
      * and non-overlapping with existing subnets in an authorized network.
      *
-     * Generated from protobuf field <code>string reserved_ip_range = 9;</code>
+     * Generated from protobuf field <code>string reserved_ip_range = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getReservedIpRange()
@@ -471,7 +471,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique
      * and non-overlapping with existing subnets in an authorized network.
      *
-     * Generated from protobuf field <code>string reserved_ip_range = 9;</code>
+     * Generated from protobuf field <code>string reserved_ip_range = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -487,7 +487,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
-     * Generated from protobuf field <code>string host = 10;</code>
+     * Generated from protobuf field <code>string host = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getHost()
@@ -499,7 +499,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Hostname or IP address of the exposed Redis endpoint used by
      * clients to connect to the service.
      *
-     * Generated from protobuf field <code>string host = 10;</code>
+     * Generated from protobuf field <code>string host = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -514,7 +514,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The port number of the exposed Redis endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 11;</code>
+     * Generated from protobuf field <code>int32 port = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getPort()
@@ -525,7 +525,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The port number of the exposed Redis endpoint.
      *
-     * Generated from protobuf field <code>int32 port = 11;</code>
+     * Generated from protobuf field <code>int32 port = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -544,7 +544,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * this can be either [location_id] or [alternative_location_id] and can
      * change after a failover event.
      *
-     * Generated from protobuf field <code>string current_location_id = 12;</code>
+     * Generated from protobuf field <code>string current_location_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCurrentLocationId()
@@ -559,7 +559,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * this can be either [location_id] or [alternative_location_id] and can
      * change after a failover event.
      *
-     * Generated from protobuf field <code>string current_location_id = 12;</code>
+     * Generated from protobuf field <code>string current_location_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -574,7 +574,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the instance was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -585,7 +585,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the instance was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -600,7 +600,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The current state of this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -611,7 +611,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The current state of this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.State state = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -627,7 +627,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Additional information about the current status of this
      * instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 15;</code>
+     * Generated from protobuf field <code>string status_message = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getStatusMessage()
@@ -639,7 +639,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Additional information about the current status of this
      * instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 15;</code>
+     * Generated from protobuf field <code>string status_message = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -663,7 +663,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *  *   lfu-log-factor
      *  *   lfu-decay-time
      *
-     * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
+     * Generated from protobuf field <code>map<string, string> redis_configs = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getRedisConfigs()
@@ -683,7 +683,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *  *   lfu-log-factor
      *  *   lfu-decay-time
      *
-     * Generated from protobuf field <code>map<string, string> redis_configs = 16;</code>
+     * Generated from protobuf field <code>map<string, string> redis_configs = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -698,7 +698,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. The service tier of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getTier()
@@ -709,7 +709,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. The service tier of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance.Tier tier = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -724,7 +724,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis memory size in GiB.
      *
-     * Generated from protobuf field <code>int32 memory_size_gb = 18;</code>
+     * Generated from protobuf field <code>int32 memory_size_gb = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMemorySizeGb()
@@ -735,7 +735,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * Required. Redis memory size in GiB.
      *
-     * Generated from protobuf field <code>int32 memory_size_gb = 18;</code>
+     * Generated from protobuf field <code>int32 memory_size_gb = 18 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -753,7 +753,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
-     * Generated from protobuf field <code>string authorized_network = 20;</code>
+     * Generated from protobuf field <code>string authorized_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAuthorizedNetwork()
@@ -767,7 +767,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * instance is connected. If left unspecified, the `default` network
      * will be used.
      *
-     * Generated from protobuf field <code>string authorized_network = 20;</code>
+     * Generated from protobuf field <code>string authorized_network = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -786,7 +786,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for a given instance so should be checked before each import/export
      * operation.
      *
-     * Generated from protobuf field <code>string persistence_iam_identity = 21;</code>
+     * Generated from protobuf field <code>string persistence_iam_identity = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPersistenceIamIdentity()
@@ -801,7 +801,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for a given instance so should be checked before each import/export
      * operation.
      *
-     * Generated from protobuf field <code>string persistence_iam_identity = 21;</code>
+     * Generated from protobuf field <code>string persistence_iam_identity = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
