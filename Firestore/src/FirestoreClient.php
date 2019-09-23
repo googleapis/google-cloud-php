@@ -591,22 +591,22 @@ class FirestoreClient
      * echo $_SESSION['name'];
      * ```
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type int $gcLimit [optional] The number of entities to delete in the
-     *        garbage collection. Values larger than 1000 will be limited to
-     *        1000. **Defaults to** `0`, indicating garbage collection is
-     *        disabled by default.
-     *     @type string $collectionNameTemplate [optional] A sprintf compatible
-     *        template for formatting the collection name where sessions will be
-     *        stored. The template receives two values, the first being the save
-     *        path and the latter being the session name.
-     *     @type array $begin [optional] Configuration options for beginTransaction.
-     *     @type array $commit [optional] Configuration options for commit.
-     *     @type array $rollback [optional] Configuration options for rollback.
-     *     @type array $delete [optional] Configuration options for delete.
-     *     @type array $query [optional] Configuration options for runQuery.
+     *     @type int $gcLimit The number of entities to delete in the garbage
+     *        collection. Values larger than 1000 will be limited to 1000.
+     *        **Defaults to** `0`, indicating garbage collection is disabled by
+     *        default.
+     *     @type string $collectionNameTemplate A sprintf compatible template
+     *        for formatting the collection name where sessions will be stored.
+     *        The template receives two values, the first being the save path
+     *        and the latter being the session name.
+     *     @type array $begin Configuration options for beginTransaction.
+     *     @type array $commit Configuration options for commit.
+     *     @type array $rollback Configuration options for rollback.
+     *     @type array $delete Configuration options for delete.
+     *     @type array $query Configuration options for runQuery.
      * @return FirestoreSessionHandler
      */
     public function sessionHandler(array $options = [])
