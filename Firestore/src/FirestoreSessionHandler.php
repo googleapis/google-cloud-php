@@ -174,6 +174,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             'delete' => [],
             'query' => [],
             'gcLimit' => 0,
+            'collectionNameTemplate' => '%1$s:%2$s',
         ];
 
         // Cut down gcLimit to 1000
@@ -374,19 +375,23 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     }
 
     /**
-     * Format the Firebase document ID from the PHP session ID and session name.
-     * ex: sessions:PHPSESSID/abcdef
+     * Format the Firebase collection ID from the PHP session ID and session name.
+     * ex: sessions:PHPSESSID
      *
      * @param string $id Identifier used for the session
      * @return string
      */
     private function collectionId()
     {
-        return sprintf('%s:%s', $this->savePath, $this->sessionName);
+        return sprintf(
+            $this->options['collectionNameTemplate'],
+            $this->savePath,
+            $this->sessionName
+        );
     }
 
     /**
-     * Format the Firebase document ID from the PHP session ID and session name.
+     * Format the Firebase document ID from the collection ID.
      * ex: sessions:PHPSESSID/abcdef
      *
      * @param string $id Identifier used for the session
