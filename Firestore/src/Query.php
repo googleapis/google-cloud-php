@@ -169,6 +169,7 @@ class Query
 
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($options) {
             $query = $this->finalQueryPrepare($this->query);
+
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
                 'parent' => $this->parent,
                 'structuredQuery' => $query,
