@@ -605,8 +605,9 @@ class FirestoreClient
      *     @type array $begin Configuration options for beginTransaction.
      *     @type array $commit Configuration options for commit.
      *     @type array $rollback Configuration options for rollback.
-     *     @type array $delete Configuration options for delete.
+     *     @type array $read Configuration options for read.
      *     @type array $query Configuration options for runQuery.
+     * }
      * @return FirestoreSessionHandler
      */
     public function sessionHandler(array $options = [])

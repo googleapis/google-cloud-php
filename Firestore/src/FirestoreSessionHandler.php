@@ -46,12 +46,13 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  * possible data contentions. Also please see the 2nd example below for how to
  * properly handle errors on `write` operations.
  *
- * The handler stores data in a collection provided by the value of
- * session.save_path, isolating the session data from your application data. It
- * creates documents in the specified collection where the session name and ID
- * are concatenated. By default, it does nothing on gc for reducing the cost.
- * Pass a positive value up to 1000 for $gcLimit parameter to delete entities in
- * gc.
+ * The handler stores data in a collection formatted from the values of
+ * session.save_path and session.name, which can be customized using the
+ * $collectionNameTemplate option. This isolates the session data from your
+ * application data. It creates documents in the specified collection where the
+ * ID is the session ID. By default, it does nothing on gc for reducing the
+ * cost. Pass a positive value up to 1000 for $gcLimit option to delete entities
+ * in gc.
  *
  * The first example automatically writes the session data. It's handy, but
  * the code doesn't stop even if it fails to write the session data, because
@@ -154,7 +155,23 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
-     * @param array $options [optional]
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $gcLimit The number of entities to delete in the garbage
+     *        collection. Values larger than 1000 will be limited to 1000.
+     *        **Defaults to** `0`, indicating garbage collection is disabled by
+     *        default.
+     *     @type string $collectionNameTemplate A sprintf compatible template
+     *        for formatting the collection name where sessions will be stored.
+     *        The template receives two values, the first being the save path
+     *        and the latter being the session name.
+     *     @type array $begin Configuration options for beginTransaction.
+     *     @type array $commit Configuration options for commit.
+     *     @type array $rollback Configuration options for rollback.
+     *     @type array $read Configuration options for read.
+     *     @type array $query Configuration options for runQuery.
+     * }
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -171,8 +188,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
             'begin' => [],
             'commit' => [],
             'rollback' => [],
-            'delete' => [],
             'query' => [],
+            'read' => [],
             'gcLimit' => 0,
             'collectionNameTemplate' => '%1$s:%2$s',
         ];
@@ -234,7 +251,10 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->database,
                 $this->docId($id)
             );
-            $snapshot = $this->transaction->snapshot($docRef);
+            $snapshot = $this->transaction->snapshot(
+                $docRef,
+                $this->options['read']
+            );
             if ($snapshot->exists() && isset($snapshot['data'])) {
                 return $snapshot->get('data');
             }
@@ -295,7 +315,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->database,
                 $this->docId($id)
             );
-            $this->transaction->delete($docRef, $this->options['delete']);
+            $this->transaction->delete($docRef);
             $this->commitTransaction();
         } catch (ServiceException $e) {
             trigger_error(
@@ -336,10 +356,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
                 $this->options['query']
             );
             foreach ($querySnapshot as $snapshot) {
-                $this->transaction->delete(
-                    $snapshot->reference(),
-                    $this->options['delete']
-                );
+                $this->transaction->delete($snapshot->reference());
             }
             $this->commitTransaction();
         } catch (ServiceException $e) {
