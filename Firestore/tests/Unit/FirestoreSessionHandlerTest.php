@@ -185,10 +185,11 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testWrite()
     {
+        $phpunit = $this;
         $this->valueMapper->encodeValues(Argument::type('array'))
-            ->will(function ($args) {
-                $this->assertEquals('sessiondata', $args[0]['data']);
-                $this->assertTrue(is_int($args[0]['t']));
+            ->will(function ($args) use ($phpunit) {
+                $phpunit->assertEquals('sessiondata', $args[0]['data']);
+                $phpunit->assertTrue(is_int($args[0]['t']));
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
@@ -224,10 +225,11 @@ class FirestoreSessionHandlerTest extends TestCase
      */
     public function testWriteWithException()
     {
+        $phpunit = $this;
         $this->valueMapper->encodeValues(Argument::type('array'))
-            ->will(function ($args) {
-                $this->assertEquals('sessiondata', $args[0]['data']);
-                $this->assertTrue(is_int($args[0]['t']));
+            ->will(function ($args) use ($phpunit) {
+                $phpunit->assertEquals('sessiondata', $args[0]['data']);
+                $phpunit->assertTrue(is_int($args[0]['t']));
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
@@ -328,6 +330,7 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testGc()
     {
+        $phpunit = $this;
         $this->documents->valid()
             ->shouldBeCalledTimes(2)
             ->willReturn(true, false);
@@ -349,19 +352,19 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn(['transaction' => 123]);
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalledTimes(1)
-            ->will(function ($args) {
+            ->will(function ($args) use ($phpunit) {
                 $options = $args[0];
-                $this->assertEquals(
-                    $this->dbName() . '/documents',
+                $phpunit->assertEquals(
+                    $phpunit->dbName() . '/documents',
                     $options['parent']
                 );
-                $this->assertEquals(999, $options['structuredQuery']['limit']);
-                $this->assertEquals(
+                $phpunit->assertEquals(999, $options['structuredQuery']['limit']);
+                $phpunit->assertEquals(
                     self::SESSION_SAVE_PATH . ':' . self::SESSION_NAME,
                     $options['structuredQuery']['from'][0]['collectionId']
                 );
-                $this->assertEquals(123, $options['transaction']);
-                return $this->documents->reveal();
+                $phpunit->assertEquals(123, $options['transaction']);
+                return $phpunit->documents->reveal();
             });
         $this->valueMapper->decodeValues([])
             ->shouldBeCalledTimes(1)
