@@ -68,6 +68,24 @@ class FirestoreSessionHandlerTest extends TestCase
     }
 
     /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testOpenWithException()
+    {
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ServiceException(''));
+        $firestoreSessionHandler = new FirestoreSessionHandler(
+            $this->connection->reveal(),
+            $this->valueMapper->reveal(),
+            self::PROJECT,
+            self::DATABASE
+        );
+        $ret = $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
+        $this->assertFalse($ret);
+    }
+
+    /**
      * @expectedException InvalidArgumentException
      */
     public function testReadNotAllowed()

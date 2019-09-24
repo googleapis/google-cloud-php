@@ -202,9 +202,9 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * Start a session, by getting the Firebase collection from $savePath.
      *
      * @param string $savePath The value of `session.save_path` setting will be
-     *        used here as the Firestore collection ID.
+     *        used in the Firestore collection ID.
      * @param string $sessionName The value of `session.name` setting will be
-     *        used here as the Firestore document ID prefix (ex: "PHPSESSID:").
+     *        used in the Firestore collection ID.
      * @return bool
      */
     public function open($savePath, $sessionName)
@@ -213,9 +213,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $this->sessionName = $sessionName;
         $database = $this->databaseName($this->projectId, $this->database);
 
-        $beginTransaction = $this->connection->beginTransaction([
-            'database' => $database
-        ] + $this->options['begin']);
+        try {
+            $beginTransaction = $this->connection->beginTransaction([
+                'database' => $database
+            ] + $this->options['begin']);
+        } catch (ServiceException $e) {
+            trigger_error(
+                sprintf('Firestore beginTransaction failed: %s', $e->getMessage()),
+                E_USER_WARNING
+            );
+        }
 
         $this->transaction = new Transaction(
             $this->connection,
@@ -392,7 +399,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     }
 
     /**
-     * Format the Firebase collection ID from the PHP session ID and session name.
+     * Format the Firebase collection ID from the PHP session ID and session
+     * name according to the $collectionNameTemplate option.
      * ex: sessions:PHPSESSID
      *
      * @param string $id Identifier used for the session
