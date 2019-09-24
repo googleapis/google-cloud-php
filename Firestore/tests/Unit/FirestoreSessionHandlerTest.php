@@ -38,7 +38,7 @@ use Iterator;
 class FirestoreSessionHandlerTest extends TestCase
 {
     const SESSION_SAVE_PATH = 'sessions';
-    const SESSION_NAME = 'PHPSESID';
+    const SESSION_NAME = 'PHPSESSID';
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
@@ -185,11 +185,10 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testWrite()
     {
-        $phpunit = $this;
         $this->valueMapper->encodeValues(Argument::type('array'))
-            ->will(function ($args) use ($phpunit) {
-                $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertTrue(is_int($args[0]['t']));
+            ->will(function ($args) {
+                $this->assertEquals('sessiondata', $args[0]['data']);
+                $this->assertTrue(is_int($args[0]['t']));
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
@@ -225,11 +224,10 @@ class FirestoreSessionHandlerTest extends TestCase
      */
     public function testWriteWithException()
     {
-        $phpunit = $this;
         $this->valueMapper->encodeValues(Argument::type('array'))
-            ->will(function ($args) use ($phpunit) {
-                $phpunit->assertEquals('sessiondata', $args[0]['data']);
-                $phpunit->assertTrue(is_int($args[0]['t']));
+            ->will(function ($args) {
+                $this->assertEquals('sessiondata', $args[0]['data']);
+                $this->assertTrue(is_int($args[0]['t']));
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
@@ -330,7 +328,6 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testGc()
     {
-        $phpunit = $this;
         $this->documents->valid()
             ->shouldBeCalledTimes(2)
             ->willReturn(true, false);
@@ -352,19 +349,19 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn(['transaction' => 123]);
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalledTimes(1)
-            ->will(function ($args) use ($phpunit) {
+            ->will(function ($args) {
                 $options = $args[0];
-                $phpunit->assertEquals(
-                    $phpunit->dbName() . '/documents',
+                $this->assertEquals(
+                    $this->dbName() . '/documents',
                     $options['parent']
                 );
-                $phpunit->assertEquals(999, $options['structuredQuery']['limit']);
-                $phpunit->assertEquals(
+                $this->assertEquals(999, $options['structuredQuery']['limit']);
+                $this->assertEquals(
                     self::SESSION_SAVE_PATH . ':' . self::SESSION_NAME,
                     $options['structuredQuery']['from'][0]['collectionId']
                 );
-                $phpunit->assertEquals(123, $options['transaction']);
-                return $phpunit->documents->reveal();
+                $this->assertEquals(123, $options['transaction']);
+                return $this->documents->reveal();
             });
         $this->valueMapper->decodeValues([])
             ->shouldBeCalledTimes(1)
