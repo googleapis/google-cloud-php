@@ -258,7 +258,7 @@ class PolicyBuilder
 
     private function validatePolicyVersion()
     {
-        if ($this->version <= 1) {
+        if ($this->version && $this->version > 1) {
             throw new InvalidArgumentException("Helper methods cannot be invoked on policies with version {$this->version}.");
         }
     }
