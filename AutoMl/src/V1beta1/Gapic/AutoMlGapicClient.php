@@ -55,6 +55,7 @@ use Google\Cloud\AutoMl\V1beta1\GetDatasetRequest;
 use Google\Cloud\AutoMl\V1beta1\GetModelEvaluationRequest;
 use Google\Cloud\AutoMl\V1beta1\GetModelRequest;
 use Google\Cloud\AutoMl\V1beta1\GetTableSpecRequest;
+use Google\Cloud\AutoMl\V1beta1\ImageClassificationModelDeploymentMetadata;
 use Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata;
 use Google\Cloud\AutoMl\V1beta1\ImportDataRequest;
 use Google\Cloud\AutoMl\V1beta1\InputConfig;
@@ -1412,6 +1413,8 @@ class AutoMlGapicClient
      *
      *     @type ImageObjectDetectionModelDeploymentMetadata $imageObjectDetectionModelDeploymentMetadata
      *          Model deployment metadata specific to Image Object Detection.
+     *     @type ImageClassificationModelDeploymentMetadata $imageClassificationModelDeploymentMetadata
+     *          Model deployment metadata specific to Image Classification.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1430,6 +1433,9 @@ class AutoMlGapicClient
         $request->setName($name);
         if (isset($optionalArgs['imageObjectDetectionModelDeploymentMetadata'])) {
             $request->setImageObjectDetectionModelDeploymentMetadata($optionalArgs['imageObjectDetectionModelDeploymentMetadata']);
+        }
+        if (isset($optionalArgs['imageClassificationModelDeploymentMetadata'])) {
+            $request->setImageClassificationModelDeploymentMetadata($optionalArgs['imageClassificationModelDeploymentMetadata']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([

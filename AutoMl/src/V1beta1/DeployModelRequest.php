@@ -31,6 +31,8 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata $image_object_detection_model_deployment_metadata
      *           Model deployment metadata specific to Image Object Detection.
+     *     @type \Google\Cloud\AutoMl\V1beta1\ImageClassificationModelDeploymentMetadata $image_classification_model_deployment_metadata
+     *           Model deployment metadata specific to Image Classification.
      *     @type string $name
      *           Resource name of the model to deploy.
      * }
@@ -62,6 +64,32 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelDeploymentMetadata::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Model deployment metadata specific to Image Classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageClassificationModelDeploymentMetadata image_classification_model_deployment_metadata = 4;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageClassificationModelDeploymentMetadata
+     */
+    public function getImageClassificationModelDeploymentMetadata()
+    {
+        return $this->readOneof(4);
+    }
+
+    /**
+     * Model deployment metadata specific to Image Classification.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageClassificationModelDeploymentMetadata image_classification_model_deployment_metadata = 4;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ImageClassificationModelDeploymentMetadata $var
+     * @return $this
+     */
+    public function setImageClassificationModelDeploymentMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageClassificationModelDeploymentMetadata::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }
