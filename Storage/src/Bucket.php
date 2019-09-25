@@ -1177,13 +1177,18 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/testIamPermissions Test Bucket Permissions
      * @codingStandardsIgnoreEnd
      *
+     * @param  int $version Sets the policy version used. Refer to [IAM policy
+     *             versions](#FIXME) the version that should be used for
+     *             the supported version.
+     *             Defaults to null if not provided.
+     *
      * @return Iam
      */
-    public function iam()
+    public function iam($version = null)
     {
         if (!$this->iam) {
             $this->iam = new Iam(
-                new IamBucket($this->connection),
+                new IamBucket($this->connection, $version),
                 $this->identity['bucket'],
                 [
                     'parent' => null,
