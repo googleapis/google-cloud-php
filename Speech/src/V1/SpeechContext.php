@@ -17,12 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Optional* A list of strings containing words and phrases "hints" so that
+     * A list of strings containing words and phrases "hints" so that
      * the speech recognition is more likely to recognize them. This can be used
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
-     * [usage limits](/speech-to-text/quotas#content).
+     * [usage limits](https://cloud.google.com/speech-to-text/quotas#content).
+     * List items can also be set to classes for groups of words that represent
+     * common concepts that occur in natural language. For example, rather than
+     * providing phrase hints for every month of the year, using the $MONTH class
+     * improves the likelihood of correctly transcribing audio that includes
+     * months.
      *
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      */
@@ -35,12 +40,17 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrases
-     *           *Optional* A list of strings containing words and phrases "hints" so that
+     *           A list of strings containing words and phrases "hints" so that
      *           the speech recognition is more likely to recognize them. This can be used
      *           to improve the accuracy for specific words and phrases, for example, if
      *           specific commands are typically spoken by the user. This can also be used
      *           to add additional words to the vocabulary of the recognizer. See
-     *           [usage limits](/speech-to-text/quotas#content).
+     *           [usage limits](https://cloud.google.com/speech-to-text/quotas#content).
+     *           List items can also be set to classes for groups of words that represent
+     *           common concepts that occur in natural language. For example, rather than
+     *           providing phrase hints for every month of the year, using the $MONTH class
+     *           improves the likelihood of correctly transcribing audio that includes
+     *           months.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,12 +59,17 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A list of strings containing words and phrases "hints" so that
+     * A list of strings containing words and phrases "hints" so that
      * the speech recognition is more likely to recognize them. This can be used
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
-     * [usage limits](/speech-to-text/quotas#content).
+     * [usage limits](https://cloud.google.com/speech-to-text/quotas#content).
+     * List items can also be set to classes for groups of words that represent
+     * common concepts that occur in natural language. For example, rather than
+     * providing phrase hints for every month of the year, using the $MONTH class
+     * improves the likelihood of correctly transcribing audio that includes
+     * months.
      *
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -65,12 +80,17 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A list of strings containing words and phrases "hints" so that
+     * A list of strings containing words and phrases "hints" so that
      * the speech recognition is more likely to recognize them. This can be used
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
-     * [usage limits](/speech-to-text/quotas#content).
+     * [usage limits](https://cloud.google.com/speech-to-text/quotas#content).
+     * List items can also be set to classes for groups of words that represent
+     * common concepts that occur in natural language. For example, rather than
+     * providing phrase hints for every month of the year, using the $MONTH class
+     * improves the likelihood of correctly transcribing audio that includes
+     * months.
      *
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

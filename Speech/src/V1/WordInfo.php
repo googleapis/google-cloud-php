@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class WordInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the start of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -27,7 +27,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -38,7 +38,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $end_time = null;
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      */
@@ -51,21 +51,21 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $start_time
-     *           Output only. Time offset relative to the beginning of the audio,
+     *           Time offset relative to the beginning of the audio,
      *           and corresponding to the start of the spoken word.
      *           This field is only set if `enable_word_time_offsets=true` and only
      *           in the top hypothesis.
      *           This is an experimental feature and the accuracy of the time offset can
      *           vary.
      *     @type \Google\Protobuf\Duration $end_time
-     *           Output only. Time offset relative to the beginning of the audio,
+     *           Time offset relative to the beginning of the audio,
      *           and corresponding to the end of the spoken word.
      *           This field is only set if `enable_word_time_offsets=true` and only
      *           in the top hypothesis.
      *           This is an experimental feature and the accuracy of the time offset can
      *           vary.
      *     @type string $word
-     *           Output only. The word corresponding to this set of information.
+     *           The word corresponding to this set of information.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +74,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the start of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -90,7 +90,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the start of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -110,7 +110,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -126,7 +126,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset relative to the beginning of the audio,
+     * Time offset relative to the beginning of the audio,
      * and corresponding to the end of the spoken word.
      * This field is only set if `enable_word_time_offsets=true` and only
      * in the top hypothesis.
@@ -146,7 +146,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      * @return string
@@ -157,7 +157,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The word corresponding to this set of information.
+     * The word corresponding to this set of information.
      *
      * Generated from protobuf field <code>string word = 3;</code>
      * @param string $var

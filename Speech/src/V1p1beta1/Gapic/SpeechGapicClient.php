@@ -246,9 +246,9 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
+     * @param RecognitionConfig $config       Required. Provides information to the recognizer that specifies how to
      *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
+     * @param RecognitionAudio  $audio        Required. The audio data to be recognized.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -283,6 +283,8 @@ class SpeechGapicClient
      * google.longrunning.Operations interface. Returns either an
      * `Operation.error` or an `Operation.response` which contains
      * a `LongRunningRecognizeResponse` message.
+     * For more information on asynchronous speech recognition, see the
+     * [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
      *
      * Sample code:
      * ```
@@ -332,9 +334,9 @@ class SpeechGapicClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
+     * @param RecognitionConfig $config       Required. Provides information to the recognizer that specifies how to
      *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
+     * @param RecognitionAudio  $audio        Required. The audio data to be recognized.
      * @param array             $optionalArgs {
      *                                        Optional.
      *

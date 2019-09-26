@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the
+     * May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -26,7 +26,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $alternatives;
     /**
-     * Output only. If `false`, this `StreamingRecognitionResult` represents an
+     * If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
@@ -36,7 +36,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $is_final = false;
     /**
-     * Output only. An estimate of the likelihood that the recognizer will not
+     * An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
@@ -46,7 +46,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $stability = 0.0;
     /**
-     * Output only. Time offset of the end of this result relative to the
+     * Time offset of the end of this result relative to the
      * beginning of the audio.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
@@ -61,12 +61,11 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     private $channel_tag = 0;
     /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
+     * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     * the language in this result. This language code was detected to have the
+     * most likelihood of being spoken in the audio.
      *
-     * Generated from protobuf field <code>string language_code = 6;</code>
+     * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $language_code = '';
 
@@ -77,34 +76,33 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
-     *           Output only. May contain one or more recognition hypotheses (up to the
+     *           May contain one or more recognition hypotheses (up to the
      *           maximum specified in `max_alternatives`).
      *           These alternatives are ordered in terms of accuracy, with the top (first)
      *           alternative being the most probable, as ranked by the recognizer.
      *     @type bool $is_final
-     *           Output only. If `false`, this `StreamingRecognitionResult` represents an
+     *           If `false`, this `StreamingRecognitionResult` represents an
      *           interim result that may change. If `true`, this is the final time the
      *           speech service will return this particular `StreamingRecognitionResult`,
      *           the recognizer will not return any further hypotheses for this portion of
      *           the transcript and corresponding audio.
      *     @type float $stability
-     *           Output only. An estimate of the likelihood that the recognizer will not
+     *           An estimate of the likelihood that the recognizer will not
      *           change its guess about this interim result. Values range from 0.0
      *           (completely unstable) to 1.0 (completely stable).
      *           This field is only provided for interim results (`is_final=false`).
      *           The default of 0.0 is a sentinel value indicating `stability` was not set.
      *     @type \Google\Protobuf\Duration $result_end_time
-     *           Output only. Time offset of the end of this result relative to the
+     *           Time offset of the end of this result relative to the
      *           beginning of the audio.
      *     @type int $channel_tag
      *           For multi-channel audio, this is the channel number corresponding to the
      *           recognized result for the audio from that channel.
      *           For audio_channel_count = N, its output values can range from '1' to 'N'.
      *     @type string $language_code
-     *           Output only. The
-     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     *           language in this result. This language code was detected to have the most
-     *           likelihood of being spoken in the audio.
+     *           The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     *           the language in this result. This language code was detected to have the
+     *           most likelihood of being spoken in the audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,7 +111,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the
+     * May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -127,7 +125,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the
+     * May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -145,7 +143,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If `false`, this `StreamingRecognitionResult` represents an
+     * If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
@@ -160,7 +158,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If `false`, this `StreamingRecognitionResult` represents an
+     * If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
@@ -179,7 +177,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An estimate of the likelihood that the recognizer will not
+     * An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
@@ -194,7 +192,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An estimate of the likelihood that the recognizer will not
+     * An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
@@ -213,7 +211,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset of the end of this result relative to the
+     * Time offset of the end of this result relative to the
      * beginning of the audio.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
@@ -225,7 +223,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time offset of the end of this result relative to the
+     * Time offset of the end of this result relative to the
      * beginning of the audio.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
@@ -271,12 +269,11 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
+     * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     * the language in this result. This language code was detected to have the
+     * most likelihood of being spoken in the audio.
      *
-     * Generated from protobuf field <code>string language_code = 6;</code>
+     * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -285,12 +282,11 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
+     * The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     * the language in this result. This language code was detected to have the
+     * most likelihood of being spoken in the audio.
      *
-     * Generated from protobuf field <code>string language_code = 6;</code>
+     * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

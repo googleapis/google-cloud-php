@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Required* Provides information to the recognizer that specifies how to
+     * Required. Provides information to the recognizer that specifies how to
      * process the request.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $config = null;
     /**
-     * *Optional* If `false` or omitted, the recognizer will perform continuous
+     * If `false` or omitted, the recognizer will perform continuous
      * recognition (continuing to wait for and process audio even if the user
      * pauses speaking) until the client closes the input stream (gRPC API) or
      * until the maximum time limit has been reached. May return multiple
@@ -39,7 +39,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $single_utterance = false;
     /**
-     * *Optional* If `true`, interim results (tentative hypotheses) may be
+     * If `true`, interim results (tentative hypotheses) may be
      * returned as they become available (these interim results are indicated with
      * the `is_final=false` flag).
      * If `false` or omitted, only `is_final=true` result(s) are returned.
@@ -55,10 +55,10 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Speech\V1p1beta1\RecognitionConfig $config
-     *           *Required* Provides information to the recognizer that specifies how to
+     *           Required. Provides information to the recognizer that specifies how to
      *           process the request.
      *     @type bool $single_utterance
-     *           *Optional* If `false` or omitted, the recognizer will perform continuous
+     *           If `false` or omitted, the recognizer will perform continuous
      *           recognition (continuing to wait for and process audio even if the user
      *           pauses speaking) until the client closes the input stream (gRPC API) or
      *           until the maximum time limit has been reached. May return multiple
@@ -69,7 +69,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      *           more than one `StreamingRecognitionResult` with the `is_final` flag set to
      *           `true`.
      *     @type bool $interim_results
-     *           *Optional* If `true`, interim results (tentative hypotheses) may be
+     *           If `true`, interim results (tentative hypotheses) may be
      *           returned as they become available (these interim results are indicated with
      *           the `is_final=false` flag).
      *           If `false` or omitted, only `is_final=true` result(s) are returned.
@@ -81,10 +81,10 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Provides information to the recognizer that specifies how to
+     * Required. Provides information to the recognizer that specifies how to
      * process the request.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Speech\V1p1beta1\RecognitionConfig
      */
     public function getConfig()
@@ -93,10 +93,10 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Provides information to the recognizer that specifies how to
+     * Required. Provides information to the recognizer that specifies how to
      * process the request.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Speech\V1p1beta1\RecognitionConfig $var
      * @return $this
      */
@@ -109,7 +109,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `false` or omitted, the recognizer will perform continuous
+     * If `false` or omitted, the recognizer will perform continuous
      * recognition (continuing to wait for and process audio even if the user
      * pauses speaking) until the client closes the input stream (gRPC API) or
      * until the maximum time limit has been reached. May return multiple
@@ -129,7 +129,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `false` or omitted, the recognizer will perform continuous
+     * If `false` or omitted, the recognizer will perform continuous
      * recognition (continuing to wait for and process audio even if the user
      * pauses speaking) until the client closes the input stream (gRPC API) or
      * until the maximum time limit has been reached. May return multiple
@@ -153,7 +153,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `true`, interim results (tentative hypotheses) may be
+     * If `true`, interim results (tentative hypotheses) may be
      * returned as they become available (these interim results are indicated with
      * the `is_final=false` flag).
      * If `false` or omitted, only `is_final=true` result(s) are returned.
@@ -167,7 +167,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `true`, interim results (tentative hypotheses) may be
+     * If `true`, interim results (tentative hypotheses) may be
      * returned as they become available (these interim results are indicated with
      * the `is_final=false` flag).
      * If `false` or omitted, only `is_final=true` result(s) are returned.
