@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Data transfer configuration to create.
+     * Required. Data transfer configuration to create.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $transfer_config = null;
     /**
@@ -43,9 +43,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $authorization_code = '';
     /**
-     * Required list of fields to be updated in this request.
+     * Required. Required list of fields to be updated in this request.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
     /**
@@ -67,7 +67,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transfer_config
-     *           Data transfer configuration to create.
+     *           Required. Data transfer configuration to create.
      *     @type string $authorization_code
      *           Optional OAuth2 authorization code to use with this transfer configuration.
      *           If it is provided, the transfer configuration will be associated with the
@@ -85,7 +85,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *             returned in the title bar of the browser, with the page text prompting
      *             the user to copy the code and paste it in the application.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required list of fields to be updated in this request.
+     *           Required. Required list of fields to be updated in this request.
      *     @type string $version_info
      *           Optional version info. If users want to find a very recent access token,
      *           that is, immediately after approving access, users have to set the
@@ -101,9 +101,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data transfer configuration to create.
+     * Required. Data transfer configuration to create.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
      */
     public function getTransferConfig()
@@ -112,9 +112,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data transfer configuration to create.
+     * Required. Data transfer configuration to create.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $var
      * @return $this
      */
@@ -181,9 +181,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required list of fields to be updated in this request.
+     * Required. Required list of fields to be updated in this request.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -192,9 +192,9 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required list of fields to be updated in this request.
+     * Required. Required list of fields to be updated in this request.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

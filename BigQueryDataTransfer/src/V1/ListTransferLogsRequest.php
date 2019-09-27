@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Transfer run name in the form:
+     * Required. Transfer run name in the form:
      * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -53,7 +53,7 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Transfer run name in the form:
+     *           Required. Transfer run name in the form:
      *           `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
@@ -74,10 +74,10 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Transfer run name in the form:
+     * Required. Transfer run name in the form:
      * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -86,10 +86,10 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Transfer run name in the form:
+     * Required. Transfer run name in the form:
      * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

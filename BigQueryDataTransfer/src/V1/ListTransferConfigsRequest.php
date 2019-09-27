@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BigQuery project id for which data sources
+     * Required. The BigQuery project id for which data sources
      * should be returned: `projects/{project_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -52,7 +52,7 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The BigQuery project id for which data sources
+     *           Required. The BigQuery project id for which data sources
      *           should be returned: `projects/{project_id}`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $data_source_ids
      *           When specified, only configurations of requested data sources are returned.
@@ -72,10 +72,10 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery project id for which data sources
+     * Required. The BigQuery project id for which data sources
      * should be returned: `projects/{project_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -84,10 +84,10 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery project id for which data sources
+     * Required. The BigQuery project id for which data sources
      * should be returned: `projects/{project_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

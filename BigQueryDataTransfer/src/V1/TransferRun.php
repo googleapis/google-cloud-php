@@ -47,38 +47,32 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Time when transfer run was started.
      * Parameter ignored by server for input requests.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $start_time = null;
     /**
      * Output only. Time when transfer run ended.
      * Parameter ignored by server for input requests.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $end_time = null;
     /**
      * Output only. Last time the data transfer run state was updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
      * Output only. Data transfer specific parameters.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $params = null;
     /**
-     * Output only. The BigQuery target dataset id.
-     *
-     * Generated from protobuf field <code>string destination_dataset_id = 2;</code>
-     */
-    private $destination_dataset_id = '';
-    /**
      * Output only. Data source id.
      *
-     * Generated from protobuf field <code>string data_source_id = 7;</code>
+     * Generated from protobuf field <code>string data_source_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $data_source_id = '';
     /**
@@ -100,9 +94,10 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * NOTE: the system might choose to delay the schedule depending on the
      * current load, so `schedule_time` doesn't always match this.
      *
-     * Generated from protobuf field <code>string schedule = 12;</code>
+     * Generated from protobuf field <code>string schedule = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $schedule = '';
+    protected $destination;
 
     /**
      * Constructor.
@@ -269,7 +264,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Time when transfer run was started.
      * Parameter ignored by server for input requests.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -281,7 +276,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Time when transfer run was started.
      * Parameter ignored by server for input requests.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -297,7 +292,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Time when transfer run ended.
      * Parameter ignored by server for input requests.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -309,7 +304,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Time when transfer run ended.
      * Parameter ignored by server for input requests.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -324,7 +319,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Last time the data transfer run state was updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -335,7 +330,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Last time the data transfer run state was updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -350,7 +345,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data transfer specific parameters.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Struct
      */
     public function getParams()
@@ -361,7 +356,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data transfer specific parameters.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -376,25 +371,25 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The BigQuery target dataset id.
      *
-     * Generated from protobuf field <code>string destination_dataset_id = 2;</code>
+     * Generated from protobuf field <code>string destination_dataset_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDestinationDatasetId()
     {
-        return $this->destination_dataset_id;
+        return $this->readOneof(2);
     }
 
     /**
      * Output only. The BigQuery target dataset id.
      *
-     * Generated from protobuf field <code>string destination_dataset_id = 2;</code>
+     * Generated from protobuf field <code>string destination_dataset_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
     public function setDestinationDatasetId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->destination_dataset_id = $var;
+        $this->writeOneof(2, $var);
 
         return $this;
     }
@@ -402,7 +397,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data source id.
      *
-     * Generated from protobuf field <code>string data_source_id = 7;</code>
+     * Generated from protobuf field <code>string data_source_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDataSourceId()
@@ -413,7 +408,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data source id.
      *
-     * Generated from protobuf field <code>string data_source_id = 7;</code>
+     * Generated from protobuf field <code>string data_source_id = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -484,7 +479,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * NOTE: the system might choose to delay the schedule depending on the
      * current load, so `schedule_time` doesn't always match this.
      *
-     * Generated from protobuf field <code>string schedule = 12;</code>
+     * Generated from protobuf field <code>string schedule = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSchedule()
@@ -499,7 +494,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * NOTE: the system might choose to delay the schedule depending on the
      * current load, so `schedule_time` doesn't always match this.
      *
-     * Generated from protobuf field <code>string schedule = 12;</code>
+     * Generated from protobuf field <code>string schedule = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -509,6 +504,14 @@ class TransferRun extends \Google\Protobuf\Internal\Message
         $this->schedule = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestination()
+    {
+        return $this->whichOneof("destination");
     }
 
 }

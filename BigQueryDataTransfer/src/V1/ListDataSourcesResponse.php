@@ -27,7 +27,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * `ListDataSourcesRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $next_page_token = '';
 
@@ -83,7 +83,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * `ListDataSourcesRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -97,7 +97,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * `ListDataSourcesRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
