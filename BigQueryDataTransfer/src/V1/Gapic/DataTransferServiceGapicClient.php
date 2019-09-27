@@ -516,7 +516,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/dataSources/{data_source_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -583,7 +583,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The BigQuery project id for which data sources should be returned.
+     * @param string $parent       Required. The BigQuery project id for which data sources should be returned.
      *                             Must be in the form: `projects/{project_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -650,11 +650,11 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         The BigQuery project id where the transfer configuration should be created.
+     * @param string         $parent         Required. The BigQuery project id where the transfer configuration should be created.
      *                                       Must be in the format projects/{project_id}/locations/{location_id}
      *                                       If specified location and location of the destination bigquery dataset
      *                                       do not match - the request will fail.
-     * @param TransferConfig $transferConfig Data transfer configuration to create.
+     * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
      * @param array          $optionalArgs   {
      *                                       Optional.
      *
@@ -737,8 +737,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param TransferConfig $transferConfig Data transfer configuration to create.
-     * @param FieldMask      $updateMask     Required list of fields to be updated in this request.
+     * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
+     * @param FieldMask      $updateMask     Required. Required list of fields to be updated in this request.
      * @param array          $optionalArgs   {
      *                                       Optional.
      *
@@ -820,7 +820,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -869,7 +869,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -935,7 +935,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The BigQuery project id for which data sources
+     * @param string $parent       Required. The BigQuery project id for which data sources
      *                             should be returned: `projects/{project_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1012,11 +1012,11 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Transfer configuration name in the form:
+     * @param string    $parent       Required. Transfer configuration name in the form:
      *                                `projects/{project_id}/transferConfigs/{config_id}`.
-     * @param Timestamp $startTime    Start time of the range of transfer runs. For example,
+     * @param Timestamp $startTime    Required. Start time of the range of transfer runs. For example,
      *                                `"2017-05-25T00:00:00+00:00"`.
-     * @param Timestamp $endTime      End time of the range of transfer runs. For example,
+     * @param Timestamp $endTime      Required. End time of the range of transfer runs. For example,
      *                                `"2017-05-30T00:00:00+00:00"`.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -1069,7 +1069,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1120,7 +1120,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1184,7 +1184,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Name of transfer configuration for which transfer runs should be retrieved.
+     * @param string $parent       Required. Name of transfer configuration for which transfer runs should be retrieved.
      *                             Format of transfer configuration resource name is:
      *                             `projects/{project_id}/transferConfigs/{config_id}`.
      * @param array  $optionalArgs {
@@ -1278,7 +1278,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Transfer run name in the form:
+     * @param string $parent       Required. Transfer run name in the form:
      *                             `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1356,7 +1356,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The data source in the form:
+     * @param string $name         Required. The data source in the form:
      *                             `projects/{project_id}/dataSources/{data_source_id}`
      * @param array  $optionalArgs {
      *                             Optional.

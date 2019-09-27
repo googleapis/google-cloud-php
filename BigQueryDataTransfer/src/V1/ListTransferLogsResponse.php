@@ -18,7 +18,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The stored pipeline transfer messages.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $transfer_messages;
     /**
@@ -27,7 +27,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
      * `GetTransferRunLogRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $next_page_token = '';
 
@@ -54,7 +54,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The stored pipeline transfer messages.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTransferMessages()
@@ -65,7 +65,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The stored pipeline transfer messages.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
      * `GetTransferRunLogRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -97,7 +97,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
      * `GetTransferRunLogRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

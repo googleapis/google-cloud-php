@@ -33,12 +33,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The BigQuery target dataset id.
-     *
-     * Generated from protobuf field <code>string destination_dataset_id = 2;</code>
-     */
-    private $destination_dataset_id = '';
-    /**
      * User specified display name for the data transfer.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
@@ -100,19 +94,19 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data transfer modification time. Ignored by server on input.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
      * Output only. Next time when data transfer will run.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $next_run_time = null;
     /**
      * Output only. State of the most recently updated transfer run.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
@@ -124,9 +118,10 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Region in which BigQuery dataset is located.
      *
-     * Generated from protobuf field <code>string dataset_region = 14;</code>
+     * Generated from protobuf field <code>string dataset_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dataset_region = '';
+    protected $destination;
 
     /**
      * Constructor.
@@ -238,7 +233,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDestinationDatasetId()
     {
-        return $this->destination_dataset_id;
+        return $this->readOneof(2);
     }
 
     /**
@@ -251,7 +246,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     public function setDestinationDatasetId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->destination_dataset_id = $var;
+        $this->writeOneof(2, $var);
 
         return $this;
     }
@@ -475,7 +470,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data transfer modification time. Ignored by server on input.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -486,7 +481,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Data transfer modification time. Ignored by server on input.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -501,7 +496,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Next time when data transfer will run.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getNextRunTime()
@@ -512,7 +507,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Next time when data transfer will run.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -527,7 +522,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. State of the most recently updated transfer run.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -538,7 +533,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. State of the most recently updated transfer run.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferState state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -579,7 +574,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Region in which BigQuery dataset is located.
      *
-     * Generated from protobuf field <code>string dataset_region = 14;</code>
+     * Generated from protobuf field <code>string dataset_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDatasetRegion()
@@ -590,7 +585,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Region in which BigQuery dataset is located.
      *
-     * Generated from protobuf field <code>string dataset_region = 14;</code>
+     * Generated from protobuf field <code>string dataset_region = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -600,6 +595,14 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
         $this->dataset_region = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDestination()
+    {
+        return $this->whichOneof("destination");
     }
 
 }

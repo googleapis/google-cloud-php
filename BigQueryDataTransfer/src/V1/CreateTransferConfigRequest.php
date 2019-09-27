@@ -21,18 +21,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BigQuery project id where the transfer configuration should be created.
+     * Required. The BigQuery project id where the transfer configuration should be created.
      * Must be in the format projects/{project_id}/locations/{location_id}
      * If specified location and location of the destination bigquery dataset
      * do not match - the request will fail.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Data transfer configuration to create.
+     * Required. Data transfer configuration to create.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $transfer_config = null;
     /**
@@ -74,12 +74,12 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The BigQuery project id where the transfer configuration should be created.
+     *           Required. The BigQuery project id where the transfer configuration should be created.
      *           Must be in the format projects/{project_id}/locations/{location_id}
      *           If specified location and location of the destination bigquery dataset
      *           do not match - the request will fail.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transfer_config
-     *           Data transfer configuration to create.
+     *           Required. Data transfer configuration to create.
      *     @type string $authorization_code
      *           Optional OAuth2 authorization code to use with this transfer configuration.
      *           This is required if new credentials are needed, as indicated by
@@ -111,12 +111,12 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery project id where the transfer configuration should be created.
+     * Required. The BigQuery project id where the transfer configuration should be created.
      * Must be in the format projects/{project_id}/locations/{location_id}
      * If specified location and location of the destination bigquery dataset
      * do not match - the request will fail.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -125,12 +125,12 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery project id where the transfer configuration should be created.
+     * Required. The BigQuery project id where the transfer configuration should be created.
      * Must be in the format projects/{project_id}/locations/{location_id}
      * If specified location and location of the destination bigquery dataset
      * do not match - the request will fail.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -143,9 +143,9 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data transfer configuration to create.
+     * Required. Data transfer configuration to create.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
      */
     public function getTransferConfig()
@@ -154,9 +154,9 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data transfer configuration to create.
+     * Required. Data transfer configuration to create.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $var
      * @return $this
      */
