@@ -247,9 +247,7 @@ class CacheSessionPool implements SessionPoolInterface
 
         // Create a session if needed.
         if ($toCreate) {
-            $createdSessions = [];
-            $createdSessions = $this->createSessions(count($toCreate));
-
+            $createdSessions = $this->createSessions(count($toCreate))[0];
             $hasCreatedSessions = count($createdSessions) > 0;
 
             $session = $this->config['lock']->synchronize(function () use (
@@ -431,10 +429,8 @@ class CacheSessionPool implements SessionPoolInterface
             return 0;
         }
 
-        $createdSessions = [];
         $exception = null;
-
-        $createdSessions = $this->createSessions(count($toCreate));
+        list ($createdSessions, $exception) = $this->createSessions(count($toCreate));
 
         $this->config['lock']->synchronize(function () use ($toCreate, $createdSessions) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -638,12 +634,14 @@ class CacheSessionPool implements SessionPoolInterface
      * Creates sessions up to the count provided.
      *
      * @param int $count
-     * @return array
+     * @return [ array[] $sessions, \Exception $ex = null ]
      */
     private function createSessions($count)
     {
         $sessions = [];
         $created = 0;
+        $exception = null;
+
         // Loop over RPC in case it returns less than the desired number of sessions.
         // @see https://github.com/googleapis/google-cloud-php/pull/2342#discussion_r327925546
         while ($count > $created) {
@@ -655,8 +653,8 @@ class CacheSessionPool implements SessionPoolInterface
                     ],
                     'sessionCount' => $count - $created
                 ]);
-            } catch (\Exception $e) {
-                return $sessions;
+            } catch (\Exception $exception) {
+                break;
             }
 
             foreach ($res['session'] as $result) {
@@ -669,7 +667,7 @@ class CacheSessionPool implements SessionPoolInterface
             }
         }
 
-        return $sessions;
+        return [$sessions, $exception];
     }
 
     /**
