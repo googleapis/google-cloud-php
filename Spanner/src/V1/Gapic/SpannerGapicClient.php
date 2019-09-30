@@ -407,25 +407,25 @@ class SpannerGapicClient
      * $spannerClient = new SpannerClient();
      * try {
      *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-     *     $response = $spannerClient->batchCreateSessions($formattedDatabase);
+     *     $sessionCount = 0;
+     *     $response = $spannerClient->batchCreateSessions($formattedDatabase, $sessionCount);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
      * @param string $database     Required. The database in which the new sessions are created.
+     * @param int    $sessionCount Required. The number of sessions to be created in this batch call.
+     *                             The API may return fewer than the requested number of sessions. If a
+     *                             specific number of sessions are desired, the client can make additional
+     *                             calls to BatchCreateSessions (adjusting
+     *                             [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     *                             as necessary).
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type Session $sessionTemplate
      *          Parameters to be applied to each created session.
-     *     @type int $sessionCount
-     *          Required. The number of sessions to be created in this batch call.
-     *          The API may return fewer than the requested number of sessions. If a
-     *          specific number of sessions are desired, the client can make additional
-     *          calls to BatchCreateSessions (adjusting
-     *          [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
-     *          as necessary).
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -438,15 +438,13 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function batchCreateSessions($database, array $optionalArgs = [])
+    public function batchCreateSessions($database, $sessionCount, array $optionalArgs = [])
     {
         $request = new BatchCreateSessionsRequest();
         $request->setDatabase($database);
+        $request->setSessionCount($sessionCount);
         if (isset($optionalArgs['sessionTemplate'])) {
             $request->setSessionTemplate($optionalArgs['sessionTemplate']);
-        }
-        if (isset($optionalArgs['sessionCount'])) {
-            $request->setSessionCount($optionalArgs['sessionCount']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
