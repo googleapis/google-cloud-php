@@ -248,11 +248,7 @@ class CacheSessionPool implements SessionPoolInterface
         // Create a session if needed.
         if ($toCreate) {
             $createdSessions = [];
-            try {
-                $createdSessions = $this->createSessions(count($toCreate));
-            } catch (\Exception $e) {
-                // no-op
-            }
+            $createdSessions = $this->createSessions(count($toCreate));
 
             $hasCreatedSessions = count($createdSessions) > 0;
 
@@ -438,10 +434,7 @@ class CacheSessionPool implements SessionPoolInterface
         $createdSessions = [];
         $exception = null;
 
-        try {
-            $createdSessions = $this->createSessions(count($toCreate));
-        } catch (\Exception $exception) {
-        }
+        $createdSessions = $this->createSessions(count($toCreate));
 
         $this->config['lock']->synchronize(function () use ($toCreate, $createdSessions) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -649,21 +642,22 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function createSessions($count)
     {
-        $remainToCreate = $count;
-        $created = 0;
         $sessions = [];
-
+        $created = 0;
         // Loop over RPC in case it returns less than the desired number of sessions.
         // @see https://github.com/googleapis/google-cloud-php/pull/2342#discussion_r327925546
-        do {
-            $remainToCreate = $count - $created;
-            $res = $this->database->connection()->batchCreateSessions([
-                'database' => $this->database->name(),
-                'sessionTemplate' => [
-                    'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
-                ],
-                'sessionCount' => $remainToCreate
-            ]);
+        while ($count > $created) {
+            try {
+                $res = $this->database->connection()->batchCreateSessions([
+                    'database' => $this->database->name(),
+                    'sessionTemplate' => [
+                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+                    ],
+                    'sessionCount' => $count - $created
+                ]);
+            } catch (\Exception $e) {
+                return $sessions;
+            }
 
             foreach ($res['session'] as $result) {
                 $sessions[] = [
@@ -673,7 +667,7 @@ class CacheSessionPool implements SessionPoolInterface
 
                 $created++;
             }
-        } while ($count > $created);
+        }
 
         return $sessions;
     }
