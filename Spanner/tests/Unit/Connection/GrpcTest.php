@@ -358,8 +358,7 @@ class GrpcTest extends TestCase
             'sessionCount' => $count,
             'sessionTemplate' => $template
         ], $this->expectResourceHeader(self::DATABASE, [
-            self::DATABASE, [
-                'sessionCount' => $count,
+            self::DATABASE, $count, [
                 'sessionTemplate' => $this->serializer->decodeMessage(new Session, $template)
             ]
         ]));

@@ -505,6 +505,7 @@ class Grpc implements ConnectionInterface
         $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'batchCreateSessions'], [
             $database,
+            $this->pluck('sessionCount', $args),
             $this->addResourcePrefixHeader($args, $database)
         ]);
     }

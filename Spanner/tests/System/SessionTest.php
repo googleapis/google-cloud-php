@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
-use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
