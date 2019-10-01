@@ -133,6 +133,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function batchCreateSessions(array $args);
+
+    /**
+     * @param array $args
+     */
     public function getSession(array $args);
 
     /**

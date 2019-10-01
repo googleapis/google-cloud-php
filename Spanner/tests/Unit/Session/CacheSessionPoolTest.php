@@ -25,7 +25,6 @@ use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Promise\RejectedPromise;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
@@ -321,7 +320,7 @@ class CacheSessionPoolTest extends TestCase
             $this->getCacheItemPool(),
             ['minSessions' => $expectedCreationCount]
         );
-        $pool->setDatabase($this->getDatabase());
+        $pool->setDatabase($this->getDatabase(false, false, 5));
         $response = $pool->warmup();
 
         $this->assertEquals($expectedCreationCount, $response);
@@ -669,7 +668,7 @@ class CacheSessionPoolTest extends TestCase
         ];
     }
 
-    private function getDatabase($shouldCreateFails = false, $willDeleteSessions = false)
+    private function getDatabase($shouldCreateFails = false, $willDeleteSessions = false, $expectedCreateCalls = null)
     {
         $database = $this->prophesize(Database::class);
         $session = $this->prophesize(Session::class);
@@ -708,20 +707,33 @@ class CacheSessionPoolTest extends TestCase
             ->willReturn(self::DATABASE_NAME);
 
         $createdSession = $this->prophesize(\Google\Cloud\Spanner\V1\Session::class);
-        $connection->createSessionAsync(Argument::any())
-            ->will(function ($args, $mock, $method) use ($createdSession, $shouldCreateFails) {
-                if ($shouldCreateFails) {
-                    return new RejectedPromise("error");
-                }
+        $createRes = function ($args, $mock, $method) use ($createdSession, $shouldCreateFails) {
+            if ($shouldCreateFails) {
+                throw new \Exception("error");
+            }
 
-                $methodCalls = $mock->findProphecyMethodCalls(
-                    $method->getMethodName(),
-                    new ArgumentsWildcard($args)
-                );
+            $methodCalls = $mock->findProphecyMethodCalls(
+                $method->getMethodName(),
+                new ArgumentsWildcard($args)
+            );
 
-                $createdSession->getName()->willReturn('session' . count($methodCalls));
-                return $createdSession->reveal();
-            });
+            return [
+                'session' => [
+                    [
+                        'name' => 'session' . count($methodCalls)
+                    ]
+                ]
+            ];
+        };
+
+        if ($expectedCreateCalls) {
+            $connection->batchCreateSessions(Argument::any())
+                ->shouldBeCalledTimes($expectedCreateCalls)
+                ->will($createRes);
+        } else {
+            $connection->batchCreateSessions(Argument::any())
+                ->will($createRes);
+        }
 
         return $database->reveal();
     }

@@ -90,9 +90,6 @@ class BatchClientTest extends TestCase
         $this->assertInstanceOf(BatchSnapshot::class, $snapshot);
     }
 
-    /**
-     * @group foo
-     */
     public function testSnapshotFromString()
     {
         $time = time();
