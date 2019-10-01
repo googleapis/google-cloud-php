@@ -396,6 +396,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
             throw $e;
         }
+        // Begin a new transaction.
+        $this->open($this->savePath, $this->sessionName);
     }
 
     /**
