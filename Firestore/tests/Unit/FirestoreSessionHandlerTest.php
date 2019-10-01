@@ -429,7 +429,7 @@ class FirestoreSessionHandlerTest extends TestCase
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['gcLimit' => 1000, 'query' => ['maxRetries' => 0]]
+            ['gcLimit' => 500, 'query' => ['maxRetries' => 0]]
         );
 
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
