@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\Snippet;
 
+use Google\Auth\AccessToken;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -69,6 +70,45 @@ class SubscriptionTest extends SnippetTestCase
 
         $this->assertInstanceOf(Subscription::class, $res->returnVal());
         $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->name());
+    }
+
+    public function testAuthenticatedPush()
+    {
+        $authToken = 'foobar';
+        $email = 'foo@bar.com';
+        $token = $this->prophesize(AccessToken::class);
+        $token->verify($authToken)
+            ->shouldBeCalled()
+            ->willReturn([
+                'email' => $email
+            ]);
+
+        $snippet = $this->snippetFromClass(Subscription::class, 2);
+        $snippet->replace('$accessTokenUtility = new AccessToken();', '');
+        $snippet->addLocal('accessTokenUtility', $token->reveal());
+        $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer ' . $authToken;
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Authenticated using ' . $email, $res->output());
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testAuthenticatedPushFails()
+    {
+        $authToken = 'foobar';
+        $token = $this->prophesize(AccessToken::class);
+        $token->verify($authToken)
+            ->shouldBeCalled()
+            ->willReturn(false);
+
+        $snippet = $this->snippetFromClass(Subscription::class, 2);
+        $snippet->replace('$accessTokenUtility = new AccessToken();', '');
+        $snippet->addLocal('accessTokenUtility', $token->reveal());
+        $_SERVER['HTTP_AUTHORIZATION'] = 'Bearer ' . $authToken;
+
+        $res = $snippet->invoke();
     }
 
     public function testName()

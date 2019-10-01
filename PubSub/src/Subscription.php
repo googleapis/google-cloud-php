@@ -56,6 +56,25 @@ use InvalidArgumentException;
  *     'my-new-topic'
  * );
  * ```
+ *
+ * ```
+ * // Consuming messages received via push with JWT Authentication.
+ * use Google\Auth\AccessToken;
+ *
+ * // Remove the `Bearer ` prefix from the token.
+ * // If using another request manager such as Symfony HttpFoundation,
+ * // use `Authorization` as the header name, e.g. `$request->headers->get('Authorization')`.
+ * $jwt = explode(' ', $_SERVER['HTTP_AUTHORIZATION'])[1];
+ *
+ * // Using the Access Token utility requires installation of the `phpseclib/phpseclib` dependency at version 2.
+ * $accessTokenUtility = new AccessToken();
+ * $payload = $accessTokenUtility->verify($jwt);
+ * if (!$payload) {
+ *     throw new \RuntimeException('Could not verify token!');
+ * }
+ *
+ * echo 'Authenticated using ' . $payload['email'];
+ * ```
  */
 class Subscription
 {
@@ -185,15 +204,25 @@ class Subscription
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     For information regarding the push configuration settings, see
-     *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig).
-     *
      *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
-     *     @type array $pushConfig.oidcToken Contains information needed for generating
-     *           an OpenIDConnect token.
+     *     @type array $pushConfig.oidcToken If specified, Pub/Sub will generate
+     *           and attach an OIDC JWT token as an `Authorization` header in
+     *           the HTTP request for every pushed message.
+     *     @type string $pushConfig.oidcToken.serviceAccountEmail Service
+     *           account email to be used for generating the OIDC token. The
+     *           caller (for `subscriptions.create`, `UpdateSubscription`, and
+     *           `subscriptions.modifyPushConfig` RPCs) must have the
+     *           `iam.serviceAccounts.actAs` permission for the service account.
+     *     @type string $pushConfig.oidcToken.audience Audience to be used when
+     *           generating OIDC token. The audience claim identifies the
+     *           recipients that the JWT is intended for. The audience value is
+     *           a single case-sensitive string. Having multiple values (array)
+     *           for the audience field is not supported. More info about the
+     *           OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+     *           Note: if not specified, the Push endpoint URL will be used.
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
@@ -276,16 +305,30 @@ class Subscription
      * ]);
      * ```
      *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/UpdateSubscriptionRequest UpdateSubscriptionRequest
+     *
      * @param array $subscription {
      *     The Subscription data.
-     *
-     *     For information regarding the push configuration settings, see
-     *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig).
      *
      *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
      *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type array $pushConfig.oidcToken If specified, Pub/Sub will generate
+     *           and attach an OIDC JWT token as an `Authorization` header in
+     *           the HTTP request for every pushed message.
+     *     @type string $pushConfig.oidcToken.serviceAccountEmail Service
+     *           account email to be used for generating the OIDC token. The
+     *           caller (for `subscriptions.create`, `UpdateSubscription`, and
+     *           `subscriptions.modifyPushConfig` RPCs) must have the
+     *           `iam.serviceAccounts.actAs` permission for the service account.
+     *     @type string $pushConfig.oidcToken.audience Audience to be used when
+     *           generating OIDC token. The audience claim identifies the
+     *           recipients that the JWT is intended for. The audience value is
+     *           a single case-sensitive string. Having multiple values (array)
+     *           for the audience field is not supported. More info about the
+     *           OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+     *           Note: if not specified, the Push endpoint URL will be used.
      *     @type int $ackDeadlineSeconds The maximum time after a subscriber
      *           receives a message before the subscriber should acknowledge the
      *           message.
