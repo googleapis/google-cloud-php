@@ -49,6 +49,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           returns an `INVALID_ARGUMENT` error.
      *     @type string $content
      *           The content of the input in string format.
+     *           Cloud audit logging exempt since it is based on user data.
      *     @type string $gcs_content_uri
      *           The Google Cloud Storage URI where the file content is located.
      *           This URI must be of the form: gs://bucket_name/object_name. For more
@@ -100,6 +101,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * The content of the input in string format.
+     * Cloud audit logging exempt since it is based on user data.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @return string
@@ -111,6 +113,7 @@ class Document extends \Google\Protobuf\Internal\Message
 
     /**
      * The content of the input in string format.
+     * Cloud audit logging exempt since it is based on user data.
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var

@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * All available features for sentiment, syntax, and semantic analysis.
  * Setting each one to true will enable that specific analysis for the input.
+ * Next ID: 10
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.AnnotateTextRequest.Features</code>
  */
@@ -41,7 +42,9 @@ class Features extends \Google\Protobuf\Internal\Message
      */
     private $extract_entity_sentiment = false;
     /**
-     * Classify the full document into categories.
+     * Classify the full document into categories. If this is true,
+     * the API will use the default model which classifies into a
+     * [predefined taxonomy](/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      */
@@ -62,7 +65,9 @@ class Features extends \Google\Protobuf\Internal\Message
      *     @type bool $extract_entity_sentiment
      *           Extract entities and their associated sentiment.
      *     @type bool $classify_text
-     *           Classify the full document into categories.
+     *           Classify the full document into categories. If this is true,
+     *           the API will use the default model which classifies into a
+     *           [predefined taxonomy](/natural-language/docs/categories).
      * }
      */
     public function __construct($data = NULL) {
@@ -175,7 +180,9 @@ class Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Classify the full document into categories.
+     * Classify the full document into categories. If this is true,
+     * the API will use the default model which classifies into a
+     * [predefined taxonomy](/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      * @return bool
@@ -186,7 +193,9 @@ class Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Classify the full document into categories.
+     * Classify the full document into categories. If this is true,
+     * the API will use the default model which classifies into a
+     * [predefined taxonomy](/natural-language/docs/categories).
      *
      * Generated from protobuf field <code>bool classify_text = 6;</code>
      * @param bool $var

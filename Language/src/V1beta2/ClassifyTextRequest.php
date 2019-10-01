@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
 
@@ -29,7 +29,7 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Language\V1beta2\Document $document
-     *           Input document.
+     *           Required. Input document.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
@@ -49,9 +49,9 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Language\V1beta2\Document $var
      * @return $this
      */
