@@ -66,6 +66,9 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         // Set session max lifetime to 0 to ensure deletion
         ini_set('session.gc_maxlifetime', 0);
 
+        // Disable probability-based GC
+        ini_set('session.gc_probability', 0);
+
         $namespace = uniqid('sess-' . self::COLLECTION_NAME);
         $collection = $client->collection($namespace . ':' . session_name());
         self::$localDeletionQueue->add($collection);

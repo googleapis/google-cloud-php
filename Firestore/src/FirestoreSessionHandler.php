@@ -243,7 +243,18 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function close()
     {
-        $this->commitTransaction($this->transaction);
+        if (is_null($this->transaction)) {
+            throw new \LogicException('open() must be called before close()');
+        }
+        try {
+            $this->commitTransaction($this->transaction);
+        } catch (ServiceException $e) {
+            trigger_error(
+                sprintf('Session close failed: %s', $e->getMessage()),
+                E_USER_WARNING
+            );
+            return false;
+        }
         return true;
     }
 
