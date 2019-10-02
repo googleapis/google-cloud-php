@@ -14,33 +14,40 @@ use UnexpectedValueException;
 class ContentMatcherOption
 {
     /**
-     * No content macher option specified. Treated as CONTAINS_STRING.
+     * No content matcher type specified (maintained for backward
+     * compatibility, but deprecated for future use).
+     * Treated as `CONTAINS_STRING`.
      *
      * Generated from protobuf enum <code>CONTENT_MATCHER_OPTION_UNSPECIFIED = 0;</code>
      */
     const CONTENT_MATCHER_OPTION_UNSPECIFIED = 0;
     /**
-     * Allows checking substring matching.
-     * Default value for previous versions without option.
+     * Selects substring matching (there is a match if the output contains
+     * the `content` string).  This is the default value for checks without
+     * a `matcher` option, or where the value of `matcher` is
+     * `CONTENT_MATCHER_OPTION_UNSPECIFIED`.
      *
      * Generated from protobuf enum <code>CONTAINS_STRING = 1;</code>
      */
     const CONTAINS_STRING = 1;
     /**
-     * Allows checking negation of substring matching (doesn't contain the
-     * substring).
+     * Selects negation of substring matching (there is a match if the output
+     * does NOT contain the `content` string).
      *
      * Generated from protobuf enum <code>NOT_CONTAINS_STRING = 2;</code>
      */
     const NOT_CONTAINS_STRING = 2;
     /**
-     * Allows checking regular expression matching.
+     * Selects regular expression matching (there is a match of the output
+     * matches the regular expression specified in the `content` string).
      *
      * Generated from protobuf enum <code>MATCHES_REGEX = 3;</code>
      */
     const MATCHES_REGEX = 3;
     /**
-     * Allows checking negation of regular expression matching.
+     * Selects negation of regular expression matching (there is a match if
+     * the output does NOT match the regular expression specified in the
+     * `content` string).
      *
      * Generated from protobuf enum <code>NOT_MATCHES_REGEX = 4;</code>
      */

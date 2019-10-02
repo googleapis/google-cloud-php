@@ -9,22 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A type of authentication to perform against the specified resource or URL
- * that uses username and password.
- * Currently, only Basic authentication is supported in Uptime Monitoring.
+ * The authentication parameters to provide to the specified resource or
+ * URL that requires a username and password. Currently, only
+ * [Basic HTTP authentication](https://tools.ietf.org/html/rfc7617) is
+ * supported in Uptime checks.
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication</code>
  */
 class BasicAuthentication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The username to authenticate.
+     * The username to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
     private $username = '';
     /**
-     * The password to authenticate.
+     * The password to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      */
@@ -37,9 +38,9 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $username
-     *           The username to authenticate.
+     *           The username to use when authenticating with the HTTP server.
      *     @type string $password
-     *           The password to authenticate.
+     *           The password to use when authenticating with the HTTP server.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +49,7 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The username to authenticate.
+     * The username to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string username = 1;</code>
      * @return string
@@ -59,7 +60,7 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The username to authenticate.
+     * The username to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string username = 1;</code>
      * @param string $var
@@ -74,7 +75,7 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The password to authenticate.
+     * The password to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      * @return string
@@ -85,7 +86,7 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The password to authenticate.
+     * The password to use when authenticating with the HTTP server.
      *
      * Generated from protobuf field <code>string password = 2;</code>
      * @param string $var

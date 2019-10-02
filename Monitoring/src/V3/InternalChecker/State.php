@@ -21,16 +21,20 @@ class State
     const UNSPECIFIED = 0;
     /**
      * The checker is being created, provisioned, and configured. A checker in
-     * this state can be returned by ListInternalCheckers or GetInternalChecker,
-     * as well as by examining the longrunning.Operation that created it.
+     * this state can be returned by `ListInternalCheckers` or
+     * `GetInternalChecker`, as well as by examining the [long running
+     * Operation](https://cloud.google.com/apis/design/design_patterns#long_running_operations)
+     * that created it.
      *
      * Generated from protobuf enum <code>CREATING = 1;</code>
      */
     const CREATING = 1;
     /**
      * The checker is running and available for use. A checker in this state
-     * can be returned by ListInternalCheckers or GetInternalChecker as well
-     * as by examining the longrunning.Operation that created it.
+     * can be returned by `ListInternalCheckers` or `GetInternalChecker` as
+     * well as by examining the [long running
+     * Operation](https://cloud.google.com/apis/design/design_patterns#long_running_operations)
+     * that created it.
      * If a checker is being torn down, it is neither visible nor usable, so
      * there is no "deleting" or "down" state.
      *

@@ -7,14 +7,14 @@ namespace Google\Cloud\Monitoring\V3;
 use UnexpectedValueException;
 
 /**
- * The regions from which an uptime check can be run.
+ * The regions from which an Uptime check can be run.
  *
  * Protobuf type <code>google.monitoring.v3.UptimeCheckRegion</code>
  */
 class UptimeCheckRegion
 {
     /**
-     * Default value if no region is specified. Will result in uptime checks
+     * Default value if no region is specified. Will result in Uptime checks
      * running from all regions.
      *
      * Generated from protobuf enum <code>REGION_UNSPECIFIED = 0;</code>

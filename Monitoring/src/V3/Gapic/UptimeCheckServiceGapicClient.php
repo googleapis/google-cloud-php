@@ -49,7 +49,7 @@ use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: The UptimeCheckService API is used to manage (list, create, delete, edit)
- * uptime check configurations in the Stackdriver Monitoring product. An uptime
+ * Uptime check configurations in the Stackdriver Monitoring product. An Uptime
  * check is a piece of configuration that determines which resources and
  * services to monitor for availability. These configurations can also be
  * configured interactively by navigating to the [Cloud Console]
@@ -316,8 +316,8 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Lists the existing valid uptime check configurations for the project,
-     * leaving out any invalid configurations.
+     * Lists the existing valid Uptime check configurations for the project
+     * (leaving out any invalid configurations).
      *
      * Sample code:
      * ```
@@ -345,7 +345,7 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The project whose uptime check configurations are listed. The format
+     * @param string $parent       The project whose Uptime check configurations are listed. The format
      *                             is `projects/[PROJECT_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -398,7 +398,7 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Gets a single uptime check configuration.
+     * Gets a single Uptime check configuration.
      *
      * Sample code:
      * ```
@@ -411,7 +411,7 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The uptime check configuration to retrieve. The format
+     * @param string $name         The Uptime check configuration to retrieve. The format
      *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -449,7 +449,7 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Creates a new uptime check configuration.
+     * Creates a new Uptime check configuration.
      *
      * Sample code:
      * ```
@@ -463,9 +463,9 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string            $parent            The project in which to create the uptime check. The format
+     * @param string            $parent            The project in which to create the Uptime check. The format
      *                                             is `projects/[PROJECT_ID]`.
-     * @param UptimeCheckConfig $uptimeCheckConfig The new uptime check configuration.
+     * @param UptimeCheckConfig $uptimeCheckConfig The new Uptime check configuration.
      * @param array             $optionalArgs      {
      *                                             Optional.
      *
@@ -503,9 +503,9 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Updates an uptime check configuration. You can either replace the entire
+     * Updates an Uptime check configuration. You can either replace the entire
      * configuration with a new one or replace only certain fields in the current
-     * configuration by specifying the fields to be updated via `"updateMask"`.
+     * configuration by specifying the fields to be updated via `updateMask`.
      * Returns the updated configuration.
      *
      * Sample code:
@@ -519,11 +519,11 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param UptimeCheckConfig $uptimeCheckConfig Required. If an `"updateMask"` has been specified, this field gives
-     *                                             the values for the set of fields mentioned in the `"updateMask"`. If an
-     *                                             `"updateMask"` has not been given, this uptime check configuration replaces
-     *                                             the current configuration. If a field is mentioned in `"updateMask"` but
-     *                                             the corresonding field is omitted in this partial uptime check
+     * @param UptimeCheckConfig $uptimeCheckConfig Required. If an `updateMask` has been specified, this field gives
+     *                                             the values for the set of fields mentioned in the `updateMask`. If an
+     *                                             `updateMask` has not been given, this Uptime check configuration replaces
+     *                                             the current configuration. If a field is mentioned in `updateMask` but
+     *                                             the corresonding field is omitted in this partial Uptime check
      *                                             configuration, it has the effect of deleting/clearing the field from the
      *                                             configuration on the server.
      *
@@ -534,7 +534,7 @@ class UptimeCheckServiceGapicClient
      *                            Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional. If present, only the listed fields in the current uptime check
+     *          Optional. If present, only the listed fields in the current Uptime check
      *          configuration are updated with values from the new configuration. If this
      *          field is empty, then the current configuration is completely replaced with
      *          the new configuration.
@@ -574,8 +574,8 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Deletes an uptime check configuration. Note that this method will fail
-     * if the uptime check configuration is referenced by an alert policy or
+     * Deletes an Uptime check configuration. Note that this method will fail
+     * if the Uptime check configuration is referenced by an alert policy or
      * other dependent configs that would be rendered invalid by the deletion.
      *
      * Sample code:
@@ -589,7 +589,7 @@ class UptimeCheckServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The uptime check configuration to delete. The format
+     * @param string $name         The Uptime check configuration to delete. The format
      *                             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -625,7 +625,7 @@ class UptimeCheckServiceGapicClient
     }
 
     /**
-     * Returns the list of IPs that checkers run from.
+     * Returns the list of IP addresses that checkers run from.
      *
      * Sample code:
      * ```

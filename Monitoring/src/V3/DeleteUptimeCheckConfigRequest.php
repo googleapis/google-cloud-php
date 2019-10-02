@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The uptime check configuration to delete. The format
+     * The Uptime check configuration to delete. The format
      *   is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -30,7 +30,7 @@ class DeleteUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The uptime check configuration to delete. The format
+     *           The Uptime check configuration to delete. The format
      *             is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      * }
      */
@@ -40,7 +40,7 @@ class DeleteUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uptime check configuration to delete. The format
+     * The Uptime check configuration to delete. The format
      *   is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -52,7 +52,7 @@ class DeleteUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uptime check configuration to delete. The format
+     * The Uptime check configuration to delete. The format
      *   is `projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID]`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
