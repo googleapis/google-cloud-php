@@ -22,15 +22,20 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * or hyphen. Must consist of between 3 and 50 characters.
      * .
      *
-     * Generated from protobuf field <code>string id = 2;</code>
+     * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $id = '';
     /**
-     * Output only. The "resource name" of the template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Output only. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -43,19 +48,19 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * current server version. The user updates other fields in the template,
      * then returns it as part of the `UpdateWorkflowTemplate` request.
      *
-     * Generated from protobuf field <code>int32 version = 3;</code>
+     * Generated from protobuf field <code>int32 version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $version = 0;
     /**
      * Output only. The time template was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The time template was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
@@ -69,7 +74,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * No more than 32 labels can be associated with a template.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -89,7 +94,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * template. Values for parameters must be provided when the template is
      * instantiated.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.TemplateParameter parameters = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters;
 
@@ -106,9 +111,14 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *           or hyphen. Must consist of between 3 and 50 characters.
      *           .
      *     @type string $name
-     *           Output only. The "resource name" of the template, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           Output only. The resource name of the workflow template, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.workflowTemplates`, the resource name of the
+     *             template has the following format:
+     *             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           * For `projects.locations.workflowTemplates`, the resource name of the
+     *             template has the following format:
+     *             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Optional. Used to perform a consistent read-modify-write.
      *           This field should be left blank for a `CreateWorkflowTemplate` request. It
@@ -154,7 +164,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * or hyphen. Must consist of between 3 and 50 characters.
      * .
      *
-     * Generated from protobuf field <code>string id = 2;</code>
+     * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getId()
@@ -169,7 +179,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * or hyphen. Must consist of between 3 and 50 characters.
      * .
      *
-     * Generated from protobuf field <code>string id = 2;</code>
+     * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -182,11 +192,16 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "resource name" of the template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Output only. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -195,11 +210,16 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "resource name" of the template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Output only. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -221,7 +241,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * current server version. The user updates other fields in the template,
      * then returns it as part of the `UpdateWorkflowTemplate` request.
      *
-     * Generated from protobuf field <code>int32 version = 3;</code>
+     * Generated from protobuf field <code>int32 version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getVersion()
@@ -239,7 +259,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * current server version. The user updates other fields in the template,
      * then returns it as part of the `UpdateWorkflowTemplate` request.
      *
-     * Generated from protobuf field <code>int32 version = 3;</code>
+     * Generated from protobuf field <code>int32 version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -254,7 +274,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time template was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -265,7 +285,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time template was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -280,7 +300,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time template was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -291,7 +311,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time template was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -314,7 +334,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * No more than 32 labels can be associated with a template.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -333,7 +353,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
      * No more than 32 labels can be associated with a template.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -402,7 +422,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * template. Values for parameters must be provided when the template is
      * instantiated.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.TemplateParameter parameters = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParameters()
@@ -415,7 +435,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * template. Values for parameters must be provided when the template is
      * instantiated.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.TemplateParameter parameters = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\TemplateParameter[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

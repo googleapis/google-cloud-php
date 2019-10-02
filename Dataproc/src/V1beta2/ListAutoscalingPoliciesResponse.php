@@ -18,14 +18,14 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Autoscaling policies list.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.AutoscalingPolicy policies = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.AutoscalingPolicy policies = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $policies;
     /**
      * Output only. This token is included in the response if there are more
      * results to fetch.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $next_page_token = '';
 
@@ -50,7 +50,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Autoscaling policies list.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.AutoscalingPolicy policies = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.AutoscalingPolicy policies = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPolicies()
@@ -61,7 +61,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Autoscaling policies list.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.AutoscalingPolicy policies = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.AutoscalingPolicy policies = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -77,7 +77,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Output only. This token is included in the response if there are more
      * results to fetch.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -89,7 +89,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Output only. This token is included in the response if there are more
      * results to fetch.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

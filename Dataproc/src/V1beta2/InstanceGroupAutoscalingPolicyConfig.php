@@ -21,7 +21,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * Primary workers - Bounds: [2, max_instances]. Default: 2.
      * Secondary workers - Bounds: [0, max_instances]. Default: 0.
      *
-     * Generated from protobuf field <code>int32 min_instances = 1;</code>
+     * Generated from protobuf field <code>int32 min_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $min_instances = 0;
     /**
@@ -31,7 +31,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * Primary workers - Bounds: [min_instances, ). Required.
      * Secondary workers - Bounds: [min_instances, ). Default: 0.
      *
-     * Generated from protobuf field <code>int32 max_instances = 2;</code>
+     * Generated from protobuf field <code>int32 max_instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_instances = 0;
     /**
@@ -52,7 +52,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * primary workers, the cluster will use primary workers only and no
      * secondary workers.
      *
-     * Generated from protobuf field <code>int32 weight = 3;</code>
+     * Generated from protobuf field <code>int32 weight = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $weight = 0;
 
@@ -101,7 +101,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * Primary workers - Bounds: [2, max_instances]. Default: 2.
      * Secondary workers - Bounds: [0, max_instances]. Default: 0.
      *
-     * Generated from protobuf field <code>int32 min_instances = 1;</code>
+     * Generated from protobuf field <code>int32 min_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMinInstances()
@@ -114,7 +114,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * Primary workers - Bounds: [2, max_instances]. Default: 2.
      * Secondary workers - Bounds: [0, max_instances]. Default: 0.
      *
-     * Generated from protobuf field <code>int32 min_instances = 1;</code>
+     * Generated from protobuf field <code>int32 min_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -133,7 +133,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * Primary workers - Bounds: [min_instances, ). Required.
      * Secondary workers - Bounds: [min_instances, ). Default: 0.
      *
-     * Generated from protobuf field <code>int32 max_instances = 2;</code>
+     * Generated from protobuf field <code>int32 max_instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxInstances()
@@ -148,7 +148,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * Primary workers - Bounds: [min_instances, ). Required.
      * Secondary workers - Bounds: [min_instances, ). Default: 0.
      *
-     * Generated from protobuf field <code>int32 max_instances = 2;</code>
+     * Generated from protobuf field <code>int32 max_instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -178,7 +178,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * primary workers, the cluster will use primary workers only and no
      * secondary workers.
      *
-     * Generated from protobuf field <code>int32 weight = 3;</code>
+     * Generated from protobuf field <code>int32 weight = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getWeight()
@@ -204,7 +204,7 @@ class InstanceGroupAutoscalingPolicyConfig extends \Google\Protobuf\Internal\Mes
      * primary workers, the cluster will use primary workers only and no
      * secondary workers.
      *
-     * Generated from protobuf field <code>int32 weight = 3;</code>
+     * Generated from protobuf field <code>int32 weight = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

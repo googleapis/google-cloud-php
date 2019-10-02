@@ -18,7 +18,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
     /**
      * Required. YARN autoscaling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig yarn_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig yarn_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $yarn_config = null;
     /**
@@ -26,7 +26,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      * the update operation from the previous event has completed.
      * Bounds: [2m, 1d]. Default: 2m.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cooldown_period = null;
 
@@ -52,7 +52,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
     /**
      * Required. YARN autoscaling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig yarn_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig yarn_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\BasicYarnAutoscalingConfig
      */
     public function getYarnConfig()
@@ -63,7 +63,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
     /**
      * Required. YARN autoscaling configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig yarn_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicYarnAutoscalingConfig yarn_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\BasicYarnAutoscalingConfig $var
      * @return $this
      */
@@ -80,7 +80,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      * the update operation from the previous event has completed.
      * Bounds: [2m, 1d]. Default: 2m.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getCooldownPeriod()
@@ -93,7 +93,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      * the update operation from the previous event has completed.
      * Bounds: [2m, 1d]. Default: 2m.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */

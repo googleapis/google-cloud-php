@@ -22,9 +22,16 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * Example: **"10m"**, the minimum value, to delete the
      * cluster when it has had no jobs running for 10 minutes.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $idle_delete_ttl = null;
+    /**
+     * Output only. The time when cluster became idle (most recent job finished)
+     * and became eligible for deletion due to idleness.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $idle_start_time = null;
     protected $ttl;
 
     /**
@@ -45,6 +52,9 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The lifetime duration of cluster. The cluster will be
      *           auto-deleted at the end of this period. Valid range: **[10m, 14d]**.
      *           Example: **"1d"**, to delete the cluster 1 day after its creation..
+     *     @type \Google\Protobuf\Timestamp $idle_start_time
+     *           Output only. The time when cluster became idle (most recent job finished)
+     *           and became eligible for deletion due to idleness.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,7 +69,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * Example: **"10m"**, the minimum value, to delete the
      * cluster when it has had no jobs running for 10 minutes.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getIdleDeleteTtl()
@@ -74,7 +84,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * Example: **"10m"**, the minimum value, to delete the
      * cluster when it has had no jobs running for 10 minutes.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -138,6 +148,34 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time when cluster became idle (most recent job finished)
+     * and became eligible for deletion due to idleness.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getIdleStartTime()
+    {
+        return $this->idle_start_time;
+    }
+
+    /**
+     * Output only. The time when cluster became idle (most recent job finished)
+     * and became eligible for deletion due to idleness.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setIdleStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->idle_start_time = $var;
 
         return $this;
     }

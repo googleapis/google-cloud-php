@@ -19,7 +19,7 @@ class UpdateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated workflow template.
      * The `template.version` field must match the current version.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $template = null;
 
@@ -43,7 +43,7 @@ class UpdateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated workflow template.
      * The `template.version` field must match the current version.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate
      */
     public function getTemplate()
@@ -55,7 +55,7 @@ class UpdateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated workflow template.
      * The `template.version` field must match the current version.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplate template = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param \Google\Cloud\Dataproc\V1beta2\WorkflowTemplate $var
      * @return $this
      */

@@ -18,7 +18,7 @@ class JobPlacement extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the cluster where the job will be submitted.
      *
-     * Generated from protobuf field <code>string cluster_name = 1;</code>
+     * Generated from protobuf field <code>string cluster_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_name = '';
     /**
@@ -50,7 +50,7 @@ class JobPlacement extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the cluster where the job will be submitted.
      *
-     * Generated from protobuf field <code>string cluster_name = 1;</code>
+     * Generated from protobuf field <code>string cluster_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterName()
@@ -61,7 +61,7 @@ class JobPlacement extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the cluster where the job will be submitted.
      *
-     * Generated from protobuf field <code>string cluster_name = 1;</code>
+     * Generated from protobuf field <code>string cluster_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

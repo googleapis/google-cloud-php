@@ -20,7 +20,7 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
      * The output report is a plain text file with a summary of collected
      * diagnostics.
      *
-     * Generated from protobuf field <code>string output_uri = 1;</code>
+     * Generated from protobuf field <code>string output_uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $output_uri = '';
 
@@ -46,7 +46,7 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
      * The output report is a plain text file with a summary of collected
      * diagnostics.
      *
-     * Generated from protobuf field <code>string output_uri = 1;</code>
+     * Generated from protobuf field <code>string output_uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getOutputUri()
@@ -59,7 +59,7 @@ class DiagnoseClusterResults extends \Google\Protobuf\Internal\Message
      * The output report is a plain text file with a summary of collected
      * diagnostics.
      *
-     * Generated from protobuf field <code>string output_uri = 1;</code>
+     * Generated from protobuf field <code>string output_uri = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

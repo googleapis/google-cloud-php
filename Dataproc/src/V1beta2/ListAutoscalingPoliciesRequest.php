@@ -16,24 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The "resource name" of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.list`, the resource name
+     *   of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.autoscalingPolicies.list`, the resource name
+     *   of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Optional. The maximum number of results to return in each response.
+     * Must be less than or equal to 1000. Defaults to 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -44,11 +50,17 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The "resource name" of the region, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}`
+     *           Required. The "resource name" of the region or location, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.autoscalingPolicies.list`, the resource name
+     *             of the region has the following format:
+     *             `projects/{project_id}/regions/{region}`
+     *           * For `projects.locations.autoscalingPolicies.list`, the resource name
+     *             of the location has the following format:
+     *             `projects/{project_id}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of results to return in each response.
+     *           Must be less than or equal to 1000. Defaults to 100.
      *     @type string $page_token
      *           Optional. The page token, returned by a previous call, to request the
      *           next page of results.
@@ -60,11 +72,16 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The "resource name" of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.list`, the resource name
+     *   of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.autoscalingPolicies.list`, the resource name
+     *   of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -73,11 +90,16 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The "resource name" of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.list`, the resource name
+     *   of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.autoscalingPolicies.list`, the resource name
+     *   of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -91,8 +113,9 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of results to return in each response.
+     * Must be less than or equal to 1000. Defaults to 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -102,8 +125,9 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of results to return in each response.
+     * Must be less than or equal to 1000. Defaults to 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -119,7 +143,7 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -131,7 +155,7 @@ class ListAutoscalingPoliciesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

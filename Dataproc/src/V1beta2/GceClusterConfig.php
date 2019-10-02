@@ -27,7 +27,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/[zone]`
      * * `us-central1-f`
      *
-     * Generated from protobuf field <code>string zone_uri = 1;</code>
+     * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $zone_uri = '';
     /**
@@ -41,7 +41,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/regions/global/default`
      * * `default`
      *
-     * Generated from protobuf field <code>string network_uri = 2;</code>
+     * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $network_uri = '';
     /**
@@ -52,7 +52,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
-     * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
+     * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $subnetwork_uri = '';
     /**
@@ -63,7 +63,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>bool internal_ip_only = 7;</code>
+     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $internal_ip_only = false;
     /**
@@ -77,7 +77,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * for more information).
      * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *
-     * Generated from protobuf field <code>string service_account = 8;</code>
+     * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_account = '';
     /**
@@ -93,7 +93,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/bigtable.data
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
-     * Generated from protobuf field <code>repeated string service_account_scopes = 3;</code>
+     * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $service_account_scopes;
     /**
@@ -114,7 +114,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Reservation Affinity for consuming Zonal reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reservation_affinity = null;
 
@@ -207,7 +207,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/[zone]`
      * * `us-central1-f`
      *
-     * Generated from protobuf field <code>string zone_uri = 1;</code>
+     * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getZoneUri()
@@ -226,7 +226,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/zones/[zone]`
      * * `us-central1-f`
      *
-     * Generated from protobuf field <code>string zone_uri = 1;</code>
+     * Generated from protobuf field <code>string zone_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -249,7 +249,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/regions/global/default`
      * * `default`
      *
-     * Generated from protobuf field <code>string network_uri = 2;</code>
+     * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNetworkUri()
@@ -268,7 +268,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/regions/global/default`
      * * `default`
      *
-     * Generated from protobuf field <code>string network_uri = 2;</code>
+     * Generated from protobuf field <code>string network_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -288,7 +288,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
-     * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
+     * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSubnetworkUri()
@@ -304,7 +304,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
      * * `sub0`
      *
-     * Generated from protobuf field <code>string subnetwork_uri = 6;</code>
+     * Generated from protobuf field <code>string subnetwork_uri = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -324,7 +324,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>bool internal_ip_only = 7;</code>
+     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getInternalIpOnly()
@@ -340,7 +340,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      *
-     * Generated from protobuf field <code>bool internal_ip_only = 7;</code>
+     * Generated from protobuf field <code>bool internal_ip_only = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -363,7 +363,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * for more information).
      * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *
-     * Generated from protobuf field <code>string service_account = 8;</code>
+     * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getServiceAccount()
@@ -382,7 +382,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * for more information).
      * Example: `[account_id]&#64;[project_id].iam.gserviceaccount.com`
      *
-     * Generated from protobuf field <code>string service_account = 8;</code>
+     * Generated from protobuf field <code>string service_account = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -407,7 +407,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/bigtable.data
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
-     * Generated from protobuf field <code>repeated string service_account_scopes = 3;</code>
+     * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getServiceAccountScopes()
@@ -428,7 +428,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/bigtable.data
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
-     * Generated from protobuf field <code>repeated string service_account_scopes = 3;</code>
+     * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -501,7 +501,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Reservation Affinity for consuming Zonal reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\ReservationAffinity
      */
     public function getReservationAffinity()
@@ -512,7 +512,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Reservation Affinity for consuming Zonal reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\ReservationAffinity $var
      * @return $this
      */
