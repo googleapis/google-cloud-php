@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.113.0",
                 "v0.112.0",
                 "v0.111.0",
                 "v0.110.0",
@@ -181,6 +182,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
                 "v0.3.0",
@@ -378,6 +380,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.34.0",
                 "v1.33.0",
                 "v1.32.0",
                 "v1.31.0",
@@ -455,6 +458,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.14.0",
                 "v0.13.0",
                 "v0.12.0",
                 "v0.11.3",
@@ -729,6 +733,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.9.0",
                 "v1.8.0",
                 "v1.7.1",
                 "v1.7.0",
@@ -859,6 +864,7 @@
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
+                "v0.21.0",
                 "v0.20.0",
                 "v0.19.4",
                 "v0.19.3",
@@ -1072,6 +1078,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.18.0",
                 "v1.17.0",
                 "v1.16.0",
                 "v1.15.0",
@@ -1204,6 +1211,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
                 "v1.16.1",
