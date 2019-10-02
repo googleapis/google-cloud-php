@@ -17,15 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
     /**
-     * The enabled features.
+     * Required. The enabled features.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $features = null;
     /**
@@ -42,9 +42,9 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Language\V1beta2\Document $document
-     *           Input document.
+     *           Required. Input document.
      *     @type \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features $features
-     *           The enabled features.
+     *           Required. The enabled features.
      *     @type int $encoding_type
      *           The encoding type used by the API to calculate offsets.
      * }
@@ -55,9 +55,9 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
@@ -66,9 +66,9 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Language\V1beta2\Document $var
      * @return $this
      */
@@ -81,9 +81,9 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The enabled features.
+     * Required. The enabled features.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features
      */
     public function getFeatures()
@@ -92,9 +92,9 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The enabled features.
+     * Required. The enabled features.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features $var
      * @return $this
      */

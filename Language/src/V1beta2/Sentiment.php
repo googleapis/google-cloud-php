@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents the feeling associated with the entire text or entities in
  * the text.
+ * Next ID: 6
  *
  * Generated from protobuf message <code>google.cloud.language.v1beta2.Sentiment</code>
  */

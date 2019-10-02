@@ -193,7 +193,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -245,7 +245,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -281,10 +281,8 @@ class LanguageServiceGapicClient
     }
 
     /**
-     * Finds entities, similar to
-     * [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities]
-     * in the text and analyzes sentiment associated with each entity and its
-     * mentions.
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
      *
      * Sample code:
      * ```
@@ -297,7 +295,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -348,7 +346,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -397,7 +395,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -442,8 +440,8 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
+     * @param Document $document     Required. Input document.
+     * @param Features $features     Required. The enabled features.
      * @param array    $optionalArgs {
      *                               Optional.
      *

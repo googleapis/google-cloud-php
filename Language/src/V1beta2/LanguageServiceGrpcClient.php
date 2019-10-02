@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2017 Google Inc.
+// Copyright 2017 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 //
 namespace Google\Cloud\Language\V1beta2;
 
@@ -64,10 +65,8 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Finds entities, similar to
-     * [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities]
-     * in the text and analyzes sentiment associated with each entity and its
-     * mentions.
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
      * @param \Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
