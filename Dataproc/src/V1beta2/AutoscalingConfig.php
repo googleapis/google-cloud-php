@@ -23,7 +23,7 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]`
      * Note that the policy must be in the same project and Cloud Dataproc region.
      *
-     * Generated from protobuf field <code>string policy_uri = 1;</code>
+     * Generated from protobuf field <code>string policy_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $policy_uri = '';
 
@@ -55,7 +55,7 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]`
      * Note that the policy must be in the same project and Cloud Dataproc region.
      *
-     * Generated from protobuf field <code>string policy_uri = 1;</code>
+     * Generated from protobuf field <code>string policy_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPolicyUri()
@@ -71,7 +71,7 @@ class AutoscalingConfig extends \Google\Protobuf\Internal\Message
      * * `projects/[project_id]/locations/[dataproc_region]/autoscalingPolicies/[policy_id]`
      * Note that the policy must be in the same project and Cloud Dataproc region.
      *
-     * Generated from protobuf field <code>string policy_uri = 1;</code>
+     * Generated from protobuf field <code>string policy_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

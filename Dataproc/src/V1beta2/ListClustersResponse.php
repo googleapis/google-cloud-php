@@ -18,7 +18,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The clusters in the project.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Cluster clusters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Cluster clusters = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $clusters;
     /**
@@ -26,7 +26,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * results to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent <code>ListClustersRequest</code>.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $next_page_token = '';
 
@@ -52,7 +52,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The clusters in the project.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Cluster clusters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Cluster clusters = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getClusters()
@@ -63,7 +63,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The clusters in the project.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Cluster clusters = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1beta2.Cluster clusters = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\Cluster[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -80,7 +80,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * results to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent <code>ListClustersRequest</code>.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -93,7 +93,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * results to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent <code>ListClustersRequest</code>.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

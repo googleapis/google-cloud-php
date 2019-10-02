@@ -36,6 +36,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataproc\V1beta2\Cluster;
+use Google\Cloud\Dataproc\V1beta2\ClusterOperationMetadata;
 use Google\Cloud\Dataproc\V1beta2\CreateClusterRequest;
 use Google\Cloud\Dataproc\V1beta2\DeleteClusterRequest;
 use Google\Cloud\Dataproc\V1beta2\DiagnoseClusterRequest;
@@ -246,7 +247,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Creates a cluster in a project.
+     * Creates a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -339,7 +342,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Updates a cluster in a project.
+     * Updates a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -509,7 +514,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Deletes a cluster in a project.
+     * Deletes a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -692,7 +699,7 @@ class ClusterControllerGapicClient
      *                             Optional.
      *
      *     @type string $filter
-     *          Optional. A filter constraining the clusters to list. Filters are
+     *          Optional.  A filter constraining the clusters to list. Filters are
      *          case-sensitive and have the following syntax:
      *
      *          field = value [AND [field = value]] ...
@@ -756,9 +763,13 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Gets cluster diagnostic information.
-     * After the operation completes, the Operation.response field
-     * contains `DiagnoseClusterOutputLocation`.
+     * Gets cluster diagnostic information. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
+     * After the operation completes,
+     * [Operation.response][google.longrunning.Operation.response]
+     * contains
+     * [Empty](https://cloud.google.comgoogle.protobuf.Empty).
      *
      * Sample code:
      * ```

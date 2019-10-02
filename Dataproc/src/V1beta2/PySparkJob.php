@@ -22,7 +22,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      *
-     * Generated from protobuf field <code>string main_python_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $main_python_file_uri = '';
     /**
@@ -120,7 +120,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      *
-     * Generated from protobuf field <code>string main_python_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getMainPythonFileUri()
@@ -132,7 +132,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      *
-     * Generated from protobuf field <code>string main_python_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

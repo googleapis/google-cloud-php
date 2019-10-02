@@ -24,7 +24,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image_version = '';
     /**
@@ -44,7 +44,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *
-     * Generated from protobuf field <code>map<string, string> properties = 2;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
@@ -102,7 +102,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImageVersion()
@@ -119,7 +119,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -148,7 +148,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *
-     * Generated from protobuf field <code>map<string, string> properties = 2;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -173,7 +173,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *
-     * Generated from protobuf field <code>map<string, string> properties = 2;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

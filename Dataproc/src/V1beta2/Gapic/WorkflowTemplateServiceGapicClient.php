@@ -352,9 +352,16 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent       Required. The "resource name" of the region, as described
-     *                                       in https://cloud.google.com/apis/design/resource_names of the form
-     *                                       `projects/{project_id}/regions/{region}`
+     * @param string $parent Required. The resource name of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates,create`, the resource name of the
+     *   region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     *
+     * * For `projects.locations.workflowTemplates.create`, the resource name of
+     *   the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      * @param WorkflowTemplate $template     Required. The Dataproc workflow template to create.
      * @param array            $optionalArgs {
      *                                       Optional.
@@ -409,15 +416,22 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The "resource name" of the workflow template, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The resource name of the workflow template, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates.get`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     * * For `projects.locations.workflowTemplates.get`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $version
      *          Optional. The version of workflow template to retrieve. Only previously
-     *          instatiated versions can be retrieved.
+     *          instantiated versions can be retrieved.
      *
      *          If unspecified, retrieves the current version.
      *     @type RetrySettings|array $retrySettings
@@ -469,7 +483,9 @@ class WorkflowTemplateServiceGapicClient
      * clusters to be deleted.
      *
      * The [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [WorkflowMetadata][google.cloud.dataproc.v1beta2.WorkflowMetadata].
+     * [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#workflowmetadata).
+     * Also see [Using
+     * WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
      *
      * On successful completion,
      * [Operation.response][google.longrunning.Operation.response] will be
@@ -512,11 +528,18 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The "resource name" of the workflow template, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The resource name of the workflow template, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $version
      *          Optional. The version of workflow template to instantiate. If specified,
@@ -602,7 +625,9 @@ class WorkflowTemplateServiceGapicClient
      * clusters to be deleted.
      *
      * The [Operation.metadata][google.longrunning.Operation.metadata] will be
-     * [WorkflowMetadata][google.cloud.dataproc.v1beta2.WorkflowMetadata].
+     * [WorkflowMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#workflowmetadata).
+     * Also see [Using
+     * WorkflowMetadata](https://cloud.google.com/dataproc/docs/concepts/workflows/debugging#using_workflowmetadata).
      *
      * On successful completion,
      * [Operation.response][google.longrunning.Operation.response] will be
@@ -646,9 +671,16 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent       Required. The "resource name" of the workflow template region, as described
-     *                                       in https://cloud.google.com/apis/design/resource_names of the form
-     *                                       `projects/{project_id}/regions/{region}`
+     * @param string $parent Required. The resource name of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates,instantiateinline`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     *
+     * * For `projects.locations.workflowTemplates.instantiateinline`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      * @param WorkflowTemplate $template     Required. The workflow template to instantiate.
      * @param array            $optionalArgs {
      *                                       Optional.
@@ -786,11 +818,18 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The "resource name" of the region, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}`
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. The resource name of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates,list`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     *
+     * * For `projects.locations.workflowTemplates.list`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -853,11 +892,18 @@ class WorkflowTemplateServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The "resource name" of the workflow template, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The resource name of the workflow template, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.workflowTemplates.delete`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $version
      *          Optional. The version of workflow template to delete. If specified,

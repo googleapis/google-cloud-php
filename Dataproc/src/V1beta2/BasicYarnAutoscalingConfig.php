@@ -22,7 +22,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * downscaling operations.
      * Bounds: [0s, 1d].
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $graceful_decommission_timeout = null;
     /**
@@ -33,7 +33,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * magnitude of scaling up (less aggressive scaling).
      * Bounds: [0.0, 1.0].
      *
-     * Generated from protobuf field <code>double scale_up_factor = 1;</code>
+     * Generated from protobuf field <code>double scale_up_factor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $scale_up_factor = 0.0;
     /**
@@ -44,7 +44,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * removing workers, which can be beneficial for autoscaling a single job.
      * Bounds: [0.0, 1.0].
      *
-     * Generated from protobuf field <code>double scale_down_factor = 2;</code>
+     * Generated from protobuf field <code>double scale_down_factor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $scale_down_factor = 0.0;
     /**
@@ -55,7 +55,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * on any recommended change.
      * Bounds: [0.0, 1.0]. Default: 0.0.
      *
-     * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3;</code>
+     * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $scale_up_min_worker_fraction = 0.0;
     /**
@@ -66,7 +66,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * on any recommended change.
      * Bounds: [0.0, 1.0]. Default: 0.0.
      *
-     * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4;</code>
+     * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $scale_down_min_worker_fraction = 0.0;
 
@@ -124,7 +124,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * downscaling operations.
      * Bounds: [0s, 1d].
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getGracefulDecommissionTimeout()
@@ -139,7 +139,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * downscaling operations.
      * Bounds: [0s, 1d].
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -159,7 +159,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * magnitude of scaling up (less aggressive scaling).
      * Bounds: [0.0, 1.0].
      *
-     * Generated from protobuf field <code>double scale_up_factor = 1;</code>
+     * Generated from protobuf field <code>double scale_up_factor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
      */
     public function getScaleUpFactor()
@@ -175,7 +175,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * magnitude of scaling up (less aggressive scaling).
      * Bounds: [0.0, 1.0].
      *
-     * Generated from protobuf field <code>double scale_up_factor = 1;</code>
+     * Generated from protobuf field <code>double scale_up_factor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var
      * @return $this
      */
@@ -195,7 +195,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * removing workers, which can be beneficial for autoscaling a single job.
      * Bounds: [0.0, 1.0].
      *
-     * Generated from protobuf field <code>double scale_down_factor = 2;</code>
+     * Generated from protobuf field <code>double scale_down_factor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
      */
     public function getScaleDownFactor()
@@ -211,7 +211,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * removing workers, which can be beneficial for autoscaling a single job.
      * Bounds: [0.0, 1.0].
      *
-     * Generated from protobuf field <code>double scale_down_factor = 2;</code>
+     * Generated from protobuf field <code>double scale_down_factor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var
      * @return $this
      */
@@ -231,7 +231,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * on any recommended change.
      * Bounds: [0.0, 1.0]. Default: 0.0.
      *
-     * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3;</code>
+     * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getScaleUpMinWorkerFraction()
@@ -247,7 +247,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * on any recommended change.
      * Bounds: [0.0, 1.0]. Default: 0.0.
      *
-     * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3;</code>
+     * Generated from protobuf field <code>double scale_up_min_worker_fraction = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -267,7 +267,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * on any recommended change.
      * Bounds: [0.0, 1.0]. Default: 0.0.
      *
-     * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4;</code>
+     * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getScaleDownMinWorkerFraction()
@@ -283,7 +283,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * on any recommended change.
      * Bounds: [0.0, 1.0]. Default: 0.0.
      *
-     * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4;</code>
+     * Generated from protobuf field <code>double scale_down_min_worker_fraction = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */

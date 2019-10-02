@@ -18,7 +18,7 @@ class UpdateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The updated autoscaling policy.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $policy = null;
 
@@ -40,7 +40,7 @@ class UpdateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The updated autoscaling policy.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy
      */
     public function getPolicy()
@@ -51,7 +51,7 @@ class UpdateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The updated autoscaling policy.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy $var
      * @return $this
      */

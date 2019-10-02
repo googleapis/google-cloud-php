@@ -16,11 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The resource name of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates,list`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.workflowTemplates.list`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
@@ -44,9 +49,14 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The "resource name" of the region, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}`
+     *           Required. The resource name of the region or location, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.workflowTemplates,list`, the resource
+     *             name of the region has the following format:
+     *             `projects/{project_id}/regions/{region}`
+     *           * For `projects.locations.workflowTemplates.list`, the
+     *             resource name of the location has the following format:
+     *             `projects/{project_id}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of results to return in each response.
      *     @type string $page_token
@@ -60,11 +70,16 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The resource name of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates,list`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.workflowTemplates.list`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -73,11 +88,16 @@ class ListWorkflowTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The resource name of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates,list`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.workflowTemplates.list`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
