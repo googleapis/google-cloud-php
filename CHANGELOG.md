@@ -39,7 +39,7 @@
 ### Features
 
 * Add constant for collection group query scope. ([#2335](https://www.github.com/googleapis/google-cloud-php/issues/2335)) ([7e133f1](https://www.github.com/googleapis/google-cloud-php/commit/7e133f1))
-* Add Firestore session handler. ([#2258, #2360](https://www.github.com/googleapis/google-cloud-php/issues/2258)) ([f5f006b](https://www.github.com/googleapis/google-cloud-php/commit/f5f006b), [be73255](https://github.com/googleapis/google-cloud-php/commit/be73255))
+* Add Firestore session handler. ([#2258](https://www.github.com/googleapis/google-cloud-php/issues/2258), [#2360](https://www.github.com/googleapis/google-cloud-php/issues/2360)) ([f5f006b](https://www.github.com/googleapis/google-cloud-php/commit/f5f006b), [be73255](https://github.com/googleapis/google-cloud-php/commit/be73255))
 
 </details>
 
