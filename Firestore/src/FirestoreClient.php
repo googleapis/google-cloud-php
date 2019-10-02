@@ -595,7 +595,7 @@ class FirestoreClient
      *     Configuration Options.
      *
      *     @type int $gcLimit The number of entities to delete in the garbage
-     *        collection. Values larger than 1000 will be limited to 1000.
+     *        collection. Values larger than 500 will be limited to 500.
      *        **Defaults to** `0`, indicating garbage collection is disabled by
      *        default.
      *     @type string $collectionNameTemplate A sprintf compatible template

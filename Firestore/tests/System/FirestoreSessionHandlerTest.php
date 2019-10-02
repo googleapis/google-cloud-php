@@ -27,7 +27,7 @@ use Google\Cloud\Firestore\FirestoreSessionHandler;
  */
 class FirestoreSessionHandlerTest extends FirestoreTestCase
 {
-    public function testSessionHandler()
+    public function testSessionWrite()
     {
         $client = self::$client;
 
@@ -48,9 +48,9 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         sleep(1);
 
         $hasDocument = false;
-        $query = $client->collection($namespace . ':' . session_name());
-        foreach ($query->documents() as $snapshot) {
-            self::$localDeletionQueue->add($snapshot->reference());
+        $collection = $client->collection($namespace . ':' . session_name());
+        self::$localDeletionQueue->add($collection);
+        foreach ($collection->documents() as $snapshot) {
             if (!$hasDocument) {
                 $hasDocument = $snapshot['data'] === $storedValue;
             }
@@ -59,25 +59,80 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         $this->assertTrue($hasDocument);
     }
 
-    public function testSessionHandlerGarbageCollection()
+    public function testGarbageCollection()
     {
         $client = self::$client;
 
+        // Set session max lifetime to 0 to ensure deletion
+        ini_set('session.gc_maxlifetime', 0);
+
+        // Disable probability-based GC
+        ini_set('session.gc_probability', 0);
+
         $namespace = uniqid('sess-' . self::COLLECTION_NAME);
-        $sessionName = 'PHPSESSID';
-        $collection = $client->collection($namespace . ':' . $sessionName);
+        $collection = $client->collection($namespace . ':' . session_name());
+        self::$localDeletionQueue->add($collection);
         $collection->document('foo1')->set(['data' => 'foo1', 't' => time() - 1]);
         $collection->document('foo2')->set(['data' => 'foo2', 't' => time() - 1]);
-
-        $this->assertCount(2, $collection->documents());
+        $collection->document('foo3')->set(['data' => 'foo3', 't' => time() + 1]);
+        $this->assertCount(3, $collection->documents());
 
         $handler = $client->sessionHandler([
-            'gcLimit' => 1000,
-            'query' => ['maxRetries' => 0]
+            'gcLimit' => 500,
         ]);
-        $handler->open($namespace, $sessionName);
-        $handler->gc(0);
 
-        $this->assertCount(0, $collection->documents());
+        session_set_save_handler($handler, true);
+        session_save_path($namespace);
+        session_start();
+
+        session_gc();
+
+        $this->assertCount(1, $collection->documents());
+    }
+
+    public function testGarbageCollectionBeforeWrite()
+    {
+        $client = self::$client;
+
+        // Set session max lifetime to 0 to ensure deletion
+        ini_set('session.gc_maxlifetime', 0);
+
+        // Set GC divisor and probability to 1 so GC execution happens 100%
+        ini_set('session.gc_divisor', 1);
+        ini_set('session.gc_probability', 1);
+
+        $namespace = uniqid('sess-' . self::COLLECTION_NAME);
+        $content = 'foo';
+        $storedValue = 'name|' . serialize($content);
+        $collection = $client->collection($namespace . ':' . session_name());
+        self::$localDeletionQueue->add($collection);
+        $collection->document('foo1')->set(['data' => 'foo1', 't' => time() - 1]);
+        $collection->document('foo2')->set(['data' => 'foo2', 't' => time() - 1]);
+        $this->assertCount(2, $collection->documents());
+
+        $handler = $client->sessionHandler(['gcLimit' => 500]);
+        session_set_save_handler($handler, true);
+        session_save_path($namespace);
+        session_start();
+
+        $sessionId = session_id();
+        $_SESSION['name'] = $content;
+
+        session_write_close();
+        sleep(1);
+
+        // assert old records have been removed and the new record has been added.
+        $this->assertCount(1, $collection->documents());
+    }
+
+    public function testSessionGcReturnValue()
+    {
+        // "session_gc" returns false for user-defined session handlers.
+        // The following test will always fail:
+        // ```
+        // $this->assertGreaterThan(0, session_gc());
+        // ```
+        // This test is to remind us to implement a test the issue is fixed.
+        $this->markTestSkipped('session_gc returns false due to a core PHP bug');
     }
 }

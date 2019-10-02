@@ -102,12 +102,18 @@ class FirestoreSessionHandlerTest extends TestCase
 
     public function testClose()
     {
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => 123]);
+        $this->connection->rollback(Argument::any())
+            ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
         );
+        $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->close();
         $this->assertTrue($ret);
     }
@@ -234,6 +240,7 @@ class FirestoreSessionHandlerTest extends TestCase
         );
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
+        $firestoreSessionHandler->close();
 
         $this->assertTrue($ret);
     }
@@ -267,8 +274,10 @@ class FirestoreSessionHandlerTest extends TestCase
             self::PROJECT,
             self::DATABASE
         );
+
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->write('sessionid', 'sessiondata');
+        $firestoreSessionHandler->close();
 
         $this->assertFalse($ret);
     }
@@ -296,6 +305,7 @@ class FirestoreSessionHandlerTest extends TestCase
         );
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->destroy('sessionid');
+        $firestoreSessionHandler->close();
 
         $this->assertTrue($ret);
     }
@@ -324,6 +334,7 @@ class FirestoreSessionHandlerTest extends TestCase
         );
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->destroy('sessionid');
+        $firestoreSessionHandler->close();
 
         $this->assertFalse($ret);
     }
@@ -366,7 +377,7 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->documents->next()
             ->shouldBeCalledTimes(1);
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
+            ->shouldBeCalledTimes(2)
             ->willReturn(['transaction' => 123]);
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalledTimes(1)
@@ -376,7 +387,7 @@ class FirestoreSessionHandlerTest extends TestCase
                     $phpunit->dbName() . '/documents',
                     $options['parent']
                 );
-                $phpunit->assertEquals(999, $options['structuredQuery']['limit']);
+                $phpunit->assertEquals(499, $options['structuredQuery']['limit']);
                 $phpunit->assertEquals(
                     self::SESSION_SAVE_PATH . ':' . self::SESSION_NAME,
                     $options['structuredQuery']['from'][0]['collectionId']
@@ -404,13 +415,13 @@ class FirestoreSessionHandlerTest extends TestCase
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['gcLimit' => 999, 'query' => ['maxRetries' => 0]]
+            ['gcLimit' => 499, 'query' => ['maxRetries' => 0]]
         );
 
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
         $ret = $firestoreSessionHandler->gc(100);
 
-        $this->assertTrue($ret);
+        $this->assertEquals(1, $ret);
     }
 
     /**
@@ -419,7 +430,7 @@ class FirestoreSessionHandlerTest extends TestCase
     public function testGcWithException()
     {
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
+            ->shouldBeCalledTimes(2)
             ->willReturn(['transaction' => 123]);
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalledTimes(1)
@@ -429,7 +440,7 @@ class FirestoreSessionHandlerTest extends TestCase
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,
-            ['gcLimit' => 1000, 'query' => ['maxRetries' => 0]]
+            ['gcLimit' => 500, 'query' => ['maxRetries' => 0]]
         );
 
         $firestoreSessionHandler->open(self::SESSION_SAVE_PATH, self::SESSION_NAME);
