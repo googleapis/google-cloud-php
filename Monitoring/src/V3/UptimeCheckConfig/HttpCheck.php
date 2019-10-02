@@ -9,31 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information involved in an HTTP/HTTPS uptime check request.
+ * Information involved in an HTTP/HTTPS Uptime check request.
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.HttpCheck</code>
  */
 class HttpCheck extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If true, use HTTPS instead of HTTP to run the check.
+     * If `true`, use HTTPS instead of HTTP to run the check.
      *
      * Generated from protobuf field <code>bool use_ssl = 1;</code>
      */
     private $use_ssl = false;
     /**
-     * The path to the page to run the check against. Will be combined with the
-     * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to "/"). If the provided path does not
-     * begin with "/", it will be prepended automatically.
+     * Optional (defaults to "/"). The path to the page against which to run
+     * the check. Will be combined with the `host` (specified within the
+     * `monitored_resource`) and `port` to construct the full URL. If the
+     * provided path does not begin with "/", a "/" will be prepended
+     * automatically.
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
     private $path = '';
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) and path to construct the full
-     * URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+     * Optional (defaults to 80 when `use_ssl` is `false`, and 443 when
+     * `use_ssl` is `true`). The TCP port on the HTTP server against which to
+     * run the check. Will be combined with host (specified within the
+     * `monitored_resource`) and `path` to construct the full URL.
      *
      * Generated from protobuf field <code>int32 port = 3;</code>
      */
@@ -50,14 +52,14 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * Encryption should be specified for any headers related to authentication
      * that you do not wish to be seen when retrieving the configuration. The
      * server will be responsible for encrypting the headers.
-     * On Get/List calls, if mask_headers is set to True then the headers
-     * will be obscured with ******.
+     * On Get/List calls, if `mask_headers` is set to `true` then the headers
+     * will be obscured with `******.`
      *
      * Generated from protobuf field <code>bool mask_headers = 5;</code>
      */
     private $mask_headers = false;
     /**
-     * The list of headers to send as part of the uptime check request.
+     * The list of headers to send as part of the Uptime check request.
      * If two headers have the same key and different values, they should
      * be entered as a single header, with the value being a comma-separated
      * list of all the desired values as described at
@@ -70,9 +72,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      */
     private $headers;
     /**
-     * Boolean specifying whether to validate SSL certificates.
-     * Only applies to uptime_url checks. If use_ssl is false, setting this to
-     * true has no effect.
+     * Boolean specifying whether to include SSL certificate validation as a
+     * part of the Uptime check. Only applies to checks where
+     * `monitored_resource` is set to `uptime_url`. If `use_ssl` is `false`,
+     * setting `validate_ssl` to `true` has no effect.
      *
      * Generated from protobuf field <code>bool validate_ssl = 7;</code>
      */
@@ -85,16 +88,18 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $use_ssl
-     *           If true, use HTTPS instead of HTTP to run the check.
+     *           If `true`, use HTTPS instead of HTTP to run the check.
      *     @type string $path
-     *           The path to the page to run the check against. Will be combined with the
-     *           host (specified within the MonitoredResource) and port to construct the
-     *           full URL. Optional (defaults to "/"). If the provided path does not
-     *           begin with "/", it will be prepended automatically.
+     *           Optional (defaults to "/"). The path to the page against which to run
+     *           the check. Will be combined with the `host` (specified within the
+     *           `monitored_resource`) and `port` to construct the full URL. If the
+     *           provided path does not begin with "/", a "/" will be prepended
+     *           automatically.
      *     @type int $port
-     *           The port to the page to run the check against. Will be combined with host
-     *           (specified within the MonitoredResource) and path to construct the full
-     *           URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+     *           Optional (defaults to 80 when `use_ssl` is `false`, and 443 when
+     *           `use_ssl` is `true`). The TCP port on the HTTP server against which to
+     *           run the check. Will be combined with host (specified within the
+     *           `monitored_resource`) and `path` to construct the full URL.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication $auth_info
      *           The authentication information. Optional when creating an HTTP check;
      *           defaults to empty.
@@ -103,10 +108,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           Encryption should be specified for any headers related to authentication
      *           that you do not wish to be seen when retrieving the configuration. The
      *           server will be responsible for encrypting the headers.
-     *           On Get/List calls, if mask_headers is set to True then the headers
-     *           will be obscured with ******.
+     *           On Get/List calls, if `mask_headers` is set to `true` then the headers
+     *           will be obscured with `******.`
      *     @type array|\Google\Protobuf\Internal\MapField $headers
-     *           The list of headers to send as part of the uptime check request.
+     *           The list of headers to send as part of the Uptime check request.
      *           If two headers have the same key and different values, they should
      *           be entered as a single header, with the value being a comma-separated
      *           list of all the desired values as described at
@@ -115,9 +120,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           cause the first to be overwritten by the second.
      *           The maximum number of headers allowed is 100.
      *     @type bool $validate_ssl
-     *           Boolean specifying whether to validate SSL certificates.
-     *           Only applies to uptime_url checks. If use_ssl is false, setting this to
-     *           true has no effect.
+     *           Boolean specifying whether to include SSL certificate validation as a
+     *           part of the Uptime check. Only applies to checks where
+     *           `monitored_resource` is set to `uptime_url`. If `use_ssl` is `false`,
+     *           setting `validate_ssl` to `true` has no effect.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +132,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, use HTTPS instead of HTTP to run the check.
+     * If `true`, use HTTPS instead of HTTP to run the check.
      *
      * Generated from protobuf field <code>bool use_ssl = 1;</code>
      * @return bool
@@ -137,7 +143,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, use HTTPS instead of HTTP to run the check.
+     * If `true`, use HTTPS instead of HTTP to run the check.
      *
      * Generated from protobuf field <code>bool use_ssl = 1;</code>
      * @param bool $var
@@ -152,10 +158,11 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to the page to run the check against. Will be combined with the
-     * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to "/"). If the provided path does not
-     * begin with "/", it will be prepended automatically.
+     * Optional (defaults to "/"). The path to the page against which to run
+     * the check. Will be combined with the `host` (specified within the
+     * `monitored_resource`) and `port` to construct the full URL. If the
+     * provided path does not begin with "/", a "/" will be prepended
+     * automatically.
      *
      * Generated from protobuf field <code>string path = 2;</code>
      * @return string
@@ -166,10 +173,11 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to the page to run the check against. Will be combined with the
-     * host (specified within the MonitoredResource) and port to construct the
-     * full URL. Optional (defaults to "/"). If the provided path does not
-     * begin with "/", it will be prepended automatically.
+     * Optional (defaults to "/"). The path to the page against which to run
+     * the check. Will be combined with the `host` (specified within the
+     * `monitored_resource`) and `port` to construct the full URL. If the
+     * provided path does not begin with "/", a "/" will be prepended
+     * automatically.
      *
      * Generated from protobuf field <code>string path = 2;</code>
      * @param string $var
@@ -184,9 +192,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) and path to construct the full
-     * URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+     * Optional (defaults to 80 when `use_ssl` is `false`, and 443 when
+     * `use_ssl` is `true`). The TCP port on the HTTP server against which to
+     * run the check. Will be combined with host (specified within the
+     * `monitored_resource`) and `path` to construct the full URL.
      *
      * Generated from protobuf field <code>int32 port = 3;</code>
      * @return int
@@ -197,9 +206,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) and path to construct the full
-     * URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+     * Optional (defaults to 80 when `use_ssl` is `false`, and 443 when
+     * `use_ssl` is `true`). The TCP port on the HTTP server against which to
+     * run the check. Will be combined with host (specified within the
+     * `monitored_resource`) and `path` to construct the full URL.
      *
      * Generated from protobuf field <code>int32 port = 3;</code>
      * @param int $var
@@ -246,8 +256,8 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * Encryption should be specified for any headers related to authentication
      * that you do not wish to be seen when retrieving the configuration. The
      * server will be responsible for encrypting the headers.
-     * On Get/List calls, if mask_headers is set to True then the headers
-     * will be obscured with ******.
+     * On Get/List calls, if `mask_headers` is set to `true` then the headers
+     * will be obscured with `******.`
      *
      * Generated from protobuf field <code>bool mask_headers = 5;</code>
      * @return bool
@@ -262,8 +272,8 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * Encryption should be specified for any headers related to authentication
      * that you do not wish to be seen when retrieving the configuration. The
      * server will be responsible for encrypting the headers.
-     * On Get/List calls, if mask_headers is set to True then the headers
-     * will be obscured with ******.
+     * On Get/List calls, if `mask_headers` is set to `true` then the headers
+     * will be obscured with `******.`
      *
      * Generated from protobuf field <code>bool mask_headers = 5;</code>
      * @param bool $var
@@ -278,7 +288,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of headers to send as part of the uptime check request.
+     * The list of headers to send as part of the Uptime check request.
      * If two headers have the same key and different values, they should
      * be entered as a single header, with the value being a comma-separated
      * list of all the desired values as described at
@@ -296,7 +306,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of headers to send as part of the uptime check request.
+     * The list of headers to send as part of the Uptime check request.
      * If two headers have the same key and different values, they should
      * be entered as a single header, with the value being a comma-separated
      * list of all the desired values as described at
@@ -318,9 +328,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Boolean specifying whether to validate SSL certificates.
-     * Only applies to uptime_url checks. If use_ssl is false, setting this to
-     * true has no effect.
+     * Boolean specifying whether to include SSL certificate validation as a
+     * part of the Uptime check. Only applies to checks where
+     * `monitored_resource` is set to `uptime_url`. If `use_ssl` is `false`,
+     * setting `validate_ssl` to `true` has no effect.
      *
      * Generated from protobuf field <code>bool validate_ssl = 7;</code>
      * @return bool
@@ -331,9 +342,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Boolean specifying whether to validate SSL certificates.
-     * Only applies to uptime_url checks. If use_ssl is false, setting this to
-     * true has no effect.
+     * Boolean specifying whether to include SSL certificate validation as a
+     * part of the Uptime check. Only applies to checks where
+     * `monitored_resource` is set to `uptime_url`. If `use_ssl` is `false`,
+     * setting `validate_ssl` to `true` has no effect.
      *
      * Generated from protobuf field <code>bool validate_ssl = 7;</code>
      * @param bool $var

@@ -52,11 +52,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * compared with the threshold. If a `denominator_filter` is specified,
      * the time series specified by the `filter` field will be used as the
      * numerator.
-     * The filter is similar to the one that is specified in the
-     * [`MetricService.ListTimeSeries`
-     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     * call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
+     * The filter must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
      *
@@ -73,11 +69,6 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * When computing ratios, the `aggregations` and
      * `denominator_aggregations` fields must use the same alignment period
      * and produce time series that have the same periodicity and labels.
-     * This field is similar to the one in the
-     * [`MetricService.ListTimeSeries`
-     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     * is advisable to use the `ListTimeSeries` method when debugging this
-     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation denominator_aggregations = 10;</code>
      */
@@ -159,11 +150,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           compared with the threshold. If a `denominator_filter` is specified,
      *           the time series specified by the `filter` field will be used as the
      *           numerator.
-     *           The filter is similar to the one that is specified in the
-     *           [`MetricService.ListTimeSeries`
-     *           request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     *           call is useful to verify the time series that will be retrieved /
-     *           processed) and must specify the metric type and optionally may contain
+     *           The filter must specify the metric type and optionally may contain
      *           restrictions on resource type, resource labels, and metric labels.
      *           This field may not exceed 2048 Unicode characters in length.
      *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $denominator_aggregations
@@ -176,11 +163,6 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           When computing ratios, the `aggregations` and
      *           `denominator_aggregations` fields must use the same alignment period
      *           and produce time series that have the same periodicity and labels.
-     *           This field is similar to the one in the
-     *           [`MetricService.ListTimeSeries`
-     *           request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     *           is advisable to use the `ListTimeSeries` method when debugging this
-     *           field.
      *     @type int $comparison
      *           The comparison to apply between the time series (indicated by `filter`
      *           and `aggregation`) and the threshold (indicated by `threshold_value`).
@@ -308,11 +290,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * compared with the threshold. If a `denominator_filter` is specified,
      * the time series specified by the `filter` field will be used as the
      * numerator.
-     * The filter is similar to the one that is specified in the
-     * [`MetricService.ListTimeSeries`
-     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     * call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
+     * The filter must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
      *
@@ -330,11 +308,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * compared with the threshold. If a `denominator_filter` is specified,
      * the time series specified by the `filter` field will be used as the
      * numerator.
-     * The filter is similar to the one that is specified in the
-     * [`MetricService.ListTimeSeries`
-     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that
-     * call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
+     * The filter must specify the metric type and optionally may contain
      * restrictions on resource type, resource labels, and metric labels.
      * This field may not exceed 2048 Unicode characters in length.
      *
@@ -360,11 +334,6 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * When computing ratios, the `aggregations` and
      * `denominator_aggregations` fields must use the same alignment period
      * and produce time series that have the same periodicity and labels.
-     * This field is similar to the one in the
-     * [`MetricService.ListTimeSeries`
-     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     * is advisable to use the `ListTimeSeries` method when debugging this
-     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation denominator_aggregations = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -384,11 +353,6 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * When computing ratios, the `aggregations` and
      * `denominator_aggregations` fields must use the same alignment period
      * and produce time series that have the same periodicity and labels.
-     * This field is similar to the one in the
-     * [`MetricService.ListTimeSeries`
-     * request](/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list). It
-     * is advisable to use the `ListTimeSeries` method when debugging this
-     * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation denominator_aggregations = 10;</code>
      * @param \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $var

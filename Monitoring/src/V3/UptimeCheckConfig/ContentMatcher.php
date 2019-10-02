@@ -23,9 +23,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      */
     private $content = '';
     /**
-     * The matcher representing content match options which the check will run
-     * with. If the field is not specified (in previous versions), the option is
-     * set to be CONTAINS_STRING which performs content substring matching.
+     * The type of content matcher that will be applied to the server output,
+     * compared to the `content` string when the check is run.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
      */
@@ -40,9 +39,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      *     @type string $content
      *           String or regex content to match (max 1024 bytes)
      *     @type int $matcher
-     *           The matcher representing content match options which the check will run
-     *           with. If the field is not specified (in previous versions), the option is
-     *           set to be CONTAINS_STRING which performs content substring matching.
+     *           The type of content matcher that will be applied to the server output,
+     *           compared to the `content` string when the check is run.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,9 +75,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The matcher representing content match options which the check will run
-     * with. If the field is not specified (in previous versions), the option is
-     * set to be CONTAINS_STRING which performs content substring matching.
+     * The type of content matcher that will be applied to the server output,
+     * compared to the `content` string when the check is run.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
      * @return int
@@ -90,9 +87,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The matcher representing content match options which the check will run
-     * with. If the field is not specified (in previous versions), the option is
-     * set to be CONTAINS_STRING which performs content substring matching.
+     * The type of content matcher that will be applied to the server output,
+     * compared to the `content` string when the check is run.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.ContentMatcher.ContentMatcherOption matcher = 2;</code>
      * @param int $var

@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project in which to create the uptime check. The format
+     * The project in which to create the Uptime check. The format
      *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * The new uptime check configuration.
+     * The new Uptime check configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2;</code>
      */
@@ -36,10 +36,10 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project in which to create the uptime check. The format
+     *           The project in which to create the Uptime check. The format
      *             is `projects/[PROJECT_ID]`.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptime_check_config
-     *           The new uptime check configuration.
+     *           The new Uptime check configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +48,7 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which to create the uptime check. The format
+     * The project in which to create the Uptime check. The format
      *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -60,7 +60,7 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which to create the uptime check. The format
+     * The project in which to create the Uptime check. The format
      *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -76,7 +76,7 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new uptime check configuration.
+     * The new Uptime check configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2;</code>
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
@@ -87,7 +87,7 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new uptime check configuration.
+     * The new Uptime check configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2;</code>
      * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig $var

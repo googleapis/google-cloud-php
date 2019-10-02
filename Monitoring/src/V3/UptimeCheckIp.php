@@ -31,10 +31,10 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
      */
     private $location = '';
     /**
-     * The IP address from which the uptime check originates. This is a full
-     * IP address (not an IP address range). Most IP addresses, as of this
-     * publication, are in IPv4 format; however, one should not rely on the
-     * IP addresses being in IPv4 format indefinitely and should support
+     * The IP address from which the Uptime check originates. This is a fully
+     * specified IP address (not an IP address range). Most IP addresses, as of
+     * this publication, are in IPv4 format; however, one should not rely on the
+     * IP addresses being in IPv4 format indefinitely, and should support
      * interpreting this field in either IPv4 or IPv6 format.
      *
      * Generated from protobuf field <code>string ip_address = 3;</code>
@@ -54,10 +54,10 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
      *           a particular city/town/metro (and its containing state/province or country)
      *           within the broader umbrella region category.
      *     @type string $ip_address
-     *           The IP address from which the uptime check originates. This is a full
-     *           IP address (not an IP address range). Most IP addresses, as of this
-     *           publication, are in IPv4 format; however, one should not rely on the
-     *           IP addresses being in IPv4 format indefinitely and should support
+     *           The IP address from which the Uptime check originates. This is a fully
+     *           specified IP address (not an IP address range). Most IP addresses, as of
+     *           this publication, are in IPv4 format; however, one should not rely on the
+     *           IP addresses being in IPv4 format indefinitely, and should support
      *           interpreting this field in either IPv4 or IPv6 format.
      * }
      */
@@ -123,10 +123,10 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IP address from which the uptime check originates. This is a full
-     * IP address (not an IP address range). Most IP addresses, as of this
-     * publication, are in IPv4 format; however, one should not rely on the
-     * IP addresses being in IPv4 format indefinitely and should support
+     * The IP address from which the Uptime check originates. This is a fully
+     * specified IP address (not an IP address range). Most IP addresses, as of
+     * this publication, are in IPv4 format; however, one should not rely on the
+     * IP addresses being in IPv4 format indefinitely, and should support
      * interpreting this field in either IPv4 or IPv6 format.
      *
      * Generated from protobuf field <code>string ip_address = 3;</code>
@@ -138,10 +138,10 @@ class UptimeCheckIp extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The IP address from which the uptime check originates. This is a full
-     * IP address (not an IP address range). Most IP addresses, as of this
-     * publication, are in IPv4 format; however, one should not rely on the
-     * IP addresses being in IPv4 format indefinitely and should support
+     * The IP address from which the Uptime check originates. This is a fully
+     * specified IP address (not an IP address range). Most IP addresses, as of
+     * this publication, are in IPv4 format; however, one should not rely on the
+     * IP addresses being in IPv4 format indefinitely, and should support
      * interpreting this field in either IPv4 or IPv6 format.
      *
      * Generated from protobuf field <code>string ip_address = 3;</code>

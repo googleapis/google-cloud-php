@@ -21,7 +21,7 @@ namespace Google\Cloud\Monitoring\V3;
 
 /**
  * The UptimeCheckService API is used to manage (list, create, delete, edit)
- * uptime check configurations in the Stackdriver Monitoring product. An uptime
+ * Uptime check configurations in the Stackdriver Monitoring product. An Uptime
  * check is a piece of configuration that determines which resources and
  * services to monitor for availability. These configurations can also be
  * configured interactively by navigating to the [Cloud Console]
@@ -41,8 +41,8 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the existing valid uptime check configurations for the project,
-     * leaving out any invalid configurations.
+     * Lists the existing valid Uptime check configurations for the project
+     * (leaving out any invalid configurations).
      * @param \Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -56,7 +56,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a single uptime check configuration.
+     * Gets a single Uptime check configuration.
      * @param \Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -70,7 +70,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new uptime check configuration.
+     * Creates a new Uptime check configuration.
      * @param \Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -84,9 +84,9 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates an uptime check configuration. You can either replace the entire
+     * Updates an Uptime check configuration. You can either replace the entire
      * configuration with a new one or replace only certain fields in the current
-     * configuration by specifying the fields to be updated via `"updateMask"`.
+     * configuration by specifying the fields to be updated via `updateMask`.
      * Returns the updated configuration.
      * @param \Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
@@ -101,8 +101,8 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes an uptime check configuration. Note that this method will fail
-     * if the uptime check configuration is referenced by an alert policy or
+     * Deletes an Uptime check configuration. Note that this method will fail
+     * if the Uptime check configuration is referenced by an alert policy or
      * other dependent configs that would be rendered invalid by the deletion.
      * @param \Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
@@ -117,7 +117,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the list of IPs that checkers run from
+     * Returns the list of IP addresses that checkers run from
      * @param \Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
