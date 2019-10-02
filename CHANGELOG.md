@@ -1,5 +1,84 @@
 # Changelog
 
+## 0.113.0
+
+<details><summary>google/cloud-automl 0.6.0</summary>
+
+
+
+### Features
+
+* Add request metadata types. ([#2346](https://www.github.com/googleapis/google-cloud-php/issues/2346)) ([e26e337](https://www.github.com/googleapis/google-cloud-php/commit/e26e337))
+
+</details>
+
+<details><summary>google/cloud-core 1.34.0</summary>
+
+
+
+### Features
+
+* Add support for Authenticated Push ([#2354](https://www.github.com/googleapis/google-cloud-php/issues/2354)) ([f393722](https://www.github.com/googleapis/google-cloud-php/commit/f393722))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.14.0</summary>
+
+
+
+### Features
+
+* Add realm to Kerberos config and idle start time to lifec… ([#2364](https://www.github.com/googleapis/google-cloud-php/issues/2364)) ([2632311](https://www.github.com/googleapis/google-cloud-php/commit/2632311))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.9.0</summary>
+
+
+
+### Features
+
+* Add constant for collection group query scope. ([#2335](https://www.github.com/googleapis/google-cloud-php/issues/2335)) ([7e133f1](https://www.github.com/googleapis/google-cloud-php/commit/7e133f1))
+* Add Firestore session handler. ([#2258](https://www.github.com/googleapis/google-cloud-php/issues/2258)) ([f5f006b](https://www.github.com/googleapis/google-cloud-php/commit/f5f006b))
+
+</details>
+
+<details><summary>google/cloud-language 0.21.0</summary>
+
+
+
+### Features
+
+* Add entity types. ([#2361](https://www.github.com/googleapis/google-cloud-php/issues/2361)) ([e4174b8](https://www.github.com/googleapis/google-cloud-php/commit/e4174b8))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.18.0</summary>
+
+
+
+### Features
+
+* Add support for Authenticated Push ([#2354](https://www.github.com/googleapis/google-cloud-php/issues/2354)) ([f393722](https://www.github.com/googleapis/google-cloud-php/commit/f393722))
+* Update request timeout configuration. ([#2347](https://www.github.com/googleapis/google-cloud-php/issues/2347)) ([aa0ef44](https://www.github.com/googleapis/google-cloud-php/commit/aa0ef44))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.19.0</summary>
+
+
+
+### Bug Fixes
+
+* Make `sessionCount` required for `batchCreateSessions`. ([#2348](https://www.github.com/googleapis/google-cloud-php/issues/2348)) ([dfc7b37](https://www.github.com/googleapis/google-cloud-php/commit/dfc7b37))
+
+
+### Features
+
+* Add support for batch session creation in Cloud Spanner ([#2342](https://www.github.com/googleapis/google-cloud-php/issues/2342)) ([05775a1](https://www.github.com/googleapis/google-cloud-php/commit/05775a1))
+
+</details>
+
 ## 0.112.0
 
 <details><summary>google/cloud-bigquery 1.12.1</summary>
