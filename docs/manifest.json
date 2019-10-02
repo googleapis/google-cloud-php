@@ -380,7 +380,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
-                "v1.34.0",
+                "v1.33.1",
                 "v1.33.0",
                 "v1.32.0",
                 "v1.31.0",

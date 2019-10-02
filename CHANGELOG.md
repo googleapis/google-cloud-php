@@ -12,7 +12,7 @@
 
 </details>
 
-<details><summary>google/cloud-core 1.34.0</summary>
+<details><summary>google/cloud-core 1.33.1</summary>
 
 
 
@@ -39,7 +39,7 @@
 ### Features
 
 * Add constant for collection group query scope. ([#2335](https://www.github.com/googleapis/google-cloud-php/issues/2335)) ([7e133f1](https://www.github.com/googleapis/google-cloud-php/commit/7e133f1))
-* Add Firestore session handler. ([#2258](https://www.github.com/googleapis/google-cloud-php/issues/2258)) ([f5f006b](https://www.github.com/googleapis/google-cloud-php/commit/f5f006b))
+* Add Firestore session handler. ([#2258, #2360](https://www.github.com/googleapis/google-cloud-php/issues/2258)) ([f5f006b](https://www.github.com/googleapis/google-cloud-php/commit/f5f006b), [be73255](https://github.com/googleapis/google-cloud-php/commit/be73255))
 
 </details>
 
@@ -70,7 +70,7 @@
 
 ### Bug Fixes
 
-* Make `sessionCount` required for `batchCreateSessions`. ([#2348](https://www.github.com/googleapis/google-cloud-php/issues/2348)) ([dfc7b37](https://www.github.com/googleapis/google-cloud-php/commit/dfc7b37))
+* **BREAKING** Make `sessionCount` required for `batchCreateSessions`. ([#2348](https://www.github.com/googleapis/google-cloud-php/issues/2348)) ([dfc7b37](https://www.github.com/googleapis/google-cloud-php/commit/dfc7b37))
 
 
 ### Features
