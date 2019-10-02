@@ -300,25 +300,17 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function write($id, $data)
     {
-        try {
-            $docRef = $this->getDocumentReference(
-                $this->connection,
-                $this->valueMapper,
-                $this->projectId,
-                $this->database,
-                $this->docId($id)
-            );
-            $this->transaction->set($docRef, [
-                'data' => $data,
-                't' => time()
-            ]);
-        } catch (ServiceException $e) {
-            trigger_error(
-                sprintf('Firestore upsert failed: %s', $e->getMessage()),
-                E_USER_WARNING
-            );
-            return false;
-        }
+        $docRef = $this->getDocumentReference(
+            $this->connection,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $this->docId($id)
+        );
+        $this->transaction->set($docRef, [
+            'data' => $data,
+            't' => time()
+        ]);
         return true;
     }
 
@@ -330,22 +322,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function destroy($id)
     {
-        try {
-            $docRef = $this->getDocumentReference(
-                $this->connection,
-                $this->valueMapper,
-                $this->projectId,
-                $this->database,
-                $this->docId($id)
-            );
-            $this->transaction->delete($docRef);
-        } catch (ServiceException $e) {
-            trigger_error(
-                sprintf('Firestore delete failed: %s', $e->getMessage()),
-                E_USER_WARNING
-            );
-            return false;
-        }
+        $docRef = $this->getDocumentReference(
+            $this->connection,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $this->docId($id)
+        );
+        $this->transaction->delete($docRef);
         return true;
     }
 
