@@ -128,10 +128,10 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
     public function testSessionGcReturnValue()
     {
         // "session_gc" returns false for user-defined session handlers.
-        // The following returns false no matter what:
-        //     ```
-        //     $this->assertGreaterThan(session_gc(), $result);
-        //     ```
+        // The following test will always fail:
+        // ```
+        // $this->assertGreaterThan(0, session_gc());
+        // ```
         // This test is to remind us to implement a test the issue is fixed.
         $this->markTestSkipped('session_gc returns false due to a core PHP bug');
     }
