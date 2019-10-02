@@ -85,12 +85,9 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
         session_save_path($namespace);
         session_start();
 
-        $result = session_gc();
+        session_gc();
 
         $this->assertCount(1, $collection->documents());
-
-        // This is failing and we don't know why
-        // $this->assertGreaterThan(0, $result);
     }
 
     public function testGarbageCollectionBeforeWrite()
@@ -126,5 +123,16 @@ class FirestoreSessionHandlerTest extends FirestoreTestCase
 
         // assert old records have been removed and the new record has been added.
         $this->assertCount(1, $collection->documents());
+    }
+
+    public function testSessionGcReturnValue()
+    {
+        // "session_gc" returns false for user-defined session handlers.
+        // The following returns false no matter what:
+        //     ```
+        //     $this->assertGreaterThan(session_gc(), $result);
+        //     ```
+        // This test is to remind us to implement a test the issue is fixed.
+        $this->markTestSkipped('session_gc returns false due to a core PHP bug');
     }
 }
