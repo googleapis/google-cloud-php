@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/alertpolicy_condition_metricthreshold","type":"","title":"Google\\Cloud\\Monitoring\\V3\\AlertPolicy_Condition_MetricThreshold","name":"AlertPolicy_Condition_MetricThreshold","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\AlertPolicy\\Condition\\MetricThreshold instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/agent\/apiversion","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Agent\\ApiVersion","name":"ApiVersion","description":"<p>API version for the agent.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Agent.ApiVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}
