@@ -22,23 +22,25 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICGenerator()
-common = gcp.CommonTemplates()
+versions = ["V1beta1", "V1"]
 
-library = gapic.php_library(
-    service='automl',
-    version='v1beta1',
-    config_path='/google/cloud/automl/artman_automl_v1beta1.yaml',
-    artman_output_name='google-cloud-automl-v1beta1')
+for version in versions:
+    lower_version = version.lower()
+    library = gapic.php_library(
+        service='automl',
+        version=lower_version,
+        config_path=f'artman_automl_{lower_version}.yaml',
+        artman_output_name=f'google-cloud-automl-{lower_version}')
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/AutoMl', 'src/')
-s.move(library / 'tests/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/AutoMl', 'src/')
+    s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Automl', 'metadata/')
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Automl', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -80,9 +82,13 @@ s.replace(
     'tests/**/V1beta1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2019')
 
 # Fix class references in gapic samples
-for version in ['V1beta1']:
+for version in versions:
     pathExprs = [
         'src/' + version + '/Gapic/AutoMlGapicClient.php',
         'src/' + version + '/Gapic/PredictionServiceGapicClient.php'
