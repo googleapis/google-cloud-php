@@ -105,7 +105,9 @@ foreach ($response->getTranslations() as $key => $translation) {
 
 This component offers both a handwritten and generated client, used to access the V2 and V3 translation APIs, respectively.
 Both clients will receive on-going support and feature additions, however, it is worth noting the streamlined nature of
-the generated client means it will receive updates more frequently.
+the generated client means it will receive updates more frequently. Additionally, the generated client is capable of
+utilizing gRPC for its transport (by installing the gRPC extension) while the handwritten client interacts over
+REST & HTTP/1.1 only.
 
 The handwritten client can be found under `Google\Cloud\Translate\TranslateClient`, whereas the generated client is
 found under `Google\Cloud\Translate\V3\TranslationServiceClient`.
