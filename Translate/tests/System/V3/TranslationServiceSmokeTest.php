@@ -26,7 +26,7 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Translate\V3\TranslationServiceClient;
 
 /**
- * @group translate-smoke
+ * @group translate
  * @group gapic
  */
 class TranslationServiceSmokeTest extends SystemTestCase
