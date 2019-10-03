@@ -36,7 +36,7 @@ $ composer require google/cloud
 Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
-### Sample
+### Sample Using the Handwritten Client (Interacts with the V2 API)
 
 ```php
 require 'vendor/autoload.php';
@@ -76,6 +76,39 @@ foreach ($languages as $language) {
     echo $language . "\n";
 }
 ```
+
+### Sample Using the Generated Client (Interacts with the V3 API)
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Translate\V3\TranslationServiceClient;
+
+$translationClient = new TranslationServiceClient();
+$content = ['one', 'two', 'three'];
+$targetLanguage = 'es';
+$response = $translationClient->translateText(
+    $content,
+    $targetLanguage,
+    TranslationServiceClient::locationName('[PROJECT_ID]', 'global')
+);
+
+foreach ($response->getTranslations() as $key => $translation) {
+    $separator = $key === 2
+        ? '!'
+        : ', ';
+    echo $translation->getTranslatedText() . $separator;
+}
+```
+
+### Choosing the Right Client for You
+
+This component offers both a handwritten and generated client, used to access the V2 and V3 translation APIs, respectively.
+Both clients will receive on-going support and feature additions, however, it is worth noting the streamlined nature of
+the generated client means it will receive updates more frequently.
+
+The handwritten client can be found under `Google\Cloud\Translate\TranslateClient`, whereas the generated client is
+found under `Google\Cloud\Translate\V3\TranslationServiceClient`.
 
 ### Version
 
