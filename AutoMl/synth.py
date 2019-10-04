@@ -89,15 +89,7 @@ s.replace(
 
 # temporary namespace fix for V1
 s.replace(
-    'src/V1/**/*.php',
-    r'Google\\Cloud\\AutoML\\V1',
-    r'Google\\Cloud\\AutoMl\\V1')
-s.replace(
-    'src/V1/*.php',
-    r'Google\\Cloud\\AutoML\\V1',
-    r'Google\\Cloud\\AutoMl\\V1')
-s.replace(
-    'tests/**/V1/*.php',
+    '**/V1/**/*.php',
     r'Google\\Cloud\\AutoML\\V1',
     r'Google\\Cloud\\AutoMl\\V1')
 
