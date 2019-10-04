@@ -20,7 +20,7 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\AutoML\Tests\Unit\V1;
+namespace Google\Cloud\AutoMl\Tests\Unit\V1;
 
 use Google\Cloud\AutoMl\V1\AutoMlClient;
 use Google\ApiCore\ApiException;
