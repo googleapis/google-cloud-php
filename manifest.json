@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.114.0",
                 "v0.113.0",
                 "v0.112.0",
                 "v0.111.0",
@@ -182,6 +183,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.7.0",
                 "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
@@ -1514,6 +1516,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.5.0",
                 "v1.4.1",
                 "v1.4.0",
                 "v1.3.0",
