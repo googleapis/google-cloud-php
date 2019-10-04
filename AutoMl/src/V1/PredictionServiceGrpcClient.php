@@ -17,7 +17,7 @@
 // limitations under the License.
 //
 //
-namespace Google\Cloud\AutoML\V1;
+namespace Google\Cloud\AutoMl\V1;
 
 /**
  * AutoML Prediction API.
@@ -42,15 +42,15 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * Available for following ML problems, and their expected request payloads:
      * * Translation - TextSnippet, content up to 25,000 characters, UTF-8
      *                 encoded.
-     * @param \Google\Cloud\AutoML\V1\PredictRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\PredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function Predict(\Google\Cloud\AutoML\V1\PredictRequest $argument,
+    public function Predict(\Google\Cloud\AutoMl\V1\PredictRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.PredictionService/Predict',
         $argument,
-        ['\Google\Cloud\AutoML\V1\PredictResponse', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\PredictResponse', 'decode'],
         $metadata, $options);
     }
 

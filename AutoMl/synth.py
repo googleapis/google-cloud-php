@@ -87,6 +87,20 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2019')
 
+# temporary namespace fix for V1
+s.replace(
+    'src/V1/**/*.php',
+    r'Google\\Cloud\\AutoML\\V1',
+    r'Google\\Cloud\\AutoMl\\V1')
+s.replace(
+    'src/V1/*.php',
+    r'Google\\Cloud\\AutoML\\V1',
+    r'Google\\Cloud\\AutoMl\\V1')
+s.replace(
+    'tests/**/V1/*.php',
+    r'Google\\Cloud\\AutoML\\V1',
+    r'Google\\Cloud\\AutoMl\\V1')
+
 # Fix class references in gapic samples
 for version in versions:
     pathExprs = [

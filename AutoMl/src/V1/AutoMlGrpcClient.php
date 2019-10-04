@@ -17,7 +17,7 @@
 // limitations under the License.
 //
 //
-namespace Google\Cloud\AutoML\V1;
+namespace Google\Cloud\AutoMl\V1;
 
 /**
  * AutoML Server API.
@@ -48,11 +48,11 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a dataset.
-     * @param \Google\Cloud\AutoML\V1\CreateDatasetRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\CreateDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function CreateDataset(\Google\Cloud\AutoML\V1\CreateDatasetRequest $argument,
+    public function CreateDataset(\Google\Cloud\AutoMl\V1\CreateDatasetRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/CreateDataset',
         $argument,
@@ -62,43 +62,43 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Gets a dataset.
-     * @param \Google\Cloud\AutoML\V1\GetDatasetRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\GetDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function GetDataset(\Google\Cloud\AutoML\V1\GetDatasetRequest $argument,
+    public function GetDataset(\Google\Cloud\AutoMl\V1\GetDatasetRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/GetDataset',
         $argument,
-        ['\Google\Cloud\AutoML\V1\Dataset', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\Dataset', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Lists datasets in a project.
-     * @param \Google\Cloud\AutoML\V1\ListDatasetsRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\ListDatasetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ListDatasets(\Google\Cloud\AutoML\V1\ListDatasetsRequest $argument,
+    public function ListDatasets(\Google\Cloud\AutoMl\V1\ListDatasetsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/ListDatasets',
         $argument,
-        ['\Google\Cloud\AutoML\V1\ListDatasetsResponse', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\ListDatasetsResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Updates a dataset.
-     * @param \Google\Cloud\AutoML\V1\UpdateDatasetRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\UpdateDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function UpdateDataset(\Google\Cloud\AutoML\V1\UpdateDatasetRequest $argument,
+    public function UpdateDataset(\Google\Cloud\AutoMl\V1\UpdateDatasetRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/UpdateDataset',
         $argument,
-        ['\Google\Cloud\AutoML\V1\Dataset', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\Dataset', 'decode'],
         $metadata, $options);
     }
 
@@ -108,11 +108,11 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * [response][google.longrunning.Operation.response] field when it completes,
      * and `delete_details` in the
      * [metadata][google.longrunning.Operation.metadata] field.
-     * @param \Google\Cloud\AutoML\V1\DeleteDatasetRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\DeleteDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function DeleteDataset(\Google\Cloud\AutoML\V1\DeleteDatasetRequest $argument,
+    public function DeleteDataset(\Google\Cloud\AutoMl\V1\DeleteDatasetRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/DeleteDataset',
         $argument,
@@ -122,11 +122,11 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Imports data into a dataset.
-     * @param \Google\Cloud\AutoML\V1\ImportDataRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\ImportDataRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ImportData(\Google\Cloud\AutoML\V1\ImportDataRequest $argument,
+    public function ImportData(\Google\Cloud\AutoMl\V1\ImportDataRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/ImportData',
         $argument,
@@ -138,11 +138,11 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * Exports dataset's data to the provided output location.
      * Returns an empty response in the
      * [response][google.longrunning.Operation.response] field when it completes.
-     * @param \Google\Cloud\AutoML\V1\ExportDataRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\ExportDataRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ExportData(\Google\Cloud\AutoML\V1\ExportDataRequest $argument,
+    public function ExportData(\Google\Cloud\AutoMl\V1\ExportDataRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/ExportData',
         $argument,
@@ -156,11 +156,11 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * field when it completes.
      * When you create a model, several model evaluations are created for it:
      * a global evaluation, and one evaluation for each annotation spec.
-     * @param \Google\Cloud\AutoML\V1\CreateModelRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\CreateModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function CreateModel(\Google\Cloud\AutoML\V1\CreateModelRequest $argument,
+    public function CreateModel(\Google\Cloud\AutoMl\V1\CreateModelRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/CreateModel',
         $argument,
@@ -170,29 +170,29 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Gets a model.
-     * @param \Google\Cloud\AutoML\V1\GetModelRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\GetModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function GetModel(\Google\Cloud\AutoML\V1\GetModelRequest $argument,
+    public function GetModel(\Google\Cloud\AutoMl\V1\GetModelRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/GetModel',
         $argument,
-        ['\Google\Cloud\AutoML\V1\Model', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\Model', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Lists models.
-     * @param \Google\Cloud\AutoML\V1\ListModelsRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\ListModelsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ListModels(\Google\Cloud\AutoML\V1\ListModelsRequest $argument,
+    public function ListModels(\Google\Cloud\AutoMl\V1\ListModelsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/ListModels',
         $argument,
-        ['\Google\Cloud\AutoML\V1\ListModelsResponse', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\ListModelsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -202,11 +202,11 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * [response][google.longrunning.Operation.response] field when it completes,
      * and `delete_details` in the
      * [metadata][google.longrunning.Operation.metadata] field.
-     * @param \Google\Cloud\AutoML\V1\DeleteModelRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\DeleteModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function DeleteModel(\Google\Cloud\AutoML\V1\DeleteModelRequest $argument,
+    public function DeleteModel(\Google\Cloud\AutoMl\V1\DeleteModelRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/DeleteModel',
         $argument,
@@ -216,43 +216,43 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates a model.
-     * @param \Google\Cloud\AutoML\V1\UpdateModelRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\UpdateModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function UpdateModel(\Google\Cloud\AutoML\V1\UpdateModelRequest $argument,
+    public function UpdateModel(\Google\Cloud\AutoMl\V1\UpdateModelRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/UpdateModel',
         $argument,
-        ['\Google\Cloud\AutoML\V1\Model', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\Model', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Gets a model evaluation.
-     * @param \Google\Cloud\AutoML\V1\GetModelEvaluationRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\GetModelEvaluationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function GetModelEvaluation(\Google\Cloud\AutoML\V1\GetModelEvaluationRequest $argument,
+    public function GetModelEvaluation(\Google\Cloud\AutoMl\V1\GetModelEvaluationRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/GetModelEvaluation',
         $argument,
-        ['\Google\Cloud\AutoML\V1\ModelEvaluation', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\ModelEvaluation', 'decode'],
         $metadata, $options);
     }
 
     /**
      * Lists model evaluations.
-     * @param \Google\Cloud\AutoML\V1\ListModelEvaluationsRequest $argument input argument
+     * @param \Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      */
-    public function ListModelEvaluations(\Google\Cloud\AutoML\V1\ListModelEvaluationsRequest $argument,
+    public function ListModelEvaluations(\Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/ListModelEvaluations',
         $argument,
-        ['\Google\Cloud\AutoML\V1\ListModelEvaluationsResponse', 'decode'],
+        ['\Google\Cloud\AutoMl\V1\ListModelEvaluationsResponse', 'decode'],
         $metadata, $options);
     }
 

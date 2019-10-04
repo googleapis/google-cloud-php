@@ -725,8 +725,8 @@ $ composer require google/cloud-logging
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
-use Google\Cloud\AutoMl\V1beta1\TranslationDatasetMetadata;
+use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
 
 $autoMlClient = new AutoMlClient();
 $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');

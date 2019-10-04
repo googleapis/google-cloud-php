@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\AutoML\V1\Gapic;
+namespace Google\Cloud\AutoMl\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -37,28 +37,28 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\AutoML\V1\CreateDatasetRequest;
-use Google\Cloud\AutoML\V1\CreateModelRequest;
-use Google\Cloud\AutoML\V1\Dataset;
-use Google\Cloud\AutoML\V1\DeleteDatasetRequest;
-use Google\Cloud\AutoML\V1\DeleteModelRequest;
-use Google\Cloud\AutoML\V1\ExportDataRequest;
-use Google\Cloud\AutoML\V1\GetDatasetRequest;
-use Google\Cloud\AutoML\V1\GetModelEvaluationRequest;
-use Google\Cloud\AutoML\V1\GetModelRequest;
-use Google\Cloud\AutoML\V1\ImportDataRequest;
-use Google\Cloud\AutoML\V1\InputConfig;
-use Google\Cloud\AutoML\V1\ListDatasetsRequest;
-use Google\Cloud\AutoML\V1\ListDatasetsResponse;
-use Google\Cloud\AutoML\V1\ListModelEvaluationsRequest;
-use Google\Cloud\AutoML\V1\ListModelEvaluationsResponse;
-use Google\Cloud\AutoML\V1\ListModelsRequest;
-use Google\Cloud\AutoML\V1\ListModelsResponse;
-use Google\Cloud\AutoML\V1\Model;
-use Google\Cloud\AutoML\V1\ModelEvaluation;
-use Google\Cloud\AutoML\V1\OutputConfig;
-use Google\Cloud\AutoML\V1\UpdateDatasetRequest;
-use Google\Cloud\AutoML\V1\UpdateModelRequest;
+use Google\Cloud\AutoMl\V1\CreateDatasetRequest;
+use Google\Cloud\AutoMl\V1\CreateModelRequest;
+use Google\Cloud\AutoMl\V1\Dataset;
+use Google\Cloud\AutoMl\V1\DeleteDatasetRequest;
+use Google\Cloud\AutoMl\V1\DeleteModelRequest;
+use Google\Cloud\AutoMl\V1\ExportDataRequest;
+use Google\Cloud\AutoMl\V1\GetDatasetRequest;
+use Google\Cloud\AutoMl\V1\GetModelEvaluationRequest;
+use Google\Cloud\AutoMl\V1\GetModelRequest;
+use Google\Cloud\AutoMl\V1\ImportDataRequest;
+use Google\Cloud\AutoMl\V1\InputConfig;
+use Google\Cloud\AutoMl\V1\ListDatasetsRequest;
+use Google\Cloud\AutoMl\V1\ListDatasetsResponse;
+use Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest;
+use Google\Cloud\AutoMl\V1\ListModelEvaluationsResponse;
+use Google\Cloud\AutoMl\V1\ListModelsRequest;
+use Google\Cloud\AutoMl\V1\ListModelsResponse;
+use Google\Cloud\AutoMl\V1\Model;
+use Google\Cloud\AutoMl\V1\ModelEvaluation;
+use Google\Cloud\AutoMl\V1\OutputConfig;
+use Google\Cloud\AutoMl\V1\UpdateDatasetRequest;
+use Google\Cloud\AutoMl\V1\UpdateModelRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -507,7 +507,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\AutoML\V1\Dataset
+     * @return \Google\Cloud\AutoMl\V1\Dataset
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -558,7 +558,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\AutoML\V1\Dataset
+     * @return \Google\Cloud\AutoMl\V1\Dataset
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1027,7 +1027,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\AutoML\V1\Model
+     * @return \Google\Cloud\AutoMl\V1\Model
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1079,7 +1079,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\AutoML\V1\Model
+     * @return \Google\Cloud\AutoMl\V1\Model
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -1303,7 +1303,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\AutoML\V1\ModelEvaluation
+     * @return \Google\Cloud\AutoMl\V1\ModelEvaluation
      *
      * @throws ApiException if the remote call fails
      * @experimental

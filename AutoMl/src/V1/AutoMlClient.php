@@ -24,9 +24,9 @@
  * @experimental
  */
 
-namespace Google\Cloud\AutoML\V1;
+namespace Google\Cloud\AutoMl\V1;
 
-use Google\Cloud\AutoML\V1\Gapic\AutoMlGapicClient;
+use Google\Cloud\AutoMl\V1\Gapic\AutoMlGapicClient;
 
 /**
  * {@inheritdoc}

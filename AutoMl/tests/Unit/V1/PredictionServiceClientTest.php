@@ -22,13 +22,13 @@
 
 namespace Google\Cloud\AutoML\Tests\Unit\V1;
 
-use Google\Cloud\AutoML\V1\PredictionServiceClient;
+use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\AutoML\V1\ExamplePayload;
-use Google\Cloud\AutoML\V1\PredictResponse;
+use Google\Cloud\AutoMl\V1\ExamplePayload;
+use Google\Cloud\AutoMl\V1\PredictResponse;
 use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;

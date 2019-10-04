@@ -22,20 +22,20 @@
 
 namespace Google\Cloud\AutoML\Tests\Unit\V1;
 
-use Google\Cloud\AutoML\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\AutoMlClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\AutoML\V1\Dataset;
-use Google\Cloud\AutoML\V1\InputConfig;
-use Google\Cloud\AutoML\V1\ListDatasetsResponse;
-use Google\Cloud\AutoML\V1\ListModelEvaluationsResponse;
-use Google\Cloud\AutoML\V1\ListModelsResponse;
-use Google\Cloud\AutoML\V1\Model;
-use Google\Cloud\AutoML\V1\ModelEvaluation;
-use Google\Cloud\AutoML\V1\OutputConfig;
+use Google\Cloud\AutoMl\V1\Dataset;
+use Google\Cloud\AutoMl\V1\InputConfig;
+use Google\Cloud\AutoMl\V1\ListDatasetsResponse;
+use Google\Cloud\AutoMl\V1\ListModelEvaluationsResponse;
+use Google\Cloud\AutoMl\V1\ListModelsResponse;
+use Google\Cloud\AutoMl\V1\Model;
+use Google\Cloud\AutoMl\V1\ModelEvaluation;
+use Google\Cloud\AutoMl\V1\OutputConfig;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\AutoML\V1\Gapic;
+namespace Google\Cloud\AutoMl\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -35,9 +35,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\AutoML\V1\ExamplePayload;
-use Google\Cloud\AutoML\V1\PredictRequest;
-use Google\Cloud\AutoML\V1\PredictResponse;
+use Google\Cloud\AutoMl\V1\ExamplePayload;
+use Google\Cloud\AutoMl\V1\PredictRequest;
+use Google\Cloud\AutoMl\V1\PredictResponse;
 
 /**
  * Service Description: AutoML Prediction API.
@@ -295,7 +295,7 @@ class PredictionServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\AutoML\V1\PredictResponse
+     * @return \Google\Cloud\AutoMl\V1\PredictResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental

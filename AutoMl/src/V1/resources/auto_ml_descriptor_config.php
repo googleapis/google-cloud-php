@@ -6,7 +6,7 @@ return [
             'DeleteDataset' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoML\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -16,7 +16,7 @@ return [
             'ImportData' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoML\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -26,7 +26,7 @@ return [
             'ExportData' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoML\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -35,8 +35,8 @@ return [
             ],
             'CreateModel' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\AutoML\V1\Model',
-                    'metadataReturnType' => '\Google\Cloud\AutoML\V1\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\AutoMl\V1\Model',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -46,7 +46,7 @@ return [
             'DeleteModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoML\V1\OperationMetadata',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
