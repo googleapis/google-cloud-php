@@ -172,6 +172,7 @@
             "GPBMetadata\\Google\\Cloud\\Talent\\": "Talent/metadata",
             "GPBMetadata\\Google\\Cloud\\Tasks\\": "Tasks/metadata",
             "GPBMetadata\\Google\\Cloud\\Texttospeech\\": "TextToSpeech/metadata",
+            "GPBMetadata\\Google\\Cloud\\Translate\\": "Translate/metadata",
             "GPBMetadata\\Google\\Cloud\\Videointelligence\\": "VideoIntelligence/metadata",
             "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
             "GPBMetadata\\Google\\Cloud\\Webrisk\\": "WebRisk/metadata",
