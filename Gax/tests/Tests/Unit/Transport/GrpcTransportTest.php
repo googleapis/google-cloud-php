@@ -35,13 +35,21 @@ namespace Google\ApiCore\Tests\Unit\Transport;
 use Google\ApiCore\Call;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockGrpcTransport;
+use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\Message;
+use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
+use Grpc\BaseStub;
+use Grpc\CallInvoker;
+use Grpc\ChannelCredentials;
 use Grpc\ClientStreamingCall;
+use Grpc\Interceptor;
+use Grpc\ServerStreamingCall;
+use Grpc\UnaryCall;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -438,42 +446,156 @@ class GrpcTransportTest extends TestCase
         ];
     }
 
-    public function testExperimentalInterceptors()
+    /**
+     * @dataProvider interceptorDataProvider
+     */
+    public function testExperimentalInterceptors($callType, $interceptor)
     {
-        $mockUnaryCall = $this->getMockBuilder(\Grpc\UnaryCall::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $mockChannel = $this->getMockBuilder(\Grpc\Channel::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $mockCallInvoker = $this->getMockBuilder(\Grpc\CallInvoker::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $mockCallInvoker->method('createChannelFactory')
-            ->will($this->returnValue($mockChannel));
-        $mockCallInvoker->method('UnaryCall')
-            ->will($this->returnCallback(function ($channel, $method, $deserialize, $options) use ($mockUnaryCall) {
-                $this->assertEquals('/method1', $method);
-                $expectedOptions = [
-                    'test-interceptor-insert' => 'inserted-value',
-                    'call-option' => 'call-option-value',
-                ];
-                $this->assertEquals($expectedOptions, $options);
-                return $mockUnaryCall;
-            }));
+        $transport = new GrpcTransport(
+            'example.com',
+            [
+                'credentials' => ChannelCredentials::createInsecure()
+            ],
+            null,
+            [$interceptor]
+        );
+        $r = new \ReflectionProperty(BaseStub::class, 'call_invoker');
+        $r->setAccessible(true);
+        $r->setValue(
+            $transport,
+            new MockCallInvoker(
+                $this->buildMockCallForInterceptor($callType)
+            )
+        );
+        $call = new Call(
+            'method1',
+            '',
+            new MockRequest()
+        );
 
-        $transport = GrpcTransport::build('example.com', [
-            'stubOpts' => ['grpc_call_invoker' => $mockCallInvoker],
-            'interceptors' => [ new TestUnaryInterceptor() ]
-        ]);
-        $call = new Call('method1', '', null);
-        $promise = $transport->startUnaryCall($call, [
+        if ($callType === UnaryCall::class) {
+            $transport->startUnaryCall($call, [
+                'transportOptions' => [
+                    'grpcOptions' => [
+                        'call-option' => 'call-option-value'
+                    ]
+                ]
+            ]);
+
+            return;
+        }
+
+        $transport->startServerStreamingCall($call, [
             'transportOptions' => [
                 'grpcOptions' => [
                     'call-option' => 'call-option-value'
                 ]
             ]
         ]);
+    }
+
+    public function interceptorDataProvider()
+    {
+        return [
+            [
+                UnaryCall::class,
+                new TestUnaryInterceptor()
+            ],
+            [
+                UnaryCall::class,
+                new TestInterceptor()
+            ],
+            [
+                ServerStreamingCall::class,
+                new TestInterceptor()
+            ]
+        ];
+    }
+
+    private function buildMockCallForInterceptor($callType)
+    {
+        $mockCall = $this->getMockBuilder($callType)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $mockCall->method('start')
+            ->with(
+                $this->isInstanceOf(Message::class),
+                $this->equalTo([]),
+                $this->equalTo([
+                    'call-option' => 'call-option-value',
+                    'test-interceptor-insert' => 'inserted-value'
+                ])
+            );
+
+        if ($callType === UnaryCall::class) {
+            $mockCall->method('wait')
+                ->will($this->returnValue([
+                    null,
+                    Code::OK
+                ]));
+        }
+
+        return $mockCall;
+    }
+}
+
+class MockCallInvoker implements CallInvoker
+{
+    public function __construct($mockCall)
+    {
+        $this->mockCall = $mockCall;
+    }
+
+    public function createChannelFactory($hostname, $opts)
+    {
+        // no-op
+    }
+
+    public function UnaryCall($channel, $method, $deserialize, $options)
+    {
+        return $this->mockCall;
+    }
+
+    public function ServerStreamingCall($channel, $method, $deserialize, $options)
+    {
+        return $this->mockCall;
+    }
+
+    public function ClientStreamingCall($channel, $method, $deserialize, $options)
+    {
+        // no-op
+    }
+
+    public function BidiStreamingCall($channel, $method, $deserialize, $options)
+    {
+        // no-op
+    }
+}
+
+class TestInterceptor extends Interceptor
+{
+    public function interceptUnaryUnary(
+        $method,
+        $argument,
+        $deserialize,
+        array $metadata = [],
+        array $options = [],
+        $continuation
+    ) {
+        $options['test-interceptor-insert'] = 'inserted-value';
+        return $continuation($method, $argument, $deserialize, $metadata, $options);
+    }
+
+    public function interceptUnaryStream(
+        $method,
+        $argument,
+        $deserialize,
+        array $metadata = [],
+        array $options = [],
+        $continuation
+    ) {
+        $options['test-interceptor-insert'] = 'inserted-value';
+        return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
 }
 
@@ -491,4 +613,3 @@ class TestUnaryInterceptor implements UnaryInterceptorInterface
         return $continuation($method, $argument, $deserialize, $metadata, $options);
     }
 }
-

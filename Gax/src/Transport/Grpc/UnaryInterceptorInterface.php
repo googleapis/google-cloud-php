@@ -37,6 +37,7 @@ namespace Google\ApiCore\Transport\Grpc;
  * available.
  *
  * @experimental
+ * @deprecated Deprecated in favor of implementations extending {@see Grpc\Interceptor}.
  */
 interface UnaryInterceptorInterface
 {
