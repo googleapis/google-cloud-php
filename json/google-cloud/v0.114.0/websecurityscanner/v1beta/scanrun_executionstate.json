@@ -1,0 +1,1 @@
+{"id":"websecurityscanner\/v1beta\/scanrun_executionstate","type":"","title":"Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanRun_ExecutionState","name":"ScanRun_ExecutionState","description":"<p>This class is deprecated. Use Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanRun\\ExecutionState instead.<\/p>","examples":[],"resources":[],"methods":[]}

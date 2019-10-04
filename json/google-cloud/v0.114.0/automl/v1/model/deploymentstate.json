@@ -1,0 +1,1 @@
+{"id":"automl\/v1\/model\/deploymentstate","type":"","title":"Google\\Cloud\\AutoMl\\V1\\Model\\DeploymentState","name":"DeploymentState","description":"<p>Deployment state of the model.<\/p>\n<p>Protobuf type <code>google.cloud.automl.v1.Model.DeploymentState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
