@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.114.0
+
+<details><summary>google/cloud-automl 0.7.0</summary>
+
+
+
+### Features
+
+* Introduce Cloud AutoML V1 client ([#2367](https://www.github.com/googleapis/google-cloud-php/issues/2367)) ([1b019ad](https://www.github.com/googleapis/google-cloud-php/commit/1b019ad))
+
+</details>
+
+<details><summary>google/cloud-translate 1.5.0</summary>
+
+
+
+### Features
+
+* Introduce Cloud Translation V3 client ([#2366](https://www.github.com/googleapis/google-cloud-php/issues/2366)) ([e6a4f17](https://www.github.com/googleapis/google-cloud-php/commit/e6a4f17))
+
+</details>
+
 ## 0.113.0
 
 <details><summary>google/cloud-automl 0.6.0</summary>
