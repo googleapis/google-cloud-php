@@ -22,13 +22,13 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * and hyphens (-). Must begin with a letter. Cannot begin or end with
      * hyphen. Must consist of between 2 and 35 characters.
      *
-     * Generated from protobuf field <code>string cluster_name = 2;</code>
+     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_name = '';
     /**
      * Required. The cluster configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $config = null;
     /**
@@ -40,7 +40,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      * No more than 32 labels can be associated with a given cluster.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
 
@@ -80,7 +80,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * and hyphens (-). Must begin with a letter. Cannot begin or end with
      * hyphen. Must consist of between 2 and 35 characters.
      *
-     * Generated from protobuf field <code>string cluster_name = 2;</code>
+     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterName()
@@ -95,7 +95,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * and hyphens (-). Must begin with a letter. Cannot begin or end with
      * hyphen. Must consist of between 2 and 35 characters.
      *
-     * Generated from protobuf field <code>string cluster_name = 2;</code>
+     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -110,7 +110,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
     /**
      * Required. The cluster configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1\ClusterConfig
      */
     public function getConfig()
@@ -121,7 +121,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
     /**
      * Required. The cluster configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterConfig $var
      * @return $this
      */
@@ -142,7 +142,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      * No more than 32 labels can be associated with a given cluster.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -159,7 +159,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      * No more than 32 labels can be associated with a given cluster.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

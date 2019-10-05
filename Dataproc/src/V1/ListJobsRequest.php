@@ -19,33 +19,33 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 6;</code>
+     * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region = '';
     /**
      * Optional. The number of results to return in each response.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
      * Optional. If set, the returned jobs list includes only jobs that were
      * submitted to the named cluster.
      *
-     * Generated from protobuf field <code>string cluster_name = 4;</code>
+     * Generated from protobuf field <code>string cluster_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cluster_name = '';
     /**
@@ -53,7 +53,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * (default = match ALL jobs).
      * If `filter` is provided, `jobStateMatcher` will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $job_state_matcher = 0;
     /**
@@ -68,7 +68,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Example filter:
      * status.state = ACTIVE AND labels.env = staging AND labels.starred = *
      *
-     * Generated from protobuf field <code>string filter = 7;</code>
+     * Generated from protobuf field <code>string filter = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
 
@@ -117,7 +117,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -129,7 +129,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -144,7 +144,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 6;</code>
+     * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegion()
@@ -155,7 +155,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 6;</code>
+     * Generated from protobuf field <code>string region = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -170,7 +170,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of results to return in each response.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -181,7 +181,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The number of results to return in each response.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -197,7 +197,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -209,7 +209,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The page token, returned by a previous call, to request the
      * next page of results.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -225,7 +225,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Optional. If set, the returned jobs list includes only jobs that were
      * submitted to the named cluster.
      *
-     * Generated from protobuf field <code>string cluster_name = 4;</code>
+     * Generated from protobuf field <code>string cluster_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getClusterName()
@@ -237,7 +237,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Optional. If set, the returned jobs list includes only jobs that were
      * submitted to the named cluster.
      *
-     * Generated from protobuf field <code>string cluster_name = 4;</code>
+     * Generated from protobuf field <code>string cluster_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -254,7 +254,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * (default = match ALL jobs).
      * If `filter` is provided, `jobStateMatcher` will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getJobStateMatcher()
@@ -267,7 +267,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * (default = match ALL jobs).
      * If `filter` is provided, `jobStateMatcher` will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ListJobsRequest.JobStateMatcher job_state_matcher = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -291,7 +291,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Example filter:
      * status.state = ACTIVE AND labels.env = staging AND labels.starred = *
      *
-     * Generated from protobuf field <code>string filter = 7;</code>
+     * Generated from protobuf field <code>string filter = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -311,7 +311,7 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      * Example filter:
      * status.state = ACTIVE AND labels.env = staging AND labels.starred = *
      *
-     * Generated from protobuf field <code>string filter = 7;</code>
+     * Generated from protobuf field <code>string filter = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

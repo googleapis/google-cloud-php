@@ -18,7 +18,7 @@ class WorkflowGraph extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow nodes.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $nodes;
 
@@ -40,7 +40,7 @@ class WorkflowGraph extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow nodes.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNodes()
@@ -51,7 +51,7 @@ class WorkflowGraph extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow nodes.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\WorkflowNode[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

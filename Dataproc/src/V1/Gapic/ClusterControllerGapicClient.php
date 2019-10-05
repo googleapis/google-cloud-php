@@ -36,9 +36,11 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataproc\V1\Cluster;
+use Google\Cloud\Dataproc\V1\ClusterOperationMetadata;
 use Google\Cloud\Dataproc\V1\CreateClusterRequest;
 use Google\Cloud\Dataproc\V1\DeleteClusterRequest;
 use Google\Cloud\Dataproc\V1\DiagnoseClusterRequest;
+use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Cloud\Dataproc\V1\GetClusterRequest;
 use Google\Cloud\Dataproc\V1\ListClustersRequest;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
@@ -246,7 +248,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Creates a cluster in a project.
+     * Creates a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -339,7 +343,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Updates a cluster in a project.
+     * Updates a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -434,6 +440,10 @@ class ClusterControllerGapicClient
      *  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
      *  <td>Resize secondary worker group</td>
      *  </tr>
+     *  <tr>
+     *  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *  change autoscaling policies</td>
+     *  </tr>
      *  </tbody>
      *  </table>
      * @param array $optionalArgs {
@@ -496,7 +506,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Deletes a cluster in a project.
+     * Deletes a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -743,9 +755,13 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Gets cluster diagnostic information.
-     * After the operation completes, the Operation.response field
-     * contains `DiagnoseClusterOutputLocation`.
+     * Gets cluster diagnostic information. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).
+     * After the operation completes,
+     * [Operation.response][google.longrunning.Operation.response]
+     * contains
+     * [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
      *
      * Sample code:
      * ```

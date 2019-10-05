@@ -22,7 +22,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      *
-     * Generated from protobuf field <code>string main_python_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $main_python_file_uri = '';
     /**
@@ -30,35 +30,35 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 2;</code>
+     * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $args;
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
      *
-     * Generated from protobuf field <code>repeated string python_file_uris = 3;</code>
+     * Generated from protobuf field <code>repeated string python_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $python_file_uris;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      * Python driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jar_file_uris;
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Python drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
      * Optional. HCFS URIs of archives to be extracted in the working directory of
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $archive_uris;
     /**
@@ -67,13 +67,13 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
 
@@ -120,7 +120,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      *
-     * Generated from protobuf field <code>string main_python_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getMainPythonFileUri()
@@ -132,7 +132,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      *
-     * Generated from protobuf field <code>string main_python_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_python_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -149,7 +149,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 2;</code>
+     * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArgs()
@@ -162,7 +162,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 2;</code>
+     * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -178,7 +178,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
      *
-     * Generated from protobuf field <code>repeated string python_file_uris = 3;</code>
+     * Generated from protobuf field <code>repeated string python_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPythonFileUris()
@@ -190,7 +190,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
      *
-     * Generated from protobuf field <code>repeated string python_file_uris = 3;</code>
+     * Generated from protobuf field <code>repeated string python_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -206,7 +206,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      * Python driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJarFileUris()
@@ -218,7 +218,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      * Python driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -234,7 +234,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Python drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFileUris()
@@ -246,7 +246,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Python drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -262,7 +262,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of archives to be extracted in the working directory of
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArchiveUris()
@@ -274,7 +274,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of archives to be extracted in the working directory of
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -292,7 +292,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -306,7 +306,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -321,7 +321,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\LoggingConfig
      */
     public function getLoggingConfig()
@@ -332,7 +332,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\LoggingConfig $var
      * @return $this
      */

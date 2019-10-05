@@ -30,7 +30,7 @@ class QueryList extends \Google\Protobuf\Internal\Message
      *       }
      *     }
      *
-     * Generated from protobuf field <code>repeated string queries = 1;</code>
+     * Generated from protobuf field <code>repeated string queries = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $queries;
 
@@ -76,7 +76,7 @@ class QueryList extends \Google\Protobuf\Internal\Message
      *       }
      *     }
      *
-     * Generated from protobuf field <code>repeated string queries = 1;</code>
+     * Generated from protobuf field <code>repeated string queries = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getQueries()
@@ -99,7 +99,7 @@ class QueryList extends \Google\Protobuf\Internal\Message
      *       }
      *     }
      *
-     * Generated from protobuf field <code>repeated string queries = 1;</code>
+     * Generated from protobuf field <code>repeated string queries = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -18,31 +18,31 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the node.
      *
-     * Generated from protobuf field <code>string step_id = 1;</code>
+     * Generated from protobuf field <code>string step_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $step_id = '';
     /**
      * Output only. Node's prerequisite nodes.
      *
-     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $prerequisite_step_ids;
     /**
      * Output only. The job id; populated after the node enters RUNNING state.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $job_id = '';
     /**
      * Output only. The node state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowNode.NodeState state = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowNode.NodeState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
      * Output only. The error detail.
      *
-     * Generated from protobuf field <code>string error = 6;</code>
+     * Generated from protobuf field <code>string error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = '';
 
@@ -72,7 +72,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the node.
      *
-     * Generated from protobuf field <code>string step_id = 1;</code>
+     * Generated from protobuf field <code>string step_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getStepId()
@@ -83,7 +83,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the node.
      *
-     * Generated from protobuf field <code>string step_id = 1;</code>
+     * Generated from protobuf field <code>string step_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -98,7 +98,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Node's prerequisite nodes.
      *
-     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPrerequisiteStepIds()
@@ -109,7 +109,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Node's prerequisite nodes.
      *
-     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The job id; populated after the node enters RUNNING state.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getJobId()
@@ -135,7 +135,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The job id; populated after the node enters RUNNING state.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -150,7 +150,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The node state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowNode.NodeState state = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowNode.NodeState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -161,7 +161,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The node state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowNode.NodeState state = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowNode.NodeState state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -176,7 +176,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The error detail.
      *
-     * Generated from protobuf field <code>string error = 6;</code>
+     * Generated from protobuf field <code>string error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getError()
@@ -187,7 +187,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The error detail.
      *
-     * Generated from protobuf field <code>string error = 6;</code>
+     * Generated from protobuf field <code>string error = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

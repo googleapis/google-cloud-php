@@ -18,7 +18,7 @@ class ValueValidation extends \Google\Protobuf\Internal\Message
     /**
      * Required. List of allowed values for the parameter.
      *
-     * Generated from protobuf field <code>repeated string values = 1;</code>
+     * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $values;
 
@@ -40,7 +40,7 @@ class ValueValidation extends \Google\Protobuf\Internal\Message
     /**
      * Required. List of allowed values for the parameter.
      *
-     * Generated from protobuf field <code>repeated string values = 1;</code>
+     * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getValues()
@@ -51,7 +51,7 @@ class ValueValidation extends \Google\Protobuf\Internal\Message
     /**
      * Required. List of allowed values for the parameter.
      *
-     * Generated from protobuf field <code>repeated string values = 1;</code>
+     * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

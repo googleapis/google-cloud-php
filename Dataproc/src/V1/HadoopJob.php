@@ -25,14 +25,14 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * job properties, since a collision may occur that causes an incorrect job
      * submission.
      *
-     * Generated from protobuf field <code>repeated string args = 3;</code>
+     * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $args;
     /**
      * Optional. Jar file URIs to add to the CLASSPATHs of the
      * Hadoop driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jar_file_uris;
     /**
@@ -40,7 +40,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * to the working directory of Hadoop drivers and distributed tasks. Useful
      * for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
@@ -48,7 +48,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * Hadoop drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, or .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $archive_uris;
     /**
@@ -57,13 +57,13 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
      * classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
     protected $driver;
@@ -181,7 +181,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * job properties, since a collision may occur that causes an incorrect job
      * submission.
      *
-     * Generated from protobuf field <code>repeated string args = 3;</code>
+     * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArgs()
@@ -195,7 +195,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * job properties, since a collision may occur that causes an incorrect job
      * submission.
      *
-     * Generated from protobuf field <code>repeated string args = 3;</code>
+     * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -211,7 +211,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * Optional. Jar file URIs to add to the CLASSPATHs of the
      * Hadoop driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJarFileUris()
@@ -223,7 +223,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * Optional. Jar file URIs to add to the CLASSPATHs of the
      * Hadoop driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -240,7 +240,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * to the working directory of Hadoop drivers and distributed tasks. Useful
      * for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFileUris()
@@ -253,7 +253,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * to the working directory of Hadoop drivers and distributed tasks. Useful
      * for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -270,7 +270,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * Hadoop drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, or .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArchiveUris()
@@ -283,7 +283,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * Hadoop drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, or .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -301,7 +301,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
      * classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -315,7 +315,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site and
      * classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -330,7 +330,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\LoggingConfig
      */
     public function getLoggingConfig()
@@ -341,7 +341,7 @@ class HadoopJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\LoggingConfig $var
      * @return $this
      */

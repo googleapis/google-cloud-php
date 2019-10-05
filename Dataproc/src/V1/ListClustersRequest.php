@@ -19,13 +19,13 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 4;</code>
+     * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region = '';
     /**
@@ -45,19 +45,19 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * status.state = ACTIVE AND clusterName = mycluster
      * AND labels.env = staging AND labels.starred = *
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
      * Optional. The standard List page size.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
      * Optional. The standard List page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -103,7 +103,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -115,7 +115,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -130,7 +130,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 4;</code>
+     * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegion()
@@ -141,7 +141,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 4;</code>
+     * Generated from protobuf field <code>string region = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -170,7 +170,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * status.state = ACTIVE AND clusterName = mycluster
      * AND labels.env = staging AND labels.starred = *
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -195,7 +195,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      * status.state = ACTIVE AND clusterName = mycluster
      * AND labels.env = staging AND labels.starred = *
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -210,7 +210,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard List page size.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -221,7 +221,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard List page size.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -236,7 +236,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard List page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -247,7 +247,7 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The standard List page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

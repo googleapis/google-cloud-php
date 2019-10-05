@@ -18,7 +18,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Jobs list.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $jobs;
     /**
@@ -26,7 +26,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent <code>ListJobsRequest</code>.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $next_page_token = '';
 
@@ -52,7 +52,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Jobs list.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJobs()
@@ -63,7 +63,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Jobs list.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -80,7 +80,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent <code>ListJobsRequest</code>.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -93,7 +93,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * to fetch. To fetch additional results, provide this value as the
      * `page_token` in a subsequent <code>ListJobsRequest</code>.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
