@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.114.1",
                 "v0.114.0",
                 "v0.113.0",
                 "v0.112.0",
@@ -183,6 +184,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.7.1",
                 "v0.7.0",
                 "v0.6.0",
                 "v0.5.0",
