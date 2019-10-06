@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\AutoMl\Tests\System;
+namespace Google\Cloud\AutoMl\Tests\System\V1beta1;
 
 use Google\Cloud\AutoMl\V1beta1\AutoMlClient;
 use Google\Cloud\AutoMl\V1beta1\Dataset;
