@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.114.1
+
+<details><summary>google/cloud-automl 0.7.1</summary>
+
+
+
+### Bug Fixes
+
+* Correct system test namespaces ([#2373](https://www.github.com/googleapis/google-cloud-php/issues/2373)) ([8344b05](https://www.github.com/googleapis/google-cloud-php/commit/8344b05))
+
+</details>
+
 ## 0.114.0
 
 <details><summary>google/cloud-automl 0.7.0</summary>
