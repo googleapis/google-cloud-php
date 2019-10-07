@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.115.0",
                 "v0.114.0",
                 "v0.113.0",
                 "v0.112.0",
@@ -183,6 +184,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v0.7.1",
                 "v0.7.0",
                 "v0.6.0",
                 "v0.5.0",
@@ -460,6 +462,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.15.0",
                 "v0.14.0",
                 "v0.13.0",
                 "v0.12.0",
@@ -1213,6 +1216,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.20.0",
                 "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
