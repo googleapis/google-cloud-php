@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\Model;
+use Google\Cloud\Core\Testing\System\KeyManager;
 
 /**
  * @group bigquery
@@ -25,6 +26,9 @@ use Google\Cloud\BigQuery\Model;
  */
 class ManageModelsTest extends BigQueryTestCase
 {
+    const KEY_RING_ID = 'bq-kms-kr';
+    const CRYPTO_KEY_ID = 'bq-model-key1';
+
     private static $model;
     private static $modelId;
 
@@ -87,5 +91,32 @@ class ManageModelsTest extends BigQueryTestCase
         $this->assertNotEmpty(array_filter($models, function ($model) {
             return $model->id() === self::$modelId;
         }));
+    }
+
+    public function testSetsModelCmekKeyName()
+    {
+        $encryption = new KeyManager(
+            json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true)
+        );
+
+        $project = $encryption->getProject();
+        $encryption->setServiceAccountEmail(sprintf(
+            self::ENCRYPTION_SERVICE_ACCOUNT_EMAIL_TEMPLATE,
+            $project['projectNumber']
+        ));
+
+        list($keyName) = $encryption->getKeyNames(
+            self::KEY_RING_ID,
+            [self::CRYPTO_KEY_ID]
+        );
+
+        $info = self::$model->update([
+            'friendlyName' => 'whatever',
+            'encryptionConfiguration' => [
+                'kmsKeyName' => $keyName
+            ]
+        ]);
+
+        $this->assertEquals($keyName, $info['encryptionConfiguration']['kmsKeyName']);
     }
 }
