@@ -87,11 +87,6 @@ class Bucket
     private $info;
 
     /**
-     * @var Iam|null
-     */
-    private $iam;
-
-    /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The bucket's name.
@@ -1177,27 +1172,28 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/testIamPermissions Test Bucket Permissions
      * @codingStandardsIgnoreEnd
      *
-     * @param  int $version Sets the policy version used. Refer to [IAM policy
-     *             versions](#FIXME) the version that should be used for
-     *             the supported version.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $version [optional] Sets the policy version used.
+     *             Refer to [IAM policy versions](#FIXME) the version
+     *             that should be used for the intended Policy feature.
      *             Defaults to null if not provided.
      *
      * @return Iam
      */
-    public function iam($version = null)
+    public function iam($options = [])
     {
-        if (!$this->iam) {
-            $this->iam = new Iam(
-                new IamBucket($this->connection, $version),
-                $this->identity['bucket'],
-                [
-                    'parent' => null,
-                    'args' => $this->identity
-                ]
-            );
-        }
+        $version = isset($options['version']) ? $options['version'] : null;
 
-        return $this->iam;
+        return new Iam(
+            new IamBucket($this->connection, $version),
+            $this->identity['bucket'],
+            [
+                'parent' => null,
+                'args' => $this->identity
+            ]
+        );
     }
 
     /**
