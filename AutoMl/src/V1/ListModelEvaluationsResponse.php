@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations].
+ * Response message for
+ * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ListModelEvaluationsResponse</code>
  */
@@ -23,8 +24,11 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
     private $model_evaluation;
     /**
      * A token to retrieve next page of results.
-     * Pass to the [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token] field of a new
-     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] request to obtain that page.
+     * Pass to the
+     * [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token]
+     * field of a new
+     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     * request to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +44,11 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
      *           List of model evaluations in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
-     *           Pass to the [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token] field of a new
-     *           [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] request to obtain that page.
+     *           Pass to the
+     *           [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token]
+     *           field of a new
+     *           [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     *           request to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +84,11 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to the [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token] field of a new
-     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] request to obtain that page.
+     * Pass to the
+     * [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token]
+     * field of a new
+     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     * request to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +100,11 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results.
-     * Pass to the [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token] field of a new
-     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] request to obtain that page.
+     * Pass to the
+     * [ListModelEvaluationsRequest.page_token][google.cloud.automl.v1.ListModelEvaluationsRequest.page_token]
+     * field of a new
+     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     * request to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

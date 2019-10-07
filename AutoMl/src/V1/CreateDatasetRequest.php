@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AutoMl.CreateDataset][google.cloud.automl.v1.AutoMl.CreateDataset].
+ * Request message for
+ * [AutoMl.CreateDataset][google.cloud.automl.v1.AutoMl.CreateDataset].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.CreateDatasetRequest</code>
  */

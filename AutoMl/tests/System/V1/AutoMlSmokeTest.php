@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\AutoMl\Tests\System\V1;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\AutoMl\V1\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
@@ -68,22 +69,22 @@ class AutoMlSmokeTest extends SystemTestCase
      */
     public function testAutoMl(AutoMlClient $automl)
     {
-        $formattedParent = $automl->locationName(self::$projectId, self::$location);
-        $dataset = new Dataset([
-            'display_name' => uniqid(self::TESTING_PREFIX),
-            'translation_dataset_metadata' => new TranslationDatasetMetadata([
-                'source_language_code' => 'en',
-                'target_language_code' => 'es'
-            ])
-        ]);
+        $notFound = false;
+        $dataset = AutoMlClient::datasetName(
+            self::$projectId,
+            self::$location,
+            'TRL100'
+        );
 
-        $response = $automl->createDataset($formattedParent, $dataset);
-        $datasetName = $response->getName();
-        $ds = $automl->getDataset($datasetName);
-        $this->assertInstanceOf(Dataset::class, $ds);
+        try {
+            $automl->getDataset($dataset);
+        } catch (ApiException $e) {
+            if ($e->getStatus() === 'NOT_FOUND') {
+                $notFound = true;
+            }
+        }
 
-        // cleanup
-        $automl->deleteDataset($datasetName);
+        $this->assertTrue($notFound);
     }
 
     public function clientsProvider()

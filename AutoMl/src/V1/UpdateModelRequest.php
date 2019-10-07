@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AutoMl.UpdateModel][google.cloud.automl.v1.AutoMl.UpdateModel]
+ * Request message for
+ * [AutoMl.UpdateModel][google.cloud.automl.v1.AutoMl.UpdateModel]
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.UpdateModelRequest</code>
  */
