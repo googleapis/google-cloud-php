@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.115.0
+
+<details><summary>google/cloud-automl 0.7.1</summary>
+
+
+
+### Bug Fixes
+
+* **BREAKING** Ensure operations calls work correctly. ([#2379](https://www.github.com/googleapis/google-cloud-php/issues/2379)) ([45dc25b](https://www.github.com/googleapis/google-cloud-php/commit/45dc25b))
+* Correct system test namespaces ([#2373](https://www.github.com/googleapis/google-cloud-php/issues/2373)) ([8344b05](https://www.github.com/googleapis/google-cloud-php/commit/8344b05))
+
+</details>
+
+<details><summary>google/cloud-dataproc 0.15.0</summary>
+
+
+
+### Features
+
+* Add ability to set autoscaling policy and manage kerberos config. ([#2372](https://www.github.com/googleapis/google-cloud-php/issues/2372)) ([627fec5](https://www.github.com/googleapis/google-cloud-php/commit/627fec5))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.20.0</summary>
+
+
+
+### Features
+
+* Increase default timeouts. ([#2362](https://www.github.com/googleapis/google-cloud-php/issues/2362)) ([30dea94](https://www.github.com/googleapis/google-cloud-php/commit/30dea94))
+
+</details>
+
 ## 0.114.0
 
 <details><summary>google/cloud-automl 0.7.0</summary>
