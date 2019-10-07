@@ -24,7 +24,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image_version = '';
     /**
@@ -44,13 +44,13 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *
-     * Generated from protobuf field <code>map<string, string> properties = 2;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
-     * The set of optional components to activate on the cluster.
+     * Optional. The set of components to activate on the cluster.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $optional_components;
 
@@ -85,7 +85,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           For more information, see
      *           [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $optional_components
-     *           The set of optional components to activate on the cluster.
+     *           Optional. The set of components to activate on the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,7 +102,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImageVersion()
@@ -119,7 +119,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * version](/dataproc/docs/concepts/versioning/dataproc-versions#other_versions).
      * If unspecified, it defaults to the latest Debian version.
      *
-     * Generated from protobuf field <code>string image_version = 1;</code>
+     * Generated from protobuf field <code>string image_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -148,7 +148,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *
-     * Generated from protobuf field <code>map<string, string> properties = 2;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -173,7 +173,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * For more information, see
      * [Cluster properties](/dataproc/docs/concepts/cluster-properties).
      *
-     * Generated from protobuf field <code>map<string, string> properties = 2;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -186,9 +186,9 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of optional components to activate on the cluster.
+     * Optional. The set of components to activate on the cluster.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getOptionalComponents()
@@ -197,9 +197,9 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of optional components to activate on the cluster.
+     * Optional. The set of components to activate on the cluster.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

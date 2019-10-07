@@ -19,7 +19,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
     /**
      * Required. Cloud Storage URI of executable file.
      *
-     * Generated from protobuf field <code>string executable_file = 1;</code>
+     * Generated from protobuf field <code>string executable_file = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $executable_file = '';
     /**
@@ -28,7 +28,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      * name of the executable that caused the error and the exceeded timeout
      * period) if the executable is not completed at end of the timeout period.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $execution_timeout = null;
 
@@ -55,7 +55,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
     /**
      * Required. Cloud Storage URI of executable file.
      *
-     * Generated from protobuf field <code>string executable_file = 1;</code>
+     * Generated from protobuf field <code>string executable_file = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getExecutableFile()
@@ -66,7 +66,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
     /**
      * Required. Cloud Storage URI of executable file.
      *
-     * Generated from protobuf field <code>string executable_file = 1;</code>
+     * Generated from protobuf field <code>string executable_file = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      * name of the executable that caused the error and the exceeded timeout
      * period) if the executable is not completed at end of the timeout period.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getExecutionTimeout()
@@ -98,7 +98,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      * name of the executable that caused the error and the exceeded timeout
      * period) if the executable is not completed at end of the timeout period.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */

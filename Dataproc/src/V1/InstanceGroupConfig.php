@@ -20,14 +20,14 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Optional. The number of VM instances in the instance group.
      * For master instance groups, must be set to 1.
      *
-     * Generated from protobuf field <code>int32 num_instances = 1;</code>
+     * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $num_instances = 0;
     /**
      * Output only. The list of instance names. Cloud Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
      *
-     * Generated from protobuf field <code>repeated string instance_names = 2;</code>
+     * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $instance_names;
     /**
@@ -35,7 +35,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * instances. It can be specified or may be inferred from
      * `SoftwareConfig.image_version`.
      *
-     * Generated from protobuf field <code>string image_uri = 3;</code>
+     * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $image_uri = '';
     /**
@@ -50,20 +50,20 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
-     * Generated from protobuf field <code>string machine_type_uri = 4;</code>
+     * Generated from protobuf field <code>string machine_type_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $machine_type_uri = '';
     /**
      * Optional. Disk option config settings.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $disk_config = null;
     /**
      * Optional. Specifies that this instance group contains preemptible
      * instances.
      *
-     * Generated from protobuf field <code>bool is_preemptible = 6;</code>
+     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $is_preemptible = false;
     /**
@@ -71,18 +71,24 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $managed_group_config = null;
     /**
      * Optional. The Compute Engine accelerator configuration for these
      * instances.
-     * **Beta Feature**: This feature is still under development. It may be
-     * changed before final release.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $accelerators;
+    /**
+     * Optional. Specifies the minimum cpu platform for the Instance Group.
+     * See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     *
+     * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $min_cpu_platform = '';
 
     /**
      * Constructor.
@@ -123,8 +129,10 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Optional. The Compute Engine accelerator configuration for these
      *           instances.
-     *           **Beta Feature**: This feature is still under development. It may be
-     *           changed before final release.
+     *     @type string $min_cpu_platform
+     *           Optional. Specifies the minimum cpu platform for the Instance Group.
+     *           See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     *           (/dataproc/docs/concepts/compute/dataproc-min-cpu).
      * }
      */
     public function __construct($data = NULL) {
@@ -136,7 +144,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Optional. The number of VM instances in the instance group.
      * For master instance groups, must be set to 1.
      *
-     * Generated from protobuf field <code>int32 num_instances = 1;</code>
+     * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getNumInstances()
@@ -148,7 +156,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Optional. The number of VM instances in the instance group.
      * For master instance groups, must be set to 1.
      *
-     * Generated from protobuf field <code>int32 num_instances = 1;</code>
+     * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -164,7 +172,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Output only. The list of instance names. Cloud Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
      *
-     * Generated from protobuf field <code>repeated string instance_names = 2;</code>
+     * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInstanceNames()
@@ -176,7 +184,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Output only. The list of instance names. Cloud Dataproc derives the names
      * from `cluster_name`, `num_instances`, and the instance group.
      *
-     * Generated from protobuf field <code>repeated string instance_names = 2;</code>
+     * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -193,7 +201,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * instances. It can be specified or may be inferred from
      * `SoftwareConfig.image_version`.
      *
-     * Generated from protobuf field <code>string image_uri = 3;</code>
+     * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getImageUri()
@@ -206,7 +214,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * instances. It can be specified or may be inferred from
      * `SoftwareConfig.image_version`.
      *
-     * Generated from protobuf field <code>string image_uri = 3;</code>
+     * Generated from protobuf field <code>string image_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -230,7 +238,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
-     * Generated from protobuf field <code>string machine_type_uri = 4;</code>
+     * Generated from protobuf field <code>string machine_type_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getMachineTypeUri()
@@ -250,7 +258,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * feature, you must use the short name of the machine type
      * resource, for example, `n1-standard-2`.
      *
-     * Generated from protobuf field <code>string machine_type_uri = 4;</code>
+     * Generated from protobuf field <code>string machine_type_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -265,7 +273,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Disk option config settings.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\DiskConfig
      */
     public function getDiskConfig()
@@ -276,7 +284,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Disk option config settings.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\DiskConfig $var
      * @return $this
      */
@@ -292,7 +300,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Optional. Specifies that this instance group contains preemptible
      * instances.
      *
-     * Generated from protobuf field <code>bool is_preemptible = 6;</code>
+     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIsPreemptible()
@@ -304,7 +312,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Optional. Specifies that this instance group contains preemptible
      * instances.
      *
-     * Generated from protobuf field <code>bool is_preemptible = 6;</code>
+     * Generated from protobuf field <code>bool is_preemptible = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -321,7 +329,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1\ManagedGroupConfig
      */
     public function getManagedGroupConfig()
@@ -334,7 +342,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Manager that manages this group.
      * This is only used for preemptible instance groups.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\ManagedGroupConfig $var
      * @return $this
      */
@@ -349,10 +357,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Compute Engine accelerator configuration for these
      * instances.
-     * **Beta Feature**: This feature is still under development. It may be
-     * changed before final release.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAccelerators()
@@ -363,10 +369,8 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Compute Engine accelerator configuration for these
      * instances.
-     * **Beta Feature**: This feature is still under development. It may be
-     * changed before final release.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -374,6 +378,36 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\AcceleratorConfig::class);
         $this->accelerators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the minimum cpu platform for the Instance Group.
+     * See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     *
+     * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMinCpuPlatform()
+    {
+        return $this->min_cpu_platform;
+    }
+
+    /**
+     * Optional. Specifies the minimum cpu platform for the Instance Group.
+     * See [Cloud Dataproc&rarr;Minimum CPU Platform]
+     * (/dataproc/docs/concepts/compute/dataproc-min-cpu).
+     *
+     * Generated from protobuf field <code>string min_cpu_platform = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMinCpuPlatform($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->min_cpu_platform = $var;
 
         return $this;
     }

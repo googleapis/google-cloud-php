@@ -19,25 +19,25 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project the
      * cluster belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 5;</code>
+     * Generated from protobuf field <code>string region = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region = '';
     /**
      * Required. The cluster name.
      *
-     * Generated from protobuf field <code>string cluster_name = 2;</code>
+     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_name = '';
     /**
      * Required. The changes to the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster = null;
     /**
@@ -49,7 +49,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * the maximum allowed timeout is 1 day.
      * Only supported on Dataproc image versions 1.2 and higher.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $graceful_decommission_timeout = null;
     /**
@@ -95,10 +95,14 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
      *  <td>Resize secondary worker group</td>
      *  </tr>
+     *  <tr>
+     *  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *  change autoscaling policies</td>
+     *  </tr>
      *  </tbody>
      *  </table>
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
     /**
@@ -112,7 +116,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 7;</code>
+     * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
 
@@ -182,6 +186,10 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *            <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
      *            <td>Resize secondary worker group</td>
      *            </tr>
+     *            <tr>
+     *            <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *            change autoscaling policies</td>
+     *            </tr>
      *            </tbody>
      *            </table>
      *     @type string $request_id
@@ -205,7 +213,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project the
      * cluster belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -217,7 +225,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project the
      * cluster belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -232,7 +240,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 5;</code>
+     * Generated from protobuf field <code>string region = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegion()
@@ -243,7 +251,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 5;</code>
+     * Generated from protobuf field <code>string region = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -258,7 +266,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The cluster name.
      *
-     * Generated from protobuf field <code>string cluster_name = 2;</code>
+     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterName()
@@ -269,7 +277,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The cluster name.
      *
-     * Generated from protobuf field <code>string cluster_name = 2;</code>
+     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -284,7 +292,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The changes to the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1\Cluster
      */
     public function getCluster()
@@ -295,7 +303,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The changes to the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1\Cluster $var
      * @return $this
      */
@@ -316,7 +324,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * the maximum allowed timeout is 1 day.
      * Only supported on Dataproc image versions 1.2 and higher.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getGracefulDecommissionTimeout()
@@ -333,7 +341,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * the maximum allowed timeout is 1 day.
      * Only supported on Dataproc image versions 1.2 and higher.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -388,10 +396,14 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
      *  <td>Resize secondary worker group</td>
      *  </tr>
+     *  <tr>
+     *  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *  change autoscaling policies</td>
+     *  </tr>
      *  </tbody>
      *  </table>
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -442,10 +454,14 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *  <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
      *  <td>Resize secondary worker group</td>
      *  </tr>
+     *  <tr>
+     *  <td>config.autoscaling_config.policy_uri</td><td>Use, stop using, or
+     *  change autoscaling policies</td>
+     *  </tr>
      *  </tbody>
      *  </table>
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -468,7 +484,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 7;</code>
+     * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRequestId()
@@ -487,7 +503,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 7;</code>
+     * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

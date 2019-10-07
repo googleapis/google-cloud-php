@@ -23,7 +23,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      * 4 times within 10 minute window.
      * Maximum value is 10.
      *
-     * Generated from protobuf field <code>int32 max_failures_per_hour = 1;</code>
+     * Generated from protobuf field <code>int32 max_failures_per_hour = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_failures_per_hour = 0;
 
@@ -55,7 +55,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      * 4 times within 10 minute window.
      * Maximum value is 10.
      *
-     * Generated from protobuf field <code>int32 max_failures_per_hour = 1;</code>
+     * Generated from protobuf field <code>int32 max_failures_per_hour = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxFailuresPerHour()
@@ -71,7 +71,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      * 4 times within 10 minute window.
      * Maximum value is 10.
      *
-     * Generated from protobuf field <code>int32 max_failures_per_hour = 1;</code>
+     * Generated from protobuf field <code>int32 max_failures_per_hour = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

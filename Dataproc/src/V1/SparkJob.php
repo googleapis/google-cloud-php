@@ -21,21 +21,21 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 3;</code>
+     * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $args;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      * Spark driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jar_file_uris;
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Spark drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
@@ -43,7 +43,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * of Spark drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $archive_uris;
     /**
@@ -52,13 +52,13 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
     protected $driver;
@@ -161,7 +161,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 3;</code>
+     * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArgs()
@@ -174,7 +174,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * such as `--conf`, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      *
-     * Generated from protobuf field <code>repeated string args = 3;</code>
+     * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -190,7 +190,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      * Spark driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJarFileUris()
@@ -202,7 +202,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      * Spark driver and tasks.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 4;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -218,7 +218,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Spark drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFileUris()
@@ -230,7 +230,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Spark drivers and distributed tasks. Useful for naively parallel tasks.
      *
-     * Generated from protobuf field <code>repeated string file_uris = 5;</code>
+     * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -247,7 +247,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * of Spark drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArchiveUris()
@@ -260,7 +260,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * of Spark drivers and tasks. Supported file types:
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
-     * Generated from protobuf field <code>repeated string archive_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -278,7 +278,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -292,7 +292,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 7;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -307,7 +307,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\LoggingConfig
      */
     public function getLoggingConfig()
@@ -318,7 +318,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\LoggingConfig $var
      * @return $this
      */

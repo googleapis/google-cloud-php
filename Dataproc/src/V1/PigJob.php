@@ -21,14 +21,14 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * The default value is `false`. Setting to `true` can be useful when
      * executing independent parallel queries.
      *
-     * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
+     * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $continue_on_failure = false;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the Pig
      * command: `name=[value]`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 4;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $script_variables;
     /**
@@ -37,20 +37,20 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of
      * the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $jar_file_uris;
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $logging_config = null;
     protected $queries;
@@ -146,7 +146,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * The default value is `false`. Setting to `true` can be useful when
      * executing independent parallel queries.
      *
-     * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
+     * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getContinueOnFailure()
@@ -159,7 +159,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * The default value is `false`. Setting to `true` can be useful when
      * executing independent parallel queries.
      *
-     * Generated from protobuf field <code>bool continue_on_failure = 3;</code>
+     * Generated from protobuf field <code>bool continue_on_failure = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -175,7 +175,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the Pig
      * command: `name=[value]`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 4;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getScriptVariables()
@@ -187,7 +187,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * Optional. Mapping of query variable names to values (equivalent to the Pig
      * command: `name=[value]`).
      *
-     * Generated from protobuf field <code>map<string, string> script_variables = 4;</code>
+     * Generated from protobuf field <code>map<string, string> script_variables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -205,7 +205,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getProperties()
@@ -219,7 +219,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      *
-     * Generated from protobuf field <code>map<string, string> properties = 5;</code>
+     * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -235,7 +235,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of
      * the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJarFileUris()
@@ -247,7 +247,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of
      * the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      *
-     * Generated from protobuf field <code>repeated string jar_file_uris = 6;</code>
+     * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -262,7 +262,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\LoggingConfig
      */
     public function getLoggingConfig()
@@ -273,7 +273,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The runtime log config for job execution.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\LoggingConfig $var
      * @return $this
      */

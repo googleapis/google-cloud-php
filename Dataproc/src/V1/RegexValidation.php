@@ -20,7 +20,7 @@ class RegexValidation extends \Google\Protobuf\Internal\Message
      * The value must match the regex in its entirety (substring
      * matches are not sufficient).
      *
-     * Generated from protobuf field <code>repeated string regexes = 1;</code>
+     * Generated from protobuf field <code>repeated string regexes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $regexes;
 
@@ -46,7 +46,7 @@ class RegexValidation extends \Google\Protobuf\Internal\Message
      * The value must match the regex in its entirety (substring
      * matches are not sufficient).
      *
-     * Generated from protobuf field <code>repeated string regexes = 1;</code>
+     * Generated from protobuf field <code>repeated string regexes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRegexes()
@@ -59,7 +59,7 @@ class RegexValidation extends \Google\Protobuf\Internal\Message
      * The value must match the regex in its entirety (substring
      * matches are not sufficient).
      *
-     * Generated from protobuf field <code>repeated string regexes = 1;</code>
+     * Generated from protobuf field <code>repeated string regexes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

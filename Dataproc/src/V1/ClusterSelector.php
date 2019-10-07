@@ -21,14 +21,14 @@ class ClusterSelector extends \Google\Protobuf\Internal\Message
      * If unspecified, the zone of the first cluster matching the selector
      * is used.
      *
-     * Generated from protobuf field <code>string zone = 1;</code>
+     * Generated from protobuf field <code>string zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $zone = '';
     /**
      * Required. The cluster labels. Cluster must have all labels
      * to match.
      *
-     * Generated from protobuf field <code>map<string, string> cluster_labels = 2;</code>
+     * Generated from protobuf field <code>map<string, string> cluster_labels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_labels;
 
@@ -59,7 +59,7 @@ class ClusterSelector extends \Google\Protobuf\Internal\Message
      * If unspecified, the zone of the first cluster matching the selector
      * is used.
      *
-     * Generated from protobuf field <code>string zone = 1;</code>
+     * Generated from protobuf field <code>string zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getZone()
@@ -73,7 +73,7 @@ class ClusterSelector extends \Google\Protobuf\Internal\Message
      * If unspecified, the zone of the first cluster matching the selector
      * is used.
      *
-     * Generated from protobuf field <code>string zone = 1;</code>
+     * Generated from protobuf field <code>string zone = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +89,7 @@ class ClusterSelector extends \Google\Protobuf\Internal\Message
      * Required. The cluster labels. Cluster must have all labels
      * to match.
      *
-     * Generated from protobuf field <code>map<string, string> cluster_labels = 2;</code>
+     * Generated from protobuf field <code>map<string, string> cluster_labels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getClusterLabels()
@@ -101,7 +101,7 @@ class ClusterSelector extends \Google\Protobuf\Internal\Message
      * Required. The cluster labels. Cluster must have all labels
      * to match.
      *
-     * Generated from protobuf field <code>map<string, string> cluster_labels = 2;</code>
+     * Generated from protobuf field <code>map<string, string> cluster_labels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
