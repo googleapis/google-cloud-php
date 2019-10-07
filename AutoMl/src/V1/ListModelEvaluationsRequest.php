@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations].
+ * Request message for
+ * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ListModelEvaluationsRequest</code>
  */
@@ -45,8 +46,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained via
-     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] call.
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token]
+     * of the previous
+     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      */
@@ -76,8 +79,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token identifying a page of results for the server to return.
      *           Typically obtained via
-     *           [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     *           [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] call.
+     *           [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token]
+     *           of the previous
+     *           [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     *           call.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,8 +189,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained via
-     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] call.
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token]
+     * of the previous
+     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      * @return string
@@ -198,8 +205,10 @@ class ListModelEvaluationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return.
      * Typically obtained via
-     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token] of the previous
-     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations] call.
+     * [ListModelEvaluationsResponse.next_page_token][google.cloud.automl.v1.ListModelEvaluationsResponse.next_page_token]
+     * of the previous
+     * [AutoMl.ListModelEvaluations][google.cloud.automl.v1.AutoMl.ListModelEvaluations]
+     * call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
      * @param string $var

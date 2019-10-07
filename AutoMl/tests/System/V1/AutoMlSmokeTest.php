@@ -23,7 +23,7 @@ use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
- * @group automl
+ * @group automl-v1
  * @group gapic
  */
 class AutoMlSmokeTest extends SystemTestCase
@@ -70,20 +70,23 @@ class AutoMlSmokeTest extends SystemTestCase
     {
         $formattedParent = $automl->locationName(self::$projectId, self::$location);
         $dataset = new Dataset([
-            'display_name' => uniqid(self::TESTING_PREFIX),
+            'display_name' => 'hello_world',
             'translation_dataset_metadata' => new TranslationDatasetMetadata([
                 'source_language_code' => 'en',
                 'target_language_code' => 'es'
             ])
         ]);
 
-        $response = $automl->createDataset($formattedParent, $dataset);
-        $datasetName = $response->getName();
-        $ds = $automl->getDataset($datasetName);
-        $this->assertInstanceOf(Dataset::class, $ds);
+        $operationResponse = $automl->createDataset($formattedParent, $dataset);
+        $operationResponse->pollUntilComplete();
+        $dataset = $operationResponse->getResult();
+        $this->assertInstanceOf(
+            Dataset::class,
+            $dataset
+        );
 
         // cleanup
-        $automl->deleteDataset($datasetName);
+        $automl->deleteDataset($dataset->getName());
     }
 
     public function clientsProvider()

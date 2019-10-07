@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AutoMl.DeleteModel][google.cloud.automl.v1.AutoMl.DeleteModel].
+ * Request message for
+ * [AutoMl.DeleteModel][google.cloud.automl.v1.AutoMl.DeleteModel].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.DeleteModelRequest</code>
  */

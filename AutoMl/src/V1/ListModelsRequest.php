@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
+ * Request message for
+ * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.ListModelsRequest</code>
  */
@@ -42,7 +43,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
+     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
+     * of the previous
      * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -70,7 +72,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A token identifying a page of results for the server to return
      *           Typically obtained via
-     *           [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
+     *           [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
+     *           of the previous
      *           [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      * }
      */
@@ -172,7 +175,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
+     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
+     * of the previous
      * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
@@ -186,7 +190,8 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A token identifying a page of results for the server to return
      * Typically obtained via
-     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token] of the previous
+     * [ListModelsResponse.next_page_token][google.cloud.automl.v1.ListModelsResponse.next_page_token]
+     * of the previous
      * [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels] call.
      *
      * Generated from protobuf field <code>string page_token = 6;</code>
