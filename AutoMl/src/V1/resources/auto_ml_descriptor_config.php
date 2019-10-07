@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1.AutoMl' => [
+            'CreateDataset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AutoMl\V1\Dataset',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'DeleteDataset' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

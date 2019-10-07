@@ -86,7 +86,35 @@ use Google\Protobuf\FieldMask;
  * try {
  *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
  *     $dataset = new Google\Cloud\AutoMl\V1\Dataset();
- *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
+ *     $operationResponse = $autoMlClient->createDataset($formattedParent, $dataset);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $autoMlClient->createDataset($formattedParent, $dataset);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'createDataset');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
  *     $autoMlClient->close();
  * }
@@ -436,7 +464,35 @@ class AutoMlGapicClient
      * try {
      *     $formattedParent = $autoMlClient->locationName('[PROJECT]', '[LOCATION]');
      *     $dataset = new Google\Cloud\AutoMl\V1\Dataset();
-     *     $response = $autoMlClient->createDataset($formattedParent, $dataset);
+     *     $operationResponse = $autoMlClient->createDataset($formattedParent, $dataset);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->createDataset($formattedParent, $dataset);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'createDataset');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $autoMlClient->close();
      * }
@@ -454,7 +510,7 @@ class AutoMlGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -472,11 +528,11 @@ class AutoMlGapicClient
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
-        return $this->startCall(
+        return $this->startOperationsCall(
             'CreateDataset',
-            Operation::class,
             $optionalArgs,
-            $request
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
