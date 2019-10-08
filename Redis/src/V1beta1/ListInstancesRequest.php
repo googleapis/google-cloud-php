@@ -20,7 +20,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -74,7 +74,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -87,7 +87,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

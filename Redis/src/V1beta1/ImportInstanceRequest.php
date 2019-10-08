@@ -20,13 +20,13 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Required. Specify data to be imported.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.InputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_config = null;
 
@@ -54,7 +54,7 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -67,7 +67,7 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -82,7 +82,7 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Specify data to be imported.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.InputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Redis\V1beta1\InputConfig
      */
     public function getInputConfig()
@@ -93,7 +93,7 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Specify data to be imported.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.InputConfig input_config = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Redis\V1beta1\InputConfig $var
      * @return $this
      */

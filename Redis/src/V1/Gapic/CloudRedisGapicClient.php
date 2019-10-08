@@ -77,21 +77,40 @@ use Google\Protobuf\FieldMask;
  * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
  * try {
  *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $cloudRedisClient->listInstances($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
+ *     $instanceId = 'test_instance';
+ *     $tier = Google\Cloud\Redis\V1\Instance\Tier::BASIC;
+ *     $memorySizeGb = 1;
+ *     $instance = new Google\Cloud\Redis\V1\Instance();
+ *     $instance->setTier($tier);
+ *     $instance->setMemorySizeGb($memorySizeGb);
+ *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
  *     }
  *
  *
  *     // Alternatively:
  *
- *     // Iterate through all elements
- *     $pagedResponse = $cloudRedisClient->listInstances($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'createInstance');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
  *     }
  * } finally {
  *     $cloudRedisClient->close();
@@ -368,6 +387,213 @@ class CloudRedisGapicClient
     }
 
     /**
+     * Creates a Redis instance based on the specified tier and memory size.
+     *
+     * By default, the instance is accessible from the project's
+     * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
+     *
+     * The creation is executed asynchronously and callers may check the returned
+     * operation to track its progress. Once the operation is completed the Redis
+     * instance will be fully functional. Completed longrunning.Operation will
+     * contain the new instance object in the response field.
+     *
+     * The returned operation is automatically deleted after a few hours, so there
+     * is no need to call DeleteOperation.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
+     * try {
+     *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $instanceId = 'test_instance';
+     *     $tier = Google\Cloud\Redis\V1\Instance\Tier::BASIC;
+     *     $memorySizeGb = 1;
+     *     $instance = new Google\Cloud\Redis\V1\Instance();
+     *     $instance->setTier($tier);
+     *     $instance->setMemorySizeGb($memorySizeGb);
+     *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'createInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent     Required. The resource name of the instance location using the form:
+     *                           `projects/{project_id}/locations/{location_id}`
+     *                           where `location_id` refers to a GCP region.
+     * @param string $instanceId Required. The logical name of the Redis instance in the customer project
+     *                           with the following restrictions:
+     *
+     * * Must contain only lowercase letters, numbers, and hyphens.
+     * * Must start with a letter.
+     * * Must be between 1-40 characters.
+     * * Must end with a number or a letter.
+     * * Must be unique within the customer project / location
+     * @param Instance $instance     Required. A Redis [Instance] resource
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
+    {
+        $request = new CreateInstanceRequest();
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'CreateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the metadata and configuration of a specific Redis instance.
+     *
+     * Completed longrunning.Operation will contain the new instance object
+     * in the response field. The returned operation is automatically deleted
+     * after a few hours, so there is no need to call DeleteOperation.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
+     * try {
+     *     $pathsElement = 'display_name';
+     *     $pathsElement2 = 'memory_size_gb';
+     *     $paths = [$pathsElement, $pathsElement2];
+     *     $updateMask = new Google\Protobuf\FieldMask();
+     *     $updateMask->setPaths($paths);
+     *     $displayName = '￼ instance.memory_size_gb=4';
+     *     $instance = new Google\Cloud\Redis\V1\Instance();
+     *     $instance->setDisplayName($displayName);
+     *     $operationResponse = $cloudRedisClient->updateInstance($updateMask, $instance);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->updateInstance($updateMask, $instance);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'updateInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask Required. Mask of fields to update. At least one path must be supplied in
+     *                              this field. The elements of the repeated paths field may only include these
+     *                              fields from [Instance][CloudRedis.Instance]:
+     *
+     *  *   `displayName`
+     *  *   `labels`
+     *  *   `memorySizeGb`
+     *  *   `redisConfig`
+     * @param Instance $instance     Required. Update description.
+     *                               Only fields specified in update_mask are updated.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateInstance($updateMask, $instance, array $optionalArgs = [])
+    {
+        $request = new UpdateInstanceRequest();
+        $request->setUpdateMask($updateMask);
+        $request->setInstance($instance);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'instance.name' => $request->getInstance()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'UpdateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Lists all Redis instances owned by a project in either the specified
      * location (region) or all locations.
      *
@@ -509,213 +735,6 @@ class CloudRedisGapicClient
     }
 
     /**
-     * Creates a Redis instance based on the specified tier and memory size.
-     *
-     * By default, the instance is accessible from the project's
-     * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
-     *
-     * The creation is executed asynchronously and callers may check the returned
-     * operation to track its progress. Once the operation is completed the Redis
-     * instance will be fully functional. Completed longrunning.Operation will
-     * contain the new instance object in the response field.
-     *
-     * The returned operation is automatically deleted after a few hours, so there
-     * is no need to call DeleteOperation.
-     *
-     * Sample code:
-     * ```
-     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
-     * try {
-     *     $formattedParent = $cloudRedisClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $instanceId = 'test_instance';
-     *     $tier = Google\Cloud\Redis\V1\Instance\Tier::BASIC;
-     *     $memorySizeGb = 1;
-     *     $instance = new Google\Cloud\Redis\V1\Instance();
-     *     $instance->setTier($tier);
-     *     $instance->setMemorySizeGb($memorySizeGb);
-     *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->createInstance($formattedParent, $instanceId, $instance);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'createInstance');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $cloudRedisClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent     Required. The resource name of the instance location using the form:
-     *                           `projects/{project_id}/locations/{location_id}`
-     *                           where `location_id` refers to a GCP region.
-     * @param string $instanceId Required. The logical name of the Redis instance in the customer project
-     *                           with the following restrictions:
-     *
-     * * Must contain only lowercase letters, numbers, and hyphens.
-     * * Must start with a letter.
-     * * Must be between 1-40 characters.
-     * * Must end with a number or a letter.
-     * * Must be unique within the customer project / location
-     * @param Instance $instance     Required. A Redis [Instance] resource
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
-    {
-        $request = new CreateInstanceRequest();
-        $request->setParent($parent);
-        $request->setInstanceId($instanceId);
-        $request->setInstance($instance);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'CreateInstance',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
-     * Updates the metadata and configuration of a specific Redis instance.
-     *
-     * Completed longrunning.Operation will contain the new instance object
-     * in the response field. The returned operation is automatically deleted
-     * after a few hours, so there is no need to call DeleteOperation.
-     *
-     * Sample code:
-     * ```
-     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
-     * try {
-     *     $pathsElement = 'display_name';
-     *     $pathsElement2 = 'memory_size_gb';
-     *     $paths = [$pathsElement, $pathsElement2];
-     *     $updateMask = new Google\Protobuf\FieldMask();
-     *     $updateMask->setPaths($paths);
-     *     $displayName = ' instance.memory_size_gb=4';
-     *     $instance = new Google\Cloud\Redis\V1\Instance();
-     *     $instance->setDisplayName($displayName);
-     *     $operationResponse = $cloudRedisClient->updateInstance($updateMask, $instance);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *         // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->updateInstance($updateMask, $instance);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'updateInstance');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *       $result = $newOperationResponse->getResult();
-     *       // doSomethingWith($result)
-     *     } else {
-     *       $error = $newOperationResponse->getError();
-     *       // handleError($error)
-     *     }
-     * } finally {
-     *     $cloudRedisClient->close();
-     * }
-     * ```
-     *
-     * @param FieldMask $updateMask Required. Mask of fields to update. At least one path must be supplied in
-     *                              this field. The elements of the repeated paths field may only include these
-     *                              fields from [Instance][CloudRedis.Instance]:
-     *
-     *  *   `displayName`
-     *  *   `labels`
-     *  *   `memorySizeGb`
-     *  *   `redisConfig`
-     * @param Instance $instance     Required. Update description.
-     *                               Only fields specified in update_mask are updated.
-     * @param array    $optionalArgs {
-     *                               Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateInstance($updateMask, $instance, array $optionalArgs = [])
-    {
-        $request = new UpdateInstanceRequest();
-        $request->setUpdateMask($updateMask);
-        $request->setInstance($instance);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'instance.name' => $request->getInstance()->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startOperationsCall(
-            'UpdateInstance',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
-    }
-
-    /**
      * Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
      *
      * Redis may stop serving during this operation. Instance state will be
@@ -729,9 +748,9 @@ class CloudRedisGapicClient
      * ```
      * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
-     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $name = '';
      *     $inputConfig = new Google\Cloud\Redis\V1\InputConfig();
-     *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
+     *     $operationResponse = $cloudRedisClient->importInstance($name, $inputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -745,7 +764,7 @@ class CloudRedisGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
+     *     $operationResponse = $cloudRedisClient->importInstance($name, $inputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'importInstance');
@@ -817,9 +836,9 @@ class CloudRedisGapicClient
      * ```
      * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
-     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $name = '';
      *     $outputConfig = new Google\Cloud\Redis\V1\OutputConfig();
-     *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
+     *     $operationResponse = $cloudRedisClient->exportInstance($name, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -833,7 +852,7 @@ class CloudRedisGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
+     *     $operationResponse = $cloudRedisClient->exportInstance($name, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'exportInstance');
@@ -902,8 +921,7 @@ class CloudRedisGapicClient
      * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $dataProtectionMode = Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode::::DATA_PROTECTION_MODE_UNSPECIFIED;
-     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -917,7 +935,7 @@ class CloudRedisGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'failoverInstance');
@@ -937,15 +955,16 @@ class CloudRedisGapicClient
      * }
      * ```
      *
-     * @param string $name               Required. Redis instance resource name using the form:
-     *                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *                                   where `location_id` refers to a GCP region.
-     * @param int    $dataProtectionMode Optional. Available data protection modes that the user can choose. If it's
-     *                                   unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode}
-     * @param array  $optionalArgs       {
-     *                                   Optional.
+     * @param string $name         Required. Redis instance resource name using the form:
+     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                             where `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type int $dataProtectionMode
+     *          Optional. Available data protection modes that the user can choose. If it's
+     *          unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -958,11 +977,13 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function failoverInstance($name, $dataProtectionMode, array $optionalArgs = [])
+    public function failoverInstance($name, array $optionalArgs = [])
     {
         $request = new FailoverInstanceRequest();
         $request->setName($name);
-        $request->setDataProtectionMode($dataProtectionMode);
+        if (isset($optionalArgs['dataProtectionMode'])) {
+            $request->setDataProtectionMode($optionalArgs['dataProtectionMode']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
