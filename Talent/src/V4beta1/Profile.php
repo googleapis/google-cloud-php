@@ -86,6 +86,42 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
+     * The timestamp when the profile was last updated as a result of a direct or
+     * indirect action by a candidate.
+     * These actions include:
+     * * Direct actions such as the candidate submitting a new resume as part of a
+     * job application to the agency, using a self-service tool such as a website
+     * to update their profile, and so on.
+     * * Indirect actions by the candidate such as uploading a resume to a job
+     * board that is collected by the agency through a feed, providing a resume to
+     * a recruiter who then uploads it into the ATS, and so on.
+     * * Updates made to the candidate's profile by the recruiter as a result of
+     * interacting with the candidate (for example adding a skill or work
+     * preference, and so on). Changes to
+     * [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
+     * are specifically excluded from this action type.
+     * Note:
+     * [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
+     * must be greater than or equal to
+     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
+     * or an error is thrown.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
+     */
+    private $candidate_update_time = null;
+    /**
+     * The timestamp when the candidate's resume was added or updated on the
+     * candidate's profile. Whether that resume was directly uploaded by a
+     * candidate, pulled from a 3rd party job board feed, added by a recruiter,
+     * and so on.
+     * If this field is updated, it's expected that
+     * [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
+     * create or update calls.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
+     */
+    private $resume_update_time = null;
+    /**
      * The resume representing this profile.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Resume resume = 53;</code>
@@ -231,6 +267,18 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     private $certifications;
     /**
+     * Output only. The resource names of the candidate's applications.
+     *
+     * Generated from protobuf field <code>repeated string applications = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $applications;
+    /**
+     * Output only. The resource names of the candidate's assignments.
+     *
+     * Generated from protobuf field <code>repeated string assignments = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $assignments;
+    /**
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
      * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
@@ -267,6 +315,12 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string keyword_snippet = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $keyword_snippet = '';
+    /**
+     * Output only. Candidate's availability signals.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilitySignal availability_signals = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $availability_signals;
     /**
      * Output only. Derived locations of the profile, resolved from
      * [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
@@ -322,6 +376,34 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           The timestamp when the profile was first created at this source.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The timestamp when the profile was last updated at this source.
+     *     @type \Google\Protobuf\Timestamp $candidate_update_time
+     *           The timestamp when the profile was last updated as a result of a direct or
+     *           indirect action by a candidate.
+     *           These actions include:
+     *           * Direct actions such as the candidate submitting a new resume as part of a
+     *           job application to the agency, using a self-service tool such as a website
+     *           to update their profile, and so on.
+     *           * Indirect actions by the candidate such as uploading a resume to a job
+     *           board that is collected by the agency through a feed, providing a resume to
+     *           a recruiter who then uploads it into the ATS, and so on.
+     *           * Updates made to the candidate's profile by the recruiter as a result of
+     *           interacting with the candidate (for example adding a skill or work
+     *           preference, and so on). Changes to
+     *           [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
+     *           are specifically excluded from this action type.
+     *           Note:
+     *           [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
+     *           must be greater than or equal to
+     *           [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
+     *           or an error is thrown.
+     *     @type \Google\Protobuf\Timestamp $resume_update_time
+     *           The timestamp when the candidate's resume was added or updated on the
+     *           candidate's profile. Whether that resume was directly uploaded by a
+     *           candidate, pulled from a 3rd party job board feed, added by a recruiter,
+     *           and so on.
+     *           If this field is updated, it's expected that
+     *           [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
+     *           create or update calls.
      *     @type \Google\Cloud\Talent\V4beta1\Resume $resume
      *           The resume representing this profile.
      *     @type \Google\Cloud\Talent\V4beta1\PersonName[]|\Google\Protobuf\Internal\RepeatedField $person_names
@@ -411,6 +493,10 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           The patents acquired by the candidate.
      *     @type \Google\Cloud\Talent\V4beta1\Certification[]|\Google\Protobuf\Internal\RepeatedField $certifications
      *           The certifications acquired by the candidate.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $applications
+     *           Output only. The resource names of the candidate's applications.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $assignments
+     *           Output only. The resource names of the candidate's assignments.
      *     @type array|\Google\Protobuf\Internal\MapField $custom_attributes
      *           A map of fields to hold both filterable and non-filterable custom profile
      *           attributes that aren't covered by the provided structured fields. See
@@ -436,6 +522,8 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           Output only. Keyword snippet shows how the search result is related to a
      *           search query.  This is only returned in
      *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse].
+     *     @type \Google\Cloud\Talent\V4beta1\AvailabilitySignal[]|\Google\Protobuf\Internal\RepeatedField $availability_signals
+     *           Output only. Candidate's availability signals.
      *     @type \Google\Cloud\Talent\V4beta1\Location[]|\Google\Protobuf\Internal\RepeatedField $derived_addresses
      *           Output only. Derived locations of the profile, resolved from
      *           [Profile.addresses][google.cloud.talent.v4beta1.Profile.addresses].
@@ -725,6 +813,106 @@ class Profile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The timestamp when the profile was last updated as a result of a direct or
+     * indirect action by a candidate.
+     * These actions include:
+     * * Direct actions such as the candidate submitting a new resume as part of a
+     * job application to the agency, using a self-service tool such as a website
+     * to update their profile, and so on.
+     * * Indirect actions by the candidate such as uploading a resume to a job
+     * board that is collected by the agency through a feed, providing a resume to
+     * a recruiter who then uploads it into the ATS, and so on.
+     * * Updates made to the candidate's profile by the recruiter as a result of
+     * interacting with the candidate (for example adding a skill or work
+     * preference, and so on). Changes to
+     * [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
+     * are specifically excluded from this action type.
+     * Note:
+     * [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
+     * must be greater than or equal to
+     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
+     * or an error is thrown.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getCandidateUpdateTime()
+    {
+        return $this->candidate_update_time;
+    }
+
+    /**
+     * The timestamp when the profile was last updated as a result of a direct or
+     * indirect action by a candidate.
+     * These actions include:
+     * * Direct actions such as the candidate submitting a new resume as part of a
+     * job application to the agency, using a self-service tool such as a website
+     * to update their profile, and so on.
+     * * Indirect actions by the candidate such as uploading a resume to a job
+     * board that is collected by the agency through a feed, providing a resume to
+     * a recruiter who then uploads it into the ATS, and so on.
+     * * Updates made to the candidate's profile by the recruiter as a result of
+     * interacting with the candidate (for example adding a skill or work
+     * preference, and so on). Changes to
+     * [recruiting_notes][google.cloud.talent.v4beta1.Profile.recruiting_notes]
+     * are specifically excluded from this action type.
+     * Note:
+     * [candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time]
+     * must be greater than or equal to
+     * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time]
+     * or an error is thrown.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCandidateUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->candidate_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The timestamp when the candidate's resume was added or updated on the
+     * candidate's profile. Whether that resume was directly uploaded by a
+     * candidate, pulled from a 3rd party job board feed, added by a recruiter,
+     * and so on.
+     * If this field is updated, it's expected that
+     * [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
+     * create or update calls.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getResumeUpdateTime()
+    {
+        return $this->resume_update_time;
+    }
+
+    /**
+     * The timestamp when the candidate's resume was added or updated on the
+     * candidate's profile. Whether that resume was directly uploaded by a
+     * candidate, pulled from a 3rd party job board feed, added by a recruiter,
+     * and so on.
+     * If this field is updated, it's expected that
+     * [resume][google.cloud.talent.v4beta1.Profile.resume] is provided in the
+     * create or update calls.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setResumeUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->resume_update_time = $var;
 
         return $this;
     }
@@ -1216,6 +1404,58 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The resource names of the candidate's applications.
+     *
+     * Generated from protobuf field <code>repeated string applications = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getApplications()
+    {
+        return $this->applications;
+    }
+
+    /**
+     * Output only. The resource names of the candidate's applications.
+     *
+     * Generated from protobuf field <code>repeated string applications = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setApplications($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->applications = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource names of the candidate's assignments.
+     *
+     * Generated from protobuf field <code>repeated string assignments = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAssignments()
+    {
+        return $this->assignments;
+    }
+
+    /**
+     * Output only. The resource names of the candidate's assignments.
+     *
+     * Generated from protobuf field <code>repeated string assignments = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAssignments($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->assignments = $arr;
+
+        return $this;
+    }
+
+    /**
      * A map of fields to hold both filterable and non-filterable custom profile
      * attributes that aren't covered by the provided structured fields. See
      * [CustomAttribute][google.cloud.talent.v4beta1.CustomAttribute] for more
@@ -1327,6 +1567,32 @@ class Profile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->keyword_snippet = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Candidate's availability signals.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilitySignal availability_signals = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAvailabilitySignals()
+    {
+        return $this->availability_signals;
+    }
+
+    /**
+     * Output only. Candidate's availability signals.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilitySignal availability_signals = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Talent\V4beta1\AvailabilitySignal[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAvailabilitySignals($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4beta1\AvailabilitySignal::class);
+        $this->availability_signals = $arr;
 
         return $this;
     }

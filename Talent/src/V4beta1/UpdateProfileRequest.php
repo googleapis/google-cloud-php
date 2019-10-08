@@ -27,10 +27,13 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * Valid values are:
      * * external_id
      * * source
+     * * source_types
      * * uri
      * * is_hirable
      * * create_time
      * * update_time
+     * * candidate_update_time
+     * * resume_update_time
      * * resume
      * * person_names
      * * addresses
@@ -87,10 +90,13 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *           Valid values are:
      *           * external_id
      *           * source
+     *           * source_types
      *           * uri
      *           * is_hirable
      *           * create_time
      *           * update_time
+     *           * candidate_update_time
+     *           * resume_update_time
      *           * resume
      *           * person_names
      *           * addresses
@@ -167,10 +173,13 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * Valid values are:
      * * external_id
      * * source
+     * * source_types
      * * uri
      * * is_hirable
      * * create_time
      * * update_time
+     * * candidate_update_time
+     * * resume_update_time
      * * resume
      * * person_names
      * * addresses
@@ -223,10 +232,13 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * Valid values are:
      * * external_id
      * * source
+     * * source_types
      * * uri
      * * is_hirable
      * * create_time
      * * update_time
+     * * candidate_update_time
+     * * resume_update_time
      * * resume
      * * person_names
      * * addresses
