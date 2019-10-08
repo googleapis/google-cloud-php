@@ -102,9 +102,7 @@ class OsLoginServiceGapicClient
      */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloud-platform.read-only',
         'https://www.googleapis.com/auth/compute',
-        'https://www.googleapis.com/auth/compute.readonly',
     ];
     private static $fingerprintNameTemplate;
     private static $projectNameTemplate;
@@ -340,7 +338,7 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         A reference to the POSIX account to update. POSIX accounts are identified
+     * @param string $name         Required. A reference to the POSIX account to update. POSIX accounts are identified
      *                             by the project ID they are associated with. A reference to the POSIX
      *                             account is in format `users/{user}/projects/{project}`.
      * @param array  $optionalArgs {
@@ -390,7 +388,7 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The fingerprint of the public key to update. Public keys are identified by
+     * @param string $name         Required. The fingerprint of the public key to update. Public keys are identified by
      *                             their SHA-256 fingerprint. The fingerprint of the public key is in format
      *                             `users/{user}/sshPublicKeys/{fingerprint}`.
      * @param array  $optionalArgs {
@@ -441,10 +439,14 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The unique ID for the user in format `users/{user}`.
+     * @param string $name         Required. The unique ID for the user in format `users/{user}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type string $projectId
+     *          The project ID of the Google Cloud Platform project.
+     *     @type string $systemId
+     *          A system ID for filtering the results of the request.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -461,6 +463,12 @@ class OsLoginServiceGapicClient
     {
         $request = new GetLoginProfileRequest();
         $request->setName($name);
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['systemId'])) {
+            $request->setSystemId($optionalArgs['systemId']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -546,8 +554,8 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent       The unique ID for the user in format `users/{user}`.
-     * @param SshPublicKey $sshPublicKey The SSH public key and expiration time.
+     * @param string       $parent       Required. The unique ID for the user in format `users/{user}`.
+     * @param SshPublicKey $sshPublicKey Optional. The SSH public key and expiration time.
      * @param array        $optionalArgs {
      *                                   Optional.
      *
@@ -605,10 +613,10 @@ class OsLoginServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         The fingerprint of the public key to update. Public keys are identified by
+     * @param string       $name         Required. The fingerprint of the public key to update. Public keys are identified by
      *                                   their SHA-256 fingerprint. The fingerprint of the public key is in format
      *                                   `users/{user}/sshPublicKeys/{fingerprint}`.
-     * @param SshPublicKey $sshPublicKey The SSH public key and expiration time.
+     * @param SshPublicKey $sshPublicKey Required. The SSH public key and expiration time.
      * @param array        $optionalArgs {
      *                                   Optional.
      *

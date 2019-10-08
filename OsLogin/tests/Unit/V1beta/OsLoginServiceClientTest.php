@@ -300,10 +300,12 @@ class OsLoginServiceClientTest extends GeneratedTest
         $key = 'key106079';
         $expirationTimeUsec = 2058878882;
         $fingerprint = 'fingerprint-1375934236';
+        $name2 = 'name2-1052831874';
         $expectedResponse = new SshPublicKey();
         $expectedResponse->setKey($key);
         $expectedResponse->setExpirationTimeUsec($expirationTimeUsec);
         $expectedResponse->setFingerprint($fingerprint);
+        $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -453,10 +455,12 @@ class OsLoginServiceClientTest extends GeneratedTest
         $key = 'key106079';
         $expirationTimeUsec = 2058878882;
         $fingerprint = 'fingerprint-1375934236';
+        $name2 = 'name2-1052831874';
         $expectedResponse = new SshPublicKey();
         $expectedResponse->setKey($key);
         $expectedResponse->setExpirationTimeUsec($expirationTimeUsec);
         $expectedResponse->setFingerprint($fingerprint);
+        $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
 
         // Mock request

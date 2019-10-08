@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The fingerprint of the public key to update. Public keys are identified by
+     * Required. The fingerprint of the public key to update. Public keys are identified by
      * their SHA-256 fingerprint. The fingerprint of the public key is in format
      * `users/{user}/sshPublicKeys/{fingerprint}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The SSH public key and expiration time.
+     * Required. The SSH public key and expiration time.
      *
-     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ssh_public_key = null;
     /**
@@ -43,11 +43,11 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The fingerprint of the public key to update. Public keys are identified by
+     *           Required. The fingerprint of the public key to update. Public keys are identified by
      *           their SHA-256 fingerprint. The fingerprint of the public key is in format
      *           `users/{user}/sshPublicKeys/{fingerprint}`.
      *     @type \Google\Cloud\OsLogin\Common\SshPublicKey $ssh_public_key
-     *           The SSH public key and expiration time.
+     *           Required. The SSH public key and expiration time.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Mask to control which fields get updated. Updates all if not present.
      * }
@@ -58,11 +58,11 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fingerprint of the public key to update. Public keys are identified by
+     * Required. The fingerprint of the public key to update. Public keys are identified by
      * their SHA-256 fingerprint. The fingerprint of the public key is in format
      * `users/{user}/sshPublicKeys/{fingerprint}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -71,11 +71,11 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fingerprint of the public key to update. Public keys are identified by
+     * Required. The fingerprint of the public key to update. Public keys are identified by
      * their SHA-256 fingerprint. The fingerprint of the public key is in format
      * `users/{user}/sshPublicKeys/{fingerprint}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -88,9 +88,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SSH public key and expiration time.
+     * Required. The SSH public key and expiration time.
      *
-     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\OsLogin\Common\SshPublicKey
      */
     public function getSshPublicKey()
@@ -99,9 +99,9 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The SSH public key and expiration time.
+     * Required. The SSH public key and expiration time.
      *
-     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\OsLogin\Common\SshPublicKey $var
      * @return $this
      */
