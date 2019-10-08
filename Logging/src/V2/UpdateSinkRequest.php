@@ -35,9 +35,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      */
     private $sink = null;
     /**
-     * Optional. See
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
-     * for a description of this field.  When updating a sink, the effect of this
+     * Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
+     * for a description of this field. When updating a sink, the effect of this
      * field on the value of `writer_identity` in the updated sink depends on both
      * the old and new values of this field:
      * +   If the old and new values of this field are both false or both true,
@@ -53,7 +52,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Field mask that specifies the fields in `sink` that need
      * an update. A sink field will be overwritten if, and only if, it is
-     * in the update mask.  `name` and output only fields cannot be updated.
+     * in the update mask. `name` and output only fields cannot be updated.
      * An empty updateMask is temporarily treated as using the following mask
      * for backwards compatibility purposes:
      *   destination,filter,includeChildren
@@ -85,9 +84,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *           Required. The updated sink, whose name is the same identifier that appears
      *           as part of `sink_name`.
      *     @type bool $unique_writer_identity
-     *           Optional. See
-     *           [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
-     *           for a description of this field.  When updating a sink, the effect of this
+     *           Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
+     *           for a description of this field. When updating a sink, the effect of this
      *           field on the value of `writer_identity` in the updated sink depends on both
      *           the old and new values of this field:
      *           +   If the old and new values of this field are both false or both true,
@@ -99,7 +97,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Field mask that specifies the fields in `sink` that need
      *           an update. A sink field will be overwritten if, and only if, it is
-     *           in the update mask.  `name` and output only fields cannot be updated.
+     *           in the update mask. `name` and output only fields cannot be updated.
      *           An empty updateMask is temporarily treated as using the following mask
      *           for backwards compatibility purposes:
      *             destination,filter,includeChildren
@@ -182,9 +180,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. See
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
-     * for a description of this field.  When updating a sink, the effect of this
+     * Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
+     * for a description of this field. When updating a sink, the effect of this
      * field on the value of `writer_identity` in the updated sink depends on both
      * the old and new values of this field:
      * +   If the old and new values of this field are both false or both true,
@@ -203,9 +200,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. See
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
-     * for a description of this field.  When updating a sink, the effect of this
+     * Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
+     * for a description of this field. When updating a sink, the effect of this
      * field on the value of `writer_identity` in the updated sink depends on both
      * the old and new values of this field:
      * +   If the old and new values of this field are both false or both true,
@@ -230,7 +226,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Field mask that specifies the fields in `sink` that need
      * an update. A sink field will be overwritten if, and only if, it is
-     * in the update mask.  `name` and output only fields cannot be updated.
+     * in the update mask. `name` and output only fields cannot be updated.
      * An empty updateMask is temporarily treated as using the following mask
      * for backwards compatibility purposes:
      *   destination,filter,includeChildren
@@ -251,7 +247,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Field mask that specifies the fields in `sink` that need
      * an update. A sink field will be overwritten if, and only if, it is
-     * in the update mask.  `name` and output only fields cannot be updated.
+     * in the update mask. `name` and output only fields cannot be updated.
      * An empty updateMask is temporarily treated as using the following mask
      * for backwards compatibility purposes:
      *   destination,filter,includeChildren
