@@ -241,6 +241,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     private $custom_attribute_filter = '';
     /**
+     * Deprecated. Use availability_filters instead.
      * The candidate availability filter which filters based on availability
      * signals.
      * Signal 1: Number of days since most recent job application.  See
@@ -255,9 +256,28 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * indicate the candidate's potential qualification / interest / close ability
      * for a specific job.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
      */
     private $candidate_availability_filter = null;
+    /**
+     * The availability filter which filters based on
+     * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals].
+     * The availability filter helps a recruiter understand if a
+     * specific candidate is likely to be actively seeking new job opportunities
+     * based on an aggregated set of signals.  Specifically, the intent is NOT to
+     * indicate the candidate's potential qualification / interest / close ability
+     * for a specific job.
+     * There can be at most one
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
+     * If there are multiple
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     * an error is thrown.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilityFilter availability_filters = 18;</code>
+     */
+    private $availability_filters;
     /**
      * Person name filter specifies person name of profiles to match on.
      * If multiple person name filters are specified, profiles that match any
@@ -448,6 +468,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           Sample Query:
      *           (key1 = "TEST" OR LOWER(key1)="test" OR NOT EMPTY(key1))
      *     @type \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter $candidate_availability_filter
+     *           Deprecated. Use availability_filters instead.
      *           The candidate availability filter which filters based on availability
      *           signals.
      *           Signal 1: Number of days since most recent job application.  See
@@ -461,6 +482,21 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      *           based on an aggregated set of signals.  Specifically, the intent is NOT to
      *           indicate the candidate's potential qualification / interest / close ability
      *           for a specific job.
+     *     @type \Google\Cloud\Talent\V4beta1\AvailabilityFilter[]|\Google\Protobuf\Internal\RepeatedField $availability_filters
+     *           The availability filter which filters based on
+     *           [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals].
+     *           The availability filter helps a recruiter understand if a
+     *           specific candidate is likely to be actively seeking new job opportunities
+     *           based on an aggregated set of signals.  Specifically, the intent is NOT to
+     *           indicate the candidate's potential qualification / interest / close ability
+     *           for a specific job.
+     *           There can be at most one
+     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
+     *           If there are multiple
+     *           [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
+     *           [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     *           an error is thrown.
      *     @type \Google\Cloud\Talent\V4beta1\PersonNameFilter[]|\Google\Protobuf\Internal\RepeatedField $person_name_filters
      *           Person name filter specifies person name of profiles to match on.
      *           If multiple person name filters are specified, profiles that match any
@@ -1135,6 +1171,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated. Use availability_filters instead.
      * The candidate availability filter which filters based on availability
      * signals.
      * Signal 1: Number of days since most recent job application.  See
@@ -1149,7 +1186,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * indicate the candidate's potential qualification / interest / close ability
      * for a specific job.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
      * @return \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter
      */
     public function getCandidateAvailabilityFilter()
@@ -1158,6 +1195,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated. Use availability_filters instead.
      * The candidate availability filter which filters based on availability
      * signals.
      * Signal 1: Number of days since most recent job application.  See
@@ -1172,7 +1210,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * indicate the candidate's potential qualification / interest / close ability
      * for a specific job.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
      * @param \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter $var
      * @return $this
      */
@@ -1180,6 +1218,58 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter::class);
         $this->candidate_availability_filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The availability filter which filters based on
+     * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals].
+     * The availability filter helps a recruiter understand if a
+     * specific candidate is likely to be actively seeking new job opportunities
+     * based on an aggregated set of signals.  Specifically, the intent is NOT to
+     * indicate the candidate's potential qualification / interest / close ability
+     * for a specific job.
+     * There can be at most one
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
+     * If there are multiple
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     * an error is thrown.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilityFilter availability_filters = 18;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAvailabilityFilters()
+    {
+        return $this->availability_filters;
+    }
+
+    /**
+     * The availability filter which filters based on
+     * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals].
+     * The availability filter helps a recruiter understand if a
+     * specific candidate is likely to be actively seeking new job opportunities
+     * based on an aggregated set of signals.  Specifically, the intent is NOT to
+     * indicate the candidate's potential qualification / interest / close ability
+     * for a specific job.
+     * There can be at most one
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] per
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type].
+     * If there are multiple
+     * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter] for a
+     * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type],
+     * an error is thrown.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.AvailabilityFilter availability_filters = 18;</code>
+     * @param \Google\Cloud\Talent\V4beta1\AvailabilityFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAvailabilityFilters($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4beta1\AvailabilityFilter::class);
+        $this->availability_filters = $arr;
 
         return $this;
     }

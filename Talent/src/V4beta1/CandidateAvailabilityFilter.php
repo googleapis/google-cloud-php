@@ -9,6 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Deprecated. Use AvailabilityFilter instead.
  * Filter on availability signals.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CandidateAvailabilityFilter</code>
