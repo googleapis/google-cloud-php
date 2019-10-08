@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-use Google\Cloud\Core\Testing\System\EncryptionManagement;
+use Google\Cloud\Core\Testing\System\KeyManager;
 use Google\Cloud\Storage\StorageObject;
 
 /**
@@ -39,7 +39,7 @@ class KmsTest extends StorageTestCase
         parent::setUpBeforeClass();
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $encryption = new EncryptionManagement(
+        $encryption = new KeyManager(
             json_decode(file_get_contents($keyFilePath), true),
             self::$client->getServiceAccount(),
             self::getProjectId($keyFilePath)
