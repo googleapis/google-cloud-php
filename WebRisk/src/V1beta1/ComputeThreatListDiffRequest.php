@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ThreatList to update.
+     * The ThreatList to update.
      *
-     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ThreatType threat_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ThreatType threat_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $threat_type = 0;
     /**
@@ -29,9 +29,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      */
     private $version_token = '';
     /**
-     * The constraints associated with this request.
+     * Required. The constraints associated with this request.
      *
-     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $constraints = null;
 
@@ -42,12 +42,12 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $threat_type
-     *           Required. The ThreatList to update.
+     *           The ThreatList to update.
      *     @type string $version_token
      *           The current version token of the client for the requested list (the
      *           client version that was received from the last successful diff).
      *     @type \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints $constraints
-     *           The constraints associated with this request.
+     *           Required. The constraints associated with this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,9 +56,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ThreatList to update.
+     * The ThreatList to update.
      *
-     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ThreatType threat_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ThreatType threat_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getThreatType()
@@ -67,9 +67,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ThreatList to update.
+     * The ThreatList to update.
      *
-     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ThreatType threat_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ThreatType threat_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -110,9 +110,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The constraints associated with this request.
+     * Required. The constraints associated with this request.
      *
-     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints
      */
     public function getConstraints()
@@ -121,9 +121,9 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The constraints associated with this request.
+     * Required. The constraints associated with this request.
      *
-     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints $var
      * @return $this
      */
