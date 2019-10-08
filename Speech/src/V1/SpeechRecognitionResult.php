@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the
+     * May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -40,7 +40,7 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Speech\V1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
-     *           Output only. May contain one or more recognition hypotheses (up to the
+     *           May contain one or more recognition hypotheses (up to the
      *           maximum specified in `max_alternatives`).
      *           These alternatives are ordered in terms of accuracy, with the top (first)
      *           alternative being the most probable, as ranked by the recognizer.
@@ -56,7 +56,7 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the
+     * May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.
@@ -70,7 +70,7 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. May contain one or more recognition hypotheses (up to the
+     * May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
      * These alternatives are ordered in terms of accuracy, with the top (first)
      * alternative being the most probable, as ranked by the recognizer.

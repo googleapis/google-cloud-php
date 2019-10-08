@@ -11,9 +11,9 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The top-level message sent by the client for the `StreamingRecognize` method.
  * Multiple `StreamingRecognizeRequest` messages are sent. The first message
- * must contain a `streaming_config` message and must not contain `audio` data.
- * All subsequent messages must contain `audio` data and must not contain a
- * `streaming_config` message.
+ * must contain a `streaming_config` message and must not contain
+ * `audio_content`. All subsequent messages must contain `audio_content` and
+ * must not contain a `streaming_config` message.
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.StreamingRecognizeRequest</code>
  */
@@ -37,9 +37,9 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           `StreamingRecognizeRequest` message must not contain `audio_content` data
      *           and all subsequent `StreamingRecognizeRequest` messages must contain
      *           `audio_content` data. The audio bytes must be encoded as specified in
-     *           `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+     *           `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a
      *           pure binary representation (not base64). See
-     *           [content limits](/speech-to-text/quotas#content).
+     *           [content limits](https://cloud.google.com/speech-to-text/quotas#content).
      * }
      */
     public function __construct($data = NULL) {
@@ -83,9 +83,9 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `StreamingRecognizeRequest` message must not contain `audio_content` data
      * and all subsequent `StreamingRecognizeRequest` messages must contain
      * `audio_content` data. The audio bytes must be encoded as specified in
-     * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+     * `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a
      * pure binary representation (not base64). See
-     * [content limits](/speech-to-text/quotas#content).
+     * [content limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>bytes audio_content = 2;</code>
      * @return string
@@ -101,9 +101,9 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `StreamingRecognizeRequest` message must not contain `audio_content` data
      * and all subsequent `StreamingRecognizeRequest` messages must contain
      * `audio_content` data. The audio bytes must be encoded as specified in
-     * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+     * `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a
      * pure binary representation (not base64). See
-     * [content limits](/speech-to-text/quotas#content).
+     * [content limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>bytes audio_content = 2;</code>
      * @param string $var

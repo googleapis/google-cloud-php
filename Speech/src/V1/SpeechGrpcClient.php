@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,6 +53,8 @@ class SpeechGrpcClient extends \Grpc\BaseStub {
      * google.longrunning.Operations interface. Returns either an
      * `Operation.error` or an `Operation.response` which contains
      * a `LongRunningRecognizeResponse` message.
+     * For more information on asynchronous speech recognition, see the
+     * [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize).
      * @param \Google\Cloud\Speech\V1\LongRunningRecognizeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
