@@ -83,7 +83,8 @@ s.replace(
 s.replace(
     "src/**/*.php",
     r" * Generated from protobuf message <code>(.*)</code>",
-    r" Generated from protobuf message <code>\1</code>\n *\n * @codeCoverageIgnore"
+    r" Generated from protobuf message <code>\1</code>\n " +
+    r"*\n * @codeCoverageIgnore\n * @codingStandardsIgnoreFile"
 )
 
 # fix year
