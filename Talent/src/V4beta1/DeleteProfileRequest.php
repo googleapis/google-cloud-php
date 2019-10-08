@@ -18,10 +18,10 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of the profile to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -34,8 +34,8 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of the profile to be deleted.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     *           example, "projects/foo/tenants/bar/profiles/baz".
      * }
      */
     public function __construct($data = NULL) {
@@ -46,10 +46,10 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of the profile to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -60,10 +60,10 @@ class DeleteProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of the profile to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

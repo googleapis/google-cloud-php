@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * The Request body of the `SearchJobs` call.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.SearchJobsRequest</code>
@@ -18,16 +17,15 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the tenant to search within.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. Mode of a search.
+     * Mode of a search.
      * Defaults to
      * [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *
@@ -39,28 +37,27 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * improve the search quality of the service. The identifiers (such as
      * `user_id`) are provided by users, and must be unique and consistent.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $request_metadata = null;
     /**
-     * Optional. Query used to search against jobs, such as keyword, location
-     * filters, etc.
+     * Query used to search against jobs, such as keyword, location filters, etc.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobQuery job_query = 4;</code>
      */
     private $job_query = null;
     /**
-     * Optional. Controls whether to broaden the search when it produces sparse
-     * results. Broadened queries append results to the end of the matching
-     * results list.
+     * Controls whether to broaden the search when it produces sparse results.
+     * Broadened queries append results to the end of the matching results
+     * list.
      * Defaults to false.
      *
      * Generated from protobuf field <code>bool enable_broadening = 5;</code>
      */
     private $enable_broadening = false;
     /**
-     * Optional. Controls if the search job request requires the return of a
-     * precise count of the first 300 results. Setting this to `true` ensures
+     * Controls if the search job request requires the return of a precise
+     * count of the first 300 results. Setting this to `true` ensures
      * consistency in the number of results per page. Best practice is to set this
      * value to true if a client allows users to jump directly to a
      * non-sequential search results page.
@@ -71,8 +68,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $require_precise_result_size = false;
     /**
-     * Optional. An expression specifies a histogram request against matching
-     * jobs.
+     * An expression specifies a histogram request against matching jobs.
      * Expression syntax is an aggregation function call with histogram facets and
      * other options.
      * Available aggregation function calls are:
@@ -172,8 +168,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $histogram_queries;
     /**
-     * Optional. The desired job attributes returned for jobs in the search
-     * response. Defaults to
+     * The desired job attributes returned for jobs in the search response.
+     * Defaults to
      * [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL]
      * if no value is specified.
      *
@@ -181,8 +177,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $job_view = 0;
     /**
-     * Optional. An integer that specifies the current offset (that is, starting
-     * result location, amongst the jobs deemed by the API as relevant) in search
+     * An integer that specifies the current offset (that is, starting result
+     * location, amongst the jobs deemed by the API as relevant) in search
      * results. This field is only considered if
      * [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
      * unset.
@@ -195,7 +191,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $offset = 0;
     /**
-     * Optional. A limit on the number of jobs returned in the search results.
+     * A limit on the number of jobs returned in the search results.
      * Increasing this value above the default value of 10 can increase search
      * response time. The value can be between 1 and 100.
      *
@@ -203,7 +199,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. The token specifying the current offset within
+     * The token specifying the current offset within
      * search results. See
      * [SearchJobsResponse.next_page_token][google.cloud.talent.v4beta1.SearchJobsResponse.next_page_token]
      * for an explanation of how to obtain the next set of query results.
@@ -212,8 +208,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. The criteria determining how search results are sorted. Default
-     * is
+     * The criteria determining how search results are sorted. Default is
      * `"relevance desc"`.
      * Supported options are:
      * * `"relevance desc"`: By relevance descending, as determined by the API
@@ -270,8 +265,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. Controls whether highly similar jobs are returned next to each
-     * other in the search results. Jobs are identified as highly similar based on
+     * Controls whether highly similar jobs are returned next to each other in
+     * the search results. Jobs are identified as highly similar based on
      * their titles, job categories, and locations. Highly similar results are
      * clustered so that only one representative job of the cluster is
      * displayed to the job seeker higher up in the results, with the other jobs
@@ -284,14 +279,14 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $diversification_level = 0;
     /**
-     * Optional. Controls over how job documents get ranked on top of existing
-     * relevance score (determined by API algorithm).
+     * Controls over how job documents get ranked on top of existing relevance
+     * score (determined by API algorithm).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo custom_ranking_info = 14;</code>
      */
     private $custom_ranking_info = null;
     /**
-     * Optional. Controls whether to disable exact keyword match on
+     * Controls whether to disable exact keyword match on
      * [Job.title][google.cloud.talent.v4beta1.Job.title],
      * [Job.description][google.cloud.talent.v4beta1.Job.description],
      * [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
@@ -325,12 +320,11 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the tenant to search within.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenant/foo".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project".
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     *           is created. For example, "projects/foo".
      *     @type int $search_mode
-     *           Optional. Mode of a search.
+     *           Mode of a search.
      *           Defaults to
      *           [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *     @type \Google\Cloud\Talent\V4beta1\RequestMetadata $request_metadata
@@ -338,24 +332,22 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           improve the search quality of the service. The identifiers (such as
      *           `user_id`) are provided by users, and must be unique and consistent.
      *     @type \Google\Cloud\Talent\V4beta1\JobQuery $job_query
-     *           Optional. Query used to search against jobs, such as keyword, location
-     *           filters, etc.
+     *           Query used to search against jobs, such as keyword, location filters, etc.
      *     @type bool $enable_broadening
-     *           Optional. Controls whether to broaden the search when it produces sparse
-     *           results. Broadened queries append results to the end of the matching
-     *           results list.
+     *           Controls whether to broaden the search when it produces sparse results.
+     *           Broadened queries append results to the end of the matching results
+     *           list.
      *           Defaults to false.
      *     @type bool $require_precise_result_size
-     *           Optional. Controls if the search job request requires the return of a
-     *           precise count of the first 300 results. Setting this to `true` ensures
+     *           Controls if the search job request requires the return of a precise
+     *           count of the first 300 results. Setting this to `true` ensures
      *           consistency in the number of results per page. Best practice is to set this
      *           value to true if a client allows users to jump directly to a
      *           non-sequential search results page.
      *           Enabling this flag may adversely impact performance.
      *           Defaults to false.
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $histogram_queries
-     *           Optional. An expression specifies a histogram request against matching
-     *           jobs.
+     *           An expression specifies a histogram request against matching jobs.
      *           Expression syntax is an aggregation function call with histogram facets and
      *           other options.
      *           Available aggregation function calls are:
@@ -451,13 +443,13 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
      *             [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
      *     @type int $job_view
-     *           Optional. The desired job attributes returned for jobs in the search
-     *           response. Defaults to
+     *           The desired job attributes returned for jobs in the search response.
+     *           Defaults to
      *           [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL]
      *           if no value is specified.
      *     @type int $offset
-     *           Optional. An integer that specifies the current offset (that is, starting
-     *           result location, amongst the jobs deemed by the API as relevant) in search
+     *           An integer that specifies the current offset (that is, starting result
+     *           location, amongst the jobs deemed by the API as relevant) in search
      *           results. This field is only considered if
      *           [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
      *           unset.
@@ -466,17 +458,16 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           pagination, (for example, pageSize = 10 and offset = 10 means to return
      *           from the second page).
      *     @type int $page_size
-     *           Optional. A limit on the number of jobs returned in the search results.
+     *           A limit on the number of jobs returned in the search results.
      *           Increasing this value above the default value of 10 can increase search
      *           response time. The value can be between 1 and 100.
      *     @type string $page_token
-     *           Optional. The token specifying the current offset within
+     *           The token specifying the current offset within
      *           search results. See
      *           [SearchJobsResponse.next_page_token][google.cloud.talent.v4beta1.SearchJobsResponse.next_page_token]
      *           for an explanation of how to obtain the next set of query results.
      *     @type string $order_by
-     *           Optional. The criteria determining how search results are sorted. Default
-     *           is
+     *           The criteria determining how search results are sorted. Default is
      *           `"relevance desc"`.
      *           Supported options are:
      *           * `"relevance desc"`: By relevance descending, as determined by the API
@@ -529,8 +520,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *             still applied unless explicitly disabled in
      *             [diversification_level][google.cloud.talent.v4beta1.SearchJobsRequest.diversification_level].
      *     @type int $diversification_level
-     *           Optional. Controls whether highly similar jobs are returned next to each
-     *           other in the search results. Jobs are identified as highly similar based on
+     *           Controls whether highly similar jobs are returned next to each other in
+     *           the search results. Jobs are identified as highly similar based on
      *           their titles, job categories, and locations. Highly similar results are
      *           clustered so that only one representative job of the cluster is
      *           displayed to the job seeker higher up in the results, with the other jobs
@@ -539,10 +530,10 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           [DiversificationLevel.SIMPLE][google.cloud.talent.v4beta1.SearchJobsRequest.DiversificationLevel.SIMPLE]
      *           if no value is specified.
      *     @type \Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo $custom_ranking_info
-     *           Optional. Controls over how job documents get ranked on top of existing
-     *           relevance score (determined by API algorithm).
+     *           Controls over how job documents get ranked on top of existing relevance
+     *           score (determined by API algorithm).
      *     @type bool $disable_keyword_match
-     *           Optional. Controls whether to disable exact keyword match on
+     *           Controls whether to disable exact keyword match on
      *           [Job.title][google.cloud.talent.v4beta1.Job.title],
      *           [Job.description][google.cloud.talent.v4beta1.Job.description],
      *           [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
@@ -572,12 +563,11 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant to search within.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -587,12 +577,11 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant to search within.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -605,7 +594,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Mode of a search.
+     * Mode of a search.
      * Defaults to
      * [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *
@@ -618,7 +607,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Mode of a search.
+     * Mode of a search.
      * Defaults to
      * [SearchMode.JOB_SEARCH][google.cloud.talent.v4beta1.SearchJobsRequest.SearchMode.JOB_SEARCH].
      *
@@ -639,7 +628,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * improve the search quality of the service. The identifiers (such as
      * `user_id`) are provided by users, and must be unique and consistent.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\RequestMetadata
      */
     public function getRequestMetadata()
@@ -652,7 +641,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * improve the search quality of the service. The identifiers (such as
      * `user_id`) are provided by users, and must be unique and consistent.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\RequestMetadata $var
      * @return $this
      */
@@ -665,8 +654,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Query used to search against jobs, such as keyword, location
-     * filters, etc.
+     * Query used to search against jobs, such as keyword, location filters, etc.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobQuery job_query = 4;</code>
      * @return \Google\Cloud\Talent\V4beta1\JobQuery
@@ -677,8 +665,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Query used to search against jobs, such as keyword, location
-     * filters, etc.
+     * Query used to search against jobs, such as keyword, location filters, etc.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobQuery job_query = 4;</code>
      * @param \Google\Cloud\Talent\V4beta1\JobQuery $var
@@ -693,9 +680,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls whether to broaden the search when it produces sparse
-     * results. Broadened queries append results to the end of the matching
-     * results list.
+     * Controls whether to broaden the search when it produces sparse results.
+     * Broadened queries append results to the end of the matching results
+     * list.
      * Defaults to false.
      *
      * Generated from protobuf field <code>bool enable_broadening = 5;</code>
@@ -707,9 +694,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls whether to broaden the search when it produces sparse
-     * results. Broadened queries append results to the end of the matching
-     * results list.
+     * Controls whether to broaden the search when it produces sparse results.
+     * Broadened queries append results to the end of the matching results
+     * list.
      * Defaults to false.
      *
      * Generated from protobuf field <code>bool enable_broadening = 5;</code>
@@ -725,8 +712,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls if the search job request requires the return of a
-     * precise count of the first 300 results. Setting this to `true` ensures
+     * Controls if the search job request requires the return of a precise
+     * count of the first 300 results. Setting this to `true` ensures
      * consistency in the number of results per page. Best practice is to set this
      * value to true if a client allows users to jump directly to a
      * non-sequential search results page.
@@ -742,8 +729,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls if the search job request requires the return of a
-     * precise count of the first 300 results. Setting this to `true` ensures
+     * Controls if the search job request requires the return of a precise
+     * count of the first 300 results. Setting this to `true` ensures
      * consistency in the number of results per page. Best practice is to set this
      * value to true if a client allows users to jump directly to a
      * non-sequential search results page.
@@ -763,8 +750,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression specifies a histogram request against matching
-     * jobs.
+     * An expression specifies a histogram request against matching jobs.
      * Expression syntax is an aggregation function call with histogram facets and
      * other options.
      * Available aggregation function calls are:
@@ -869,8 +855,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression specifies a histogram request against matching
-     * jobs.
+     * An expression specifies a histogram request against matching jobs.
      * Expression syntax is an aggregation function call with histogram facets and
      * other options.
      * Available aggregation function calls are:
@@ -979,8 +964,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The desired job attributes returned for jobs in the search
-     * response. Defaults to
+     * The desired job attributes returned for jobs in the search response.
+     * Defaults to
      * [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL]
      * if no value is specified.
      *
@@ -993,8 +978,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The desired job attributes returned for jobs in the search
-     * response. Defaults to
+     * The desired job attributes returned for jobs in the search response.
+     * Defaults to
      * [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL]
      * if no value is specified.
      *
@@ -1011,8 +996,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An integer that specifies the current offset (that is, starting
-     * result location, amongst the jobs deemed by the API as relevant) in search
+     * An integer that specifies the current offset (that is, starting result
+     * location, amongst the jobs deemed by the API as relevant) in search
      * results. This field is only considered if
      * [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
      * unset.
@@ -1030,8 +1015,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An integer that specifies the current offset (that is, starting
-     * result location, amongst the jobs deemed by the API as relevant) in search
+     * An integer that specifies the current offset (that is, starting result
+     * location, amongst the jobs deemed by the API as relevant) in search
      * results. This field is only considered if
      * [page_token][google.cloud.talent.v4beta1.SearchJobsRequest.page_token] is
      * unset.
@@ -1053,7 +1038,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A limit on the number of jobs returned in the search results.
+     * A limit on the number of jobs returned in the search results.
      * Increasing this value above the default value of 10 can increase search
      * response time. The value can be between 1 and 100.
      *
@@ -1066,7 +1051,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A limit on the number of jobs returned in the search results.
+     * A limit on the number of jobs returned in the search results.
      * Increasing this value above the default value of 10 can increase search
      * response time. The value can be between 1 and 100.
      *
@@ -1083,7 +1068,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The token specifying the current offset within
+     * The token specifying the current offset within
      * search results. See
      * [SearchJobsResponse.next_page_token][google.cloud.talent.v4beta1.SearchJobsResponse.next_page_token]
      * for an explanation of how to obtain the next set of query results.
@@ -1097,7 +1082,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The token specifying the current offset within
+     * The token specifying the current offset within
      * search results. See
      * [SearchJobsResponse.next_page_token][google.cloud.talent.v4beta1.SearchJobsResponse.next_page_token]
      * for an explanation of how to obtain the next set of query results.
@@ -1115,8 +1100,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The criteria determining how search results are sorted. Default
-     * is
+     * The criteria determining how search results are sorted. Default is
      * `"relevance desc"`.
      * Supported options are:
      * * `"relevance desc"`: By relevance descending, as determined by the API
@@ -1178,8 +1162,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The criteria determining how search results are sorted. Default
-     * is
+     * The criteria determining how search results are sorted. Default is
      * `"relevance desc"`.
      * Supported options are:
      * * `"relevance desc"`: By relevance descending, as determined by the API
@@ -1245,8 +1228,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls whether highly similar jobs are returned next to each
-     * other in the search results. Jobs are identified as highly similar based on
+     * Controls whether highly similar jobs are returned next to each other in
+     * the search results. Jobs are identified as highly similar based on
      * their titles, job categories, and locations. Highly similar results are
      * clustered so that only one representative job of the cluster is
      * displayed to the job seeker higher up in the results, with the other jobs
@@ -1264,8 +1247,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls whether highly similar jobs are returned next to each
-     * other in the search results. Jobs are identified as highly similar based on
+     * Controls whether highly similar jobs are returned next to each other in
+     * the search results. Jobs are identified as highly similar based on
      * their titles, job categories, and locations. Highly similar results are
      * clustered so that only one representative job of the cluster is
      * displayed to the job seeker higher up in the results, with the other jobs
@@ -1287,8 +1270,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls over how job documents get ranked on top of existing
-     * relevance score (determined by API algorithm).
+     * Controls over how job documents get ranked on top of existing relevance
+     * score (determined by API algorithm).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo custom_ranking_info = 14;</code>
      * @return \Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo
@@ -1299,8 +1282,8 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls over how job documents get ranked on top of existing
-     * relevance score (determined by API algorithm).
+     * Controls over how job documents get ranked on top of existing relevance
+     * score (determined by API algorithm).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.CustomRankingInfo custom_ranking_info = 14;</code>
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo $var
@@ -1315,7 +1298,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls whether to disable exact keyword match on
+     * Controls whether to disable exact keyword match on
      * [Job.title][google.cloud.talent.v4beta1.Job.title],
      * [Job.description][google.cloud.talent.v4beta1.Job.description],
      * [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],
@@ -1346,7 +1329,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Controls whether to disable exact keyword match on
+     * Controls whether to disable exact keyword match on
      * [Job.title][google.cloud.talent.v4beta1.Job.title],
      * [Job.description][google.cloud.talent.v4beta1.Job.description],
      * [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name],

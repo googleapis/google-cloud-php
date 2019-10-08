@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PersonName extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Preferred name for the person. This field is ignored if
+     * Preferred name for the person. This field is ignored if
      * [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      * is provided.
      * Number of characters allowed is 100.
@@ -33,14 +33,13 @@ class PersonName extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $formatted_name
-     *           Optional. A string represents a person's full name. For example, "Dr.
-     *           John Smith".
+     *           A string represents a person's full name. For example, "Dr. John Smith".
      *           Number of characters allowed is 100.
      *     @type \Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName $structured_name
-     *           Optional. A person's name in a structured way (last name, first name,
-     *           suffix, and so on.)
+     *           A person's name in a structured way (last name, first name, suffix, and
+     *           so on.)
      *     @type string $preferred_name
-     *           Optional. Preferred name for the person. This field is ignored if
+     *           Preferred name for the person. This field is ignored if
      *           [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      *           is provided.
      *           Number of characters allowed is 100.
@@ -52,8 +51,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A string represents a person's full name. For example, "Dr.
-     * John Smith".
+     * A string represents a person's full name. For example, "Dr. John Smith".
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string formatted_name = 1;</code>
@@ -65,8 +63,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A string represents a person's full name. For example, "Dr.
-     * John Smith".
+     * A string represents a person's full name. For example, "Dr. John Smith".
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string formatted_name = 1;</code>
@@ -82,8 +79,8 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A person's name in a structured way (last name, first name,
-     * suffix, and so on.)
+     * A person's name in a structured way (last name, first name, suffix, and
+     * so on.)
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.PersonName.PersonStructuredName structured_name = 2;</code>
      * @return \Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName
@@ -94,8 +91,8 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A person's name in a structured way (last name, first name,
-     * suffix, and so on.)
+     * A person's name in a structured way (last name, first name, suffix, and
+     * so on.)
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.PersonName.PersonStructuredName structured_name = 2;</code>
      * @param \Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName $var
@@ -110,7 +107,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Preferred name for the person. This field is ignored if
+     * Preferred name for the person. This field is ignored if
      * [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      * is provided.
      * Number of characters allowed is 100.
@@ -124,7 +121,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Preferred name for the person. This field is ignored if
+     * Preferred name for the person. This field is ignored if
      * [structured_name][google.cloud.talent.v4beta1.PersonName.structured_name]
      * is provided.
      * Number of characters allowed is 100.

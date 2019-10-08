@@ -370,10 +370,8 @@ class CompanyServiceGapicClient
      * @param string $parent Required. Resource name of the tenant under which the company is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created, for example, "projects/foo".
      * @param Company $company      Required. The company to be created.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -431,7 +429,7 @@ class CompanyServiceGapicClient
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
      * example, "projects/api-test-project/tenants/foo/companies/bar".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
+     * If tenant id is unspecified, the default tenant is used, for
      * example, "projects/api-test-project/companies/bar".
      * @param array $optionalArgs {
      *                            Optional.
@@ -488,8 +486,7 @@ class CompanyServiceGapicClient
      *                              Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
      *          If
      *          [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
@@ -554,10 +551,10 @@ class CompanyServiceGapicClient
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -623,10 +620,10 @@ class CompanyServiceGapicClient
      * @param string $parent Required. Resource name of the tenant under which the company is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
+     * "projects/foo/tenant/bar".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * If tenant id is unspecified, the default tenant will be used, for
+     * example, "projects/foo".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -640,7 +637,7 @@ class CompanyServiceGapicClient
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
      *     @type bool $requireOpenJobs
-     *          Optional. Set to true if the companies requested must have open jobs.
+     *          Set to true if the companies requested must have open jobs.
      *
      *          Defaults to false.
      *

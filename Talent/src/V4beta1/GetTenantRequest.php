@@ -18,9 +18,9 @@ class GetTenantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the tenant to be retrieved.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -33,7 +33,7 @@ class GetTenantRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the tenant to be retrieved.
      *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenants/foo".
+     *           "projects/foo/tenants/bar".
      * }
      */
     public function __construct($data = NULL) {
@@ -44,9 +44,9 @@ class GetTenantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the tenant to be retrieved.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -57,9 +57,9 @@ class GetTenantRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the tenant to be retrieved.
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

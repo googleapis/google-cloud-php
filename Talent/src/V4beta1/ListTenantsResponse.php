@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * The List tenants response object.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ListTenantsResponse</code>

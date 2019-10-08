@@ -318,8 +318,8 @@ class ApplicationServiceGapicClient
      *                       created.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
-     * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz".
      * @param Application $application  Required. The application to be created.
      * @param array       $optionalArgs {
      *                                  Optional.
@@ -374,9 +374,8 @@ class ApplicationServiceGapicClient
      * @param string $name Required. The resource name of the application to be retrieved.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -432,8 +431,7 @@ class ApplicationServiceGapicClient
      *                                  Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
      *          If
      *          [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask]
@@ -496,9 +494,8 @@ class ApplicationServiceGapicClient
      * @param string $name Required. The resource name of the application to be deleted.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -566,7 +563,7 @@ class ApplicationServiceGapicClient
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
-     * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
+     * example, "projects/foo/tenants/bar/profiles/baz".
      * @param array $optionalArgs {
      *                            Optional.
      *

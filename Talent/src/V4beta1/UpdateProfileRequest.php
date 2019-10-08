@@ -18,11 +18,11 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Profile to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $profile = null;
     /**
-     * Optional. A field mask to specify the profile fields to update.
+     * A field mask to specify the profile fields to update.
      * A full update is performed if it is unset.
      * Valid values are:
      * * external_id
@@ -82,7 +82,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\Profile $profile
      *           Required. Profile to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. A field mask to specify the profile fields to update.
+     *           A field mask to specify the profile fields to update.
      *           A full update is performed if it is unset.
      *           Valid values are:
      *           * external_id
@@ -138,7 +138,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Profile to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Profile
      */
     public function getProfile()
@@ -149,7 +149,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Profile to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Profile $var
      * @return $this
      */
@@ -162,7 +162,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the profile fields to update.
+     * A field mask to specify the profile fields to update.
      * A full update is performed if it is unset.
      * Valid values are:
      * * external_id
@@ -218,7 +218,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the profile fields to update.
+     * A field mask to specify the profile fields to update.
      * A full update is performed if it is unset.
      * Valid values are:
      * * external_id

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only. Spell check result.
+ * Spell check result.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.SpellingCorrection</code>
  */

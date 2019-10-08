@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Options for job processing.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.Job.ProcessingOptions</code>
@@ -17,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProcessingOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. If set to `true`, the service does not attempt to resolve a
+     * If set to `true`, the service does not attempt to resolve a
      * more precise address for the job.
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
      */
     private $disable_street_address_resolution = false;
     /**
-     * Optional. Option for job HTML content sanitization. Applied fields are:
+     * Option for job HTML content sanitization. Applied fields are:
      * * description
      * * applicationInfo.instruction
      * * incentives
@@ -46,10 +45,10 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $disable_street_address_resolution
-     *           Optional. If set to `true`, the service does not attempt to resolve a
+     *           If set to `true`, the service does not attempt to resolve a
      *           more precise address for the job.
      *     @type int $html_sanitization
-     *           Optional. Option for job HTML content sanitization. Applied fields are:
+     *           Option for job HTML content sanitization. Applied fields are:
      *           * description
      *           * applicationInfo.instruction
      *           * incentives
@@ -67,7 +66,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to `true`, the service does not attempt to resolve a
+     * If set to `true`, the service does not attempt to resolve a
      * more precise address for the job.
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
@@ -79,7 +78,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to `true`, the service does not attempt to resolve a
+     * If set to `true`, the service does not attempt to resolve a
      * more precise address for the job.
      *
      * Generated from protobuf field <code>bool disable_street_address_resolution = 1;</code>
@@ -95,7 +94,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Option for job HTML content sanitization. Applied fields are:
+     * Option for job HTML content sanitization. Applied fields are:
      * * description
      * * applicationInfo.instruction
      * * incentives
@@ -115,7 +114,7 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Option for job HTML content sanitization. Applied fields are:
+     * Option for job HTML content sanitization. Applied fields are:
      * * description
      * * applicationInfo.instruction
      * * incentives

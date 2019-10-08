@@ -17,10 +17,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the tenant to search within.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
@@ -28,18 +28,18 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * This is used to improve the search quality of the service. These values are
      * provided by users, and must be precise and consistent.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $request_metadata = null;
     /**
-     * Optional. Search query to execute. See
+     * Search query to execute. See
      * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
      */
     private $profile_query = null;
     /**
-     * Optional. A limit on the number of profiles returned in the search results.
+     * A limit on the number of profiles returned in the search results.
      * A value above the default value 10 can increase search response time.
      * The maximum value allowed is 100. Otherwise an error is thrown.
      *
@@ -47,9 +47,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Optional. The pageToken, similar to offset enables users of the API to
-     * paginate through the search results. To retrieve the first page of results,
-     * set the pageToken to empty. The search response includes a
+     * The pageToken, similar to offset enables users of the API to paginate
+     * through the search results. To retrieve the first page of results, set the
+     * pageToken to empty. The search response includes a
      * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
      * field that can be used to populate the pageToken field for the next page of
      * results. Using pageToken instead of offset increases the performance of the
@@ -59,8 +59,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. An integer that specifies the current offset (that is, starting
-     * result) in search results. This field is only considered if
+     * An integer that specifies the current offset (that is, starting result) in
+     * search results. This field is only considered if
      * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
      * is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
@@ -72,7 +72,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $offset = 0;
     /**
-     * Optional. This flag controls the spell-check feature. If `false`, the
+     * This flag controls the spell-check feature. If `false`, the
      * service attempts to correct a misspelled query.
      * For example, "enginee" is corrected to "engineer".
      *
@@ -80,7 +80,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $disable_spell_check = false;
     /**
-     * Optional. The criteria that determines how search results are sorted.
+     * The criteria that determines how search results are sorted.
      * Defaults is "relevance desc" if no value is specified.
      * Supported options are:
      * * "relevance desc": By descending relevance, as determined by the API
@@ -112,19 +112,18 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. When sort by field is based on alphabetical order, sort values
-     * case sensitively (based on ASCII) when the value is set to true. Default
-     * value is case in-sensitive sort (false).
+     * When sort by field is based on alphabetical order, sort values case
+     * sensitively (based on ASCII) when the value is set to true. Default value
+     * is case in-sensitive sort (false).
      *
      * Generated from protobuf field <code>bool case_sensitive_sort = 9;</code>
      */
     private $case_sensitive_sort = false;
     /**
-     * Optional. A list of expressions specifies histogram requests against
-     * matching profiles for
+     * A list of expressions specifies histogram requests against matching
+     * profiles for
      * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
-     * The expression syntax looks like a function definition with optional
-     * parameters.
+     * The expression syntax looks like a function definition with parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
      * Data types:
      * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
@@ -195,7 +194,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $histogram_queries;
     /**
-     * Optional. An id that uniquely identifies the result set of a
+     * An id that uniquely identifies the result set of a
      * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
      * call. The id should be retrieved from the
      * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
@@ -226,7 +225,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     private $result_set_id = '';
     /**
-     * Optional. This flag is used to indicate whether the service will attempt to
+     * This flag is used to indicate whether the service will attempt to
      * understand synonyms and terms related to the search query or treat the
      * query "as is" when it generates a set of results. By default this flag is
      * set to false, thus allowing expanded results to also be returned. For
@@ -251,30 +250,30 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the tenant to search within.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenants/foo".
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
      *     @type \Google\Cloud\Talent\V4beta1\RequestMetadata $request_metadata
      *           Required. The meta information collected about the profile search user.
      *           This is used to improve the search quality of the service. These values are
      *           provided by users, and must be precise and consistent.
      *     @type \Google\Cloud\Talent\V4beta1\ProfileQuery $profile_query
-     *           Optional. Search query to execute. See
+     *           Search query to execute. See
      *           [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $page_size
-     *           Optional. A limit on the number of profiles returned in the search results.
+     *           A limit on the number of profiles returned in the search results.
      *           A value above the default value 10 can increase search response time.
      *           The maximum value allowed is 100. Otherwise an error is thrown.
      *     @type string $page_token
-     *           Optional. The pageToken, similar to offset enables users of the API to
-     *           paginate through the search results. To retrieve the first page of results,
-     *           set the pageToken to empty. The search response includes a
+     *           The pageToken, similar to offset enables users of the API to paginate
+     *           through the search results. To retrieve the first page of results, set the
+     *           pageToken to empty. The search response includes a
      *           [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
      *           field that can be used to populate the pageToken field for the next page of
      *           results. Using pageToken instead of offset increases the performance of the
      *           API, especially compared to larger offset values.
      *     @type int $offset
-     *           Optional. An integer that specifies the current offset (that is, starting
-     *           result) in search results. This field is only considered if
+     *           An integer that specifies the current offset (that is, starting result) in
+     *           search results. This field is only considered if
      *           [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
      *           is unset.
      *           The maximum allowed value is 5000. Otherwise an error is thrown.
@@ -282,11 +281,11 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           search from the 11th profile. This can be used for pagination, for example
      *           pageSize = 10 and offset = 10 means to search from the second page.
      *     @type bool $disable_spell_check
-     *           Optional. This flag controls the spell-check feature. If `false`, the
+     *           This flag controls the spell-check feature. If `false`, the
      *           service attempts to correct a misspelled query.
      *           For example, "enginee" is corrected to "engineer".
      *     @type string $order_by
-     *           Optional. The criteria that determines how search results are sorted.
+     *           The criteria that determines how search results are sorted.
      *           Defaults is "relevance desc" if no value is specified.
      *           Supported options are:
      *           * "relevance desc": By descending relevance, as determined by the API
@@ -314,15 +313,14 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
      *             in ascending order.
      *     @type bool $case_sensitive_sort
-     *           Optional. When sort by field is based on alphabetical order, sort values
-     *           case sensitively (based on ASCII) when the value is set to true. Default
-     *           value is case in-sensitive sort (false).
+     *           When sort by field is based on alphabetical order, sort values case
+     *           sensitively (based on ASCII) when the value is set to true. Default value
+     *           is case in-sensitive sort (false).
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $histogram_queries
-     *           Optional. A list of expressions specifies histogram requests against
-     *           matching profiles for
+     *           A list of expressions specifies histogram requests against matching
+     *           profiles for
      *           [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
-     *           The expression syntax looks like a function definition with optional
-     *           parameters.
+     *           The expression syntax looks like a function definition with parameters.
      *           Function syntax: function_name(histogram_facet[, list of buckets])
      *           Data types:
      *           * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
@@ -389,7 +387,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           * count(numeric_custom_attribute["favorite_number"],
      *           [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])
      *     @type string $result_set_id
-     *           Optional. An id that uniquely identifies the result set of a
+     *           An id that uniquely identifies the result set of a
      *           [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
      *           call. The id should be retrieved from the
      *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
@@ -416,7 +414,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      *           [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
      *           to page through the results.
      *     @type bool $strict_keywords_search
-     *           Optional. This flag is used to indicate whether the service will attempt to
+     *           This flag is used to indicate whether the service will attempt to
      *           understand synonyms and terms related to the search query or treat the
      *           query "as is" when it generates a set of results. By default this flag is
      *           set to false, thus allowing expanded results to also be returned. For
@@ -437,10 +435,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant to search within.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -450,10 +448,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant to search within.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -470,7 +468,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * This is used to improve the search quality of the service. These values are
      * provided by users, and must be precise and consistent.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\RequestMetadata
      */
     public function getRequestMetadata()
@@ -483,7 +481,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * This is used to improve the search quality of the service. These values are
      * provided by users, and must be precise and consistent.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\RequestMetadata $var
      * @return $this
      */
@@ -496,7 +494,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Search query to execute. See
+     * Search query to execute. See
      * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
@@ -508,7 +506,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Search query to execute. See
+     * Search query to execute. See
      * [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
@@ -524,7 +522,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A limit on the number of profiles returned in the search results.
+     * A limit on the number of profiles returned in the search results.
      * A value above the default value 10 can increase search response time.
      * The maximum value allowed is 100. Otherwise an error is thrown.
      *
@@ -537,7 +535,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A limit on the number of profiles returned in the search results.
+     * A limit on the number of profiles returned in the search results.
      * A value above the default value 10 can increase search response time.
      * The maximum value allowed is 100. Otherwise an error is thrown.
      *
@@ -554,9 +552,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pageToken, similar to offset enables users of the API to
-     * paginate through the search results. To retrieve the first page of results,
-     * set the pageToken to empty. The search response includes a
+     * The pageToken, similar to offset enables users of the API to paginate
+     * through the search results. To retrieve the first page of results, set the
+     * pageToken to empty. The search response includes a
      * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
      * field that can be used to populate the pageToken field for the next page of
      * results. Using pageToken instead of offset increases the performance of the
@@ -571,9 +569,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pageToken, similar to offset enables users of the API to
-     * paginate through the search results. To retrieve the first page of results,
-     * set the pageToken to empty. The search response includes a
+     * The pageToken, similar to offset enables users of the API to paginate
+     * through the search results. To retrieve the first page of results, set the
+     * pageToken to empty. The search response includes a
      * [nextPageToken][google.cloud.talent.v4beta1.SearchProfilesResponse.next_page_token]
      * field that can be used to populate the pageToken field for the next page of
      * results. Using pageToken instead of offset increases the performance of the
@@ -592,8 +590,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An integer that specifies the current offset (that is, starting
-     * result) in search results. This field is only considered if
+     * An integer that specifies the current offset (that is, starting result) in
+     * search results. This field is only considered if
      * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
      * is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
@@ -610,8 +608,8 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An integer that specifies the current offset (that is, starting
-     * result) in search results. This field is only considered if
+     * An integer that specifies the current offset (that is, starting result) in
+     * search results. This field is only considered if
      * [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
      * is unset.
      * The maximum allowed value is 5000. Otherwise an error is thrown.
@@ -632,7 +630,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This flag controls the spell-check feature. If `false`, the
+     * This flag controls the spell-check feature. If `false`, the
      * service attempts to correct a misspelled query.
      * For example, "enginee" is corrected to "engineer".
      *
@@ -645,7 +643,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This flag controls the spell-check feature. If `false`, the
+     * This flag controls the spell-check feature. If `false`, the
      * service attempts to correct a misspelled query.
      * For example, "enginee" is corrected to "engineer".
      *
@@ -662,7 +660,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The criteria that determines how search results are sorted.
+     * The criteria that determines how search results are sorted.
      * Defaults is "relevance desc" if no value is specified.
      * Supported options are:
      * * "relevance desc": By descending relevance, as determined by the API
@@ -699,7 +697,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The criteria that determines how search results are sorted.
+     * The criteria that determines how search results are sorted.
      * Defaults is "relevance desc" if no value is specified.
      * Supported options are:
      * * "relevance desc": By descending relevance, as determined by the API
@@ -740,9 +738,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When sort by field is based on alphabetical order, sort values
-     * case sensitively (based on ASCII) when the value is set to true. Default
-     * value is case in-sensitive sort (false).
+     * When sort by field is based on alphabetical order, sort values case
+     * sensitively (based on ASCII) when the value is set to true. Default value
+     * is case in-sensitive sort (false).
      *
      * Generated from protobuf field <code>bool case_sensitive_sort = 9;</code>
      * @return bool
@@ -753,9 +751,9 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When sort by field is based on alphabetical order, sort values
-     * case sensitively (based on ASCII) when the value is set to true. Default
-     * value is case in-sensitive sort (false).
+     * When sort by field is based on alphabetical order, sort values case
+     * sensitively (based on ASCII) when the value is set to true. Default value
+     * is case in-sensitive sort (false).
      *
      * Generated from protobuf field <code>bool case_sensitive_sort = 9;</code>
      * @param bool $var
@@ -770,11 +768,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of expressions specifies histogram requests against
-     * matching profiles for
+     * A list of expressions specifies histogram requests against matching
+     * profiles for
      * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
-     * The expression syntax looks like a function definition with optional
-     * parameters.
+     * The expression syntax looks like a function definition with parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
      * Data types:
      * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
@@ -850,11 +847,10 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of expressions specifies histogram requests against
-     * matching profiles for
+     * A list of expressions specifies histogram requests against matching
+     * profiles for
      * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
-     * The expression syntax looks like a function definition with optional
-     * parameters.
+     * The expression syntax looks like a function definition with parameters.
      * Function syntax: function_name(histogram_facet[, list of buckets])
      * Data types:
      * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
@@ -934,7 +930,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An id that uniquely identifies the result set of a
+     * An id that uniquely identifies the result set of a
      * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
      * call. The id should be retrieved from the
      * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
@@ -970,7 +966,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An id that uniquely identifies the result set of a
+     * An id that uniquely identifies the result set of a
      * [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
      * call. The id should be retrieved from the
      * [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
@@ -1010,7 +1006,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This flag is used to indicate whether the service will attempt to
+     * This flag is used to indicate whether the service will attempt to
      * understand synonyms and terms related to the search query or treat the
      * query "as is" when it generates a set of results. By default this flag is
      * set to false, thus allowing expanded results to also be returned. For
@@ -1032,7 +1028,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This flag is used to indicate whether the service will attempt to
+     * This flag is used to indicate whether the service will attempt to
      * understand synonyms and terms related to the search query or treat the
      * query "as is" when it generates a set of results. By default this flag is
      * set to false, thus allowing expanded results to also be returned. For

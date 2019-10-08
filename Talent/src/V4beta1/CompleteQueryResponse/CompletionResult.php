@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Resource that represents completion results.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CompleteQueryResponse.CompletionResult</code>

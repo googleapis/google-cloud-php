@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CompensationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Job compensation information.
+     * Job compensation information.
      * At most one entry can be of type
      * [CompensationInfo.CompensationType.BASE][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.BASE],
      * which is referred as **base compensation entry** for the job.
@@ -25,8 +25,8 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     private $entries;
     /**
-     * Output only. Annualized base compensation range. Computed as
-     * base compensation entry's
+     * Output only. Annualized base compensation range. Computed as base
+     * compensation entry's
      * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      * times
      * [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -34,12 +34,12 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      * for explanation on compensation annualization.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $annualized_base_compensation_range = null;
     /**
-     * Output only. Annualized total compensation range. Computed as
-     * all compensation entries'
+     * Output only. Annualized total compensation range. Computed as all
+     * compensation entries'
      * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      * times
      * [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -47,7 +47,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      * for explanation on compensation annualization.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $annualized_total_compensation_range = null;
 
@@ -58,13 +58,13 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
-     *           Optional. Job compensation information.
+     *           Job compensation information.
      *           At most one entry can be of type
      *           [CompensationInfo.CompensationType.BASE][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.BASE],
      *           which is referred as **base compensation entry** for the job.
      *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange $annualized_base_compensation_range
-     *           Output only. Annualized base compensation range. Computed as
-     *           base compensation entry's
+     *           Output only. Annualized base compensation range. Computed as base
+     *           compensation entry's
      *           [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      *           times
      *           [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -72,8 +72,8 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      *           [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      *           for explanation on compensation annualization.
      *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange $annualized_total_compensation_range
-     *           Output only. Annualized total compensation range. Computed as
-     *           all compensation entries'
+     *           Output only. Annualized total compensation range. Computed as all
+     *           compensation entries'
      *           [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      *           times
      *           [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -88,7 +88,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Job compensation information.
+     * Job compensation information.
      * At most one entry can be of type
      * [CompensationInfo.CompensationType.BASE][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.BASE],
      * which is referred as **base compensation entry** for the job.
@@ -102,7 +102,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Job compensation information.
+     * Job compensation information.
      * At most one entry can be of type
      * [CompensationInfo.CompensationType.BASE][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.BASE],
      * which is referred as **base compensation entry** for the job.
@@ -120,8 +120,8 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annualized base compensation range. Computed as
-     * base compensation entry's
+     * Output only. Annualized base compensation range. Computed as base
+     * compensation entry's
      * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      * times
      * [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -129,7 +129,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      * for explanation on compensation annualization.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange
      */
     public function getAnnualizedBaseCompensationRange()
@@ -138,8 +138,8 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annualized base compensation range. Computed as
-     * base compensation entry's
+     * Output only. Annualized base compensation range. Computed as base
+     * compensation entry's
      * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      * times
      * [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -147,7 +147,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      * for explanation on compensation annualization.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange $var
      * @return $this
      */
@@ -160,8 +160,8 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annualized total compensation range. Computed as
-     * all compensation entries'
+     * Output only. Annualized total compensation range. Computed as all
+     * compensation entries'
      * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      * times
      * [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -169,7 +169,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      * for explanation on compensation annualization.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange
      */
     public function getAnnualizedTotalCompensationRange()
@@ -178,8 +178,8 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Annualized total compensation range. Computed as
-     * all compensation entries'
+     * Output only. Annualized total compensation range. Computed as all
+     * compensation entries'
      * [CompensationEntry.amount][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.amount]
      * times
      * [CompensationEntry.expected_units_per_year][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry.expected_units_per_year].
@@ -187,7 +187,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry]
      * for explanation on compensation annualization.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange $var
      * @return $this
      */

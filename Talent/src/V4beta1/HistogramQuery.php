@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input Only.
  * The histogram request.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.HistogramQuery</code>

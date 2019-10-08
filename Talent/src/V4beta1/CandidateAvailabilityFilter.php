@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only
  * Filter on availability signals.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CandidateAvailabilityFilter</code>
@@ -17,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CandidateAvailabilityFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. It is false by default. If true, API excludes all the potential
-     * available profiles.
+     * It is false by default. If true, API excludes all the potential available
+     * profiles.
      *
      * Generated from protobuf field <code>bool negated = 1;</code>
      */
@@ -31,8 +30,8 @@ class CandidateAvailabilityFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $negated
-     *           Optional. It is false by default. If true, API excludes all the potential
-     *           available profiles.
+     *           It is false by default. If true, API excludes all the potential available
+     *           profiles.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +40,8 @@ class CandidateAvailabilityFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. It is false by default. If true, API excludes all the potential
-     * available profiles.
+     * It is false by default. If true, API excludes all the potential available
+     * profiles.
      *
      * Generated from protobuf field <code>bool negated = 1;</code>
      * @return bool
@@ -53,8 +52,8 @@ class CandidateAvailabilityFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. It is false by default. If true, API excludes all the potential
-     * available profiles.
+     * It is false by default. If true, API excludes all the potential available
+     * profiles.
      *
      * Generated from protobuf field <code>bool negated = 1;</code>
      * @param bool $var

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Skill extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Skill display name.
+     * Skill display name.
      * For example, "Java", "Python".
      * Number of characters allowed is 100.
      *
@@ -24,20 +24,20 @@ class Skill extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. The last time this skill was used.
+     * The last time this skill was used.
      *
      * Generated from protobuf field <code>.google.type.Date last_used_date = 2;</code>
      */
     private $last_used_date = null;
     /**
-     * Optional. Skill proficiency level which indicates how proficient the
-     * candidate is at this skill.
+     * Skill proficiency level which indicates how proficient the candidate is at
+     * this skill.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SkillProficiencyLevel level = 3;</code>
      */
     private $level = 0;
     /**
-     * Optional. A paragraph describes context of this skill.
+     * A paragraph describes context of this skill.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string context = 4;</code>
@@ -50,7 +50,7 @@ class Skill extends \Google\Protobuf\Internal\Message
      * [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string skill_name_snippet = 5;</code>
+     * Generated from protobuf field <code>string skill_name_snippet = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $skill_name_snippet = '';
 
@@ -61,16 +61,16 @@ class Skill extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Optional. Skill display name.
+     *           Skill display name.
      *           For example, "Java", "Python".
      *           Number of characters allowed is 100.
      *     @type \Google\Type\Date $last_used_date
-     *           Optional. The last time this skill was used.
+     *           The last time this skill was used.
      *     @type int $level
-     *           Optional. Skill proficiency level which indicates how proficient the
-     *           candidate is at this skill.
+     *           Skill proficiency level which indicates how proficient the candidate is at
+     *           this skill.
      *     @type string $context
-     *           Optional. A paragraph describes context of this skill.
+     *           A paragraph describes context of this skill.
      *           Number of characters allowed is 100,000.
      *     @type string $skill_name_snippet
      *           Output only. Skill name snippet shows how the
@@ -86,7 +86,7 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Skill display name.
+     * Skill display name.
      * For example, "Java", "Python".
      * Number of characters allowed is 100.
      *
@@ -99,7 +99,7 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Skill display name.
+     * Skill display name.
      * For example, "Java", "Python".
      * Number of characters allowed is 100.
      *
@@ -116,7 +116,7 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The last time this skill was used.
+     * The last time this skill was used.
      *
      * Generated from protobuf field <code>.google.type.Date last_used_date = 2;</code>
      * @return \Google\Type\Date
@@ -127,7 +127,7 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The last time this skill was used.
+     * The last time this skill was used.
      *
      * Generated from protobuf field <code>.google.type.Date last_used_date = 2;</code>
      * @param \Google\Type\Date $var
@@ -142,8 +142,8 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Skill proficiency level which indicates how proficient the
-     * candidate is at this skill.
+     * Skill proficiency level which indicates how proficient the candidate is at
+     * this skill.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SkillProficiencyLevel level = 3;</code>
      * @return int
@@ -154,8 +154,8 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Skill proficiency level which indicates how proficient the
-     * candidate is at this skill.
+     * Skill proficiency level which indicates how proficient the candidate is at
+     * this skill.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SkillProficiencyLevel level = 3;</code>
      * @param int $var
@@ -170,7 +170,7 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A paragraph describes context of this skill.
+     * A paragraph describes context of this skill.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string context = 4;</code>
@@ -182,7 +182,7 @@ class Skill extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A paragraph describes context of this skill.
+     * A paragraph describes context of this skill.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string context = 4;</code>
@@ -204,7 +204,7 @@ class Skill extends \Google\Protobuf\Internal\Message
      * [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string skill_name_snippet = 5;</code>
+     * Generated from protobuf field <code>string skill_name_snippet = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getSkillNameSnippet()
@@ -219,7 +219,7 @@ class Skill extends \Google\Protobuf\Internal\Message
      * [display_name][google.cloud.talent.v4beta1.Skill.display_name] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string skill_name_snippet = 5;</code>
+     * Generated from protobuf field <code>string skill_name_snippet = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

@@ -51,6 +51,20 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Begins executing a batch create jobs operation.
+     * @param \Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchCreateJobs(\Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchCreateJobs',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Retrieves the specified job, whose status is OPEN or recently EXPIRED
      * within the last 90 days.
      * @param \Google\Cloud\Talent\V4beta1\GetJobRequest $argument input argument
@@ -83,6 +97,20 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Begins executing a batch update jobs operation.
+     * @param \Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchUpdateJobs(\Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchUpdateJobs',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Deletes the specified job.
      *
      * Typically, the job becomes unsearchable within 10 seconds, but it may take
@@ -100,20 +128,6 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists jobs by filter.
-     * @param \Google\Cloud\Talent\V4beta1\ListJobsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function ListJobs(\Google\Cloud\Talent\V4beta1\ListJobsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/ListJobs',
-        $argument,
-        ['\Google\Cloud\Talent\V4beta1\ListJobsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Deletes a list of [Job][google.cloud.talent.v4beta1.Job]s by filter.
      * @param \Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument input argument
      * @param array $metadata metadata
@@ -124,6 +138,20 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchDeleteJobs',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists jobs by filter.
+     * @param \Google\Cloud\Talent\V4beta1\ListJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListJobs(\Google\Cloud\Talent\V4beta1\ListJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/ListJobs',
+        $argument,
+        ['\Google\Cloud\Talent\V4beta1\ListJobsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -169,34 +197,6 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/SearchJobsForAlert',
         $argument,
         ['\Google\Cloud\Talent\V4beta1\SearchJobsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Begins executing a batch create jobs operation.
-     * @param \Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function BatchCreateJobs(\Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchCreateJobs',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Begins executing a batch update jobs operation.
-     * @param \Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function BatchUpdateJobs(\Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchUpdateJobs',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

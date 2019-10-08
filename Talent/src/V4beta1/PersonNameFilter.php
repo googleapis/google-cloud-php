@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Filter on person name.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.PersonNameFilter</code>
@@ -23,7 +22,7 @@ class PersonNameFilter extends \Google\Protobuf\Internal\Message
      * [PersonName.structured_name.family_name][], and
      * [PersonName.formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name].
      *
-     * Generated from protobuf field <code>string person_name = 1;</code>
+     * Generated from protobuf field <code>string person_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $person_name = '';
 
@@ -53,7 +52,7 @@ class PersonNameFilter extends \Google\Protobuf\Internal\Message
      * [PersonName.structured_name.family_name][], and
      * [PersonName.formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name].
      *
-     * Generated from protobuf field <code>string person_name = 1;</code>
+     * Generated from protobuf field <code>string person_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getPersonName()
@@ -68,7 +67,7 @@ class PersonNameFilter extends \Google\Protobuf\Internal\Message
      * [PersonName.structured_name.family_name][], and
      * [PersonName.formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name].
      *
-     * Generated from protobuf field <code>string person_name = 1;</code>
+     * Generated from protobuf field <code>string person_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Histogram result that matches
  * [HistogramQuery][google.cloud.talent.v4beta1.HistogramQuery] specified in
  * searches.

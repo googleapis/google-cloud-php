@@ -16,19 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class EmploymentRecord extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Start date of the employment.
+     * Start date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      */
     private $start_date = null;
     /**
-     * Optional. End date of the employment.
+     * End date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      */
     private $end_date = null;
     /**
-     * Optional. The name of the employer company/organization.
+     * The name of the employer company/organization.
      * For example, "Google", "Alphabet", and so on.
      * Number of characters allowed is 250.
      *
@@ -36,7 +36,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     private $employer_name = '';
     /**
-     * Optional. The division name of the employment.
+     * The division name of the employment.
      * For example, division, department, client, and so on.
      * Number of characters allowed is 100.
      *
@@ -44,13 +44,13 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     private $division_name = '';
     /**
-     * Optional. The physical address of the employer.
+     * The physical address of the employer.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
      */
     private $address = null;
     /**
-     * Optional. The job title of the employment.
+     * The job title of the employment.
      * For example, "Software Engineer", "Data Scientist", and so on.
      * Number of characters allowed is 250.
      *
@@ -58,26 +58,26 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     private $job_title = '';
     /**
-     * Optional. The description of job content.
+     * The description of job content.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string job_description = 7;</code>
      */
     private $job_description = '';
     /**
-     * Optional. If the jobs is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      */
     private $is_supervisor = null;
     /**
-     * Optional. If this employment is self-employed.
+     * If this employment is self-employed.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
      */
     private $is_self_employed = null;
     /**
-     * Optional. If this employment is current.
+     * If this employment is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
      */
@@ -89,7 +89,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string job_title_snippet = 11;</code>
+     * Generated from protobuf field <code>string job_title_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $job_title_snippet = '';
     /**
@@ -99,7 +99,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string job_description_snippet = 12;</code>
+     * Generated from protobuf field <code>string job_description_snippet = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $job_description_snippet = '';
     /**
@@ -109,7 +109,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
+     * Generated from protobuf field <code>string employer_name_snippet = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $employer_name_snippet = '';
 
@@ -120,32 +120,32 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Type\Date $start_date
-     *           Optional. Start date of the employment.
+     *           Start date of the employment.
      *     @type \Google\Type\Date $end_date
-     *           Optional. End date of the employment.
+     *           End date of the employment.
      *     @type string $employer_name
-     *           Optional. The name of the employer company/organization.
+     *           The name of the employer company/organization.
      *           For example, "Google", "Alphabet", and so on.
      *           Number of characters allowed is 250.
      *     @type string $division_name
-     *           Optional. The division name of the employment.
+     *           The division name of the employment.
      *           For example, division, department, client, and so on.
      *           Number of characters allowed is 100.
      *     @type \Google\Cloud\Talent\V4beta1\Address $address
-     *           Optional. The physical address of the employer.
+     *           The physical address of the employer.
      *     @type string $job_title
-     *           Optional. The job title of the employment.
+     *           The job title of the employment.
      *           For example, "Software Engineer", "Data Scientist", and so on.
      *           Number of characters allowed is 250.
      *     @type string $job_description
-     *           Optional. The description of job content.
+     *           The description of job content.
      *           Number of characters allowed is 100,000.
      *     @type \Google\Protobuf\BoolValue $is_supervisor
-     *           Optional. If the jobs is a supervisor position.
+     *           If the jobs is a supervisor position.
      *     @type \Google\Protobuf\BoolValue $is_self_employed
-     *           Optional. If this employment is self-employed.
+     *           If this employment is self-employed.
      *     @type \Google\Protobuf\BoolValue $is_current
-     *           Optional. If this employment is current.
+     *           If this employment is current.
      *     @type string $job_title_snippet
      *           Output only. The job title snippet shows how the
      *           [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] is
@@ -172,7 +172,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Start date of the employment.
+     * Start date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @return \Google\Type\Date
@@ -183,7 +183,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Start date of the employment.
+     * Start date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
      * @param \Google\Type\Date $var
@@ -198,7 +198,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. End date of the employment.
+     * End date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      * @return \Google\Type\Date
@@ -209,7 +209,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. End date of the employment.
+     * End date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
      * @param \Google\Type\Date $var
@@ -224,7 +224,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the employer company/organization.
+     * The name of the employer company/organization.
      * For example, "Google", "Alphabet", and so on.
      * Number of characters allowed is 250.
      *
@@ -237,7 +237,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the employer company/organization.
+     * The name of the employer company/organization.
      * For example, "Google", "Alphabet", and so on.
      * Number of characters allowed is 250.
      *
@@ -254,7 +254,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The division name of the employment.
+     * The division name of the employment.
      * For example, division, department, client, and so on.
      * Number of characters allowed is 100.
      *
@@ -267,7 +267,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The division name of the employment.
+     * The division name of the employment.
      * For example, division, department, client, and so on.
      * Number of characters allowed is 100.
      *
@@ -284,7 +284,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The physical address of the employer.
+     * The physical address of the employer.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
      * @return \Google\Cloud\Talent\V4beta1\Address
@@ -295,7 +295,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The physical address of the employer.
+     * The physical address of the employer.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
      * @param \Google\Cloud\Talent\V4beta1\Address $var
@@ -310,7 +310,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The job title of the employment.
+     * The job title of the employment.
      * For example, "Software Engineer", "Data Scientist", and so on.
      * Number of characters allowed is 250.
      *
@@ -323,7 +323,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The job title of the employment.
+     * The job title of the employment.
      * For example, "Software Engineer", "Data Scientist", and so on.
      * Number of characters allowed is 250.
      *
@@ -340,7 +340,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of job content.
+     * The description of job content.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string job_description = 7;</code>
@@ -352,7 +352,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of job content.
+     * The description of job content.
      * Number of characters allowed is 100,000.
      *
      * Generated from protobuf field <code>string job_description = 7;</code>
@@ -368,7 +368,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If the jobs is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @return \Google\Protobuf\BoolValue
@@ -381,7 +381,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getIsSupervisor()</code>
 
-     * Optional. If the jobs is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @return bool|null
@@ -393,7 +393,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If the jobs is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -410,7 +410,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional. If the jobs is a supervisor position.
+     * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
      * @param bool|null $var
@@ -423,7 +423,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this employment is self-employed.
+     * If this employment is self-employed.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
      * @return \Google\Protobuf\BoolValue
@@ -436,7 +436,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getIsSelfEmployed()</code>
 
-     * Optional. If this employment is self-employed.
+     * If this employment is self-employed.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
      * @return bool|null
@@ -448,7 +448,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this employment is self-employed.
+     * If this employment is self-employed.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -465,7 +465,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional. If this employment is self-employed.
+     * If this employment is self-employed.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
      * @param bool|null $var
@@ -478,7 +478,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this employment is current.
+     * If this employment is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
      * @return \Google\Protobuf\BoolValue
@@ -491,7 +491,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getIsCurrent()</code>
 
-     * Optional. If this employment is current.
+     * If this employment is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
      * @return bool|null
@@ -503,7 +503,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If this employment is current.
+     * If this employment is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -520,7 +520,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional. If this employment is current.
+     * If this employment is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
      * @param bool|null $var
@@ -539,7 +539,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string job_title_snippet = 11;</code>
+     * Generated from protobuf field <code>string job_title_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getJobTitleSnippet()
@@ -554,7 +554,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [job_title][google.cloud.talent.v4beta1.EmploymentRecord.job_title] isn't
      * related to the search query.
      *
-     * Generated from protobuf field <code>string job_title_snippet = 11;</code>
+     * Generated from protobuf field <code>string job_title_snippet = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -573,7 +573,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string job_description_snippet = 12;</code>
+     * Generated from protobuf field <code>string job_description_snippet = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getJobDescriptionSnippet()
@@ -588,7 +588,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [job_description][google.cloud.talent.v4beta1.EmploymentRecord.job_description]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string job_description_snippet = 12;</code>
+     * Generated from protobuf field <code>string job_description_snippet = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -607,7 +607,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
+     * Generated from protobuf field <code>string employer_name_snippet = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getEmployerNameSnippet()
@@ -622,7 +622,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * [employer_name][google.cloud.talent.v4beta1.EmploymentRecord.employer_name]
      * isn't related to the search query.
      *
-     * Generated from protobuf field <code>string employer_name_snippet = 13;</code>
+     * Generated from protobuf field <code>string employer_name_snippet = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

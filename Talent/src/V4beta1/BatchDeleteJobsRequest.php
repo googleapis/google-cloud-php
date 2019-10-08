@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Batch delete jobs request.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.BatchDeleteJobsRequest</code>
@@ -18,12 +17,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
@@ -32,10 +30,10 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      * The fields eligible for filtering are:
      * * `companyName` (Required)
      * * `requisitionId` (Required)
-     * Sample Query: companyName = "projects/api-test-project/companies/123" AND
+     * Sample Query: companyName = "projects/foo/companies/bar" AND
      * requisitionId = "req-1"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
 
@@ -47,17 +45,16 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the tenant under which the job is created.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenant/foo".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project".
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     *           is created. For example, "projects/foo".
      *     @type string $filter
      *           Required. The filter string specifies the jobs to be deleted.
      *           Supported operator: =, AND
      *           The fields eligible for filtering are:
      *           * `companyName` (Required)
      *           * `requisitionId` (Required)
-     *           Sample Query: companyName = "projects/api-test-project/companies/123" AND
+     *           Sample Query: companyName = "projects/foo/companies/bar" AND
      *           requisitionId = "req-1"
      * }
      */
@@ -68,12 +65,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -83,12 +79,11 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -106,10 +101,10 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      * The fields eligible for filtering are:
      * * `companyName` (Required)
      * * `requisitionId` (Required)
-     * Sample Query: companyName = "projects/api-test-project/companies/123" AND
+     * Sample Query: companyName = "projects/foo/companies/bar" AND
      * requisitionId = "req-1"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -123,10 +118,10 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      * The fields eligible for filtering are:
      * * `companyName` (Required)
      * * `requisitionId` (Required)
-     * Sample Query: companyName = "projects/api-test-project/companies/123" AND
+     * Sample Query: companyName = "projects/foo/companies/bar" AND
      * requisitionId = "req-1"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

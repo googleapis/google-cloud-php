@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * The query required to perform a search query.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.JobQuery</code>
@@ -17,31 +16,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class JobQuery extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The query string that matches against the job title, description,
-     * and location fields.
+     * The query string that matches against the job title, description, and
+     * location fields.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string query = 1;</code>
      */
     private $query = '';
     /**
-     * Optional. This filter specifies the company entities to search against.
+     * This filter specifies the company entities to search against.
      * If a value isn't specified, jobs are searched for against all
      * companies.
      * If multiple values are specified, jobs are searched against the
      * companies specified.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/companies/bar".
      * At most 20 company filters are allowed.
      *
      * Generated from protobuf field <code>repeated string companies = 2;</code>
      */
     private $companies;
     /**
-     * Optional. The location filter specifies geo-regions containing the jobs to
+     * The location filter specifies geo-regions containing the jobs to
      * search against. See
      * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
      * information.
@@ -57,9 +56,9 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $location_filters;
     /**
-     * Optional. The category filter specifies the categories of jobs to search
-     * against. See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for
-     * more information.
+     * The category filter specifies the categories of jobs to search against.
+     * See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for more
+     * information.
      * If a value isn't specified, jobs from any category are searched against.
      * If multiple values are specified, jobs from any of the specified
      * categories are searched against.
@@ -68,8 +67,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $job_categories;
     /**
-     * Optional. Allows filtering jobs by commute time with different travel
-     * methods (for
+     * Allows filtering jobs by commute time with different travel methods (for
      *  example, driving or public transit).
      * Note: This only works when you specify a
      * [CommuteMethod][google.cloud.talent.v4beta1.CommuteMethod]. In this case,
@@ -81,7 +79,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $commute_filter = null;
     /**
-     * Optional. This filter specifies the exact company
+     * This filter specifies the exact company
      * [Company.display_name][google.cloud.talent.v4beta1.Company.display_name] of
      * the jobs to search against.
      * If a value isn't specified, jobs within the search results are
@@ -94,7 +92,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $company_display_names;
     /**
-     * Optional. This search filter is applied only to
+     * This search filter is applied only to
      * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
      * For example, if the filter is specified as "Hourly job with per-hour
      * compensation > $15", only jobs meeting these criteria are searched. If a
@@ -104,7 +102,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $compensation_filter = null;
     /**
-     * Optional. This filter specifies a structured syntax to match against the
+     * This filter specifies a structured syntax to match against the
      * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
      * marked as `filterable`.
      * The syntax for this expression is a subset of SQL syntax.
@@ -127,7 +125,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $custom_attribute_filter = '';
     /**
-     * Optional. This flag controls the spell-check feature. If false, the
+     * This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query,
      * for example, "enginee" is corrected to "engineer".
      * Defaults to false: a spell check is performed.
@@ -136,8 +134,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $disable_spell_check = false;
     /**
-     * Optional. The employment type filter specifies the employment type of jobs
-     * to search against, such as
+     * The employment type filter specifies the employment type of jobs to
+     * search against, such as
      * [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      * If a value isn't specified, jobs in the search results includes any
      * employment type.
@@ -148,7 +146,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $employment_types;
     /**
-     * Optional. This filter specifies the locale of jobs to search against,
+     * This filter specifies the locale of jobs to search against,
      * for example, "en-US".
      * If a value isn't specified, the search results can contain jobs in any
      * locale.
@@ -161,15 +159,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $language_codes;
     /**
-     * Optional. Jobs published within a range specified by this filter are
-     * searched against.
+     * Jobs published within a range specified by this filter are searched
+     * against.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimestampRange publish_time_range = 12;</code>
      */
     private $publish_time_range = null;
     /**
-     * Optional. This filter specifies a list of job names to be excluded during
-     * search.
+     * This filter specifies a list of job names to be excluded during search.
      * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>
@@ -183,23 +180,23 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $query
-     *           Optional. The query string that matches against the job title, description,
-     *           and location fields.
+     *           The query string that matches against the job title, description, and
+     *           location fields.
      *           The maximum number of allowed characters is 255.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $companies
-     *           Optional. This filter specifies the company entities to search against.
+     *           This filter specifies the company entities to search against.
      *           If a value isn't specified, jobs are searched for against all
      *           companies.
      *           If multiple values are specified, jobs are searched against the
      *           companies specified.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *           example, "projects/api-test-project/tenants/foo/companies/bar".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project/companies/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+     *           example, "projects/foo/tenants/bar/companies/baz".
+     *           If tenant id is unspecified, the default tenant is used. For
+     *           example, "projects/foo/companies/bar".
      *           At most 20 company filters are allowed.
      *     @type \Google\Cloud\Talent\V4beta1\LocationFilter[]|\Google\Protobuf\Internal\RepeatedField $location_filters
-     *           Optional. The location filter specifies geo-regions containing the jobs to
+     *           The location filter specifies geo-regions containing the jobs to
      *           search against. See
      *           [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
      *           information.
@@ -211,15 +208,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           parameter, the maximum provided distance is used for all locations.
      *           At most 5 location filters are allowed.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $job_categories
-     *           Optional. The category filter specifies the categories of jobs to search
-     *           against. See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for
-     *           more information.
+     *           The category filter specifies the categories of jobs to search against.
+     *           See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for more
+     *           information.
      *           If a value isn't specified, jobs from any category are searched against.
      *           If multiple values are specified, jobs from any of the specified
      *           categories are searched against.
      *     @type \Google\Cloud\Talent\V4beta1\CommuteFilter $commute_filter
-     *           Optional. Allows filtering jobs by commute time with different travel
-     *           methods (for
+     *           Allows filtering jobs by commute time with different travel methods (for
      *            example, driving or public transit).
      *           Note: This only works when you specify a
      *           [CommuteMethod][google.cloud.talent.v4beta1.CommuteMethod]. In this case,
@@ -227,7 +223,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           is ignored.
      *            Currently we don't support sorting by commute time.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $company_display_names
-     *           Optional. This filter specifies the exact company
+     *           This filter specifies the exact company
      *           [Company.display_name][google.cloud.talent.v4beta1.Company.display_name] of
      *           the jobs to search against.
      *           If a value isn't specified, jobs within the search results are
@@ -236,13 +232,13 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           associated with any of the specified companies.
      *           At most 20 company display name filters are allowed.
      *     @type \Google\Cloud\Talent\V4beta1\CompensationFilter $compensation_filter
-     *           Optional. This search filter is applied only to
+     *           This search filter is applied only to
      *           [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
      *           For example, if the filter is specified as "Hourly job with per-hour
      *           compensation > $15", only jobs meeting these criteria are searched. If a
      *           filter isn't defined, all open jobs are searched.
      *     @type string $custom_attribute_filter
-     *           Optional. This filter specifies a structured syntax to match against the
+     *           This filter specifies a structured syntax to match against the
      *           [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
      *           marked as `filterable`.
      *           The syntax for this expression is a subset of SQL syntax.
@@ -261,20 +257,20 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
      *           driving_years > 10`
      *     @type bool $disable_spell_check
-     *           Optional. This flag controls the spell-check feature. If false, the
+     *           This flag controls the spell-check feature. If false, the
      *           service attempts to correct a misspelled query,
      *           for example, "enginee" is corrected to "engineer".
      *           Defaults to false: a spell check is performed.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $employment_types
-     *           Optional. The employment type filter specifies the employment type of jobs
-     *           to search against, such as
+     *           The employment type filter specifies the employment type of jobs to
+     *           search against, such as
      *           [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      *           If a value isn't specified, jobs in the search results includes any
      *           employment type.
      *           If multiple values are specified, jobs in the search results include
      *           any of the specified employment types.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           Optional. This filter specifies the locale of jobs to search against,
+     *           This filter specifies the locale of jobs to search against,
      *           for example, "en-US".
      *           If a value isn't specified, the search results can contain jobs in any
      *           locale.
@@ -283,11 +279,10 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *           At most 10 language code filters are allowed.
      *     @type \Google\Cloud\Talent\V4beta1\TimestampRange $publish_time_range
-     *           Optional. Jobs published within a range specified by this filter are
-     *           searched against.
+     *           Jobs published within a range specified by this filter are searched
+     *           against.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excluded_jobs
-     *           Optional. This filter specifies a list of job names to be excluded during
-     *           search.
+     *           This filter specifies a list of job names to be excluded during search.
      *           At most 400 excluded job names are allowed.
      * }
      */
@@ -297,8 +292,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The query string that matches against the job title, description,
-     * and location fields.
+     * The query string that matches against the job title, description, and
+     * location fields.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string query = 1;</code>
@@ -310,8 +305,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The query string that matches against the job title, description,
-     * and location fields.
+     * The query string that matches against the job title, description, and
+     * location fields.
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>string query = 1;</code>
@@ -327,16 +322,16 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies the company entities to search against.
+     * This filter specifies the company entities to search against.
      * If a value isn't specified, jobs are searched for against all
      * companies.
      * If multiple values are specified, jobs are searched against the
      * companies specified.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/companies/bar".
      * At most 20 company filters are allowed.
      *
      * Generated from protobuf field <code>repeated string companies = 2;</code>
@@ -348,16 +343,16 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies the company entities to search against.
+     * This filter specifies the company entities to search against.
      * If a value isn't specified, jobs are searched for against all
      * companies.
      * If multiple values are specified, jobs are searched against the
      * companies specified.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/companies/bar".
      * At most 20 company filters are allowed.
      *
      * Generated from protobuf field <code>repeated string companies = 2;</code>
@@ -373,7 +368,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The location filter specifies geo-regions containing the jobs to
+     * The location filter specifies geo-regions containing the jobs to
      * search against. See
      * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
      * information.
@@ -394,7 +389,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The location filter specifies geo-regions containing the jobs to
+     * The location filter specifies geo-regions containing the jobs to
      * search against. See
      * [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more
      * information.
@@ -419,9 +414,9 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The category filter specifies the categories of jobs to search
-     * against. See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for
-     * more information.
+     * The category filter specifies the categories of jobs to search against.
+     * See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for more
+     * information.
      * If a value isn't specified, jobs from any category are searched against.
      * If multiple values are specified, jobs from any of the specified
      * categories are searched against.
@@ -435,9 +430,9 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The category filter specifies the categories of jobs to search
-     * against. See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for
-     * more information.
+     * The category filter specifies the categories of jobs to search against.
+     * See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for more
+     * information.
      * If a value isn't specified, jobs from any category are searched against.
      * If multiple values are specified, jobs from any of the specified
      * categories are searched against.
@@ -455,8 +450,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows filtering jobs by commute time with different travel
-     * methods (for
+     * Allows filtering jobs by commute time with different travel methods (for
      *  example, driving or public transit).
      * Note: This only works when you specify a
      * [CommuteMethod][google.cloud.talent.v4beta1.CommuteMethod]. In this case,
@@ -473,8 +467,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Allows filtering jobs by commute time with different travel
-     * methods (for
+     * Allows filtering jobs by commute time with different travel methods (for
      *  example, driving or public transit).
      * Note: This only works when you specify a
      * [CommuteMethod][google.cloud.talent.v4beta1.CommuteMethod]. In this case,
@@ -495,7 +488,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies the exact company
+     * This filter specifies the exact company
      * [Company.display_name][google.cloud.talent.v4beta1.Company.display_name] of
      * the jobs to search against.
      * If a value isn't specified, jobs within the search results are
@@ -513,7 +506,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies the exact company
+     * This filter specifies the exact company
      * [Company.display_name][google.cloud.talent.v4beta1.Company.display_name] of
      * the jobs to search against.
      * If a value isn't specified, jobs within the search results are
@@ -535,7 +528,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This search filter is applied only to
+     * This search filter is applied only to
      * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
      * For example, if the filter is specified as "Hourly job with per-hour
      * compensation > $15", only jobs meeting these criteria are searched. If a
@@ -550,7 +543,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This search filter is applied only to
+     * This search filter is applied only to
      * [Job.compensation_info][google.cloud.talent.v4beta1.Job.compensation_info].
      * For example, if the filter is specified as "Hourly job with per-hour
      * compensation > $15", only jobs meeting these criteria are searched. If a
@@ -569,7 +562,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies a structured syntax to match against the
+     * This filter specifies a structured syntax to match against the
      * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
      * marked as `filterable`.
      * The syntax for this expression is a subset of SQL syntax.
@@ -597,7 +590,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies a structured syntax to match against the
+     * This filter specifies a structured syntax to match against the
      * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes]
      * marked as `filterable`.
      * The syntax for this expression is a subset of SQL syntax.
@@ -629,7 +622,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This flag controls the spell-check feature. If false, the
+     * This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query,
      * for example, "enginee" is corrected to "engineer".
      * Defaults to false: a spell check is performed.
@@ -643,7 +636,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This flag controls the spell-check feature. If false, the
+     * This flag controls the spell-check feature. If false, the
      * service attempts to correct a misspelled query,
      * for example, "enginee" is corrected to "engineer".
      * Defaults to false: a spell check is performed.
@@ -661,8 +654,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The employment type filter specifies the employment type of jobs
-     * to search against, such as
+     * The employment type filter specifies the employment type of jobs to
+     * search against, such as
      * [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      * If a value isn't specified, jobs in the search results includes any
      * employment type.
@@ -678,8 +671,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The employment type filter specifies the employment type of jobs
-     * to search against, such as
+     * The employment type filter specifies the employment type of jobs to
+     * search against, such as
      * [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      * If a value isn't specified, jobs in the search results includes any
      * employment type.
@@ -699,7 +692,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies the locale of jobs to search against,
+     * This filter specifies the locale of jobs to search against,
      * for example, "en-US".
      * If a value isn't specified, the search results can contain jobs in any
      * locale.
@@ -717,7 +710,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies the locale of jobs to search against,
+     * This filter specifies the locale of jobs to search against,
      * for example, "en-US".
      * If a value isn't specified, the search results can contain jobs in any
      * locale.
@@ -739,8 +732,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Jobs published within a range specified by this filter are
-     * searched against.
+     * Jobs published within a range specified by this filter are searched
+     * against.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimestampRange publish_time_range = 12;</code>
      * @return \Google\Cloud\Talent\V4beta1\TimestampRange
@@ -751,8 +744,8 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Jobs published within a range specified by this filter are
-     * searched against.
+     * Jobs published within a range specified by this filter are searched
+     * against.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimestampRange publish_time_range = 12;</code>
      * @param \Google\Cloud\Talent\V4beta1\TimestampRange $var
@@ -767,8 +760,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies a list of job names to be excluded during
-     * search.
+     * This filter specifies a list of job names to be excluded during search.
      * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>
@@ -780,8 +772,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This filter specifies a list of job names to be excluded during
-     * search.
+     * This filter specifies a list of job names to be excluded during search.
      * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>

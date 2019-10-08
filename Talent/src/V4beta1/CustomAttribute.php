@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional but exactly one of
+     * Exactly one of
      * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      * must be specified.
@@ -32,7 +32,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $string_values;
     /**
-     * Optional but exactly one of
+     * Exactly one of
      * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      * must be specified.
@@ -46,8 +46,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $long_values;
     /**
-     * Optional. If the `filterable` flag is true, custom field values are
-     * searchable. If false, values are not searchable.
+     * If the `filterable` flag is true, custom field values are searchable.
+     * If false, values are not searchable.
      * Default is false.
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>
@@ -61,7 +61,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $string_values
-     *           Optional but exactly one of
+     *           Exactly one of
      *           [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      *           or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      *           must be specified.
@@ -73,7 +73,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           unfilterable `string_values` is 50KB.
      *           Empty string isn't allowed.
      *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $long_values
-     *           Optional but exactly one of
+     *           Exactly one of
      *           [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      *           or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      *           must be specified.
@@ -83,8 +83,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is
      *           supported.
      *     @type bool $filterable
-     *           Optional. If the `filterable` flag is true, custom field values are
-     *           searchable. If false, values are not searchable.
+     *           If the `filterable` flag is true, custom field values are searchable.
+     *           If false, values are not searchable.
      *           Default is false.
      * }
      */
@@ -94,7 +94,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of
+     * Exactly one of
      * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      * must be specified.
@@ -115,7 +115,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of
+     * Exactly one of
      * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      * must be specified.
@@ -140,7 +140,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of
+     * Exactly one of
      * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      * must be specified.
@@ -159,7 +159,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but exactly one of
+     * Exactly one of
      * [string_values][google.cloud.talent.v4beta1.CustomAttribute.string_values]
      * or [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values]
      * must be specified.
@@ -182,8 +182,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If the `filterable` flag is true, custom field values are
-     * searchable. If false, values are not searchable.
+     * If the `filterable` flag is true, custom field values are searchable.
+     * If false, values are not searchable.
      * Default is false.
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>
@@ -195,8 +195,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If the `filterable` flag is true, custom field values are
-     * searchable. If false, values are not searchable.
+     * If the `filterable` flag is true, custom field values are searchable.
+     * If false, values are not searchable.
      * Default is false.
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>

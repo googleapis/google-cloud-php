@@ -19,7 +19,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     /**
      * Required. Type of event.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $type = 0;
     /**
@@ -27,18 +27,17 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      * associated with this client event.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * for example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>repeated string profiles = 2;</code>
+     * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $profiles;
     /**
-     * Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
-     * associated with this client event. Leave it empty if the event isn't
-     * associated with a job.
+     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     * this client event. Leave it empty if the event isn't associated with a job.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>repeated string jobs = 6;</code>
      */
@@ -57,14 +56,13 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      *           associated with this client event.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *           for example, "projects/foo/tenants/bar/profiles/baz".
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
-     *           associated with this client event. Leave it empty if the event isn't
-     *           associated with a job.
+     *           The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     *           this client event. Leave it empty if the event isn't associated with a job.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     *           example, "projects/api-test-project/tenants/foo/jobs/1234".
+     *           example, "projects/foo/tenants/bar/jobs/baz".
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +73,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     /**
      * Required. Type of event.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
@@ -86,7 +84,7 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     /**
      * Required. Type of event.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent.ProfileEventType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -103,9 +101,9 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      * associated with this client event.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * for example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>repeated string profiles = 2;</code>
+     * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProfiles()
@@ -118,9 +116,9 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
      * associated with this client event.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * for example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>repeated string profiles = 2;</code>
+     * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -133,12 +131,11 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
-     * associated with this client event. Leave it empty if the event isn't
-     * associated with a job.
+     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     * this client event. Leave it empty if the event isn't associated with a job.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>repeated string jobs = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -149,12 +146,11 @@ class ProfileEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The [job name(s)][google.cloud.talent.v4beta1.Job.name]
-     * associated with this client event. Leave it empty if the event isn't
-     * associated with a job.
+     * The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with
+     * this client event. Leave it empty if the event isn't associated with a job.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
+     * example, "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>repeated string jobs = 6;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

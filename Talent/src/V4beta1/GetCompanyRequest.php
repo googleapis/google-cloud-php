@@ -20,10 +20,10 @@ class GetCompanyRequest extends \Google\Protobuf\Internal\Message
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
      * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
+     * If tenant id is unspecified, the default tenant is used, for
      * example, "projects/api-test-project/companies/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -38,7 +38,7 @@ class GetCompanyRequest extends \Google\Protobuf\Internal\Message
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
      *           example, "projects/api-test-project/tenants/foo/companies/bar".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
+     *           If tenant id is unspecified, the default tenant is used, for
      *           example, "projects/api-test-project/companies/bar".
      * }
      */
@@ -52,10 +52,10 @@ class GetCompanyRequest extends \Google\Protobuf\Internal\Message
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
      * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
+     * If tenant id is unspecified, the default tenant is used, for
      * example, "projects/api-test-project/companies/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -68,10 +68,10 @@ class GetCompanyRequest extends \Google\Protobuf\Internal\Message
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
      * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
+     * If tenant id is unspecified, the default tenant is used, for
      * example, "projects/api-test-project/companies/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Meta information related to the job searcher or entity
  * conducting the job search. This information is used to improve the
  * performance of the service.
@@ -69,12 +68,12 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     private $user_id = '';
     /**
-     * Optional. If set to `true`,
+     * Only set when any of
      * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     * optional. Only set when any of these fields isn't available for some
-     * reason. It is highly recommended not to set this field and provide accurate
+     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] isn't
+     * available for some reason. It is highly recommended not to set this field
+     * and provide accurate
      * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
      * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
@@ -84,8 +83,8 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      */
     private $allow_missing_ids = false;
     /**
-     * Optional. The type of device used by the job seeker at the time of the call
-     * to the service.
+     * The type of device used by the job seeker at the time of the call to the
+     * service.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo device_info = 5;</code>
      */
@@ -136,19 +135,19 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *           on this field being set correctly to a unique user ID.
      *           The maximum number of allowed characters is 255.
      *     @type bool $allow_missing_ids
-     *           Optional. If set to `true`,
+     *           Only set when any of
      *           [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      *           [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     *           [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     *           optional. Only set when any of these fields isn't available for some
-     *           reason. It is highly recommended not to set this field and provide accurate
+     *           [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] isn't
+     *           available for some reason. It is highly recommended not to set this field
+     *           and provide accurate
      *           [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      *           [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
      *           [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
      *           service experience.
      *     @type \Google\Cloud\Talent\V4beta1\DeviceInfo $device_info
-     *           Optional. The type of device used by the job seeker at the time of the call
-     *           to the service.
+     *           The type of device used by the job seeker at the time of the call to the
+     *           service.
      * }
      */
     public function __construct($data = NULL) {
@@ -299,12 +298,12 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to `true`,
+     * Only set when any of
      * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     * optional. Only set when any of these fields isn't available for some
-     * reason. It is highly recommended not to set this field and provide accurate
+     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] isn't
+     * available for some reason. It is highly recommended not to set this field
+     * and provide accurate
      * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
      * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
@@ -319,12 +318,12 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set to `true`,
+     * Only set when any of
      * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
-     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] are
-     * optional. Only set when any of these fields isn't available for some
-     * reason. It is highly recommended not to set this field and provide accurate
+     * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] isn't
+     * available for some reason. It is highly recommended not to set this field
+     * and provide accurate
      * [domain][google.cloud.talent.v4beta1.RequestMetadata.domain],
      * [session_id][google.cloud.talent.v4beta1.RequestMetadata.session_id] and
      * [user_id][google.cloud.talent.v4beta1.RequestMetadata.user_id] for the best
@@ -343,8 +342,8 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of device used by the job seeker at the time of the call
-     * to the service.
+     * The type of device used by the job seeker at the time of the call to the
+     * service.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo device_info = 5;</code>
      * @return \Google\Cloud\Talent\V4beta1\DeviceInfo
@@ -355,8 +354,8 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The type of device used by the job seeker at the time of the call
-     * to the service.
+     * The type of device used by the job seeker at the time of the call to the
+     * service.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo device_info = 5;</code>
      * @param \Google\Cloud\Talent\V4beta1\DeviceInfo $var
