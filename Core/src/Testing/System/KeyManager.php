@@ -22,9 +22,9 @@ use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7\Request;
 
 /**
- * Class Description
+ * Manage KMS keys used for system tests.
  */
-class EncryptionManagement
+class KeyManager
 {
     private $keyFile;
     private $serviceAccountEmail;
@@ -133,7 +133,7 @@ class EncryptionManagement
         $name = null;
 
         try {
-            $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/'.
+            $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/' .
                 'locations/us-west1/keyRings/%s/cryptoKeys?cryptoKeyId=%s';
 
             $response = $this->requestWrapper->send(
@@ -153,7 +153,7 @@ class EncryptionManagement
             $name = json_decode((string) $response->getBody(), true)['name'];
         } catch (ConflictException $ex) {
             $name = sprintf(
-                'projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s',
+                'projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s' ,
                 $this->projectId,
                 $keyRingId,
                 $cryptoKeyId
@@ -173,7 +173,7 @@ class EncryptionManagement
             ]
         ];
 
-        $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/locations/'.
+        $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/locations/' .
             'us-west1/keyRings/%s/cryptoKeys/%s:setIamPolicy';
         $this->requestWrapper->send(
             new Request(
