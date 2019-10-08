@@ -27,6 +27,7 @@ common = gcp.CommonTemplates()
 library = gapic.php_library(
     service='dialogflow',
     version='v2',
+    config_path='/google/cloud/dialogflow/v2/artman_dialogflow_v2.yaml',
     artman_output_name='google-cloud-dialogflow-v2')
 
 # copy all src including partial veneer classes
