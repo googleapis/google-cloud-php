@@ -71,19 +71,12 @@ s.replace(
     r"public function \1Value"
 )
 
-# fix year
+# mark protos for coverage ignore
 s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    '**/V1/DatastoreClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
+    "src/**/*.php",
+    r" * Generated from protobuf message <code>(.*)</code>",
+    r" Generated from protobuf message <code>\1</code>\n *\n * @codeCoverageIgnore"
+)
 
 # Fix class references in gapic samples
 for version in ['V1']:
@@ -100,3 +93,17 @@ for version in ['V1']:
             pathExpr,
             search,
             replace)
+
+# fix year
+s.replace(
+    '**/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2018')
+s.replace(
+    '**/V1/DatastoreClient.php',
+    r'Copyright \d{4}',
+    'Copyright 2018')
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'Copyright \d{4}',
+    'Copyright 2018')

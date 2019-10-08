@@ -71,6 +71,13 @@ s.replace(
     r"public function \1Value"
 )
 
+# mark protos for coverage ignore
+s.replace(
+    "src/**/*.php",
+    r" * Generated from protobuf message <code>(.*)</code>",
+    r" Generated from protobuf message <code>\1</code>\n *\n * @codeCoverageIgnore"
+)
+
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
@@ -90,15 +97,3 @@ s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
-
-# Use new namespace in the doc sample. See
-# https://github.com/googleapis/gapic-generator/issues/2141
-s.replace(
-    'src/V2/Gapic/TraceServiceGapicClient.php',
-    r'@type Span_',
-    r'@type ')
-
-s.replace(
-    'src/V2/Gapic/TraceServiceGapicClient.php',
-    r'Span_',
-    r'Span\\')

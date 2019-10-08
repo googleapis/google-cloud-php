@@ -71,6 +71,13 @@ s.replace(
     r"public function \1Value"
 )
 
+# mark protos for coverage ignore
+s.replace(
+    "src/**/*.php",
+    r" * Generated from protobuf message <code>(.*)</code>",
+    r" Generated from protobuf message <code>\1</code>\n *\n * @codeCoverageIgnore"
+)
+
 # fix year
 s.replace(
     'src/**/**/*.php',
@@ -81,12 +88,6 @@ s.replace(
     r'Copyright \d{4}',
     r'Copyright 2019')
 
-# Use new namespace in the doc sample. See
-# https://github.com/googleapis/gapic-generator/issues/2141
-s.replace(
-    'src/V1/Gapic/SecurityCenterGapicClient.php',
-    r'Finding_State',
-    r'Finding\\State')
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',

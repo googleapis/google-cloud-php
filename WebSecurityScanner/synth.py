@@ -71,6 +71,13 @@ s.replace(
     r"public function \1Value"
 )
 
+# mark protos for coverage ignore
+s.replace(
+    "src/**/*.php",
+    r" * Generated from protobuf message <code>(.*)</code>",
+    r" Generated from protobuf message <code>\1</code>\n *\n * @codeCoverageIgnore"
+)
+
 # fix year
 s.replace(
     'src/**/**/*.php',
