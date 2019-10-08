@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Optional* A list of strings containing words and phrases "hints" so that
+     * Optional. A list of strings containing words and phrases "hints" so that
      * the speech recognition is more likely to recognize them. This can be used
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
      * [usage limits](https://cloud.google.com/speech/limits#content).
      *
-     * Generated from protobuf field <code>repeated string phrases = 1;</code>
+     * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $phrases;
 
@@ -35,7 +35,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrases
-     *           *Optional* A list of strings containing words and phrases "hints" so that
+     *           Optional. A list of strings containing words and phrases "hints" so that
      *           the speech recognition is more likely to recognize them. This can be used
      *           to improve the accuracy for specific words and phrases, for example, if
      *           specific commands are typically spoken by the user. This can also be used
@@ -49,14 +49,14 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A list of strings containing words and phrases "hints" so that
+     * Optional. A list of strings containing words and phrases "hints" so that
      * the speech recognition is more likely to recognize them. This can be used
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
      * [usage limits](https://cloud.google.com/speech/limits#content).
      *
-     * Generated from protobuf field <code>repeated string phrases = 1;</code>
+     * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPhrases()
@@ -65,14 +65,14 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A list of strings containing words and phrases "hints" so that
+     * Optional. A list of strings containing words and phrases "hints" so that
      * the speech recognition is more likely to recognize them. This can be used
      * to improve the accuracy for specific words and phrases, for example, if
      * specific commands are typically spoken by the user. This can also be used
      * to add additional words to the vocabulary of the recognizer. See
      * [usage limits](https://cloud.google.com/speech/limits#content).
      *
-     * Generated from protobuf field <code>repeated string phrases = 1;</code>
+     * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

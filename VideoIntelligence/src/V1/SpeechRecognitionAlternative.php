@@ -29,7 +29,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
-     * Generated from protobuf field <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $confidence = 0.0;
     /**
@@ -37,7 +37,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * Note: When `enable_speaker_diarization` is true, you will see all the words
      * from the beginning of the audio.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $words;
 
@@ -101,7 +101,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
-     * Generated from protobuf field <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getConfidence()
@@ -117,7 +117,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
-     * Generated from protobuf field <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
@@ -134,7 +134,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * Note: When `enable_speaker_diarization` is true, you will see all the words
      * from the beginning of the audio.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getWords()
@@ -147,7 +147,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * Note: When `enable_speaker_diarization` is true, you will see all the words
      * from the beginning of the audio.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
