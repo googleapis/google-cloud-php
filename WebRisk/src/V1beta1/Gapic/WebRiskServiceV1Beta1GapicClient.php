@@ -188,9 +188,9 @@ class WebRiskServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param int         $threatType   Required. The ThreatList to update.
+     * @param int         $threatType   The ThreatList to update.
      *                                  For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
-     * @param Constraints $constraints  The constraints associated with this request.
+     * @param Constraints $constraints  Required. The constraints associated with this request.
      * @param array       $optionalArgs {
      *                                  Optional.
      *
@@ -241,7 +241,7 @@ class WebRiskServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param string $uri          The URI to be checked for matches.
+     * @param string $uri          Required. The URI to be checked for matches.
      * @param int[]  $threatTypes  Required. The ThreatLists to search in.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
      * @param array  $optionalArgs {

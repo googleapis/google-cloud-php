@@ -25,7 +25,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ThreatLists to search in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $threat_types;
 
@@ -78,7 +78,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ThreatLists to search in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getThreatTypes()
@@ -89,7 +89,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ThreatLists to search in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

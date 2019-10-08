@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The type of response. This may indicate that an action is required by the
+     * The type of response. This may indicate that an action must be taken by the
      * client when the response is received.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffResponse.ResponseType response_type = 4;</code>
@@ -65,7 +65,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $response_type
-     *           The type of response. This may indicate that an action is required by the
+     *           The type of response. This may indicate that an action must be taken by the
      *           client when the response is received.
      *     @type \Google\Cloud\WebRisk\V1beta1\ThreatEntryAdditions $additions
      *           A set of entries to add to a local threat type's list.
@@ -92,7 +92,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of response. This may indicate that an action is required by the
+     * The type of response. This may indicate that an action must be taken by the
      * client when the response is received.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffResponse.ResponseType response_type = 4;</code>
@@ -104,7 +104,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of response. This may indicate that an action is required by the
+     * The type of response. This may indicate that an action must be taken by the
      * client when the response is received.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffResponse.ResponseType response_type = 4;</code>
