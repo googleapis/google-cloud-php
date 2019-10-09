@@ -17,10 +17,8 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-use Google\Cloud\Core\Exception\ConflictException;
-use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\System\KeyManager;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Psr7\Request;
 
 /**
  * @group storage
@@ -39,10 +37,17 @@ class KmsTest extends StorageTestCase
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
-        list(self::$keyName1, self::$keyName2) = self::getKeyNames(
+
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $encryption = new KeyManager(
+            json_decode(file_get_contents($keyFilePath), true),
+            self::$client->getServiceAccount(),
+            self::getProjectId($keyFilePath)
+        );
+
+        list(self::$keyName1, self::$keyName2) = $encryption->getKeyNames(
             self::KEY_RING_ID,
-            self::CRYPTO_KEY_ID_1,
-            self::CRYPTO_KEY_ID_2
+            [self::CRYPTO_KEY_ID_1, self::CRYPTO_KEY_ID_2]
         );
     }
 
@@ -159,145 +164,5 @@ class KmsTest extends StorageTestCase
                 'kmsKeyName' => self::$keyName1
             ]
         ]);
-    }
-
-    /**
-     * A helper to get KMS keys and set correct permissions.
-     *
-     * @param string $keyRingId
-     * @param string $cryptoKeyId1
-     * @param string $cryptoKeyId2
-     * @return array
-     */
-    private static function getKeyNames($keyRingId, $cryptoKeyId1, $cryptoKeyId2)
-    {
-        $keyNames = [];
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $wrapper = new RequestWrapper([
-            'keyFile' => json_decode(file_get_contents($keyFilePath), true),
-            'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
-        ]);
-        $projectId = self::getProjectId($keyFilePath);
-        $serviceAccount = self::$client->getServiceAccount();
-        self::buildKeyRing($wrapper, $projectId, $keyRingId);
-        $keyNames[] = self::getCryptoKeyName(
-            $wrapper,
-            $serviceAccount,
-            $projectId,
-            $keyRingId,
-            $cryptoKeyId1
-        );
-        $keyNames[] = self::getCryptoKeyName(
-            $wrapper,
-            $serviceAccount,
-            $projectId,
-            $keyRingId,
-            $cryptoKeyId2
-        );
-
-        return $keyNames;
-    }
-
-    /**
-     * @param RequestWrapper $wrapper
-     * @param string $projectId
-     * @param string $keyRingId
-     */
-    private static function buildKeyRing(
-        RequestWrapper $wrapper,
-        $projectId,
-        $keyRingId
-    ) {
-        try {
-            $wrapper->send(
-                new Request(
-                    'POST',
-                    sprintf(
-                        'https://cloudkms.googleapis.com/v1/projects/%s/locations/us-west1/keyRings?keyRingId=%s',
-                        $projectId,
-                        $keyRingId
-                    )
-                )
-            );
-        } catch (ConflictException $ex) {
-            // If it already exists, great!
-        }
-    }
-
-    /**
-     * @param RequestWrapper $wrapper
-     * @param string $serviceAccount
-     * @param string $projectId
-     * @param string $keyRingId
-     * @param string $cryptoKeyId
-     * @return string
-     */
-    private static function getCryptoKeyName(
-        RequestWrapper $wrapper,
-        $serviceAccount,
-        $projectId,
-        $keyRingId,
-        $cryptoKeyId
-    ) {
-        $name = null;
-
-        try {
-            $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/'.
-                'locations/us-west1/keyRings/%s/cryptoKeys?cryptoKeyId=%s';
-
-            $response = $wrapper->send(
-                new Request(
-                    'POST',
-                    sprintf(
-                        $uri,
-                        $projectId,
-                        $keyRingId,
-                        $cryptoKeyId
-                    ),
-                    [],
-                    json_encode(['purpose' => 'ENCRYPT_DECRYPT'])
-                )
-            );
-
-            $name = json_decode((string) $response->getBody(), true)['name'];
-        } catch (ConflictException $ex) {
-            $name = sprintf(
-                'projects/%s/locations/us-west1/keyRings/%s/cryptoKeys/%s',
-                $projectId,
-                $keyRingId,
-                $cryptoKeyId
-            );
-        }
-
-        $policy = [
-            'policy' => [
-                'bindings' => [
-                    [
-                        'role' => 'roles/cloudkms.cryptoKeyEncrypterDecrypter',
-                        'members' => [
-                            "serviceAccount:$serviceAccount"
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $uri = 'https://cloudkms.googleapis.com/v1/projects/%s/locations/'.
-            'us-west1/keyRings/%s/cryptoKeys/%s:setIamPolicy';
-        $wrapper->send(
-            new Request(
-                'POST',
-                sprintf(
-                    $uri,
-                    $projectId,
-                    $keyRingId,
-                    $cryptoKeyId
-                ),
-                [],
-                json_encode($policy)
-            )
-        );
-
-        return $name;
     }
 }
