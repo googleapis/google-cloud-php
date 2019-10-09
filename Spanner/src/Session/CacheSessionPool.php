@@ -604,14 +604,14 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Gets the next session in the queue, clearing out any which are expired.
+     * Gets the last session in the queue, clearing out any which are expired.
      *
      * @param array $data
      * @return array|null
      */
     private function getSession(array &$data)
     {
-        $session = array_shift($data['queue']);
+        $session = array_pop($data['queue']);
 
         if ($session) {
             if ($session['expiration'] - self::DURATION_ONE_MINUTE < $this->time()) {
