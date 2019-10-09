@@ -19,7 +19,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to list all entity types from.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -30,20 +30,20 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     /**
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -79,7 +79,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to list all entity types from.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -91,7 +91,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to list all entity types from.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -111,7 +111,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -127,7 +127,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -143,7 +143,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -155,7 +155,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -170,7 +170,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -181,7 +181,7 @@ class ListEntityTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The next_page_token value returned from a previous list request.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

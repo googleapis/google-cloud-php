@@ -25,7 +25,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * Optional. The entity type name prefixed with `&#64;`.
      * This field is required for annotated parts of the training phrase.
      *
-     * Generated from protobuf field <code>string entity_type = 2;</code>
+     * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $entity_type = '';
     /**
@@ -33,7 +33,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * annotated part of the example.
      * This field is required for annotated parts of the training phrase.
      *
-     * Generated from protobuf field <code>string alias = 3;</code>
+     * Generated from protobuf field <code>string alias = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $alias = '';
     /**
@@ -42,7 +42,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * manually annotate the part. When creating an annotated part with the
      * API, you must set this to true.
      *
-     * Generated from protobuf field <code>bool user_defined = 4;</code>
+     * Generated from protobuf field <code>bool user_defined = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $user_defined = false;
 
@@ -103,7 +103,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * Optional. The entity type name prefixed with `&#64;`.
      * This field is required for annotated parts of the training phrase.
      *
-     * Generated from protobuf field <code>string entity_type = 2;</code>
+     * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEntityType()
@@ -115,7 +115,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * Optional. The entity type name prefixed with `&#64;`.
      * This field is required for annotated parts of the training phrase.
      *
-     * Generated from protobuf field <code>string entity_type = 2;</code>
+     * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -132,7 +132,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * annotated part of the example.
      * This field is required for annotated parts of the training phrase.
      *
-     * Generated from protobuf field <code>string alias = 3;</code>
+     * Generated from protobuf field <code>string alias = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAlias()
@@ -145,7 +145,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * annotated part of the example.
      * This field is required for annotated parts of the training phrase.
      *
-     * Generated from protobuf field <code>string alias = 3;</code>
+     * Generated from protobuf field <code>string alias = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -163,7 +163,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * manually annotate the part. When creating an annotated part with the
      * API, you must set this to true.
      *
-     * Generated from protobuf field <code>bool user_defined = 4;</code>
+     * Generated from protobuf field <code>bool user_defined = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUserDefined()
@@ -177,7 +177,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * manually annotate the part. When creating an annotated part with the
      * API, you must set this to true.
      *
-     * Generated from protobuf field <code>bool user_defined = 4;</code>
+     * Generated from protobuf field <code>bool user_defined = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

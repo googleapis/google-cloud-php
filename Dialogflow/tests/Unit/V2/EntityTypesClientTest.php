@@ -166,9 +166,11 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $enableFuzzyExtraction = true;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -241,9 +243,11 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $enableFuzzyExtraction = true;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -321,9 +325,11 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $enableFuzzyExtraction = true;
         $expectedResponse = new EntityType();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
 
         // Mock request

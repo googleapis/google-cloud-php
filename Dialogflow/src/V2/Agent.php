@@ -19,13 +19,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Required. The project of this agent.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The name of this agent.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
@@ -35,14 +35,14 @@ class Agent extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. This field cannot be
      * set by the `Update` method.
      *
-     * Generated from protobuf field <code>string default_language_code = 3;</code>
+     * Generated from protobuf field <code>string default_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $default_language_code = '';
     /**
      * Optional. The list of all languages supported by this agent (except for the
      * `default_language_code`).
      *
-     * Generated from protobuf field <code>repeated string supported_language_codes = 4;</code>
+     * Generated from protobuf field <code>repeated string supported_language_codes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $supported_language_codes;
     /**
@@ -50,14 +50,14 @@ class Agent extends \Google\Protobuf\Internal\Message
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris.
      *
-     * Generated from protobuf field <code>string time_zone = 5;</code>
+     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $time_zone = '';
     /**
      * Optional. The description of this agent.
      * The maximum length is 500 characters. If exceeded, the request is rejected.
      *
-     * Generated from protobuf field <code>string description = 6;</code>
+     * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
@@ -67,19 +67,19 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      * integration.
      *
-     * Generated from protobuf field <code>string avatar_uri = 7;</code>
+     * Generated from protobuf field <code>string avatar_uri = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $avatar_uri = '';
     /**
      * Optional. Determines whether this agent should log conversation queries.
      *
-     * Generated from protobuf field <code>bool enable_logging = 8;</code>
+     * Generated from protobuf field <code>bool enable_logging = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_logging = false;
     /**
      * Optional. Determines how intents are detected from user queries.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $match_mode = 0;
     /**
@@ -91,7 +91,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * values range from 0.0 (completely uncertain) to 1.0 (completely certain).
      * If set to 0.0, the default of 0.3 is used.
      *
-     * Generated from protobuf field <code>float classification_threshold = 10;</code>
+     * Generated from protobuf field <code>float classification_threshold = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $classification_threshold = 0.0;
     /**
@@ -100,13 +100,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      * for different API versions. However, bots connectors and webhook calls will
      * follow the specified API version.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $api_version = 0;
     /**
      * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tier = 0;
 
@@ -173,7 +173,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Required. The project of this agent.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -185,7 +185,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Required. The project of this agent.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -200,7 +200,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this agent.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -211,7 +211,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this agent.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -230,7 +230,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. This field cannot be
      * set by the `Update` method.
      *
-     * Generated from protobuf field <code>string default_language_code = 3;</code>
+     * Generated from protobuf field <code>string default_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDefaultLanguageCode()
@@ -245,7 +245,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. This field cannot be
      * set by the `Update` method.
      *
-     * Generated from protobuf field <code>string default_language_code = 3;</code>
+     * Generated from protobuf field <code>string default_language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -261,7 +261,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The list of all languages supported by this agent (except for the
      * `default_language_code`).
      *
-     * Generated from protobuf field <code>repeated string supported_language_codes = 4;</code>
+     * Generated from protobuf field <code>repeated string supported_language_codes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSupportedLanguageCodes()
@@ -273,7 +273,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The list of all languages supported by this agent (except for the
      * `default_language_code`).
      *
-     * Generated from protobuf field <code>repeated string supported_language_codes = 4;</code>
+     * Generated from protobuf field <code>repeated string supported_language_codes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -290,7 +290,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris.
      *
-     * Generated from protobuf field <code>string time_zone = 5;</code>
+     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTimeZone()
@@ -303,7 +303,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris.
      *
-     * Generated from protobuf field <code>string time_zone = 5;</code>
+     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -319,7 +319,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The description of this agent.
      * The maximum length is 500 characters. If exceeded, the request is rejected.
      *
-     * Generated from protobuf field <code>string description = 6;</code>
+     * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -331,7 +331,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. The description of this agent.
      * The maximum length is 500 characters. If exceeded, the request is rejected.
      *
-     * Generated from protobuf field <code>string description = 6;</code>
+     * Generated from protobuf field <code>string description = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -350,7 +350,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      * integration.
      *
-     * Generated from protobuf field <code>string avatar_uri = 7;</code>
+     * Generated from protobuf field <code>string avatar_uri = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAvatarUri()
@@ -365,7 +365,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo)
      * integration.
      *
-     * Generated from protobuf field <code>string avatar_uri = 7;</code>
+     * Generated from protobuf field <code>string avatar_uri = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -380,7 +380,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines whether this agent should log conversation queries.
      *
-     * Generated from protobuf field <code>bool enable_logging = 8;</code>
+     * Generated from protobuf field <code>bool enable_logging = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableLogging()
@@ -391,7 +391,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines whether this agent should log conversation queries.
      *
-     * Generated from protobuf field <code>bool enable_logging = 8;</code>
+     * Generated from protobuf field <code>bool enable_logging = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -406,7 +406,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines how intents are detected from user queries.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMatchMode()
@@ -417,7 +417,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines how intents are detected from user queries.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -438,7 +438,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * values range from 0.0 (completely uncertain) to 1.0 (completely certain).
      * If set to 0.0, the default of 0.3 is used.
      *
-     * Generated from protobuf field <code>float classification_threshold = 10;</code>
+     * Generated from protobuf field <code>float classification_threshold = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getClassificationThreshold()
@@ -455,7 +455,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * values range from 0.0 (completely uncertain) to 1.0 (completely certain).
      * If set to 0.0, the default of 0.3 is used.
      *
-     * Generated from protobuf field <code>float classification_threshold = 10;</code>
+     * Generated from protobuf field <code>float classification_threshold = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -473,7 +473,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * for different API versions. However, bots connectors and webhook calls will
      * follow the specified API version.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getApiVersion()
@@ -487,7 +487,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * for different API versions. However, bots connectors and webhook calls will
      * follow the specified API version.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.ApiVersion api_version = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -502,7 +502,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getTier()
@@ -513,7 +513,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The agent tier. If not specified, TIER_STANDARD is assumed.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.Tier tier = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

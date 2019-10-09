@@ -19,13 +19,13 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to create a intent for.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The intent to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $intent = null;
     /**
@@ -36,13 +36,13 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     /**
      * Optional. The resource view to apply to the returned intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $intent_view = 0;
 
@@ -77,7 +77,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to create a intent for.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,7 +89,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      * Required. The agent to create a intent for.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -104,7 +104,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The intent to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\Intent
      */
     public function getIntent()
@@ -115,7 +115,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The intent to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent $var
      * @return $this
      */
@@ -135,7 +135,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -151,7 +151,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -166,7 +166,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource view to apply to the returned intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getIntentView()
@@ -177,7 +177,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource view to apply to the returned intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentView intent_view = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

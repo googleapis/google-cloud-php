@@ -19,18 +19,18 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The project to list agents from.
      * Format: `projects/<Project ID or '-'>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. The next_page_token value returned from a previous list request.
+     * The next_page_token value returned from a previous list request.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -49,7 +49,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of items to return in a single page. By
      *           default 100 and at most 1000.
      *     @type string $page_token
-     *           Optional. The next_page_token value returned from a previous list request.
+     *           The next_page_token value returned from a previous list request.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +61,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The project to list agents from.
      * Format: `projects/<Project ID or '-'>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -73,7 +73,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The project to list agents from.
      * Format: `projects/<Project ID or '-'>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +89,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -101,7 +101,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of items to return in a single page. By
      * default 100 and at most 1000.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -114,7 +114,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous list request.
+     * The next_page_token value returned from a previous list request.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -125,7 +125,7 @@ class SearchAgentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous list request.
+     * The next_page_token value returned from a previous list request.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

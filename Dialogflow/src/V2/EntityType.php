@@ -29,28 +29,34 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the entity type.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
      * Required. Indicates the kind of entity type.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.Kind kind = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.Kind kind = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $kind = 0;
     /**
      * Optional. Indicates whether the entity type can be automatically
      * expanded.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.AutoExpansionMode auto_expansion_mode = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.AutoExpansionMode auto_expansion_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $auto_expansion_mode = 0;
     /**
      * Optional. The collection of entity entries associated with the entity type.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $entities;
+    /**
+     * Optional. Enables fuzzy entity extraction during classification.
+     *
+     * Generated from protobuf field <code>bool enable_fuzzy_extraction = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_fuzzy_extraction = false;
 
     /**
      * Constructor.
@@ -72,6 +78,8 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           expanded.
      *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
      *           Optional. The collection of entity entries associated with the entity type.
+     *     @type bool $enable_fuzzy_extraction
+     *           Optional. Enables fuzzy entity extraction during classification.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +122,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the entity type.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -125,7 +133,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the entity type.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -140,7 +148,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. Indicates the kind of entity type.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.Kind kind = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.Kind kind = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getKind()
@@ -151,7 +159,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Required. Indicates the kind of entity type.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.Kind kind = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.Kind kind = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -167,7 +175,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Optional. Indicates whether the entity type can be automatically
      * expanded.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.AutoExpansionMode auto_expansion_mode = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.AutoExpansionMode auto_expansion_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getAutoExpansionMode()
@@ -179,7 +187,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Optional. Indicates whether the entity type can be automatically
      * expanded.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.AutoExpansionMode auto_expansion_mode = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType.AutoExpansionMode auto_expansion_mode = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -194,7 +202,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of entity entries associated with the entity type.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntities()
@@ -205,7 +213,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of entity entries associated with the entity type.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -213,6 +221,32 @@ class EntityType extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\EntityType\Entity::class);
         $this->entities = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enables fuzzy entity extraction during classification.
+     *
+     * Generated from protobuf field <code>bool enable_fuzzy_extraction = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableFuzzyExtraction()
+    {
+        return $this->enable_fuzzy_extraction;
+    }
+
+    /**
+     * Optional. Enables fuzzy entity extraction during classification.
+     *
+     * Generated from protobuf field <code>bool enable_fuzzy_extraction = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableFuzzyExtraction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_fuzzy_extraction = $var;
 
         return $this;
     }

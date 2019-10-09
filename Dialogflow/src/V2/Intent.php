@@ -29,13 +29,13 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this intent.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
      * Optional. Indicates whether webhooks are enabled for the intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $webhook_state = 0;
     /**
@@ -44,13 +44,13 @@ class Intent extends \Google\Protobuf\Internal\Message
      * priority 500000.
      * Negative numbers mean that the intent is disabled.
      *
-     * Generated from protobuf field <code>int32 priority = 3;</code>
+     * Generated from protobuf field <code>int32 priority = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $priority = 0;
     /**
      * Optional. Indicates whether this is a fallback intent.
      *
-     * Generated from protobuf field <code>bool is_fallback = 4;</code>
+     * Generated from protobuf field <code>bool is_fallback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $is_fallback = false;
     /**
@@ -59,7 +59,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off.
      *
-     * Generated from protobuf field <code>bool ml_disabled = 19;</code>
+     * Generated from protobuf field <code>bool ml_disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ml_disabled = false;
     /**
@@ -67,7 +67,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * triggered.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
-     * Generated from protobuf field <code>repeated string input_context_names = 7;</code>
+     * Generated from protobuf field <code>repeated string input_context_names = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $input_context_names;
     /**
@@ -75,21 +75,21 @@ class Intent extends \Google\Protobuf\Internal\Message
      * If the collection of input contexts is not empty, all of the contexts must
      * be present in the active user session for an event to trigger this intent.
      *
-     * Generated from protobuf field <code>repeated string events = 8;</code>
+     * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $events;
     /**
      * Optional. The collection of examples that the agent is
      * trained on.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $training_phrases;
     /**
      * Optional. The name of the action associated with the intent.
      * Note: The action name must not contain whitespaces.
      *
-     * Generated from protobuf field <code>string action = 10;</code>
+     * Generated from protobuf field <code>string action = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $action = '';
     /**
@@ -99,34 +99,34 @@ class Intent extends \Google\Protobuf\Internal\Message
      * when the intent is matched.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $output_contexts;
     /**
      * Optional. Indicates whether to delete all contexts in the current
      * session when this intent is matched.
      *
-     * Generated from protobuf field <code>bool reset_contexts = 12;</code>
+     * Generated from protobuf field <code>bool reset_contexts = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reset_contexts = false;
     /**
      * Optional. The collection of parameters associated with the intent.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters;
     /**
      * Optional. The collection of rich messages corresponding to the
      * `Response` field in the Dialogflow console.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $messages;
     /**
      * Optional. The list of platforms for which the first responses will be
      * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $default_response_platforms;
     /**
@@ -272,7 +272,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this intent.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -283,7 +283,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of this intent.
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -298,7 +298,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates whether webhooks are enabled for the intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getWebhookState()
@@ -309,7 +309,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates whether webhooks are enabled for the intent.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.WebhookState webhook_state = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -327,7 +327,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * priority 500000.
      * Negative numbers mean that the intent is disabled.
      *
-     * Generated from protobuf field <code>int32 priority = 3;</code>
+     * Generated from protobuf field <code>int32 priority = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPriority()
@@ -341,7 +341,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * priority 500000.
      * Negative numbers mean that the intent is disabled.
      *
-     * Generated from protobuf field <code>int32 priority = 3;</code>
+     * Generated from protobuf field <code>int32 priority = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -356,7 +356,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates whether this is a fallback intent.
      *
-     * Generated from protobuf field <code>bool is_fallback = 4;</code>
+     * Generated from protobuf field <code>bool is_fallback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIsFallback()
@@ -367,7 +367,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates whether this is a fallback intent.
      *
-     * Generated from protobuf field <code>bool is_fallback = 4;</code>
+     * Generated from protobuf field <code>bool is_fallback = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -385,7 +385,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off.
      *
-     * Generated from protobuf field <code>bool ml_disabled = 19;</code>
+     * Generated from protobuf field <code>bool ml_disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getMlDisabled()
@@ -399,7 +399,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * taken into account during inference in `ML ONLY` match mode. Also,
      * auto-markup in the UI is turned off.
      *
-     * Generated from protobuf field <code>bool ml_disabled = 19;</code>
+     * Generated from protobuf field <code>bool ml_disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -416,7 +416,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * triggered.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
-     * Generated from protobuf field <code>repeated string input_context_names = 7;</code>
+     * Generated from protobuf field <code>repeated string input_context_names = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInputContextNames()
@@ -429,7 +429,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * triggered.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
-     * Generated from protobuf field <code>repeated string input_context_names = 7;</code>
+     * Generated from protobuf field <code>repeated string input_context_names = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -446,7 +446,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * If the collection of input contexts is not empty, all of the contexts must
      * be present in the active user session for an event to trigger this intent.
      *
-     * Generated from protobuf field <code>repeated string events = 8;</code>
+     * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEvents()
@@ -459,7 +459,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * If the collection of input contexts is not empty, all of the contexts must
      * be present in the active user session for an event to trigger this intent.
      *
-     * Generated from protobuf field <code>repeated string events = 8;</code>
+     * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -475,7 +475,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of examples that the agent is
      * trained on.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTrainingPhrases()
@@ -487,7 +487,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of examples that the agent is
      * trained on.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -503,7 +503,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The name of the action associated with the intent.
      * Note: The action name must not contain whitespaces.
      *
-     * Generated from protobuf field <code>string action = 10;</code>
+     * Generated from protobuf field <code>string action = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAction()
@@ -515,7 +515,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The name of the action associated with the intent.
      * Note: The action name must not contain whitespaces.
      *
-     * Generated from protobuf field <code>string action = 10;</code>
+     * Generated from protobuf field <code>string action = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -534,7 +534,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * when the intent is matched.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getOutputContexts()
@@ -549,7 +549,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * when the intent is matched.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -565,7 +565,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. Indicates whether to delete all contexts in the current
      * session when this intent is matched.
      *
-     * Generated from protobuf field <code>bool reset_contexts = 12;</code>
+     * Generated from protobuf field <code>bool reset_contexts = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getResetContexts()
@@ -577,7 +577,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. Indicates whether to delete all contexts in the current
      * session when this intent is matched.
      *
-     * Generated from protobuf field <code>bool reset_contexts = 12;</code>
+     * Generated from protobuf field <code>bool reset_contexts = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -592,7 +592,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with the intent.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParameters()
@@ -603,7 +603,7 @@ class Intent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with the intent.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -619,7 +619,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of rich messages corresponding to the
      * `Response` field in the Dialogflow console.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMessages()
@@ -631,7 +631,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of rich messages corresponding to the
      * `Response` field in the Dialogflow console.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -647,7 +647,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The list of platforms for which the first responses will be
      * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDefaultResponsePlatforms()
@@ -659,7 +659,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The list of platforms for which the first responses will be
      * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

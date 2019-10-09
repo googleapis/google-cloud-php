@@ -18,7 +18,7 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The platform that this message is intended for.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $platform = 0;
     protected $message;
@@ -355,7 +355,7 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The platform that this message is intended for.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPlatform()
@@ -366,7 +366,7 @@ class Message extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The platform that this message is intended for.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Platform platform = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
