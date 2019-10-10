@@ -27,7 +27,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
-     * Generated from protobuf field <code>string product_set = 6;</code>
+     * Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
      */
     private $product_set = '';
     /**
@@ -124,7 +124,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
-     * Generated from protobuf field <code>string product_set = 6;</code>
+     * Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProductSet()
@@ -137,7 +137,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
-     * Generated from protobuf field <code>string product_set = 6;</code>
+     * Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
