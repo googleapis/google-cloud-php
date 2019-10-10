@@ -325,6 +325,8 @@ class Query
 
         $escapedPathString = $fieldPath->pathString();
 
+        // alias for friendlier error message below.
+        $originalOperator = $operator;
         $operator = array_key_exists(strtolower($operator), $this->shortOperators)
             ? $this->shortOperators[strtolower($operator)]
             : $operator;
@@ -334,7 +336,7 @@ class Query
         } catch (\UnexpectedValueException $e) {
             throw new \InvalidArgumentException(sprintf(
                 'Operator %s is not a valid operator',
-                $operator
+                $originalOperator
             ));
         }
 
