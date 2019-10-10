@@ -67,6 +67,7 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        //@codeCoverageIgnoreStart
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
@@ -98,6 +99,7 @@ class Grpc implements ConnectionInterface
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
+        //@codeCoverageIgnoreEnd
 
         $this->publisherClient = $this->constructGapic(PublisherClient::class, $grpcConfig);
         $this->subscriberClient = $this->constructGapic(SubscriberClient::class, $grpcConfig);

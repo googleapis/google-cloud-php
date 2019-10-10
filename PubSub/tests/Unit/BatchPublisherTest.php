@@ -18,23 +18,34 @@
 namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
-use Google\Cloud\PubSub\Topic;
-use Prophecy\Argument;
+use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\OrderingKeyBatchJob;
+use Google\Cloud\PubSub\PubSubClient;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group pubsub
+ * @group pubsub-batch
  */
 class BatchPublisherTest extends TestCase
 {
     const TOPIC_NAME = 'my-topic';
 
-    public function testPublish()
+    /**
+     * @dataProvider messages
+     */
+    public function testPublish($message, $expected = null, $orderingKey = null)
     {
-        $message = ['data' => 'Hello, world!'];
+        $expected = $expected ?: $message;
+
+        $jobId = sprintf(OrderingKeyBatchJob::ID_TEMPLATE, $orderingKey ?: 'default');
+
         $runner = $this->prophesize(BatchRunner::class);
-        $runner->submitItem('pubsub-topic-' . self::TOPIC_NAME, $message)
+        $runner->submitItem($jobId, $expected)
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
         $runner->registerJob(
@@ -52,13 +63,80 @@ class BatchPublisherTest extends TestCase
         $publisher->publish($message);
     }
 
+    public function messages()
+    {
+        $simple = ['data' => 'Hello, world!', 'attributes' => ['foo' => 'bar']];
+        return [
+            [$simple],
+            [new Message($simple), $simple]
+        ];
+    }
+
     public function testGetCallback()
     {
         $publisher = new TestBatchPublisher(self::TOPIC_NAME, ['clientConfig' => ['projectId' => 'example_project']]);
         $callbackArray = $publisher->getCallbackArray();
 
-        $this->assertInstanceOf(Topic::class, $callbackArray[0]);
-        $this->assertEquals('publishBatch', $callbackArray[1]);
+        $this->assertInstanceOf(BatchPublisher::class, $callbackArray[0]);
+        $this->assertEquals('publishDeferred', $callbackArray[1]);
+    }
+
+    public function testPublishDeferred()
+    {
+        $client = TestHelpers::stub(PubSubClient::class, [], [
+            'encode', 'connection'
+        ]);
+        $client->___setProperty('encode', false);
+
+        $publisher = TestHelpers::stub(BatchPublisher::class, [
+            self::TOPIC_NAME,
+        ], ['client', 'jobs']);
+
+        $connection = $this->prophesize(ConnectionInterface::class);
+
+        $messages = [
+            [
+                'data' => 'foo',
+                'orderingKey' => 'a',
+            ], [
+                'data' => 'bar',
+                'orderingKey' => 'b',
+            ], [
+                'data' => 'bat',
+                'orderingKey' => 'a'
+            ], [
+                'data' => 'baz',
+            ]
+        ];
+
+        $messageActualCount = 0;
+        $connection->publishMessage(Argument::that(function ($args) use (&$messageActualCount) {
+            foreach ($args['messages'] as $message) {
+                // invalid ordering key
+                if (isset($message['orderingKey']) && !in_array($message['orderingKey'], ['a', 'b'])) {
+                    return false;
+                }
+
+                $messageActualCount++;
+            }
+
+            return true;
+        }))->shouldBeCalledTimes(3)->willReturn(['messageIds' => ['a']]);
+
+        $client->___setProperty('connection', $connection->reveal());
+        $publisher->___setProperty('client', $client);
+
+        foreach ($messages as $message) {
+            $publisher->publish($message);
+        }
+
+        $jobCount = 0;
+        foreach ($publisher->___getProperty('jobs') as $jobId => $job) {
+            $job->flush();
+            $jobCount++;
+        }
+        $this->assertEquals(3, $jobCount);
+        $this->assertEquals(count($messages), $messageActualCount);
     }
 }
 

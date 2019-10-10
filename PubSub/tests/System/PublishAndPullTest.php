@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\PubSub\Tests\System;
 
+use Google\Cloud\PubSub\MessageBuilder;
+
 /**
  * @group pubsub
  * @group pubsub-publish
@@ -28,12 +30,7 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testPublishMessageAndPull($client)
     {
-        $topicName = uniqid(self::TESTING_PREFIX);
-        $subName = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($topicName);
-        $sub = $client->subscribe($subName, $topicName);
-        self::$deletionQueue->add($topic);
-        self::$deletionQueue->add($sub);
+        list ($topic, $sub) = self::topicAndSubscription($client);
 
         $message = [
             'data' => 'A message.',
@@ -56,12 +53,7 @@ class PublishAndPullTest extends PubSubTestCase
      */
     public function testPublishMessagesAndPull($client)
     {
-        $topicName = uniqid(self::TESTING_PREFIX);
-        $subName = uniqid(self::TESTING_PREFIX);
-        $topic = $client->createTopic($topicName);
-        $sub = $client->subscribe($subName, $topicName);
-        self::$deletionQueue->add($topic);
-        self::$deletionQueue->add($sub);
+        list ($topic, $sub) = self::topicAndSubscription($client);
 
         $messages = [
             [
@@ -88,5 +80,35 @@ class PublishAndPullTest extends PubSubTestCase
         $this->assertEquals($messages[0]['attributes'], $actualMessages[0]->attributes());
         $this->assertEquals($messages[1]['data'], $actualMessages[1]->data());
         $this->assertEquals($messages[1]['attributes'], $actualMessages[1]->attributes());
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testOrderingKeys($client)
+    {
+        if ($client instanceof PubSubClientRest) {
+            $this->markTestSkipped(
+                'enableMessageOrdering not available in REST transport during experimental period.'
+            );
+        }
+
+        list ($topic, $sub) = self::topicAndSubscription($client, [], [
+            'enableMessageOrdering' => true
+        ]);
+
+        $key = 'foo';
+
+        $message = (new MessageBuilder())
+            ->setData('foobar')
+            ->setOrderingKey($key)
+            ->build();
+
+        $topic->publish($message);
+        sleep(1);
+
+        $pulled = $sub->pull();
+
+        $this->assertEquals($key, $pulled[0]->orderingKey());
     }
 }

@@ -18,7 +18,6 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\BatchTrait;
 
 /**
  * Publishes messages to Google Cloud Pub\Sub with background batching.
@@ -43,8 +42,9 @@ use Google\Cloud\Core\Batch\BatchTrait;
  */
 class BatchPublisher
 {
-    use BatchTrait;
-
+    /**
+     * @deprecated
+     */
     const ID_TEMPLATE = 'pubsub-topic-%s';
 
     /**
@@ -58,6 +58,31 @@ class BatchPublisher
     private $topicName;
 
     /**
+     * @var PubSubClient
+     */
+    private $client;
+
+    /**
+     * @var OrderingKeyBatchJob[]
+     */
+    private $jobs;
+
+    /**
+     * @var array
+     */
+    private $publishOptions;
+
+    /**
+     * @var callable
+     */
+    private $batchMethod;
+
+    /**
+     * @var BatchRunner
+     */
+    private $batchRunner;
+
+    /**
      * @param string $topicName The topic name.
      * @param array $options [optional] Please see
      *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for
@@ -66,10 +91,11 @@ class BatchPublisher
     public function __construct($topicName, array $options = [])
     {
         $this->topicName = $topicName;
-        $this->setCommonBatchProperties($options + [
-            'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
-            'batchMethod' => 'publishBatch'
-        ]);
+        $this->batchMethod = [$this, 'publishDeferred'];
+        $this->publishOptions = $options;
+        $this->batchRunner = isset($options['batchRunner'])
+            ? $options['batchRunner']
+            : new BatchRunner();
     }
 
     /**
@@ -82,12 +108,20 @@ class BatchPublisher
      * ]);
      * ```
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param Message|array $message An instance of
+     *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @return bool
      */
-    public function publish(array $message)
+    public function publish($message)
     {
-        return $this->batchRunner->submitItem($this->identifier, $message);
+        $message = $message instanceof Message
+            ? $message->toArray()
+            : $message;
+
+        $job = $this->getJob($message);
+
+        return $job->publish($message);
     }
 
     /**
@@ -95,14 +129,63 @@ class BatchPublisher
      * batch items.
      *
      * @return array
+     * @deprecated
      */
     protected function getCallback()
     {
+        return $this->batchMethod;
+    }
+
+    /**
+     * Intended for internal use only by the batch publisher.
+     *
+     * This method is called internally by the batch runner.
+     * {@see Google\Cloud\PubSub\OrderingKeyBatchJob} provides this method as
+     * its publish callback.
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
+     *
+     * @param array[] $messages A list of messages. Each message must be in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param array $options [optional] Configuration Options
+     * @return array A list of message IDs.
+     * @internal
+     * @access private
+     */
+    public function publishDeferred(array $messages, array $options = [])
+    {
         if (!array_key_exists($this->topicName, self::$topics)) {
-            $client = new PubSubClient($this->getUnwrappedClientConfig());
-            self::$topics[$this->topicName] = $client->topic($this->topicName);
+            if (!$this->client) {
+                //@codeCoverageIgnoreStart
+                $this->client = new PubSubClient($this->publishOptions['clientConfig']);
+                //@codeCoverageIgnoreEnd
+            }
+            self::$topics[$this->topicName] = $this->client->topic($this->topicName);
         }
 
-        return [self::$topics[$this->topicName], $this->batchMethod];
+        $topic = self::$topics[$this->topicName];
+
+        return $topic->publishBatch($messages, $options);
+    }
+
+    /**
+     * Fetch or create a new job for the ordering key batch publish.
+     *
+     * @param array $message
+     * @return OrderingKeyBatchJob
+     */
+    private function getJob(array $message)
+    {
+        $orderingKey = isset($message['orderingKey'])
+            ? $message['orderingKey']
+            : 'default';
+
+        if (!isset($this->jobs[$orderingKey])) {
+            $options = $this->publishOptions;
+            $options['batchRunner'] = $this->batchRunner;
+            $this->jobs[$orderingKey] = new OrderingKeyBatchJob($this, $orderingKey, $options);
+        }
+
+        return $this->jobs[$orderingKey];
     }
 }

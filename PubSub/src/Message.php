@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\ArrayTrait;
+
 /**
  * Represents a PubSub Message.
  *
@@ -35,6 +37,8 @@ namespace Google\Cloud\PubSub;
  */
 class Message
 {
+    use ArrayTrait;
+
     /**
      * @var array
      */
@@ -64,8 +68,9 @@ class Message
      *     @type string $publishTime The time at which the message was
      *           published, populated by the server when it receives the publish
      *           call.
+     *     @type string $orderingKey The message ordering key.
      * }
-     * @param array $metadata {
+     * @param array $metadata [optional] {
      *     Message metadata
      *
      *     @type string $ackId The message ackId. This is only set when messages
@@ -74,13 +79,14 @@ class Message
      *           obtained from. This is only set when messages are delivered by
      *           pushDelivery.
      */
-    public function __construct(array $message, array $metadata)
+    public function __construct(array $message, array $metadata = [])
     {
         $this->message = $message + [
             'data' => null,
             'messageId' => null,
             'publishTime' => null,
             'attributes' => [],
+            'orderingKey' => null
         ];
 
         $metadata += [
@@ -159,6 +165,21 @@ class Message
     }
 
     /**
+     * Get the message ordering key.
+     *
+     * Example:
+     * ```
+     * $orderingKey = $message->orderingKey();
+     * ```
+     *
+     * @return string|null
+     */
+    public function orderingKey()
+    {
+        return $this->message['orderingKey'];
+    }
+
+    /**
      * Get the message published time.
      *
      * Example:
@@ -229,5 +250,16 @@ class Message
             'subscription' => $this->subscription,
             'message' => $this->message
         ];
+    }
+
+    /**
+     * Get the message as an array.
+     *
+     * @return array
+     * @internal
+     */
+    public function toArray()
+    {
+        return $this->arrayFilterRemoveNull($this->message);
     }
 }

@@ -39,6 +39,7 @@ class MessageTest extends TestCase
             'attributes' => [
                 'foo' => 'bar'
             ],
+            'orderingKey' => 'foo'
         ], [
             'ackId' => 1234,
             'subscription' => $this->prophesize(Subscription::class)->reveal()
@@ -48,6 +49,11 @@ class MessageTest extends TestCase
     public function testData()
     {
         $this->assertEquals('hello world', $this->message->data());
+    }
+
+    public function testOrderingKey()
+    {
+        $this->assertEquals('foo', $this->message->orderingKey());
     }
 
     public function testAttribute()
