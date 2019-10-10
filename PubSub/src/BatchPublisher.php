@@ -58,6 +58,11 @@ class BatchPublisher
     private $topicName;
 
     /**
+     * @var PubSubClient
+     */
+    private $client;
+
+    /**
      * @param string $topicName The topic name.
      * @param array $options [optional] Please see
      *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for
@@ -68,7 +73,7 @@ class BatchPublisher
         $this->topicName = $topicName;
         $this->setCommonBatchProperties($options + [
             'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
-            'batchMethod' => 'publishBatch'
+            'batchMethod' => 'publishDeferred'
         ]);
     }
 
@@ -82,11 +87,17 @@ class BatchPublisher
      * ]);
      * ```
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param Message|array $message An instance of
+     *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @return bool
      */
-    public function publish(array $message)
+    public function publish($message)
     {
+        $message = $message instanceof Message
+            ? $message->toArray()
+            : $message;
+
         return $this->batchRunner->submitItem($this->identifier, $message);
     }
 
@@ -98,11 +109,54 @@ class BatchPublisher
      */
     protected function getCallback()
     {
-        if (!array_key_exists($this->topicName, self::$topics)) {
-            $client = new PubSubClient($this->getUnwrappedClientConfig());
-            self::$topics[$this->topicName] = $client->topic($this->topicName);
+        return [$this, $this->batchMethod];
+    }
+
+    /**
+     * Publish a set of deferred messages, sorted into multiple calls by ordering key.
+     *
+     * Intended for internal use only by the batch publisher.
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
+     *
+     * @param array[] $messages A list of messages. Each message must be in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param array $options [optional] Configuration Options
+     * @return array A list of message IDs.
+     * @internal
+     * @access private
+     */
+    public function publishDeferred(array $messages, array $options = [])
+    {
+        $calls = [];
+        foreach ($messages as $message) {
+            $key = isset($message['orderingKey'])
+                ? $message['orderingKey']
+                : '';
+
+            if (!isset($calls[$key])) {
+                $calls[$key] = [];
+            }
+
+            $calls[$key][] = $message;
         }
 
-        return [self::$topics[$this->topicName], $this->batchMethod];
+        if (!array_key_exists($this->topicName, self::$topics)) {
+            if (!$this->client) {
+                //@codeCoverageIgnoreStart
+                $this->client = new PubSubClient($this->getUnwrappedClientConfig());
+                //@codeCoverageIgnoreEnd
+            }
+            self::$topics[$this->topicName] = $this->client->topic($this->topicName);
+        }
+
+        $topic = self::$topics[$this->topicName];
+
+        $res = [];
+        foreach ($calls as $call) {
+            $res = array_merge($res, $topic->publishBatch($call, $options));
+        }
+
+        return $res;
     }
 }

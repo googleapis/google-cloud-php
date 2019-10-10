@@ -204,6 +204,32 @@ class Subscription
      * @param array $options [optional] {
      *     Configuration Options
      *
+     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
+     *           receives a message before the subscriber should acknowledge the
+     *           message.
+     *     @type bool $enableMessageOrdering If true, messages published with
+     *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
+     *           will be delivered to the subscribers in the order in which they
+     *           are received by the Pub/Sub system. Otherwise, they may be
+     *           delivered in any order.
+     *     @type array $expirationPolicy A policy that specifies the conditions
+     *           for resource expiration (i.e., automatic resource deletion).
+     *     @type Duration|string $expirationPolicy.ttl Specifies the
+     *           "time-to-live" duration for an associated resource. The
+     *           resource expires if it is not active for a period of `ttl`. The
+     *           definition of "activity" depends on the type of the associated
+     *           resource. The minimum and maximum allowed values for `ttl`
+     *           depend on the type of the associated resource, as well. If
+     *           `ttl` is not set, the associated resource never expires. If a
+     *           string is provided, it should be as a duration in seconds with
+     *           up to nine fractional digits, terminated by 's', e.g "3.5s".
+     *     @type Duration $messageRetentionDuration How long to retain
+     *           unacknowledged messages in the subscription's backlog, from the
+     *           moment a message is published. If `$retainAckedMessages` is
+     *           true, then this also configures the retention of acknowledged
+     *           messages, and thus configures how far back in time a `Seek`
+     *           can be done. Cannot be more than 7 days or less than 10 minutes.
+     *           **Defaults to** 7 days.
      *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
@@ -223,31 +249,8 @@ class Subscription
      *           for the audience field is not supported. More info about the
      *           OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
      *           Note: if not specified, the Push endpoint URL will be used.
-     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
-     *           receives a message before the subscriber should acknowledge the
-     *           message.
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
-     *     @type Duration|string $messageRetentionDuration How long to retain
-     *           unacknowledged messages in the subscription's backlog, from the
-     *           moment a message is published. If `$retainAckedMessages` is
-     *           true, then this also configures the retention of acknowledged
-     *           messages, and thus configures how far back in time a `Seek`
-     *           can be done. Cannot be more than 7 days or less than 10 minutes.
-     *           If a string is provided, it should be as a duration in seconds
-     *           with up to nine fractional digits, terminated by 's', e.g
-     *           "3.5s". **Defaults to** 7 days.
-     *     @type array $expirationPolicy A policy that specifies the conditions
-     *           for resource expiration (i.e., automatic resource deletion).
-     *     @type Duration|string $expirationPolicy.ttl Specifies the
-     *           "time-to-live" duration for an associated resource. The
-     *           resource expires if it is not active for a period of `ttl`. The
-     *           definition of "activity" depends on the type of the associated
-     *           resource. The minimum and maximum allowed values for `ttl`
-     *           depend on the type of the associated resource, as well. If
-     *           `ttl` is not set, the associated resource never expires. If a
-     *           string is provided, it should be as a duration in seconds with
-     *           up to nine fractional digits, terminated by 's', e.g "3.5s".
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -310,6 +313,32 @@ class Subscription
      * @param array $subscription {
      *     The Subscription data.
      *
+     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
+     *           receives a message before the subscriber should acknowledge the
+     *           message.
+     *     @type bool $enableMessageOrdering If true, messages published with
+     *           the same `orderingKey` in {@see Google\Cloud\PubSub\Message}
+     *           will be delivered to the subscribers in the order in which they
+     *           are received by the Pub/Sub system. Otherwise, they may be
+     *           delivered in any order.
+     *     @type array $expirationPolicy A policy that specifies the conditions
+     *           for resource expiration (i.e., automatic resource deletion).
+     *     @type Duration|string $expirationPolicy.ttl Specifies the
+     *           "time-to-live" duration for an associated resource. The
+     *           resource expires if it is not active for a period of `ttl`. The
+     *           definition of "activity" depends on the type of the associated
+     *           resource. The minimum and maximum allowed values for `ttl`
+     *           depend on the type of the associated resource, as well. If
+     *           `ttl` is not set, the associated resource never expires. If a
+     *           string is provided, it should be as a duration in seconds with
+     *           up to nine fractional digits, terminated by 's', e.g "3.5s".
+     *     @type Duration $messageRetentionDuration How long to retain
+     *           unacknowledged messages in the subscription's backlog, from the
+     *           moment a message is published. If `$retainAckedMessages` is
+     *           true, then this also configures the retention of acknowledged
+     *           messages, and thus configures how far back in time a `Seek`
+     *           can be done. Cannot be more than 7 days or less than 10 minutes.
+     *           **Defaults to** 7 days.
      *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
      *           messages should be pushed. For example, a Webhook endpoint
      *           might use "https://example.com/push".
@@ -329,29 +358,8 @@ class Subscription
      *           for the audience field is not supported. More info about the
      *           OIDC JWT token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
      *           Note: if not specified, the Push endpoint URL will be used.
-     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
-     *           receives a message before the subscriber should acknowledge the
-     *           message.
      *     @type bool $retainAckedMessages Indicates whether to retain
      *           acknowledged messages.
-     *     @type Duration $messageRetentionDuration How long to retain
-     *           unacknowledged messages in the subscription's backlog, from the
-     *           moment a message is published. If `$retainAckedMessages` is
-     *           true, then this also configures the retention of acknowledged
-     *           messages, and thus configures how far back in time a `Seek`
-     *           can be done. Cannot be more than 7 days or less than 10 minutes.
-     *           **Defaults to** 7 days.
-     *     @type array $expirationPolicy A policy that specifies the conditions
-     *           for resource expiration (i.e., automatic resource deletion).
-     *     @type Duration|string $expirationPolicy.ttl Specifies the
-     *           "time-to-live" duration for an associated resource. The
-     *           resource expires if it is not active for a period of `ttl`. The
-     *           definition of "activity" depends on the type of the associated
-     *           resource. The minimum and maximum allowed values for `ttl`
-     *           depend on the type of the associated resource, as well. If
-     *           `ttl` is not set, the associated resource never expires. If a
-     *           string is provided, it should be as a duration in seconds with
-     *           up to nine fractional digits, terminated by 's', e.g "3.5s".
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -555,7 +563,9 @@ class Subscription
      * ```
      * $messages = $subscription->pull();
      *
-     * $subscription->acknowledge($messages[0]);
+     * foreach ($messages as $message) {
+     *     $subscription->acknowledge($message);
+     * }
      * ```
      *
      * @codingStandardsIgnoreStart

@@ -414,17 +414,23 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param Message|array $message An instance of
+     *        {@see Google\Cloud\PubSub\Message}, or an array in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs
      */
-    public function publish(array $message, array $options = [])
+    public function publish($message, array $options = [])
     {
         return $this->publishBatch([$message], $options);
     }
 
     /**
      * Publish multiple messages at once.
+     *
+     * Note that if ordering keys are provided, all members of given messages
+     * set must provide the same ordering key. Multiple ordering keys in a
+     * single publish call is not supported.
      *
      * Example:
      * ```
@@ -449,8 +455,9 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param array $messages A list of messages. Each message must be in the correct
-     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     * @param Message[]|array[] $messages A list of messages. Each message must be in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage),
+     *        or be an instance of {@see Google\Cloud\PubSub\Message}.
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs.
      */
@@ -663,21 +670,25 @@ class Topic
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
      *
-     * @param  array $message
+     * @param  Message|array $message
      * @return array The message data
      * @throws \InvalidArgumentException
      */
-    private function formatMessage(array $message)
+    private function formatMessage($message)
     {
+        $message = $message instanceof Message
+            ? $message->toArray()
+            : $message;
+
         if (isset($message['data']) && $this->encode) {
             $message['data'] = base64_encode($message['data']);
         }
 
-        if (!array_key_exists('data', $message) &&
-            !array_key_exists('attributes', $message)) {
-            throw new InvalidArgumentException('At least one of $data or
-                $attributes must be specified on each message, but neither
-                was given.');
+        if (!array_key_exists('data', $message) && !array_key_exists('attributes', $message)) {
+            throw new InvalidArgumentException(
+                'At least one of $data or $attributes must be specified on each
+                message, but neither was given.'
+            );
         }
 
         return $message;

@@ -18,23 +18,31 @@
 namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\BatchPublisher;
-use Google\Cloud\PubSub\Topic;
-use Prophecy\Argument;
+use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\PubSubClient;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group pubsub
+ * @group pubsub-batch
  */
 class BatchPublisherTest extends TestCase
 {
     const TOPIC_NAME = 'my-topic';
 
-    public function testPublish()
+    /**
+     * @dataProvider messages
+     */
+    public function testPublish($message, $expected = null)
     {
-        $message = ['data' => 'Hello, world!'];
+        $expected = $expected ?: $message;
+
         $runner = $this->prophesize(BatchRunner::class);
-        $runner->submitItem('pubsub-topic-' . self::TOPIC_NAME, $message)
+        $runner->submitItem('pubsub-topic-' . self::TOPIC_NAME, $expected)
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
         $runner->registerJob(
@@ -52,13 +60,83 @@ class BatchPublisherTest extends TestCase
         $publisher->publish($message);
     }
 
+    public function messages()
+    {
+        $simple = ['data' => 'Hello, world!', 'attributes' => ['foo' => 'bar']];
+        return [
+            [$simple],
+            [new Message($simple), $simple]
+        ];
+    }
+
     public function testGetCallback()
     {
         $publisher = new TestBatchPublisher(self::TOPIC_NAME, ['clientConfig' => ['projectId' => 'example_project']]);
         $callbackArray = $publisher->getCallbackArray();
 
-        $this->assertInstanceOf(Topic::class, $callbackArray[0]);
-        $this->assertEquals('publishBatch', $callbackArray[1]);
+        $this->assertInstanceOf(BatchPublisher::class, $callbackArray[0]);
+        $this->assertEquals('publishDeferred', $callbackArray[1]);
+    }
+
+    public function testPublishDeferred()
+    {
+        $client = TestHelpers::stub(PubSubClient::class, [], [
+            'encode', 'connection'
+        ]);
+        $client->___setProperty('encode', false);
+
+        $publisher = TestHelpers::stub(BatchPublisher::class, [
+            self::TOPIC_NAME,
+        ], ['client', 'topics']);
+
+        $connection = $this->prophesize(ConnectionInterface::class);
+
+        $messages = [
+            [
+                'data' => 'foo',
+                'orderingKey' => 'a',
+            ], [
+                'data' => 'bar',
+                'orderingKey' => 'b',
+            ], [
+                'data' => 'bat',
+                'orderingKey' => 'a'
+            ], [
+                'data' => 'baz',
+            ]
+        ];
+
+        $withOrderingKey = function ($key) use ($messages) {
+            $messages = array_filter($messages, function ($message) use ($key) {
+                if ($key === '') {
+                    return !isset($message['orderingKey']);
+                }
+
+                return isset($message['orderingKey']) && $message['orderingKey'] === $key;
+            });
+
+            return Argument::withEntry('messages', array_values($messages));
+        };
+
+        $connection->publishMessage($withOrderingKey('a'))
+            ->will(function ($args) use ($withOrderingKey) {
+                $this->publishMessage($withOrderingKey('b'))
+                    ->will(function ($args) use ($withOrderingKey) {
+                        $this->publishMessage($withOrderingKey(''))
+                            ->will(function ($args) {
+                                return array_fill(0, count($args[0]['messages']), 1);
+                            });
+
+                        return array_fill(0, count($args[0]['messages']), 1);
+                    });
+
+                return array_fill(0, count($args[0]['messages']), 1);
+            });
+
+        $client->___setProperty('connection', $connection->reveal());
+        $publisher->___setProperty('client', $client);
+        $res = $publisher->publishDeferred($messages);
+        $this->assertEquals(array_fill(0, count($messages), 1), $res);
     }
 }
 
