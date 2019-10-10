@@ -386,11 +386,9 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required.
-     *                                 The parent resource name where the scan is created, which should be a
+     * @param string     $parent       Required. The parent resource name where the scan is created, which should be a
      *                                 project resource name in the format 'projects/{projectId}'.
-     * @param ScanConfig $scanConfig   Required.
-     *                                 The ScanConfig to be created.
+     * @param ScanConfig $scanConfig   Required. The ScanConfig to be created.
      * @param array      $optionalArgs {
      *                                 Optional.
      *
@@ -441,8 +439,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required.
-     *                             The resource name of the ScanConfig to be deleted. The name follows the
+     * @param string $name         Required. The resource name of the ScanConfig to be deleted. The name follows the
      *                             format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -491,8 +488,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required.
-     *                             The resource name of the ScanConfig to be returned. The name follows the
+     * @param string $name         Required. The resource name of the ScanConfig to be returned. The name follows the
      *                             format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -558,8 +554,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required.
-     *                             The parent resource name, which should be a project resource name in the
+     * @param string $parent       Required. The parent resource name, which should be a project resource name in the
      *                             format 'projects/{projectId}'.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -626,12 +621,10 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param ScanConfig $scanConfig   Required.
-     *                                 The ScanConfig to be updated. The name field must be set to identify the
+     * @param ScanConfig $scanConfig   Required. The ScanConfig to be updated. The name field must be set to identify the
      *                                 resource to be updated. The values of fields not covered by the mask
      *                                 will be ignored.
-     * @param FieldMask  $updateMask   Required.
-     *                                 The update mask applies to the resource. For the `FieldMask` definition,
+     * @param FieldMask  $updateMask   Required. The update mask applies to the resource. For the `FieldMask` definition,
      *                                 see
      *                                 https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      * @param array      $optionalArgs {
@@ -684,8 +677,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required.
-     *                             The resource name of the ScanConfig to be used. The name follows the
+     * @param string $name         Required. The resource name of the ScanConfig to be used. The name follows the
      *                             format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -736,8 +728,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required.
-     *                             The resource name of the ScanRun to be returned. The name follows the
+     * @param string $name         Required. The resource name of the ScanRun to be returned. The name follows the
      *                             format of
      *                             'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      * @param array  $optionalArgs {
@@ -805,8 +796,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required.
-     *                             The parent resource name, which should be a scan resource name in the
+     * @param string $parent       Required. The parent resource name, which should be a scan resource name in the
      *                             format 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -872,8 +862,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required.
-     *                             The resource name of the ScanRun to be stopped. The name follows the
+     * @param string $name         Required. The resource name of the ScanRun to be stopped. The name follows the
      *                             format of
      *                             'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      * @param array  $optionalArgs {
@@ -940,8 +929,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required.
-     *                             The parent resource name, which should be a scan run resource name in the
+     * @param string $parent       Required. The parent resource name, which should be a scan run resource name in the
      *                             format
      *                             'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      * @param array  $optionalArgs {
@@ -1008,8 +996,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $name         Required.
-     *                             The resource name of the Finding to be returned. The name follows the
+     * @param string $name         Required. The resource name of the Finding to be returned. The name follows the
      *                             format of
      *                             'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}/findings/{findingId}'.
      * @param array  $optionalArgs {
@@ -1077,11 +1064,10 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required.
-     *                             The parent resource name, which should be a scan run resource name in the
+     * @param string $parent       Required. The parent resource name, which should be a scan run resource name in the
      *                             format
      *                             'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
-     * @param string $filter       The filter expression. The expression must be in the format: <field>
+     * @param string $filter       Required. The filter expression. The expression must be in the format: <field>
      *                             <operator> <value>.
      *                             Supported field: 'finding_type'.
      *                             Supported operator: '='.
@@ -1150,8 +1136,7 @@ class WebSecurityScannerGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required.
-     *                             The parent resource name, which should be a scan run resource name in the
+     * @param string $parent       Required. The parent resource name, which should be a scan run resource name in the
      *                             format
      *                             'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      * @param array  $optionalArgs {

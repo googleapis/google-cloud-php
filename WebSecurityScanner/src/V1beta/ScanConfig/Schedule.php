@@ -25,10 +25,9 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     private $schedule_time = null;
     /**
-     * Required.
-     * The duration of time between executions in days.
+     * Required. The duration of time between executions in days.
      *
-     * Generated from protobuf field <code>int32 interval_duration_days = 2;</code>
+     * Generated from protobuf field <code>int32 interval_duration_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $interval_duration_days = 0;
 
@@ -44,8 +43,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *           to current server time, which means the scan will be scheduled to start
      *           immediately.
      *     @type int $interval_duration_days
-     *           Required.
-     *           The duration of time between executions in days.
+     *           Required. The duration of time between executions in days.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,10 +84,9 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The duration of time between executions in days.
+     * Required. The duration of time between executions in days.
      *
-     * Generated from protobuf field <code>int32 interval_duration_days = 2;</code>
+     * Generated from protobuf field <code>int32 interval_duration_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getIntervalDurationDays()
@@ -98,10 +95,9 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The duration of time between executions in days.
+     * Required. The duration of time between executions in days.
      *
-     * Generated from protobuf field <code>int32 interval_duration_days = 2;</code>
+     * Generated from protobuf field <code>int32 interval_duration_days = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

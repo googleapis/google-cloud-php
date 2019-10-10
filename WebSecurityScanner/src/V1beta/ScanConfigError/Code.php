@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Output only.
  * Defines an error reason code.
- * Next id: 43
+ * Next id: 44
  *
  * Protobuf type <code>google.cloud.websecurityscanner.v1beta.ScanConfigError.Code</code>
  */
@@ -150,6 +150,12 @@ class Code
      * Generated from protobuf enum <code>FORBIDDEN_TO_SCAN_COMPUTE = 21;</code>
      */
     const FORBIDDEN_TO_SCAN_COMPUTE = 21;
+    /**
+     * User tries to update managed scan
+     *
+     * Generated from protobuf enum <code>FORBIDDEN_UPDATE_TO_MANAGED_SCAN = 43;</code>
+     */
+    const FORBIDDEN_UPDATE_TO_MANAGED_SCAN = 43;
     /**
      * The supplied filter is malformed. For example, it can not be parsed, does
      * not have a filter type in expression, or the same filter type appears
@@ -300,6 +306,7 @@ class Code
         self::FAILED_TO_AUTHENTICATE_TO_TARGET => 'FAILED_TO_AUTHENTICATE_TO_TARGET',
         self::FINDING_TYPE_UNSPECIFIED => 'FINDING_TYPE_UNSPECIFIED',
         self::FORBIDDEN_TO_SCAN_COMPUTE => 'FORBIDDEN_TO_SCAN_COMPUTE',
+        self::FORBIDDEN_UPDATE_TO_MANAGED_SCAN => 'FORBIDDEN_UPDATE_TO_MANAGED_SCAN',
         self::MALFORMED_FILTER => 'MALFORMED_FILTER',
         self::MALFORMED_RESOURCE_NAME => 'MALFORMED_RESOURCE_NAME',
         self::PROJECT_INACTIVE => 'PROJECT_INACTIVE',

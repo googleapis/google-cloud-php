@@ -14,7 +14,6 @@ class FindingTypeStats
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0afd020a3f676f6f676c652f636c6f75642f776562736563757269747973" .
             "63616e6e65722f7631626574612f66696e64696e675f747970655f737461" .

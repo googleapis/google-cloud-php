@@ -16,26 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomAccount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The user name of the custom account.
+     * Required. The user name of the custom account.
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $username = '';
     /**
-     * Input only.
-     * Required.
-     * The password of the custom account. The credential is stored encrypted
+     * Required. Input only. The password of the custom account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $password = '';
     /**
-     * Required.
-     * The login form URL of the website.
+     * Required. The login form URL of the website.
      *
-     * Generated from protobuf field <code>string login_url = 3;</code>
+     * Generated from protobuf field <code>string login_url = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $login_url = '';
 
@@ -46,16 +42,12 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $username
-     *           Required.
-     *           The user name of the custom account.
+     *           Required. The user name of the custom account.
      *     @type string $password
-     *           Input only.
-     *           Required.
-     *           The password of the custom account. The credential is stored encrypted
+     *           Required. Input only. The password of the custom account. The credential is stored encrypted
      *           and not returned in any response nor included in audit logs.
      *     @type string $login_url
-     *           Required.
-     *           The login form URL of the website.
+     *           Required. The login form URL of the website.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,10 +56,9 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The user name of the custom account.
+     * Required. The user name of the custom account.
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUsername()
@@ -76,10 +67,9 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The user name of the custom account.
+     * Required. The user name of the custom account.
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -92,12 +82,10 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only.
-     * Required.
-     * The password of the custom account. The credential is stored encrypted
+     * Required. Input only. The password of the custom account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getPassword()
@@ -106,12 +94,10 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only.
-     * Required.
-     * The password of the custom account. The credential is stored encrypted
+     * Required. Input only. The password of the custom account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -124,10 +110,9 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The login form URL of the website.
+     * Required. The login form URL of the website.
      *
-     * Generated from protobuf field <code>string login_url = 3;</code>
+     * Generated from protobuf field <code>string login_url = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLoginUrl()
@@ -136,10 +121,9 @@ class CustomAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The login form URL of the website.
+     * Required. The login form URL of the website.
      *
-     * Generated from protobuf field <code>string login_url = 3;</code>
+     * Generated from protobuf field <code>string login_url = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

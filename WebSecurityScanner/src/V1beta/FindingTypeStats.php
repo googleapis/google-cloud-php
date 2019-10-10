@@ -17,14 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class FindingTypeStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
      * The finding type associated with the stats.
      *
      * Generated from protobuf field <code>string finding_type = 1;</code>
      */
     private $finding_type = '';
     /**
-     * Output only.
      * The count of findings belonging to this finding type.
      *
      * Generated from protobuf field <code>int32 finding_count = 2;</code>
@@ -38,10 +36,8 @@ class FindingTypeStats extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $finding_type
-     *           Output only.
      *           The finding type associated with the stats.
      *     @type int $finding_count
-     *           Output only.
      *           The count of findings belonging to this finding type.
      * }
      */
@@ -51,7 +47,6 @@ class FindingTypeStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The finding type associated with the stats.
      *
      * Generated from protobuf field <code>string finding_type = 1;</code>
@@ -63,7 +58,6 @@ class FindingTypeStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The finding type associated with the stats.
      *
      * Generated from protobuf field <code>string finding_type = 1;</code>
@@ -79,7 +73,6 @@ class FindingTypeStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The count of findings belonging to this finding type.
      *
      * Generated from protobuf field <code>int32 finding_count = 2;</code>
@@ -91,7 +84,6 @@ class FindingTypeStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The count of findings belonging to this finding type.
      *
      * Generated from protobuf field <code>int32 finding_count = 2;</code>
