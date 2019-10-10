@@ -309,20 +309,24 @@ class QueryTest extends TestCase
 
     public function whereOperators()
     {
-        return [
-            [Query::OP_LESS_THAN],
-            [Query::OP_LESS_THAN_OR_EQUAL],
-            [Query::OP_GREATER_THAN],
-            [Query::OP_GREATER_THAN_OR_EQUAL],
-            [Query::OP_EQUAL],
-            [Query::OP_ARRAY_CONTAINS],
+        $refl = new \ReflectionClass(FieldFilterOperator::class);
+        $constants = $refl->getConstants();
+
+        $ops = [];
+        foreach ($constants as $constant) {
+            $ops[] = [$constant];
+        }
+        return array_merge($ops, [
             ['<'],
             ['<='],
             ['>'],
             ['>='],
             ['='],
             ['array-contains'],
-        ];
+            ['in'],
+            ['IN'],
+            ['array-contains-any'],
+        ]);
     }
 
     /**
@@ -449,7 +453,7 @@ class QueryTest extends TestCase
     /**
      * @dataProvider orderOperators
      */
-    public function testorderOperators($operator)
+    public function testOrderOperators($operator)
     {
         $this->query->orderBy('foo', $operator);
     }
