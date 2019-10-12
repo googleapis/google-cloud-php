@@ -206,10 +206,10 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string     $debuggeeId    ID of the debuggee where the breakpoint is to be set.
-     * @param Breakpoint $breakpoint    Breakpoint specification to set.
+     * @param string     $debuggeeId    Required. ID of the debuggee where the breakpoint is to be set.
+     * @param Breakpoint $breakpoint    Required. Breakpoint specification to set.
      *                                  The field `location` of the breakpoint must be set.
-     * @param string     $clientVersion The client version making the call.
+     * @param string     $clientVersion Required. The client version making the call.
      *                                  Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array      $optionalArgs  {
      *                                  Optional.
@@ -264,9 +264,9 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId    ID of the debuggee whose breakpoint to get.
-     * @param string $breakpointId  ID of the breakpoint to get.
-     * @param string $clientVersion The client version making the call.
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to get.
+     * @param string $breakpointId  Required. ID of the breakpoint to get.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.
@@ -314,9 +314,9 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId    ID of the debuggee whose breakpoint to delete.
-     * @param string $breakpointId  ID of the breakpoint to delete.
-     * @param string $clientVersion The client version making the call.
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to delete.
+     * @param string $breakpointId  Required. ID of the breakpoint to delete.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.
@@ -361,8 +361,8 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId    ID of the debuggee whose breakpoints to list.
-     * @param string $clientVersion The client version making the call.
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoints to list.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.
@@ -447,8 +447,8 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $project       Project number of a Google Cloud project whose debuggees to list.
-     * @param string $clientVersion The client version making the call.
+     * @param string $project       Required. Project number of a Google Cloud project whose debuggees to list.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.

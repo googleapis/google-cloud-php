@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Debuggee information to register.
+     * Required. Debuggee information to register.
      * The fields `project`, `uniquifier`, `description` and `agent_version`
      * of the debuggee must be set.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $debuggee = null;
 
@@ -31,7 +31,7 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Debugger\V2\Debuggee $debuggee
-     *           Debuggee information to register.
+     *           Required. Debuggee information to register.
      *           The fields `project`, `uniquifier`, `description` and `agent_version`
      *           of the debuggee must be set.
      * }
@@ -42,11 +42,11 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Debuggee information to register.
+     * Required. Debuggee information to register.
      * The fields `project`, `uniquifier`, `description` and `agent_version`
      * of the debuggee must be set.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Debugger\V2\Debuggee
      */
     public function getDebuggee()
@@ -55,11 +55,11 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Debuggee information to register.
+     * Required. Debuggee information to register.
      * The fields `project`, `uniquifier`, `description` and `agent_version`
      * of the debuggee must be set.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Debugger\V2\Debuggee $var
      * @return $this
      */

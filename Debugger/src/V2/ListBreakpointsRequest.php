@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the debuggee whose breakpoints to list.
+     * Required. ID of the debuggee whose breakpoints to list.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $debuggee_id = '';
     /**
@@ -59,10 +59,10 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      */
     private $wait_token = '';
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 8;</code>
+     * Generated from protobuf field <code>string client_version = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $client_version = '';
 
@@ -73,7 +73,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $debuggee_id
-     *           ID of the debuggee whose breakpoints to list.
+     *           Required. ID of the debuggee whose breakpoints to list.
      *     @type bool $include_all_users
      *           When set to `true`, the response includes the list of breakpoints set by
      *           any user. Otherwise, it includes only breakpoints set by the caller.
@@ -92,7 +92,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *           `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which
      *           should be called again with the same `wait_token`.
      *     @type string $client_version
-     *           The client version making the call.
+     *           Required. The client version making the call.
      *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * }
      */
@@ -102,9 +102,9 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the debuggee whose breakpoints to list.
+     * Required. ID of the debuggee whose breakpoints to list.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDebuggeeId()
@@ -113,9 +113,9 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the debuggee whose breakpoints to list.
+     * Required. ID of the debuggee whose breakpoints to list.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -272,10 +272,10 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 8;</code>
+     * Generated from protobuf field <code>string client_version = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClientVersion()
@@ -284,10 +284,10 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 8;</code>
+     * Generated from protobuf field <code>string client_version = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

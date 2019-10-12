@@ -215,7 +215,7 @@ class Controller2GapicClient
      * }
      * ```
      *
-     * @param Debuggee $debuggee     Debuggee information to register.
+     * @param Debuggee $debuggee     Required. Debuggee information to register.
      *                               The fields `project`, `uniquifier`, `description` and `agent_version`
      *                               of the debuggee must be set.
      * @param array    $optionalArgs {
@@ -272,7 +272,7 @@ class Controller2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId   Identifies the debuggee.
+     * @param string $debuggeeId   Required. Identifies the debuggee.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -348,8 +348,8 @@ class Controller2GapicClient
      * }
      * ```
      *
-     * @param string     $debuggeeId   Identifies the debuggee being debugged.
-     * @param Breakpoint $breakpoint   Updated breakpoint information.
+     * @param string     $debuggeeId   Required. Identifies the debuggee being debugged.
+     * @param Breakpoint $breakpoint   Required. Updated breakpoint information.
      *                                 The field `id` must be set.
      *                                 The agent must echo all Breakpoint specification fields in the update.
      * @param array      $optionalArgs {
