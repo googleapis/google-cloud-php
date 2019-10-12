@@ -17,15 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class PubsubTarget extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The name of the Cloud Pub/Sub topic to which messages will
+     * Required. The name of the Cloud Pub/Sub topic to which messages will
      * be published when a job is delivered. The topic name must be in the
      * same format as required by PubSub's
      * [PublishRequest.name](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#publishrequest),
      * for example `projects/PROJECT_ID/topics/TOPIC_ID`.
      * The topic must be in the same project as the Cloud Scheduler job.
      *
-     * Generated from protobuf field <code>string topic_name = 1;</code>
+     * Generated from protobuf field <code>string topic_name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $topic_name = '';
     /**
@@ -52,8 +51,7 @@ class PubsubTarget extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic_name
-     *           Required.
-     *           The name of the Cloud Pub/Sub topic to which messages will
+     *           Required. The name of the Cloud Pub/Sub topic to which messages will
      *           be published when a job is delivered. The topic name must be in the
      *           same format as required by PubSub's
      *           [PublishRequest.name](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#publishrequest),
@@ -75,15 +73,14 @@ class PubsubTarget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the Cloud Pub/Sub topic to which messages will
+     * Required. The name of the Cloud Pub/Sub topic to which messages will
      * be published when a job is delivered. The topic name must be in the
      * same format as required by PubSub's
      * [PublishRequest.name](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#publishrequest),
      * for example `projects/PROJECT_ID/topics/TOPIC_ID`.
      * The topic must be in the same project as the Cloud Scheduler job.
      *
-     * Generated from protobuf field <code>string topic_name = 1;</code>
+     * Generated from protobuf field <code>string topic_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopicName()
@@ -92,15 +89,14 @@ class PubsubTarget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the Cloud Pub/Sub topic to which messages will
+     * Required. The name of the Cloud Pub/Sub topic to which messages will
      * be published when a job is delivered. The topic name must be in the
      * same format as required by PubSub's
      * [PublishRequest.name](https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#publishrequest),
      * for example `projects/PROJECT_ID/topics/TOPIC_ID`.
      * The topic must be in the same project as the Cloud Scheduler job.
      *
-     * Generated from protobuf field <code>string topic_name = 1;</code>
+     * Generated from protobuf field <code>string topic_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -16,18 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     * Required. The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job = null;
     /**
      * A  mask used to specify which fields of the job are being updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -38,8 +37,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Scheduler\V1\Job $job
-     *           Required.
-     *           The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     *           Required. The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
      *           Output only fields cannot be modified using UpdateJob.
      *           Any value specified for an output only field will be ignored.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -52,12 +50,11 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     * Required. The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Scheduler\V1\Job
      */
     public function getJob()
@@ -66,12 +63,11 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     * Required. The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Scheduler\V1\Job $var
      * @return $this
      */
@@ -86,7 +82,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * A  mask used to specify which fields of the job are being updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -97,7 +93,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * A  mask used to specify which fields of the job are being updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

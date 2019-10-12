@@ -359,12 +359,10 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * The location name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $parent       Required. The location name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -426,12 +424,10 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The job name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -479,19 +475,15 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * The location name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID`.
-     * @param Job $job Required.
-     *
-     * The job to add. The user can optionally specify a name for the
-     * job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
-     * existing job. If a name is not specified then the system will
-     * generate a random unique name that will be returned
-     * ([name][google.cloud.scheduler.v1.Job.name]) in the response.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $parent       Required. The location name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID`.
+     * @param Job    $job          Required. The job to add. The user can optionally specify a name for the
+     *                             job in [name][google.cloud.scheduler.v1.Job.name]. [name][google.cloud.scheduler.v1.Job.name] cannot be the same as an
+     *                             existing job. If a name is not specified then the system will
+     *                             generate a random unique name that will be returned
+     *                             ([name][google.cloud.scheduler.v1.Job.name]) in the response.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -548,9 +540,7 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param Job $job Required.
-     *
-     * The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
+     * @param Job $job Required. The new job properties. [name][google.cloud.scheduler.v1.Job.name] must be specified.
      *
      * Output only fields cannot be modified using UpdateJob.
      * Any value specified for an output only field will be ignored.
@@ -604,12 +594,10 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The job name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -660,12 +648,10 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The job name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -717,12 +703,10 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The job name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -772,12 +756,10 @@ class CloudSchedulerGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The job name. For example:
-     * `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The job name. For example:
+     *                             `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
