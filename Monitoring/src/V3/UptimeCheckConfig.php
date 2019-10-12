@@ -71,6 +71,15 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     private $selected_regions;
     /**
+     * If this is `true`, then checks are made only from the 'internal_checkers'.
+     * If it is `false`, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is `true`,
+     * or to provide 'internal_checkers' when is_internal is `false`.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15 [deprecated = true];</code>
+     */
+    private $is_internal = false;
+    /**
      * The internal checkers that this check will egress from. If `is_internal` is
      * `true` and this list is empty, the check will egress from all the
      * InternalCheckers configured for the project that owns this
@@ -134,6 +143,11 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           If this field is specified, enough regions must be provided to include a
      *           minimum of 3 locations.  Not specifying this field will result in Uptime
      *           checks running from all available regions.
+     *     @type bool $is_internal
+     *           If this is `true`, then checks are made only from the 'internal_checkers'.
+     *           If it is `false`, then checks are made only from the 'selected_regions'.
+     *           It is an error to provide 'selected_regions' when is_internal is `true`,
+     *           or to provide 'internal_checkers' when is_internal is `false`.
      *     @type \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $internal_checkers
      *           The internal checkers that this check will egress from. If `is_internal` is
      *           `true` and this list is empty, the check will egress from all the
@@ -454,6 +468,38 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Monitoring\V3\UptimeCheckRegion::class);
         $this->selected_regions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If this is `true`, then checks are made only from the 'internal_checkers'.
+     * If it is `false`, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is `true`,
+     * or to provide 'internal_checkers' when is_internal is `false`.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15 [deprecated = true];</code>
+     * @return bool
+     */
+    public function getIsInternal()
+    {
+        return $this->is_internal;
+    }
+
+    /**
+     * If this is `true`, then checks are made only from the 'internal_checkers'.
+     * If it is `false`, then checks are made only from the 'selected_regions'.
+     * It is an error to provide 'selected_regions' when is_internal is `true`,
+     * or to provide 'internal_checkers' when is_internal is `false`.
+     *
+     * Generated from protobuf field <code>bool is_internal = 15 [deprecated = true];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsInternal($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_internal = $var;
 
         return $this;
     }
