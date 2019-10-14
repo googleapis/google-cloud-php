@@ -16,21 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The parent resource name, which should be a scan run resource name in the
+     * Required. The parent resource name, which should be a scan run resource name in the
      * format
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The filter expression. The expression must be in the format: <field>
+     * Required. The filter expression. The expression must be in the format: <field>
      * <operator> <value>.
      * Supported field: 'finding_type'.
      * Supported operator: '='.
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
@@ -57,12 +56,11 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The parent resource name, which should be a scan run resource name in the
+     *           Required. The parent resource name, which should be a scan run resource name in the
      *           format
      *           'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *     @type string $filter
-     *           The filter expression. The expression must be in the format: <field>
+     *           Required. The filter expression. The expression must be in the format: <field>
      *           <operator> <value>.
      *           Supported field: 'finding_type'.
      *           Supported operator: '='.
@@ -82,12 +80,11 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The parent resource name, which should be a scan run resource name in the
+     * Required. The parent resource name, which should be a scan run resource name in the
      * format
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -96,12 +93,11 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The parent resource name, which should be a scan run resource name in the
+     * Required. The parent resource name, which should be a scan run resource name in the
      * format
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -114,12 +110,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter expression. The expression must be in the format: <field>
+     * Required. The filter expression. The expression must be in the format: <field>
      * <operator> <value>.
      * Supported field: 'finding_type'.
      * Supported operator: '='.
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -128,12 +124,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter expression. The expression must be in the format: <field>
+     * Required. The filter expression. The expression must be in the format: <field>
      * <operator> <value>.
      * Supported field: 'finding_type'.
      * Supported operator: '='.
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

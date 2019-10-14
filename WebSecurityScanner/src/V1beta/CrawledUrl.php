@@ -18,7 +18,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class CrawledUrl extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
      * The http method of the request that was used to visit the URL, in
      * uppercase.
      *
@@ -26,14 +25,12 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
      */
     private $http_method = '';
     /**
-     * Output only.
      * The URL that was crawled.
      *
      * Generated from protobuf field <code>string url = 2;</code>
      */
     private $url = '';
     /**
-     * Output only.
      * The body of the request that was used to visit the URL.
      *
      * Generated from protobuf field <code>string body = 3;</code>
@@ -47,14 +44,11 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $http_method
-     *           Output only.
      *           The http method of the request that was used to visit the URL, in
      *           uppercase.
      *     @type string $url
-     *           Output only.
      *           The URL that was crawled.
      *     @type string $body
-     *           Output only.
      *           The body of the request that was used to visit the URL.
      * }
      */
@@ -64,7 +58,6 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The http method of the request that was used to visit the URL, in
      * uppercase.
      *
@@ -77,7 +70,6 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The http method of the request that was used to visit the URL, in
      * uppercase.
      *
@@ -94,7 +86,6 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The URL that was crawled.
      *
      * Generated from protobuf field <code>string url = 2;</code>
@@ -106,7 +97,6 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The URL that was crawled.
      *
      * Generated from protobuf field <code>string url = 2;</code>
@@ -122,7 +112,6 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The body of the request that was used to visit the URL.
      *
      * Generated from protobuf field <code>string body = 3;</code>
@@ -134,7 +123,6 @@ class CrawledUrl extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * The body of the request that was used to visit the URL.
      *
      * Generated from protobuf field <code>string body = 3;</code>

@@ -17,14 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
      * Indicates the error reason code.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunErrorTrace.Code code = 1;</code>
      */
     private $code = 0;
     /**
-     * Output only.
      * If the scan encounters SCAN_CONFIG_ISSUE error, this field has the error
      * message encountered during scan configuration validation that is performed
      * before each scan run.
@@ -33,7 +31,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
      */
     private $scan_config_error = null;
     /**
-     * Output only.
      * If the scan encounters TOO_MANY_HTTP_ERRORS, this field indicates the most
      * common HTTP error code, if such is available. For example, if this code is
      * 404, the scan has encountered too many NOT_FOUND responses.
@@ -49,15 +46,12 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $code
-     *           Output only.
      *           Indicates the error reason code.
      *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError $scan_config_error
-     *           Output only.
      *           If the scan encounters SCAN_CONFIG_ISSUE error, this field has the error
      *           message encountered during scan configuration validation that is performed
      *           before each scan run.
      *     @type int $most_common_http_error_code
-     *           Output only.
      *           If the scan encounters TOO_MANY_HTTP_ERRORS, this field indicates the most
      *           common HTTP error code, if such is available. For example, if this code is
      *           404, the scan has encountered too many NOT_FOUND responses.
@@ -69,7 +63,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the error reason code.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunErrorTrace.Code code = 1;</code>
@@ -81,7 +74,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the error reason code.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunErrorTrace.Code code = 1;</code>
@@ -97,7 +89,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * If the scan encounters SCAN_CONFIG_ISSUE error, this field has the error
      * message encountered during scan configuration validation that is performed
      * before each scan run.
@@ -111,7 +102,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * If the scan encounters SCAN_CONFIG_ISSUE error, this field has the error
      * message encountered during scan configuration validation that is performed
      * before each scan run.
@@ -129,7 +119,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * If the scan encounters TOO_MANY_HTTP_ERRORS, this field indicates the most
      * common HTTP error code, if such is available. For example, if this code is
      * 404, the scan has encountered too many NOT_FOUND responses.
@@ -143,7 +132,6 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * If the scan encounters TOO_MANY_HTTP_ERRORS, this field indicates the most
      * common HTTP error code, if such is available. For example, if this code is
      * 404, the scan has encountered too many NOT_FOUND responses.

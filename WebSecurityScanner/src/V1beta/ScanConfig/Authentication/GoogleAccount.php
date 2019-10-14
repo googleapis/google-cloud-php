@@ -16,19 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GoogleAccount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The user name of the Google account.
+     * Required. The user name of the Google account.
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $username = '';
     /**
-     * Input only.
-     * Required.
-     * The password of the Google account. The credential is stored encrypted
+     * Required. Input only. The password of the Google account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $password = '';
 
@@ -39,12 +36,9 @@ class GoogleAccount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $username
-     *           Required.
-     *           The user name of the Google account.
+     *           Required. The user name of the Google account.
      *     @type string $password
-     *           Input only.
-     *           Required.
-     *           The password of the Google account. The credential is stored encrypted
+     *           Required. Input only. The password of the Google account. The credential is stored encrypted
      *           and not returned in any response nor included in audit logs.
      * }
      */
@@ -54,10 +48,9 @@ class GoogleAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The user name of the Google account.
+     * Required. The user name of the Google account.
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUsername()
@@ -66,10 +59,9 @@ class GoogleAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The user name of the Google account.
+     * Required. The user name of the Google account.
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -82,12 +74,10 @@ class GoogleAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only.
-     * Required.
-     * The password of the Google account. The credential is stored encrypted
+     * Required. Input only. The password of the Google account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getPassword()
@@ -96,12 +86,10 @@ class GoogleAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only.
-     * Required.
-     * The password of the Google account. The credential is stored encrypted
+     * Required. Input only. The password of the Google account. The credential is stored encrypted
      * and not returned in any response nor included in audit logs.
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

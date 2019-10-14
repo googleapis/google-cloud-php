@@ -16,21 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The ScanConfig to be updated. The name field must be set to identify the
+     * Required. The ScanConfig to be updated. The name field must be set to identify the
      * resource to be updated. The values of fields not covered by the mask
      * will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $scan_config = null;
     /**
-     * Required.
-     * The update mask applies to the resource. For the `FieldMask` definition,
+     * Required. The update mask applies to the resource. For the `FieldMask` definition,
      * see
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -41,13 +39,11 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig $scan_config
-     *           Required.
-     *           The ScanConfig to be updated. The name field must be set to identify the
+     *           Required. The ScanConfig to be updated. The name field must be set to identify the
      *           resource to be updated. The values of fields not covered by the mask
      *           will be ignored.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required.
-     *           The update mask applies to the resource. For the `FieldMask` definition,
+     *           Required. The update mask applies to the resource. For the `FieldMask` definition,
      *           see
      *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      * }
@@ -58,12 +54,11 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The ScanConfig to be updated. The name field must be set to identify the
+     * Required. The ScanConfig to be updated. The name field must be set to identify the
      * resource to be updated. The values of fields not covered by the mask
      * will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig
      */
     public function getScanConfig()
@@ -72,12 +67,11 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The ScanConfig to be updated. The name field must be set to identify the
+     * Required. The ScanConfig to be updated. The name field must be set to identify the
      * resource to be updated. The values of fields not covered by the mask
      * will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig $var
      * @return $this
      */
@@ -90,12 +84,11 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The update mask applies to the resource. For the `FieldMask` definition,
+     * Required. The update mask applies to the resource. For the `FieldMask` definition,
      * see
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -104,12 +97,11 @@ class UpdateScanConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The update mask applies to the resource. For the `FieldMask` definition,
+     * Required. The update mask applies to the resource. For the `FieldMask` definition,
      * see
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
