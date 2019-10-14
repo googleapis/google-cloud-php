@@ -844,6 +844,7 @@ class CodeParser implements ParserInterface
     private function buildInternalLink($content)
     {
         $componentId = null;
+        $content = trim($content, '\\');
         $ref = $this->getClassReference($content);
         $fileName = $ref->getFileName();
 
@@ -852,7 +853,6 @@ class CodeParser implements ParserInterface
             $componentId = $composer['extra']['component']['id'];
         }
 
-        $content = trim($content, '\\');
         $parts = explode('::', $content);
         $type = $this->fileNameToType($fileName);
 
@@ -960,27 +960,25 @@ class CodeParser implements ParserInterface
         // third party dependencies require type hints and throw a Parse error
         // when an implementation is not compatible with its parent class or
         // interface.
-        static $map = [
+        $unreflectableMap = [
             // Monolog 1.x/2.x related classes
             'Google\Cloud\Core\Logger\AppEngineFlexFormatter' => 'Core/src/Logger/AppEngineFlexFormatter.php',
             'Google\Cloud\Core\Logger\AppEngineFlexFormatterV2' => 'Core/src/Logger/AppEngineFlexFormatterV2.php',
             'Google\Cloud\Core\Logger\AppEngineFlexHandler' => 'Core/src/Logger/AppEngineFlexHandler.php',
             'Google\Cloud\Core\Logger\AppEngineFlexHandlerV2' => 'Core/src/Logger/AppEngineFlexHandlerV2.php',
         ];
+        static $reflectedMap = [];
 
-        if (array_key_exists($type, $map)) {
-            return new ClassReference($type, $this->projectRoot.'/'.$map[$type]);
+        if (array_key_exists($type, $unreflectableMap)) {
+            return new ClassReference($type, $this->projectRoot . $unreflectableMap[$type]);
+        } elseif (array_key_exists($type, $reflectedMap)) {
+            return new ClassReference($type, $reflectedMap[$type]);
         }
 
-        foreach ($map as $key => $value) {
-            if (strpos($type, $key) !== false) {
-                return new ClassReference($type, $this->projectRoot.'/'.$value);
-            }
-        }
+        $reflectedMap[$type] = $this->getReflectionClass($type)
+            ->getFileName();
 
-        $map[$type] = $this->getReflectionClass($type)->getFileName();
-
-        return new ClassReference($type, $this->projectRoot.'/'.$map[$type]);
+        return new ClassReference($type, $reflectedMap[$type]);
     }
 
     private function getReflectionClass($type)
