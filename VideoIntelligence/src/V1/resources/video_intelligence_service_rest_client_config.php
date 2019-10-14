@@ -10,24 +10,15 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}',
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -55,17 +46,26 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
-                'body' => '*',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}:cancel',
-                        'body' => '*',
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/operations/{name=projects/*/locations/*/operations/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

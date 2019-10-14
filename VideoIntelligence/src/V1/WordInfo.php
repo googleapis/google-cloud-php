@@ -49,7 +49,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
-     * Generated from protobuf field <code>float confidence = 4;</code>
+     * Generated from protobuf field <code>float confidence = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $confidence = 0.0;
     /**
@@ -58,7 +58,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * have spoken this word. Value ranges from 1 up to diarization_speaker_count,
      * and is only set if speaker diarization is enabled.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $speaker_tag = 0;
 
@@ -197,7 +197,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
-     * Generated from protobuf field <code>float confidence = 4;</code>
+     * Generated from protobuf field <code>float confidence = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getConfidence()
@@ -213,7 +213,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * to be always provided.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *
-     * Generated from protobuf field <code>float confidence = 4;</code>
+     * Generated from protobuf field <code>float confidence = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
@@ -231,7 +231,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * have spoken this word. Value ranges from 1 up to diarization_speaker_count,
      * and is only set if speaker diarization is enabled.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getSpeakerTag()
@@ -245,7 +245,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * have spoken this word. Value ranges from 1 up to diarization_speaker_count,
      * and is only set if speaker diarization is enabled.
      *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
+     * Generated from protobuf field <code>int32 speaker_tag = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

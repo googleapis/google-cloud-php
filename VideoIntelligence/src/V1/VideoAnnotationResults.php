@@ -37,8 +37,11 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     private $segment_label_annotations;
     /**
      * Presence label annotations on video level or user specified segment level.
-     * There is exactly one element for each unique label. This will eventually
-     * get publicly exposed and the restriction will be removed.
+     * There is exactly one element for each unique label. Compared to the
+     * existing topical `segment_label_annotations`, this field presents more
+     * fine-grained, segment-level labels detected in video content and is made
+     * available only when the client sets `LabelDetectionConfig.model` to
+     * "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
      */
@@ -52,8 +55,10 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
     private $shot_label_annotations;
     /**
      * Presence label annotations on shot level. There is exactly one element for
-     * each unique label. This will eventually get publicly exposed and the
-     * restriction will be removed.
+     * each unique label. Compared to the existing topical
+     * `shot_label_annotations`, this field presents more fine-grained, shot-level
+     * labels detected in video content and is made available only when the client
+     * sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
      */
@@ -127,15 +132,20 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *           There is exactly one element for each unique label.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $segment_presence_label_annotations
      *           Presence label annotations on video level or user specified segment level.
-     *           There is exactly one element for each unique label. This will eventually
-     *           get publicly exposed and the restriction will be removed.
+     *           There is exactly one element for each unique label. Compared to the
+     *           existing topical `segment_label_annotations`, this field presents more
+     *           fine-grained, segment-level labels detected in video content and is made
+     *           available only when the client sets `LabelDetectionConfig.model` to
+     *           "builtin/latest" in the request.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $shot_label_annotations
      *           Topical label annotations on shot level.
      *           There is exactly one element for each unique label.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $shot_presence_label_annotations
      *           Presence label annotations on shot level. There is exactly one element for
-     *           each unique label. This will eventually get publicly exposed and the
-     *           restriction will be removed.
+     *           each unique label. Compared to the existing topical
+     *           `shot_label_annotations`, this field presents more fine-grained, shot-level
+     *           labels detected in video content and is made available only when the client
+     *           sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $frame_label_annotations
      *           Label annotations on frame level.
      *           There is exactly one element for each unique label.
@@ -247,8 +257,11 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
 
     /**
      * Presence label annotations on video level or user specified segment level.
-     * There is exactly one element for each unique label. This will eventually
-     * get publicly exposed and the restriction will be removed.
+     * There is exactly one element for each unique label. Compared to the
+     * existing topical `segment_label_annotations`, this field presents more
+     * fine-grained, segment-level labels detected in video content and is made
+     * available only when the client sets `LabelDetectionConfig.model` to
+     * "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -260,8 +273,11 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
 
     /**
      * Presence label annotations on video level or user specified segment level.
-     * There is exactly one element for each unique label. This will eventually
-     * get publicly exposed and the restriction will be removed.
+     * There is exactly one element for each unique label. Compared to the
+     * existing topical `segment_label_annotations`, this field presents more
+     * fine-grained, segment-level labels detected in video content and is made
+     * available only when the client sets `LabelDetectionConfig.model` to
+     * "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
      * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -305,8 +321,10 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
 
     /**
      * Presence label annotations on shot level. There is exactly one element for
-     * each unique label. This will eventually get publicly exposed and the
-     * restriction will be removed.
+     * each unique label. Compared to the existing topical
+     * `shot_label_annotations`, this field presents more fine-grained, shot-level
+     * labels detected in video content and is made available only when the client
+     * sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -318,8 +336,10 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
 
     /**
      * Presence label annotations on shot level. There is exactly one element for
-     * each unique label. This will eventually get publicly exposed and the
-     * restriction will be removed.
+     * each unique label. Compared to the existing topical
+     * `shot_label_annotations`, this field presents more fine-grained, shot-level
+     * labels detected in video content and is made available only when the client
+     * sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
      * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var

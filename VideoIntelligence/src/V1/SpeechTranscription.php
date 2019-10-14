@@ -25,12 +25,11 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
      */
     private $alternatives;
     /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     * the language in this result. This language code was detected to have the
+     * most likelihood of being spoken in the audio.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $language_code = '';
 
@@ -46,10 +45,9 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
      *           accuracy, with the top (first) alternative being the most probable, as
      *           ranked by the recognizer.
      *     @type string $language_code
-     *           Output only. The
-     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     *           language in this result. This language code was detected to have the most
-     *           likelihood of being spoken in the audio.
+     *           Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     *           the language in this result. This language code was detected to have the
+     *           most likelihood of being spoken in the audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,12 +88,11 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     * the language in this result. This language code was detected to have the
+     * most likelihood of being spoken in the audio.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -104,12 +101,11 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The
-     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the
-     * language in this result. This language code was detected to have the most
-     * likelihood of being spoken in the audio.
+     * Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of
+     * the language in this result. This language code was detected to have the
+     * most likelihood of being spoken in the audio.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
