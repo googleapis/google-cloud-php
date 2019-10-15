@@ -16,23 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the debuggee where the breakpoint is to be set.
+     * Required. ID of the debuggee where the breakpoint is to be set.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $debuggee_id = '';
     /**
-     * Breakpoint specification to set.
+     * Required. Breakpoint specification to set.
      * The field `location` of the breakpoint must be set.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $breakpoint = null;
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $client_version = '';
 
@@ -43,12 +43,12 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $debuggee_id
-     *           ID of the debuggee where the breakpoint is to be set.
+     *           Required. ID of the debuggee where the breakpoint is to be set.
      *     @type \Google\Cloud\Debugger\V2\Breakpoint $breakpoint
-     *           Breakpoint specification to set.
+     *           Required. Breakpoint specification to set.
      *           The field `location` of the breakpoint must be set.
      *     @type string $client_version
-     *           The client version making the call.
+     *           Required. The client version making the call.
      *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * }
      */
@@ -58,9 +58,9 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the debuggee where the breakpoint is to be set.
+     * Required. ID of the debuggee where the breakpoint is to be set.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDebuggeeId()
@@ -69,9 +69,9 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the debuggee where the breakpoint is to be set.
+     * Required. ID of the debuggee where the breakpoint is to be set.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -84,10 +84,10 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Breakpoint specification to set.
+     * Required. Breakpoint specification to set.
      * The field `location` of the breakpoint must be set.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Debugger\V2\Breakpoint
      */
     public function getBreakpoint()
@@ -96,10 +96,10 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Breakpoint specification to set.
+     * Required. Breakpoint specification to set.
      * The field `location` of the breakpoint must be set.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Debugger\V2\Breakpoint $var
      * @return $this
      */
@@ -112,10 +112,10 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClientVersion()
@@ -124,10 +124,10 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

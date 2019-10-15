@@ -16,22 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * ID of the debuggee whose breakpoint to get.
+     * Required. ID of the debuggee whose breakpoint to get.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $debuggee_id = '';
     /**
-     * ID of the breakpoint to get.
+     * Required. ID of the breakpoint to get.
      *
-     * Generated from protobuf field <code>string breakpoint_id = 2;</code>
+     * Generated from protobuf field <code>string breakpoint_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $breakpoint_id = '';
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $client_version = '';
 
@@ -42,11 +42,11 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $debuggee_id
-     *           ID of the debuggee whose breakpoint to get.
+     *           Required. ID of the debuggee whose breakpoint to get.
      *     @type string $breakpoint_id
-     *           ID of the breakpoint to get.
+     *           Required. ID of the breakpoint to get.
      *     @type string $client_version
-     *           The client version making the call.
+     *           Required. The client version making the call.
      *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * }
      */
@@ -56,9 +56,9 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the debuggee whose breakpoint to get.
+     * Required. ID of the debuggee whose breakpoint to get.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDebuggeeId()
@@ -67,9 +67,9 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the debuggee whose breakpoint to get.
+     * Required. ID of the debuggee whose breakpoint to get.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -82,9 +82,9 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the breakpoint to get.
+     * Required. ID of the breakpoint to get.
      *
-     * Generated from protobuf field <code>string breakpoint_id = 2;</code>
+     * Generated from protobuf field <code>string breakpoint_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getBreakpointId()
@@ -93,9 +93,9 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the breakpoint to get.
+     * Required. ID of the breakpoint to get.
      *
-     * Generated from protobuf field <code>string breakpoint_id = 2;</code>
+     * Generated from protobuf field <code>string breakpoint_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -108,10 +108,10 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClientVersion()
@@ -120,10 +120,10 @@ class GetBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

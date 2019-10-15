@@ -71,8 +71,9 @@ use Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse;
  * ```
  * $controller2Client = new Controller2Client();
  * try {
- *     $debuggee = new Debuggee();
- *     $response = $controller2Client->registerDebuggee($debuggee);
+ *     $debuggeeId = '';
+ *     $breakpoint = new Breakpoint();
+ *     $response = $controller2Client->updateActiveBreakpoint($debuggeeId, $breakpoint);
  * } finally {
  *     $controller2Client->close();
  * }
@@ -193,6 +194,61 @@ class Controller2GapicClient
     }
 
     /**
+     * Updates the breakpoint state or mutable fields.
+     * The entire Breakpoint message must be sent back to the controller service.
+     *
+     * Updates to active breakpoint fields are only allowed if the new value
+     * does not change the breakpoint specification. Updates to the `location`,
+     * `condition` and `expressions` fields should not alter the breakpoint
+     * semantics. These may only make changes such as canonicalizing a value
+     * or snapping the location to the correct line of code.
+     *
+     * Sample code:
+     * ```
+     * $controller2Client = new Controller2Client();
+     * try {
+     *     $debuggeeId = '';
+     *     $breakpoint = new Breakpoint();
+     *     $response = $controller2Client->updateActiveBreakpoint($debuggeeId, $breakpoint);
+     * } finally {
+     *     $controller2Client->close();
+     * }
+     * ```
+     *
+     * @param string     $debuggeeId   Required. Identifies the debuggee being debugged.
+     * @param Breakpoint $breakpoint   Required. Updated breakpoint information.
+     *                                 The field `id` must be set.
+     *                                 The agent must echo all Breakpoint specification fields in the update.
+     * @param array      $optionalArgs {
+     *                                 Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateActiveBreakpoint($debuggeeId, $breakpoint, array $optionalArgs = [])
+    {
+        $request = new UpdateActiveBreakpointRequest();
+        $request->setDebuggeeId($debuggeeId);
+        $request->setBreakpoint($breakpoint);
+
+        return $this->startCall(
+            'UpdateActiveBreakpoint',
+            UpdateActiveBreakpointResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Registers the debuggee with the controller service.
      *
      * All agents attached to the same application must call this method with
@@ -215,7 +271,7 @@ class Controller2GapicClient
      * }
      * ```
      *
-     * @param Debuggee $debuggee     Debuggee information to register.
+     * @param Debuggee $debuggee     Required. Debuggee information to register.
      *                               The fields `project`, `uniquifier`, `description` and `agent_version`
      *                               of the debuggee must be set.
      * @param array    $optionalArgs {
@@ -272,7 +328,7 @@ class Controller2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId   Identifies the debuggee.
+     * @param string $debuggeeId   Required. Identifies the debuggee.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -321,61 +377,6 @@ class Controller2GapicClient
         return $this->startCall(
             'ListActiveBreakpoints',
             ListActiveBreakpointsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Updates the breakpoint state or mutable fields.
-     * The entire Breakpoint message must be sent back to the controller service.
-     *
-     * Updates to active breakpoint fields are only allowed if the new value
-     * does not change the breakpoint specification. Updates to the `location`,
-     * `condition` and `expressions` fields should not alter the breakpoint
-     * semantics. These may only make changes such as canonicalizing a value
-     * or snapping the location to the correct line of code.
-     *
-     * Sample code:
-     * ```
-     * $controller2Client = new Controller2Client();
-     * try {
-     *     $debuggeeId = '';
-     *     $breakpoint = new Breakpoint();
-     *     $response = $controller2Client->updateActiveBreakpoint($debuggeeId, $breakpoint);
-     * } finally {
-     *     $controller2Client->close();
-     * }
-     * ```
-     *
-     * @param string     $debuggeeId   Identifies the debuggee being debugged.
-     * @param Breakpoint $breakpoint   Updated breakpoint information.
-     *                                 The field `id` must be set.
-     *                                 The agent must echo all Breakpoint specification fields in the update.
-     * @param array      $optionalArgs {
-     *                                 Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateActiveBreakpoint($debuggeeId, $breakpoint, array $optionalArgs = [])
-    {
-        $request = new UpdateActiveBreakpointRequest();
-        $request->setDebuggeeId($debuggeeId);
-        $request->setBreakpoint($breakpoint);
-
-        return $this->startCall(
-            'UpdateActiveBreakpoint',
-            UpdateActiveBreakpointResponse::class,
             $optionalArgs,
             $request
         )->wait();

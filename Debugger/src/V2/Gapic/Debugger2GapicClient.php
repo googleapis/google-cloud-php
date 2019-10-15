@@ -68,9 +68,9 @@ use Google\Protobuf\GPBEmpty;
  * $debugger2Client = new Debugger2Client();
  * try {
  *     $debuggeeId = '';
- *     $breakpoint = new Breakpoint();
+ *     $breakpointId = '';
  *     $clientVersion = '';
- *     $response = $debugger2Client->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
+ *     $debugger2Client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
  * } finally {
  *     $debugger2Client->close();
  * }
@@ -191,6 +191,54 @@ class Debugger2GapicClient
     }
 
     /**
+     * Deletes the breakpoint from the debuggee.
+     *
+     * Sample code:
+     * ```
+     * $debugger2Client = new Debugger2Client();
+     * try {
+     *     $debuggeeId = '';
+     *     $breakpointId = '';
+     *     $clientVersion = '';
+     *     $debugger2Client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+     * } finally {
+     *     $debugger2Client->close();
+     * }
+     * ```
+     *
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to delete.
+     * @param string $breakpointId  Required. ID of the breakpoint to delete.
+     * @param string $clientVersion Required. The client version making the call.
+     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
+     * @param array  $optionalArgs  {
+     *                              Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion, array $optionalArgs = [])
+    {
+        $request = new DeleteBreakpointRequest();
+        $request->setDebuggeeId($debuggeeId);
+        $request->setBreakpointId($breakpointId);
+        $request->setClientVersion($clientVersion);
+
+        return $this->startCall(
+            'DeleteBreakpoint',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Sets the breakpoint to the debuggee.
      *
      * Sample code:
@@ -206,10 +254,10 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string     $debuggeeId    ID of the debuggee where the breakpoint is to be set.
-     * @param Breakpoint $breakpoint    Breakpoint specification to set.
+     * @param string     $debuggeeId    Required. ID of the debuggee where the breakpoint is to be set.
+     * @param Breakpoint $breakpoint    Required. Breakpoint specification to set.
      *                                  The field `location` of the breakpoint must be set.
-     * @param string     $clientVersion The client version making the call.
+     * @param string     $clientVersion Required. The client version making the call.
      *                                  Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array      $optionalArgs  {
      *                                  Optional.
@@ -264,9 +312,9 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId    ID of the debuggee whose breakpoint to get.
-     * @param string $breakpointId  ID of the breakpoint to get.
-     * @param string $clientVersion The client version making the call.
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoint to get.
+     * @param string $breakpointId  Required. ID of the breakpoint to get.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.
@@ -299,54 +347,6 @@ class Debugger2GapicClient
     }
 
     /**
-     * Deletes the breakpoint from the debuggee.
-     *
-     * Sample code:
-     * ```
-     * $debugger2Client = new Debugger2Client();
-     * try {
-     *     $debuggeeId = '';
-     *     $breakpointId = '';
-     *     $clientVersion = '';
-     *     $debugger2Client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
-     * } finally {
-     *     $debugger2Client->close();
-     * }
-     * ```
-     *
-     * @param string $debuggeeId    ID of the debuggee whose breakpoint to delete.
-     * @param string $breakpointId  ID of the breakpoint to delete.
-     * @param string $clientVersion The client version making the call.
-     *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
-     * @param array  $optionalArgs  {
-     *                              Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion, array $optionalArgs = [])
-    {
-        $request = new DeleteBreakpointRequest();
-        $request->setDebuggeeId($debuggeeId);
-        $request->setBreakpointId($breakpointId);
-        $request->setClientVersion($clientVersion);
-
-        return $this->startCall(
-            'DeleteBreakpoint',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists all breakpoints for the debuggee.
      *
      * Sample code:
@@ -361,8 +361,8 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $debuggeeId    ID of the debuggee whose breakpoints to list.
-     * @param string $clientVersion The client version making the call.
+     * @param string $debuggeeId    Required. ID of the debuggee whose breakpoints to list.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.
@@ -447,8 +447,8 @@ class Debugger2GapicClient
      * }
      * ```
      *
-     * @param string $project       Project number of a Google Cloud project whose debuggees to list.
-     * @param string $clientVersion The client version making the call.
+     * @param string $project       Required. Project number of a Google Cloud project whose debuggees to list.
+     * @param string $clientVersion Required. The client version making the call.
      *                              Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * @param array  $optionalArgs  {
      *                              Optional.
