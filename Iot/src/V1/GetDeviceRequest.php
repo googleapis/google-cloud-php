@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetDeviceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -38,7 +38,7 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the device. For example,
+     *           Required. The name of the device. For example,
      *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type \Google\Protobuf\FieldMask $field_mask
@@ -52,11 +52,11 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -65,11 +65,11 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

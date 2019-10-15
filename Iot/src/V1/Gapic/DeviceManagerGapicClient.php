@@ -127,8 +127,8 @@ class DeviceManagerGapicClient
         'https://www.googleapis.com/auth/cloudiot',
     ];
     private static $deviceNameTemplate;
+    private static $deviceRegistryNameTemplate;
     private static $locationNameTemplate;
-    private static $registryNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -159,6 +159,15 @@ class DeviceManagerGapicClient
         return self::$deviceNameTemplate;
     }
 
+    private static function getDeviceRegistryNameTemplate()
+    {
+        if (null == self::$deviceRegistryNameTemplate) {
+            self::$deviceRegistryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}');
+        }
+
+        return self::$deviceRegistryNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (null == self::$locationNameTemplate) {
@@ -168,22 +177,13 @@ class DeviceManagerGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getRegistryNameTemplate()
-    {
-        if (null == self::$registryNameTemplate) {
-            self::$registryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}');
-        }
-
-        return self::$registryNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'device' => self::getDeviceNameTemplate(),
+                'deviceRegistry' => self::getDeviceRegistryNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
-                'registry' => self::getRegistryNameTemplate(),
             ];
         }
 
@@ -214,6 +214,26 @@ class DeviceManagerGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a device_registry resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $registry
+     *
+     * @return string The formatted device_registry resource.
+     * @experimental
+     */
+    public static function deviceRegistryName($project, $location, $registry)
+    {
+        return self::getDeviceRegistryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'registry' => $registry,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a location resource.
      *
      * @param string $project
@@ -231,32 +251,12 @@ class DeviceManagerGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a registry resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $registry
-     *
-     * @return string The formatted registry resource.
-     * @experimental
-     */
-    public static function registryName($project, $location, $registry)
-    {
-        return self::getRegistryNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'registry' => $registry,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - device: projects/{project}/locations/{location}/registries/{registry}/devices/{device}
-     * - location: projects/{project}/locations/{location}
-     * - registry: projects/{project}/locations/{location}/registries/{registry}.
+     * - deviceRegistry: projects/{project}/locations/{location}/registries/{registry}
+     * - location: projects/{project}/locations/{location}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -369,9 +369,9 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string         $parent         The project and cloud region where this device registry must be created.
+     * @param string         $parent         Required. The project and cloud region where this device registry must be created.
      *                                       For example, `projects/example-project/locations/us-central1`.
-     * @param DeviceRegistry $deviceRegistry The device registry. The field `name` must be empty. The server will
+     * @param DeviceRegistry $deviceRegistry Required. The device registry. The field `name` must be empty. The server will
      *                                       generate that field from the device registry `id` provided and the
      *                                       `parent` field.
      * @param array          $optionalArgs   {
@@ -417,14 +417,14 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $formattedName = $deviceManagerClient->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     $response = $deviceManagerClient->getDeviceRegistry($formattedName);
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the device registry. For example,
+     * @param string $name         Required. The name of the device registry. For example,
      *                             `projects/example-project/locations/us-central1/registries/my-registry`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -476,10 +476,10 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param DeviceRegistry $deviceRegistry The new values for the device registry. The `id` field must be empty, and
+     * @param DeviceRegistry $deviceRegistry Required. The new values for the device registry. The `id` field must be empty, and
      *                                       the `name` field must indicate the path of the resource. For example,
      *                                       `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param FieldMask      $updateMask     Only updates the `device_registry` fields indicated by this mask.
+     * @param FieldMask      $updateMask     Required. Only updates the `device_registry` fields indicated by this mask.
      *                                       The field mask must not be empty, and it must not contain fields that
      *                                       are immutable or only set by the server.
      *                                       Mutable top-level fields: `event_notification_config`, `http_config`,
@@ -527,14 +527,14 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedName = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $formattedName = $deviceManagerClient->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     $deviceManagerClient->deleteDeviceRegistry($formattedName);
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $name         The name of the device registry. For example,
+     * @param string $name         Required. The name of the device registry. For example,
      *                             `projects/example-project/locations/us-central1/registries/my-registry`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -598,7 +598,7 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       The project and cloud region path. For example,
+     * @param string $parent       Required. The project and cloud region path. For example,
      *                             `projects/example-project/locations/us-central1`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -657,7 +657,7 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $formattedParent = $deviceManagerClient->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     $device = new Device();
      *     $response = $deviceManagerClient->createDevice($formattedParent, $device);
      * } finally {
@@ -665,10 +665,10 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       The name of the device registry where this device should be created.
+     * @param string $parent       Required. The name of the device registry where this device should be created.
      *                             For example,
      *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param Device $device       The device registration details. The field `name` must be empty. The server
+     * @param Device $device       Required. The device registration details. The field `name` must be empty. The server
      *                             generates `name` from the device registry `id` and the
      *                             `parent` field.
      * @param array  $optionalArgs {
@@ -721,7 +721,7 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the device. For example,
+     * @param string $name         Required. The name of the device. For example,
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      * @param array  $optionalArgs {
@@ -780,11 +780,11 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param Device    $device       The new values for the device. The `id` and `num_id` fields must
+     * @param Device    $device       Required. The new values for the device. The `id` and `num_id` fields must
      *                                be empty, and the field `name` must specify the name path. For example,
      *                                `projects/p0/locations/us-central1/registries/registry0/devices/device0`or
      *                                `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param FieldMask $updateMask   Only updates the `device` fields indicated by this mask.
+     * @param FieldMask $updateMask   Required. Only updates the `device` fields indicated by this mask.
      *                                The field mask must not be empty, and it must not contain fields that
      *                                are immutable or only set by the server.
      *                                Mutable top-level fields: `credentials`, `blocked`, and `metadata`
@@ -838,7 +838,7 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the device. For example,
+     * @param string $name         Required. The name of the device. For example,
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      * @param array  $optionalArgs {
@@ -881,7 +881,7 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $formattedParent = $deviceManagerClient->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $deviceManagerClient->listDevices($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -903,7 +903,7 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       The device registry path. Required. For example,
+     * @param string $parent       Required. The device registry path. Required. For example,
      *                             `projects/my-project/locations/us-central1/registries/my-registry`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -996,10 +996,10 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the device. For example,
+     * @param string $name         Required. The name of the device. For example,
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param string $binaryData   The configuration data for the device.
+     * @param string $binaryData   Required. The configuration data for the device.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1060,7 +1060,7 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the device. For example,
+     * @param string $name         Required. The name of the device. For example,
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      * @param array  $optionalArgs {
@@ -1120,7 +1120,7 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the device. For example,
+     * @param string $name         Required. The name of the device. For example,
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      * @param array  $optionalArgs {
@@ -1173,9 +1173,9 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedResource = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $deviceManagerClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $deviceManagerClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $deviceManagerClient->close();
      * }
@@ -1232,8 +1232,8 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedResource = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $response = $deviceManagerClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $deviceManagerClient->getIamPolicy($resource);
      * } finally {
      *     $deviceManagerClient->close();
      * }
@@ -1291,23 +1291,23 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedResource = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-     *     $permissions = [];
-     *     $response = $deviceManagerClient->testIamPermissions($formattedResource, $permissions);
+     *     $resource = '';
+     *     $response = $deviceManagerClient->testIamPermissions($resource);
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param string $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type string[] $permissions
+     *          The set of permissions to check for the `resource`. Permissions with
+     *          wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *          information see
+     *          [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1320,11 +1320,13 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions($resource, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        $request->setPermissions($permissions);
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
@@ -1368,10 +1370,10 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the device. For example,
+     * @param string $name         Required. The name of the device. For example,
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *                             `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
-     * @param string $binaryData   The command data to send to the device.
+     * @param string $binaryData   Required. The command data to send to the device.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1424,7 +1426,7 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $formattedParent = $deviceManagerClient->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     $gatewayId = '';
      *     $deviceId = '';
      *     $response = $deviceManagerClient->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
@@ -1433,11 +1435,11 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       The name of the registry. For example,
+     * @param string $parent       Required. The name of the registry. For example,
      *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param string $gatewayId    The value of `gateway_id` can be either the device numeric ID or the
+     * @param string $gatewayId    Required. The value of `gateway_id` can be either the device numeric ID or the
      *                             user-defined device identifier.
-     * @param string $deviceId     The device to associate with the specified gateway. The value of
+     * @param string $deviceId     Required. The device to associate with the specified gateway. The value of
      *                             `device_id` can be either the device numeric ID or the user-defined device
      *                             identifier.
      * @param array  $optionalArgs {
@@ -1484,7 +1486,7 @@ class DeviceManagerGapicClient
      * ```
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
-     *     $formattedParent = $deviceManagerClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+     *     $formattedParent = $deviceManagerClient->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
      *     $gatewayId = '';
      *     $deviceId = '';
      *     $response = $deviceManagerClient->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
@@ -1493,11 +1495,11 @@ class DeviceManagerGapicClient
      * }
      * ```
      *
-     * @param string $parent       The name of the registry. For example,
+     * @param string $parent       Required. The name of the registry. For example,
      *                             `projects/example-project/locations/us-central1/registries/my-registry`.
-     * @param string $gatewayId    The value of `gateway_id` can be either the device numeric ID or the
+     * @param string $gatewayId    Required. The value of `gateway_id` can be either the device numeric ID or the
      *                             user-defined device identifier.
-     * @param string $deviceId     The device to disassociate from the specified gateway. The value of
+     * @param string $deviceId     Required. The device to disassociate from the specified gateway. The value of
      *                             `device_id` can be either the device numeric ID or the user-defined device
      *                             identifier.
      * @param array  $optionalArgs {

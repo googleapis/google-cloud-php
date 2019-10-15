@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project and cloud region where this device registry must be created.
+     * Required. The project and cloud region where this device registry must be created.
      * For example, `projects/example-project/locations/us-central1`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The device registry. The field `name` must be empty. The server will
+     * Required. The device registry. The field `name` must be empty. The server will
      * generate that field from the device registry `id` provided and the
      * `parent` field.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $device_registry = null;
 
@@ -38,10 +38,10 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project and cloud region where this device registry must be created.
+     *           Required. The project and cloud region where this device registry must be created.
      *           For example, `projects/example-project/locations/us-central1`.
      *     @type \Google\Cloud\Iot\V1\DeviceRegistry $device_registry
-     *           The device registry. The field `name` must be empty. The server will
+     *           Required. The device registry. The field `name` must be empty. The server will
      *           generate that field from the device registry `id` provided and the
      *           `parent` field.
      * }
@@ -52,10 +52,10 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and cloud region where this device registry must be created.
+     * Required. The project and cloud region where this device registry must be created.
      * For example, `projects/example-project/locations/us-central1`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -64,10 +64,10 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and cloud region where this device registry must be created.
+     * Required. The project and cloud region where this device registry must be created.
      * For example, `projects/example-project/locations/us-central1`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -80,11 +80,11 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device registry. The field `name` must be empty. The server will
+     * Required. The device registry. The field `name` must be empty. The server will
      * generate that field from the device registry `id` provided and the
      * `parent` field.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Iot\V1\DeviceRegistry
      */
     public function getDeviceRegistry()
@@ -93,11 +93,11 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device registry. The field `name` must be empty. The server will
+     * Required. The device registry. The field `name` must be empty. The server will
      * generate that field from the device registry `id` provided and the
      * `parent` field.
      *
-     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Iot\V1\DeviceRegistry $var
      * @return $this
      */

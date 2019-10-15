@@ -180,7 +180,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedName = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
 
         $response = $client->getDeviceRegistry($formattedName);
         $this->assertEquals($expectedResponse, $response);
@@ -220,7 +220,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedName = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
 
         try {
             $client->getDeviceRegistry($formattedName);
@@ -331,7 +331,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedName = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
 
         $client->deleteDeviceRegistry($formattedName);
         $actualRequests = $transport->popReceivedCalls();
@@ -370,7 +370,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedName = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
 
         try {
             $client->deleteDeviceRegistry($formattedName);
@@ -488,7 +488,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $device = new Device();
 
         $response = $client->createDevice($formattedParent, $device);
@@ -532,7 +532,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $device = new Device();
 
         try {
@@ -802,7 +802,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
 
         $response = $client->listDevices($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -845,7 +845,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
 
         try {
             $client->listDevices($formattedParent);
@@ -1102,10 +1102,10 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($formattedResource, $policy);
+        $response = $client->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1115,7 +1115,7 @@ class DeviceManagerClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -1146,11 +1146,11 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $resource = 'resource-341064690';
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($formattedResource, $policy);
+            $client->setIamPolicy($resource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1182,9 +1182,9 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $resource = 'resource-341064690';
 
-        $response = $client->getIamPolicy($formattedResource);
+        $response = $client->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1194,7 +1194,7 @@ class DeviceManagerClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1222,10 +1222,10 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $resource = 'resource-341064690';
 
         try {
-            $client->getIamPolicy($formattedResource);
+            $client->getIamPolicy($resource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1253,10 +1253,9 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedResource = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $permissions = [];
+        $resource = 'resource-341064690';
 
-        $response = $client->testIamPermissions($formattedResource, $permissions);
+        $response = $client->testIamPermissions($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1266,10 +1265,7 @@ class DeviceManagerClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($formattedResource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-
-        $this->assertProtobufEquals($permissions, $actualValue);
+        $this->assertProtobufEquals($resource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1297,11 +1293,10 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedResource = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $permissions = [];
+        $resource = 'resource-341064690';
 
         try {
-            $client->testIamPermissions($formattedResource, $permissions);
+            $client->testIamPermissions($resource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1405,7 +1400,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
 
@@ -1453,7 +1448,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
 
@@ -1486,7 +1481,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
 
@@ -1534,7 +1529,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $client->deviceRegistryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
 
