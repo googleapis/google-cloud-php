@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Iam;
 
 use InvalidArgumentException;
+use Google\Cloud\Core\Exception;
 
 /**
  * Helper class for creating valid IAM policies
@@ -94,7 +95,16 @@ class PolicyBuilder
     {
         $this->bindings = [];
         foreach ($bindings as $binding) {
-            $this->addBinding($binding['role'], $binding['members']);
+            $newBinding = [
+                'role' => $binding['role'],
+                'members' => $binding['members'],
+            ];
+
+            if ($binding['condition']) {
+                $newBinding['condition'] = $binding['condition'];
+            }
+
+            $this->bindings[] = $newBinding;
         }
 
         return $this;
@@ -102,6 +112,13 @@ class PolicyBuilder
 
     /**
      * Add a new binding to the policy.
+     *
+     * This method will fail with an InvalidOpereationException if it is
+     * called on a Policy with a version greater than 1 as that indicates
+     * a more complicated policy than this method is prepared to handle.
+     * Changes to such policies must be made manually by the setBindings()
+     * method.
+     *
      *
      * Example:
      * ```
@@ -112,9 +129,12 @@ class PolicyBuilder
      * @param  array  $members An array of members to assign to the binding
      * @return PolicyBuilder
      * @throws InvalidArgumentException
+     * @throws InvalidOperationException if the policy's version is greater than 1.
      */
     public function addBinding($role, array $members)
     {
+        $this->validatePolicyVersion();
+
         $this->bindings[] = [
             'role' => $role,
             'members' => $members
@@ -125,6 +145,12 @@ class PolicyBuilder
 
     /**
      * Remove a binding from the policy.
+     *
+     * This method will fail with an InvalidOpereationException if it is
+     * called on a Policy with a version greater than 1 as that indicates
+     * a more complicated policy than this method is prepared to handle.
+     * Changes to such policies must be made manually by the setBindings()
+     * method.
      *
      * Example:
      * ```
@@ -144,9 +170,12 @@ class PolicyBuilder
      * @param  array  $members An array of members to remove from the role
      * @return PolicyBuilder
      * @throws InvalidArgumentException
+     * @throws InvalidOperationException if the policy's version is greater than 1.
      */
     public function removeBinding($role, array $members)
     {
+        $this->validatePolicyVersion();
+
         $bindings = $this->bindings;
         foreach ((array) $bindings as $i => $binding) {
             if ($binding['role'] == $role) {
@@ -225,5 +254,12 @@ class PolicyBuilder
             'bindings' => $this->bindings,
             'version' => $this->version
         ]);
+    }
+
+    private function validatePolicyVersion()
+    {
+        if ($this->version && $this->version > 1) {
+            throw new InvalidArgumentException("Helper methods cannot be invoked on policies with version {$this->version}.");
+        }
     }
 }
