@@ -113,6 +113,10 @@ class PolicyBuilder
      *         'role' => 'roles/admin',
      *         'members' => [
      *             'user:admin@domain.com'
+     *         ],
+     *         'condition' => [
+     *             'expression' =>
+     *                 'request.time < timestamp("2020-07-01T00:00:00.000Z")'
      *         ]
      *     ]
      * ]);
