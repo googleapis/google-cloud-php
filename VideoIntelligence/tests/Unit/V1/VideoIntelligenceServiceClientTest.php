@@ -107,11 +107,11 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
         $featuresElement = Feature::LABEL_DETECTION;
         $features = [$featuresElement];
+        $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
 
-        $response = $client->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
+        $response = $client->annotateVideo($features, ['inputUri' => $inputUri]);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -122,6 +122,9 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.videointelligence.v1.VideoIntelligenceService/AnnotateVideo', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getFeatures();
+
+        $this->assertProtobufEquals($features, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/annotateVideoTest');
@@ -184,11 +187,11 @@ class VideoIntelligenceServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
         $featuresElement = Feature::LABEL_DETECTION;
         $features = [$featuresElement];
+        $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
 
-        $response = $client->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);
+        $response = $client->annotateVideo($features, ['inputUri' => $inputUri]);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
