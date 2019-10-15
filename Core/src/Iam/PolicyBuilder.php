@@ -52,6 +52,37 @@ class PolicyBuilder
     /**
      * Create a PolicyBuilder.
      *
+     * To use conditions in the bindings, the version of the policy must be set
+     * to 3.
+     *
+     * @see [Policy versioning](https://cloud.google.com/iam/docs/policies#versions)
+     * @see [Using Cloud IAM Conditions on buckets](https://cloud-dot-devsite.googleplex.com/storage/docs/access-control/using-iam-permissions#conditions-iam)
+     *
+     * Example:
+     * ```
+     * $policy = [
+     *     'etag' => 'AgIc==',
+     *     'version' => 3,
+     *     'bindings' => [
+     *         [
+     *             'role' => 'roles/admin',
+     *             'members' => [
+     *                 'user:admin@domain.com',
+     *                 'user2:admin@domain.com'
+     *             ],
+     *             'condition' => [
+     *                 'title' => 'Expires_July_1_2020',
+     *                 'description' => 'Expires on July 1, 2020',
+     *                 'expression' =>
+     *                     'request.time < timestamp("2020-07-01T00:00:00.000Z")'
+     *             ]
+     *         ]
+     *     ],
+     * ]
+     *
+     * $builder = new PolicyBuilder($policy);
+     * ```
+     *
      * @param  array $policy A policy array
      * @throws InvalidArgumentException
      */
