@@ -87,6 +87,11 @@ class Bucket
     private $info;
 
     /**
+     * @var Iam|null
+     */
+    private $iam;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The bucket's name.
@@ -1189,14 +1194,18 @@ class Bucket
      */
     public function iam()
     {
-        return new Iam(
-            new IamBucket($this->connection),
-            $this->identity['bucket'],
-            [
-                'parent' => null,
-                'args' => $this->identity
-            ]
-        );
+        if (!$this->iam) {
+            $this->iam = new Iam(
+                new IamBucket($this->connection),
+                $this->identity['bucket'],
+                [
+                    'parent' => null,
+                    'args' => $this->identity
+                ]
+            );
+        }
+
+        return $this->iam;
     }
 
     /**
