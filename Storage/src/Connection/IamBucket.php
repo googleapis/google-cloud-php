@@ -30,20 +30,11 @@ class IamBucket implements IamConnectionInterface
     private $connection;
 
     /**
-     * @var int
-     */
-    private $version;
-
-    /**
      * @param  ConnectionInterface $connection
-     * @param  int $version Sets the policy version used. Refer to [IAM policy
-     *             versions](#FIXME) the version that should be used for
-     *             the supported feature.
      */
-    public function __construct(ConnectionInterface $connection, $version = null)
+    public function __construct(ConnectionInterface $connection)
     {
         $this->connection = $connection;
-        $this->version = $version;
     }
 
     /**
@@ -51,10 +42,6 @@ class IamBucket implements IamConnectionInterface
      */
     public function getPolicy(array $args)
     {
-        if ($this->version) {
-            $args['optionsRequestedPolicyVersion'] = $this->version;
-        }
-
         return $this->connection->getBucketIamPolicy($args);
     }
 
