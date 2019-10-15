@@ -1165,6 +1165,19 @@ class Bucket
      * $iam = $bucket->iam();
      * ```
      *
+     * To request a policy with conditions (FIXME: link), pass an array with
+     * optionsRequestedPolicyVersion set to 3 as argument to the policy() and
+     * reload() methods.
+     *
+     * Example:
+     * ```
+     * // Returns the stored policy, or fetches the policy if none exists.
+     * $policy = $iam->policy(['optionsRequestedPolicyVersion' => 3]);
+     *
+     * // Fetches a policy from the server.
+     * $policy = $iam->reload(['optionsRequestedPolicyVersion' => 3]);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/storage/docs/access-control/iam-with-json-and-xml Storage Access Control Documentation
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/getIamPolicy Get Bucket IAM Policy
