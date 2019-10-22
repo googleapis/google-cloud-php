@@ -1171,7 +1171,7 @@ class Bucket
      * ```
      *
      * To request a policy with conditions, pass an array with
-     * `optionsRequestedPolicyVersion => 3` as argument to the policy() and
+     * `requestedPolicyVersion => 3` as argument to the policy() and
      * reload() methods.
      *
      * @see [Policy versioning](https://cloud.google.com/iam/docs/policies#versions)
