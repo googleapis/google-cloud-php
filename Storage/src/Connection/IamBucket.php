@@ -42,6 +42,11 @@ class IamBucket implements IamConnectionInterface
      */
     public function getPolicy(array $args)
     {
+        if (isset($args['requestedPolicyVersion'])) {
+            $args['optionsRequestedPolicyVersion'] = $args['requestedPolicyVersion'];
+            unset($args['requestedPolicyVersion']);
+        }
+
         return $this->connection->getBucketIamPolicy($args);
     }
 

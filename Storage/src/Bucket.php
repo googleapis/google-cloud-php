@@ -1179,10 +1179,10 @@ class Bucket
      * Example:
      * ```
      * // Returns the stored policy, or fetches the policy if none exists.
-     * $policy = $iam->policy(['optionsRequestedPolicyVersion' => 3]);
+     * $policy = $iam->policy(['requestedPolicyVersion' => 3]);
      *
      * // Fetches a policy from the server.
-     * $policy = $iam->reload(['optionsRequestedPolicyVersion' => 3]);
+     * $policy = $iam->reload(['requestedPolicyVersion' => 3]);
      * ```
      *
      * @codingStandardsIgnoreStart
