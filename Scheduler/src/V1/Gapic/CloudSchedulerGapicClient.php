@@ -115,7 +115,6 @@ class CloudSchedulerGapicClient
     ];
     private static $jobNameTemplate;
     private static $locationNameTemplate;
-    private static $projectNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -155,22 +154,12 @@ class CloudSchedulerGapicClient
         return self::$locationNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'job' => self::getJobNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
             ];
         }
 
@@ -214,27 +203,11 @@ class CloudSchedulerGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - job: projects/{project}/locations/{location}/jobs/{job}
-     * - location: projects/{project}/locations/{location}
-     * - project: projects/{project}.
+     * - location: projects/{project}/locations/{location}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
