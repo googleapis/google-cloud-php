@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+//@codeCoverageIgnore
+
 namespace Google\Cloud\Translate;
 
 if (false) {
