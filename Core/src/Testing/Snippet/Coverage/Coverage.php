@@ -31,6 +31,8 @@ class Coverage
         '/\\\GcTestListener/',
         '/\\\Google\\\Cloud\\\Core\\\Logger/',
         '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
+        '/\\\Google\\\Cloud\\\Translate\\\TranslateClient/',
+        '/\\\Google\\\Cloud\\\Translate\\\Connection\\\Rest/',
     ];
 
     /**

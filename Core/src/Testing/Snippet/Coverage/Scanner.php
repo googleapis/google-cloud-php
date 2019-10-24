@@ -145,10 +145,18 @@ class Scanner implements ScannerInterface
     {
         $snippets = [];
         foreach ($classes as $class) {
-            $snippets = array_merge(
-                $snippets,
-                $this->parser->allExamples(new \ReflectionClass($class))
-            );
+            try {
+                $snippets = array_merge(
+                    $snippets,
+                    $this->parser->allExamples(new \ReflectionClass($class))
+                );
+            } catch (\ReflectionException $e) {
+                throw new \RuntimeException(sprintf(
+                    "Error in class %s: %s",
+                    $class,
+                    $e->getMessage()
+                ));
+            }
         }
 
         return $snippets;

@@ -17,69 +17,20 @@
 
 namespace Google\Cloud\Translate\Connection;
 
-use Google\Cloud\Core\RequestBuilder;
-use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\Core\RestTrait;
-use Google\Cloud\Core\UriTrait;
-use Google\Cloud\Translate\TranslateClient;
+use Google\Cloud\Translate\V2;
 
-/**
- * Implementation of the
- * [Google Cloud Translation REST API](https://cloud.google.com/translation/docs/how-to).
- */
-class Rest implements ConnectionInterface
-{
-    use RestTrait;
-    use UriTrait;
-
+if (false) {
     /**
+     * This class is deprecated. Use Google\Cloud\Translate\V2\Connection\Rest instead.
      * @deprecated
      */
-    const BASE_URI = 'https://translation.googleapis.com/language/translate/';
-
-    const DEFAULT_API_ENDPOINT = 'https://translation.googleapis.com';
-
-    /**
-     * @param array $config
-     */
-    public function __construct(array $config = [])
-    {
-        $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/translate-v2.json',
-            'componentVersion' => TranslateClient::VERSION
-        ];
-
-        $this->setRequestWrapper(new RequestWrapper($config));
-        $this->setRequestBuilder(new RequestBuilder(
-            $config['serviceDefinitionPath'],
-            $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config)
-        ));
-    }
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function listDetections(array $args = [])
-    {
-        return $this->send('detections', 'detect', $args);
-    }
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function listLanguages(array $args = [])
-    {
-        return $this->send('languages', 'list', $args);
-    }
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function listTranslations(array $args = [])
-    {
-        return $this->send('translations', 'translate', $args);
-    }
+    class Rest {}
 }
+
+class_exists(V2\Rest::class);
+@trigger_error(
+    'Google\Cloud\Translate\Rest is deprecated and will be ' .
+    'removed in a future release. Use ' .
+    ' Google\Cloud\Translate\V2\Rest instead',
+    E_USER_DEPRECATED
+);
