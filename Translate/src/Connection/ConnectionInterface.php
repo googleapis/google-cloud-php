@@ -15,20 +15,22 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Translate;
+namespace Google\Cloud\Translate\Connection;
+
+use Google\Cloud\Translate\V2;
 
 if (false) {
     /**
-     * This class is deprecated. Use {@see Google\Cloud\Translate\V2\TranslateClient} instead.
+     * This class is deprecated. Use Google\Cloud\Translate\V2\Connection\ConnectionInterface instead.
      * @deprecated
      */
-    class TranslateClient {}
+    interface ConnectionInterface {}
 }
 
-class_exists(V2\TranslateClient::class);
+class_exists(V2\ConnectionInterface::class);
 @trigger_error(
-    'Google\Cloud\Translate\TranslateClient is deprecated and will be ' .
+    'Google\Cloud\Translate\ConnectionInterface is deprecated and will be ' .
     'removed in a future release. Use ' .
-    'Google\Cloud\Translate\V2\TranslateClient instead',
+    'Google\Cloud\Translate\V2\ConnectionInterface instead',
     E_USER_DEPRECATED
 );
