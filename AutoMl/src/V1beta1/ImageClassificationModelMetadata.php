@@ -89,6 +89,21 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string model_type = 7;</code>
      */
     private $model_type = '';
+    /**
+     * Output only. An approximate number of online prediction QPS that can
+     * be supported by this model per each node on which it is deployed.
+     *
+     * Generated from protobuf field <code>double node_qps = 13;</code>
+     */
+    private $node_qps = 0.0;
+    /**
+     * Output only. The number of nodes this model is deployed on. A node is an
+     * abstraction of a machine resource, which can handle online prediction QPS
+     * as given in the node_qps field.
+     *
+     * Generated from protobuf field <code>int64 node_count = 14;</code>
+     */
+    private $node_count = 0;
 
     /**
      * Constructor.
@@ -150,6 +165,13 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
      *                         and used on a mobile device with Core ML afterwards. Expected
      *                         to have a higher latency, but should also have a higher
      *                         prediction quality than other models.
+     *     @type float $node_qps
+     *           Output only. An approximate number of online prediction QPS that can
+     *           be supported by this model per each node on which it is deployed.
+     *     @type int|string $node_count
+     *           Output only. The number of nodes this model is deployed on. A node is an
+     *           abstraction of a machine resource, which can handle online prediction QPS
+     *           as given in the node_qps field.
      * }
      */
     public function __construct($data = NULL) {
@@ -371,6 +393,64 @@ class ImageClassificationModelMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An approximate number of online prediction QPS that can
+     * be supported by this model per each node on which it is deployed.
+     *
+     * Generated from protobuf field <code>double node_qps = 13;</code>
+     * @return float
+     */
+    public function getNodeQps()
+    {
+        return $this->node_qps;
+    }
+
+    /**
+     * Output only. An approximate number of online prediction QPS that can
+     * be supported by this model per each node on which it is deployed.
+     *
+     * Generated from protobuf field <code>double node_qps = 13;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setNodeQps($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->node_qps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of nodes this model is deployed on. A node is an
+     * abstraction of a machine resource, which can handle online prediction QPS
+     * as given in the node_qps field.
+     *
+     * Generated from protobuf field <code>int64 node_count = 14;</code>
+     * @return int|string
+     */
+    public function getNodeCount()
+    {
+        return $this->node_count;
+    }
+
+    /**
+     * Output only. The number of nodes this model is deployed on. A node is an
+     * abstraction of a machine resource, which can handle online prediction QPS
+     * as given in the node_qps field.
+     *
+     * Generated from protobuf field <code>int64 node_count = 14;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setNodeCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->node_count = $var;
 
         return $this;
     }

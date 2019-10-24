@@ -38,9 +38,9 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Rows in the confusion matrix. The number of rows is equal to
      * the size of `annotation_spec_id`.
-     * `row[i].value[j]` is the number of examples that have ground truth of the
-     * `annotation_spec_id[i]` and are predicted as `annotation_spec_id[j]` by
-     * the model being evaluated.
+     * `row[i].example_count[j]` is the number of examples that have ground
+     * truth of the `annotation_spec_id[i]` and are predicted as
+     * `annotation_spec_id[j]` by the model being evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.Row row = 2;</code>
      */
@@ -67,9 +67,9 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix\Row[]|\Google\Protobuf\Internal\RepeatedField $row
      *           Output only. Rows in the confusion matrix. The number of rows is equal to
      *           the size of `annotation_spec_id`.
-     *           `row[i].value[j]` is the number of examples that have ground truth of the
-     *           `annotation_spec_id[i]` and are predicted as `annotation_spec_id[j]` by
-     *           the model being evaluated.
+     *           `row[i].example_count[j]` is the number of examples that have ground
+     *           truth of the `annotation_spec_id[i]` and are predicted as
+     *           `annotation_spec_id[j]` by the model being evaluated.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,9 +148,9 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Rows in the confusion matrix. The number of rows is equal to
      * the size of `annotation_spec_id`.
-     * `row[i].value[j]` is the number of examples that have ground truth of the
-     * `annotation_spec_id[i]` and are predicted as `annotation_spec_id[j]` by
-     * the model being evaluated.
+     * `row[i].example_count[j]` is the number of examples that have ground
+     * truth of the `annotation_spec_id[i]` and are predicted as
+     * `annotation_spec_id[j]` by the model being evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.Row row = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -163,9 +163,9 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Rows in the confusion matrix. The number of rows is equal to
      * the size of `annotation_spec_id`.
-     * `row[i].value[j]` is the number of examples that have ground truth of the
-     * `annotation_spec_id[i]` and are predicted as `annotation_spec_id[j]` by
-     * the model being evaluated.
+     * `row[i].example_count[j]` is the number of examples that have ground
+     * truth of the `annotation_spec_id[i]` and are predicted as
+     * `annotation_spec_id[j]` by the model being evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix.Row row = 2;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix\Row[]|\Google\Protobuf\Internal\RepeatedField $var
