@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-//@codeCoverageIgnore
+//@codeCoverageIgnoreStart
 
 namespace Google\Cloud\Translate\Connection;
 
@@ -36,3 +36,5 @@ class_exists(V2\ConnectionInterface::class);
     'Google\Cloud\Translate\V2\ConnectionInterface instead',
     E_USER_DEPRECATED
 );
+
+//@codeCoverageIgnoreEnd

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-//@codeCoverageIgnore
+//@codeCoverageIgnoreStart
 
 namespace Google\Cloud\Translate;
 
@@ -34,3 +34,5 @@ class_exists(V2\TranslateClient::class);
     'Google\Cloud\Translate\V2\TranslateClient instead',
     E_USER_DEPRECATED
 );
+
+//@codeCoverageIgnoreEnd
