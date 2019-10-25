@@ -162,9 +162,13 @@ class Grpc implements ConnectionInterface
 
         $this->credentialsWrapper = $grpcConfig['credentials'];
 
+        if (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
+        }
+
         $this->spannerClient = isset($config['gapicSpannerClient'])
             ? $config['gapicSpannerClient']
-            : new SpannerClient($grpcConfig);
+            : $this->constructGapic(SpannerClient::class, $grpcConfig);
 
         //@codeCoverageIgnoreStart
         if (isset($config['gapicSpannerInstanceAdminClient'])) {
@@ -486,6 +490,24 @@ class Grpc implements ConnectionInterface
             ),
             $opts
         );
+    }
+
+    /**
+     * @param array $args
+     */
+    public function batchCreateSessions(array $args)
+    {
+        $args['sessionTemplate'] = $this->serializer->decodeMessage(
+            new Session,
+            $this->pluck('sessionTemplate', $args)
+        );
+
+        $database = $this->pluck('database', $args);
+        return $this->send([$this->spannerClient, 'batchCreateSessions'], [
+            $database,
+            $this->pluck('sessionCount', $args),
+            $this->addResourcePrefixHeader($args, $database)
+        ]);
     }
 
     /**
@@ -1048,7 +1070,7 @@ class Grpc implements ConnectionInterface
         }
         //@codeCoverageIgnoreEnd
 
-        $this->instanceAdminClient = new InstanceAdminClient($this->grpcConfig);
+        $this->instanceAdminClient = $this->constructGapic(InstanceAdminClient::class, $this->grpcConfig);
 
         return $this->instanceAdminClient;
     }
@@ -1066,7 +1088,7 @@ class Grpc implements ConnectionInterface
         }
         //@codeCoverageIgnoreEnd
 
-        $this->databaseAdminClient = new DatabaseAdminClient($this->grpcConfig);
+        $this->databaseAdminClient = $this->constructGapic(DatabaseAdminClient::class, $this->grpcConfig);
 
         return $this->databaseAdminClient;
     }

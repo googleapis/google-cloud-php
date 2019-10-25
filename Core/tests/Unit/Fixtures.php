@@ -29,5 +29,10 @@ class Fixtures
     {
         return __DIR__ . '/fixtures/service-fixture.json';
     }
+
+    public static function SERVICE_FIXTURE_BASEPATH()
+    {
+        return __DIR__ . '/fixtures/service-fixture-basepath.json';
+    }
 }
 //@codingStandardsIgnoreEnd

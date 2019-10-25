@@ -77,13 +77,15 @@ class CopyJobConfigurationTest extends TestCase
         ];
         $this->expectedConfig['configuration']['copy'] = $copy
             + $this->expectedConfig['configuration']['copy'];
-        $this->config
+
+        $config = $this->config
             ->createDisposition($copy['createDisposition'])
             ->destinationEncryptionConfiguration($copy['destinationEncryptionConfiguration'])
             ->destinationTable($destinationTable->reveal())
             ->sourceTable($sourceTable->reveal())
             ->writeDisposition($copy['writeDisposition']);
 
+        $this->assertInstanceOf(CopyJobConfiguration::class, $config);
         $this->assertEquals(
             $this->expectedConfig,
             $this->config->toArray()

@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information required for a TCP uptime check request.
+ * Information required for a TCP Uptime check request.
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.TcpCheck</code>
  */
 class TcpCheck extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) to construct the full URL.
-     * Required.
+     * The TCP port on the server against which to run the check. Will be
+     * combined with host (specified within the `monitored_resource`) to
+     * construct the full URL. Required.
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      */
@@ -31,9 +31,9 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $port
-     *           The port to the page to run the check against. Will be combined with host
-     *           (specified within the MonitoredResource) to construct the full URL.
-     *           Required.
+     *           The TCP port on the server against which to run the check. Will be
+     *           combined with host (specified within the `monitored_resource`) to
+     *           construct the full URL. Required.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +42,9 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) to construct the full URL.
-     * Required.
+     * The TCP port on the server against which to run the check. Will be
+     * combined with host (specified within the `monitored_resource`) to
+     * construct the full URL. Required.
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      * @return int
@@ -55,9 +55,9 @@ class TcpCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The port to the page to run the check against. Will be combined with host
-     * (specified within the MonitoredResource) to construct the full URL.
-     * Required.
+     * The TCP port on the server against which to run the check. Will be
+     * combined with host (specified within the `monitored_resource`) to
+     * construct the full URL. Required.
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      * @param int $var

@@ -40,7 +40,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * "1970-01-01T00:00:00Z".
      * This field is ignored when creating a ProductSet.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $index_time = null;
     /**
@@ -48,7 +48,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * is populated.
      * This field is ignored when creating a ProductSet.
      *
-     * Generated from protobuf field <code>.google.rpc.Status index_error = 4;</code>
+     * Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $index_error = null;
 
@@ -150,7 +150,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * "1970-01-01T00:00:00Z".
      * This field is ignored when creating a ProductSet.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getIndexTime()
@@ -165,7 +165,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * "1970-01-01T00:00:00Z".
      * This field is ignored when creating a ProductSet.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -182,7 +182,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * is populated.
      * This field is ignored when creating a ProductSet.
      *
-     * Generated from protobuf field <code>.google.rpc.Status index_error = 4;</code>
+     * Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status
      */
     public function getIndexError()
@@ -195,7 +195,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * is populated.
      * This field is ignored when creating a ProductSet.
      *
-     * Generated from protobuf field <code>.google.rpc.Status index_error = 4;</code>
+     * Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */

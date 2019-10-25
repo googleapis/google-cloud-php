@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TextClassificationDatasetMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Type of the classification problem.
+     * Required. Type of the classification problem.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationType classification_type = 1;</code>
      */
@@ -30,8 +29,7 @@ class TextClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type int $classification_type
-     *           Required.
-     *           Type of the classification problem.
+     *           Required. Type of the classification problem.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +38,7 @@ class TextClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required.
-     * Type of the classification problem.
+     * Required. Type of the classification problem.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationType classification_type = 1;</code>
      * @return int
@@ -52,8 +49,7 @@ class TextClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required.
-     * Type of the classification problem.
+     * Required. Type of the classification problem.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationType classification_type = 1;</code>
      * @param int $var

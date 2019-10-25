@@ -39,15 +39,12 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The category for the product identified by the reference image. This should
+     * Immutable. The category for the product identified by the reference image. This should
      * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     * "homegoods", "apparel", and "toys" are still supported but will be
-     * deprecated. For new products, please use "homegoods-v2", "apparel-v2", or
-     * "toys-v2" for better product search accuracy. It is recommended to migrate
-     * existing products to these categories as well.
-     * This field is immutable.
+     * "homegoods", "apparel", and "toys" are still supported, but these should
+     * not be used for new products.
      *
-     * Generated from protobuf field <code>string product_category = 4;</code>
+     * Generated from protobuf field <code>string product_category = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $product_category = '';
     /**
@@ -57,7 +54,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * strings with integer values can match a range-based restriction which is
      * to be supported soon.
      * Multiple values can be assigned to the same key. One product may have up to
-     * 100 product_labels.
+     * 500 product_labels.
+     * Notice that the total number of distinct product_labels over all products
+     * in one ProductSet cannot exceed 1M, otherwise the product search pipeline
+     * will refuse to work for that ProductSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product.KeyValue product_labels = 5;</code>
      */
@@ -81,13 +81,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *           User-provided metadata to be stored with this product. Must be at most 4096
      *           characters long.
      *     @type string $product_category
-     *           The category for the product identified by the reference image. This should
+     *           Immutable. The category for the product identified by the reference image. This should
      *           be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     *           "homegoods", "apparel", and "toys" are still supported but will be
-     *           deprecated. For new products, please use "homegoods-v2", "apparel-v2", or
-     *           "toys-v2" for better product search accuracy. It is recommended to migrate
-     *           existing products to these categories as well.
-     *           This field is immutable.
+     *           "homegoods", "apparel", and "toys" are still supported, but these should
+     *           not be used for new products.
      *     @type \Google\Cloud\Vision\V1\Product\KeyValue[]|\Google\Protobuf\Internal\RepeatedField $product_labels
      *           Key-value pairs that can be attached to a product. At query time,
      *           constraints can be specified based on the product_labels.
@@ -95,7 +92,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *           strings with integer values can match a range-based restriction which is
      *           to be supported soon.
      *           Multiple values can be assigned to the same key. One product may have up to
-     *           100 product_labels.
+     *           500 product_labels.
+     *           Notice that the total number of distinct product_labels over all products
+     *           in one ProductSet cannot exceed 1M, otherwise the product search pipeline
+     *           will refuse to work for that ProductSet.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,15 +192,12 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The category for the product identified by the reference image. This should
+     * Immutable. The category for the product identified by the reference image. This should
      * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     * "homegoods", "apparel", and "toys" are still supported but will be
-     * deprecated. For new products, please use "homegoods-v2", "apparel-v2", or
-     * "toys-v2" for better product search accuracy. It is recommended to migrate
-     * existing products to these categories as well.
-     * This field is immutable.
+     * "homegoods", "apparel", and "toys" are still supported, but these should
+     * not be used for new products.
      *
-     * Generated from protobuf field <code>string product_category = 4;</code>
+     * Generated from protobuf field <code>string product_category = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getProductCategory()
@@ -209,15 +206,12 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The category for the product identified by the reference image. This should
+     * Immutable. The category for the product identified by the reference image. This should
      * be either "homegoods-v2", "apparel-v2", or "toys-v2". The legacy categories
-     * "homegoods", "apparel", and "toys" are still supported but will be
-     * deprecated. For new products, please use "homegoods-v2", "apparel-v2", or
-     * "toys-v2" for better product search accuracy. It is recommended to migrate
-     * existing products to these categories as well.
-     * This field is immutable.
+     * "homegoods", "apparel", and "toys" are still supported, but these should
+     * not be used for new products.
      *
-     * Generated from protobuf field <code>string product_category = 4;</code>
+     * Generated from protobuf field <code>string product_category = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -236,7 +230,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * strings with integer values can match a range-based restriction which is
      * to be supported soon.
      * Multiple values can be assigned to the same key. One product may have up to
-     * 100 product_labels.
+     * 500 product_labels.
+     * Notice that the total number of distinct product_labels over all products
+     * in one ProductSet cannot exceed 1M, otherwise the product search pipeline
+     * will refuse to work for that ProductSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product.KeyValue product_labels = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -253,7 +250,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * strings with integer values can match a range-based restriction which is
      * to be supported soon.
      * Multiple values can be assigned to the same key. One product may have up to
-     * 100 product_labels.
+     * 500 product_labels.
+     * Notice that the total number of distinct product_labels over all products
+     * in one ProductSet cannot exceed 1M, otherwise the product search pipeline
+     * will refuse to work for that ProductSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product.KeyValue product_labels = 5;</code>
      * @param \Google\Cloud\Vision\V1\Product\KeyValue[]|\Google\Protobuf\Internal\RepeatedField $var

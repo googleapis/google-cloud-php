@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\WriteBatch;
 use PHPUnit\Framework\TestCase;
@@ -325,9 +326,7 @@ class FirestoreClientTest extends TestCase
                         'collectionId' => 'foo',
                         'allDescendants' => true
                     ]
-                ],
-                'orderBy' => [],
-                'offset' => 0
+                ]
             ]),
             Argument::withEntry('parent', 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents')
         ))->shouldBeCalled()->willReturn(new \ArrayIterator([
@@ -555,6 +554,12 @@ class FirestoreClientTest extends TestCase
         $path = $this->client->fieldPath($parts);
         $this->assertInstanceOf(FieldPath::class, $path);
         $this->assertEquals($parts, $path->path());
+    }
+
+    public function testSessionHandler()
+    {
+        $sessionHandler = $this->client->sessionHandler();
+        $this->assertInstanceOf(FirestoreSessionHandler::class, $sessionHandler);
     }
 
     private function noop()

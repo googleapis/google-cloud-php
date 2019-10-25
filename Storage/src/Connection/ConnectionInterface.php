@@ -162,4 +162,29 @@ interface ConnectionInterface
      * @param array $args
      */
     public function lockRetentionPolicy(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function createHmacKey(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function deleteHmacKey(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function getHmacKey(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function updateHmacKey(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function listHmacKeys(array $args = []);
 }

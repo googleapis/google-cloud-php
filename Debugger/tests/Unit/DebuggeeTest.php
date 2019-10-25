@@ -139,7 +139,7 @@ class DebuggeeTest extends TestCase
     public function testRegisterSetsDebuggeeId()
     {
         $this->connection->registerDebuggee(Argument::that(function ($args) {
-            return $args['debuggee']['id'] == null;
+            return !isset($args['debuggee']['id']);
         }), Argument::any())->willReturn([
             'debuggee' => [
                 'id' => 'debuggee1'
@@ -166,5 +166,16 @@ class DebuggeeTest extends TestCase
         $this->assertCount(1, $info['extSourceContexts']);
         $this->assertArrayHasKey('sourceContexts', $info);
         $this->assertCount(1, $info['sourceContexts']);
+    }
+
+    public function testDebuggeeOmitsId()
+    {
+        $debuggee = new Debuggee($this->connection->reveal(), []);
+        $this->assertArrayNotHasKey('id', $debuggee->info());
+
+        $debuggee = new Debuggee($this->connection->reveal(), [
+            'id' => 'foo'
+        ]);
+        $this->assertArrayHasKey('id', $debuggee->info());
     }
 }

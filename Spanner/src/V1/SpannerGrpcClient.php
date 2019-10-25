@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -65,6 +65,23 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.spanner.v1.Spanner/CreateSession',
         $argument,
         ['\Google\Cloud\Spanner\V1\Session', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates multiple new sessions.
+     *
+     * This API can be used to initialize a session cache on the clients.
+     * See https://goo.gl/TgSFN2 for best practices on session cache management.
+     * @param \Google\Cloud\Spanner\V1\BatchCreateSessionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchCreateSessions(\Google\Cloud\Spanner\V1\BatchCreateSessionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/BatchCreateSessions',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\BatchCreateSessionsResponse', 'decode'],
         $metadata, $options);
     }
 
@@ -165,8 +182,9 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      *
      * Statements are executed in order, sequentially.
      * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse] will contain a
-     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has successfully executed. If a
-     * statement fails, its error status will be returned as part of the
+     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has
+     * successfully executed. If a statement fails, its error status will be
+     * returned as part of the
      * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse]. Execution will
      * stop at the first failed statement; the remaining statements will not run.
      *

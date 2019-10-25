@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The `DeleteGroup` request. You can only delete a group if it has no children.
+ * The `DeleteGroup` request. The default behavior is to be able to delete a
+ * single group without any descendants.
  *
  * Generated from protobuf message <code>google.monitoring.v3.DeleteGroupRequest</code>
  */
@@ -22,6 +23,14 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
+    /**
+     * If this field is true, then the request means to delete a group with all
+     * its descendants. Otherwise, the request means to delete a group only when
+     * it has no descendants. The default value is false.
+     *
+     * Generated from protobuf field <code>bool recursive = 4;</code>
+     */
+    private $recursive = false;
 
     /**
      * Constructor.
@@ -32,6 +41,10 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The group to delete. The format is
      *           `"projects/{project_id_or_number}/groups/{group_id}"`.
+     *     @type bool $recursive
+     *           If this field is true, then the request means to delete a group with all
+     *           its descendants. Otherwise, the request means to delete a group only when
+     *           it has no descendants. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +76,36 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * If this field is true, then the request means to delete a group with all
+     * its descendants. Otherwise, the request means to delete a group only when
+     * it has no descendants. The default value is false.
+     *
+     * Generated from protobuf field <code>bool recursive = 4;</code>
+     * @return bool
+     */
+    public function getRecursive()
+    {
+        return $this->recursive;
+    }
+
+    /**
+     * If this field is true, then the request means to delete a group with all
+     * its descendants. Otherwise, the request means to delete a group only when
+     * it has no descendants. The default value is false.
+     *
+     * Generated from protobuf field <code>bool recursive = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRecursive($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->recursive = $var;
 
         return $this;
     }

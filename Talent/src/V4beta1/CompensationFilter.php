@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Filter on job compensation type and amount.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CompensationFilter</code>
@@ -17,30 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class CompensationFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Type of filter.
+     * Required. Type of filter.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $type = 0;
     /**
-     * Required.
-     * Specify desired `base compensation entry's`
+     * Required. Specify desired `base compensation entry's`
      * [CompensationInfo.CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit units = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit units = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $units;
     /**
-     * Optional.
      * Compensation range.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange range = 3;</code>
      */
     private $range = null;
     /**
-     * Optional.
-     * Whether to include jobs whose compensation range is unspecified.
+     * If set to true, jobs with unspecified compensation range fields are
+     * included.
      *
      * Generated from protobuf field <code>bool include_jobs_with_unspecified_compensation_range = 4;</code>
      */
@@ -53,18 +49,15 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $type
-     *           Required.
-     *           Type of filter.
+     *           Required. Type of filter.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $units
-     *           Required.
-     *           Specify desired `base compensation entry's`
+     *           Required. Specify desired `base compensation entry's`
      *           [CompensationInfo.CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit].
      *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange $range
-     *           Optional.
      *           Compensation range.
      *     @type bool $include_jobs_with_unspecified_compensation_range
-     *           Optional.
-     *           Whether to include jobs whose compensation range is unspecified.
+     *           If set to true, jobs with unspecified compensation range fields are
+     *           included.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,10 +66,9 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Type of filter.
+     * Required. Type of filter.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getType()
@@ -85,10 +77,9 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Type of filter.
+     * Required. Type of filter.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter.FilterType type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -101,11 +92,10 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Specify desired `base compensation entry's`
+     * Required. Specify desired `base compensation entry's`
      * [CompensationInfo.CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit units = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit units = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUnits()
@@ -114,11 +104,10 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Specify desired `base compensation entry's`
+     * Required. Specify desired `base compensation entry's`
      * [CompensationInfo.CompensationUnit][google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit].
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit units = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationUnit units = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -131,7 +120,6 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Compensation range.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange range = 3;</code>
@@ -143,7 +131,6 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Compensation range.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange range = 3;</code>
@@ -159,8 +146,8 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Whether to include jobs whose compensation range is unspecified.
+     * If set to true, jobs with unspecified compensation range fields are
+     * included.
      *
      * Generated from protobuf field <code>bool include_jobs_with_unspecified_compensation_range = 4;</code>
      * @return bool
@@ -171,8 +158,8 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * Whether to include jobs whose compensation range is unspecified.
+     * If set to true, jobs with unspecified compensation range fields are
+     * included.
      *
      * Generated from protobuf field <code>bool include_jobs_with_unspecified_compensation_range = 4;</code>
      * @param bool $var

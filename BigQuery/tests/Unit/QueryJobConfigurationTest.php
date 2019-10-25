@@ -110,7 +110,8 @@ class QueryJobConfigurationTest extends TestCase
         ];
         $this->expectedConfig['configuration']['query'] = $query
             + $this->expectedConfig['configuration']['query'];
-        $this->config
+
+        $config = $this->config
             ->allowLargeResults($query['allowLargeResults'])
             ->clustering($query['clustering'])
             ->createDisposition($query['createDisposition'])
@@ -130,6 +131,7 @@ class QueryJobConfigurationTest extends TestCase
             ->userDefinedFunctionResources($query['userDefinedFunctionResources'])
             ->writeDisposition($query['writeDisposition']);
 
+        $this->assertInstanceOf(QueryJobConfiguration::class, $config);
         $this->assertEquals($this->expectedConfig, $this->config->toArray());
     }
 

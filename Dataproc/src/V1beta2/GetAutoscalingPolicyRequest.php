@@ -17,10 +17,15 @@ class GetAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The "resource name" of the autoscaling policy, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     * * For `projects.locations.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -32,8 +37,13 @@ class GetAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The "resource name" of the autoscaling policy, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.autoscalingPolicies.get`, the resource name
+     *             of the policy has the following format:
+     *             `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     *           * For `projects.locations.autoscalingPolicies.get`, the resource name
+     *             of the policy has the following format:
+     *             `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -43,10 +53,15 @@ class GetAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The "resource name" of the autoscaling policy, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     * * For `projects.locations.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -56,10 +71,15 @@ class GetAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The "resource name" of the autoscaling policy, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     * * For `projects.locations.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

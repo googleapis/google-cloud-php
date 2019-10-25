@@ -123,7 +123,7 @@ class VideoIntelligenceServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/video_intelligence_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/video_intelligence_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/video_intelligence_service_grpc_config.json',
@@ -178,6 +178,9 @@ class VideoIntelligenceServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'videointelligence.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -205,7 +208,7 @@ class VideoIntelligenceServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -284,10 +287,10 @@ class VideoIntelligenceServiceGapicClient
      *          [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
      *          supported, which must be specified in the following format:
      *          `gs://bucket-id/object-id` (other URI formats return
-     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
-     *          more information, see [Request URIs](https://cloud.google.com/storage/docs/reference-uris). A video
-     *          URI may include wildcards in `object-id`, and thus identify multiple
-     *          videos. Supported wildcards: '*' to match 0 or more characters;
+     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *          [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *          A video URI may include wildcards in `object-id`, and thus identify
+     *          multiple videos. Supported wildcards: '*' to match 0 or more characters;
      *          '?' to match 1 character. If unset, the input video should be embedded
      *          in the request as `input_content`. If set, `input_content` should be unset.
      *     @type string $inputContent
@@ -295,19 +298,19 @@ class VideoIntelligenceServiceGapicClient
      *          If unset, the input video(s) should be specified via `input_uri`.
      *          If set, `input_uri` should be unset.
      *     @type int[] $features
-     *          Requested video annotation features.
+     *          Required. Requested video annotation features.
      *          For allowed values, use constants defined on {@see \Google\Cloud\VideoIntelligence\V1\Feature}
      *     @type VideoContext $videoContext
      *          Additional video context and/or feature-specific parameters.
      *     @type string $outputUri
-     *          Optional location where the output (in JSON format) should be stored.
+     *          Optional. Location where the output (in JSON format) should be stored.
      *          Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
      *          URIs are supported, which must be specified in the following format:
      *          `gs://bucket-id/object-id` (other URI formats return
-     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For
-     *          more information, see [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *          [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      *     @type string $locationId
-     *          Optional cloud region where annotation should take place. Supported cloud
+     *          Optional. Cloud region where annotation should take place. Supported cloud
      *          regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
      *          is specified, a region will be determined based on video file location.
      *     @type RetrySettings|array $retrySettings

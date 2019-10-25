@@ -34,12 +34,9 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Policy constraining how messages published to the topic may be stored. It
-     * is determined when the topic is created based on the policy configured at
-     * the project level. It must not be set by the caller in the request to
-     * CreateTopic or to UpdateTopic. This field will be populated in the
-     * responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
-     * response, then no constraints are in effect.
+     * Policy constraining the set of Google Cloud Platform regions where messages
+     * published to the topic may be stored. If not present, then no constraints
+     * are in effect.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
      */
@@ -48,9 +45,6 @@ class Topic extends \Google\Protobuf\Internal\Message
      * The resource name of the Cloud KMS CryptoKey to be used to protect access
      * to messages published on this topic.
      * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>string kms_key_name = 5;</code>
      */
@@ -73,19 +67,13 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
      *           managing labels</a>.
      *     @type \Google\Cloud\PubSub\V1\MessageStoragePolicy $message_storage_policy
-     *           Policy constraining how messages published to the topic may be stored. It
-     *           is determined when the topic is created based on the policy configured at
-     *           the project level. It must not be set by the caller in the request to
-     *           CreateTopic or to UpdateTopic. This field will be populated in the
-     *           responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
-     *           response, then no constraints are in effect.
+     *           Policy constraining the set of Google Cloud Platform regions where messages
+     *           published to the topic may be stored. If not present, then no constraints
+     *           are in effect.
      *     @type string $kms_key_name
      *           The resource name of the Cloud KMS CryptoKey to be used to protect access
      *           to messages published on this topic.
      *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
-     *           <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     *           API might be changed in backward-incompatible ways and is not recommended
-     *           for production use. It is not subject to any SLA or deprecation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,12 +146,9 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy constraining how messages published to the topic may be stored. It
-     * is determined when the topic is created based on the policy configured at
-     * the project level. It must not be set by the caller in the request to
-     * CreateTopic or to UpdateTopic. This field will be populated in the
-     * responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
-     * response, then no constraints are in effect.
+     * Policy constraining the set of Google Cloud Platform regions where messages
+     * published to the topic may be stored. If not present, then no constraints
+     * are in effect.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
      * @return \Google\Cloud\PubSub\V1\MessageStoragePolicy
@@ -174,12 +159,9 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy constraining how messages published to the topic may be stored. It
-     * is determined when the topic is created based on the policy configured at
-     * the project level. It must not be set by the caller in the request to
-     * CreateTopic or to UpdateTopic. This field will be populated in the
-     * responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
-     * response, then no constraints are in effect.
+     * Policy constraining the set of Google Cloud Platform regions where messages
+     * published to the topic may be stored. If not present, then no constraints
+     * are in effect.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
      * @param \Google\Cloud\PubSub\V1\MessageStoragePolicy $var
@@ -197,9 +179,6 @@ class Topic extends \Google\Protobuf\Internal\Message
      * The resource name of the Cloud KMS CryptoKey to be used to protect access
      * to messages published on this topic.
      * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>string kms_key_name = 5;</code>
      * @return string
@@ -213,9 +192,6 @@ class Topic extends \Google\Protobuf\Internal\Message
      * The resource name of the Cloud KMS CryptoKey to be used to protect access
      * to messages published on this topic.
      * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
-     * <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-     * API might be changed in backward-incompatible ways and is not recommended
-     * for production use. It is not subject to any SLA or deprecation policy.
      *
      * Generated from protobuf field <code>string kms_key_name = 5;</code>
      * @param string $var

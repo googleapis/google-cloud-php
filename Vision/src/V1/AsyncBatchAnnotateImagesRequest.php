@@ -16,17 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $requests;
     /**
      * Required. The desired output location and metadata (e.g. format).
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
+    /**
+     * Optional. Target project and location to make a call.
+     * Format: `projects/{project-id}/locations/{location-id}`.
+     * If no parent is specified, a region will be chosen automatically.
+     * Supported location-ids:
+     *     `us`: USA country only,
+     *     `asia`: East asia areas, like Japan, Taiwan,
+     *     `eu`: The European Union.
+     * Example: `projects/project-A/locations/eu`.
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     */
+    private $parent = '';
 
     /**
      * Constructor.
@@ -35,9 +48,18 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Vision\V1\AnnotateImageRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
-     *           Individual image annotation requests for this batch.
+     *           Required. Individual image annotation requests for this batch.
      *     @type \Google\Cloud\Vision\V1\OutputConfig $output_config
      *           Required. The desired output location and metadata (e.g. format).
+     *     @type string $parent
+     *           Optional. Target project and location to make a call.
+     *           Format: `projects/{project-id}/locations/{location-id}`.
+     *           If no parent is specified, a region will be chosen automatically.
+     *           Supported location-ids:
+     *               `us`: USA country only,
+     *               `asia`: East asia areas, like Japan, Taiwan,
+     *               `eu`: The European Union.
+     *           Example: `projects/project-A/locations/eu`.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +68,9 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRequests()
@@ -57,9 +79,9 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Individual image annotation requests for this batch.
+     * Required. Individual image annotation requests for this batch.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\AnnotateImageRequest[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +96,7 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and metadata (e.g. format).
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\OutputConfig
      */
     public function getOutputConfig()
@@ -85,7 +107,7 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The desired output location and metadata (e.g. format).
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\OutputConfig $var
      * @return $this
      */
@@ -93,6 +115,46 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\OutputConfig::class);
         $this->output_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Target project and location to make a call.
+     * Format: `projects/{project-id}/locations/{location-id}`.
+     * If no parent is specified, a region will be chosen automatically.
+     * Supported location-ids:
+     *     `us`: USA country only,
+     *     `asia`: East asia areas, like Japan, Taiwan,
+     *     `eu`: The European Union.
+     * Example: `projects/project-A/locations/eu`.
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Optional. Target project and location to make a call.
+     * Format: `projects/{project-id}/locations/{location-id}`.
+     * If no parent is specified, a region will be chosen automatically.
+     * Supported location-ids:
+     *     `us`: USA country only,
+     *     `asia`: East asia areas, like Japan, Taiwan,
+     *     `eu`: The European Union.
+     * Example: `projects/project-A/locations/eu`.
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

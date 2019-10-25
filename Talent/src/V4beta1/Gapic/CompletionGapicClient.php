@@ -36,6 +36,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Talent\V4beta1\CompleteQueryRequest;
+use Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope;
+use Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType;
 use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
 
 /**
@@ -95,6 +97,8 @@ class CompletionGapicClient
         'https://www.googleapis.com/auth/jobs',
     ];
     private static $companyNameTemplate;
+    private static $companyWithoutTenantNameTemplate;
+    private static $projectNameTemplate;
     private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
@@ -102,7 +106,7 @@ class CompletionGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/completion_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/completion_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/completion_grpc_config.json',
@@ -126,6 +130,24 @@ class CompletionGapicClient
         return self::$companyNameTemplate;
     }
 
+    private static function getCompanyWithoutTenantNameTemplate()
+    {
+        if (null == self::$companyWithoutTenantNameTemplate) {
+            self::$companyWithoutTenantNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+        }
+
+        return self::$companyWithoutTenantNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (null == self::$tenantNameTemplate) {
@@ -140,6 +162,8 @@ class CompletionGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'company' => self::getCompanyNameTemplate(),
+                'companyWithoutTenant' => self::getCompanyWithoutTenantNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
             ];
         }
@@ -169,6 +193,40 @@ class CompletionGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a company_without_tenant resource.
+     *
+     * @param string $project
+     * @param string $company
+     *
+     * @return string The formatted company_without_tenant resource.
+     * @experimental
+     */
+    public static function companyWithoutTenantName($project, $company)
+    {
+        return self::getCompanyWithoutTenantNameTemplate()->render([
+            'project' => $project,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a tenant resource.
      *
      * @param string $project
@@ -190,6 +248,8 @@ class CompletionGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - company: projects/{project}/tenants/{tenant}/companies/{company}
+     * - companyWithoutTenant: projects/{project}/companies/{company}
+     * - project: projects/{project}
      * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -234,6 +294,9 @@ class CompletionGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -261,7 +324,7 @@ class CompletionGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -302,68 +365,65 @@ class CompletionGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of tenant the completion is performed within.
+     * @param string $parent Required. Resource name of tenant the completion is performed within.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
+     * "projects/foo/tenant/bar".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
-     * @param string $query Required.
-     *
-     * The query used to generate suggestions.
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo".
+     * @param string $query Required. The query used to generate suggestions.
      *
      * The maximum number of allowed characters is 255.
-     * @param int $pageSize Required.
-     *
-     * Completion result count.
+     * @param int $pageSize Required. Completion result count.
      *
      * The maximum allowed page size is 10.
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type string[] $languageCodes
-     *          Optional.
-     *
      *          The list of languages of the query. This is
      *          the BCP-47 language code, such as "en-US" or "sr-Latn".
      *          For more information, see
      *          [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *
-     *          For [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE] type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *          For
+     *          [CompletionType.JOB_TITLE][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.JOB_TITLE]
+     *          type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
-     *          For [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME] type,
-     *          only companies having open jobs with the same [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are
-     *          returned.
+     *          For
+     *          [CompletionType.COMPANY_NAME][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMPANY_NAME]
+     *          type, only companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
-     *          For [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED] type, only open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] or companies having open jobs with the same
-     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes] are returned.
+     *          For
+     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED]
+     *          type, only open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          or companies having open jobs with the same
+     *          [language_codes][google.cloud.talent.v4beta1.CompleteQueryRequest.language_codes]
+     *          are returned.
      *
      *          The maximum number of allowed characters is 255.
      *     @type string $company
-     *          Optional.
-     *
      *          If provided, restricts completion to specified company.
      *
      *          The format is
      *          "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *          example, "projects/api-test-project/tenants/foo/companies/bar".
+     *          example, "projects/foo/tenants/bar/companies/baz".
      *
-     *          Tenant id is optional and the default tenant is used if unspecified, for
-     *          example, "projects/api-test-project/companies/bar".
+     *          If tenant id is unspecified, the default tenant is used, for
+     *          example, "projects/foo".
      *     @type int $scope
-     *          Optional.
-     *
-     *          The scope of the completion. The defaults is [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
+     *          The scope of the completion. The defaults is
+     *          [CompletionScope.PUBLIC][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionScope.PUBLIC].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionScope}
      *     @type int $type
-     *          Optional.
-     *
-     *          The completion topic. The default is [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
+     *          The completion topic. The default is
+     *          [CompletionType.COMBINED][google.cloud.talent.v4beta1.CompleteQueryRequest.CompletionType.COMBINED].
      *          For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\CompleteQueryRequest\CompletionType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

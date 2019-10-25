@@ -23,8 +23,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * The maximum rate at which tasks are dispatched from this queue.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
-     * * For [App Engine queues][google.cloud.tasks.v2.AppEngineHttpQueue], the maximum allowed value
-     *   is 500.
+     * * The maximum allowed value is 500.
      * This field has the same meaning as
      * [rate in
      * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#rate).
@@ -50,7 +49,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * Cloud Tasks will pick the value of `max_burst_size` based on the
      * value of
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second].
-     * For App Engine queues that were created or updated using
+     * For queues that were created or updated using
      * `queue.yaml/xml`, `max_burst_size` is equal to
      * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if
@@ -91,8 +90,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      *           The maximum rate at which tasks are dispatched from this queue.
      *           If unspecified when the queue is created, Cloud Tasks will pick the
      *           default.
-     *           * For [App Engine queues][google.cloud.tasks.v2.AppEngineHttpQueue], the maximum allowed value
-     *             is 500.
+     *           * The maximum allowed value is 500.
      *           This field has the same meaning as
      *           [rate in
      *           queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#rate).
@@ -114,7 +112,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      *           Cloud Tasks will pick the value of `max_burst_size` based on the
      *           value of
      *           [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second].
-     *           For App Engine queues that were created or updated using
+     *           For queues that were created or updated using
      *           `queue.yaml/xml`, `max_burst_size` is equal to
      *           [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      *           Since `max_burst_size` is output only, if
@@ -147,8 +145,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * The maximum rate at which tasks are dispatched from this queue.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
-     * * For [App Engine queues][google.cloud.tasks.v2.AppEngineHttpQueue], the maximum allowed value
-     *   is 500.
+     * * The maximum allowed value is 500.
      * This field has the same meaning as
      * [rate in
      * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#rate).
@@ -165,8 +162,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * The maximum rate at which tasks are dispatched from this queue.
      * If unspecified when the queue is created, Cloud Tasks will pick the
      * default.
-     * * For [App Engine queues][google.cloud.tasks.v2.AppEngineHttpQueue], the maximum allowed value
-     *   is 500.
+     * * The maximum allowed value is 500.
      * This field has the same meaning as
      * [rate in
      * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#rate).
@@ -201,7 +197,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * Cloud Tasks will pick the value of `max_burst_size` based on the
      * value of
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second].
-     * For App Engine queues that were created or updated using
+     * For queues that were created or updated using
      * `queue.yaml/xml`, `max_burst_size` is equal to
      * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if
@@ -239,7 +235,7 @@ class RateLimits extends \Google\Protobuf\Internal\Message
      * Cloud Tasks will pick the value of `max_burst_size` based on the
      * value of
      * [max_dispatches_per_second][google.cloud.tasks.v2.RateLimits.max_dispatches_per_second].
-     * For App Engine queues that were created or updated using
+     * For queues that were created or updated using
      * `queue.yaml/xml`, `max_burst_size` is equal to
      * [bucket_size](https://cloud.google.com/appengine/docs/standard/python/config/queueref#bucket_size).
      * Since `max_burst_size` is output only, if

@@ -108,7 +108,7 @@ class TenantServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/tenant_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/tenant_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/tenant_service_grpc_config.json',
@@ -236,6 +236,9 @@ class TenantServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -263,7 +266,7 @@ class TenantServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -302,17 +305,13 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the project under which the tenant is created.
+     * @param string $parent Required. Resource name of the project under which the tenant is created.
      *
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
-     * @param Tenant $tenant Required.
-     *
-     * The tenant to be created.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * "projects/foo".
+     * @param Tenant $tenant       Required. The tenant to be created.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -361,12 +360,10 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the tenant to be retrieved.
+     * @param string $name Required. The resource name of the tenant to be retrieved.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -416,21 +413,23 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param Tenant $tenant Required.
-     *
-     * The tenant resource to replace the current resource in the system.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Tenant $tenant       Required. The tenant resource to replace the current resource in the
+     *                             system.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask] is provided, only the specified fields in
-     *          [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are updated. Otherwise all the fields are updated.
+     *          If
+     *          [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
+     *          is provided, only the specified fields in
+     *          [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are
+     *          updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the tenant fields to be updated. Only
-     *          top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are supported.
+     *          top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are
+     *          supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -480,12 +479,10 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the tenant to be deleted.
+     * @param string $name Required. The resource name of the tenant to be deleted.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * "projects/foo/tenants/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -548,12 +545,10 @@ class TenantServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the project under which the tenant is created.
+     * @param string $parent Required. Resource name of the project under which the tenant is created.
      *
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      * @param array $optionalArgs {
      *                            Optional.
      *

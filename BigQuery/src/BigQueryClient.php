@@ -51,7 +51,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.8.0';
+    const VERSION = '1.12.1';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 
@@ -79,6 +79,9 @@ class BigQueryClient
      * @param array $config [optional] {
      *     Configuration options.
      *
+     *     @type string $apiEndpoint The hostname with optional port to use in
+     *           place of the default service endpoint. Example:
+     *           `foobar.com` or `foobar.com:1234`.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access

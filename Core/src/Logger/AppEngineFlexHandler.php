@@ -21,7 +21,9 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
 /**
- * Class for logging on App Engine flexible environment.
+ * Monolog 1.x handler for logging on App Engine flexible environment.
+ *
+ * If you are using Monolog 2.x, use {@see \Google\Cloud\Core\Logger\AppEngineFlexHandlerV2} instead.
  */
 class AppEngineFlexHandler extends StreamHandler
 {
@@ -44,7 +46,7 @@ class AppEngineFlexHandler extends StreamHandler
         $stream = null
     ) {
         if ($stream === null) {
-            $pid = posix_getpid();
+            $pid = getmypid();
             $stream = "file:///var/log/app_engine/app.$pid.json";
         }
         parent::__construct(

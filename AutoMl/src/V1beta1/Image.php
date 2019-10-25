@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A representation of an image.
+ * Only images up to 30MB in size are supported.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1beta1.Image</code>
  */

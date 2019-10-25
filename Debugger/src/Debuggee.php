@@ -149,18 +149,19 @@ class Debuggee
             'extSourceContexts' => [],
             'uniquifier' => null,
             'description' => null,
-            'labels' => []
+            'labels' => [],
+            'project' => null
         ];
 
         $this->id = $info['id'];
-        $this->project = $info['project'];
+        $this->isInactive = $info['isInactive'];
+        $this->agentVersion = $info['agentVersion'];
+        $this->status = $info['status'];
+        $this->extSourceContexts = $info['extSourceContexts'];
         $this->uniquifier = $info['uniquifier'];
         $this->description = $info['description'];
-        $this->status = $info['status'];
-        $this->agentVersion = $info['agentVersion'];
-        $this->isInactive = $info['isInactive'];
-        $this->extSourceContexts = $info['extSourceContexts'];
         $this->labels = $info['labels'];
+        $this->project = $info['project'];
     }
 
     /**
@@ -367,7 +368,6 @@ class Debuggee
     public function info()
     {
         $info = [
-            'id' => $this->id,
             'project' => $this->project,
             'uniquifier' => $this->uniquifier,
             'description' => $this->description,
@@ -383,6 +383,11 @@ class Debuggee
                 return is_array($esc) ? $esc : $esc->info();
             }, $this->extSourceContexts)
         ];
+
+        // Do not include the ID unless it is set.
+        if ($this->id) {
+            $info['id'] = $this->id;
+        }
 
         if ($this->status instanceof StatusMessage) {
             $info['status'] = $this->status->info();

@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Delete job request.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.DeleteJobRequest</code>
@@ -17,15 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the job to be deleted.
+     * Required. The resource name of the job to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/jobs/1234".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     * example, "projects/foo/tenants/bar/jobs/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/jobs/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -36,13 +34,12 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The resource name of the job to be deleted.
+     *           Required. The resource name of the job to be deleted.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     *           example, "projects/api-test-project/tenants/foo/jobs/1234".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project/jobs/1234".
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     *           example, "projects/foo/tenants/bar/jobs/baz".
+     *           If tenant id is unspecified, the default tenant is used. For
+     *           example, "projects/foo/jobs/bar".
      * }
      */
     public function __construct($data = NULL) {
@@ -51,15 +48,14 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the job to be deleted.
+     * Required. The resource name of the job to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/jobs/1234".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     * example, "projects/foo/tenants/bar/jobs/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/jobs/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -68,15 +64,14 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the job to be deleted.
+     * Required. The resource name of the job to be deleted.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}", for
-     * example, "projects/api-test-project/tenants/foo/jobs/1234".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/jobs/1234".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For
+     * example, "projects/foo/tenants/bar/jobs/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/jobs/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

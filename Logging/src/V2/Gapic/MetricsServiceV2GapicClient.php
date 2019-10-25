@@ -116,7 +116,10 @@ class MetricsServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
+    private static $billingNameTemplate;
+    private static $folderNameTemplate;
     private static $metricNameTemplate;
+    private static $organizationNameTemplate;
     private static $projectNameTemplate;
     private static $pathTemplateMap;
 
@@ -124,7 +127,7 @@ class MetricsServiceV2GapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/metrics_service_v2_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/metrics_service_v2_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/metrics_service_v2_grpc_config.json',
@@ -139,6 +142,24 @@ class MetricsServiceV2GapicClient
         ];
     }
 
+    private static function getBillingNameTemplate()
+    {
+        if (null == self::$billingNameTemplate) {
+            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        }
+
+        return self::$billingNameTemplate;
+    }
+
+    private static function getFolderNameTemplate()
+    {
+        if (null == self::$folderNameTemplate) {
+            self::$folderNameTemplate = new PathTemplate('folders/{folder}');
+        }
+
+        return self::$folderNameTemplate;
+    }
+
     private static function getMetricNameTemplate()
     {
         if (null == self::$metricNameTemplate) {
@@ -146,6 +167,15 @@ class MetricsServiceV2GapicClient
         }
 
         return self::$metricNameTemplate;
+    }
+
+    private static function getOrganizationNameTemplate()
+    {
+        if (null == self::$organizationNameTemplate) {
+            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        }
+
+        return self::$organizationNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -161,12 +191,47 @@ class MetricsServiceV2GapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'billing' => self::getBillingNameTemplate(),
+                'folder' => self::getFolderNameTemplate(),
                 'metric' => self::getMetricNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing resource.
+     *
+     * @param string $billingAccount
+     *
+     * @return string The formatted billing resource.
+     * @experimental
+     */
+    public static function billingName($billingAccount)
+    {
+        return self::getBillingNameTemplate()->render([
+            'billing_account' => $billingAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder resource.
+     * @experimental
+     */
+    public static function folderName($folder)
+    {
+        return self::getFolderNameTemplate()->render([
+            'folder' => $folder,
+        ]);
     }
 
     /**
@@ -184,6 +249,22 @@ class MetricsServiceV2GapicClient
         return self::getMetricNameTemplate()->render([
             'project' => $project,
             'metric' => $metric,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     * @experimental
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
         ]);
     }
 
@@ -207,7 +288,10 @@ class MetricsServiceV2GapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - billing: billingAccounts/{billing_account}
+     * - folder: folders/{folder}
      * - metric: projects/{project}/metrics/{metric}
+     * - organization: organizations/{organization}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -252,6 +336,9 @@ class MetricsServiceV2GapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'logging.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -279,7 +366,7 @@ class MetricsServiceV2GapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for

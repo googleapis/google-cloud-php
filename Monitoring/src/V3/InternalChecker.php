@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An internal checker allows uptime checks to run on private/internal GCP
+ * An internal checker allows Uptime checks to run on private/internal GCP
  * resources.
  *
  * Generated from protobuf message <code>google.monitoring.v3.InternalChecker</code>
@@ -19,8 +19,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this InternalChecker. The format is:
      *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * PROJECT_ID is the stackdriver workspace project for the
-     * uptime check config associated with the internal checker.
+     * `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     * Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -41,19 +41,25 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * The GCP zone the uptime check should egress from. Only respected for
-     * internal uptime checks, where internal_network is specified.
+     * The GCP zone the Uptime check should egress from. Only respected for
+     * internal Uptime checks, where internal_network is specified.
      *
      * Generated from protobuf field <code>string gcp_zone = 4;</code>
      */
     private $gcp_zone = '';
     /**
-     * The GCP project_id where the internal checker lives. Not necessary
-     * the same as the workspace project.
+     * The GCP project ID where the internal checker lives. Not necessary
+     * the same as the Workspace project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      */
     private $peer_project_id = '';
+    /**
+     * The current operational state of the internal checker.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
+     */
+    private $state = 0;
 
     /**
      * Constructor.
@@ -64,8 +70,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A unique resource name for this InternalChecker. The format is:
      *             `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     *           PROJECT_ID is the stackdriver workspace project for the
-     *           uptime check config associated with the internal checker.
+     *           `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     *           Uptime check config associated with the internal checker.
      *     @type string $display_name
      *           The checker's human-readable name. The display name
      *           should be unique within a Stackdriver Workspace in order to make it easier
@@ -74,11 +80,13 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      *           The [GCP VPC network](https://cloud.google.com/vpc/docs/vpc) where the
      *           internal resource lives (ex: "default").
      *     @type string $gcp_zone
-     *           The GCP zone the uptime check should egress from. Only respected for
-     *           internal uptime checks, where internal_network is specified.
+     *           The GCP zone the Uptime check should egress from. Only respected for
+     *           internal Uptime checks, where internal_network is specified.
      *     @type string $peer_project_id
-     *           The GCP project_id where the internal checker lives. Not necessary
-     *           the same as the workspace project.
+     *           The GCP project ID where the internal checker lives. Not necessary
+     *           the same as the Workspace project.
+     *     @type int $state
+     *           The current operational state of the internal checker.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,8 +97,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this InternalChecker. The format is:
      *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * PROJECT_ID is the stackdriver workspace project for the
-     * uptime check config associated with the internal checker.
+     * `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     * Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -103,8 +111,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this InternalChecker. The format is:
      *   `projects/[PROJECT_ID]/internalCheckers/[INTERNAL_CHECKER_ID]`.
-     * PROJECT_ID is the stackdriver workspace project for the
-     * uptime check config associated with the internal checker.
+     * `[PROJECT_ID]` is the Stackdriver Workspace project for the
+     * Uptime check config associated with the internal checker.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -177,8 +185,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP zone the uptime check should egress from. Only respected for
-     * internal uptime checks, where internal_network is specified.
+     * The GCP zone the Uptime check should egress from. Only respected for
+     * internal Uptime checks, where internal_network is specified.
      *
      * Generated from protobuf field <code>string gcp_zone = 4;</code>
      * @return string
@@ -189,8 +197,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP zone the uptime check should egress from. Only respected for
-     * internal uptime checks, where internal_network is specified.
+     * The GCP zone the Uptime check should egress from. Only respected for
+     * internal Uptime checks, where internal_network is specified.
      *
      * Generated from protobuf field <code>string gcp_zone = 4;</code>
      * @param string $var
@@ -205,8 +213,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP project_id where the internal checker lives. Not necessary
-     * the same as the workspace project.
+     * The GCP project ID where the internal checker lives. Not necessary
+     * the same as the Workspace project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      * @return string
@@ -217,8 +225,8 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The GCP project_id where the internal checker lives. Not necessary
-     * the same as the workspace project.
+     * The GCP project ID where the internal checker lives. Not necessary
+     * the same as the Workspace project.
      *
      * Generated from protobuf field <code>string peer_project_id = 6;</code>
      * @param string $var
@@ -228,6 +236,32 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current operational state of the internal checker.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * The current operational state of the internal checker.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.InternalChecker.State state = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\InternalChecker_State::class);
+        $this->state = $var;
 
         return $this;
     }

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only. A resource that represents a location with full geographic
- * information.
+ * A resource that represents a location with full geographic information.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.Location</code>
  */
@@ -18,9 +17,11 @@ class Location extends \Google\Protobuf\Internal\Message
 {
     /**
      * The type of a location, which corresponds to the address lines field of
-     * [PostalAddress][]. For example, "Downtown, Atlanta, GA, USA" has a type of
-     * [LocationType#NEIGHBORHOOD][], and "Kansas City, KS, USA" has a type of
-     * [LocationType#LOCALITY][].
+     * [google.type.PostalAddress][google.type.PostalAddress]. For example,
+     * "Downtown, Atlanta, GA, USA" has a type of
+     * [LocationType.NEIGHBORHOOD][google.cloud.talent.v4beta1.Location.LocationType.NEIGHBORHOOD],
+     * and "Kansas City, KS, USA" has a type of
+     * [LocationType.LOCALITY][google.cloud.talent.v4beta1.Location.LocationType.LOCALITY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location.LocationType location_type = 1;</code>
      */
@@ -43,9 +44,9 @@ class Location extends \Google\Protobuf\Internal\Message
     /**
      * Radius in miles of the job location. This value is derived from the
      * location bounding box in which a circle with the specified radius
-     * centered from [LatLng][] covers the area associated with the job location.
-     * For example, currently, "Mountain View, CA, USA" has a radius of
-     * 6.17 miles.
+     * centered from [google.type.LatLng][google.type.LatLng] covers the area
+     * associated with the job location. For example, currently, "Mountain View,
+     * CA, USA" has a radius of 6.17 miles.
      *
      * Generated from protobuf field <code>double radius_miles = 4;</code>
      */
@@ -59,9 +60,11 @@ class Location extends \Google\Protobuf\Internal\Message
      *
      *     @type int $location_type
      *           The type of a location, which corresponds to the address lines field of
-     *           [PostalAddress][]. For example, "Downtown, Atlanta, GA, USA" has a type of
-     *           [LocationType#NEIGHBORHOOD][], and "Kansas City, KS, USA" has a type of
-     *           [LocationType#LOCALITY][].
+     *           [google.type.PostalAddress][google.type.PostalAddress]. For example,
+     *           "Downtown, Atlanta, GA, USA" has a type of
+     *           [LocationType.NEIGHBORHOOD][google.cloud.talent.v4beta1.Location.LocationType.NEIGHBORHOOD],
+     *           and "Kansas City, KS, USA" has a type of
+     *           [LocationType.LOCALITY][google.cloud.talent.v4beta1.Location.LocationType.LOCALITY].
      *     @type \Google\Type\PostalAddress $postal_address
      *           Postal address of the location that includes human readable information,
      *           such as postal delivery and payments addresses. Given a postal address,
@@ -72,9 +75,9 @@ class Location extends \Google\Protobuf\Internal\Message
      *     @type float $radius_miles
      *           Radius in miles of the job location. This value is derived from the
      *           location bounding box in which a circle with the specified radius
-     *           centered from [LatLng][] covers the area associated with the job location.
-     *           For example, currently, "Mountain View, CA, USA" has a radius of
-     *           6.17 miles.
+     *           centered from [google.type.LatLng][google.type.LatLng] covers the area
+     *           associated with the job location. For example, currently, "Mountain View,
+     *           CA, USA" has a radius of 6.17 miles.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,9 +87,11 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of a location, which corresponds to the address lines field of
-     * [PostalAddress][]. For example, "Downtown, Atlanta, GA, USA" has a type of
-     * [LocationType#NEIGHBORHOOD][], and "Kansas City, KS, USA" has a type of
-     * [LocationType#LOCALITY][].
+     * [google.type.PostalAddress][google.type.PostalAddress]. For example,
+     * "Downtown, Atlanta, GA, USA" has a type of
+     * [LocationType.NEIGHBORHOOD][google.cloud.talent.v4beta1.Location.LocationType.NEIGHBORHOOD],
+     * and "Kansas City, KS, USA" has a type of
+     * [LocationType.LOCALITY][google.cloud.talent.v4beta1.Location.LocationType.LOCALITY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location.LocationType location_type = 1;</code>
      * @return int
@@ -98,9 +103,11 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of a location, which corresponds to the address lines field of
-     * [PostalAddress][]. For example, "Downtown, Atlanta, GA, USA" has a type of
-     * [LocationType#NEIGHBORHOOD][], and "Kansas City, KS, USA" has a type of
-     * [LocationType#LOCALITY][].
+     * [google.type.PostalAddress][google.type.PostalAddress]. For example,
+     * "Downtown, Atlanta, GA, USA" has a type of
+     * [LocationType.NEIGHBORHOOD][google.cloud.talent.v4beta1.Location.LocationType.NEIGHBORHOOD],
+     * and "Kansas City, KS, USA" has a type of
+     * [LocationType.LOCALITY][google.cloud.talent.v4beta1.Location.LocationType.LOCALITY].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location.LocationType location_type = 1;</code>
      * @param int $var
@@ -175,9 +182,9 @@ class Location extends \Google\Protobuf\Internal\Message
     /**
      * Radius in miles of the job location. This value is derived from the
      * location bounding box in which a circle with the specified radius
-     * centered from [LatLng][] covers the area associated with the job location.
-     * For example, currently, "Mountain View, CA, USA" has a radius of
-     * 6.17 miles.
+     * centered from [google.type.LatLng][google.type.LatLng] covers the area
+     * associated with the job location. For example, currently, "Mountain View,
+     * CA, USA" has a radius of 6.17 miles.
      *
      * Generated from protobuf field <code>double radius_miles = 4;</code>
      * @return float
@@ -190,9 +197,9 @@ class Location extends \Google\Protobuf\Internal\Message
     /**
      * Radius in miles of the job location. This value is derived from the
      * location bounding box in which a circle with the specified radius
-     * centered from [LatLng][] covers the area associated with the job location.
-     * For example, currently, "Mountain View, CA, USA" has a radius of
-     * 6.17 miles.
+     * centered from [google.type.LatLng][google.type.LatLng] covers the area
+     * associated with the job location. For example, currently, "Mountain View,
+     * CA, USA" has a radius of 6.17 miles.
      *
      * Generated from protobuf field <code>double radius_miles = 4;</code>
      * @param float $var

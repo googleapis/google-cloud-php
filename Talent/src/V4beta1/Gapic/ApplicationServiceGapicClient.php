@@ -109,7 +109,7 @@ class ApplicationServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/application_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/application_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/application_service_grpc_config.json',
@@ -245,6 +245,9 @@ class ApplicationServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -272,7 +275,7 @@ class ApplicationServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -311,18 +314,15 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the profile under which the application is created.
+     * @param string $parent Required. Resource name of the profile under which the application is
+     *                       created.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
-     * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
-     * @param Application $application Required.
-     *
-     * The application to be created.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz".
+     * @param Application $application  Required. The application to be created.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -371,14 +371,11 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the application to be retrieved.
+     * @param string $name Required. The resource name of the application to be retrieved.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -428,21 +425,23 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param Application $application Required.
-     *
-     * The application resource to replace the current resource in the system.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Application $application  Required. The application resource to replace the current resource in the
+     *                                  system.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask] is provided, only the specified fields in
-     *          [application][google.cloud.talent.v4beta1.UpdateApplicationRequest.application] are updated. Otherwise all the fields are updated.
+     *          If
+     *          [update_mask][google.cloud.talent.v4beta1.UpdateApplicationRequest.update_mask]
+     *          is provided, only the specified fields in
+     *          [application][google.cloud.talent.v4beta1.UpdateApplicationRequest.application]
+     *          are updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the application fields to be updated. Only
-     *          top level fields of [Application][google.cloud.talent.v4beta1.Application] are supported.
+     *          top level fields of [Application][google.cloud.talent.v4beta1.Application]
+     *          are supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -492,14 +491,11 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the application to be deleted.
+     * @param string $name Required. The resource name of the application to be deleted.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/test-project/tenants/test-tenant/profiles/test-profile/applications/test-application".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -562,13 +558,12 @@ class ApplicationServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the profile under which the application is created.
+     * @param string $parent Required. Resource name of the profile under which the application is
+     *                       created.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}", for
-     * example, "projects/test-project/tenants/test-tenant/profiles/test-profile".
+     * example, "projects/foo/tenants/bar/profiles/baz".
      * @param array $optionalArgs {
      *                            Optional.
      *

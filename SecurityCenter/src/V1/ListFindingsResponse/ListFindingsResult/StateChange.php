@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
 
+use UnexpectedValueException;
+
 /**
  * The change in state of the finding.
  * When querying across two points in time this describes
@@ -50,6 +52,34 @@ class StateChange
      * Generated from protobuf enum <code>REMOVED = 4;</code>
      */
     const REMOVED = 4;
+
+    private static $valueToName = [
+        self::UNUSED => 'UNUSED',
+        self::CHANGED => 'CHANGED',
+        self::UNCHANGED => 'UNCHANGED',
+        self::ADDED => 'ADDED',
+        self::REMOVED => 'REMOVED',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

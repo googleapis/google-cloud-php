@@ -16,23 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTenantsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional.
      * The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
      */
     private $page_token = '';
     /**
-     * Optional.
      * The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
@@ -47,15 +44,12 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           Resource name of the project under which the tenant is created.
+     *           Required. Resource name of the project under which the tenant is created.
      *           The format is "projects/{project_id}", for example,
-     *           "projects/api-test-project".
+     *           "projects/foo".
      *     @type string $page_token
-     *           Optional.
      *           The starting indicator from which to return results.
      *     @type int $page_size
-     *           Optional.
      *           The maximum number of tenants to be returned, at most 100.
      *           Default is 100 if a non-positive number is provided.
      * }
@@ -66,12 +60,11 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -80,12 +73,11 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -98,7 +90,6 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -110,7 +101,6 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The starting indicator from which to return results.
      *
      * Generated from protobuf field <code>string page_token = 2;</code>
@@ -126,7 +116,6 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *
@@ -139,7 +128,6 @@ class ListTenantsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The maximum number of tenants to be returned, at most 100.
      * Default is 100 if a non-positive number is provided.
      *

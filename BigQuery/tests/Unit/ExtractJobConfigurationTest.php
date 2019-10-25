@@ -69,18 +69,22 @@ class ExtractJobConfigurationTest extends TestCase
             'destinationUris' => ['gs://my_bucket/destination.csv'],
             'fieldDelimiter' => ',',
             'printHeader' => true,
-            'sourceTable' => $this->tableIdentity
+            'sourceTable' => $this->tableIdentity,
+            'useAvroLogicalTypes' => true
         ];
         $this->expectedConfig['configuration']['extract'] = $extract
             + $this->expectedConfig['configuration']['extract'];
-        $this->config
+
+        $config = $this->config
             ->compression($extract['compression'])
             ->destinationFormat($extract['destinationFormat'])
             ->destinationUris($extract['destinationUris'])
             ->fieldDelimiter($extract['fieldDelimiter'])
             ->printHeader($extract['printHeader'])
-            ->sourceTable($sourceTable->reveal());
+            ->sourceTable($sourceTable->reveal())
+            ->useAvroLogicalTypes($extract['useAvroLogicalTypes']);
 
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
         $this->assertEquals(
             $this->expectedConfig,
             $this->config->toArray()

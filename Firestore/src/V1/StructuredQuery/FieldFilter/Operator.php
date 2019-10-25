@@ -56,6 +56,20 @@ class Operator
      * Generated from protobuf enum <code>ARRAY_CONTAINS = 7;</code>
      */
     const ARRAY_CONTAINS = 7;
+    /**
+     * In. Requires that `value` is a non-empty ArrayValue with at most 10
+     * values.
+     *
+     * Generated from protobuf enum <code>IN = 8;</code>
+     */
+    const IN = 8;
+    /**
+     * Contains any. Requires that the field is an array and
+     * `value` is a non-empty ArrayValue with at most 10 values.
+     *
+     * Generated from protobuf enum <code>ARRAY_CONTAINS_ANY = 9;</code>
+     */
+    const ARRAY_CONTAINS_ANY = 9;
 
     private static $valueToName = [
         self::OPERATOR_UNSPECIFIED => 'OPERATOR_UNSPECIFIED',
@@ -65,6 +79,8 @@ class Operator
         self::GREATER_THAN_OR_EQUAL => 'GREATER_THAN_OR_EQUAL',
         self::EQUAL => 'EQUAL',
         self::ARRAY_CONTAINS => 'ARRAY_CONTAINS',
+        self::IN => 'IN',
+        self::ARRAY_CONTAINS_ANY => 'ARRAY_CONTAINS_ANY',
     ];
 
     public static function name($value)

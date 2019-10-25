@@ -101,6 +101,8 @@ class CompanyServiceGapicClient
         'https://www.googleapis.com/auth/jobs',
     ];
     private static $companyNameTemplate;
+    private static $companyWithoutTenantNameTemplate;
+    private static $projectNameTemplate;
     private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
@@ -108,7 +110,7 @@ class CompanyServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/company_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/company_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/company_service_grpc_config.json',
@@ -132,6 +134,24 @@ class CompanyServiceGapicClient
         return self::$companyNameTemplate;
     }
 
+    private static function getCompanyWithoutTenantNameTemplate()
+    {
+        if (null == self::$companyWithoutTenantNameTemplate) {
+            self::$companyWithoutTenantNameTemplate = new PathTemplate('projects/{project}/companies/{company}');
+        }
+
+        return self::$companyWithoutTenantNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (null == self::$tenantNameTemplate) {
@@ -146,6 +166,8 @@ class CompanyServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'company' => self::getCompanyNameTemplate(),
+                'companyWithoutTenant' => self::getCompanyWithoutTenantNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
             ];
         }
@@ -175,6 +197,40 @@ class CompanyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a company_without_tenant resource.
+     *
+     * @param string $project
+     * @param string $company
+     *
+     * @return string The formatted company_without_tenant resource.
+     * @experimental
+     */
+    public static function companyWithoutTenantName($project, $company)
+    {
+        return self::getCompanyWithoutTenantNameTemplate()->render([
+            'project' => $project,
+            'company' => $company,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a tenant resource.
      *
      * @param string $project
@@ -196,6 +252,8 @@ class CompanyServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - company: projects/{project}/tenants/{tenant}/companies/{company}
+     * - companyWithoutTenant: projects/{project}/companies/{company}
+     * - project: projects/{project}
      * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -240,6 +298,9 @@ class CompanyServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -267,7 +328,7 @@ class CompanyServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -306,20 +367,14 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the tenant under which the company is created.
+     * @param string $parent Required. Resource name of the tenant under which the company is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
-     * @param Company $company Required.
-     *
-     * The company to be created.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created, for example, "projects/foo".
+     * @param Company $company      Required. The company to be created.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -368,15 +423,13 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the company to be retrieved.
+     * @param string $name Required. The resource name of the company to be retrieved.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
      * example, "projects/api-test-project/tenants/foo/companies/bar".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
+     * If tenant id is unspecified, the default tenant is used, for
      * example, "projects/api-test-project/companies/bar".
      * @param array $optionalArgs {
      *                            Optional.
@@ -427,21 +480,23 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param Company $company Required.
-     *
-     * The company resource to replace the current resource in the system.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Company $company      Required. The company resource to replace the current resource in the
+     *                              system.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional but strongly recommended for the best service
-     *          experience.
+     *          Strongly recommended for the best service experience.
      *
-     *          If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     *          If
+     *          [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     *          is provided, only the specified fields in
+     *          [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     *          updated. Otherwise all the fields are updated.
      *
      *          A field mask to specify the company fields to be updated. Only
-     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     *          top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     *          supported.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -492,16 +547,14 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * The resource name of the company to be deleted.
+     * @param string $name Required. The resource name of the company to be deleted.
      *
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -564,15 +617,13 @@ class CompanyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the tenant under which the company is created.
+     * @param string $parent Required. Resource name of the tenant under which the company is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
+     * "projects/foo/tenant/bar".
      *
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * If tenant id is unspecified, the default tenant will be used, for
+     * example, "projects/foo".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -586,14 +637,13 @@ class CompanyServiceGapicClient
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
      *     @type bool $requireOpenJobs
-     *          Optional.
-     *
      *          Set to true if the companies requested must have open jobs.
      *
      *          Defaults to false.
      *
-     *          If true, at most [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of companies are fetched, among which
-     *          only those with open jobs are returned.
+     *          If true, at most
+     *          [page_size][google.cloud.talent.v4beta1.ListCompaniesRequest.page_size] of
+     *          companies are fetched, among which only those with open jobs are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

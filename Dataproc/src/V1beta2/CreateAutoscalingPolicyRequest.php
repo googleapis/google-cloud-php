@@ -16,17 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`.
+     * Required. The "resource name" of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The autoscaling policy to create.
+     * Required. The autoscaling policy to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $policy = null;
 
@@ -37,11 +42,16 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The "resource name" of the region, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}`.
+     *           Required. The "resource name" of the region or location, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.autoscalingPolicies.create`, the resource name
+     *             has the following format:
+     *             `projects/{project_id}/regions/{region}`
+     *           * For `projects.locations.autoscalingPolicies.create`, the resource name
+     *             has the following format:
+     *             `projects/{project_id}/locations/{location}`
      *     @type \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy $policy
-     *           The autoscaling policy to create.
+     *           Required. The autoscaling policy to create.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,11 +60,16 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`.
+     * Required. The "resource name" of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -63,11 +78,16 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`.
+     * Required. The "resource name" of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -80,9 +100,9 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autoscaling policy to create.
+     * Required. The autoscaling policy to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy
      */
     public function getPolicy()
@@ -91,9 +111,9 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autoscaling policy to create.
+     * Required. The autoscaling policy to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy $var
      * @return $this
      */

@@ -21,19 +21,19 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The application name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Required. The application state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $state = 0;
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      *
-     * Generated from protobuf field <code>float progress = 3;</code>
+     * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $progress = 0.0;
     /**
@@ -42,7 +42,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
      *
-     * Generated from protobuf field <code>string tracking_url = 4;</code>
+     * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tracking_url = '';
 
@@ -73,7 +73,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The application name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -84,7 +84,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The application name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -99,7 +99,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The application state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getState()
@@ -110,7 +110,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The application state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.YarnApplication.State state = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -125,7 +125,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      *
-     * Generated from protobuf field <code>float progress = 3;</code>
+     * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
      */
     public function getProgress()
@@ -136,7 +136,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      *
-     * Generated from protobuf field <code>float progress = 3;</code>
+     * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var
      * @return $this
      */
@@ -154,7 +154,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
      *
-     * Generated from protobuf field <code>string tracking_url = 4;</code>
+     * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTrackingUrl()
@@ -168,7 +168,7 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
      *
-     * Generated from protobuf field <code>string tracking_url = 4;</code>
+     * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -11,6 +11,11 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A Cloud Dataproc job for running [Apache Spark](http://spark.apache.org/)
  * applications on YARN.
+ * The specification of the main method to call to drive the job.
+ * Specify either the jar file that contains the main class or the main class
+ * name. To pass both a main jar and a main class in that jar, add the jar to
+ * `CommonJob.jar_file_uris`, and then specify the main class name in
+ * `main_class`.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1beta2.SparkJob</code>
  */

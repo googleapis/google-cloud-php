@@ -19,19 +19,19 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 3;</code>
+     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region = '';
     /**
      * Required. The job resource.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job = null;
     /**
@@ -45,7 +45,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 4;</code>
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
 
@@ -83,7 +83,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -95,7 +95,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -110,7 +110,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 3;</code>
+     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegion()
@@ -121,7 +121,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 3;</code>
+     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -136,7 +136,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The job resource.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1\Job
      */
     public function getJob()
@@ -147,7 +147,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The job resource.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1\Job $var
      * @return $this
      */
@@ -170,7 +170,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 4;</code>
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRequestId()
@@ -189,7 +189,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 4;</code>
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

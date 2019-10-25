@@ -20,13 +20,14 @@ namespace Google\Cloud\BigQuery\Tests\Unit\Connection;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigquery
@@ -40,6 +41,23 @@ class RestTest extends TestCase
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
+    }
+
+    public function testApiEndpoint()
+    {
+        $endpoint = 'https://foobar.com/';
+        $rest = TestHelpers::stub(Rest::class, [
+            [
+                'apiEndpoint' => $endpoint
+            ]
+        ], ['requestBuilder']);
+
+        $rb = $rest->___getProperty('requestBuilder');
+        $r = new \ReflectionObject($rb);
+        $p = $r->getProperty('baseUri');
+        $p->setAccessible(true);
+
+        $this->assertEquals($endpoint . 'bigquery/v2/', $p->getValue($rb));
     }
 
     /**

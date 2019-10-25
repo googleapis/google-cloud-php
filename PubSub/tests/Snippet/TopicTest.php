@@ -98,6 +98,34 @@ class TopicTest extends SnippetTestCase
         $this->assertEquals([], $res->returnVal());
     }
 
+    public function testUpdate()
+    {
+        $snippet = $this->snippetFromMethod(Topic::class, 'update');
+        $snippet->addLocal('topic', $this->topic);
+
+        $this->connection->updateTopic(Argument::any())
+            ->shouldBeCalled();
+
+        $this->topic->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
+    public function testUpdateWithMask()
+    {
+        $snippet = $this->snippetFromMethod(Topic::class, 'update', 1);
+        $snippet->addLocal('topic', $this->topic);
+
+        $this->connection->updateTopic(Argument::allOf(
+            Argument::withKey('topic'),
+            Argument::withKey('updateMask')
+        ))->shouldBeCalled();
+
+        $this->topic->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Topic::class, 'delete');

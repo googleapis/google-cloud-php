@@ -18,7 +18,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScanRunWarningTrace extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
      * Indicates the warning code.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace.Code code = 1;</code>
@@ -32,7 +31,6 @@ class ScanRunWarningTrace extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $code
-     *           Output only.
      *           Indicates the warning code.
      * }
      */
@@ -42,7 +40,6 @@ class ScanRunWarningTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the warning code.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace.Code code = 1;</code>
@@ -54,7 +51,6 @@ class ScanRunWarningTrace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the warning code.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace.Code code = 1;</code>

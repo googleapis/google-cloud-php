@@ -7,7 +7,7 @@ namespace Google\Cloud\Talent\V4beta1\LocationFilter;
 use UnexpectedValueException;
 
 /**
- * Specify whether including telecommute jobs.
+ * Specify whether to include telecommute jobs.
  *
  * Protobuf type <code>google.cloud.talent.v4beta1.LocationFilter.TelecommutePreference</code>
  */

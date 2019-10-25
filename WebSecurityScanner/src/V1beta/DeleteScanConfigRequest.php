@@ -16,11 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteScanConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the ScanConfig to be deleted. The name follows the
+     * Required. The resource name of the ScanConfig to be deleted. The name follows the
      * format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -31,8 +30,7 @@ class DeleteScanConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The resource name of the ScanConfig to be deleted. The name follows the
+     *           Required. The resource name of the ScanConfig to be deleted. The name follows the
      *           format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      * }
      */
@@ -42,11 +40,10 @@ class DeleteScanConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the ScanConfig to be deleted. The name follows the
+     * Required. The resource name of the ScanConfig to be deleted. The name follows the
      * format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -55,11 +52,10 @@ class DeleteScanConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the ScanConfig to be deleted. The name follows the
+     * Required. The resource name of the ScanConfig to be deleted. The name follows the
      * format of 'projects/{projectId}/scanConfigs/{scanConfigId}'.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

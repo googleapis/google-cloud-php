@@ -19,25 +19,25 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 2;</code>
+     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region = '';
     /**
      * Required. The job ID.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job_id = '';
     /**
      * Required. The changes to the job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job = null;
     /**
@@ -48,7 +48,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * value. <strong>Note:</strong> Currently, <code>labels</code> is the only
      * field that can be updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -85,7 +85,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -97,7 +97,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      *
-     * Generated from protobuf field <code>string project_id = 1;</code>
+     * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -112,7 +112,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 2;</code>
+     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegion()
@@ -123,7 +123,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 2;</code>
+     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -138,7 +138,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The job ID.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getJobId()
@@ -149,7 +149,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The job ID.
      *
-     * Generated from protobuf field <code>string job_id = 3;</code>
+     * Generated from protobuf field <code>string job_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -164,7 +164,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The changes to the job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\Job
      */
     public function getJob()
@@ -175,7 +175,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The changes to the job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\Job $var
      * @return $this
      */
@@ -195,7 +195,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * value. <strong>Note:</strong> Currently, <code>labels</code> is the only
      * field that can be updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -211,7 +211,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * value. <strong>Note:</strong> Currently, <code>labels</code> is the only
      * field that can be updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

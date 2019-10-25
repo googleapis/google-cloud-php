@@ -16,22 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateQueueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The location name in which the queue will be created.
+     * Required. The location name in which the queue will be created.
      * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      * The list of allowed locations can be obtained by calling Cloud
      * Tasks' implementation of
      * [ListLocations][google.cloud.location.Locations.ListLocations].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required.
-     * The queue to create.
+     * Required. The queue to create.
      * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $queue = null;
 
@@ -42,15 +40,13 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The location name in which the queue will be created.
+     *           Required. The location name in which the queue will be created.
      *           For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *           The list of allowed locations can be obtained by calling Cloud
      *           Tasks' implementation of
      *           [ListLocations][google.cloud.location.Locations.ListLocations].
      *     @type \Google\Cloud\Tasks\V2beta3\Queue $queue
-     *           Required.
-     *           The queue to create.
+     *           Required. The queue to create.
      *           [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      * }
      */
@@ -60,14 +56,13 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The location name in which the queue will be created.
+     * Required. The location name in which the queue will be created.
      * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      * The list of allowed locations can be obtained by calling Cloud
      * Tasks' implementation of
      * [ListLocations][google.cloud.location.Locations.ListLocations].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -76,14 +71,13 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The location name in which the queue will be created.
+     * Required. The location name in which the queue will be created.
      * For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      * The list of allowed locations can be obtained by calling Cloud
      * Tasks' implementation of
      * [ListLocations][google.cloud.location.Locations.ListLocations].
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,11 +90,10 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The queue to create.
+     * Required. The queue to create.
      * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Tasks\V2beta3\Queue
      */
     public function getQueue()
@@ -109,11 +102,10 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The queue to create.
+     * Required. The queue to create.
      * [Queue's name][google.cloud.tasks.v2beta3.Queue.name] cannot be the same as an existing queue.
      *
-     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Tasks\V2beta3\Queue $var
      * @return $this
      */

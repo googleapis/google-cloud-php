@@ -25,7 +25,7 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataproc\V1\ManagedCluster $managed_cluster
-     *           Optional. A cluster that is managed by the workflow.
+     *           A cluster that is managed by the workflow.
      *     @type \Google\Cloud\Dataproc\V1\ClusterSelector $cluster_selector
      *           Optional. A selector that chooses target cluster for jobs based
      *           on metadata.
@@ -38,7 +38,7 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A cluster that is managed by the workflow.
+     * A cluster that is managed by the workflow.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedCluster managed_cluster = 1;</code>
      * @return \Google\Cloud\Dataproc\V1\ManagedCluster
@@ -49,7 +49,7 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A cluster that is managed by the workflow.
+     * A cluster that is managed by the workflow.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedCluster managed_cluster = 1;</code>
      * @param \Google\Cloud\Dataproc\V1\ManagedCluster $var

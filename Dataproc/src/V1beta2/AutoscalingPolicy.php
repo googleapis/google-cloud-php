@@ -21,27 +21,32 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $id = '';
     /**
-     * Output only. The "resource name" of the policy, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     * Output only. The "resource name" of the autoscaling policy, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies`, the resource name of the
+     *   policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     * * For `projects.locations.autoscalingPolicies`, the resource name of the
+     *   policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *
-     * Generated from protobuf field <code>string name = 2;</code>
+     * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
      * Required. Describes how the autoscaler will operate for primary workers.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $worker_config = null;
     /**
      * Optional. Describes how the autoscaler will operate for secondary workers.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $secondary_worker_config = null;
     protected $algorithm;
@@ -58,9 +63,14 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *           underscores (_), and hyphens (-). Cannot begin or end with underscore
      *           or hyphen. Must consist of between 3 and 50 characters.
      *     @type string $name
-     *           Output only. The "resource name" of the policy, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     *           Output only. The "resource name" of the autoscaling policy, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.autoscalingPolicies`, the resource name of the
+     *             policy has the following format:
+     *             `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     *           * For `projects.locations.autoscalingPolicies`, the resource name of the
+     *             policy has the following format:
+     *             `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *     @type \Google\Cloud\Dataproc\V1beta2\BasicAutoscalingAlgorithm $basic_algorithm
      *     @type \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig $worker_config
      *           Required. Describes how the autoscaler will operate for primary workers.
@@ -79,7 +89,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getId()
@@ -93,7 +103,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * underscores (_), and hyphens (-). Cannot begin or end with underscore
      * or hyphen. Must consist of between 3 and 50 characters.
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -106,11 +116,16 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "resource name" of the policy, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     * Output only. The "resource name" of the autoscaling policy, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies`, the resource name of the
+     *   policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     * * For `projects.locations.autoscalingPolicies`, the resource name of the
+     *   policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *
-     * Generated from protobuf field <code>string name = 2;</code>
+     * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -119,11 +134,16 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "resource name" of the policy, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
+     * Output only. The "resource name" of the autoscaling policy, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.autoscalingPolicies`, the resource name of the
+     *   policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     * * For `projects.locations.autoscalingPolicies`, the resource name of the
+     *   policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
      *
-     * Generated from protobuf field <code>string name = 2;</code>
+     * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -160,7 +180,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Required. Describes how the autoscaler will operate for primary workers.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig
      */
     public function getWorkerConfig()
@@ -171,7 +191,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Required. Describes how the autoscaler will operate for primary workers.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig $var
      * @return $this
      */
@@ -186,7 +206,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Describes how the autoscaler will operate for secondary workers.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig
      */
     public function getSecondaryWorkerConfig()
@@ -197,7 +217,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Describes how the autoscaler will operate for secondary workers.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig $var
      * @return $this
      */

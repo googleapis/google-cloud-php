@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\AutoMl\V1beta1;
 
+use UnexpectedValueException;
+
 /**
  * Type of the classification problem.
  *
@@ -12,7 +14,7 @@ namespace Google\Cloud\AutoMl\V1beta1;
 class ClassificationType
 {
     /**
-     * Should not be used, an un-set enum has this value by default.
+     * An un-set value of this enum.
      *
      * Generated from protobuf enum <code>CLASSIFICATION_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -29,5 +31,31 @@ class ClassificationType
      * Generated from protobuf enum <code>MULTILABEL = 2;</code>
      */
     const MULTILABEL = 2;
+
+    private static $valueToName = [
+        self::CLASSIFICATION_TYPE_UNSPECIFIED => 'CLASSIFICATION_TYPE_UNSPECIFIED',
+        self::MULTICLASS => 'MULTICLASS',
+        self::MULTILABEL => 'MULTILABEL',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 

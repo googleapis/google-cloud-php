@@ -22,6 +22,7 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\ApiCore\Serializer;
+use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
@@ -49,6 +50,15 @@ class GrpcTest extends TestCase
 
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
+    }
+
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub(['apiEndpoint' => $expected]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
     }
 
     /**
@@ -109,12 +119,30 @@ class GrpcTest extends TestCase
         $subscription->setRetainAckedMessages(true);
 
         $serializer = new Serializer();
-        $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['retain_acked_messages']]);
+        $subscriptionFieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['retain_acked_messages']]);
 
         $time = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
         $timestamp = $serializer->decodeMessage(new Timestamp(), $this->formatTimestampForApi($time));
 
+        $topic = new Topic;
+        $topic->setLabels(['foo' => 'bar']);
+        $topic->setName('projects/foo/topics/bar');
+        $topicFieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => ['labels']]);
+
         return [
+            [
+                'updateTopic',
+                [
+                    'topic' => [
+                        'name' => 'projects/foo/topics/bar',
+                        'labels' => [
+                            'foo' => 'bar'
+                        ]
+                    ],
+                    'updateMask' => 'labels'
+                ],
+                [$topic, $topicFieldMask, []]
+            ],
             [
                 'updateSubscription',
                 [
@@ -124,7 +152,7 @@ class GrpcTest extends TestCase
                     ],
                     'updateMask' => 'retainAckedMessages'
                 ],
-                [$subscription, $fieldMask, []]
+                [$subscription, $subscriptionFieldMask, []]
             ],
             [
                 'listSnapshots',
@@ -290,3 +318,17 @@ class GrpcTest extends TestCase
         ];
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

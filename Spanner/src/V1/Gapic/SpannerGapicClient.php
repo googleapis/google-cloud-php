@@ -36,6 +36,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
+use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -131,7 +133,7 @@ class SpannerGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/spanner_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/spanner_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/spanner_grpc_config.json',
@@ -267,6 +269,9 @@ class SpannerGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'spanner.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -294,7 +299,7 @@ class SpannerGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -386,6 +391,72 @@ class SpannerGapicClient
         return $this->startCall(
             'CreateSession',
             Session::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates multiple new sessions.
+     *
+     * This API can be used to initialize a session cache on the clients.
+     * See https://goo.gl/TgSFN2 for best practices on session cache management.
+     *
+     * Sample code:
+     * ```
+     * $spannerClient = new SpannerClient();
+     * try {
+     *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+     *     $sessionCount = 0;
+     *     $response = $spannerClient->batchCreateSessions($formattedDatabase, $sessionCount);
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. The database in which the new sessions are created.
+     * @param int    $sessionCount Required. The number of sessions to be created in this batch call.
+     *                             The API may return fewer than the requested number of sessions. If a
+     *                             specific number of sessions are desired, the client can make additional
+     *                             calls to BatchCreateSessions (adjusting
+     *                             [session_count][google.spanner.v1.BatchCreateSessionsRequest.session_count]
+     *                             as necessary).
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Session $sessionTemplate
+     *          Parameters to be applied to each created session.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Spanner\V1\BatchCreateSessionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchCreateSessions($database, $sessionCount, array $optionalArgs = [])
+    {
+        $request = new BatchCreateSessionsRequest();
+        $request->setDatabase($database);
+        $request->setSessionCount($sessionCount);
+        if (isset($optionalArgs['sessionTemplate'])) {
+            $request->setSessionTemplate($optionalArgs['sessionTemplate']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'database' => $request->getDatabase(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'BatchCreateSessions',
+            BatchCreateSessionsResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -620,9 +691,6 @@ class SpannerGapicClient
      *                             Optional.
      *
      *     @type TransactionSelector $transaction
-     *          The transaction to use. If none is provided, the default is a
-     *          temporary read-only transaction with strong concurrency.
-     *
      *          The transaction to use.
      *
      *          For queries, if none is provided, the default is a temporary read-only
@@ -772,9 +840,6 @@ class SpannerGapicClient
      *                             Optional.
      *
      *     @type TransactionSelector $transaction
-     *          The transaction to use. If none is provided, the default is a
-     *          temporary read-only transaction with strong concurrency.
-     *
      *          The transaction to use.
      *
      *          For queries, if none is provided, the default is a temporary read-only
@@ -900,8 +965,9 @@ class SpannerGapicClient
      *
      * Statements are executed in order, sequentially.
      * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse] will contain a
-     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has successfully executed. If a
-     * statement fails, its error status will be returned as part of the
+     * [ResultSet][google.spanner.v1.ResultSet] for each DML statement that has
+     * successfully executed. If a statement fails, its error status will be
+     * returned as part of the
      * [ExecuteBatchDmlResponse][Spanner.ExecuteBatchDmlResponse]. Execution will
      * stop at the first failed statement; the remaining statements will not run.
      *

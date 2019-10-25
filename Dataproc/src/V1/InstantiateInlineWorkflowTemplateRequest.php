@@ -16,17 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The "resource name" of the workflow template region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The resource name of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates,instantiateinline`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.workflowTemplates.instantiateinline`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The workflow template to instantiate.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $template = null;
     /**
@@ -38,7 +43,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      * The tag must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
 
@@ -49,9 +54,14 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The "resource name" of the workflow template region, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}`
+     *           Required. The resource name of the region or location, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.workflowTemplates,instantiateinline`, the resource
+     *             name of the region has the following format:
+     *             `projects/{project_id}/regions/{region}`
+     *           * For `projects.locations.workflowTemplates.instantiateinline`, the
+     *             resource name of the location has the following format:
+     *             `projects/{project_id}/locations/{location}`
      *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplate $template
      *           Required. The workflow template to instantiate.
      *     @type string $request_id
@@ -70,11 +80,16 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Required. The "resource name" of the workflow template region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The resource name of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates,instantiateinline`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.workflowTemplates.instantiateinline`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -83,11 +98,16 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Required. The "resource name" of the workflow template region, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}`
+     * Required. The resource name of the region or location, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates,instantiateinline`, the resource
+     *   name of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     * * For `projects.locations.workflowTemplates.instantiateinline`, the
+     *   resource name of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -102,7 +122,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
     /**
      * Required. The workflow template to instantiate.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
      */
     public function getTemplate()
@@ -113,7 +133,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
     /**
      * Required. The workflow template to instantiate.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate $var
      * @return $this
      */
@@ -134,7 +154,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      * The tag must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRequestId()
@@ -151,7 +171,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      * The tag must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

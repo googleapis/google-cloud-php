@@ -24,7 +24,7 @@ class TranslateTest extends TranslateTestCase
 {
     const INPUT_LANGUAGE = 'es';
     const INPUT_STRING = '¿hola, como estas?';
-    const OUTPUT_STRING = 'Hi how are you?';
+    const OUTPUT_STRING = 'Hello how are you?';
 
     public function testTranslate()
     {

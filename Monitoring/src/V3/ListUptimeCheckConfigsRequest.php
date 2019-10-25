@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project whose uptime check configurations are listed. The format
+     * The project whose Uptime check configurations are listed. The format
      *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -47,7 +47,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project whose uptime check configurations are listed. The format
+     *           The project whose Uptime check configurations are listed. The format
      *             is `projects/[PROJECT_ID]`.
      *     @type int $page_size
      *           The maximum number of results to return in a single response. The server
@@ -66,7 +66,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose uptime check configurations are listed. The format
+     * The project whose Uptime check configurations are listed. The format
      *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -78,7 +78,7 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project whose uptime check configurations are listed. The format
+     * The project whose Uptime check configurations are listed. The format
      *   is `projects/[PROJECT_ID]`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>

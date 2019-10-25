@@ -146,7 +146,7 @@ class CloudRedisGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/cloud_redis_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/cloud_redis_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/cloud_redis_grpc_config.json',
@@ -313,6 +313,9 @@ class CloudRedisGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'redis.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -340,7 +343,7 @@ class CloudRedisGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -729,9 +732,9 @@ class CloudRedisGapicClient
      * ```
      * $cloudRedisClient = new Google\Cloud\Redis\V1beta1\CloudRedisClient();
      * try {
-     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $name = '';
      *     $inputConfig = new Google\Cloud\Redis\V1beta1\InputConfig();
-     *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
+     *     $operationResponse = $cloudRedisClient->importInstance($name, $inputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -745,7 +748,7 @@ class CloudRedisGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->importInstance($formattedName, $inputConfig);
+     *     $operationResponse = $cloudRedisClient->importInstance($name, $inputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'importInstance');
@@ -817,9 +820,9 @@ class CloudRedisGapicClient
      * ```
      * $cloudRedisClient = new Google\Cloud\Redis\V1beta1\CloudRedisClient();
      * try {
-     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $name = '';
      *     $outputConfig = new Google\Cloud\Redis\V1beta1\OutputConfig();
-     *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
+     *     $operationResponse = $cloudRedisClient->exportInstance($name, $outputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -833,7 +836,7 @@ class CloudRedisGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->exportInstance($formattedName, $outputConfig);
+     *     $operationResponse = $cloudRedisClient->exportInstance($name, $outputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'exportInstance');
@@ -902,8 +905,7 @@ class CloudRedisGapicClient
      * $cloudRedisClient = new Google\Cloud\Redis\V1beta1\CloudRedisClient();
      * try {
      *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-     *     $dataProtectionMode = Google\Cloud\Redis\V1beta1\FailoverInstanceRequest\DataProtectionMode::::DATA_PROTECTION_MODE_UNSPECIFIED;
-     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -917,7 +919,7 @@ class CloudRedisGapicClient
      *     // Alternatively:
      *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName, $dataProtectionMode);
+     *     $operationResponse = $cloudRedisClient->failoverInstance($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'failoverInstance');
@@ -937,15 +939,16 @@ class CloudRedisGapicClient
      * }
      * ```
      *
-     * @param string $name               Required. Redis instance resource name using the form:
-     *                                   `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *                                   where `location_id` refers to a GCP region.
-     * @param int    $dataProtectionMode Optional. Available data protection modes that the user can choose. If it's
-     *                                   unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest\DataProtectionMode}
-     * @param array  $optionalArgs       {
-     *                                   Optional.
+     * @param string $name         Required. Redis instance resource name using the form:
+     *                             `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                             where `location_id` refers to a GCP region.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type int $dataProtectionMode
+     *          Optional. Available data protection modes that the user can choose. If it's
+     *          unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest\DataProtectionMode}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -958,11 +961,13 @@ class CloudRedisGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function failoverInstance($name, $dataProtectionMode, array $optionalArgs = [])
+    public function failoverInstance($name, array $optionalArgs = [])
     {
         $request = new FailoverInstanceRequest();
         $request->setName($name);
-        $request->setDataProtectionMode($dataProtectionMode);
+        if (isset($optionalArgs['dataProtectionMode'])) {
+            $request->setDataProtectionMode($optionalArgs['dataProtectionMode']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),

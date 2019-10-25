@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Skill filter of the search.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.SkillFilter</code>
@@ -17,14 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SkillFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The skill name. For example, "java", "j2ee", and so on.
+     * Required. The skill name. For example, "java", "j2ee", and so on.
      *
-     * Generated from protobuf field <code>string skill = 1;</code>
+     * Generated from protobuf field <code>string skill = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $skill = '';
     /**
-     * Optional.
      * Whether to apply negation to the filter so profiles matching the filter
      * are excluded.
      *
@@ -39,10 +36,8 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $skill
-     *           Required.
-     *           The skill name. For example, "java", "j2ee", and so on.
+     *           Required. The skill name. For example, "java", "j2ee", and so on.
      *     @type bool $negated
-     *           Optional.
      *           Whether to apply negation to the filter so profiles matching the filter
      *           are excluded.
      * }
@@ -53,10 +48,9 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The skill name. For example, "java", "j2ee", and so on.
+     * Required. The skill name. For example, "java", "j2ee", and so on.
      *
-     * Generated from protobuf field <code>string skill = 1;</code>
+     * Generated from protobuf field <code>string skill = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSkill()
@@ -65,10 +59,9 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The skill name. For example, "java", "j2ee", and so on.
+     * Required. The skill name. For example, "java", "j2ee", and so on.
      *
-     * Generated from protobuf field <code>string skill = 1;</code>
+     * Generated from protobuf field <code>string skill = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -81,7 +74,6 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Whether to apply negation to the filter so profiles matching the filter
      * are excluded.
      *
@@ -94,7 +86,6 @@ class SkillFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Whether to apply negation to the filter so profiles matching the filter
      * are excluded.
      *

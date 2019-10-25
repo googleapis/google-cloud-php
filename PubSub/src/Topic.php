@@ -101,7 +101,6 @@ class Topic
      *           CryptoKey to be used to protect access to messages published on this
      *           topic. The expected format is
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           This is an experimental feature and is not recommended for production use.
      * }
      *
      * @param array $clientConfig [optional] Configuration options for the
@@ -161,25 +160,125 @@ class Topic
      * @param array $options  {
      *     Configuration Options
      *
-     *     @type string name The name of the topic.
      *     @type array $labels Key value pairs used to organize your
      *           resources.
      *     @type string $kmsKeyName The resource name of the Cloud KMS
-     *           CryptoKey to be used to protect access to messages published on this
-     *           topic. The expected format is
+     *           CryptoKey to be used to protect access to messages published on
+     *           this topic. The expected format is
      *          `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
-     *           This is an experimental feature and is not recommended for production use.
+     *     @type array $messageStoragePolicy Policy constraining the set of
+     *           Google Cloud Platform regions where messages published to the
+     *           topic may be stored. If not present, then no constraints are in
+     *           effect.
+     *     @type string[] $messageStoragePolicy.allowedPersistenceRegions A list
+     *           of IDs of GCP regions where messages that are published to the
+     *           topic may be persisted in storage. Messages published by
+     *           publishers running in non-allowed GCP regions (or running
+     *           outside of GCP altogether) will be routed for storage in one of
+     *           the allowed regions. An empty list means that no regions are
+     *           allowed, and is not a valid configuration.
      * }
      *
      * @return array Topic information
      */
     public function create(array $options = [])
     {
-        $this->info = $this->connection->createTopic($options + [
+        $this->info = $this->connection->createTopic([
             'name' => $this->name
-        ]);
+        ] + $options);
 
         return $this->info;
+    }
+
+    /**
+     * Update the topic.
+     *
+     * Note that the topic's name and kms key name are immutable properties and may not be modified.
+     *
+     * Example:
+     * ```
+     * $topic->update([
+     *     'messageStoragePolicy' => [
+     *         'allowedPersistenceRegions' => ['us-central1']
+     *     ]
+     * ]);
+     * ```
+     *
+     * ```
+     * // Updating labels with an explicit update mask
+     * $topic->update([
+     *     'labels' => [
+     *         'foo' => 'bar'
+     *     ]
+     * ], [
+     *     'updateMask' => [
+     *         'labels'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/UpdateTopicRequest Update Topic
+     *
+     * @param array $topic {
+     *    The Topic data.
+     *
+     *    @type array $labels Key value pairs used to organize your resources.
+     *    @type array $messageStoragePolicy Policy constraining the set of
+     *          Google Cloud Platform regions where messages published to the
+     *          topic may be stored. If not present, then no constraints are in
+     *          effect.
+     *    @type string[] $messageStoragePolicy.allowedPersistenceRegions A list
+     *          of IDs of GCP regions where messages that are published to the
+     *          topic may be persisted in storage. Messages published by
+     *          publishers running in non-allowed GCP regions (or running
+     *          outside of GCP altogether) will be routed for storage in one of
+     *          the allowed regions. An empty list means that no regions are
+     *          allowed, and is not a valid configuration.
+     * }
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $updateMask A list of field paths to be modified. Nested
+     *           key names should be dot-separated, e.g.
+     *           `messageStoragePolicy.allowedPersistenceRegions`. Google Cloud
+     *           PHP will attempt to infer this value on your behalf, however
+     *           modification of map fields with arbitrary keys (such as labels
+     *           or message storage policy) requires an explicit update mask.
+     * }
+     *
+     * @return array The topic info.
+     */
+    public function update(array $topic, array $options = [])
+    {
+        $updateMaskPaths = $this->pluck('updateMask', $options, false) ?: [];
+
+        if (!$updateMaskPaths) {
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($topic));
+            foreach ($iterator as $leafValue) {
+                $excludes = ['name'];
+                $keys = [];
+                foreach (range(0, $iterator->getDepth()) as $depth) {
+                    $key = $iterator->getSubIterator($depth)->key();
+                    if (!is_string($key)) {
+                        break;
+                    }
+                    $keys[] = $key;
+                }
+
+                $path = implode('.', $keys);
+                if (!in_array($path, $excludes)) {
+                    $updateMaskPaths[] = $path;
+                }
+            }
+        }
+
+        return $this->info = $this->connection->updateTopic([
+            'name' => $this->name,
+            'topic' => [
+                'name' => $this->name,
+            ] + $topic,
+            'updateMask' => implode(',', $updateMaskPaths)
+        ] + $options);
     }
 
     /**

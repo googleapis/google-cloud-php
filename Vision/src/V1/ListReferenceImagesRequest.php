@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListReferenceImagesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the product containing the reference images.
+     * Required. Resource name of the product containing the reference images.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -45,7 +45,7 @@ class ListReferenceImagesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Resource name of the product containing the reference images.
+     *           Required. Resource name of the product containing the reference images.
      *           Format is
      *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *     @type int $page_size
@@ -62,11 +62,11 @@ class ListReferenceImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the product containing the reference images.
+     * Required. Resource name of the product containing the reference images.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -75,11 +75,11 @@ class ListReferenceImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the product containing the reference images.
+     * Required. Resource name of the product containing the reference images.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

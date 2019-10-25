@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BigQuery project id for which data sources should be returned.
+     * Required. The BigQuery project id for which data sources should be returned.
      * Must be in the form: `projects/{project_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -46,7 +46,7 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The BigQuery project id for which data sources should be returned.
+     *           Required. The BigQuery project id for which data sources should be returned.
      *           Must be in the form: `projects/{project_id}`
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
@@ -64,10 +64,10 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery project id for which data sources should be returned.
+     * Required. The BigQuery project id for which data sources should be returned.
      * Must be in the form: `projects/{project_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -76,10 +76,10 @@ class ListDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery project id for which data sources should be returned.
+     * Required. The BigQuery project id for which data sources should be returned.
      * Must be in the form: `projects/{project_id}`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

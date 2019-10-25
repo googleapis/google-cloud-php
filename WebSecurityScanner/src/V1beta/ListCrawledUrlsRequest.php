@@ -16,12 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCrawledUrlsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The parent resource name, which should be a scan run resource name in the
+     * Required. The parent resource name, which should be a scan run resource name in the
      * format
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -48,8 +47,7 @@ class ListCrawledUrlsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The parent resource name, which should be a scan run resource name in the
+     *           Required. The parent resource name, which should be a scan run resource name in the
      *           format
      *           'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *     @type string $page_token
@@ -68,12 +66,11 @@ class ListCrawledUrlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The parent resource name, which should be a scan run resource name in the
+     * Required. The parent resource name, which should be a scan run resource name in the
      * format
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -82,12 +79,11 @@ class ListCrawledUrlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The parent resource name, which should be a scan run resource name in the
+     * Required. The parent resource name, which should be a scan run resource name in the
      * format
      * 'projects/{projectId}/scanConfigs/{scanConfigId}/scanRuns/{scanRunId}'.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

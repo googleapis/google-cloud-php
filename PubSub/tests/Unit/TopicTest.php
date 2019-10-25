@@ -71,6 +71,26 @@ class TopicTest extends TestCase
         $this->assertEquals('projects/project-name/topics/topic-name', $res['name']);
     }
 
+    public function testUpdate()
+    {
+        $this->connection->updateTopic(Argument::allOf(
+            Argument::withEntry('topic', [
+                'name' => $this->topic->name(),
+                'foo' => 'bar'
+            ]),
+            Argument::withEntry('updateMask', 'foo')
+        ))->shouldBeCalled()->willReturn([
+            'foo' => 'bar'
+        ]);
+
+        $this->topic->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->topic->update(['foo' => 'bar']);
+
+        $this->assertEquals(['foo' => 'bar'], $res);
+        $this->assertEquals('bar', $this->topic->info()['foo']);
+    }
+
     public function testDelete()
     {
         $this->connection->deleteTopic(Argument::withEntry('foo', 'bar'))

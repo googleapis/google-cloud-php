@@ -18,7 +18,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class Activity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * Activity display name.
      * Number of characters allowed is 100.
      *
@@ -26,7 +25,6 @@ class Activity extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional.
      * Activity description.
      * Number of characters allowed is 100,000.
      *
@@ -34,7 +32,6 @@ class Activity extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Optional.
      * Activity URI.
      * Number of characters allowed is 4,000.
      *
@@ -42,56 +39,60 @@ class Activity extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
-     * Optional.
      * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
      */
     private $create_date = null;
     /**
-     * Optional.
      * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
      */
     private $update_date = null;
     /**
-     * Optional.
      * A list of team members involved in this activity.
      * Number of characters allowed is 100.
+     * The limitation for max number of team members is 50.
      *
      * Generated from protobuf field <code>repeated string team_members = 6;</code>
      */
     private $team_members;
     /**
-     * Optional.
      * A list of skills used in this activity.
+     * The limitation for max number of skills used is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 7;</code>
      */
     private $skills_used;
     /**
-     * Output only. Activity name snippet shows how the [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
-     * related to a search query. It's empty if the [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't related
-     * to the search query.
+     * Output only. Activity name snippet shows how the
+     * [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
+     * related to a search query. It's empty if the
+     * [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
+     * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_name_snippet = 8;</code>
+     * Generated from protobuf field <code>string activity_name_snippet = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $activity_name_snippet = '';
     /**
      * Output only. Activity description snippet shows how the
-     * [description][google.cloud.talent.v4beta1.Activity.description] is related to a search query. It's empty if the
-     * [description][google.cloud.talent.v4beta1.Activity.description] isn't related to the search query.
+     * [description][google.cloud.talent.v4beta1.Activity.description] is related
+     * to a search query. It's empty if the
+     * [description][google.cloud.talent.v4beta1.Activity.description] isn't
+     * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_description_snippet = 9;</code>
+     * Generated from protobuf field <code>string activity_description_snippet = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $activity_description_snippet = '';
     /**
      * Output only. Skill used snippet shows how the corresponding
-     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related to a search query. It's empty if the
-     * corresponding [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not related to the search query.
+     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related
+     * to a search query. It's empty if the corresponding
+     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
+     * related to the search query.
      *
-     * Generated from protobuf field <code>repeated string skills_used_snippet = 10;</code>
+     * Generated from protobuf field <code>repeated string skills_used_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $skills_used_snippet;
 
@@ -102,42 +103,43 @@ class Activity extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Optional.
      *           Activity display name.
      *           Number of characters allowed is 100.
      *     @type string $description
-     *           Optional.
      *           Activity description.
      *           Number of characters allowed is 100,000.
      *     @type string $uri
-     *           Optional.
      *           Activity URI.
      *           Number of characters allowed is 4,000.
      *     @type \Google\Type\Date $create_date
-     *           Optional.
      *           The first creation date of the activity.
      *     @type \Google\Type\Date $update_date
-     *           Optional.
      *           The last update date of the activity.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $team_members
-     *           Optional.
      *           A list of team members involved in this activity.
      *           Number of characters allowed is 100.
+     *           The limitation for max number of team members is 50.
      *     @type \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $skills_used
-     *           Optional.
      *           A list of skills used in this activity.
+     *           The limitation for max number of skills used is 50.
      *     @type string $activity_name_snippet
-     *           Output only. Activity name snippet shows how the [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
-     *           related to a search query. It's empty if the [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't related
-     *           to the search query.
+     *           Output only. Activity name snippet shows how the
+     *           [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
+     *           related to a search query. It's empty if the
+     *           [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
+     *           related to the search query.
      *     @type string $activity_description_snippet
      *           Output only. Activity description snippet shows how the
-     *           [description][google.cloud.talent.v4beta1.Activity.description] is related to a search query. It's empty if the
-     *           [description][google.cloud.talent.v4beta1.Activity.description] isn't related to the search query.
+     *           [description][google.cloud.talent.v4beta1.Activity.description] is related
+     *           to a search query. It's empty if the
+     *           [description][google.cloud.talent.v4beta1.Activity.description] isn't
+     *           related to the search query.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $skills_used_snippet
      *           Output only. Skill used snippet shows how the corresponding
-     *           [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related to a search query. It's empty if the
-     *           corresponding [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not related to the search query.
+     *           [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related
+     *           to a search query. It's empty if the corresponding
+     *           [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
+     *           related to the search query.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,7 +148,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Activity display name.
      * Number of characters allowed is 100.
      *
@@ -159,7 +160,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Activity display name.
      * Number of characters allowed is 100.
      *
@@ -176,7 +176,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Activity description.
      * Number of characters allowed is 100,000.
      *
@@ -189,7 +188,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Activity description.
      * Number of characters allowed is 100,000.
      *
@@ -206,7 +204,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Activity URI.
      * Number of characters allowed is 4,000.
      *
@@ -219,7 +216,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Activity URI.
      * Number of characters allowed is 4,000.
      *
@@ -236,7 +232,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
@@ -248,7 +243,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
@@ -264,7 +258,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
@@ -276,7 +269,6 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
@@ -292,9 +284,9 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A list of team members involved in this activity.
      * Number of characters allowed is 100.
+     * The limitation for max number of team members is 50.
      *
      * Generated from protobuf field <code>repeated string team_members = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -305,9 +297,9 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A list of team members involved in this activity.
      * Number of characters allowed is 100.
+     * The limitation for max number of team members is 50.
      *
      * Generated from protobuf field <code>repeated string team_members = 6;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -322,8 +314,8 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A list of skills used in this activity.
+     * The limitation for max number of skills used is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -334,8 +326,8 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A list of skills used in this activity.
+     * The limitation for max number of skills used is 50.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Skill skills_used = 7;</code>
      * @param \Google\Cloud\Talent\V4beta1\Skill[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -350,11 +342,13 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Activity name snippet shows how the [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
-     * related to a search query. It's empty if the [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't related
-     * to the search query.
+     * Output only. Activity name snippet shows how the
+     * [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
+     * related to a search query. It's empty if the
+     * [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
+     * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_name_snippet = 8;</code>
+     * Generated from protobuf field <code>string activity_name_snippet = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getActivityNameSnippet()
@@ -363,11 +357,13 @@ class Activity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Activity name snippet shows how the [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
-     * related to a search query. It's empty if the [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't related
-     * to the search query.
+     * Output only. Activity name snippet shows how the
+     * [display_name][google.cloud.talent.v4beta1.Activity.display_name] is
+     * related to a search query. It's empty if the
+     * [display_name][google.cloud.talent.v4beta1.Activity.display_name] isn't
+     * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_name_snippet = 8;</code>
+     * Generated from protobuf field <code>string activity_name_snippet = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -381,10 +377,12 @@ class Activity extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Activity description snippet shows how the
-     * [description][google.cloud.talent.v4beta1.Activity.description] is related to a search query. It's empty if the
-     * [description][google.cloud.talent.v4beta1.Activity.description] isn't related to the search query.
+     * [description][google.cloud.talent.v4beta1.Activity.description] is related
+     * to a search query. It's empty if the
+     * [description][google.cloud.talent.v4beta1.Activity.description] isn't
+     * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_description_snippet = 9;</code>
+     * Generated from protobuf field <code>string activity_description_snippet = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getActivityDescriptionSnippet()
@@ -394,10 +392,12 @@ class Activity extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Activity description snippet shows how the
-     * [description][google.cloud.talent.v4beta1.Activity.description] is related to a search query. It's empty if the
-     * [description][google.cloud.talent.v4beta1.Activity.description] isn't related to the search query.
+     * [description][google.cloud.talent.v4beta1.Activity.description] is related
+     * to a search query. It's empty if the
+     * [description][google.cloud.talent.v4beta1.Activity.description] isn't
+     * related to the search query.
      *
-     * Generated from protobuf field <code>string activity_description_snippet = 9;</code>
+     * Generated from protobuf field <code>string activity_description_snippet = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -411,10 +411,12 @@ class Activity extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Skill used snippet shows how the corresponding
-     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related to a search query. It's empty if the
-     * corresponding [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not related to the search query.
+     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related
+     * to a search query. It's empty if the corresponding
+     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
+     * related to the search query.
      *
-     * Generated from protobuf field <code>repeated string skills_used_snippet = 10;</code>
+     * Generated from protobuf field <code>repeated string skills_used_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSkillsUsedSnippet()
@@ -424,10 +426,12 @@ class Activity extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Skill used snippet shows how the corresponding
-     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related to a search query. It's empty if the
-     * corresponding [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not related to the search query.
+     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are related
+     * to a search query. It's empty if the corresponding
+     * [skills_used][google.cloud.talent.v4beta1.Activity.skills_used] are not
+     * related to the search query.
      *
-     * Generated from protobuf field <code>repeated string skills_used_snippet = 10;</code>
+     * Generated from protobuf field <code>repeated string skills_used_snippet = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

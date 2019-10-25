@@ -137,7 +137,7 @@ class GroupServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/group_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/group_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/group_service_grpc_config.json',
@@ -265,6 +265,9 @@ class GroupServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'monitoring.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -292,7 +295,7 @@ class GroupServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -608,6 +611,10 @@ class GroupServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type bool $recursive
+     *          If this field is true, then the request means to delete a group with all
+     *          its descendants. Otherwise, the request means to delete a group only when
+     *          it has no descendants. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -622,6 +629,9 @@ class GroupServiceGapicClient
     {
         $request = new DeleteGroupRequest();
         $request->setName($name);
+        if (isset($optionalArgs['recursive'])) {
+            $request->setRecursive($optionalArgs['recursive']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),

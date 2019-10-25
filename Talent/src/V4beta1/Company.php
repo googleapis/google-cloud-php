@@ -23,48 +23,44 @@ class Company extends \Google\Protobuf\Internal\Message
      * company is created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/companies/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Required.
-     * The display name of the company, for example, "Google, LLC".
+     * Required. The display name of the company, for example, "Google LLC".
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
-     * Required.
-     * Client side company identifier, used to uniquely identify the
+     * Required. Client side company identifier, used to uniquely identify the
      * company.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string external_id = 3;</code>
+     * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $external_id = '';
     /**
-     * Optional.
      * The employer's company size.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompanySize size = 4;</code>
      */
     private $size = 0;
     /**
-     * Optional.
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
      * to geolocate the provided address, and populates a more specific
-     * location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     * location wherever possible in
+     * [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      */
     private $headquarters_address = '';
     /**
-     * Optional.
      * Set to true if it is the hiring agency that post jobs for other
      * employers.
      * Defaults to false if not provided.
@@ -73,7 +69,6 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $hiring_agency = false;
     /**
-     * Optional.
      * Equal Employment Opportunity legal disclaimer text to be
      * associated with all jobs, and typically to be displayed in all
      * roles.
@@ -83,7 +78,6 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $eeo_text = '';
     /**
-     * Optional.
      * The URI representing the company's primary web site or home page,
      * for example, "https://www.google.com".
      * The maximum number of allowed characters is 255.
@@ -92,7 +86,6 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $website_uri = '';
     /**
-     * Optional.
      * The URI to employer's career site or careers page on the employer's web
      * site, for example, "https://careers.google.com".
      *
@@ -100,16 +93,15 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $career_site_uri = '';
     /**
-     * Optional.
      * A URI that hosts the employer's company logo.
      *
      * Generated from protobuf field <code>string image_uri = 10;</code>
      */
     private $image_uri = '';
     /**
-     * Optional.
-     * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
-     * corresponding `string_values` are used in keyword searches. Jobs with
+     * A list of keys of filterable
+     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
+     * whose corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
@@ -121,7 +113,7 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Derived details about the company.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company.DerivedInfo derived_info = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company.DerivedInfo derived_info = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $derived_info = null;
     /**
@@ -129,7 +121,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * public availability by the service when job content appears suspicious,
      * abusive, or spammy.
      *
-     * Generated from protobuf field <code>bool suspended = 13;</code>
+     * Generated from protobuf field <code>bool suspended = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $suspended = false;
 
@@ -145,53 +137,45 @@ class Company extends \Google\Protobuf\Internal\Message
      *           company is created.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *           example, "projects/api-test-project/tenants/foo/companies/bar".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project/companies/bar".
+     *           example, "projects/foo/tenants/bar/companies/baz".
+     *           If tenant id is unspecified, the default tenant is used. For
+     *           example, "projects/foo/companies/bar".
      *     @type string $display_name
-     *           Required.
-     *           The display name of the company, for example, "Google, LLC".
+     *           Required. The display name of the company, for example, "Google LLC".
      *     @type string $external_id
-     *           Required.
-     *           Client side company identifier, used to uniquely identify the
+     *           Required. Client side company identifier, used to uniquely identify the
      *           company.
      *           The maximum number of allowed characters is 255.
      *     @type int $size
-     *           Optional.
      *           The employer's company size.
      *     @type string $headquarters_address
-     *           Optional.
      *           The street address of the company's main headquarters, which may be
      *           different from the job location. The service attempts
      *           to geolocate the provided address, and populates a more specific
-     *           location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     *           location wherever possible in
+     *           [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *     @type bool $hiring_agency
-     *           Optional.
      *           Set to true if it is the hiring agency that post jobs for other
      *           employers.
      *           Defaults to false if not provided.
      *     @type string $eeo_text
-     *           Optional.
      *           Equal Employment Opportunity legal disclaimer text to be
      *           associated with all jobs, and typically to be displayed in all
      *           roles.
      *           The maximum number of allowed characters is 500.
      *     @type string $website_uri
-     *           Optional.
      *           The URI representing the company's primary web site or home page,
      *           for example, "https://www.google.com".
      *           The maximum number of allowed characters is 255.
      *     @type string $career_site_uri
-     *           Optional.
      *           The URI to employer's career site or careers page on the employer's web
      *           site, for example, "https://careers.google.com".
      *     @type string $image_uri
-     *           Optional.
      *           A URI that hosts the employer's company logo.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_job_custom_attributes
-     *           Optional.
-     *           A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
-     *           corresponding `string_values` are used in keyword searches. Jobs with
+     *           A list of keys of filterable
+     *           [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
+     *           whose corresponding `string_values` are used in keyword searches. Jobs with
      *           `string_values` under these specified field keys are returned if any
      *           of the values match the search keyword. Custom field values with
      *           parenthesis, brackets and special symbols are not searchable as-is,
@@ -215,9 +199,9 @@ class Company extends \Google\Protobuf\Internal\Message
      * company is created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/companies/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -233,9 +217,9 @@ class Company extends \Google\Protobuf\Internal\Message
      * company is created.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used. For
+     * example, "projects/foo/companies/bar".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -250,10 +234,9 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The display name of the company, for example, "Google, LLC".
+     * Required. The display name of the company, for example, "Google LLC".
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -262,10 +245,9 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The display name of the company, for example, "Google, LLC".
+     * Required. The display name of the company, for example, "Google LLC".
      *
-     * Generated from protobuf field <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -278,12 +260,11 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side company identifier, used to uniquely identify the
+     * Required. Client side company identifier, used to uniquely identify the
      * company.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string external_id = 3;</code>
+     * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getExternalId()
@@ -292,12 +273,11 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side company identifier, used to uniquely identify the
+     * Required. Client side company identifier, used to uniquely identify the
      * company.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string external_id = 3;</code>
+     * Generated from protobuf field <code>string external_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -310,7 +290,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The employer's company size.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompanySize size = 4;</code>
@@ -322,7 +301,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The employer's company size.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompanySize size = 4;</code>
@@ -338,11 +316,11 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
      * to geolocate the provided address, and populates a more specific
-     * location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     * location wherever possible in
+     * [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      * @return string
@@ -353,11 +331,11 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The street address of the company's main headquarters, which may be
      * different from the job location. The service attempts
      * to geolocate the provided address, and populates a more specific
-     * location wherever possible in [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
+     * location wherever possible in
+     * [DerivedInfo.headquarters_location][google.cloud.talent.v4beta1.Company.DerivedInfo.headquarters_location].
      *
      * Generated from protobuf field <code>string headquarters_address = 5;</code>
      * @param string $var
@@ -372,7 +350,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Set to true if it is the hiring agency that post jobs for other
      * employers.
      * Defaults to false if not provided.
@@ -386,7 +363,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Set to true if it is the hiring agency that post jobs for other
      * employers.
      * Defaults to false if not provided.
@@ -404,7 +380,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Equal Employment Opportunity legal disclaimer text to be
      * associated with all jobs, and typically to be displayed in all
      * roles.
@@ -419,7 +394,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Equal Employment Opportunity legal disclaimer text to be
      * associated with all jobs, and typically to be displayed in all
      * roles.
@@ -438,7 +412,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The URI representing the company's primary web site or home page,
      * for example, "https://www.google.com".
      * The maximum number of allowed characters is 255.
@@ -452,7 +425,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The URI representing the company's primary web site or home page,
      * for example, "https://www.google.com".
      * The maximum number of allowed characters is 255.
@@ -470,7 +442,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The URI to employer's career site or careers page on the employer's web
      * site, for example, "https://careers.google.com".
      *
@@ -483,7 +454,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The URI to employer's career site or careers page on the employer's web
      * site, for example, "https://careers.google.com".
      *
@@ -500,7 +470,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A URI that hosts the employer's company logo.
      *
      * Generated from protobuf field <code>string image_uri = 10;</code>
@@ -512,7 +481,6 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A URI that hosts the employer's company logo.
      *
      * Generated from protobuf field <code>string image_uri = 10;</code>
@@ -528,9 +496,9 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
-     * corresponding `string_values` are used in keyword searches. Jobs with
+     * A list of keys of filterable
+     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
+     * whose corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
@@ -545,9 +513,9 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
-     * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
-     * corresponding `string_values` are used in keyword searches. Jobs with
+     * A list of keys of filterable
+     * [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes],
+     * whose corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
      * of the values match the search keyword. Custom field values with
      * parenthesis, brackets and special symbols are not searchable as-is,
@@ -568,7 +536,7 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Derived details about the company.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company.DerivedInfo derived_info = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company.DerivedInfo derived_info = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Talent\V4beta1\Company\DerivedInfo
      */
     public function getDerivedInfo()
@@ -579,7 +547,7 @@ class Company extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Derived details about the company.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company.DerivedInfo derived_info = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company.DerivedInfo derived_info = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Talent\V4beta1\Company\DerivedInfo $var
      * @return $this
      */
@@ -596,7 +564,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * public availability by the service when job content appears suspicious,
      * abusive, or spammy.
      *
-     * Generated from protobuf field <code>bool suspended = 13;</code>
+     * Generated from protobuf field <code>bool suspended = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getSuspended()
@@ -609,7 +577,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * public availability by the service when job content appears suspicious,
      * abusive, or spammy.
      *
-     * Generated from protobuf field <code>bool suspended = 13;</code>
+     * Generated from protobuf field <code>bool suspended = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

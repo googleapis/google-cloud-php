@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project in which the ProductSets should be imported.
+     * Required. The project in which the ProductSets should be imported.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The input content for the list of requests.
+     * Required. The input content for the list of requests.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_config = null;
 
@@ -36,10 +36,10 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project in which the ProductSets should be imported.
+     *           Required. The project in which the ProductSets should be imported.
      *           Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *     @type \Google\Cloud\Vision\V1\ImportProductSetsInputConfig $input_config
-     *           The input content for the list of requests.
+     *           Required. The input content for the list of requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,10 +48,10 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which the ProductSets should be imported.
+     * Required. The project in which the ProductSets should be imported.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -60,10 +60,10 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project in which the ProductSets should be imported.
+     * Required. The project in which the ProductSets should be imported.
      * Format is `projects/PROJECT_ID/locations/LOC_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The input content for the list of requests.
+     * Required. The input content for the list of requests.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
      */
     public function getInputConfig()
@@ -87,9 +87,9 @@ class ImportProductSetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The input content for the list of requests.
+     * Required. The input content for the list of requests.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\ImportProductSetsInputConfig $var
      * @return $this
      */

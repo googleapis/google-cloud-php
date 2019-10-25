@@ -31,6 +31,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -108,7 +109,7 @@ class ImageAnnotatorGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/image_annotator_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/image_annotator_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/image_annotator_grpc_config.json',
@@ -165,6 +166,9 @@ class ImageAnnotatorGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'vision.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -192,7 +196,7 @@ class ImageAnnotatorGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -231,10 +235,23 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     Individual image annotation requests for this batch.
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
      * @param array                  $optionalArgs {
      *                                             Optional.
      *
+     *     @type string $parent
+     *          Optional. Target project and location to make a call.
+     *
+     *          Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *          If no parent is specified, a region will be chosen automatically.
+     *
+     *          Supported location-ids:
+     *              `us`: USA country only,
+     *              `asia`: East asia areas, like Japan, Taiwan,
+     *              `eu`: The European Union.
+     *
+     *          Example: `projects/project-A/locations/eu`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -251,6 +268,16 @@ class ImageAnnotatorGapicClient
     {
         $request = new BatchAnnotateImagesRequest();
         $request->setRequests($requests);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'BatchAnnotateImages',
@@ -280,11 +307,24 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateFileRequest[] $requests     The list of file annotation requests. Right now we support only one
+     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only one
      *                                            AnnotateFileRequest in BatchAnnotateFilesRequest.
      * @param array                 $optionalArgs {
      *                                            Optional.
      *
+     *     @type string $parent
+     *          Optional. Target project and location to make a call.
+     *
+     *          Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *          If no parent is specified, a region will be chosen automatically.
+     *
+     *          Supported location-ids:
+     *              `us`: USA country only,
+     *              `asia`: East asia areas, like Japan, Taiwan,
+     *              `eu`: The European Union.
+     *
+     *          Example: `projects/project-A/locations/eu`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -301,6 +341,16 @@ class ImageAnnotatorGapicClient
     {
         $request = new BatchAnnotateFilesRequest();
         $request->setRequests($requests);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startCall(
             'BatchAnnotateFiles',
@@ -361,11 +411,24 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateImageRequest[] $requests     Individual image annotation requests for this batch.
+     * @param AnnotateImageRequest[] $requests     Required. Individual image annotation requests for this batch.
      * @param OutputConfig           $outputConfig Required. The desired output location and metadata (e.g. format).
      * @param array                  $optionalArgs {
      *                                             Optional.
      *
+     *     @type string $parent
+     *          Optional. Target project and location to make a call.
+     *
+     *          Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *          If no parent is specified, a region will be chosen automatically.
+     *
+     *          Supported location-ids:
+     *              `us`: USA country only,
+     *              `asia`: East asia areas, like Japan, Taiwan,
+     *              `eu`: The European Union.
+     *
+     *          Example: `projects/project-A/locations/eu`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -383,6 +446,16 @@ class ImageAnnotatorGapicClient
         $request = new AsyncBatchAnnotateImagesRequest();
         $request->setRequests($requests);
         $request->setOutputConfig($outputConfig);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startOperationsCall(
             'AsyncBatchAnnotateImages',
@@ -439,10 +512,23 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AsyncAnnotateFileRequest[] $requests     Individual async file annotation requests for this batch.
+     * @param AsyncAnnotateFileRequest[] $requests     Required. Individual async file annotation requests for this batch.
      * @param array                      $optionalArgs {
      *                                                 Optional.
      *
+     *     @type string $parent
+     *          Optional. Target project and location to make a call.
+     *
+     *          Format: `projects/{project-id}/locations/{location-id}`.
+     *
+     *          If no parent is specified, a region will be chosen automatically.
+     *
+     *          Supported location-ids:
+     *              `us`: USA country only,
+     *              `asia`: East asia areas, like Japan, Taiwan,
+     *              `eu`: The European Union.
+     *
+     *          Example: `projects/project-A/locations/eu`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -459,6 +545,16 @@ class ImageAnnotatorGapicClient
     {
         $request = new AsyncBatchAnnotateFilesRequest();
         $request->setRequests($requests);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
         return $this->startOperationsCall(
             'AsyncBatchAnnotateFiles',

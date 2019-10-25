@@ -45,26 +45,26 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 8;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
      * Output only. Cluster status.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status = null;
     /**
      * Output only. The previous cluster status.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status_history;
     /**
      * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      *
-     * Generated from protobuf field <code>string cluster_uuid = 6;</code>
+     * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cluster_uuid = '';
     /**
@@ -207,7 +207,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 8;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -224,7 +224,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 8;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -239,7 +239,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Cluster status.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1\ClusterStatus
      */
     public function getStatus()
@@ -250,7 +250,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Cluster status.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterStatus $var
      * @return $this
      */
@@ -265,7 +265,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The previous cluster status.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatusHistory()
@@ -276,7 +276,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The previous cluster status.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterStatus[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -292,7 +292,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      *
-     * Generated from protobuf field <code>string cluster_uuid = 6;</code>
+     * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getClusterUuid()
@@ -304,7 +304,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      *
-     * Generated from protobuf field <code>string cluster_uuid = 6;</code>
+     * Generated from protobuf field <code>string cluster_uuid = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

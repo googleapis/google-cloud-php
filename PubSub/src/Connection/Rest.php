@@ -46,7 +46,7 @@ class Rest implements ConnectionInterface
     {
         $config += ['emulatorHost' => null];
 
-        $baseUri = self::BASE_URI;
+        $baseUri = $this->getApiEndpoint(self::BASE_URI, $config);
         if ((bool) $config['emulatorHost']) {
             $baseUri = $this->emulatorBaseUri($config['emulatorHost']);
             $config['shouldSignRequest'] = false;
@@ -71,6 +71,14 @@ class Rest implements ConnectionInterface
     public function createTopic(array $args)
     {
         return $this->send('topics', 'create', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateTopic(array $args)
+    {
+        return $this->send('topics', 'patch', $args);
     }
 
     /**

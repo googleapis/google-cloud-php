@@ -18,7 +18,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The stored pipeline transfer configurations.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $transfer_configs;
     /**
@@ -27,7 +27,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * `ListTransferConfigsRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $next_page_token = '';
 
@@ -54,7 +54,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The stored pipeline transfer configurations.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTransferConfigs()
@@ -65,7 +65,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The stored pipeline transfer configurations.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * `ListTransferConfigsRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -97,7 +97,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * `ListTransferConfigsRequest.page_token`
      * to request the next page of list results.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

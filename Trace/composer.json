@@ -4,9 +4,9 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "^1.28",
+        "google/cloud-core": "^1.31",
         "ramsey/uuid": "~3",
-        "google/gax": "^1.0"
+        "google/gax": "^1.1"
     },
      "require-dev": {
         "phpunit/phpunit": "^4.8|^5.0",

@@ -20,7 +20,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -32,13 +32,13 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * Must end with a number or a letter.
      * * Must be unique within the customer project / location
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_id = '';
     /**
      * Required. A Redis [Instance] resource
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = null;
 
@@ -74,7 +74,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -87,7 +87,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     `projects/{project_id}/locations/{location_id}`
      * where `location_id` refers to a GCP region.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * Must end with a number or a letter.
      * * Must be unique within the customer project / location
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getInstanceId()
@@ -125,7 +125,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * Must end with a number or a letter.
      * * Must be unique within the customer project / location
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -140,7 +140,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A Redis [Instance] resource
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Redis\V1beta1\Instance
      */
     public function getInstance()
@@ -151,7 +151,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. A Redis [Instance] resource
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Redis\V1beta1\Instance $var
      * @return $this
      */

@@ -24,11 +24,12 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      */
     private $annotation_spec_id = '';
     /**
-     * Output only. The value of [AnnotationSpec.display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] when the model
-     * was trained. Because this field returns a value at model training time,
-     * for different models trained using the same dataset, the returned value
-     * could be different as model owner could update the display_name between
-     * any two model training.
+     * Output only. The value of
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name]
+     * when the model was trained. Because this field returns a value at model
+     * training time, for different models trained using the same dataset, the
+     * returned value could be different as model owner could update the
+     * `display_name` between any two model training.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      */
@@ -45,16 +46,30 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      *           Annotation details for translation.
      *     @type \Google\Cloud\AutoMl\V1beta1\ClassificationAnnotation $classification
      *           Annotation details for content or image classification.
+     *     @type \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionAnnotation $image_object_detection
+     *           Annotation details for image object detection.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoClassificationAnnotation $video_classification
+     *           Annotation details for video classification.
+     *           Returned for Video Classification predictions.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingAnnotation $video_object_tracking
+     *           Annotation details for video object tracking.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextExtractionAnnotation $text_extraction
+     *           Annotation details for text extraction.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextSentimentAnnotation $text_sentiment
+     *           Annotation details for text sentiment.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TablesAnnotation $tables
+     *           Annotation details for Tables.
      *     @type string $annotation_spec_id
      *           Output only . The resource ID of the annotation spec that
      *           this annotation pertains to. The annotation spec comes from either an
      *           ancestor dataset, or the dataset that was used to train the model in use.
      *     @type string $display_name
-     *           Output only. The value of [AnnotationSpec.display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] when the model
-     *           was trained. Because this field returns a value at model training time,
-     *           for different models trained using the same dataset, the returned value
-     *           could be different as model owner could update the display_name between
-     *           any two model training.
+     *           Output only. The value of
+     *           [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name]
+     *           when the model was trained. Because this field returns a value at model
+     *           training time, for different models trained using the same dataset, the
+     *           returned value could be different as model owner could update the
+     *           `display_name` between any two model training.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,6 +130,164 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Annotation details for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionAnnotation image_object_detection = 4;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionAnnotation
+     */
+    public function getImageObjectDetection()
+    {
+        return $this->readOneof(4);
+    }
+
+    /**
+     * Annotation details for image object detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionAnnotation image_object_detection = 4;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionAnnotation $var
+     * @return $this
+     */
+    public function setImageObjectDetection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionAnnotation::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Annotation details for video classification.
+     * Returned for Video Classification predictions.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationAnnotation video_classification = 9;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationAnnotation
+     */
+    public function getVideoClassification()
+    {
+        return $this->readOneof(9);
+    }
+
+    /**
+     * Annotation details for video classification.
+     * Returned for Video Classification predictions.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationAnnotation video_classification = 9;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoClassificationAnnotation $var
+     * @return $this
+     */
+    public function setVideoClassification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoClassificationAnnotation::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Annotation details for video object tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingAnnotation video_object_tracking = 8;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingAnnotation
+     */
+    public function getVideoObjectTracking()
+    {
+        return $this->readOneof(8);
+    }
+
+    /**
+     * Annotation details for video object tracking.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingAnnotation video_object_tracking = 8;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingAnnotation $var
+     * @return $this
+     */
+    public function setVideoObjectTracking($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingAnnotation::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Annotation details for text extraction.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionAnnotation text_extraction = 6;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionAnnotation
+     */
+    public function getTextExtraction()
+    {
+        return $this->readOneof(6);
+    }
+
+    /**
+     * Annotation details for text extraction.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionAnnotation text_extraction = 6;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextExtractionAnnotation $var
+     * @return $this
+     */
+    public function setTextExtraction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextExtractionAnnotation::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Annotation details for text sentiment.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentAnnotation text_sentiment = 7;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentAnnotation
+     */
+    public function getTextSentiment()
+    {
+        return $this->readOneof(7);
+    }
+
+    /**
+     * Annotation details for text sentiment.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentAnnotation text_sentiment = 7;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextSentimentAnnotation $var
+     * @return $this
+     */
+    public function setTextSentiment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextSentimentAnnotation::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Annotation details for Tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesAnnotation tables = 10;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TablesAnnotation
+     */
+    public function getTables()
+    {
+        return $this->readOneof(10);
+    }
+
+    /**
+     * Annotation details for Tables.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesAnnotation tables = 10;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TablesAnnotation $var
+     * @return $this
+     */
+    public function setTables($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TablesAnnotation::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only . The resource ID of the annotation spec that
      * this annotation pertains to. The annotation spec comes from either an
      * ancestor dataset, or the dataset that was used to train the model in use.
@@ -145,11 +318,12 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The value of [AnnotationSpec.display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] when the model
-     * was trained. Because this field returns a value at model training time,
-     * for different models trained using the same dataset, the returned value
-     * could be different as model owner could update the display_name between
-     * any two model training.
+     * Output only. The value of
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name]
+     * when the model was trained. Because this field returns a value at model
+     * training time, for different models trained using the same dataset, the
+     * returned value could be different as model owner could update the
+     * `display_name` between any two model training.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      * @return string
@@ -160,11 +334,12 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The value of [AnnotationSpec.display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name] when the model
-     * was trained. Because this field returns a value at model training time,
-     * for different models trained using the same dataset, the returned value
-     * could be different as model owner could update the display_name between
-     * any two model training.
+     * Output only. The value of
+     * [display_name][google.cloud.automl.v1beta1.AnnotationSpec.display_name]
+     * when the model was trained. Because this field returns a value at model
+     * training time, for different models trained using the same dataset, the
+     * returned value could be different as model owner could update the
+     * `display_name` between any two model training.
      *
      * Generated from protobuf field <code>string display_name = 5;</code>
      * @param string $var

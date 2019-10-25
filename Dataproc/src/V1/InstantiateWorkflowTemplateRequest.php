@@ -16,11 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The "resource name" of the workflow template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Required. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -30,7 +35,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * This option cannot be used to instantiate a previous version of
      * workflow template.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $version = 0;
     /**
@@ -42,14 +47,14 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * The tag must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
     /**
      * Optional. Map from parameter names to values that should be used for those
      * parameters. Values may not exceed 100 characters.
      *
-     * Generated from protobuf field <code>map<string, string> parameters = 6;</code>
+     * Generated from protobuf field <code>map<string, string> parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters;
 
@@ -60,9 +65,14 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The "resource name" of the workflow template, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           Required. The resource name of the workflow template, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     *           of the template has the following format:
+     *             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *             of the template has the following format:
+     *             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Optional. The version of workflow template to instantiate. If specified,
      *           the workflow will be instantiated only if the current version of
@@ -88,11 +98,16 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The "resource name" of the workflow template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Required. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -101,11 +116,16 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The "resource name" of the workflow template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Required. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates.instantiate`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +144,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * This option cannot be used to instantiate a previous version of
      * workflow template.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getVersion()
@@ -139,7 +159,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * This option cannot be used to instantiate a previous version of
      * workflow template.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -160,7 +180,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * The tag must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRequestId()
@@ -177,7 +197,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * The tag must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -193,7 +213,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Map from parameter names to values that should be used for those
      * parameters. Values may not exceed 100 characters.
      *
-     * Generated from protobuf field <code>map<string, string> parameters = 6;</code>
+     * Generated from protobuf field <code>map<string, string> parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getParameters()
@@ -205,7 +225,7 @@ class InstantiateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Map from parameter names to values that should be used for those
      * parameters. Values may not exceed 100 characters.
      *
-     * Generated from protobuf field <code>map<string, string> parameters = 6;</code>
+     * Generated from protobuf field <code>map<string, string> parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

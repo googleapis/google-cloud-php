@@ -23,18 +23,16 @@ namespace Google\Cloud\Vision\V1;
  * Manages Products and ProductSets of reference images for use in product
  * search. It uses the following resource model:
  *
- * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet]
- * resources, named `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way
- * to put different products into groups to limit identification.
+ * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named
+ * `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way to put different
+ * products into groups to limit identification.
  *
  * In parallel,
  *
- * - The API has a collection of [Product][google.cloud.vision.v1.Product]
- * resources, named
+ * - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named
  *   `projects/&#42;/locations/&#42;/products/*`
  *
- * - Each [Product][google.cloud.vision.v1.Product] has a collection of
- * [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
+ * - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
  *   `projects/&#42;/locations/&#42;/products/&#42;/referenceImages/*`
  */
 class ProductSearchGrpcClient extends \Grpc\BaseStub {
@@ -394,8 +392,8 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
      * Asynchronous API that imports a list of reference images to specified
      * product sets based on a list of image information.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
-     * used to keep track of the progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
+     * progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      * `Operation.response` contains `ImportProductSetsResponse`. (results)
      *
@@ -409,6 +407,43 @@ class ProductSearchGrpcClient extends \Grpc\BaseStub {
     public function ImportProductSets(\Google\Cloud\Vision\V1\ImportProductSetsRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.vision.v1.ProductSearch/ImportProductSets',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Asynchronous API to delete all Products in a ProductSet or all Products
+     * that are in no ProductSet.
+     *
+     * If a Product is a member of the specified ProductSet in addition to other
+     * ProductSets, the Product will still be deleted.
+     *
+     * It is recommended to not delete the specified ProductSet until after this
+     * operation has completed. It is also recommended to not add any of the
+     * Products involved in the batch delete to a new ProductSet while this
+     * operation is running because those Products may still end up deleted.
+     *
+     * It's not possible to undo the PurgeProducts operation. Therefore, it is
+     * recommended to keep the csv files used in ImportProductSets (if that was
+     * how you originally built the Product Set) before starting PurgeProducts, in
+     * case you need to re-import the data after deletion.
+     *
+     * If the plan is to purge all of the Products from a ProductSet and then
+     * re-use the empty ProductSet to re-import new Products into the empty
+     * ProductSet, you must wait until the PurgeProducts operation has finished
+     * for that ProductSet.
+     *
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
+     * progress and results of the request.
+     * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     * @param \Google\Cloud\Vision\V1\PurgeProductsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function PurgeProducts(\Google\Cloud\Vision\V1\PurgeProductsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.vision.v1.ProductSearch/PurgeProducts',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

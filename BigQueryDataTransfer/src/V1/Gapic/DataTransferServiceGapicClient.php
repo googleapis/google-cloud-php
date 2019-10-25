@@ -122,6 +122,9 @@ class DataTransferServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
     private static $locationNameTemplate;
+    private static $locationDataSourceNameTemplate;
+    private static $locationRunNameTemplate;
+    private static $locationTransferConfigNameTemplate;
     private static $projectNameTemplate;
     private static $projectDataSourceNameTemplate;
     private static $projectRunNameTemplate;
@@ -132,7 +135,7 @@ class DataTransferServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/data_transfer_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/data_transfer_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/data_transfer_service_grpc_config.json',
@@ -154,6 +157,33 @@ class DataTransferServiceGapicClient
         }
 
         return self::$locationNameTemplate;
+    }
+
+    private static function getLocationDataSourceNameTemplate()
+    {
+        if (null == self::$locationDataSourceNameTemplate) {
+            self::$locationDataSourceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dataSources/{data_source}');
+        }
+
+        return self::$locationDataSourceNameTemplate;
+    }
+
+    private static function getLocationRunNameTemplate()
+    {
+        if (null == self::$locationRunNameTemplate) {
+            self::$locationRunNameTemplate = new PathTemplate('projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}');
+        }
+
+        return self::$locationRunNameTemplate;
+    }
+
+    private static function getLocationTransferConfigNameTemplate()
+    {
+        if (null == self::$locationTransferConfigNameTemplate) {
+            self::$locationTransferConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/transferConfigs/{transfer_config}');
+        }
+
+        return self::$locationTransferConfigNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -197,6 +227,9 @@ class DataTransferServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
+                'locationDataSource' => self::getLocationDataSourceNameTemplate(),
+                'locationRun' => self::getLocationRunNameTemplate(),
+                'locationTransferConfig' => self::getLocationTransferConfigNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectDataSource' => self::getProjectDataSourceNameTemplate(),
                 'projectRun' => self::getProjectRunNameTemplate(),
@@ -222,6 +255,68 @@ class DataTransferServiceGapicClient
         return self::getLocationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_data_source resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataSource
+     *
+     * @return string The formatted location_data_source resource.
+     * @experimental
+     */
+    public static function locationDataSourceName($project, $location, $dataSource)
+    {
+        return self::getLocationDataSourceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'data_source' => $dataSource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_run resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $transferConfig
+     * @param string $run
+     *
+     * @return string The formatted location_run resource.
+     * @experimental
+     */
+    public static function locationRunName($project, $location, $transferConfig, $run)
+    {
+        return self::getLocationRunNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'transfer_config' => $transferConfig,
+            'run' => $run,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_transfer_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $transferConfig
+     *
+     * @return string The formatted location_transfer_config resource.
+     * @experimental
+     */
+    public static function locationTransferConfigName($project, $location, $transferConfig)
+    {
+        return self::getLocationTransferConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'transfer_config' => $transferConfig,
         ]);
     }
 
@@ -302,6 +397,9 @@ class DataTransferServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
+     * - locationDataSource: projects/{project}/locations/{location}/dataSources/{data_source}
+     * - locationRun: projects/{project}/locations/{location}/transferConfigs/{transfer_config}/runs/{run}
+     * - locationTransferConfig: projects/{project}/locations/{location}/transferConfigs/{transfer_config}
      * - project: projects/{project}
      * - projectDataSource: projects/{project}/dataSources/{data_source}
      * - projectRun: projects/{project}/transferConfigs/{transfer_config}/runs/{run}
@@ -349,6 +447,9 @@ class DataTransferServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'bigquerydatatransfer.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -376,7 +477,7 @@ class DataTransferServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -415,7 +516,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/dataSources/{data_source_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -482,7 +583,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The BigQuery project id for which data sources should be returned.
+     * @param string $parent       Required. The BigQuery project id for which data sources should be returned.
      *                             Must be in the form: `projects/{project_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -549,11 +650,11 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string         $parent         The BigQuery project id where the transfer configuration should be created.
+     * @param string         $parent         Required. The BigQuery project id where the transfer configuration should be created.
      *                                       Must be in the format projects/{project_id}/locations/{location_id}
      *                                       If specified location and location of the destination bigquery dataset
      *                                       do not match - the request will fail.
-     * @param TransferConfig $transferConfig Data transfer configuration to create.
+     * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
      * @param array          $optionalArgs   {
      *                                       Optional.
      *
@@ -636,8 +737,8 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param TransferConfig $transferConfig Data transfer configuration to create.
-     * @param FieldMask      $updateMask     Required list of fields to be updated in this request.
+     * @param TransferConfig $transferConfig Required. Data transfer configuration to create.
+     * @param FieldMask      $updateMask     Required. Required list of fields to be updated in this request.
      * @param array          $optionalArgs   {
      *                                       Optional.
      *
@@ -719,7 +820,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -768,7 +869,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -834,7 +935,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The BigQuery project id for which data sources
+     * @param string $parent       Required. The BigQuery project id for which data sources
      *                             should be returned: `projects/{project_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -911,11 +1012,11 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Transfer configuration name in the form:
+     * @param string    $parent       Required. Transfer configuration name in the form:
      *                                `projects/{project_id}/transferConfigs/{config_id}`.
-     * @param Timestamp $startTime    Start time of the range of transfer runs. For example,
+     * @param Timestamp $startTime    Required. Start time of the range of transfer runs. For example,
      *                                `"2017-05-25T00:00:00+00:00"`.
-     * @param Timestamp $endTime      End time of the range of transfer runs. For example,
+     * @param Timestamp $endTime      Required. End time of the range of transfer runs. For example,
      *                                `"2017-05-30T00:00:00+00:00"`.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -968,7 +1069,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1019,7 +1120,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The field will contain name of the resource requested, for example:
+     * @param string $name         Required. The field will contain name of the resource requested, for example:
      *                             `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1083,7 +1184,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Name of transfer configuration for which transfer runs should be retrieved.
+     * @param string $parent       Required. Name of transfer configuration for which transfer runs should be retrieved.
      *                             Format of transfer configuration resource name is:
      *                             `projects/{project_id}/transferConfigs/{config_id}`.
      * @param array  $optionalArgs {
@@ -1177,7 +1278,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Transfer run name in the form:
+     * @param string $parent       Required. Transfer run name in the form:
      *                             `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1255,7 +1356,7 @@ class DataTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The data source in the form:
+     * @param string $name         Required. The data source in the form:
      *                             `projects/{project_id}/dataSources/{data_source_id}`
      * @param array  $optionalArgs {
      *                             Optional.

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only. Additional information returned to client, such as debugging
- * information.
+ * Additional information returned to client, such as debugging information.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ResponseMetadata</code>
  */

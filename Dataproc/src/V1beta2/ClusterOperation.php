@@ -18,19 +18,19 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The id of the cluster operation.
      *
-     * Generated from protobuf field <code>string operation_id = 1;</code>
+     * Generated from protobuf field <code>string operation_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $operation_id = '';
     /**
      * Output only. Error, if operation failed.
      *
-     * Generated from protobuf field <code>string error = 2;</code>
+     * Generated from protobuf field <code>string error = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = '';
     /**
      * Output only. Indicates the operation is done.
      *
-     * Generated from protobuf field <code>bool done = 3;</code>
+     * Generated from protobuf field <code>bool done = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $done = false;
 
@@ -56,7 +56,7 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The id of the cluster operation.
      *
-     * Generated from protobuf field <code>string operation_id = 1;</code>
+     * Generated from protobuf field <code>string operation_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getOperationId()
@@ -67,7 +67,7 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The id of the cluster operation.
      *
-     * Generated from protobuf field <code>string operation_id = 1;</code>
+     * Generated from protobuf field <code>string operation_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -82,7 +82,7 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Error, if operation failed.
      *
-     * Generated from protobuf field <code>string error = 2;</code>
+     * Generated from protobuf field <code>string error = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getError()
@@ -93,7 +93,7 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Error, if operation failed.
      *
-     * Generated from protobuf field <code>string error = 2;</code>
+     * Generated from protobuf field <code>string error = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Indicates the operation is done.
      *
-     * Generated from protobuf field <code>bool done = 3;</code>
+     * Generated from protobuf field <code>bool done = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getDone()
@@ -119,7 +119,7 @@ class ClusterOperation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Indicates the operation is done.
      *
-     * Generated from protobuf field <code>bool done = 3;</code>
+     * Generated from protobuf field <code>bool done = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */

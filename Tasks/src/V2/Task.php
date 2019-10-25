@@ -38,8 +38,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The time when the task is scheduled to be attempted.
-     * For App Engine queues, this is when the task will be attempted or retried.
+     * The time when the task is scheduled to be attempted or retried.
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 4;</code>
@@ -146,8 +145,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *           HTTP request that is sent to the App Engine app handler.
      *           An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2.AppEngineHttpRequest] set.
      *     @type \Google\Protobuf\Timestamp $schedule_time
-     *           The time when the task is scheduled to be attempted.
-     *           For App Engine queues, this is when the task will be attempted or retried.
+     *           The time when the task is scheduled to be attempted or retried.
      *           `schedule_time` will be truncated to the nearest microsecond.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time that the task was created.
@@ -286,8 +284,7 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the task is scheduled to be attempted.
-     * For App Engine queues, this is when the task will be attempted or retried.
+     * The time when the task is scheduled to be attempted or retried.
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 4;</code>
@@ -299,8 +296,7 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time when the task is scheduled to be attempted.
-     * For App Engine queues, this is when the task will be attempted or retried.
+     * The time when the task is scheduled to be attempted or retried.
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 4;</code>

@@ -20,17 +20,17 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
      * "pd-standard" (Persistent Disk Hard Disk Drive).
      *
-     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $boot_disk_type = '';
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
-     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
+     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $boot_disk_size_gb = 0;
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     * Number of attached SSDs, from 0 to 4 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
      * [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      * If one or more SSDs are attached, this runtime bulk
@@ -54,7 +54,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *     @type int $boot_disk_size_gb
      *           Optional. Size in GB of the boot disk (default is 500GB).
      *     @type int $num_local_ssds
-     *           Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     *           Number of attached SSDs, from 0 to 4 (default is 0).
      *           If SSDs are not attached, the boot disk is used to store runtime logs and
      *           [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      *           If one or more SSDs are attached, this runtime bulk
@@ -72,7 +72,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
      * "pd-standard" (Persistent Disk Hard Disk Drive).
      *
-     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getBootDiskType()
@@ -85,7 +85,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
      * "pd-standard" (Persistent Disk Hard Disk Drive).
      *
-     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +100,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
-     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
+     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getBootDiskSizeGb()
@@ -111,7 +111,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
-     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
+     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     * Number of attached SSDs, from 0 to 4 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
      * [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      * If one or more SSDs are attached, this runtime bulk
@@ -140,7 +140,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Number of attached SSDs, from 0 to 4 (default is 0).
+     * Number of attached SSDs, from 0 to 4 (default is 0).
      * If SSDs are not attached, the boot disk is used to store runtime logs and
      * [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data.
      * If one or more SSDs are attached, this runtime bulk

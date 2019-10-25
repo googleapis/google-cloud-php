@@ -51,6 +51,20 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Begins executing a batch create jobs operation.
+     * @param \Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchCreateJobs(\Google\Cloud\Talent\V4beta1\BatchCreateJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchCreateJobs',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Retrieves the specified job, whose status is OPEN or recently EXPIRED
      * within the last 90 days.
      * @param \Google\Cloud\Talent\V4beta1\GetJobRequest $argument input argument
@@ -83,6 +97,20 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Begins executing a batch update jobs operation.
+     * @param \Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchUpdateJobs(\Google\Cloud\Talent\V4beta1\BatchUpdateJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchUpdateJobs',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Deletes the specified job.
      *
      * Typically, the job becomes unsearchable within 10 seconds, but it may take
@@ -94,6 +122,20 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     public function DeleteJob(\Google\Cloud\Talent\V4beta1\DeleteJobRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/DeleteJob',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a list of [Job][google.cloud.talent.v4beta1.Job]s by filter.
+     * @param \Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function BatchDeleteJobs(\Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchDeleteJobs',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
@@ -114,25 +156,13 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a list of [Job][google.cloud.talent.v4beta1.Job]s by filter.
-     * @param \Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     */
-    public function BatchDeleteJobs(\Google\Cloud\Talent\V4beta1\BatchDeleteJobsRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.talent.v4beta1.JobService/BatchDeleteJobs',
-        $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Searches for jobs using the provided
+     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
-     * This call constrains the [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs
-     * present in the database, and only returns jobs that the caller has
-     * permission to search against.
+     * This call constrains the
+     * [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs present in
+     * the database, and only returns jobs that the caller has permission to
+     * search against.
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -146,16 +176,18 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
+     * Searches for jobs using the provided
+     * [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * This API call is intended for the use case of targeting passive job
      * seekers (for example, job seekers who have signed up to receive email
      * alerts about potential job opportunities), and has different algorithmic
      * adjustments that are targeted to passive job seekers.
      *
-     * This call constrains the [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs
-     * present in the database, and only returns jobs the caller has
-     * permission to search against.
+     * This call constrains the
+     * [visibility][google.cloud.talent.v4beta1.Job.visibility] of jobs present in
+     * the database, and only returns jobs the caller has permission to search
+     * against.
      * @param \Google\Cloud\Talent\V4beta1\SearchJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -91,11 +91,13 @@ class LoadJobConfigurationTest extends TestCase
             'timePartitioning' => [
                 'type' => 'DAY'
             ],
-            'writeDisposition' => 'WRITE_TRUNCATE'
+            'writeDisposition' => 'WRITE_TRUNCATE',
+            'useAvroLogicalTypes' => true
         ];
         $this->expectedConfig['configuration']['load'] = $load
             + $this->expectedConfig['configuration']['load'];
-        $this->config
+
+        $config = $this->config
             ->allowJaggedRows($load['allowJaggedRows'])
             ->allowQuotedNewlines($load['allowQuotedNewlines'])
             ->autodetect($load['autodetect'])
@@ -117,8 +119,10 @@ class LoadJobConfigurationTest extends TestCase
             ->sourceFormat($load['sourceFormat'])
             ->sourceUris($load['sourceUris'])
             ->timePartitioning($load['timePartitioning'])
-            ->writeDisposition($load['writeDisposition']);
+            ->writeDisposition($load['writeDisposition'])
+            ->useAvroLogicalTypes($load['useAvroLogicalTypes']);
 
+        $this->assertInstanceOf(LoadJobConfiguration::class, $config);
         $this->assertEquals(
             $this->expectedConfig + ['data' => $data],
             $this->config->toArray()

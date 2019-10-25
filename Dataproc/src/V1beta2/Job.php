@@ -28,7 +28,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Required. Job information, including how, when, and where to
      * run the job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $placement = null;
     /**
@@ -208,7 +208,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Required. Job information, including how, when, and where to
      * run the job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\JobPlacement
      */
     public function getPlacement()
@@ -220,7 +220,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Required. Job information, including how, when, and where to
      * run the job.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobPlacement placement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\JobPlacement $var
      * @return $this
      */

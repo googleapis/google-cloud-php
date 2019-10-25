@@ -16,7 +16,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class Publication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * A list of author names.
      * Number of characters allowed is 100.
      *
@@ -24,7 +23,6 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $authors;
     /**
-     * Optional.
      * The title of the publication.
      * Number of characters allowed is 100.
      *
@@ -32,7 +30,6 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $title = '';
     /**
-     * Optional.
      * The description of the publication.
      * Number of characters allowed is 100,000.
      *
@@ -40,7 +37,6 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Optional.
      * The journal name of the publication.
      * Number of characters allowed is 100.
      *
@@ -48,7 +44,6 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $journal = '';
     /**
-     * Optional.
      * Volume number.
      * Number of characters allowed is 100.
      *
@@ -56,7 +51,6 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $volume = '';
     /**
-     * Optional.
      * The publisher of the journal.
      * Number of characters allowed is 100.
      *
@@ -64,14 +58,12 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $publisher = '';
     /**
-     * Optional.
      * The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
      */
     private $publication_date = null;
     /**
-     * Optional.
      * The publication type.
      * Number of characters allowed is 100.
      *
@@ -79,7 +71,6 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     private $publication_type = '';
     /**
-     * Optional.
      * ISBN number.
      * Number of characters allowed is 100.
      *
@@ -94,38 +85,29 @@ class Publication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $authors
-     *           Optional.
      *           A list of author names.
      *           Number of characters allowed is 100.
      *     @type string $title
-     *           Optional.
      *           The title of the publication.
      *           Number of characters allowed is 100.
      *     @type string $description
-     *           Optional.
      *           The description of the publication.
      *           Number of characters allowed is 100,000.
      *     @type string $journal
-     *           Optional.
      *           The journal name of the publication.
      *           Number of characters allowed is 100.
      *     @type string $volume
-     *           Optional.
      *           Volume number.
      *           Number of characters allowed is 100.
      *     @type string $publisher
-     *           Optional.
      *           The publisher of the journal.
      *           Number of characters allowed is 100.
      *     @type \Google\Type\Date $publication_date
-     *           Optional.
      *           The publication date.
      *     @type string $publication_type
-     *           Optional.
      *           The publication type.
      *           Number of characters allowed is 100.
      *     @type string $isbn
-     *           Optional.
      *           ISBN number.
      *           Number of characters allowed is 100.
      * }
@@ -136,7 +118,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A list of author names.
      * Number of characters allowed is 100.
      *
@@ -149,7 +130,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * A list of author names.
      * Number of characters allowed is 100.
      *
@@ -166,7 +146,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The title of the publication.
      * Number of characters allowed is 100.
      *
@@ -179,7 +158,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The title of the publication.
      * Number of characters allowed is 100.
      *
@@ -196,7 +174,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The description of the publication.
      * Number of characters allowed is 100,000.
      *
@@ -209,7 +186,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The description of the publication.
      * Number of characters allowed is 100,000.
      *
@@ -226,7 +202,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The journal name of the publication.
      * Number of characters allowed is 100.
      *
@@ -239,7 +214,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The journal name of the publication.
      * Number of characters allowed is 100.
      *
@@ -256,7 +230,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Volume number.
      * Number of characters allowed is 100.
      *
@@ -269,7 +242,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Volume number.
      * Number of characters allowed is 100.
      *
@@ -286,7 +258,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The publisher of the journal.
      * Number of characters allowed is 100.
      *
@@ -299,7 +270,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The publisher of the journal.
      * Number of characters allowed is 100.
      *
@@ -316,7 +286,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
@@ -328,7 +297,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
@@ -344,7 +312,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The publication type.
      * Number of characters allowed is 100.
      *
@@ -357,7 +324,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The publication type.
      * Number of characters allowed is 100.
      *
@@ -374,7 +340,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * ISBN number.
      * Number of characters allowed is 100.
      *
@@ -387,7 +352,6 @@ class Publication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * ISBN number.
      * Number of characters allowed is 100.
      *

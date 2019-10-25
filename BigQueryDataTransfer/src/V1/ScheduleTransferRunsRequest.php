@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Transfer configuration name in the form:
+     * Required. Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Start time of the range of transfer runs. For example,
+     * Required. Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $start_time = null;
     /**
-     * End time of the range of transfer runs. For example,
+     * Required. End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $end_time = null;
 
@@ -44,13 +44,13 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Transfer configuration name in the form:
+     *           Required. Transfer configuration name in the form:
      *           `projects/{project_id}/transferConfigs/{config_id}`.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Start time of the range of transfer runs. For example,
+     *           Required. Start time of the range of transfer runs. For example,
      *           `"2017-05-25T00:00:00+00:00"`.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           End time of the range of transfer runs. For example,
+     *           Required. End time of the range of transfer runs. For example,
      *           `"2017-05-30T00:00:00+00:00"`.
      * }
      */
@@ -60,10 +60,10 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Transfer configuration name in the form:
+     * Required. Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -72,10 +72,10 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Transfer configuration name in the form:
+     * Required. Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -88,10 +88,10 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the range of transfer runs. For example,
+     * Required. Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -100,10 +100,10 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the range of transfer runs. For example,
+     * Required. Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -116,10 +116,10 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End time of the range of transfer runs. For example,
+     * Required. End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -128,10 +128,10 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * End time of the range of transfer runs. For example,
+     * Required. End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

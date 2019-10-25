@@ -57,12 +57,12 @@ class AnnotationsTest extends VisionTestCase
 
         // Landmarks
         $this->assertInstanceOf(Entity::class, $res->landmarks()[0]);
-        $this->assertEquals('Eiffel Tower', $res->landmarks()[0]->description());
+        $this->assertEquals('mount rushmore national memorial', strtolower($res->landmarks()[0]->description()));
 
         // Safe Search
         $this->assertInstanceOf(SafeSearch::class, $res->safeSearch());
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->adult());
-        $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->spoof());
+        $this->assertEquals('UNLIKELY', $res->safeSearch()->spoof());
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->medical());
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->violence());
         $this->assertEquals('VERY_UNLIKELY', $res->safeSearch()->racy());
@@ -87,10 +87,10 @@ class AnnotationsTest extends VisionTestCase
         $this->assertInstanceOf(WebEntity::class, $res->web()->entities()[0]);
 
         $desc = array_filter($res->web()->entities(), function ($e) {
-            return (in_array('description', $e->info())
-                    && $e->description() === 'Eiffel Tower');
+            return isset($e->info()['description'])
+                    && $e->description() === 'Mount Rushmore National Memorial';
         });
-        $this->assertGreaterThan(0, $desc);
+        $this->assertGreaterThan(0, count($desc));
 
         $this->assertInstanceOf(WebImage::class, $res->web()->matchingImages()[0]);
         $this->assertInstanceOf(WebImage::class, $res->web()->partialMatchingImages()[0]);
@@ -144,7 +144,7 @@ class AnnotationsTest extends VisionTestCase
         $res = $this->client->annotate($image);
         $this->assertInstanceOf(Annotation::class, $res);
         $this->assertInstanceOf(Entity::class, $res->text()[0]);
-        $this->assertEquals("Hello World.", explode("\n", $res->text()[0]->description())[0]);
+        $this->assertEquals("Hello World", explode("\n", $res->text()[0]->description())[0]);
         $this->assertEquals("Goodby World!", explode("\n", $res->text()[0]->description())[1]);
     }
 

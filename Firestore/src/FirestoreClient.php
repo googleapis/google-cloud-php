@@ -75,7 +75,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
 
-    const VERSION = '1.6.2';
+    const VERSION = '1.9.0';
 
     const DEFAULT_DATABASE = '(default)';
 
@@ -105,6 +105,8 @@ class FirestoreClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access
@@ -570,5 +572,52 @@ class FirestoreClient
     public function fieldPath(array $fieldNames)
     {
         return new FieldPath($fieldNames);
+    }
+
+    /**
+     * Returns a FirestoreSessionHandler.
+     *
+     * Example:
+     * ```
+     * $handler = $firestore->sessionHandler();
+     *
+     * // Configure PHP to use the Firestore session handler.
+     * session_set_save_handler($handler, true);
+     * session_save_path('sessions');
+     * session_start();
+     *
+     * // Then write and read the $_SESSION array.
+     * $_SESSION['name'] = 'Bob';
+     * echo $_SESSION['name'];
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $gcLimit The number of entities to delete in the garbage
+     *        collection. Values larger than 500 will be limited to 500.
+     *        **Defaults to** `0`, indicating garbage collection is disabled by
+     *        default.
+     *     @type string $collectionNameTemplate A sprintf compatible template
+     *        for formatting the collection name where sessions will be stored.
+     *        The template receives two values, the first being the save path
+     *        and the latter being the session name.
+     *     @type array $begin Configuration options for beginTransaction.
+     *     @type array $commit Configuration options for commit.
+     *     @type array $rollback Configuration options for rollback.
+     *     @type array $read Configuration options for read.
+     *     @type array $query Configuration options for runQuery.
+     * }
+     * @return FirestoreSessionHandler
+     */
+    public function sessionHandler(array $options = [])
+    {
+        return new FirestoreSessionHandler(
+            $this->connection,
+            $this->valueMapper,
+            $this->projectId,
+            $this->database,
+            $options
+        );
     }
 }

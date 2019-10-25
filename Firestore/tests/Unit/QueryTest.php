@@ -488,7 +488,7 @@ class QueryTest extends TestCase
             'parent' => self::QUERY_PARENT,
             'structuredQuery' => [
                 'from' => $this->queryFrom(),
-                'limit' => ['value' => $limit]
+                'limit' => $limit
             ]
         ]);
     }
@@ -553,7 +553,6 @@ class QueryTest extends TestCase
                     ]
                 ],
                 'startAt' => [
-                    'before' => false,
                     'values' => [
                         [
                             'stringValue' => 'john'
@@ -609,7 +608,6 @@ class QueryTest extends TestCase
                     ]
                 ],
                 'endAt' => [
-                    'before' => false,
                     'values' => [
                         [
                             'stringValue' => 'john'
@@ -639,7 +637,6 @@ class QueryTest extends TestCase
                     ]
                 ],
                 'endAt' => [
-                    'before' => false,
                     'values' => [
                         [
                             'referenceValue' => self::QUERY_PARENT .'/'. $documentPath
@@ -674,7 +671,6 @@ class QueryTest extends TestCase
                     ]
                 ],
                 'endAt' => [
-                    'before' => false,
                     'values' => [
                         [
                             'referenceValue' => self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john'
@@ -949,13 +945,6 @@ class QueryTest extends TestCase
     private function runAndAssert(callable $filters, $assertion, Query $query = null)
     {
         if (is_array($assertion)) {
-            if (isset($assertion['structuredQuery'])) {
-                $assertion['structuredQuery'] = array_merge([
-                    'orderBy' => [],
-                    'offset' => 0
-                ], $assertion['structuredQuery']);
-            }
-
             $this->connection->runQuery(
                 new ArrayHasSameValuesToken($assertion + ['retries' => 0])
             )->shouldBeCalledTimes(1)->willReturn(new \ArrayIterator([

@@ -28,7 +28,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Redis\V1\FailoverInstanceRequest\DataProtectionMode;
 use Google\Cloud\Redis\V1\InputConfig;
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\Instance\Tier;
@@ -504,7 +503,7 @@ class CloudRedisClientTest extends GeneratedTest
         $paths = [$pathsElement, $pathsElement2];
         $updateMask = new FieldMask();
         $updateMask->setPaths($paths);
-        $displayName = ' instance.memory_size_gb=4';
+        $displayName = '￼ instance.memory_size_gb=4';
         $instance = new Instance();
         $instance->setDisplayName($displayName);
 
@@ -592,7 +591,7 @@ class CloudRedisClientTest extends GeneratedTest
         $paths = [$pathsElement, $pathsElement2];
         $updateMask = new FieldMask();
         $updateMask->setPaths($paths);
-        $displayName = ' instance.memory_size_gb=4';
+        $displayName = '￼ instance.memory_size_gb=4';
         $instance = new Instance();
         $instance->setDisplayName($displayName);
 
@@ -682,10 +681,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $inputConfig = new InputConfig();
 
-        $response = $client->importInstance($formattedName, $inputConfig);
+        $response = $client->importInstance($name, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -698,7 +697,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/ImportInstance', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualApiRequestObject->getInputConfig();
 
         $this->assertProtobufEquals($inputConfig, $actualValue);
@@ -764,10 +763,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $inputConfig = new InputConfig();
 
-        $response = $client->importInstance($formattedName, $inputConfig);
+        $response = $client->importInstance($name, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -853,10 +852,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportInstance($formattedName, $outputConfig);
+        $response = $client->exportInstance($name, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -869,7 +868,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.redis.v1.CloudRedis/ExportInstance', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualApiRequestObject->getOutputConfig();
 
         $this->assertProtobufEquals($outputConfig, $actualValue);
@@ -935,10 +934,10 @@ class CloudRedisClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $name = 'name3373707';
         $outputConfig = new OutputConfig();
 
-        $response = $client->exportInstance($formattedName, $outputConfig);
+        $response = $client->exportInstance($name, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -1025,9 +1024,8 @@ class CloudRedisClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $dataProtectionMode = DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
 
-        $response = $client->failoverInstance($formattedName, $dataProtectionMode);
+        $response = $client->failoverInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1041,9 +1039,6 @@ class CloudRedisClientTest extends GeneratedTest
         $actualValue = $actualApiRequestObject->getName();
 
         $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualApiRequestObject->getDataProtectionMode();
-
-        $this->assertProtobufEquals($dataProtectionMode, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/failoverInstanceTest');
@@ -1107,9 +1102,8 @@ class CloudRedisClientTest extends GeneratedTest
 
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $dataProtectionMode = DataProtectionMode::DATA_PROTECTION_MODE_UNSPECIFIED;
 
-        $response = $client->failoverInstance($formattedName, $dataProtectionMode);
+        $response = $client->failoverInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 

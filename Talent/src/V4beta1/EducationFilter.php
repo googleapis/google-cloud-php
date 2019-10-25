@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Education filter of the search.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.EducationFilter</code>
@@ -17,14 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class EducationFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * The school name. For example "MIT", "University of California, Berkeley".
      *
      * Generated from protobuf field <code>string school = 1;</code>
      */
     private $school = '';
     /**
-     * Optional.
      * The field of study. This is to search against value provided in
      * [Degree.fields_of_study][google.cloud.talent.v4beta1.Degree.fields_of_study].
      * For example "Computer Science", "Mathematics".
@@ -33,7 +30,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
      */
     private $field_of_study = '';
     /**
-     * Optional.
      * Education degree in ISCED code. Each value in degree covers a specific
      * level of education, without any expansion to upper nor lower levels of
      * education degree.
@@ -42,7 +38,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
      */
     private $degree_type = 0;
     /**
-     * Optional.
      * Whether to apply negation to the filter so profiles matching the filter
      * is excluded.
      *
@@ -57,20 +52,16 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $school
-     *           Optional.
      *           The school name. For example "MIT", "University of California, Berkeley".
      *     @type string $field_of_study
-     *           Optional.
      *           The field of study. This is to search against value provided in
      *           [Degree.fields_of_study][google.cloud.talent.v4beta1.Degree.fields_of_study].
      *           For example "Computer Science", "Mathematics".
      *     @type int $degree_type
-     *           Optional.
      *           Education degree in ISCED code. Each value in degree covers a specific
      *           level of education, without any expansion to upper nor lower levels of
      *           education degree.
      *     @type bool $negated
-     *           Optional.
      *           Whether to apply negation to the filter so profiles matching the filter
      *           is excluded.
      * }
@@ -81,7 +72,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The school name. For example "MIT", "University of California, Berkeley".
      *
      * Generated from protobuf field <code>string school = 1;</code>
@@ -93,7 +83,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The school name. For example "MIT", "University of California, Berkeley".
      *
      * Generated from protobuf field <code>string school = 1;</code>
@@ -109,7 +98,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The field of study. This is to search against value provided in
      * [Degree.fields_of_study][google.cloud.talent.v4beta1.Degree.fields_of_study].
      * For example "Computer Science", "Mathematics".
@@ -123,7 +111,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The field of study. This is to search against value provided in
      * [Degree.fields_of_study][google.cloud.talent.v4beta1.Degree.fields_of_study].
      * For example "Computer Science", "Mathematics".
@@ -141,7 +128,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Education degree in ISCED code. Each value in degree covers a specific
      * level of education, without any expansion to upper nor lower levels of
      * education degree.
@@ -155,7 +141,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Education degree in ISCED code. Each value in degree covers a specific
      * level of education, without any expansion to upper nor lower levels of
      * education degree.
@@ -173,7 +158,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Whether to apply negation to the filter so profiles matching the filter
      * is excluded.
      *
@@ -186,7 +170,6 @@ class EducationFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Whether to apply negation to the filter so profiles matching the filter
      * is excluded.
      *

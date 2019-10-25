@@ -53,7 +53,7 @@ class TranslateClient
 {
     use ClientTrait;
 
-    const VERSION = '1.2.9';
+    const VERSION = '1.5.0';
 
     const ENGLISH_LANGUAGE_CODE = 'en';
 
@@ -84,6 +84,8 @@ class TranslateClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type string $key A public API access key.
      *     @type string $target The target language to assign to the client.
      *           Must be a valid ISO 639-1 language code. **Defaults to** `"en"`

@@ -25,7 +25,8 @@ if [ -f ${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-url-release-please ]; th
     --package-name="Google Cloud PHP" \
     --api-url=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-url-release-please \
     --proxy-key=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-key-release-please \
-    --release-type=php-yoshi
+    --release-type=php-yoshi \
+    --bump-minor-pre-major=true
 
   # Look for merged commit PRs and create releases on GitHub.
   npx release-please github-release --token=${KOKORO_KEYSTORE_DIR}/73713_github-magic-proxy-token-release-please \

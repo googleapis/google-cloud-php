@@ -16,19 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The tenant resource to replace the current resource in the system.
+     * Required. The tenant resource to replace the current resource in the
+     * system.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tenant = null;
     /**
-     * Optional but strongly recommended for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask] is provided, only the specified fields in
-     * [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If
+     * [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
+     * is provided, only the specified fields in
+     * [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are
+     * updated. Otherwise all the fields are updated.
      * A field mask to specify the tenant fields to be updated. Only
-     * top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are supported.
+     * top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are
+     * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -41,15 +44,18 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Tenant $tenant
-     *           Required.
-     *           The tenant resource to replace the current resource in the system.
+     *           Required. The tenant resource to replace the current resource in the
+     *           system.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional but strongly recommended for the best service
-     *           experience.
-     *           If [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask] is provided, only the specified fields in
-     *           [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are updated. Otherwise all the fields are updated.
+     *           Strongly recommended for the best service experience.
+     *           If
+     *           [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
+     *           is provided, only the specified fields in
+     *           [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are
+     *           updated. Otherwise all the fields are updated.
      *           A field mask to specify the tenant fields to be updated. Only
-     *           top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are supported.
+     *           top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are
+     *           supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,10 +64,10 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The tenant resource to replace the current resource in the system.
+     * Required. The tenant resource to replace the current resource in the
+     * system.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Tenant
      */
     public function getTenant()
@@ -70,10 +76,10 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The tenant resource to replace the current resource in the system.
+     * Required. The tenant resource to replace the current resource in the
+     * system.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Tenant $var
      * @return $this
      */
@@ -86,12 +92,15 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask] is provided, only the specified fields in
-     * [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If
+     * [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
+     * is provided, only the specified fields in
+     * [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are
+     * updated. Otherwise all the fields are updated.
      * A field mask to specify the tenant fields to be updated. Only
-     * top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are supported.
+     * top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are
+     * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -102,12 +111,15 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask] is provided, only the specified fields in
-     * [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If
+     * [update_mask][google.cloud.talent.v4beta1.UpdateTenantRequest.update_mask]
+     * is provided, only the specified fields in
+     * [tenant][google.cloud.talent.v4beta1.UpdateTenantRequest.tenant] are
+     * updated. Otherwise all the fields are updated.
      * A field mask to specify the tenant fields to be updated. Only
-     * top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are supported.
+     * top level fields of [Tenant][google.cloud.talent.v4beta1.Tenant] are
+     * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -17,11 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The "resource name" of the workflow template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Required. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates.delete`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -29,7 +34,7 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * will only delete the template if the current server version matches
      * specified version.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $version = 0;
 
@@ -40,9 +45,14 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The "resource name" of the workflow template, as described
-     *           in https://cloud.google.com/apis/design/resource_names of the form
-     *           `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           Required. The resource name of the workflow template, as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.workflowTemplates.delete`, the resource name
+     *           of the template has the following format:
+     *             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *             of the template has the following format:
+     *             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Optional. The version of workflow template to delete. If specified,
      *           will only delete the template if the current server version matches
@@ -55,11 +65,16 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the workflow template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Required. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates.delete`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -68,11 +83,16 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The "resource name" of the workflow template, as described
-     * in https://cloud.google.com/apis/design/resource_names of the form
-     * `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * Required. The resource name of the workflow template, as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates.delete`, the resource name
+     * of the template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates.instantiate`, the resource name
+     *   of the template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +109,7 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * will only delete the template if the current server version matches
      * specified version.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getVersion()
@@ -102,7 +122,7 @@ class DeleteWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * will only delete the template if the current server version matches
      * specified version.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

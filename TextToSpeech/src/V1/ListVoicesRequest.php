@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListVoicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional (but recommended)
+     * Optional. Recommended.
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      * specified, the ListVoices call will only return voices that can be used to
      * synthesize this language_code. E.g. when specifying "en-NZ", you will get
@@ -25,7 +25,7 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      * will also get supported "cmn-*" voices; specifying "zh-hk" will also get
      * supported "yue-*" voices.
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
 
@@ -36,7 +36,7 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           Optional (but recommended)
+     *           Optional. Recommended.
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      *           specified, the ListVoices call will only return voices that can be used to
      *           synthesize this language_code. E.g. when specifying "en-NZ", you will get
@@ -52,7 +52,7 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional (but recommended)
+     * Optional. Recommended.
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      * specified, the ListVoices call will only return voices that can be used to
      * synthesize this language_code. E.g. when specifying "en-NZ", you will get
@@ -61,7 +61,7 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      * will also get supported "cmn-*" voices; specifying "zh-hk" will also get
      * supported "yue-*" voices.
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -70,7 +70,7 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional (but recommended)
+     * Optional. Recommended.
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      * specified, the ListVoices call will only return voices that can be used to
      * synthesize this language_code. E.g. when specifying "en-NZ", you will get
@@ -79,7 +79,7 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      * will also get supported "cmn-*" voices; specifying "zh-hk" will also get
      * supported "yue-*" voices.
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

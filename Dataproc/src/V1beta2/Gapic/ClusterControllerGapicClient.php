@@ -36,6 +36,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataproc\V1beta2\Cluster;
+use Google\Cloud\Dataproc\V1beta2\ClusterOperationMetadata;
 use Google\Cloud\Dataproc\V1beta2\CreateClusterRequest;
 use Google\Cloud\Dataproc\V1beta2\DeleteClusterRequest;
 use Google\Cloud\Dataproc\V1beta2\DiagnoseClusterRequest;
@@ -133,7 +134,7 @@ class ClusterControllerGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/cluster_controller_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/cluster_controller_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/cluster_controller_grpc_config.json',
@@ -190,6 +191,9 @@ class ClusterControllerGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataproc.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -217,7 +221,7 @@ class ClusterControllerGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -243,7 +247,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Creates a cluster in a project.
+     * Creates a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -336,7 +342,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Updates a cluster in a project.
+     * Updates a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -506,7 +514,9 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Deletes a cluster in a project.
+     * Deletes a cluster in a project. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
      *
      * Sample code:
      * ```
@@ -689,7 +699,7 @@ class ClusterControllerGapicClient
      *                             Optional.
      *
      *     @type string $filter
-     *          Optional. A filter constraining the clusters to list. Filters are
+     *          Optional.  A filter constraining the clusters to list. Filters are
      *          case-sensitive and have the following syntax:
      *
      *          field = value [AND [field = value]] ...
@@ -753,9 +763,13 @@ class ClusterControllerGapicClient
     }
 
     /**
-     * Gets cluster diagnostic information.
-     * After the operation completes, the Operation.response field
-     * contains `DiagnoseClusterOutputLocation`.
+     * Gets cluster diagnostic information. The returned
+     * [Operation.metadata][google.longrunning.Operation.metadata] will be
+     * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
+     * After the operation completes,
+     * [Operation.response][google.longrunning.Operation.response]
+     * contains
+     * [Empty](https://cloud.google.comgoogle.protobuf.Empty).
      *
      * Sample code:
      * ```

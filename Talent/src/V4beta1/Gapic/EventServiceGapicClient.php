@@ -93,6 +93,7 @@ class EventServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/jobs',
     ];
+    private static $projectNameTemplate;
     private static $tenantNameTemplate;
     private static $pathTemplateMap;
 
@@ -100,7 +101,7 @@ class EventServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/event_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/event_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/event_service_grpc_config.json',
@@ -113,6 +114,15 @@ class EventServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
     }
 
     private static function getTenantNameTemplate()
@@ -128,11 +138,28 @@ class EventServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -157,6 +184,7 @@ class EventServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - project: projects/{project}
      * - tenant: projects/{project}/tenants/{tenant}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -201,6 +229,9 @@ class EventServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -228,7 +259,7 @@ class EventServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -273,21 +304,15 @@ class EventServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
-     *
-     * Resource name of the tenant under which the event is created.
+     * @param string $parent Required. Resource name of the tenant under which the event is created.
      *
      * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     *
-     * Tenant id is optional and a default tenant is created if unspecified, for
-     * example, "projects/api-test-project".
-     * @param ClientEvent $clientEvent Required.
-     *
-     * Events issued when end user interacts with customer's application that
-     * uses Cloud Talent Solution.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created, for example, "projects/foo".
+     * @param ClientEvent $clientEvent  Required. Events issued when end user interacts with customer's application
+     *                                  that uses Cloud Talent Solution.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

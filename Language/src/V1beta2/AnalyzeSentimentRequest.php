@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
     /**
@@ -36,7 +36,7 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Language\V1beta2\Document $document
-     *           Input document.
+     *           Required. Input document.
      *     @type int $encoding_type
      *           The encoding type used by the API to calculate sentence offsets for the
      *           sentence sentiment.
@@ -48,9 +48,9 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
@@ -59,9 +59,9 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
-     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Language\V1beta2\Document $var
      * @return $this
      */

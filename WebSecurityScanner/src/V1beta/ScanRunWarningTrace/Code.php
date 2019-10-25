@@ -9,7 +9,7 @@ use UnexpectedValueException;
 /**
  * Output only.
  * Defines a warning message code.
- * Next id: 5
+ * Next id: 6
  *
  * Protobuf type <code>google.cloud.websecurityscanner.v1beta.ScanRunWarningTrace.Code</code>
  */

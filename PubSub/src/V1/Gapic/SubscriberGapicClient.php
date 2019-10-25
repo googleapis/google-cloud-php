@@ -44,6 +44,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\AcknowledgeRequest;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
+use Google\Cloud\PubSub\V1\DeadLetterPolicy;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
@@ -137,7 +138,7 @@ class SubscriberGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/subscriber_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/subscriber_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/subscriber_grpc_config.json',
@@ -323,6 +324,9 @@ class SubscriberGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'pubsub.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -350,7 +354,7 @@ class SubscriberGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -472,6 +476,18 @@ class SubscriberGapicClient
      *          operations on the subscription. If `expiration_policy` is not set, a
      *          *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *          value for `expiration_policy.ttl` is 1 day.
+     *     @type DeadLetterPolicy $deadLetterPolicy
+     *          A policy that specifies the conditions for dead lettering messages in
+     *          this subscription. If dead_letter_policy is not set, dead lettering
+     *          is disabled.
+     *
+     *          The Cloud Pub/Sub service account associated with this subscriptions's
+     *          parent project (i.e.,
+     *          service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     *          permission to Acknowledge() messages on this subscription.
+     *          <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+     *          API might be changed in backward-incompatible ways and is not recommended
+     *          for production use. It is not subject to any SLA or deprecation policy.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -509,6 +525,9 @@ class SubscriberGapicClient
         }
         if (isset($optionalArgs['expirationPolicy'])) {
             $request->setExpirationPolicy($optionalArgs['expirationPolicy']);
+        }
+        if (isset($optionalArgs['deadLetterPolicy'])) {
+            $request->setDeadLetterPolicy($optionalArgs['deadLetterPolicy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -915,8 +934,9 @@ class SubscriberGapicClient
      *
      * @param string $subscription The subscription from which messages should be pulled.
      *                             Format is `projects/{project}/subscriptions/{sub}`.
-     * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
-     *                             system may return fewer than the number specified.
+     * @param int    $maxMessages  The maximum number of messages to return for this request. Must be a
+     *                             positive integer. The Pub/Sub system may return fewer than the number
+     *                             specified.
      * @param array  $optionalArgs {
      *                             Optional.
      *

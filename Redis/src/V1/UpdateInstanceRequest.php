@@ -24,14 +24,14 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `memorySizeGb`
      *  *   `redisConfig`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
     /**
      * Required. Update description.
      * Only fields specified in update_mask are updated.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = null;
 
@@ -68,7 +68,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `memorySizeGb`
      *  *   `redisConfig`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -85,7 +85,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `memorySizeGb`
      *  *   `redisConfig`
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -101,7 +101,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. Update description.
      * Only fields specified in update_mask are updated.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Redis\V1\Instance
      */
     public function getInstance()
@@ -113,7 +113,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. Update description.
      * Only fields specified in update_mask are updated.
      *
-     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Redis\V1\Instance $var
      * @return $this
      */

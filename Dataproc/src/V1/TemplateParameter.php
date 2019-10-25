@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TemplateParameter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.  Parameter name.
+     * Required. Parameter name.
      * The parameter name is used as the key, and paired with the
      * parameter value, which are passed to the template when the template
      * is instantiated.
@@ -32,7 +32,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * underscores (_), and must not start with a number. The maximum length is
      * 40 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -73,20 +73,20 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * - placement.clusterSelector.clusterLabels
      * - jobs['step-id'].sparkJob.args
      *
-     * Generated from protobuf field <code>repeated string fields = 2;</code>
+     * Generated from protobuf field <code>repeated string fields = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $fields;
     /**
      * Optional. Brief description of the parameter.
      * Must not exceed 1024 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
      * Optional. Validation rules to be applied to this parameter's value.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ParameterValidation validation = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ParameterValidation validation = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $validation = null;
 
@@ -97,7 +97,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.  Parameter name.
+     *           Required. Parameter name.
      *           The parameter name is used as the key, and paired with the
      *           parameter value, which are passed to the template when the template
      *           is instantiated.
@@ -154,7 +154,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.  Parameter name.
+     * Required. Parameter name.
      * The parameter name is used as the key, and paired with the
      * parameter value, which are passed to the template when the template
      * is instantiated.
@@ -162,7 +162,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * underscores (_), and must not start with a number. The maximum length is
      * 40 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -171,7 +171,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.  Parameter name.
+     * Required. Parameter name.
      * The parameter name is used as the key, and paired with the
      * parameter value, which are passed to the template when the template
      * is instantiated.
@@ -179,7 +179,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * underscores (_), and must not start with a number. The maximum length is
      * 40 characters.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -229,7 +229,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * - placement.clusterSelector.clusterLabels
      * - jobs['step-id'].sparkJob.args
      *
-     * Generated from protobuf field <code>repeated string fields = 2;</code>
+     * Generated from protobuf field <code>repeated string fields = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFields()
@@ -275,7 +275,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * - placement.clusterSelector.clusterLabels
      * - jobs['step-id'].sparkJob.args
      *
-     * Generated from protobuf field <code>repeated string fields = 2;</code>
+     * Generated from protobuf field <code>repeated string fields = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -291,7 +291,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * Optional. Brief description of the parameter.
      * Must not exceed 1024 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -303,7 +303,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * Optional. Brief description of the parameter.
      * Must not exceed 1024 characters.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -318,7 +318,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Validation rules to be applied to this parameter's value.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ParameterValidation validation = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ParameterValidation validation = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\ParameterValidation
      */
     public function getValidation()
@@ -329,7 +329,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Validation rules to be applied to this parameter's value.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ParameterValidation validation = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ParameterValidation validation = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\ParameterValidation $var
      * @return $this
      */

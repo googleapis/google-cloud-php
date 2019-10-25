@@ -20,13 +20,13 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
      * "pd-standard" (Persistent Disk Hard Disk Drive).
      *
-     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $boot_disk_type = '';
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
-     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
+     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $boot_disk_size_gb = 0;
     /**
@@ -37,7 +37,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
      *
-     * Generated from protobuf field <code>int32 num_local_ssds = 2;</code>
+     * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $num_local_ssds = 0;
 
@@ -72,7 +72,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
      * "pd-standard" (Persistent Disk Hard Disk Drive).
      *
-     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getBootDiskType()
@@ -85,7 +85,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
      * "pd-standard" (Persistent Disk Hard Disk Drive).
      *
-     * Generated from protobuf field <code>string boot_disk_type = 3;</code>
+     * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +100,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
-     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
+     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getBootDiskSizeGb()
@@ -111,7 +111,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      *
-     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1;</code>
+     * Generated from protobuf field <code>int32 boot_disk_size_gb = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -131,7 +131,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
      *
-     * Generated from protobuf field <code>int32 num_local_ssds = 2;</code>
+     * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getNumLocalSsds()
@@ -147,7 +147,7 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * data is spread across them, and the boot disk contains only basic
      * config and installed binaries.
      *
-     * Generated from protobuf field <code>int32 num_local_ssds = 2;</code>
+     * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

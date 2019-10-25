@@ -72,7 +72,11 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        $this->traceClient = new TraceServiceClient($gaxConfig);
+        if (isset($config['apiEndpoint'])) {
+            $gaxConfig['apiEndpoint'] = $config['apiEndpoint'];
+        }
+
+        $this->traceClient = $this->constructGapic(TraceServiceClient::class, $gaxConfig);
     }
 
     /**

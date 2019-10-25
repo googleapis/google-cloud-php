@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * List jobs response.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ListJobsResponse</code>

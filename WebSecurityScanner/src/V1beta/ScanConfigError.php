@@ -19,14 +19,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScanConfigError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
      * Indicates the reason code for a configuration failure.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfigError.Code code = 1;</code>
      */
     private $code = 0;
     /**
-     * Output only.
      * Indicates the full name of the ScanConfig field that triggers this error,
      * for example "scan_config.max_qps". This field is provided for
      * troubleshooting purposes only and its actual value can change in the
@@ -43,10 +41,8 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $code
-     *           Output only.
      *           Indicates the reason code for a configuration failure.
      *     @type string $field_name
-     *           Output only.
      *           Indicates the full name of the ScanConfig field that triggers this error,
      *           for example "scan_config.max_qps". This field is provided for
      *           troubleshooting purposes only and its actual value can change in the
@@ -59,7 +55,6 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the reason code for a configuration failure.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfigError.Code code = 1;</code>
@@ -71,7 +66,6 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the reason code for a configuration failure.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfigError.Code code = 1;</code>
@@ -87,7 +81,6 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the full name of the ScanConfig field that triggers this error,
      * for example "scan_config.max_qps". This field is provided for
      * troubleshooting purposes only and its actual value can change in the
@@ -102,7 +95,6 @@ class ScanConfigError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
      * Indicates the full name of the ScanConfig field that triggers this error,
      * for example "scan_config.max_qps". This field is provided for
      * troubleshooting purposes only and its actual value can change in the

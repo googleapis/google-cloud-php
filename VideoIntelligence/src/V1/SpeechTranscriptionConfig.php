@@ -16,60 +16,60 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Required* The language of the supplied audio as a
+     * Required. *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Optional. Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechTranscription`. The server may return fewer than
      * `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will
      * return a maximum of one. If omitted, will return a maximum of one.
      *
-     * Generated from protobuf field <code>int32 max_alternatives = 2;</code>
+     * Generated from protobuf field <code>int32 max_alternatives = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_alternatives = 0;
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out
+     * Optional. If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
      *
-     * Generated from protobuf field <code>bool filter_profanity = 3;</code>
+     * Generated from protobuf field <code>bool filter_profanity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter_profanity = false;
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * Optional. A means to provide context to assist the speech recognition.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $speech_contexts;
     /**
-     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * Optional. If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all. The default 'false' value
      * does not add punctuation to result hypotheses. NOTE: "This is currently
      * offered as an experimental service, complimentary to all users. In the
      * future this may be exclusively available as a premium feature."
      *
-     * Generated from protobuf field <code>bool enable_automatic_punctuation = 5;</code>
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_automatic_punctuation = false;
     /**
-     * *Optional* For file formats, such as MXF or MKV, supporting multiple audio
+     * Optional. For file formats, such as MXF or MKV, supporting multiple audio
      * tracks, specify up to two tracks. Default: track 0.
      *
-     * Generated from protobuf field <code>repeated int32 audio_tracks = 6;</code>
+     * Generated from protobuf field <code>repeated int32 audio_tracks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $audio_tracks;
     /**
-     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * Optional. If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: When this is true, we send all the words from the beginning of the
@@ -77,24 +77,23 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * This is done in order to improve our speaker tags as our models learn to
      * identify the speakers in the conversation over time.
      *
-     * Generated from protobuf field <code>bool enable_speaker_diarization = 7;</code>
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_speaker_diarization = false;
     /**
-     * *Optional*
-     * If set, specifies the estimated number of speakers in the conversation.
+     * Optional. If set, specifies the estimated number of speakers in the conversation.
      * If not set, defaults to '2'.
      * Ignored unless enable_speaker_diarization is set to true.
      *
-     * Generated from protobuf field <code>int32 diarization_speaker_count = 8;</code>
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $diarization_speaker_count = 0;
     /**
-     * *Optional* If `true`, the top result includes a list of words and the
+     * Optional. If `true`, the top result includes a list of words and the
      * confidence for those words. If `false`, no word-level confidence
      * information is returned. The default is `false`.
      *
-     * Generated from protobuf field <code>bool enable_word_confidence = 9;</code>
+     * Generated from protobuf field <code>bool enable_word_confidence = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_word_confidence = false;
 
@@ -105,36 +104,36 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           *Required* The language of the supplied audio as a
+     *           Required. *Required* The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      *           Example: "en-US".
      *           See [Language Support](https://cloud.google.com/speech/docs/languages)
      *           for a list of the currently supported language codes.
      *     @type int $max_alternatives
-     *           *Optional* Maximum number of recognition hypotheses to be returned.
+     *           Optional. Maximum number of recognition hypotheses to be returned.
      *           Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      *           within each `SpeechTranscription`. The server may return fewer than
      *           `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will
      *           return a maximum of one. If omitted, will return a maximum of one.
      *     @type bool $filter_profanity
-     *           *Optional* If set to `true`, the server will attempt to filter out
+     *           Optional. If set to `true`, the server will attempt to filter out
      *           profanities, replacing all but the initial character in each filtered word
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
      *     @type \Google\Cloud\VideoIntelligence\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
-     *           *Optional* A means to provide context to assist the speech recognition.
+     *           Optional. A means to provide context to assist the speech recognition.
      *     @type bool $enable_automatic_punctuation
-     *           *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     *           Optional. If 'true', adds punctuation to recognition result hypotheses.
      *           This feature is only available in select languages. Setting this for
      *           requests in other languages has no effect at all. The default 'false' value
      *           does not add punctuation to result hypotheses. NOTE: "This is currently
      *           offered as an experimental service, complimentary to all users. In the
      *           future this may be exclusively available as a premium feature."
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $audio_tracks
-     *           *Optional* For file formats, such as MXF or MKV, supporting multiple audio
+     *           Optional. For file formats, such as MXF or MKV, supporting multiple audio
      *           tracks, specify up to two tracks. Default: track 0.
      *     @type bool $enable_speaker_diarization
-     *           *Optional* If 'true', enables speaker detection for each recognized word in
+     *           Optional. If 'true', enables speaker detection for each recognized word in
      *           the top alternative of the recognition result using a speaker_tag provided
      *           in the WordInfo.
      *           Note: When this is true, we send all the words from the beginning of the
@@ -142,12 +141,11 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *           This is done in order to improve our speaker tags as our models learn to
      *           identify the speakers in the conversation over time.
      *     @type int $diarization_speaker_count
-     *           *Optional*
-     *           If set, specifies the estimated number of speakers in the conversation.
+     *           Optional. If set, specifies the estimated number of speakers in the conversation.
      *           If not set, defaults to '2'.
      *           Ignored unless enable_speaker_diarization is set to true.
      *     @type bool $enable_word_confidence
-     *           *Optional* If `true`, the top result includes a list of words and the
+     *           Optional. If `true`, the top result includes a list of words and the
      *           confidence for those words. If `false`, no word-level confidence
      *           information is returned. The default is `false`.
      * }
@@ -158,13 +156,13 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* The language of the supplied audio as a
+     * Required. *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -173,13 +171,13 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* The language of the supplied audio as a
+     * Required. *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      *
-     * Generated from protobuf field <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -192,13 +190,13 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Optional. Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechTranscription`. The server may return fewer than
      * `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will
      * return a maximum of one. If omitted, will return a maximum of one.
      *
-     * Generated from protobuf field <code>int32 max_alternatives = 2;</code>
+     * Generated from protobuf field <code>int32 max_alternatives = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxAlternatives()
@@ -207,13 +205,13 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Optional. Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechTranscription`. The server may return fewer than
      * `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will
      * return a maximum of one. If omitted, will return a maximum of one.
      *
-     * Generated from protobuf field <code>int32 max_alternatives = 2;</code>
+     * Generated from protobuf field <code>int32 max_alternatives = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -226,12 +224,12 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out
+     * Optional. If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
      *
-     * Generated from protobuf field <code>bool filter_profanity = 3;</code>
+     * Generated from protobuf field <code>bool filter_profanity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getFilterProfanity()
@@ -240,12 +238,12 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out
+     * Optional. If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
      *
-     * Generated from protobuf field <code>bool filter_profanity = 3;</code>
+     * Generated from protobuf field <code>bool filter_profanity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -258,9 +256,9 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * Optional. A means to provide context to assist the speech recognition.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSpeechContexts()
@@ -269,9 +267,9 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* A means to provide context to assist the speech recognition.
+     * Optional. A means to provide context to assist the speech recognition.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\VideoIntelligence\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -284,14 +282,14 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * Optional. If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all. The default 'false' value
      * does not add punctuation to result hypotheses. NOTE: "This is currently
      * offered as an experimental service, complimentary to all users. In the
      * future this may be exclusively available as a premium feature."
      *
-     * Generated from protobuf field <code>bool enable_automatic_punctuation = 5;</code>
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableAutomaticPunctuation()
@@ -300,14 +298,14 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * Optional. If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all. The default 'false' value
      * does not add punctuation to result hypotheses. NOTE: "This is currently
      * offered as an experimental service, complimentary to all users. In the
      * future this may be exclusively available as a premium feature."
      *
-     * Generated from protobuf field <code>bool enable_automatic_punctuation = 5;</code>
+     * Generated from protobuf field <code>bool enable_automatic_punctuation = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -320,10 +318,10 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* For file formats, such as MXF or MKV, supporting multiple audio
+     * Optional. For file formats, such as MXF or MKV, supporting multiple audio
      * tracks, specify up to two tracks. Default: track 0.
      *
-     * Generated from protobuf field <code>repeated int32 audio_tracks = 6;</code>
+     * Generated from protobuf field <code>repeated int32 audio_tracks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAudioTracks()
@@ -332,10 +330,10 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* For file formats, such as MXF or MKV, supporting multiple audio
+     * Optional. For file formats, such as MXF or MKV, supporting multiple audio
      * tracks, specify up to two tracks. Default: track 0.
      *
-     * Generated from protobuf field <code>repeated int32 audio_tracks = 6;</code>
+     * Generated from protobuf field <code>repeated int32 audio_tracks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -348,7 +346,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * Optional. If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: When this is true, we send all the words from the beginning of the
@@ -356,7 +354,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * This is done in order to improve our speaker tags as our models learn to
      * identify the speakers in the conversation over time.
      *
-     * Generated from protobuf field <code>bool enable_speaker_diarization = 7;</code>
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableSpeakerDiarization()
@@ -365,7 +363,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * Optional. If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: When this is true, we send all the words from the beginning of the
@@ -373,7 +371,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * This is done in order to improve our speaker tags as our models learn to
      * identify the speakers in the conversation over time.
      *
-     * Generated from protobuf field <code>bool enable_speaker_diarization = 7;</code>
+     * Generated from protobuf field <code>bool enable_speaker_diarization = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -386,12 +384,11 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional*
-     * If set, specifies the estimated number of speakers in the conversation.
+     * Optional. If set, specifies the estimated number of speakers in the conversation.
      * If not set, defaults to '2'.
      * Ignored unless enable_speaker_diarization is set to true.
      *
-     * Generated from protobuf field <code>int32 diarization_speaker_count = 8;</code>
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getDiarizationSpeakerCount()
@@ -400,12 +397,11 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional*
-     * If set, specifies the estimated number of speakers in the conversation.
+     * Optional. If set, specifies the estimated number of speakers in the conversation.
      * If not set, defaults to '2'.
      * Ignored unless enable_speaker_diarization is set to true.
      *
-     * Generated from protobuf field <code>int32 diarization_speaker_count = 8;</code>
+     * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -418,11 +414,11 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `true`, the top result includes a list of words and the
+     * Optional. If `true`, the top result includes a list of words and the
      * confidence for those words. If `false`, no word-level confidence
      * information is returned. The default is `false`.
      *
-     * Generated from protobuf field <code>bool enable_word_confidence = 9;</code>
+     * Generated from protobuf field <code>bool enable_word_confidence = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableWordConfidence()
@@ -431,11 +427,11 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `true`, the top result includes a list of words and the
+     * Optional. If `true`, the top result includes a list of words and the
      * confidence for those words. If `false`, no word-level confidence
      * information is returned. The default is `false`.
      *
-     * Generated from protobuf field <code>bool enable_word_confidence = 9;</code>
+     * Generated from protobuf field <code>bool enable_word_confidence = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

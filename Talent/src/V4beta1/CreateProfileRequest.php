@@ -16,19 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The name of the tenant this profile belongs to.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * Required. The name of the tenant this profile belongs to.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required.
-     * The profile to be created.
+     * Required. The profile to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $profile = null;
 
@@ -39,13 +37,11 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The name of the tenant this profile belongs to.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenants/foo".
+     *           Required. The name of the tenant this profile belongs to.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenants/bar".
      *     @type \Google\Cloud\Talent\V4beta1\Profile $profile
-     *           Required.
-     *           The profile to be created.
+     *           Required. The profile to be created.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,12 +50,11 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the tenant this profile belongs to.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * Required. The name of the tenant this profile belongs to.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -68,12 +63,11 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The name of the tenant this profile belongs to.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * Required. The name of the tenant this profile belongs to.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -86,10 +80,9 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The profile to be created.
+     * Required. The profile to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Profile
      */
     public function getProfile()
@@ -98,10 +91,9 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The profile to be created.
+     * Required. The profile to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Profile $var
      * @return $this
      */

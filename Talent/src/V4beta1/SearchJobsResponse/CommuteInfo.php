@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
  * Commute details related to this job.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.SearchJobsResponse.CommuteInfo</code>

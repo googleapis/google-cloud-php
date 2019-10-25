@@ -16,19 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The company resource to replace the current resource in the system.
+     * Required. The company resource to replace the current resource in the
+     * system.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company company = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company company = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $company = null;
     /**
-     * Optional but strongly recommended for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     * [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If
+     * [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     * is provided, only the specified fields in
+     * [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     * updated. Otherwise all the fields are updated.
      * A field mask to specify the company fields to be updated. Only
-     * top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     * top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -41,15 +44,18 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Company $company
-     *           Required.
-     *           The company resource to replace the current resource in the system.
+     *           Required. The company resource to replace the current resource in the
+     *           system.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional but strongly recommended for the best service
-     *           experience.
-     *           If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     *           [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     *           Strongly recommended for the best service experience.
+     *           If
+     *           [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     *           is provided, only the specified fields in
+     *           [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     *           updated. Otherwise all the fields are updated.
      *           A field mask to specify the company fields to be updated. Only
-     *           top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     *           top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     *           supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,10 +64,10 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The company resource to replace the current resource in the system.
+     * Required. The company resource to replace the current resource in the
+     * system.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company company = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company company = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Company
      */
     public function getCompany()
@@ -70,10 +76,10 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The company resource to replace the current resource in the system.
+     * Required. The company resource to replace the current resource in the
+     * system.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company company = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Company company = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Company $var
      * @return $this
      */
@@ -86,12 +92,15 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     * [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If
+     * [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     * is provided, only the specified fields in
+     * [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     * updated. Otherwise all the fields are updated.
      * A field mask to specify the company fields to be updated. Only
-     * top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     * top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -102,12 +111,15 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask] is provided, only the specified fields in
-     * [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If
+     * [update_mask][google.cloud.talent.v4beta1.UpdateCompanyRequest.update_mask]
+     * is provided, only the specified fields in
+     * [company][google.cloud.talent.v4beta1.UpdateCompanyRequest.company] are
+     * updated. Otherwise all the fields are updated.
      * A field mask to specify the company fields to be updated. Only
-     * top level fields of [Company][google.cloud.talent.v4beta1.Company] are supported.
+     * top level fields of [Company][google.cloud.talent.v4beta1.Company] are
+     * supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

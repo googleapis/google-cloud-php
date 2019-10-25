@@ -16,19 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTenantRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required.
-     * The tenant to be created.
+     * Required. The tenant to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $tenant = null;
 
@@ -39,13 +37,11 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           Resource name of the project under which the tenant is created.
+     *           Required. Resource name of the project under which the tenant is created.
      *           The format is "projects/{project_id}", for example,
-     *           "projects/api-test-project".
+     *           "projects/foo".
      *     @type \Google\Cloud\Talent\V4beta1\Tenant $tenant
-     *           Required.
-     *           The tenant to be created.
+     *           Required. The tenant to be created.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,12 +50,11 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -68,12 +63,11 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Resource name of the project under which the tenant is created.
+     * Required. Resource name of the project under which the tenant is created.
      * The format is "projects/{project_id}", for example,
-     * "projects/api-test-project".
+     * "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -86,10 +80,9 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The tenant to be created.
+     * Required. The tenant to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Tenant
      */
     public function getTenant()
@@ -98,10 +91,9 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The tenant to be created.
+     * Required. The tenant to be created.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Tenant $var
      * @return $this
      */

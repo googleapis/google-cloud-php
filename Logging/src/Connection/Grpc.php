@@ -112,9 +112,13 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
-        $this->configClient = new ConfigServiceV2Client($gaxConfig);
-        $this->loggingClient = new LoggingServiceV2Client($gaxConfig);
-        $this->metricsClient = new MetricsServiceV2Client($gaxConfig);
+        if (isset($config['apiEndpoint'])) {
+            $gaxConfig['apiEndpoint'] = $config['apiEndpoint'];
+        }
+
+        $this->configClient = $this->constructGapic(ConfigServiceV2Client::class, $gaxConfig);
+        $this->loggingClient = $this->constructGapic(LoggingServiceV2Client::class, $gaxConfig);
+        $this->metricsClient = $this->constructGapic(MetricsServiceV2Client::class, $gaxConfig);
     }
 
     /**

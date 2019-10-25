@@ -19,30 +19,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class YarnApplication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The application name.
+     * Output only. The application name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Required. The application state.
+     * Output only. The application state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.YarnApplication.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.YarnApplication.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
-     * Required. The numerical progress of the application, from 1 to 100.
+     * Output only. The numerical progress of the application, from 1 to 100.
      *
-     * Generated from protobuf field <code>float progress = 3;</code>
+     * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $progress = 0.0;
     /**
-     * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
      *
-     * Generated from protobuf field <code>string tracking_url = 4;</code>
+     * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $tracking_url = '';
 
@@ -53,13 +53,13 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The application name.
+     *           Output only. The application name.
      *     @type int $state
-     *           Required. The application state.
+     *           Output only. The application state.
      *     @type float $progress
-     *           Required. The numerical progress of the application, from 1 to 100.
+     *           Output only. The numerical progress of the application, from 1 to 100.
      *     @type string $tracking_url
-     *           Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     *           Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      *           TimelineServer that provides application-specific information. The URL uses
      *           the internal hostname, and requires a proxy server for resolution and,
      *           possibly, access.
@@ -71,9 +71,9 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The application name.
+     * Output only. The application name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -82,9 +82,9 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The application name.
+     * Output only. The application name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -97,9 +97,9 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The application state.
+     * Output only. The application state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.YarnApplication.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.YarnApplication.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -108,9 +108,9 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The application state.
+     * Output only. The application state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.YarnApplication.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.YarnApplication.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -123,9 +123,9 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The numerical progress of the application, from 1 to 100.
+     * Output only. The numerical progress of the application, from 1 to 100.
      *
-     * Generated from protobuf field <code>float progress = 3;</code>
+     * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getProgress()
@@ -134,9 +134,9 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The numerical progress of the application, from 1 to 100.
+     * Output only. The numerical progress of the application, from 1 to 100.
      *
-     * Generated from protobuf field <code>float progress = 3;</code>
+     * Generated from protobuf field <code>float progress = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
@@ -149,12 +149,12 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
      *
-     * Generated from protobuf field <code>string tracking_url = 4;</code>
+     * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getTrackingUrl()
@@ -163,12 +163,12 @@ class YarnApplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
+     * Optional. Output only. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL uses
      * the internal hostname, and requires a proxy server for resolution and,
      * possibly, access.
      *
-     * Generated from protobuf field <code>string tracking_url = 4;</code>
+     * Generated from protobuf field <code>string tracking_url = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

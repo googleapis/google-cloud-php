@@ -128,7 +128,7 @@ class ProfileServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/profile_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/profile_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/profile_service_grpc_config.json',
@@ -260,6 +260,9 @@ class ProfileServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'jobs.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -287,7 +290,7 @@ class ProfileServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -340,15 +343,32 @@ class ProfileServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
+     * @param string $parent Required. The resource name of the tenant under which the profile is
+     *                       created.
      *
-     * The resource name of the tenant under which the job is created.
-     *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
      * @param array $optionalArgs {
      *                            Optional.
      *
+     *     @type string $filter
+     *          The filter string specifies the profiles to be enumerated.
+     *
+     *          Supported operator: =, AND
+     *
+     *          The field(s) eligible for filtering are:
+     *
+     *          * `externalId`
+     *          * `groupId`
+     *
+     *          externalId and groupId cannot be specified at the same time. If both
+     *          externalId and groupId are provided, the API will return a bad request
+     *          error.
+     *
+     *          Sample Query:
+     *
+     *          * externalId = "externalId-1"
+     *          * groupId = "groupId-1"
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -359,8 +379,6 @@ class ProfileServiceGapicClient
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
      *     @type FieldMask $readMask
-     *          Optional.
-     *
      *          A field mask to specify the profile fields to be listed in response.
      *          All fields are listed if it is unset.
      *
@@ -383,6 +401,9 @@ class ProfileServiceGapicClient
     {
         $request = new ListProfilesRequest();
         $request->setParent($parent);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -423,17 +444,13 @@ class ProfileServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
+     * @param string $parent Required. The name of the tenant this profile belongs to.
      *
-     * The name of the tenant this profile belongs to.
-     *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
-     * @param Profile $profile Required.
-     *
-     * The profile to be created.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
+     * @param Profile $profile      Required. The profile to be created.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -482,13 +499,11 @@ class ProfileServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * Resource name of the profile to get.
+     * @param string $name Required. Resource name of the profile to get.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -538,44 +553,63 @@ class ProfileServiceGapicClient
      * }
      * ```
      *
-     * @param Profile $profile Required.
-     *
-     * Profile to be updated.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param Profile $profile      Required. Profile to be updated.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional.
-     *
      *          A field mask to specify the profile fields to update.
      *
      *          A full update is performed if it is unset.
      *
      *          Valid values are:
      *
-     *          * externalId
+     *          * external_id
      *          * source
+     *          * source_types
      *          * uri
-     *          * isHirable
-     *          * createTime
-     *          * updateTime
-     *          * resumeHrxml
-     *          * personNames
+     *          * is_hirable
+     *          * create_time
+     *          * update_time
+     *          * candidate_update_time
+     *          * resume_update_time
+     *          * resume
+     *          * person_names
      *          * addresses
-     *          * emailAddresses
-     *          * phoneNumbers
-     *          * personalUris
-     *          * additionalContactInfo
-     *          * employmentRecords
-     *          * educationRecords
+     *          * email_addresses
+     *          * phone_numbers
+     *          * personal_uris
+     *          * additional_contact_info
+     *          * employment_records
+     *          * education_records
      *          * skills
-     *          * projects
+     *          * activities
      *          * publications
      *          * patents
      *          * certifications
-     *          * recruitingNotes
-     *          * customAttributes
-     *          * groupId
+     *          * recruiting_notes
+     *          * custom_attributes
+     *          * group_id
+     *          * external_system
+     *          * source_note
+     *          * primary_responsibilities
+     *          * citizenships
+     *          * work_authorizations
+     *          * employee_types
+     *          * language_code
+     *          * qualification_summary
+     *          * allowed_contact_types
+     *          * preferred_contact_types
+     *          * contact_availability
+     *          * language_fluencies
+     *          * work_preference
+     *          * industry_experiences
+     *          * work_environment_experiences
+     *          * work_availability
+     *          * security_clearances
+     *          * references
+     *          * assessments
+     *          * interviews
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -627,13 +661,11 @@ class ProfileServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required.
-     *
-     * Resource name of the profile to be deleted.
+     * @param string $name Required. Resource name of the profile to be deleted.
      *
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}". For
+     * example, "projects/foo/tenants/bar/profiles/baz".
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -673,7 +705,9 @@ class ProfileServiceGapicClient
      * For example, search by raw queries "software engineer in Mountain View" or
      * search by structured filters (location filter, education filter, etc.).
      *
-     * See [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest] for more information.
+     * See
+     * [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
+     * for more information.
      *
      * Sample code:
      * ```
@@ -702,24 +736,19 @@ class ProfileServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent Required.
+     * @param string $parent Required. The resource name of the tenant to search within.
      *
-     * The resource name of the tenant to search within.
-     *
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenants/foo".
-     * @param RequestMetadata $requestMetadata Required.
-     *
-     * The meta information collected about the profile search user. This is used
-     * to improve the search quality of the service. These values are provided by
-     * users, and must be precise and consistent.
-     * @param array $optionalArgs {
-     *                            Optional.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenants/bar".
+     * @param RequestMetadata $requestMetadata Required. The meta information collected about the profile search user.
+     *                                         This is used to improve the search quality of the service. These values are
+     *                                         provided by users, and must be precise and consistent.
+     * @param array           $optionalArgs    {
+     *                                         Optional.
      *
      *     @type ProfileQuery $profileQuery
-     *          Optional.
-     *
-     *          Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
+     *          Search query to execute. See
+     *          [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -730,10 +759,10 @@ class ProfileServiceGapicClient
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
      *     @type int $offset
-     *          Optional.
-     *
      *          An integer that specifies the current offset (that is, starting result) in
-     *          search results. This field is only considered if [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token] is unset.
+     *          search results. This field is only considered if
+     *          [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     *          is unset.
      *
      *          The maximum allowed value is 5000. Otherwise an error is thrown.
      *
@@ -741,15 +770,11 @@ class ProfileServiceGapicClient
      *          search from the 11th profile. This can be used for pagination, for example
      *          pageSize = 10 and offset = 10 means to search from the second page.
      *     @type bool $disableSpellCheck
-     *          Optional.
-     *
      *          This flag controls the spell-check feature. If `false`, the
      *          service attempts to correct a misspelled query.
      *
      *          For example, "enginee" is corrected to "engineer".
      *     @type string $orderBy
-     *          Optional.
-     *
      *          The criteria that determines how search results are sorted.
      *          Defaults is "relevance desc" if no value is specified.
      *
@@ -757,32 +782,38 @@ class ProfileServiceGapicClient
      *
      *          * "relevance desc": By descending relevance, as determined by the API
      *             algorithms.
-     *          * "update_date desc": Sort by [Profile.update_date][] in descending order
+     *          * "update_date desc": Sort by
+     *          [Profile.update_time][google.cloud.talent.v4beta1.Profile.update_time] in
+     *          descending order
      *            (recently updated profiles first).
-     *          * "create_date desc": Sort by [Profile.create_date][] in descending order
+     *          * "create_date desc": Sort by
+     *          [Profile.create_time][google.cloud.talent.v4beta1.Profile.create_time] in
+     *          descending order
      *            (recently created profiles first).
-     *          * "first_name": Sort by [PersonStrcuturedName.given_name][] in ascending
-     *            order.
-     *          * "first_name desc": Sort by [PersonStrcuturedName.given_name][] in
-     *            descending order.
-     *          * "last_name": Sort by [PersonStrcuturedName.family_name][] in ascending
-     *            order.
-     *          * "last_name desc": Sort by [PersonStrcuturedName.family_name][] in
+     *          * "first_name": Sort by
+     *          [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
+     *          in
      *            ascending order.
+     *          * "first_name desc": Sort by
+     *          [PersonName.PersonStructuredName.given_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.given_name]
+     *            in descending order.
+     *          * "last_name": Sort by
+     *          [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
+     *          in
+     *            ascending order.
+     *          * "last_name desc": Sort by
+     *          [PersonName.PersonStructuredName.family_name][google.cloud.talent.v4beta1.PersonName.PersonStructuredName.family_name]
+     *            in ascending order.
      *     @type bool $caseSensitiveSort
-     *          Optional.
-     *
      *          When sort by field is based on alphabetical order, sort values case
      *          sensitively (based on ASCII) when the value is set to true. Default value
      *          is case in-sensitive sort (false).
      *     @type HistogramQuery[] $histogramQueries
-     *          Optional.
-     *
      *          A list of expressions specifies histogram requests against matching
-     *          profiles for [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
+     *          profiles for
+     *          [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest].
      *
-     *          The expression syntax looks like a function definition with optional
-     *          parameters.
+     *          The expression syntax looks like a function definition with parameters.
      *
      *          Function syntax: function_name(histogram_facet[, list of buckets])
      *
@@ -832,13 +863,19 @@ class ProfileServiceGapicClient
      *          * experience_in_months: experience in months. 0 means 0 month to 1 month
      *          (exclusive).
      *          * application_date: The application date specifies application start dates.
-     *          See [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter] for more details.
+     *          See
+     *          [ApplicationDateFilter][google.cloud.talent.v4beta1.ApplicationDateFilter]
+     *          for more details.
      *          * application_outcome_notes: The application outcome reason specifies the
      *          reasons behind the outcome of the job application.
-     *          See [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter] for more details.
+     *          See
+     *          [ApplicationOutcomeNotesFilter][google.cloud.talent.v4beta1.ApplicationOutcomeNotesFilter]
+     *          for more details.
      *          * application_job_title: The application job title specifies the job
      *          applied for in the application.
-     *          See [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter] for more details.
+     *          See
+     *          [ApplicationJobFilter][google.cloud.talent.v4beta1.ApplicationJobFilter]
+     *          for more details.
      *          * hirable_status: Hirable status specifies the profile's hirable status.
      *          * string_custom_attribute: String custom attributes. Values can be accessed
      *          via square bracket notation like string_custom_attribute["key1"].
@@ -853,6 +890,51 @@ class ProfileServiceGapicClient
      *          * count(string_custom_attribute["assigned_recruiter"])
      *          * count(numeric_custom_attribute["favorite_number"],
      *          [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])
+     *     @type string $resultSetId
+     *          An id that uniquely identifies the result set of a
+     *          [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles]
+     *          call. The id should be retrieved from the
+     *          [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
+     *          message returned from a previous invocation of
+     *          [SearchProfiles][google.cloud.talent.v4beta1.ProfileService.SearchProfiles].
+     *
+     *          A result set is an ordered list of search results.
+     *
+     *          If this field is not set, a new result set is computed based on the
+     *          [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query].
+     *          A new
+     *          [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
+     *          is returned as a handle to access this result set.
+     *
+     *          If this field is set, the service will ignore the resource and
+     *          [profile_query][google.cloud.talent.v4beta1.SearchProfilesRequest.profile_query]
+     *          values, and simply retrieve a page of results from the corresponding result
+     *          set.  In this case, one and only one of
+     *          [page_token][google.cloud.talent.v4beta1.SearchProfilesRequest.page_token]
+     *          or [offset][google.cloud.talent.v4beta1.SearchProfilesRequest.offset] must
+     *          be set.
+     *
+     *          A typical use case is to invoke
+     *          [SearchProfilesRequest][google.cloud.talent.v4beta1.SearchProfilesRequest]
+     *          without this field, then use the resulting
+     *          [result_set_id][google.cloud.talent.v4beta1.SearchProfilesRequest.result_set_id]
+     *          in
+     *          [SearchProfilesResponse][google.cloud.talent.v4beta1.SearchProfilesResponse]
+     *          to page through the results.
+     *     @type bool $strictKeywordsSearch
+     *          This flag is used to indicate whether the service will attempt to
+     *          understand synonyms and terms related to the search query or treat the
+     *          query "as is" when it generates a set of results. By default this flag is
+     *          set to false, thus allowing expanded results to also be returned. For
+     *          example a search for "software engineer" might also return candidates who
+     *          have experience in jobs similar to software engineer positions. By setting
+     *          this flag to true, the service will only attempt to deliver candidates has
+     *          software engineer in his/her global fields by treating "software engineer"
+     *          as a keyword.
+     *
+     *          It is recommended to provide a feature in the UI (such as a checkbox) to
+     *          allow recruiters to set this flag to true if they intend to search for
+     *          longer boolean strings.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -893,6 +975,12 @@ class ProfileServiceGapicClient
         }
         if (isset($optionalArgs['histogramQueries'])) {
             $request->setHistogramQueries($optionalArgs['histogramQueries']);
+        }
+        if (isset($optionalArgs['resultSetId'])) {
+            $request->setResultSetId($optionalArgs['resultSetId']);
+        }
+        if (isset($optionalArgs['strictKeywordsSearch'])) {
+            $request->setStrictKeywordsSearch($optionalArgs['strictKeywordsSearch']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([

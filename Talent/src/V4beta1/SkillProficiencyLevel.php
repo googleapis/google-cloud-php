@@ -20,6 +20,12 @@ class SkillProficiencyLevel
      */
     const SKILL_PROFICIENCY_LEVEL_UNSPECIFIED = 0;
     /**
+     * Lacks any proficiency in this skill.
+     *
+     * Generated from protobuf enum <code>UNSKILLED = 6;</code>
+     */
+    const UNSKILLED = 6;
+    /**
      * Have a common knowledge or an understanding of basic techniques and
      * concepts.
      *
@@ -56,6 +62,7 @@ class SkillProficiencyLevel
 
     private static $valueToName = [
         self::SKILL_PROFICIENCY_LEVEL_UNSPECIFIED => 'SKILL_PROFICIENCY_LEVEL_UNSPECIFIED',
+        self::UNSKILLED => 'UNSKILLED',
         self::FUNDAMENTAL_AWARENESS => 'FUNDAMENTAL_AWARENESS',
         self::NOVICE => 'NOVICE',
         self::INTERMEDIATE => 'INTERMEDIATE',

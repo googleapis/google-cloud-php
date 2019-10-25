@@ -19,14 +19,14 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      * Output only. The map of port descriptions to URLs. Will only be populated
      * if enable_http_port_access is true.
      *
-     * Generated from protobuf field <code>map<string, string> http_ports = 1;</code>
+     * Generated from protobuf field <code>map<string, string> http_ports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $http_ports;
     /**
      * Optional. If true, enable http access to specific ports on the cluster
      * from external sources. Defaults to false.
      *
-     * Generated from protobuf field <code>bool enable_http_port_access = 2;</code>
+     * Generated from protobuf field <code>bool enable_http_port_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_http_port_access = false;
 
@@ -53,7 +53,7 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      * Output only. The map of port descriptions to URLs. Will only be populated
      * if enable_http_port_access is true.
      *
-     * Generated from protobuf field <code>map<string, string> http_ports = 1;</code>
+     * Generated from protobuf field <code>map<string, string> http_ports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getHttpPorts()
@@ -65,7 +65,7 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      * Output only. The map of port descriptions to URLs. Will only be populated
      * if enable_http_port_access is true.
      *
-     * Generated from protobuf field <code>map<string, string> http_ports = 1;</code>
+     * Generated from protobuf field <code>map<string, string> http_ports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -81,7 +81,7 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      * Optional. If true, enable http access to specific ports on the cluster
      * from external sources. Defaults to false.
      *
-     * Generated from protobuf field <code>bool enable_http_port_access = 2;</code>
+     * Generated from protobuf field <code>bool enable_http_port_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getEnableHttpPortAccess()
@@ -93,7 +93,7 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
      * Optional. If true, enable http access to specific ports on the cluster
      * from external sources. Defaults to false.
      *
-     * Generated from protobuf field <code>bool enable_http_port_access = 2;</code>
+     * Generated from protobuf field <code>bool enable_http_port_access = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

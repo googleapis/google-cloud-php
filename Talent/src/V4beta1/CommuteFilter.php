@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Parameters needed for commute search.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.CommuteFilter</code>
@@ -17,30 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class CommuteFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The method of transportation for which to calculate the commute time.
+     * Required. The method of transportation to calculate the commute time for.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $commute_method = 0;
     /**
-     * Required.
-     * The latitude and longitude of the location from which to calculate the
-     * commute time.
+     * Required. The latitude and longitude of the location to calculate the
+     * commute time from.
      *
-     * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2;</code>
+     * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $start_coordinates = null;
     /**
-     * Required.
-     * The maximum travel time in seconds. The maximum allowed value is `3600s`
-     * (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is
+     * `3600s` (one hour). Format is `123s`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $travel_duration = null;
     /**
-     * Optional.
      * If `true`, jobs without street level addresses may also be returned.
      * For city level addresses, the city center is used. For state and coarser
      * level addresses, text matching is used.
@@ -59,28 +54,22 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $commute_method
-     *           Required.
-     *           The method of transportation for which to calculate the commute time.
+     *           Required. The method of transportation to calculate the commute time for.
      *     @type \Google\Type\LatLng $start_coordinates
-     *           Required.
-     *           The latitude and longitude of the location from which to calculate the
-     *           commute time.
+     *           Required. The latitude and longitude of the location to calculate the
+     *           commute time from.
      *     @type \Google\Protobuf\Duration $travel_duration
-     *           Required.
-     *           The maximum travel time in seconds. The maximum allowed value is `3600s`
-     *           (one hour). Format is `123s`.
+     *           Required. The maximum travel time in seconds. The maximum allowed value is
+     *           `3600s` (one hour). Format is `123s`.
      *     @type bool $allow_imprecise_addresses
-     *           Optional.
      *           If `true`, jobs without street level addresses may also be returned.
      *           For city level addresses, the city center is used. For state and coarser
      *           level addresses, text matching is used.
      *           If this field is set to `false` or isn't specified, only jobs that include
      *           street level addresses will be returned by commute search.
      *     @type int $road_traffic
-     *           Optional.
      *           Specifies the traffic density to use when calculating commute time.
      *     @type \Google\Type\TimeOfDay $departure_time
-     *           Optional.
      *           The departure time used to calculate traffic impact, represented as
      *           [google.type.TimeOfDay][google.type.TimeOfDay] in local time zone.
      *           Currently traffic model is restricted to hour level resolution.
@@ -92,10 +81,9 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The method of transportation for which to calculate the commute time.
+     * Required. The method of transportation to calculate the commute time for.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getCommuteMethod()
@@ -104,10 +92,9 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The method of transportation for which to calculate the commute time.
+     * Required. The method of transportation to calculate the commute time for.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteMethod commute_method = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -120,11 +107,10 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The latitude and longitude of the location from which to calculate the
-     * commute time.
+     * Required. The latitude and longitude of the location to calculate the
+     * commute time from.
      *
-     * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2;</code>
+     * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Type\LatLng
      */
     public function getStartCoordinates()
@@ -133,11 +119,10 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The latitude and longitude of the location from which to calculate the
-     * commute time.
+     * Required. The latitude and longitude of the location to calculate the
+     * commute time from.
      *
-     * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2;</code>
+     * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Type\LatLng $var
      * @return $this
      */
@@ -150,11 +135,10 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The maximum travel time in seconds. The maximum allowed value is `3600s`
-     * (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is
+     * `3600s` (one hour). Format is `123s`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration
      */
     public function getTravelDuration()
@@ -163,11 +147,10 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The maximum travel time in seconds. The maximum allowed value is `3600s`
-     * (one hour). Format is `123s`.
+     * Required. The maximum travel time in seconds. The maximum allowed value is
+     * `3600s` (one hour). Format is `123s`.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -180,7 +163,6 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * If `true`, jobs without street level addresses may also be returned.
      * For city level addresses, the city center is used. For state and coarser
      * level addresses, text matching is used.
@@ -196,7 +178,6 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * If `true`, jobs without street level addresses may also be returned.
      * For city level addresses, the city center is used. For state and coarser
      * level addresses, text matching is used.
@@ -216,7 +197,6 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Specifies the traffic density to use when calculating commute time.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteFilter.RoadTraffic road_traffic = 5;</code>
@@ -228,7 +208,6 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Specifies the traffic density to use when calculating commute time.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteFilter.RoadTraffic road_traffic = 5;</code>
@@ -244,7 +223,6 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The departure time used to calculate traffic impact, represented as
      * [google.type.TimeOfDay][google.type.TimeOfDay] in local time zone.
      * Currently traffic model is restricted to hour level resolution.
@@ -258,7 +236,6 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The departure time used to calculate traffic impact, represented as
      * [google.type.TimeOfDay][google.type.TimeOfDay] in local time zone.
      * Currently traffic model is restricted to hour level resolution.

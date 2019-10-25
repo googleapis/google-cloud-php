@@ -15,8 +15,6 @@
 """This script is used to synthesize generated parts of this library."""
 
 import os
-# https://github.com/googleapis/artman/pull/655#issuecomment-507784277
-os.environ["SYNTHTOOL_ARTMAN_VERSION"] = "0.29.1"
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -41,6 +39,37 @@ s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
 s.move(library / 'proto/src/GPBMetadata/Google/Devtools/Cloudtrace', 'metadata/')
+
+# document and utilize apiEndpoint instead of serviceAddress
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"@type string \$serviceAddress\n\s+\*\s+The address",
+    r"""@type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
+     *           The address""")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$transportConfig, and any \$serviceAddress",
+    r"$transportConfig, and any `$apiEndpoint`")
+
+# prevent proto messages from being marked final
+s.replace(
+    "src/V*/**/*.php",
+    r"final class",
+    r"class")
+
+# Replace "Unwrapped" with "Value" for method names.
+s.replace(
+    "src/V*/**/*.php",
+    r"public function ([s|g]\w{3,})Unwrapped",
+    r"public function \1Value"
+)
 
 # fix year
 s.replace(

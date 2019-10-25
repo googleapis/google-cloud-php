@@ -46,7 +46,7 @@ class EmulatorTraitTest extends TestCase
         $expected = $expected ?: $hostname;
 
         $res = $this->impl->call('emulatorGapicConfig', [$hostname]);
-        $this->assertEquals($expected, $res['serviceAddress']);
+        $this->assertEquals($expected, $res['apiEndpoint']);
         $this->assertNull($res['transportConfig']['grpc']['stubOpts']['credentials']);
     }
 

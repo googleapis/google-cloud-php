@@ -107,7 +107,7 @@ class AutoscalingPolicyServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/autoscaling_policy_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/autoscaling_policy_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/autoscaling_policy_service_grpc_config.json',
@@ -239,6 +239,9 @@ class AutoscalingPolicyServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'dataproc.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -266,7 +269,7 @@ class AutoscalingPolicyServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -305,10 +308,17 @@ class AutoscalingPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string            $parent       Required. The "resource name" of the region, as described
-     *                                        in https://cloud.google.com/apis/design/resource_names of the form
-     *                                        `projects/{project_id}/regions/{region}`.
-     * @param AutoscalingPolicy $policy       The autoscaling policy to create.
+     * @param string $parent Required. The "resource name" of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     *
+     * * For `projects.locations.autoscalingPolicies.create`, the resource name
+     *   has the following format:
+     *   `projects/{project_id}/locations/{location}`
+     * @param AutoscalingPolicy $policy       Required. The autoscaling policy to create.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -412,11 +422,18 @@ class AutoscalingPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The "resource name" of the autoscaling policy, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The "resource name" of the autoscaling policy, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     *
+     * * For `projects.locations.autoscalingPolicies.get`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -479,11 +496,18 @@ class AutoscalingPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The "resource name" of the region, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}`
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. The "resource name" of the region or location, as described
+     *                       in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.autoscalingPolicies.list`, the resource name
+     *   of the region has the following format:
+     *   `projects/{project_id}/regions/{region}`
+     *
+     * * For `projects.locations.autoscalingPolicies.list`, the resource name
+     *   of the location has the following format:
+     *   `projects/{project_id}/locations/{location}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
@@ -547,11 +571,18 @@ class AutoscalingPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The "resource name" of the autoscaling policy, as described
-     *                             in https://cloud.google.com/apis/design/resource_names of the form
-     *                             `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $name Required. The "resource name" of the autoscaling policy, as described
+     *                     in https://cloud.google.com/apis/design/resource_names.
+     *
+     * * For `projects.regions.autoscalingPolicies.delete`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/regions/{region}/autoscalingPolicies/{policy_id}`
+     *
+     * * For `projects.locations.autoscalingPolicies.delete`, the resource name
+     *   of the policy has the following format:
+     *   `projects/{project_id}/locations/{location}/autoscalingPolicies/{policy_id}`
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

@@ -39,7 +39,7 @@ class DebuggerClient
 {
     use ClientTrait;
 
-    const VERSION = '0.18.5';
+    const VERSION = '0.19.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/debugger.readonly';
@@ -65,6 +65,8 @@ class DebuggerClient
      * @param array $config [optional] {
      *     Configuration options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache used storing access

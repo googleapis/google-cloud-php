@@ -23,22 +23,21 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      */
     private $bounding_poly = null;
     /**
-     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     * be searched for similar images.
+     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
-     * Generated from protobuf field <code>string product_set = 6;</code>
+     * Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
      */
     private $product_set = '';
     /**
      * The list of product categories to search in. Currently, we only consider
-     * the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
-     * should be specified. The legacy categories "homegoods", "apparel", and
-     * "toys" are still supported but will be deprecated. For new products, please
-     * use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search
-     * accuracy. It is recommended to migrate existing products to these
-     * categories as well.
+     * the first category, and either "homegoods-v2", "apparel-v2", "toys-v2",
+     * "packagedgoods-v1", or "general-v1" should be specified. The legacy
+     * categories "homegoods", "apparel", and "toys" are still supported but will
+     * be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
+     * or "toys-v2" for better product search accuracy. It is recommended to
+     * migrate existing products to these categories as well.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
      */
@@ -66,18 +65,17 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      *           The bounding polygon around the area of interest in the image.
      *           Optional. If it is not specified, system discretion will be applied.
      *     @type string $product_set
-     *           The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     *           be searched for similar images.
+     *           The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $product_categories
      *           The list of product categories to search in. Currently, we only consider
-     *           the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
-     *           should be specified. The legacy categories "homegoods", "apparel", and
-     *           "toys" are still supported but will be deprecated. For new products, please
-     *           use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search
-     *           accuracy. It is recommended to migrate existing products to these
-     *           categories as well.
+     *           the first category, and either "homegoods-v2", "apparel-v2", "toys-v2",
+     *           "packagedgoods-v1", or "general-v1" should be specified. The legacy
+     *           categories "homegoods", "apparel", and "toys" are still supported but will
+     *           be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
+     *           or "toys-v2" for better product search accuracy. It is recommended to
+     *           migrate existing products to these categories as well.
      *     @type string $filter
      *           The filtering expression. This can be used to restrict search results based
      *           on Product labels. We currently support an AND of OR of key-value
@@ -122,12 +120,11 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     * be searched for similar images.
+     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
-     * Generated from protobuf field <code>string product_set = 6;</code>
+     * Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProductSet()
@@ -136,12 +133,11 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to
-     * be searched for similar images.
+     * The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
      *
-     * Generated from protobuf field <code>string product_set = 6;</code>
+     * Generated from protobuf field <code>string product_set = 6 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -155,12 +151,12 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of product categories to search in. Currently, we only consider
-     * the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
-     * should be specified. The legacy categories "homegoods", "apparel", and
-     * "toys" are still supported but will be deprecated. For new products, please
-     * use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search
-     * accuracy. It is recommended to migrate existing products to these
-     * categories as well.
+     * the first category, and either "homegoods-v2", "apparel-v2", "toys-v2",
+     * "packagedgoods-v1", or "general-v1" should be specified. The legacy
+     * categories "homegoods", "apparel", and "toys" are still supported but will
+     * be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
+     * or "toys-v2" for better product search accuracy. It is recommended to
+     * migrate existing products to these categories as well.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -172,12 +168,12 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of product categories to search in. Currently, we only consider
-     * the first category, and either "homegoods-v2", "apparel-v2", or "toys-v2"
-     * should be specified. The legacy categories "homegoods", "apparel", and
-     * "toys" are still supported but will be deprecated. For new products, please
-     * use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search
-     * accuracy. It is recommended to migrate existing products to these
-     * categories as well.
+     * the first category, and either "homegoods-v2", "apparel-v2", "toys-v2",
+     * "packagedgoods-v1", or "general-v1" should be specified. The legacy
+     * categories "homegoods", "apparel", and "toys" are still supported but will
+     * be deprecated. For new products, please use "homegoods-v2", "apparel-v2",
+     * or "toys-v2" for better product search accuracy. It is recommended to
+     * migrate existing products to these categories as well.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -16,7 +16,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class PersonalUri extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * The personal URI.
      * Number of characters allowed is 4,000.
      *
@@ -31,7 +30,6 @@ class PersonalUri extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Optional.
      *           The personal URI.
      *           Number of characters allowed is 4,000.
      * }
@@ -42,7 +40,6 @@ class PersonalUri extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The personal URI.
      * Number of characters allowed is 4,000.
      *
@@ -55,7 +52,6 @@ class PersonalUri extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The personal URI.
      * Number of characters allowed is 4,000.
      *

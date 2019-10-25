@@ -16,7 +16,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class Certification extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * Name of license or certification.
      * Number of characters allowed is 100.
      *
@@ -24,21 +23,18 @@ class Certification extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional.
      * Acquisition date or effective date of license or certification.
      *
      * Generated from protobuf field <code>.google.type.Date acquire_date = 2;</code>
      */
     private $acquire_date = null;
     /**
-     * Optional.
      * Expiration date of license of certification.
      *
      * Generated from protobuf field <code>.google.type.Date expire_date = 3;</code>
      */
     private $expire_date = null;
     /**
-     * Optional.
      * Authority of license, such as government.
      * Number of characters allowed is 100.
      *
@@ -46,7 +42,6 @@ class Certification extends \Google\Protobuf\Internal\Message
      */
     private $authority = '';
     /**
-     * Optional.
      * Description of license or certification.
      * Number of characters allowed is 100,000.
      *
@@ -61,21 +56,16 @@ class Certification extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           Optional.
      *           Name of license or certification.
      *           Number of characters allowed is 100.
      *     @type \Google\Type\Date $acquire_date
-     *           Optional.
      *           Acquisition date or effective date of license or certification.
      *     @type \Google\Type\Date $expire_date
-     *           Optional.
      *           Expiration date of license of certification.
      *     @type string $authority
-     *           Optional.
      *           Authority of license, such as government.
      *           Number of characters allowed is 100.
      *     @type string $description
-     *           Optional.
      *           Description of license or certification.
      *           Number of characters allowed is 100,000.
      * }
@@ -86,7 +76,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Name of license or certification.
      * Number of characters allowed is 100.
      *
@@ -99,7 +88,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Name of license or certification.
      * Number of characters allowed is 100.
      *
@@ -116,7 +104,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Acquisition date or effective date of license or certification.
      *
      * Generated from protobuf field <code>.google.type.Date acquire_date = 2;</code>
@@ -128,7 +115,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Acquisition date or effective date of license or certification.
      *
      * Generated from protobuf field <code>.google.type.Date acquire_date = 2;</code>
@@ -144,7 +130,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Expiration date of license of certification.
      *
      * Generated from protobuf field <code>.google.type.Date expire_date = 3;</code>
@@ -156,7 +141,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Expiration date of license of certification.
      *
      * Generated from protobuf field <code>.google.type.Date expire_date = 3;</code>
@@ -172,7 +156,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Authority of license, such as government.
      * Number of characters allowed is 100.
      *
@@ -185,7 +168,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Authority of license, such as government.
      * Number of characters allowed is 100.
      *
@@ -202,7 +184,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Description of license or certification.
      * Number of characters allowed is 100,000.
      *
@@ -215,7 +196,6 @@ class Certification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Description of license or certification.
      * Number of characters allowed is 100,000.
      *

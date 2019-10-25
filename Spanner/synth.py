@@ -15,8 +15,6 @@
 """This script is used to synthesize generated parts of this library."""
 
 import os
-# https://github.com/googleapis/artman/pull/655#issuecomment-507784277
-os.environ["SYNTHTOOL_ARTMAN_VERSION"] = "0.29.1"
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -43,16 +41,6 @@ s.move(library / f'tests/')
 # copy GPBMetadata file to metadata
 s.move(library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
 
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-
 # Spanner Database Admin also lives here
 admin_library = gapic.php_library(
     service='spanner-admin-database',
@@ -70,16 +58,6 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Database')
 
 # copy GPBMetadata file to metadata
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/Admin/Database/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 
 # Spanner Instance Admin also lives here
 admin_library = gapic.php_library(
@@ -99,26 +77,46 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance')
 # copy GPBMetadata file to metadata
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
 
+# document and utilize apiEndpoint instead of serviceAddress
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"@type string \$serviceAddress\n\s+\*\s+The address",
+    r"""@type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
+     *           The address""")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$transportConfig, and any \$serviceAddress",
+    r"$transportConfig, and any `$apiEndpoint`")
+
+# prevent proto messages from being marked final
+s.replace(
+    ["src/Admin/**/*.php", "src/V*/**/*.php"],
+    r"final class",
+    r"class")
+
+# Replace "Unwrapped" with "Value" for method names.
+s.replace(
+    ["src/Admin/**/*.php", "src/V*/**/*.php"],
+    r"public function ([s|g]\w{3,})Unwrapped",
+    r"public function \1Value"
+)
+
 # fix year
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
     r'Copyright 2017')
 s.replace(
-    'tests/**/Admin/Instance/V1/*Test.php',
+    'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
-
-# Use new namespaces
-s.replace(
-    'src/V1/Gapic/SpannerGapicClient.php',
-    r'ExecuteSqlRequest_QueryMode',
-    'ExecuteSqlRequest\\QueryMode')
-
-s.replace(
-    'src/V1/Gapic/SpannerGapicClient.php',
-    r'ExecuteBatchDmlRequest_Statement',
-    'ExecuteBatchDmlRequest\\Statement')
 
 # Fix test namespaces
 s.replace(

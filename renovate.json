@@ -1,0 +1,27 @@
+{
+    "extends": [
+        "config:base"
+    ],
+    "pinVersions": false,
+    "rebaseStalePrs": true,
+    "packageRules": [
+        {
+            "packageNames": [
+                "phpunit/phpunit"
+            ],
+            "allowedVersions": "< 5.0"
+        },
+        {
+            "packageNames": [
+                "squizlabs/php_codesniffer"
+            ],
+            "allowedVersions": "< 3.0"
+        },
+        {
+            "packageNames": [
+                "symfony/console"
+            ],
+            "allowedVersions": "< 4.0"
+        }
+    ]
+}

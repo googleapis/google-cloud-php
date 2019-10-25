@@ -22,8 +22,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      */
     private $indexes;
     /**
-     * Output only.
-     * When true, the `Field`'s index configuration is set from the
+     * Output only. When true, the `Field`'s index configuration is set from the
      * configuration specified by the `ancestor_field`.
      * When false, the `Field`'s index configuration is defined explicitly.
      *
@@ -31,8 +30,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      */
     private $uses_ancestor_config = false;
     /**
-     * Output only.
-     * Specifies the resource name of the `Field` from which this field's
+     * Output only. Specifies the resource name of the `Field` from which this field's
      * index configuration is set (when `uses_ancestor_config` is true),
      * or from which it *would* be set if this field had no index configuration
      * (when `uses_ancestor_config` is false).
@@ -60,13 +58,11 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $indexes
      *           The indexes supported for this field.
      *     @type bool $uses_ancestor_config
-     *           Output only.
-     *           When true, the `Field`'s index configuration is set from the
+     *           Output only. When true, the `Field`'s index configuration is set from the
      *           configuration specified by the `ancestor_field`.
      *           When false, the `Field`'s index configuration is defined explicitly.
      *     @type string $ancestor_field
-     *           Output only.
-     *           Specifies the resource name of the `Field` from which this field's
+     *           Output only. Specifies the resource name of the `Field` from which this field's
      *           index configuration is set (when `uses_ancestor_config` is true),
      *           or from which it *would* be set if this field had no index configuration
      *           (when `uses_ancestor_config` is false).
@@ -110,8 +106,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * When true, the `Field`'s index configuration is set from the
+     * Output only. When true, the `Field`'s index configuration is set from the
      * configuration specified by the `ancestor_field`.
      * When false, the `Field`'s index configuration is defined explicitly.
      *
@@ -124,8 +119,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * When true, the `Field`'s index configuration is set from the
+     * Output only. When true, the `Field`'s index configuration is set from the
      * configuration specified by the `ancestor_field`.
      * When false, the `Field`'s index configuration is defined explicitly.
      *
@@ -142,8 +136,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Specifies the resource name of the `Field` from which this field's
+     * Output only. Specifies the resource name of the `Field` from which this field's
      * index configuration is set (when `uses_ancestor_config` is true),
      * or from which it *would* be set if this field had no index configuration
      * (when `uses_ancestor_config` is false).
@@ -157,8 +150,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Specifies the resource name of the `Field` from which this field's
+     * Output only. Specifies the resource name of the `Field` from which this field's
      * index configuration is set (when `uses_ancestor_config` is true),
      * or from which it *would* be set if this field had no index configuration
      * (when `uses_ancestor_config` is false).

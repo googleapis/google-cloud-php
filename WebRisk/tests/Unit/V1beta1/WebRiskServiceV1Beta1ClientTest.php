@@ -27,7 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest_Constraints;
+use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints;
 use Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffResponse;
 use Google\Cloud\WebRisk\V1beta1\SearchHashesResponse;
 use Google\Cloud\WebRisk\V1beta1\SearchUrisResponse;
@@ -51,14 +51,22 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     }
 
     /**
+     * @return CredentialsWrapper
+     */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
+
+    /**
      * @return WebRiskServiceV1Beta1Client
      */
     private function createClient(array $options = [])
     {
         $options += [
-            'credentials' => $this->getMockBuilder(CredentialsWrapper::class)
-                ->disableOriginalConstructor()
-                ->getMock(),
+            'credentials' => $this->createCredentials(),
         ];
 
         return new WebRiskServiceV1Beta1Client($options);
@@ -82,7 +90,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
 
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-        $constraints = new ComputeThreatListDiffRequest_Constraints();
+        $constraints = new Constraints();
 
         $response = $client->computeThreatListDiff($threatType, $constraints);
         $this->assertEquals($expectedResponse, $response);
@@ -126,7 +134,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
 
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-        $constraints = new ComputeThreatListDiffRequest_Constraints();
+        $constraints = new Constraints();
 
         try {
             $client->computeThreatListDiff($threatType, $constraints);
@@ -232,13 +240,20 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse = new SearchHashesResponse();
         $transport->addResponse($expectedResponse);
 
-        $response = $client->searchHashes();
+        // Mock request
+        $threatTypes = [];
+
+        $response = $client->searchHashes($threatTypes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.webrisk.v1beta1.WebRiskServiceV1Beta1/SearchHashes', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getThreatTypes();
+
+        $this->assertProtobufEquals($threatTypes, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -265,8 +280,11 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $threatTypes = [];
+
         try {
-            $client->searchHashes();
+            $client->searchHashes($threatTypes);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

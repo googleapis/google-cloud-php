@@ -19,7 +19,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     protected $time;
@@ -49,7 +49,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -61,7 +61,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

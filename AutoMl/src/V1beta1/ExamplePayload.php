@@ -24,9 +24,13 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1beta1\Image $image
-     *           An example image.
+     *           Example image.
      *     @type \Google\Cloud\AutoMl\V1beta1\TextSnippet $text_snippet
      *           Example text.
+     *     @type \Google\Cloud\AutoMl\V1beta1\Document $document
+     *           Example document.
+     *     @type \Google\Cloud\AutoMl\V1beta1\Row $row
+     *           Example relational table row.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,7 +39,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An example image.
+     * Example image.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Image image = 1;</code>
      * @return \Google\Cloud\AutoMl\V1beta1\Image
@@ -46,7 +50,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An example image.
+     * Example image.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Image image = 1;</code>
      * @param \Google\Cloud\AutoMl\V1beta1\Image $var
@@ -82,6 +86,58 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextSnippet::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Example document.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Document document = 4;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\Document
+     */
+    public function getDocument()
+    {
+        return $this->readOneof(4);
+    }
+
+    /**
+     * Example document.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Document document = 4;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\Document $var
+     * @return $this
+     */
+    public function setDocument($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\Document::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Example relational table row.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Row row = 3;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\Row
+     */
+    public function getRow()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * Example relational table row.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Row row = 3;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\Row $var
+     * @return $this
+     */
+    public function setRow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\Row::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

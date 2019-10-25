@@ -17,11 +17,7 @@
 
 namespace Google\Cloud\Core;
 
-use DateTime;
-use DateTimeZone;
 use Google\ApiCore\CredentialsWrapper;
-use Google\Auth\Cache\MemoryCacheItemPool;
-use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
@@ -272,5 +268,17 @@ trait GrpcTrait
             'seconds' => (int) $dt->format('U'),
             'nanos' => (int) $nanos
         ];
+    }
+
+    /**
+     * Construct a gapic client. Allows for tests to intercept.
+     *
+     * @param string $gapicName
+     * @param array $config
+     * @return mixed
+     */
+    protected function constructGapic($gapicName, array $config)
+    {
+        return new $gapicName($config);
     }
 }

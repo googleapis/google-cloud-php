@@ -85,6 +85,15 @@ class GrpcTest extends TestCase
         $this->lro = $this->prophesize(OperationResponse::class)->reveal();
     }
 
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub(['apiEndpoint' => $expected]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
+    }
+
     public function testListInstanceConfigs()
     {
         $this->assertCallCorrect('listInstanceConfigs', [
@@ -333,6 +342,26 @@ class GrpcTest extends TestCase
         ]);
 
         $this->assertInstanceOf(PromiseInterface::class, $promise);
+    }
+
+    public function testBatchCreateSessions()
+    {
+        $count = 10;
+        $template = [
+            'labels' => [
+                'foo' => 'bar'
+            ]
+        ];
+
+        $this->assertCallCorrect('batchCreateSessions', [
+            'database' => self::DATABASE,
+            'sessionCount' => $count,
+            'sessionTemplate' => $template
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::DATABASE, $count, [
+                'sessionTemplate' => $this->serializer->decodeMessage(new Session, $template)
+            ]
+        ]));
     }
 
     public function testGetSession()
@@ -1027,3 +1056,17 @@ class GrpcTest extends TestCase
         ]);
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

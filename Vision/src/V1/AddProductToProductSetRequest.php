@@ -16,19 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name for the ProductSet to modify.
+     * Required. The resource name for the ProductSet to modify.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The resource name for the Product to be added to this ProductSet.
+     * Required. The resource name for the Product to be added to this ProductSet.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *
-     * Generated from protobuf field <code>string product = 2;</code>
+     * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $product = '';
 
@@ -39,11 +39,11 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name for the ProductSet to modify.
+     *           Required. The resource name for the ProductSet to modify.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *     @type string $product
-     *           The resource name for the Product to be added to this ProductSet.
+     *           Required. The resource name for the Product to be added to this ProductSet.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      * }
@@ -54,11 +54,11 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the ProductSet to modify.
+     * Required. The resource name for the ProductSet to modify.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -67,11 +67,11 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the ProductSet to modify.
+     * Required. The resource name for the ProductSet to modify.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -84,11 +84,11 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the Product to be added to this ProductSet.
+     * Required. The resource name for the Product to be added to this ProductSet.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *
-     * Generated from protobuf field <code>string product = 2;</code>
+     * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProduct()
@@ -97,11 +97,11 @@ class AddProductToProductSetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name for the Product to be added to this ProductSet.
+     * Required. The resource name for the Product to be added to this ProductSet.
      * Format is:
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
      *
-     * Generated from protobuf field <code>string product = 2;</code>
+     * Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

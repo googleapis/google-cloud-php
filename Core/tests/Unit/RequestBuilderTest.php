@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\RequestBuilder;
-use Prophecy\Argument;
+use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -97,6 +97,43 @@ class RequestBuilderTest extends TestCase
         $this->assertEquals('/path', $uri->getPath());
         $this->assertEquals('queryParam=query', $uri->getQuery());
         $this->assertEquals('{"referenceProp":"reference"}', (string) $request->getBody());
+    }
+
+    /**
+     * @dataProvider basePaths
+     */
+    public function testAppendsBasePathToApiEndpoint($basePath, $baseUri, $expectedBaseUri)
+    {
+        $builder = TestHelpers::stub(RequestBuilder::class, [
+            $basePath ? Fixtures::SERVICE_FIXTURE_BASEPATH() : Fixtures::SERVICE_FIXTURE(),
+            $baseUri
+        ], ['service']);
+
+        if ($basePath) {
+            $service = $builder->___getProperty('service');
+            $service['basePath'] = $basePath;
+            $builder->___setProperty('service', $service);
+        }
+
+        $request = $builder->build(
+            'myResource',
+            'myMethod',
+            ['pathParam' => 'path']
+        );
+        $uri = $request->getUri();
+
+        $this->assertEquals($expectedBaseUri . 'path', (string) $request->getUri());
+    }
+
+    public function basePaths()
+    {
+        return [
+            [false, 'http://example.com', 'http://example.com/'],
+            [true, 'http://example.com', 'http://example.com/basepath/v1/'],
+            [true, 'http://example.com/', 'http://example.com/basepath/v1/'],
+            [true, 'http://example.com/otherbase/v1/', 'http://example.com/otherbase/v1/'],
+            [false, 'http://example.com/otherbase/v1/', 'http://example.com/otherbase/v1/'],
+        ];
     }
 
     /**

@@ -77,4 +77,68 @@ class ManageTopicsTest extends PubSubTestCase
         $this->assertTrue($client->topic($shortName)->exists());
         $this->assertEquals($topic->name(), $topic->reload()['name']);
     }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testUpdateTopic($client)
+    {
+        $shortName = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse($client->topic($shortName)->exists());
+        $topic = $client->createTopic($shortName);
+        self::$deletionQueue->add($topic);
+
+        $policy = [
+            'allowedPersistenceRegions' => ['us-central1', 'us-east1']
+        ];
+
+        $topic->update([
+            'messageStoragePolicy' => $policy
+        ]);
+
+        $this->assertEquals($policy, $topic->info()['messageStoragePolicy']);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testUpdateTopicWithUpdateMask($client)
+    {
+        $shortName = uniqid(self::TESTING_PREFIX);
+        $this->assertFalse($client->topic($shortName)->exists());
+        $topic = $client->createTopic($shortName);
+        self::$deletionQueue->add($topic);
+
+        $labels = [
+            'foo' => 'bar'
+        ];
+
+        $topic->update([
+            'labels' => $labels
+        ], [
+            'updateMask' => [ 'labels' ]
+        ]);
+
+        $this->assertEquals($labels, $topic->info()['labels']);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testMessageStoragePolicyAllowedPersistenceRegions($client)
+    {
+        $region = 'us-central1';
+        $shortName = uniqid(self::TESTING_PREFIX);
+        $topic = $client->createTopic($shortName, [
+            'messageStoragePolicy' => [
+                'allowedPersistenceRegions' => [
+                    $region
+                ]
+            ]
+        ]);
+        self::$deletionQueue->add($topic);
+
+        $info = $topic->reload();
+        $this->assertEquals($region, $info['messageStoragePolicy']['allowedPersistenceRegions'][0]);
+    }
 }

@@ -10,7 +10,7 @@ return [
                     'initialPollDelayMillis' => '60000',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '360000',
-                    'totalPollTimeoutMillis' => '1200000',
+                    'totalPollTimeoutMillis' => '7200000',
                 ],
             ],
             'UpdateInstance' => [

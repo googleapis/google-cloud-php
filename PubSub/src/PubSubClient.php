@@ -85,7 +85,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.14.0';
+    const VERSION = '1.18.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -110,6 +110,9 @@ class PubSubClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $apiEndpoint The hostname with optional port to use in
+     *           place of the default service endpoint. Example:
+     *           `foobar.com` or `foobar.com:1234`.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access
@@ -175,7 +178,9 @@ class PubSubClient
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
      * @param string $name The topic name
-     * @param array $options [optional] Configuration Options
+     * @param array $options [optional] Configuration Options. For available
+     *        configuration options, refer to
+     *        {@see Google\Cloud\PubSub\Topic::create()}.
      * @return Topic
      */
     public function createTopic($name, array $options = [])

@@ -26,6 +26,8 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\StructType;
+use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -110,6 +112,61 @@ class TransactionTest extends SnippetTestCase
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate');
+        $snippet->addLocal('transaction', $this->transaction);
+        $res = $snippet->invoke('modifiedRowCount');
+
+        $this->assertEquals(1, $res->returnVal());
+    }
+
+    public function testExecuteUpdateWithStruct()
+    {
+        $expectedSql = "UPDATE Posts SET title = 'Updated Title' WHERE " .
+            "STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
+
+        $expectedParams = [
+            'post' => ["Updated Title", "Sample Content"]
+        ];
+        $expectedStructData = [
+            [
+                "name" => "Title",
+                "type" => [
+                    "code" => Database::TYPE_STRING
+                ]
+            ],
+            [
+                "name" => "Content",
+                "type" => [
+                    "code" => Database::TYPE_STRING
+                ]
+            ]
+        ];
+
+        $this->connection->executeStreamingSql(
+            Argument::allOf(
+                Argument::withEntry('sql', $expectedSql),
+                Argument::withEntry('params', $expectedParams),
+                Argument::withEntry(
+                    'paramTypes',
+                    Argument::withEntry(
+                        'post',
+                        Argument::withEntry(
+                            'structType',
+                            Argument::withEntry('fields', Argument::is($expectedStructData))
+                        )
+                    )
+                )
+            )
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->resultGenerator(true));
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'executeUpdate', 1);
+        $snippet->addUse(Database::class);
+        $snippet->addUse(StructType::class);
+        $snippet->addUse(StructValue::class);
+
         $snippet->addLocal('transaction', $this->transaction);
         $res = $snippet->invoke('modifiedRowCount');
 

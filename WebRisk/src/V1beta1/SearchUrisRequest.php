@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchUrisRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URI to be checked for matches.
+     * Required. The URI to be checked for matches.
      *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $uri = '';
     /**
      * Required. The ThreatLists to search in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $threat_types;
 
@@ -35,7 +35,7 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The URI to be checked for matches.
+     *           Required. The URI to be checked for matches.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $threat_types
      *           Required. The ThreatLists to search in.
      * }
@@ -46,9 +46,9 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI to be checked for matches.
+     * Required. The URI to be checked for matches.
      *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUri()
@@ -57,9 +57,9 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI to be checked for matches.
+     * Required. The URI to be checked for matches.
      *
-     * Generated from protobuf field <code>string uri = 1;</code>
+     * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ThreatLists to search in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getThreatTypes()
@@ -85,7 +85,7 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ThreatLists to search in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

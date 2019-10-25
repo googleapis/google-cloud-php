@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output only.
- * Histogram result that matches [HistogramSpec][] specified in searches.
+ * Histogram result that matches
+ * [HistogramQuery][google.cloud.talent.v4beta1.HistogramQuery] specified in
+ * searches.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.HistogramQueryResult</code>
  */
@@ -30,7 +31,7 @@ class HistogramQueryResult extends \Google\Protobuf\Internal\Message
      * * (for named numeric bucket) name specified in `bucket()` function, like
      *   for `bucket(0, MAX, "non-negative")`, the key will be `non-negative`.
      * * (for anonymous numeric bucket) range formatted as `<low>-<high>`, for
-     * example, `0-1000`, `MIN-0`, and `0-MAX`.
+     *   example, `0-1000`, `MIN-0`, and `0-MAX`.
      *
      * Generated from protobuf field <code>map<string, int64> histogram = 2;</code>
      */
@@ -52,7 +53,7 @@ class HistogramQueryResult extends \Google\Protobuf\Internal\Message
      *           * (for named numeric bucket) name specified in `bucket()` function, like
      *             for `bucket(0, MAX, "non-negative")`, the key will be `non-negative`.
      *           * (for anonymous numeric bucket) range formatted as `<low>-<high>`, for
-     *           example, `0-1000`, `MIN-0`, and `0-MAX`.
+     *             example, `0-1000`, `MIN-0`, and `0-MAX`.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +95,7 @@ class HistogramQueryResult extends \Google\Protobuf\Internal\Message
      * * (for named numeric bucket) name specified in `bucket()` function, like
      *   for `bucket(0, MAX, "non-negative")`, the key will be `non-negative`.
      * * (for anonymous numeric bucket) range formatted as `<low>-<high>`, for
-     * example, `0-1000`, `MIN-0`, and `0-MAX`.
+     *   example, `0-1000`, `MIN-0`, and `0-MAX`.
      *
      * Generated from protobuf field <code>map<string, int64> histogram = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -112,7 +113,7 @@ class HistogramQueryResult extends \Google\Protobuf\Internal\Message
      * * (for named numeric bucket) name specified in `bucket()` function, like
      *   for `bucket(0, MAX, "non-negative")`, the key will be `non-negative`.
      * * (for anonymous numeric bucket) range formatted as `<low>-<high>`, for
-     * example, `0-1000`, `MIN-0`, and `0-MAX`.
+     *   example, `0-1000`, `MIN-0`, and `0-MAX`.
      *
      * Generated from protobuf field <code>map<string, int64> histogram = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

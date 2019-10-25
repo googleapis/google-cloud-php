@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * Update job request.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.UpdateJobRequest</code>
@@ -17,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The Job to be updated.
+     * Required. The Job to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job = null;
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask] is provided, only the specified fields in
-     * [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]
+     * is provided, only the specified fields in
+     * [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated.
+     * Otherwise all the fields are updated.
      * A field mask to restrict the fields that are updated. Only
      * top level fields of [Job][google.cloud.talent.v4beta1.Job] are supported.
      *
@@ -42,13 +41,13 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Talent\V4beta1\Job $job
-     *           Required.
-     *           The Job to be updated.
+     *           Required. The Job to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional but strongly recommended to be provided for the best service
-     *           experience.
-     *           If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask] is provided, only the specified fields in
-     *           [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated. Otherwise all the fields are updated.
+     *           Strongly recommended for the best service experience.
+     *           If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]
+     *           is provided, only the specified fields in
+     *           [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated.
+     *           Otherwise all the fields are updated.
      *           A field mask to restrict the fields that are updated. Only
      *           top level fields of [Job][google.cloud.talent.v4beta1.Job] are supported.
      * }
@@ -59,10 +58,9 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The Job to be updated.
+     * Required. The Job to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Talent\V4beta1\Job
      */
     public function getJob()
@@ -71,10 +69,9 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The Job to be updated.
+     * Required. The Job to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Job $var
      * @return $this
      */
@@ -87,10 +84,11 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask] is provided, only the specified fields in
-     * [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]
+     * is provided, only the specified fields in
+     * [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated.
+     * Otherwise all the fields are updated.
      * A field mask to restrict the fields that are updated. Only
      * top level fields of [Job][google.cloud.talent.v4beta1.Job] are supported.
      *
@@ -103,10 +101,11 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional but strongly recommended to be provided for the best service
-     * experience.
-     * If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask] is provided, only the specified fields in
-     * [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated. Otherwise all the fields are updated.
+     * Strongly recommended for the best service experience.
+     * If [update_mask][google.cloud.talent.v4beta1.UpdateJobRequest.update_mask]
+     * is provided, only the specified fields in
+     * [job][google.cloud.talent.v4beta1.UpdateJobRequest.job] are updated.
+     * Otherwise all the fields are updated.
      * A field mask to restrict the fields that are updated. Only
      * top level fields of [Job][google.cloud.talent.v4beta1.Job] are supported.
      *

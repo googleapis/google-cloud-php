@@ -32,8 +32,9 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      */
     private $return_immediately = false;
     /**
-     * The maximum number of messages returned for this request. The Pub/Sub
-     * system may return fewer than the number specified.
+     * The maximum number of messages to return for this request. Must be a
+     * positive integer. The Pub/Sub system may return fewer than the number
+     * specified.
      *
      * Generated from protobuf field <code>int32 max_messages = 3;</code>
      */
@@ -54,8 +55,9 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      *           Otherwise, the system may wait (for a bounded amount of time) until at
      *           least one message is available, rather than returning no messages.
      *     @type int $max_messages
-     *           The maximum number of messages returned for this request. The Pub/Sub
-     *           system may return fewer than the number specified.
+     *           The maximum number of messages to return for this request. Must be a
+     *           positive integer. The Pub/Sub system may return fewer than the number
+     *           specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,8 +126,9 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of messages returned for this request. The Pub/Sub
-     * system may return fewer than the number specified.
+     * The maximum number of messages to return for this request. Must be a
+     * positive integer. The Pub/Sub system may return fewer than the number
+     * specified.
      *
      * Generated from protobuf field <code>int32 max_messages = 3;</code>
      * @return int
@@ -136,8 +139,9 @@ class PullRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of messages returned for this request. The Pub/Sub
-     * system may return fewer than the number specified.
+     * The maximum number of messages to return for this request. Must be a
+     * positive integer. The Pub/Sub system may return fewer than the number
+     * specified.
      *
      * Generated from protobuf field <code>int32 max_messages = 3;</code>
      * @param int $var

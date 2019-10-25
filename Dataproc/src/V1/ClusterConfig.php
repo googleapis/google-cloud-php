@@ -26,41 +26,41 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Dataproc staging
      * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
-     * Generated from protobuf field <code>string config_bucket = 1;</code>
+     * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $config_bucket = '';
     /**
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $gce_cluster_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $master_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $worker_config = null;
     /**
      * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $secondary_worker_config = null;
     /**
      * Optional. The config settings for software inside the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $software_config = null;
     /**
@@ -77,15 +77,28 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *       ... worker specific actions ...
      *     fi
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $initialization_actions;
     /**
      * Optional. Encryption settings for the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryption_config = null;
+    /**
+     * Optional. Autoscaling config for the policy associated with the cluster.
+     * Cluster does not autoscale if this field is unset.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingConfig autoscaling_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $autoscaling_config = null;
+    /**
+     * Optional. Security settings for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $security_config = null;
 
     /**
      * Constructor.
@@ -132,6 +145,11 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *               fi
      *     @type \Google\Cloud\Dataproc\V1\EncryptionConfig $encryption_config
      *           Optional. Encryption settings for the cluster.
+     *     @type \Google\Cloud\Dataproc\V1\AutoscalingConfig $autoscaling_config
+     *           Optional. Autoscaling config for the policy associated with the cluster.
+     *           Cluster does not autoscale if this field is unset.
+     *     @type \Google\Cloud\Dataproc\V1\SecurityConfig $security_config
+     *           Optional. Security settings for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,7 +168,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Dataproc staging
      * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
-     * Generated from protobuf field <code>string config_bucket = 1;</code>
+     * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getConfigBucket()
@@ -169,7 +187,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * [Cloud Dataproc staging
      * bucket](/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *
-     * Generated from protobuf field <code>string config_bucket = 1;</code>
+     * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -185,7 +203,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\GceClusterConfig
      */
     public function getGceClusterConfig()
@@ -197,7 +215,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\GceClusterConfig $var
      * @return $this
      */
@@ -213,7 +231,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig
      */
     public function getMasterConfig()
@@ -225,7 +243,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine config settings for
      * the master instance in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\InstanceGroupConfig $var
      * @return $this
      */
@@ -241,7 +259,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig
      */
     public function getWorkerConfig()
@@ -253,7 +271,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine config settings for
      * worker instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\InstanceGroupConfig $var
      * @return $this
      */
@@ -269,7 +287,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig
      */
     public function getSecondaryWorkerConfig()
@@ -281,7 +299,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The Compute Engine config settings for
      * additional worker instances in a cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\InstanceGroupConfig $var
      * @return $this
      */
@@ -296,7 +314,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The config settings for software inside the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\SoftwareConfig
      */
     public function getSoftwareConfig()
@@ -307,7 +325,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The config settings for software inside the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\SoftwareConfig $var
      * @return $this
      */
@@ -333,7 +351,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *       ... worker specific actions ...
      *     fi
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInitializationActions()
@@ -355,7 +373,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *       ... worker specific actions ...
      *     fi
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\NodeInitializationAction[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -370,7 +388,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Encryption settings for the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\EncryptionConfig
      */
     public function getEncryptionConfig()
@@ -381,7 +399,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Encryption settings for the cluster.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\EncryptionConfig $var
      * @return $this
      */
@@ -389,6 +407,60 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\EncryptionConfig::class);
         $this->encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Autoscaling config for the policy associated with the cluster.
+     * Cluster does not autoscale if this field is unset.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingConfig autoscaling_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\AutoscalingConfig
+     */
+    public function getAutoscalingConfig()
+    {
+        return $this->autoscaling_config;
+    }
+
+    /**
+     * Optional. Autoscaling config for the policy associated with the cluster.
+     * Cluster does not autoscale if this field is unset.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingConfig autoscaling_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\AutoscalingConfig $var
+     * @return $this
+     */
+    public function setAutoscalingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\AutoscalingConfig::class);
+        $this->autoscaling_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Security settings for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\SecurityConfig
+     */
+    public function getSecurityConfig()
+    {
+        return $this->security_config;
+    }
+
+    /**
+     * Optional. Security settings for the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\SecurityConfig $var
+     * @return $this
+     */
+    public function setSecurityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SecurityConfig::class);
+        $this->security_config = $var;
 
         return $this;
     }

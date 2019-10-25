@@ -104,4 +104,28 @@ trait RestTrait
             throw $e;
         }
     }
+
+    /**
+     * Return a custom API endpoint in the proper format, or default if none provided.
+     *
+     * @param string $default
+     * @param array $config
+     * @return string
+     */
+    private function getApiEndpoint($default, array $config)
+    {
+        $res = isset($config['apiEndpoint'])
+            ? $config['apiEndpoint']
+            : $default;
+
+        if (substr($res, -1) !== '/') {
+            $res = $res . '/';
+        }
+
+        if (strpos($res, '//') === false) {
+            $res = 'https://' . $res;
+        }
+
+        return $res;
+    }
 }

@@ -16,15 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteCompanyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the company to be deleted.
+     * Required. The resource name of the company to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
 
@@ -35,13 +34,12 @@ class DeleteCompanyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.
-     *           The resource name of the company to be deleted.
+     *           Required. The resource name of the company to be deleted.
      *           The format is
      *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     *           example, "projects/api-test-project/tenants/foo/companies/bar".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project/companies/bar".
+     *           example, "projects/foo/tenants/bar/companies/baz".
+     *           If tenant id is unspecified, the default tenant is used, for
+     *           example, "projects/foo/companies/bar".
      * }
      */
     public function __construct($data = NULL) {
@@ -50,15 +48,14 @@ class DeleteCompanyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the company to be deleted.
+     * Required. The resource name of the company to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -67,15 +64,14 @@ class DeleteCompanyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the company to be deleted.
+     * Required. The resource name of the company to be deleted.
      * The format is
      * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}", for
-     * example, "projects/api-test-project/tenants/foo/companies/bar".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project/companies/bar".
+     * example, "projects/foo/tenants/bar/companies/baz".
+     * If tenant id is unspecified, the default tenant is used, for
+     * example, "projects/foo/companies/bar".
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

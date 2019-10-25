@@ -103,7 +103,7 @@ class LanguageServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/language_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/language_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/language_service_grpc_config.json',
@@ -125,6 +125,9 @@ class LanguageServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'language.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -152,7 +155,7 @@ class LanguageServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -190,7 +193,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -242,7 +245,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -278,10 +281,8 @@ class LanguageServiceGapicClient
     }
 
     /**
-     * Finds entities, similar to
-     * [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities]
-     * in the text and analyzes sentiment associated with each entity and its
-     * mentions.
+     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1beta2.LanguageService.AnalyzeEntities] in the text and analyzes
+     * sentiment associated with each entity and its mentions.
      *
      * Sample code:
      * ```
@@ -294,7 +295,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -345,7 +346,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -394,7 +395,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -439,8 +440,8 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
+     * @param Document $document     Required. Input document.
+     * @param Features $features     Required. The enabled features.
      * @param array    $optionalArgs {
      *                               Optional.
      *

@@ -69,7 +69,7 @@ use Google\Cloud\Datastore\V1\TransactionOptions;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $datastoreClient = new DatastoreClient();
+ * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
  * try {
  *     $projectId = '';
  *     $keys = [];
@@ -117,7 +117,7 @@ class DatastoreGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/datastore_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/datastore_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/datastore_grpc_config.json',
@@ -139,6 +139,9 @@ class DatastoreGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'datastore.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -166,7 +169,7 @@ class DatastoreGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -195,7 +198,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $keys = [];
@@ -253,10 +256,10 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $partitionId = new PartitionId();
+     *     $partitionId = new Google\Cloud\Datastore\V1\PartitionId();
      *     $response = $datastoreClient->runQuery($projectId, $partitionId);
      * } finally {
      *     $datastoreClient->close();
@@ -324,7 +327,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $response = $datastoreClient->beginTransaction($projectId);
@@ -380,10 +383,10 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
-     *     $mode = CommitRequest\Mode::MODE_UNSPECIFIED;
+     *     $mode = Google\Cloud\Datastore\V1\CommitRequest\Mode::MODE_UNSPECIFIED;
      *     $mutations = [];
      *     $response = $datastoreClient->commit($projectId, $mode, $mutations);
      * } finally {
@@ -456,7 +459,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $transaction = '';
@@ -511,7 +514,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $keys = [];
@@ -566,7 +569,7 @@ class DatastoreGapicClient
      *
      * Sample code:
      * ```
-     * $datastoreClient = new DatastoreClient();
+     * $datastoreClient = new Google\Cloud\Datastore\V1\DatastoreClient();
      * try {
      *     $projectId = '';
      *     $keys = [];

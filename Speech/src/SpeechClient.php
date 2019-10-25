@@ -50,7 +50,7 @@ class SpeechClient
 {
     use ClientTrait;
 
-    const VERSION = '0.25.0';
+    const VERSION = '0.27.0';
 
     const SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -74,6 +74,8 @@ class SpeechClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
      *     @type array $authCacheOptions Cache configuration options.

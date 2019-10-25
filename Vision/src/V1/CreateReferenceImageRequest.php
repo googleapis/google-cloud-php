@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name of the product in which to create the reference image.
+     * Required. Resource name of the product in which to create the reference image.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The reference image to create.
+     * Required. The reference image to create.
      * If an image ID is specified, it is ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $reference_image = null;
     /**
@@ -47,11 +47,11 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Resource name of the product in which to create the reference image.
+     *           Required. Resource name of the product in which to create the reference image.
      *           Format is
      *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *     @type \Google\Cloud\Vision\V1\ReferenceImage $reference_image
-     *           The reference image to create.
+     *           Required. The reference image to create.
      *           If an image ID is specified, it is ignored.
      *     @type string $reference_image_id
      *           A user-supplied resource id for the ReferenceImage to be added. If set,
@@ -66,11 +66,11 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the product in which to create the reference image.
+     * Required. Resource name of the product in which to create the reference image.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -79,11 +79,11 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name of the product in which to create the reference image.
+     * Required. Resource name of the product in which to create the reference image.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,10 +96,10 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The reference image to create.
+     * Required. The reference image to create.
      * If an image ID is specified, it is ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Vision\V1\ReferenceImage
      */
     public function getReferenceImage()
@@ -108,10 +108,10 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The reference image to create.
+     * Required. The reference image to create.
      * If an image ID is specified, it is ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ReferenceImage reference_image = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Vision\V1\ReferenceImage $var
      * @return $this
      */

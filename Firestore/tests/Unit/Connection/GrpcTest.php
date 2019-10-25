@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\Unit\Connection;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
@@ -53,6 +54,19 @@ class GrpcTest extends TestCase
 
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
+    }
+
+    public function testApiEndpoint()
+    {
+        $expected = 'foobar.com';
+
+        $grpc = new GrpcStub([
+            'apiEndpoint' => $expected,
+            'projectId' => 'test',
+            'database' => 'test'
+        ]);
+
+        $this->assertEquals($expected, $grpc->config['apiEndpoint']);
     }
 
     public function testBatchGetDocuments()
@@ -226,6 +240,43 @@ class GrpcTest extends TestCase
         $this->sendAndAssert('runQuery', $args, $expected);
     }
 
+    public function testCustomRequestHeaders()
+    {
+        $args = [
+            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+            'headers' => [
+                'foo' => ['bar']
+            ]
+        ];
+
+        $headers = $this->header();
+        $headers['headers']['foo'] = ['bar'];
+        $expected = [$args['parent'], $headers];
+
+        $this->sendAndAssert('listCollectionIds', $args, $expected);
+    }
+
+    public function testProvidesAuthorizationHeaderWithEmulator()
+    {
+        $args = [
+            'parent' => sprintf('projects/%s/databases/%s/documents', self::PROJECT, self::DATABASE),
+        ];
+
+        $headers = $this->header();
+        $headers['headers']['Authorization'] = ['Bearer owner'];
+        $expected = [$args['parent'], $headers];
+
+        $connection = TestHelpers::stub(Grpc::class, [
+            [
+                'projectId' => 'test',
+                'database' => '(default)'
+            ]
+        ], ['isUsingEmulator']);
+
+        $connection->___setProperty('isUsingEmulator', true);
+        $this->sendAndAssert('listCollectionIds', $args, $expected, $connection);
+    }
+
     private function header()
     {
         return [
@@ -235,20 +286,35 @@ class GrpcTest extends TestCase
         ];
     }
 
-    private function sendAndAssert($method, array $args, array $expectedArgs)
+    private function sendAndAssert($method, array $args, array $expectedArgs, Grpc $connection = null)
     {
+        $connection = $connection ?: new Grpc([
+            'projectId' => 'test',
+            'database' => '(default)'
+        ]);
+
         $this->requestWrapper->send(
             Argument::type('callable'),
             $expectedArgs,
             Argument::type('array')
         )->willReturn($this->successMessage);
 
-        $connection = new Grpc([
-            'projectId' => 'test',
-            'database' => '(default)'
-        ]);
         $connection->setRequestWrapper($this->requestWrapper->reveal());
 
         $this->assertEquals($this->successMessage, $connection->$method($args));
     }
 }
+
+//@codingStandardsIgnoreStart
+class GrpcStub extends Grpc
+{
+    public $config;
+
+    protected function constructGapic($gapicName, array $config)
+    {
+        $this->config = $config;
+
+        return parent::constructGapic($gapicName, $config);
+    }
+}
+//@codingStandardsIgnoreEnd

@@ -15,8 +15,6 @@
 """This script is used to synthesize generated parts of this library."""
 
 import os
-# https://github.com/googleapis/artman/pull/655#issuecomment-507784277
-os.environ["SYNTHTOOL_ARTMAN_VERSION"] = "0.29.1"
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -51,6 +49,54 @@ for v in versions:
     # copy GPBMetadata file to metadata
     s.move(library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
 
+# Firestore Admin also lives here
+admin_library = gapic.php_library(
+    service='firestore-admin',
+    version='v1',
+    config_path='/google/firestore/admin/artman_firestore_v1.yaml',
+    artman_output_name='google-cloud-firestore-admin-v1')
+
+# copy all src
+s.move(admin_library / f'src', 'src/Admin')
+
+# copy proto files to src also
+s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
+
+# copy GPBMetadata file to metadata
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
+
+# document and utilize apiEndpoint instead of serviceAddress
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"@type string \$serviceAddress\n\s+\*\s+The address",
+    r"""@type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
+     *           The address""")
+s.replace(
+    "**/Gapic/*GapicClient.php",
+    r"\$transportConfig, and any \$serviceAddress",
+    r"$transportConfig, and any `$apiEndpoint`")
+
+# prevent proto messages from being marked final
+s.replace(
+    ["src/Admin/**/*.php", "src/V*/**/*.php"],
+    r"final class",
+    r"class")
+
+# Replace "Unwrapped" with "Value" for method names.
+s.replace(
+    ["src/Admin/**/*.php", "src/V*/**/*.php"],
+    r"public function ([s|g]\w{3,})Unwrapped",
+    r"public function \1Value"
+)
+
 # fix year
 s.replace(
     '**/V1beta1/Gapic/*GapicClient.php',
@@ -78,23 +124,6 @@ s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
     'Copyright 2019')
-
-# Firestore Admin also lives here
-admin_library = gapic.php_library(
-    service='firestore-admin',
-    version='v1',
-    config_path='/google/firestore/admin/artman_firestore_v1.yaml',
-    artman_output_name='google-cloud-firestore-admin-v1')
-
-# copy all src
-s.move(admin_library / f'src', 'src/Admin')
-
-# copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
-
-# copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
 
 # fix year
 s.replace(

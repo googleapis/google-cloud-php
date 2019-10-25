@@ -34,7 +34,7 @@ class EncodingType
     const UTF8 = 1;
     /**
      * Encoding-dependent information (such as `begin_offset`) is calculated based
-     * on the UTF-16 encoding of the input. Java and Javascript are examples of
+     * on the UTF-16 encoding of the input. Java and JavaScript are examples of
      * languages that use this encoding natively.
      *
      * Generated from protobuf enum <code>UTF16 = 2;</code>

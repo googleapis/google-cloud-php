@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TemplateParameter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.  Parameter name.
+     * Required. Parameter name.
      * The parameter name is used as the key, and paired with the
      * parameter value, which are passed to the template when the template
      * is instantiated.
@@ -97,7 +97,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required.  Parameter name.
+     *           Required. Parameter name.
      *           The parameter name is used as the key, and paired with the
      *           parameter value, which are passed to the template when the template
      *           is instantiated.
@@ -154,7 +154,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.  Parameter name.
+     * Required. Parameter name.
      * The parameter name is used as the key, and paired with the
      * parameter value, which are passed to the template when the template
      * is instantiated.
@@ -171,7 +171,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.  Parameter name.
+     * Required. Parameter name.
      * The parameter name is used as the key, and paired with the
      * parameter value, which are passed to the template when the template
      * is instantiated.

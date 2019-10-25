@@ -135,7 +135,7 @@ class MetricServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/metric_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/metric_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/metric_service_grpc_config.json',
@@ -292,6 +292,9 @@ class MetricServiceGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'monitoring.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -319,7 +322,7 @@ class MetricServiceGapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -344,8 +347,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does
-     * not require a Stackdriver account.
+     * Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -437,8 +439,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a
-     * Stackdriver account.
+     * Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -491,8 +492,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require
-     * a Stackdriver account.
+     * Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -585,8 +585,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Gets a single metric descriptor. This method does not require a Stackdriver
-     * account.
+     * Gets a single metric descriptor. This method does not require a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -748,8 +747,7 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a
-     * Stackdriver account.
+     * Lists time series that match a filter. This method does not require a Stackdriver account.
      *
      * Sample code:
      * ```
@@ -788,7 +786,7 @@ class MetricServiceGapicClient
      *                       example:
      *
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *         metric.label.instance_name = "my-instance-name"
+     *         metric.labels.instance_name = "my-instance-name"
      * @param TimeInterval $interval     The time interval for which results should be returned. Only time series
      *                                   that contain data points in the specified interval are included
      *                                   in the response.
@@ -878,15 +876,17 @@ class MetricServiceGapicClient
      * }
      * ```
      *
-     * @param string       $name         The project on which to execute the request. The format is
-     *                                   `"projects/{project_id_or_number}"`.
-     * @param TimeSeries[] $timeSeries   The new data to be added to a list of time series.
-     *                                   Adds at most one data point to each of several time series.  The new data
-     *                                   point must be more recent than any other point in its time series.  Each
-     *                                   `TimeSeries` value must fully specify a unique time series by supplying
-     *                                   all label values for the metric and the monitored resource.
-     * @param array        $optionalArgs {
-     *                                   Optional.
+     * @param string       $name       The project on which to execute the request. The format is
+     *                                 `"projects/{project_id_or_number}"`.
+     * @param TimeSeries[] $timeSeries The new data to be added to a list of time series.
+     *                                 Adds at most one data point to each of several time series.  The new data
+     *                                 point must be more recent than any other point in its time series.  Each
+     *                                 `TimeSeries` value must fully specify a unique time series by supplying
+     *                                 all label values for the metric and the monitored resource.
+     *
+     * The maximum number of `TimeSeries` objects per `Create` request is 200.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a

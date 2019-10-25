@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Input only.
  * List jobs request.
  *
  * Generated from protobuf message <code>google.cloud.talent.v4beta1.ListJobsRequest</code>
@@ -17,57 +16,55 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * Required. The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required.
-     * The filter string specifies the jobs to be enumerated.
+     * Required. The filter string specifies the jobs to be enumerated.
      * Supported operator: =, AND
      * The fields eligible for filtering are:
      * * `companyName` (Required)
-     * * `requisitionId` (Optional)
-     * * `status` (Optional) Available values: OPEN, EXPIRED, ALL. Defaults to
+     * * `requisitionId`
+     * * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
      * OPEN if no value is specified.
      * Sample Query:
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz"
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * requisitionId = "req-1"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * status = "EXPIRED"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
-     * Optional.
      * The starting point of a query result.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
     /**
-     * Optional.
      * The maximum number of jobs to be returned per page of results.
-     * If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     * page size is 1000. Otherwise, the maximum allowed page size is 100.
+     * If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set
+     * to
+     * [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY],
+     * the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     * size is 100.
      * Default is 100 if empty or a number < 1 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
     private $page_size = 0;
     /**
-     * Optional.
      * The desired job attributes returned for jobs in the
-     * search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL] if no value is
-     * specified.
+     * search response. Defaults to
+     * [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL]
+     * if no value is specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobView job_view = 5;</code>
      */
@@ -80,41 +77,39 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required.
-     *           The resource name of the tenant under which the job is created.
-     *           The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     *           "projects/api-test-project/tenant/foo".
-     *           Tenant id is optional and the default tenant is used if unspecified, for
-     *           example, "projects/api-test-project".
+     *           Required. The resource name of the tenant under which the job is created.
+     *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     *           is created. For example, "projects/foo".
      *     @type string $filter
-     *           Required.
-     *           The filter string specifies the jobs to be enumerated.
+     *           Required. The filter string specifies the jobs to be enumerated.
      *           Supported operator: =, AND
      *           The fields eligible for filtering are:
      *           * `companyName` (Required)
-     *           * `requisitionId` (Optional)
-     *           * `status` (Optional) Available values: OPEN, EXPIRED, ALL. Defaults to
+     *           * `requisitionId`
+     *           * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
      *           OPEN if no value is specified.
      *           Sample Query:
-     *           * companyName = "projects/api-test-project/tenants/foo/companies/bar"
-     *           * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     *           * companyName = "projects/foo/tenants/bar/companies/baz"
+     *           * companyName = "projects/foo/tenants/bar/companies/baz" AND
      *           requisitionId = "req-1"
-     *           * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     *           * companyName = "projects/foo/tenants/bar/companies/baz" AND
      *           status = "EXPIRED"
      *     @type string $page_token
-     *           Optional.
      *           The starting point of a query result.
      *     @type int $page_size
-     *           Optional.
      *           The maximum number of jobs to be returned per page of results.
-     *           If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     *           page size is 1000. Otherwise, the maximum allowed page size is 100.
+     *           If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set
+     *           to
+     *           [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY],
+     *           the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     *           size is 100.
      *           Default is 100 if empty or a number < 1 is specified.
      *     @type int $job_view
-     *           Optional.
      *           The desired job attributes returned for jobs in the
-     *           search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL] if no value is
-     *           specified.
+     *           search response. Defaults to
+     *           [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL]
+     *           if no value is specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,14 +118,12 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * Required. The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -139,14 +132,12 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource name of the tenant under which the job is created.
-     * The format is "projects/{project_id}/tenants/{tenant_id}", for example,
-     * "projects/api-test-project/tenant/foo".
-     * Tenant id is optional and the default tenant is used if unspecified, for
-     * example, "projects/api-test-project".
+     * Required. The resource name of the tenant under which the job is created.
+     * The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+     * "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
+     * is created. For example, "projects/foo".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -159,22 +150,21 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The filter string specifies the jobs to be enumerated.
+     * Required. The filter string specifies the jobs to be enumerated.
      * Supported operator: =, AND
      * The fields eligible for filtering are:
      * * `companyName` (Required)
-     * * `requisitionId` (Optional)
-     * * `status` (Optional) Available values: OPEN, EXPIRED, ALL. Defaults to
+     * * `requisitionId`
+     * * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
      * OPEN if no value is specified.
      * Sample Query:
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz"
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * requisitionId = "req-1"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * status = "EXPIRED"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -183,22 +173,21 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The filter string specifies the jobs to be enumerated.
+     * Required. The filter string specifies the jobs to be enumerated.
      * Supported operator: =, AND
      * The fields eligible for filtering are:
      * * `companyName` (Required)
-     * * `requisitionId` (Optional)
-     * * `status` (Optional) Available values: OPEN, EXPIRED, ALL. Defaults to
+     * * `requisitionId`
+     * * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
      * OPEN if no value is specified.
      * Sample Query:
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz"
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * requisitionId = "req-1"
-     * * companyName = "projects/api-test-project/tenants/foo/companies/bar" AND
+     * * companyName = "projects/foo/tenants/bar/companies/baz" AND
      * status = "EXPIRED"
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -211,7 +200,6 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The starting point of a query result.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -223,7 +211,6 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The starting point of a query result.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
@@ -239,10 +226,12 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The maximum number of jobs to be returned per page of results.
-     * If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     * page size is 1000. Otherwise, the maximum allowed page size is 100.
+     * If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set
+     * to
+     * [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY],
+     * the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     * size is 100.
      * Default is 100 if empty or a number < 1 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -254,10 +243,12 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The maximum number of jobs to be returned per page of results.
-     * If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set to [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY], the maximum allowed
-     * page size is 1000. Otherwise, the maximum allowed page size is 100.
+     * If [job_view][google.cloud.talent.v4beta1.ListJobsRequest.job_view] is set
+     * to
+     * [JobView.JOB_VIEW_ID_ONLY][google.cloud.talent.v4beta1.JobView.JOB_VIEW_ID_ONLY],
+     * the maximum allowed page size is 1000. Otherwise, the maximum allowed page
+     * size is 100.
      * Default is 100 if empty or a number < 1 is specified.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
@@ -273,10 +264,10 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The desired job attributes returned for jobs in the
-     * search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL] if no value is
-     * specified.
+     * search response. Defaults to
+     * [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL]
+     * if no value is specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobView job_view = 5;</code>
      * @return int
@@ -287,10 +278,10 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The desired job attributes returned for jobs in the
-     * search response. Defaults to [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL] if no value is
-     * specified.
+     * search response. Defaults to
+     * [JobView.JOB_VIEW_FULL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_FULL]
+     * if no value is specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.JobView job_view = 5;</code>
      * @param int $var

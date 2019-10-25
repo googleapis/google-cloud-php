@@ -50,10 +50,10 @@ use Google\Cloud\WebRisk\V1beta1\ThreatType;
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+ * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
  * try {
- *     $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
- *     $constraints = new ComputeThreatListDiffRequest\Constraints();
+ *     $threatType = Google\Cloud\WebRisk\V1beta1\ThreatType::THREAT_TYPE_UNSPECIFIED;
+ *     $constraints = new Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints();
  *     $response = $webRiskServiceV1Beta1Client->computeThreatListDiff($threatType, $constraints);
  * } finally {
  *     $webRiskServiceV1Beta1Client->close();
@@ -97,7 +97,7 @@ class WebRiskServiceV1Beta1GapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
+            'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__.'/../resources/web_risk_service_v1_beta1_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/../resources/web_risk_service_v1_beta1_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/web_risk_service_v1_beta1_grpc_config.json',
@@ -119,6 +119,9 @@ class WebRiskServiceV1Beta1GapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
+     *           **Deprecated**. This option will be removed in a future major release. Please
+     *           utilize the `$apiEndpoint` option instead.
+     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'webrisk.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -146,7 +149,7 @@ class WebRiskServiceV1Beta1GapicClient
      *           or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
      *           *Advanced usage*: Additionally, it is possible to pass in an already instantiated
      *           {@see \Google\ApiCore\Transport\TransportInterface} object. Note that when this
-     *           object is provided, any settings in $transportConfig, and any $serviceAddress
+     *           object is provided, any settings in $transportConfig, and any `$apiEndpoint`
      *           setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
@@ -175,21 +178,21 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * Sample code:
      * ```
-     * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+     * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
-     *     $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
-     *     $constraints = new ComputeThreatListDiffRequest\Constraints();
+     *     $threatType = Google\Cloud\WebRisk\V1beta1\ThreatType::THREAT_TYPE_UNSPECIFIED;
+     *     $constraints = new Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints();
      *     $response = $webRiskServiceV1Beta1Client->computeThreatListDiff($threatType, $constraints);
      * } finally {
      *     $webRiskServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param int                                      $threatType   Required. The ThreatList to update.
-     *                                                               For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
-     * @param ComputeThreatListDiffRequest\Constraints $constraints  The constraints associated with this request.
-     * @param array                                    $optionalArgs {
-     *                                                               Optional.
+     * @param int         $threatType   The ThreatList to update.
+     *                                  For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
+     * @param Constraints $constraints  Required. The constraints associated with this request.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
      *     @type string $versionToken
      *          The current version token of the client for the requested list (the
@@ -228,7 +231,7 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * Sample code:
      * ```
-     * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+     * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
      *     $uri = '';
      *     $threatTypes = [];
@@ -238,7 +241,7 @@ class WebRiskServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param string $uri          The URI to be checked for matches.
+     * @param string $uri          Required. The URI to be checked for matches.
      * @param int[]  $threatTypes  Required. The ThreatLists to search in.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
      * @param array  $optionalArgs {
@@ -279,23 +282,23 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * Sample code:
      * ```
-     * $webRiskServiceV1Beta1Client = new WebRiskServiceV1Beta1Client();
+     * $webRiskServiceV1Beta1Client = new Google\Cloud\WebRisk\V1beta1\WebRiskServiceV1Beta1Client();
      * try {
-     *     $response = $webRiskServiceV1Beta1Client->searchHashes();
+     *     $threatTypes = [];
+     *     $response = $webRiskServiceV1Beta1Client->searchHashes($threatTypes);
      * } finally {
      *     $webRiskServiceV1Beta1Client->close();
      * }
      * ```
      *
+     * @param int[] $threatTypes  Required. The ThreatLists to search in.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type string $hashPrefix
      *          A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      *          hash. For JSON requests, this field is base64-encoded.
-     *     @type int[] $threatTypes
-     *          Required. The ThreatLists to search in.
-     *          For allowed values, use constants defined on {@see \Google\Cloud\WebRisk\V1beta1\ThreatType}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -308,14 +311,12 @@ class WebRiskServiceV1Beta1GapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function searchHashes(array $optionalArgs = [])
+    public function searchHashes($threatTypes, array $optionalArgs = [])
     {
         $request = new SearchHashesRequest();
+        $request->setThreatTypes($threatTypes);
         if (isset($optionalArgs['hashPrefix'])) {
             $request->setHashPrefix($optionalArgs['hashPrefix']);
-        }
-        if (isset($optionalArgs['threatTypes'])) {
-            $request->setThreatTypes($optionalArgs['threatTypes']);
         }
 
         return $this->startCall(

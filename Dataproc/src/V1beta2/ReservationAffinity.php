@@ -18,19 +18,19 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Type of reservation to consume
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity.Type consume_reservation_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity.Type consume_reservation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $consume_reservation_type = 0;
     /**
      * Optional. Corresponds to the label key of reservation resource.
      *
-     * Generated from protobuf field <code>string key = 2;</code>
+     * Generated from protobuf field <code>string key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $key = '';
     /**
      * Optional. Corresponds to the label values of reservation resource.
      *
-     * Generated from protobuf field <code>repeated string values = 3;</code>
+     * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $values;
 
@@ -56,7 +56,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Type of reservation to consume
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity.Type consume_reservation_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity.Type consume_reservation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getConsumeReservationType()
@@ -67,7 +67,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Type of reservation to consume
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity.Type consume_reservation_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity.Type consume_reservation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -82,7 +82,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Corresponds to the label key of reservation resource.
      *
-     * Generated from protobuf field <code>string key = 2;</code>
+     * Generated from protobuf field <code>string key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getKey()
@@ -93,7 +93,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Corresponds to the label key of reservation resource.
      *
-     * Generated from protobuf field <code>string key = 2;</code>
+     * Generated from protobuf field <code>string key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Corresponds to the label values of reservation resource.
      *
-     * Generated from protobuf field <code>repeated string values = 3;</code>
+     * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getValues()
@@ -119,7 +119,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Corresponds to the label values of reservation resource.
      *
-     * Generated from protobuf field <code>repeated string values = 3;</code>
+     * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

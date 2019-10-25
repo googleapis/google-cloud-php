@@ -16,46 +16,53 @@ use Google\Protobuf\Internal\GPBUtil;
 class WorkflowMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The "resource name" of the template.
+     * Output only. The resource name of the workflow template as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string template = 1;</code>
+     * Generated from protobuf field <code>string template = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $template = '';
     /**
      * Output only. The version of template at the time of
      * workflow instantiation.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $version = 0;
     /**
      * Output only. The create cluster operation metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_cluster = null;
     /**
      * Output only. The workflow graph.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $graph = null;
     /**
      * Output only. The delete cluster operation metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $delete_cluster = null;
     /**
      * Output only. The workflow state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowMetadata.State state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowMetadata.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
      * Output only. The name of the target cluster.
      *
-     * Generated from protobuf field <code>string cluster_name = 7;</code>
+     * Generated from protobuf field <code>string cluster_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cluster_name = '';
     /**
@@ -67,19 +74,19 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Workflow start time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $start_time = null;
     /**
      * Output only. Workflow end time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $end_time = null;
     /**
      * Output only. The UUID of target cluster.
      *
-     * Generated from protobuf field <code>string cluster_uuid = 11;</code>
+     * Generated from protobuf field <code>string cluster_uuid = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cluster_uuid = '';
 
@@ -90,7 +97,14 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $template
-     *           Output only. The "resource name" of the template.
+     *           Output only. The resource name of the workflow template as described
+     *           in https://cloud.google.com/apis/design/resource_names.
+     *           * For `projects.regions.workflowTemplates`, the resource name of the
+     *             template has the following format:
+     *             `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     *           * For `projects.locations.workflowTemplates`, the resource name of the
+     *             template has the following format:
+     *             `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *     @type int $version
      *           Output only. The version of template at the time of
      *           workflow instantiation.
@@ -120,9 +134,16 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "resource name" of the template.
+     * Output only. The resource name of the workflow template as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string template = 1;</code>
+     * Generated from protobuf field <code>string template = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getTemplate()
@@ -131,9 +152,16 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "resource name" of the template.
+     * Output only. The resource name of the workflow template as described
+     * in https://cloud.google.com/apis/design/resource_names.
+     * * For `projects.regions.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/regions/{region}/workflowTemplates/{template_id}`
+     * * For `projects.locations.workflowTemplates`, the resource name of the
+     *   template has the following format:
+     *   `projects/{project_id}/locations/{location}/workflowTemplates/{template_id}`
      *
-     * Generated from protobuf field <code>string template = 1;</code>
+     * Generated from protobuf field <code>string template = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -149,7 +177,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The version of template at the time of
      * workflow instantiation.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getVersion()
@@ -161,7 +189,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The version of template at the time of
      * workflow instantiation.
      *
-     * Generated from protobuf field <code>int32 version = 2;</code>
+     * Generated from protobuf field <code>int32 version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -176,7 +204,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The create cluster operation metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\ClusterOperation
      */
     public function getCreateCluster()
@@ -187,7 +215,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The create cluster operation metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\ClusterOperation $var
      * @return $this
      */
@@ -202,7 +230,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow graph.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\WorkflowGraph
      */
     public function getGraph()
@@ -213,7 +241,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow graph.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\WorkflowGraph $var
      * @return $this
      */
@@ -228,7 +256,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The delete cluster operation metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\ClusterOperation
      */
     public function getDeleteCluster()
@@ -239,7 +267,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The delete cluster operation metadata.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\ClusterOperation $var
      * @return $this
      */
@@ -254,7 +282,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowMetadata.State state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowMetadata.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -265,7 +293,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The workflow state.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowMetadata.State state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowMetadata.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -280,7 +308,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the target cluster.
      *
-     * Generated from protobuf field <code>string cluster_name = 7;</code>
+     * Generated from protobuf field <code>string cluster_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getClusterName()
@@ -291,7 +319,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the target cluster.
      *
-     * Generated from protobuf field <code>string cluster_name = 7;</code>
+     * Generated from protobuf field <code>string cluster_name = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -332,7 +360,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Workflow start time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -343,7 +371,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Workflow start time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -358,7 +386,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Workflow end time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -369,7 +397,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Workflow end time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -384,7 +412,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The UUID of target cluster.
      *
-     * Generated from protobuf field <code>string cluster_uuid = 11;</code>
+     * Generated from protobuf field <code>string cluster_uuid = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getClusterUuid()
@@ -395,7 +423,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The UUID of target cluster.
      *
-     * Generated from protobuf field <code>string cluster_uuid = 11;</code>
+     * Generated from protobuf field <code>string cluster_uuid = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

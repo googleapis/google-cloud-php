@@ -19,13 +19,13 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      *
-     * Generated from protobuf field <code>string instance_template_name = 1;</code>
+     * Generated from protobuf field <code>string instance_template_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $instance_template_name = '';
     /**
      * Output only. The name of the Instance Group Manager for this group.
      *
-     * Generated from protobuf field <code>string instance_group_manager_name = 2;</code>
+     * Generated from protobuf field <code>string instance_group_manager_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $instance_group_manager_name = '';
 
@@ -51,7 +51,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      *
-     * Generated from protobuf field <code>string instance_template_name = 1;</code>
+     * Generated from protobuf field <code>string instance_template_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getInstanceTemplateName()
@@ -63,7 +63,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
      * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      *
-     * Generated from protobuf field <code>string instance_template_name = 1;</code>
+     * Generated from protobuf field <code>string instance_template_name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the Instance Group Manager for this group.
      *
-     * Generated from protobuf field <code>string instance_group_manager_name = 2;</code>
+     * Generated from protobuf field <code>string instance_group_manager_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getInstanceGroupManagerName()
@@ -89,7 +89,7 @@ class ManagedGroupConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the Instance Group Manager for this group.
      *
-     * Generated from protobuf field <code>string instance_group_manager_name = 2;</code>
+     * Generated from protobuf field <code>string instance_group_manager_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

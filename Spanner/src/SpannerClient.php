@@ -77,7 +77,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.16.1';
+    const VERSION = '1.20.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -99,6 +99,8 @@ class SpannerClient
      * @param array $config [optional] {
      *     Configuration Options.
      *
+     *     @type string $apiEndpoint A hostname with optional port to use in
+     *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
      *     @type CacheItemPoolInterface $authCache A cache for storing access

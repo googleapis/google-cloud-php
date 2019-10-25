@@ -16,14 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Address extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
      */
     private $usage = 0;
     /**
-     * Optional.
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
@@ -38,20 +36,16 @@ class Address extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $usage
-     *           Optional.
      *           The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *     @type string $unstructured_address
-     *           Optional.
      *           Unstructured address.
      *           For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
      *           "Sunnyvale, California".
      *           Number of characters allowed is 100.
      *     @type \Google\Type\PostalAddress $structured_address
-     *           Optional.
      *           Structured address that contains street address, city, state, country,
      *           and so on.
      *     @type \Google\Protobuf\BoolValue $current
-     *           Optional.
      *           Indicates if it's the person's current address.
      * }
      */
@@ -61,7 +55,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
@@ -73,7 +66,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The usage of the address. For example, SCHOOL, WORK, PERSONAL.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ContactInfoUsage usage = 1;</code>
@@ -89,7 +81,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Unstructured address.
      * For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
      * "Sunnyvale, California".
@@ -104,7 +95,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Unstructured address.
      * For example, "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
      * "Sunnyvale, California".
@@ -123,7 +113,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Structured address that contains street address, city, state, country,
      * and so on.
      *
@@ -136,7 +125,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Structured address that contains street address, city, state, country,
      * and so on.
      *
@@ -153,7 +141,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
@@ -167,7 +154,6 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getCurrent()</code>
 
-     * Optional.
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
@@ -180,7 +166,6 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
@@ -198,7 +183,6 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional.
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>

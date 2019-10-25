@@ -61,7 +61,6 @@ class EntityTest extends SnippetTestCase
 
         $res = $snippet->invoke('entity');
         $this->assertInstanceOf(Entity::class, $res->returnVal());
-        $this->assertEquals('Bob', $res->output());
     }
 
     public function testClassEntityType()

@@ -312,7 +312,9 @@ class Transaction implements TransactionalReadInterface
      *
      * Data Manipulation Language (DML) allows you to execute statements which
      * modify the state of the database (i.e. inserting, updating or deleting
-     * rows).
+     * rows). DML supports INSERT, UPDATE and DELETE statements. For
+     * more on DML syntax, visit the
+     * [DML syntax guide](https://cloud.google.com/spanner/docs/dml-syntax).
      *
      * To execute a SQL query (such as a SELECT), use
      * {@see Google\Cloud\Spanner\Transaction::execute()}.
@@ -333,8 +335,32 @@ class Transaction implements TransactionalReadInterface
      * ]);
      * ```
      *
+     * ```
+     * // Example of executeUpdate while using DML Structs
+     * $statement = "UPDATE Posts SET title = 'Updated Title' " .
+     *     "WHERE STRUCT<Title STRING, Content STRING>(Title, Content) = @post";
+     *
+     * $postValue = new StructValue();
+     * $postValue->add('Title', 'Updated Title')
+     *           ->add('Content', 'Sample Content');
+     *
+     * $postType = new StructType();
+     * $postType->add('Title', Database::TYPE_STRING)
+     *          ->add('Content', Database::TYPE_STRING);
+     *
+     * $modifiedRowCount = $transaction->executeUpdate($statement, [
+     *     'parameters' => [
+     *         'post' => $postValue
+     *     ],
+     *     'types' => [
+     *         'post' => $postType
+     *     ]
+     * ]);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
+     * @see https://cloud.google.com/spanner/docs/dml-syntax DML Syntax Guide
      * @codingStandardsIgnoreEnd
      *
      * @param string $sql The query string to execute.

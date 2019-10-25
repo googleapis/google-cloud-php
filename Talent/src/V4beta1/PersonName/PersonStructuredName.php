@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class PersonStructuredName extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional.
      * Given/first name.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string given_name = 1;</code>
      */
     private $given_name = '';
     /**
-     * Optional.
      * Preferred given/first name or nickname.
      * Number of characters allowed is 100.
      *
@@ -33,25 +33,26 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
      */
     private $preferred_name = '';
     /**
-     * Optional.
      * Middle initial.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 20.
      *
      * Generated from protobuf field <code>string middle_initial = 2;</code>
      */
     private $middle_initial = '';
     /**
-     * Optional.
      * Family/last name.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>
      */
     private $family_name = '';
     /**
-     * Optional.
      * Suffixes.
      * Number of characters allowed is 20.
      *
@@ -59,7 +60,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
      */
     private $suffixes;
     /**
-     * Optional.
      * Prefixes.
      * Number of characters allowed is 20.
      *
@@ -74,30 +74,30 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $given_name
-     *           Optional.
      *           Given/first name.
-     *           It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     *           It's derived from
+     *           [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     *           if not provided.
      *           Number of characters allowed is 100.
      *     @type string $preferred_name
-     *           Optional.
      *           Preferred given/first name or nickname.
      *           Number of characters allowed is 100.
      *     @type string $middle_initial
-     *           Optional.
      *           Middle initial.
-     *           It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     *           It's derived from
+     *           [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     *           if not provided.
      *           Number of characters allowed is 20.
      *     @type string $family_name
-     *           Optional.
      *           Family/last name.
-     *           It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     *           It's derived from
+     *           [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     *           if not provided.
      *           Number of characters allowed is 100.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $suffixes
-     *           Optional.
      *           Suffixes.
      *           Number of characters allowed is 20.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prefixes
-     *           Optional.
      *           Prefixes.
      *           Number of characters allowed is 20.
      * }
@@ -108,9 +108,10 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Given/first name.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string given_name = 1;</code>
@@ -122,9 +123,10 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Given/first name.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string given_name = 1;</code>
@@ -140,7 +142,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Preferred given/first name or nickname.
      * Number of characters allowed is 100.
      *
@@ -153,7 +154,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Preferred given/first name or nickname.
      * Number of characters allowed is 100.
      *
@@ -170,9 +170,10 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Middle initial.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 20.
      *
      * Generated from protobuf field <code>string middle_initial = 2;</code>
@@ -184,9 +185,10 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Middle initial.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 20.
      *
      * Generated from protobuf field <code>string middle_initial = 2;</code>
@@ -202,9 +204,10 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Family/last name.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>
@@ -216,9 +219,10 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Family/last name.
-     * It's derived from [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name] if not provided.
+     * It's derived from
+     * [formatted_name][google.cloud.talent.v4beta1.PersonName.formatted_name]
+     * if not provided.
      * Number of characters allowed is 100.
      *
      * Generated from protobuf field <code>string family_name = 3;</code>
@@ -234,7 +238,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Suffixes.
      * Number of characters allowed is 20.
      *
@@ -247,7 +250,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Suffixes.
      * Number of characters allowed is 20.
      *
@@ -264,7 +266,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Prefixes.
      * Number of characters allowed is 20.
      *
@@ -277,7 +278,6 @@ class PersonStructuredName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Prefixes.
      * Number of characters allowed is 20.
      *

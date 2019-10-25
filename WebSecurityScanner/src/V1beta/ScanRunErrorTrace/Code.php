@@ -57,7 +57,7 @@ class Code
     /**
      * Indicates that a scan encountered numerous errors from the web site
      * pages. When available, most_common_http_error_code field indicates the
-     * the most common HTTP error code encountered during the scan.
+     * most common HTTP error code encountered during the scan.
      *
      * Generated from protobuf enum <code>TOO_MANY_HTTP_ERRORS = 6;</code>
      */

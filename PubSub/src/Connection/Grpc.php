@@ -25,11 +25,13 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
+use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
+use Google\Cloud\PubSub\V1\Topic;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
@@ -89,12 +91,16 @@ class Grpc implements ConnectionInterface
 
         $config += ['emulatorHost' => null];
 
+        if (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
+        }
+
         if ((bool) $config['emulatorHost']) {
             $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
         }
 
-        $this->publisherClient = new PublisherClient($grpcConfig);
-        $this->subscriberClient = new SubscriberClient($grpcConfig);
+        $this->publisherClient = $this->constructGapic(PublisherClient::class, $grpcConfig);
+        $this->subscriberClient = $this->constructGapic(SubscriberClient::class, $grpcConfig);
     }
 
     /**
@@ -102,6 +108,13 @@ class Grpc implements ConnectionInterface
      */
     public function createTopic(array $args)
     {
+        if (isset($args['messageStoragePolicy'])) {
+            $args['messageStoragePolicy'] = $this->serializer->decodeMessage(
+                new MessageStoragePolicy,
+                $args['messageStoragePolicy']
+            );
+        }
+
         return $this->send([$this->publisherClient, 'createTopic'], [
             $this->pluck('name', $args),
             $args
@@ -126,6 +139,33 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->publisherClient, 'deleteTopic'], [
             $this->pluck('topic', $args),
+            $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateTopic(array $args)
+    {
+        $updateMaskPaths = [];
+        foreach (explode(',', $this->pluck('updateMask', $args)) as $path) {
+            $updateMaskPaths[] = Serializer::toSnakeCase($path);
+        }
+
+        $fieldMask = new FieldMask([
+            'paths' => $updateMaskPaths
+        ]);
+
+        $topic = $this->serializer->decodeMessage(
+            new Topic,
+            $this->pluck('topic', $args)
+        );
+
+        unset($args['name']);
+        return $this->send([$this->publisherClient, 'updateTopic'], [
+            $topic,
+            $fieldMask,
             $args
         ]);
     }

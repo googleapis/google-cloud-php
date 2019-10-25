@@ -21,7 +21,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main R file to use as the driver.
      * Must be a .R file.
      *
-     * Generated from protobuf field <code>string main_r_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_r_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $main_r_file_uri = '';
     /**
@@ -101,7 +101,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main R file to use as the driver.
      * Must be a .R file.
      *
-     * Generated from protobuf field <code>string main_r_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_r_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getMainRFileUri()
@@ -113,7 +113,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Required. The HCFS URI of the main R file to use as the driver.
      * Must be a .R file.
      *
-     * Generated from protobuf field <code>string main_r_file_uri = 1;</code>
+     * Generated from protobuf field <code>string main_r_file_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

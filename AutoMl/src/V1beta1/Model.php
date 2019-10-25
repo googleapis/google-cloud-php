@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Model extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only.
-     * Resource name of the model.
+     * Output only. Resource name of the model.
      * Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -25,38 +24,35 @@ class Model extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The name of the model to show in the interface. The name can be
-     * up to 32 characters
-     * long and can consist only of ASCII Latin letters A-Z and a-z, underscores
-     * (_), and ASCII digits 0-9.
+     * up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     * and a-z, underscores
+     * (_), and ASCII digits 0-9. It must start with a letter.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
     /**
-     * Required.
-     * The resource ID of the dataset used to create the model. The dataset must
-     * come from the
-     * same ancestor project and location.
+     * Required. The resource ID of the dataset used to create the model. The dataset must
+     * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
      */
     private $dataset_id = '';
     /**
-     * Output only.
-     * Timestamp when this model was created.
+     * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
     private $create_time = null;
     /**
-     * Output only.
-     * Timestamp when this model was last updated.
+     * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      */
     private $update_time = null;
     /**
-     * Output only. Deployment state of the model.
+     * Output only. Deployment state of the model. A model can only serve
+     * prediction requests after it gets deployed.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model.DeploymentState deployment_state = 8;</code>
      */
@@ -69,39 +65,73 @@ class Model extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata $translation_model_metadata
+     *           Metadata for translation models.
      *     @type \Google\Cloud\AutoMl\V1beta1\ImageClassificationModelMetadata $image_classification_model_metadata
      *           Metadata for image classification models.
      *     @type \Google\Cloud\AutoMl\V1beta1\TextClassificationModelMetadata $text_classification_model_metadata
      *           Metadata for text classification models.
-     *     @type \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata $translation_model_metadata
-     *           Metadata for translation models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelMetadata $image_object_detection_model_metadata
+     *           Metadata for image object detection models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoClassificationModelMetadata $video_classification_model_metadata
+     *           Metadata for video classification models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingModelMetadata $video_object_tracking_model_metadata
+     *           Metadata for video object tracking models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextExtractionModelMetadata $text_extraction_model_metadata
+     *           Metadata for text extraction models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TablesModelMetadata $tables_model_metadata
+     *           Metadata for Tables models.
+     *     @type \Google\Cloud\AutoMl\V1beta1\TextSentimentModelMetadata $text_sentiment_model_metadata
+     *           Metadata for text sentiment models.
      *     @type string $name
-     *           Output only.
-     *           Resource name of the model.
+     *           Output only. Resource name of the model.
      *           Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *     @type string $display_name
      *           Required. The name of the model to show in the interface. The name can be
-     *           up to 32 characters
-     *           long and can consist only of ASCII Latin letters A-Z and a-z, underscores
-     *           (_), and ASCII digits 0-9.
+     *           up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     *           and a-z, underscores
+     *           (_), and ASCII digits 0-9. It must start with a letter.
      *     @type string $dataset_id
-     *           Required.
-     *           The resource ID of the dataset used to create the model. The dataset must
-     *           come from the
-     *           same ancestor project and location.
+     *           Required. The resource ID of the dataset used to create the model. The dataset must
+     *           come from the same ancestor project and location.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only.
-     *           Timestamp when this model was created.
+     *           Output only. Timestamp when the model training finished  and can be used for prediction.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only.
-     *           Timestamp when this model was last updated.
+     *           Output only. Timestamp when this model was last updated.
      *     @type int $deployment_state
-     *           Output only. Deployment state of the model.
+     *           Output only. Deployment state of the model. A model can only serve
+     *           prediction requests after it gets deployed.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Model::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Metadata for translation models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationModelMetadata translation_model_metadata = 15;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata
+     */
+    public function getTranslationModelMetadata()
+    {
+        return $this->readOneof(15);
+    }
+
+    /**
+     * Metadata for translation models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationModelMetadata translation_model_metadata = 15;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata $var
+     * @return $this
+     */
+    public function setTranslationModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
     }
 
     /**
@@ -157,34 +187,163 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata for translation models.
+     * Metadata for image object detection models.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationModelMetadata translation_model_metadata = 15;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionModelMetadata image_object_detection_model_metadata = 20;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelMetadata
      */
-    public function getTranslationModelMetadata()
+    public function getImageObjectDetectionModelMetadata()
     {
-        return $this->readOneof(15);
+        return $this->readOneof(20);
     }
 
     /**
-     * Metadata for translation models.
+     * Metadata for image object detection models.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationModelMetadata translation_model_metadata = 15;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata $var
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionModelMetadata image_object_detection_model_metadata = 20;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelMetadata $var
      * @return $this
      */
-    public function setTranslationModelMetadata($var)
+    public function setImageObjectDetectionModelMetadata($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TranslationModelMetadata::class);
-        $this->writeOneof(15, $var);
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionModelMetadata::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }
 
     /**
-     * Output only.
-     * Resource name of the model.
+     * Metadata for video classification models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationModelMetadata video_classification_model_metadata = 23;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationModelMetadata
+     */
+    public function getVideoClassificationModelMetadata()
+    {
+        return $this->readOneof(23);
+    }
+
+    /**
+     * Metadata for video classification models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationModelMetadata video_classification_model_metadata = 23;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoClassificationModelMetadata $var
+     * @return $this
+     */
+    public function setVideoClassificationModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoClassificationModelMetadata::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for video object tracking models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingModelMetadata video_object_tracking_model_metadata = 21;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingModelMetadata
+     */
+    public function getVideoObjectTrackingModelMetadata()
+    {
+        return $this->readOneof(21);
+    }
+
+    /**
+     * Metadata for video object tracking models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingModelMetadata video_object_tracking_model_metadata = 21;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingModelMetadata $var
+     * @return $this
+     */
+    public function setVideoObjectTrackingModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingModelMetadata::class);
+        $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for text extraction models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionModelMetadata text_extraction_model_metadata = 19;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionModelMetadata
+     */
+    public function getTextExtractionModelMetadata()
+    {
+        return $this->readOneof(19);
+    }
+
+    /**
+     * Metadata for text extraction models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionModelMetadata text_extraction_model_metadata = 19;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextExtractionModelMetadata $var
+     * @return $this
+     */
+    public function setTextExtractionModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextExtractionModelMetadata::class);
+        $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for Tables models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesModelMetadata tables_model_metadata = 24;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TablesModelMetadata
+     */
+    public function getTablesModelMetadata()
+    {
+        return $this->readOneof(24);
+    }
+
+    /**
+     * Metadata for Tables models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesModelMetadata tables_model_metadata = 24;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TablesModelMetadata $var
+     * @return $this
+     */
+    public function setTablesModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TablesModelMetadata::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for text sentiment models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentModelMetadata text_sentiment_model_metadata = 22;</code>
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentModelMetadata
+     */
+    public function getTextSentimentModelMetadata()
+    {
+        return $this->readOneof(22);
+    }
+
+    /**
+     * Metadata for text sentiment models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentModelMetadata text_sentiment_model_metadata = 22;</code>
+     * @param \Google\Cloud\AutoMl\V1beta1\TextSentimentModelMetadata $var
+     * @return $this
+     */
+    public function setTextSentimentModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\TextSentimentModelMetadata::class);
+        $this->writeOneof(22, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Resource name of the model.
      * Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -196,8 +355,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Resource name of the model.
+     * Output only. Resource name of the model.
      * Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -214,9 +372,9 @@ class Model extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the model to show in the interface. The name can be
-     * up to 32 characters
-     * long and can consist only of ASCII Latin letters A-Z and a-z, underscores
-     * (_), and ASCII digits 0-9.
+     * up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     * and a-z, underscores
+     * (_), and ASCII digits 0-9. It must start with a letter.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -228,9 +386,9 @@ class Model extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the model to show in the interface. The name can be
-     * up to 32 characters
-     * long and can consist only of ASCII Latin letters A-Z and a-z, underscores
-     * (_), and ASCII digits 0-9.
+     * up to 32 characters long and can consist only of ASCII Latin letters A-Z
+     * and a-z, underscores
+     * (_), and ASCII digits 0-9. It must start with a letter.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
@@ -245,10 +403,8 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource ID of the dataset used to create the model. The dataset must
-     * come from the
-     * same ancestor project and location.
+     * Required. The resource ID of the dataset used to create the model. The dataset must
+     * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
      * @return string
@@ -259,10 +415,8 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The resource ID of the dataset used to create the model. The dataset must
-     * come from the
-     * same ancestor project and location.
+     * Required. The resource ID of the dataset used to create the model. The dataset must
+     * come from the same ancestor project and location.
      *
      * Generated from protobuf field <code>string dataset_id = 3;</code>
      * @param string $var
@@ -277,8 +431,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model was created.
+     * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      * @return \Google\Protobuf\Timestamp
@@ -289,8 +442,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model was created.
+     * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -305,8 +457,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model was last updated.
+     * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @return \Google\Protobuf\Timestamp
@@ -317,8 +468,7 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only.
-     * Timestamp when this model was last updated.
+     * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -333,7 +483,8 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Deployment state of the model.
+     * Output only. Deployment state of the model. A model can only serve
+     * prediction requests after it gets deployed.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model.DeploymentState deployment_state = 8;</code>
      * @return int
@@ -344,7 +495,8 @@ class Model extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Deployment state of the model.
+     * Output only. Deployment state of the model. A model can only serve
+     * prediction requests after it gets deployed.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model.DeploymentState deployment_state = 8;</code>
      * @param int $var

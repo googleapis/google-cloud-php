@@ -19,37 +19,35 @@ class Application extends \Google\Protobuf\Internal\Message
      * Required during application update.
      * Resource name assigned to an application by the API.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/api-test-project/tenants/foo/profiles/bar/applications/baz".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * Required.
-     * Client side application identifier, used to uniquely identify the
+     * Required. Client side application identifier, used to uniquely identify the
      * application.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string external_id = 31;</code>
+     * Generated from protobuf field <code>string external_id = 31 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $external_id = '';
     /**
      * Output only. Resource name of the candidate of this application.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string profile = 2;</code>
+     * Generated from protobuf field <code>string profile = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $profile = '';
     /**
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
-     * for example, "projects/api-test-project/tenants/foo/jobs/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
+     * "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>string job = 4;</code>
      */
@@ -58,38 +56,34 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
-     * for example, "projects/api-test-project/tenants/foo/companies/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
+     * For example, "projects/foo/tenants/bar/companies/baz".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      */
     private $company = '';
     /**
-     * Optional.
      * The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
      */
     private $application_date = null;
     /**
-     * Required.
-     * What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $stage = 0;
     /**
-     * Optional.
      * The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
      */
     private $state = 0;
     /**
-     * Optional.
      * All interviews (screen, onsite, and so on) conducted as part of this
      * application (includes details such as user conducting the interview,
      * timestamp, feedback, and so on).
@@ -98,28 +92,24 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $interviews;
     /**
-     * Optional.
      * If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
      */
     private $referral = null;
     /**
-     * Required.
-     * Reflects the time that the application was created.
+     * Required. Reflects the time that the application was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $create_time = null;
     /**
-     * Optional.
      * The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
      */
     private $update_time = null;
     /**
-     * Optional.
      * Free text reason behind the recruitement outcome (for example, reason for
      * withdraw / reject, reason for an unsuccessful finish, and so on).
      * Number of characters allowed is 100.
@@ -128,7 +118,6 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     private $outcome_notes = '';
     /**
-     * Optional.
      * Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
@@ -139,7 +128,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * application related filters. This value is only applicable in profile
      * search response.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $is_match = null;
     /**
@@ -147,7 +136,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * search query. It's empty if the job title isn't related to the search
      * query.
      *
-     * Generated from protobuf field <code>string job_title_snippet = 29;</code>
+     * Generated from protobuf field <code>string job_title_snippet = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $job_title_snippet = '';
 
@@ -161,64 +150,53 @@ class Application extends \Google\Protobuf\Internal\Message
      *           Required during application update.
      *           Resource name assigned to an application by the API.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     *           for example,
-     *           "projects/api-test-project/tenants/foo/profiles/bar/applications/baz".
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     *           For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *     @type string $external_id
-     *           Required.
-     *           Client side application identifier, used to uniquely identify the
+     *           Required. Client side application identifier, used to uniquely identify the
      *           application.
      *           The maximum number of allowed characters is 255.
      *     @type string $profile
      *           Output only. Resource name of the candidate of this application.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     *           for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
+     *           For example, "projects/foo/tenants/bar/profiles/baz".
      *     @type string $job
      *           One of either a job or a company is required.
      *           Resource name of the job which the candidate applied for.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
-     *           for example, "projects/api-test-project/tenants/foo/jobs/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
+     *           "projects/foo/tenants/bar/jobs/baz".
      *     @type string $company
      *           One of either a job or a company is required.
      *           Resource name of the company which the candidate applied for.
      *           The format is
-     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
-     *           for example, "projects/api-test-project/tenants/foo/companies/bar".
+     *           "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
+     *           For example, "projects/foo/tenants/bar/companies/baz".
      *     @type \Google\Type\Date $application_date
-     *           Optional.
      *           The application date.
      *     @type int $stage
-     *           Required.
-     *           What is the most recent stage of the application (that is, new, screen,
-     *           send cv, hired, finished work)?  This field is intentionally not
+     *           Required. What is the most recent stage of the application (that is, new,
+     *           screen, send cv, hired, finished work)?  This field is intentionally not
      *           comprehensive of every possible status, but instead, represents statuses
      *           that would be used to indicate to the ML models good / bad matches.
      *     @type int $state
-     *           Optional.
      *           The application state.
      *     @type \Google\Cloud\Talent\V4beta1\Interview[]|\Google\Protobuf\Internal\RepeatedField $interviews
-     *           Optional.
      *           All interviews (screen, onsite, and so on) conducted as part of this
      *           application (includes details such as user conducting the interview,
      *           timestamp, feedback, and so on).
      *     @type \Google\Protobuf\BoolValue $referral
-     *           Optional.
      *           If the candidate is referred by a employee.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Required.
-     *           Reflects the time that the application was created.
+     *           Required. Reflects the time that the application was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Optional.
      *           The last update timestamp.
      *     @type string $outcome_notes
-     *           Optional.
      *           Free text reason behind the recruitement outcome (for example, reason for
      *           withdraw / reject, reason for an unsuccessful finish, and so on).
      *           Number of characters allowed is 100.
      *     @type int $outcome
-     *           Optional.
      *           Outcome positiveness shows how positive the outcome is.
      *     @type \Google\Protobuf\BoolValue $is_match
      *           Output only. Indicates whether this job application is a match to
@@ -239,9 +217,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * Required during application update.
      * Resource name assigned to an application by the API.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/api-test-project/tenants/foo/profiles/bar/applications/baz".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -255,9 +232,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * Required during application update.
      * Resource name assigned to an application by the API.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}",
-     * for example,
-     * "projects/api-test-project/tenants/foo/profiles/bar/applications/baz".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}/applications/{application_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz/applications/qux".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -272,12 +248,11 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side application identifier, used to uniquely identify the
+     * Required. Client side application identifier, used to uniquely identify the
      * application.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string external_id = 31;</code>
+     * Generated from protobuf field <code>string external_id = 31 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getExternalId()
@@ -286,12 +261,11 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Client side application identifier, used to uniquely identify the
+     * Required. Client side application identifier, used to uniquely identify the
      * application.
      * The maximum number of allowed characters is 255.
      *
-     * Generated from protobuf field <code>string external_id = 31;</code>
+     * Generated from protobuf field <code>string external_id = 31 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -306,10 +280,10 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource name of the candidate of this application.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string profile = 2;</code>
+     * Generated from protobuf field <code>string profile = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getProfile()
@@ -320,10 +294,10 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Resource name of the candidate of this application.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}",
-     * for example, "projects/api-test-project/tenants/foo/profiles/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/profiles/{profile_id}".
+     * For example, "projects/foo/tenants/bar/profiles/baz".
      *
-     * Generated from protobuf field <code>string profile = 2;</code>
+     * Generated from protobuf field <code>string profile = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -339,8 +313,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
-     * for example, "projects/api-test-project/tenants/foo/jobs/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
+     * "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>string job = 4;</code>
      * @return string
@@ -354,8 +328,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the job which the candidate applied for.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}",
-     * for example, "projects/api-test-project/tenants/foo/jobs/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}". For example,
+     * "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>string job = 4;</code>
      * @param string $var
@@ -373,8 +347,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
-     * for example, "projects/api-test-project/tenants/foo/companies/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
+     * For example, "projects/foo/tenants/bar/companies/baz".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      * @return string
@@ -388,8 +362,8 @@ class Application extends \Google\Protobuf\Internal\Message
      * One of either a job or a company is required.
      * Resource name of the company which the candidate applied for.
      * The format is
-     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}",
-     * for example, "projects/api-test-project/tenants/foo/companies/bar".
+     * "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}".
+     * For example, "projects/foo/tenants/bar/companies/baz".
      *
      * Generated from protobuf field <code>string company = 5;</code>
      * @param string $var
@@ -404,7 +378,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
@@ -416,7 +389,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
@@ -432,13 +404,12 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getStage()
@@ -447,13 +418,12 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * What is the most recent stage of the application (that is, new, screen,
-     * send cv, hired, finished work)?  This field is intentionally not
+     * Required. What is the most recent stage of the application (that is, new,
+     * screen, send cv, hired, finished work)?  This field is intentionally not
      * comprehensive of every possible status, but instead, represents statuses
      * that would be used to indicate to the ML models good / bad matches.
      *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationStage stage = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -466,7 +436,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
@@ -478,7 +447,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The application state.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application.ApplicationState state = 13;</code>
@@ -494,7 +462,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * All interviews (screen, onsite, and so on) conducted as part of this
      * application (includes details such as user conducting the interview,
      * timestamp, feedback, and so on).
@@ -508,7 +475,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * All interviews (screen, onsite, and so on) conducted as part of this
      * application (includes details such as user conducting the interview,
      * timestamp, feedback, and so on).
@@ -526,7 +492,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
@@ -540,7 +505,6 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getReferral()</code>
 
-     * Optional.
      * If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
@@ -553,7 +517,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
@@ -571,7 +534,6 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional.
      * If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
@@ -585,10 +547,9 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Reflects the time that the application was created.
+     * Required. Reflects the time that the application was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -597,10 +558,9 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Reflects the time that the application was created.
+     * Required. Reflects the time that the application was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -613,7 +573,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
@@ -625,7 +584,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
@@ -641,7 +599,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Free text reason behind the recruitement outcome (for example, reason for
      * withdraw / reject, reason for an unsuccessful finish, and so on).
      * Number of characters allowed is 100.
@@ -655,7 +612,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Free text reason behind the recruitement outcome (for example, reason for
      * withdraw / reject, reason for an unsuccessful finish, and so on).
      * Number of characters allowed is 100.
@@ -673,7 +629,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
@@ -685,7 +640,6 @@ class Application extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional.
      * Outcome positiveness shows how positive the outcome is.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Outcome outcome = 22;</code>
@@ -705,7 +659,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * application related filters. This value is only applicable in profile
      * search response.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\BoolValue
      */
     public function getIsMatch()
@@ -720,7 +674,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * application related filters. This value is only applicable in profile
      * search response.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool|null
      */
     public function getIsMatchValue()
@@ -734,7 +688,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * application related filters. This value is only applicable in profile
      * search response.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\BoolValue $var
      * @return $this
      */
@@ -753,7 +707,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * application related filters. This value is only applicable in profile
      * search response.
      *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28;</code>
+     * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool|null $var
      * @return $this
      */
@@ -768,7 +722,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * search query. It's empty if the job title isn't related to the search
      * query.
      *
-     * Generated from protobuf field <code>string job_title_snippet = 29;</code>
+     * Generated from protobuf field <code>string job_title_snippet = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getJobTitleSnippet()
@@ -781,7 +735,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * search query. It's empty if the job title isn't related to the search
      * query.
      *
-     * Generated from protobuf field <code>string job_title_snippet = 29;</code>
+     * Generated from protobuf field <code>string job_title_snippet = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

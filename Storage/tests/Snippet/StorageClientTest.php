@@ -19,12 +19,13 @@ namespace Google\Cloud\Storage\Tests\Snippet;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
-use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
@@ -179,5 +180,88 @@ class StorageClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('serviceAccount');
         $this->assertEquals($expectedServiceAccount, $res->returnVal());
+    }
+
+    public function testHmacKeys()
+    {
+        $accessId = 'foo';
+
+        $this->connection->listHmacKeys(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [
+                    [
+                        'accessId' => $accessId
+                    ]
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'hmacKeys');
+        $snippet->addLocal('storage', $this->client);
+
+        $res = $snippet->invoke('hmacKeys');
+        $this->assertEquals($accessId, $res->returnVal()->current()->accessId());
+    }
+
+    public function testHmacKeysWithServiceAccountEmail()
+    {
+        $accessId = 'foo';
+        $email = 'account@myProject.iam.gserviceaccount.com';
+
+        $this->connection->listHmacKeys(Argument::withEntry('serviceAccountEmail', $email))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [
+                    [
+                        'accessId' => $accessId
+                    ]
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'hmacKeys', 1);
+        $snippet->addLocal('storage', $this->client);
+        $snippet->addLocal('serviceAccountEmail', $email);
+
+        $res = $snippet->invoke('hmacKeys');
+        $this->assertEquals($accessId, $res->returnVal()->current()->accessId());
+    }
+
+    public function testHmacKey()
+    {
+        $accessId = 'foo';
+
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'hmacKey');
+        $snippet->addLocal('storage', $this->client);
+        $snippet->addLocal('accessId', $accessId);
+
+        $res = $snippet->invoke('hmacKey');
+        $this->assertInstanceOf(HmacKey::class, $res->returnVal());
+        $this->assertEquals($accessId, $res->returnVal()->accessId());
+    }
+
+    public function testCreateHmacKey()
+    {
+        $secret = 'secret';
+
+        $this->connection->createHmacKey(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'secret' => $secret,
+                'metadata' => [
+                    'accessId' => 'foo'
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'createHmacKey');
+        $snippet->addLocal('storage', $this->client);
+
+        $res = $snippet->invoke('secret');
+        $this->assertEquals($secret, $res->returnVal());
     }
 }
