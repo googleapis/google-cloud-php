@@ -159,7 +159,7 @@ class RestTest extends TestCase
         $actualBody = $rest->downloadObject(self::$downloadOptions);
         $actualUri = (string) $actualRequest->getUri();
 
-        $expectedUri = 'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
+        $expectedUri = 'https://storage.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
             'generation=100&alt=media&userProject=myProject';
 
         $this->assertEquals($this->successBody, $actualBody);
@@ -190,7 +190,7 @@ class RestTest extends TestCase
         $actualPromise = $rest->downloadObjectAsync(self::$downloadOptions);
         $actualUri = (string) $actualRequest->getUri();
 
-        $expectedUri = 'https://www.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
+        $expectedUri = 'https://storage.googleapis.com/storage/v1/b/bigbucket/o/myfile.txt?' .
             'generation=100&alt=media&userProject=myProject';
 
         $this->assertInstanceOf(PromiseInterface::class, $actualPromise);

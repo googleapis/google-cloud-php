@@ -43,9 +43,9 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
-    const BASE_URI = 'https://www.googleapis.com/storage/v1/';
-    const UPLOAD_URI = 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-    const DOWNLOAD_URI = 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
+    const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
+    const UPLOAD_URI = 'https://storage.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
+    const DOWNLOAD_URI = 'https://storage.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
      * @var string
