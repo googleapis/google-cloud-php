@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,24 +15,29 @@
  * limitations under the License.
  */
 
-//@codeCoverageIgnoreStart
+namespace Google\Cloud\Translate\V2\Connection;
 
-namespace Google\Cloud\Translate;
-
-if (false) {
+/**
+ * Represents a connection to
+ * [Google Cloud Translation](https://cloud.google.com/translation/).
+ */
+interface ConnectionInterface
+{
     /**
-     * This class is deprecated. Use {@see Google\Cloud\Translate\V2\TranslateClient} instead.
-     * @deprecated
+     * @param array $args
+     * @return array
      */
-    class TranslateClient {}
+    public function listDetections(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function listLanguages(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function listTranslations(array $args = []);
 }
-
-class_exists(V2\TranslateClient::class);
-@trigger_error(
-    'Google\Cloud\Translate\TranslateClient is deprecated and will be ' .
-    'removed in a future release. Use ' .
-    'Google\Cloud\Translate\V2\TranslateClient instead',
-    E_USER_DEPRECATED
-);
-
-//@codeCoverageIgnoreEnd

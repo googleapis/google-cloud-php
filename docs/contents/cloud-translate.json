@@ -6,8 +6,8 @@
         "title": "Overview",
         "type": "translate/readme"
     }, {
-        "title": "TranslateClient (V2 API)",
-        "type": "translate/translateclient"
+        "title": "V2",
+        "type": "translate/v2/translateclient"
     }, {
         "title": "V3",
         "type": "translate/v3/readme",
