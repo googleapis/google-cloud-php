@@ -49,11 +49,34 @@ class Query
     use DebugInfoTrait;
     use SnapshotTrait;
 
+    /**
+     * @deprecated
+     */
     const OP_LESS_THAN = FieldFilterOperator::LESS_THAN;
+
+    /**
+     * @deprecated
+     */
     const OP_LESS_THAN_OR_EQUAL = FieldFilterOperator::LESS_THAN_OR_EQUAL;
+
+    /**
+     * @deprecated
+     */
     const OP_GREATER_THAN = FieldFilterOperator::GREATER_THAN;
+
+    /**
+     * @deprecated
+     */
     const OP_GREATER_THAN_OR_EQUAL = FieldFilterOperator::GREATER_THAN_OR_EQUAL;
+
+    /**
+     * @deprecated
+     */
     const OP_EQUAL = FieldFilterOperator::EQUAL;
+
+    /**
+     * @deprecated
+     */
     const OP_ARRAY_CONTAINS = FieldFilterOperator::ARRAY_CONTAINS;
 
     const OP_NAN = UnaryFilterOperator::IS_NAN;
@@ -64,24 +87,17 @@ class Query
 
     const DOCUMENT_ID = '__name__';
 
-    private $allowedOperators = [
-        self::OP_LESS_THAN,
-        self::OP_LESS_THAN_OR_EQUAL,
-        self::OP_EQUAL,
-        self::OP_GREATER_THAN,
-        self::OP_GREATER_THAN_OR_EQUAL,
-        self::OP_ARRAY_CONTAINS,
-    ];
-
     private $shortOperators = [
-        '<'  => self::OP_LESS_THAN,
-        '<=' => self::OP_LESS_THAN_OR_EQUAL,
-        '>'  => self::OP_GREATER_THAN,
-        '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '='  => self::OP_EQUAL,
-        '=='  => self::OP_EQUAL,
-        '==='  => self::OP_EQUAL,
-        'array-contains' => self::OP_ARRAY_CONTAINS,
+        '<'  => FieldFilterOperator::LESS_THAN,
+        '<=' => FieldFilterOperator::LESS_THAN_OR_EQUAL,
+        '>'  => FieldFilterOperator::GREATER_THAN,
+        '>=' => FieldFilterOperator::GREATER_THAN_OR_EQUAL,
+        '='  => FieldFilterOperator::EQUAL,
+        '=='  => FieldFilterOperator::EQUAL,
+        '==='  => FieldFilterOperator::EQUAL,
+        'array-contains' => FieldFilterOperator::ARRAY_CONTAINS,
+        'array-contains-any' => FieldFilterOperator::ARRAY_CONTAINS_ANY,
+        'in' => FieldFilterOperator::IN,
     ];
 
     private $allowedDirections = [
@@ -264,6 +280,13 @@ class Query
     /**
      * Add a WHERE clause to the Query.
      *
+     * For a list of all available operators, see
+     * {@see Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator}.
+     * This method also supports a number of comparison operators which you will
+     * be familiar with, such as `=`, `>`, `<`, `<=` and `>=`. For array fields,
+     * the `array-contains`, `IN` and `array-contains-any` operators are also
+     * available.
+     *
      * Example:
      * ```
      * $query = $query->where('firstName', '=', 'John');
@@ -280,7 +303,7 @@ class Query
      * ```
      *
      * @param string|FieldPath $fieldPath The field to filter by.
-     * @param string $operator The operator to filter by.
+     * @param string|int $operator The operator to filter by.
      * @param mixed $value The value to compare to.
      * @return Query A new instance of Query with the given changes applied.
      * @throws \InvalidArgumentException If an invalid operator or value is encountered.
@@ -302,14 +325,18 @@ class Query
 
         $escapedPathString = $fieldPath->pathString();
 
-        $operator = array_key_exists($operator, $this->shortOperators)
-            ? $this->shortOperators[$operator]
+        // alias for friendlier error message below.
+        $originalOperator = $operator;
+        $operator = array_key_exists(strtolower($operator), $this->shortOperators)
+            ? $this->shortOperators[strtolower($operator)]
             : $operator;
 
-        if (!in_array($operator, $this->allowedOperators)) {
+        try {
+            FieldFilterOperator::name($operator);
+        } catch (\UnexpectedValueException $e) {
             throw new \InvalidArgumentException(sprintf(
                 'Operator %s is not a valid operator',
-                $operator
+                $originalOperator
             ));
         }
 
