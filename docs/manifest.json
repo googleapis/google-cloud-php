@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.116.0",
                 "v0.115.0",
                 "v0.114.0",
                 "v0.113.0",
@@ -384,6 +385,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.34.0",
                 "v1.33.1",
                 "v1.33.0",
                 "v1.32.0",
@@ -738,6 +740,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.10.0",
                 "v1.9.0",
                 "v1.8.0",
                 "v1.7.1",
@@ -989,6 +992,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v0.19.0",
                 "v0.18.0",
                 "v0.17.0",
                 "v0.16.5",
@@ -1152,6 +1156,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v0.11.0",
                 "v0.10.0",
                 "v0.9.0",
                 "v0.8.4",
@@ -1351,6 +1356,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.15.0",
                 "v1.14.0",
                 "v1.13.0",
                 "v1.12.3",
@@ -1398,6 +1404,7 @@
             "name": "google/cloud-talent",
             "defaultService": "talent/readme",
             "versions": [
+                "v0.7.0",
                 "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
@@ -1520,6 +1527,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.6.0",
                 "v1.5.0",
                 "v1.4.1",
                 "v1.4.0",
@@ -1681,6 +1689,7 @@
             "name": "google/cloud-web-security-scanner",
             "defaultService": "websecurityscanner/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
                 "master"
