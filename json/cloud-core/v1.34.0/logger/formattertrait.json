@@ -1,0 +1,1 @@
+{"id":"core\/logger\/formattertrait","type":"","title":"Google\\Cloud\\Core\\Logger\\FormatterTrait","name":"FormatterTrait","description":"<p>Shared trait to enrich and format a record with\nApp Engine Flex specific information.<\/p>","examples":[],"resources":[],"methods":[]}

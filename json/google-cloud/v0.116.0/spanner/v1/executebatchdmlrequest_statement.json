@@ -1,0 +1,1 @@
+{"id":"spanner\/v1\/executebatchdmlrequest_statement","type":"","title":"Google\\Cloud\\Spanner\\V1\\ExecuteBatchDmlRequest_Statement","name":"ExecuteBatchDmlRequest_Statement","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\V1\\ExecuteBatchDmlRequest\\Statement instead.<\/p>","examples":[],"resources":[],"methods":[]}
