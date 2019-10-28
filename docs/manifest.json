@@ -464,6 +464,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v0.15.1",
                 "v0.15.0",
                 "v0.14.0",
                 "v0.13.0",

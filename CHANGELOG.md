@@ -18,6 +18,14 @@
 
 </details>
 
+<details><summary>google/cloud-dataproc 0.15.1</summary>
+
+### Bug Fixes
+
+* Include operations metadata ([#2412](https://github.com/googleapis/google-cloud-php/pull/2412)) ([0b90be0](https://github.com/googleapis/google-cloud-php/commit/0b90be08b85c76a4ce76dd93d9f01218f812824d))
+
+</details>
+
 <details><summary>google/cloud-firestore 1.10.0</summary>
 
 
