@@ -1,5 +1,101 @@
 # Changelog
 
+## 0.116.0
+
+<details><summary>google/cloud-core 1.34.0</summary>
+
+
+
+### Features
+
+* Extract KMS testing utilities ([#2376](https://www.github.com/googleapis/google-cloud-php/issues/2376)) ([20ced2a](https://www.github.com/googleapis/google-cloud-php/commit/20ced2ac1185fe08402c951a3b731e35f8e64d85))
+* Move v2 translate client ([#2423](https://www.github.com/googleapis/google-cloud-php/issues/2423)) ([4e9182d](https://www.github.com/googleapis/google-cloud-php/commit/4e9182de8808c1ffdb08d77cf896c8417a55ca92))
+
+
+### Bug Fixes
+
+* Only throw exception when creating directory really failed in HandleFailureTrait ([#2341](https://www.github.com/googleapis/google-cloud-php/issues/2341)) ([65d3f6d](https://www.github.com/googleapis/google-cloud-php/commit/65d3f6db293afa28a424f687242a3f3f59a5c62b))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.10.0</summary>
+
+
+
+### Features
+
+* Add additional array operators to generated client query. ([#2396](https://www.github.com/googleapis/google-cloud-php/issues/2396)) ([4a08ba4](https://www.github.com/googleapis/google-cloud-php/commit/4a08ba4bdb730347ae44f05847f3343c382761ed))
+* Support any new query field filter operators ([#2399](https://www.github.com/googleapis/google-cloud-php/issues/2399)) ([257289e](https://www.github.com/googleapis/google-cloud-php/commit/257289e99d48f53fba37cb8ea43d5798d267116d))
+
+</details>
+
+<details><summary>google/cloud-monitoring 0.19.0</summary>
+
+
+
+### Features
+
+* Add `isInternal` flag to uptime check config. ([#2405](https://www.github.com/googleapis/google-cloud-php/issues/2405)) ([ec3c025](https://www.github.com/googleapis/google-cloud-php/commit/ec3c025dccf8f3be18bcf66dc6646f164c1f972b))
+* Add DroppedLabels proto message. ([#2401](https://www.github.com/googleapis/google-cloud-php/issues/2401)) ([edd7e7f](https://www.github.com/googleapis/google-cloud-php/commit/edd7e7f3c899d43068c3fcee870330a4f2ccf1c1))
+
+</details>
+
+<details><summary>google/cloud-redis 0.11.0</summary>
+
+
+
+### Features
+
+* Make dataProtectionMode in CloudRedisGapicClient::failoverInstance optional / Update timeouts ([9986719](https://www.github.com/googleapis/google-cloud-php/commit/9986719d481e99f844ba0c0232cd57388a4eaf7c))
+* Update timeouts. ([#2383](https://www.github.com/googleapis/google-cloud-php/issues/2383)) ([46c601d](https://www.github.com/googleapis/google-cloud-php/commit/46c601dedc99f6d9daae95ba5eb05bd59e150a12))
+
+</details>
+
+<details><summary>google/cloud-storage 1.15.0</summary>
+
+
+
+### Features
+
+* update googleapis.com -> storage.googleapis.com ([#2426](https://www.github.com/googleapis/google-cloud-php/issues/2426)) ([3c6266c](https://www.github.com/googleapis/google-cloud-php/commit/3c6266c5b10bfbcaabbf3bcb3fbbc0dd8d33603d))
+
+</details>
+
+<details><summary>google/cloud-talent 0.7.0</summary>
+
+
+
+### Features
+
+* Introduce availability filters and signals. ([#2384](https://www.github.com/googleapis/google-cloud-php/issues/2384)) ([79f1601](https://www.github.com/googleapis/google-cloud-php/commit/79f16019a9d251ba8c600ad3540cd5120f0fdf01))
+
+</details>
+
+<details><summary>google/cloud-translate 1.6.0</summary>
+
+
+
+### Features
+
+* Move v2 translate client ([#2423](https://www.github.com/googleapis/google-cloud-php/issues/2423)) ([4e9182d](https://www.github.com/googleapis/google-cloud-php/commit/4e9182de8808c1ffdb08d77cf896c8417a55ca92))
+
+
+### Bug Fixes
+
+* Update output string ([#2382](https://www.github.com/googleapis/google-cloud-php/issues/2382)) ([bb40c5c](https://www.github.com/googleapis/google-cloud-php/commit/bb40c5c600890d9dd8a1954bbfba6416fa8ea87d))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.3.0</summary>
+
+
+
+### Features
+
+* Add additional Scan error code, update documentation. ([#2398](https://www.github.com/googleapis/google-cloud-php/issues/2398)) ([862fb9c](https://www.github.com/googleapis/google-cloud-php/commit/862fb9c49670a212db99cfb133efe77663562605))
+
+</details>
+
 ## 0.115.0
 
 <details><summary>google/cloud-automl 0.7.1</summary>
