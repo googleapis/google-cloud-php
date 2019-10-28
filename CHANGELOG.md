@@ -54,7 +54,7 @@
 
 ### Features
 
-* Make dataProtectionMode in CloudRedisGapicClient::failoverInstance optional / Update timeouts ([9986719](https://www.github.com/googleapis/google-cloud-php/commit/9986719d481e99f844ba0c0232cd57388a4eaf7c))
+* **BREAKING** Make dataProtectionMode in CloudRedisGapicClient::failoverInstance optional / Update timeouts ([9986719](https://www.github.com/googleapis/google-cloud-php/commit/9986719d481e99f844ba0c0232cd57388a4eaf7c))
 * Update timeouts. ([#2383](https://www.github.com/googleapis/google-cloud-php/issues/2383)) ([46c601d](https://www.github.com/googleapis/google-cloud-php/commit/46c601dedc99f6d9daae95ba5eb05bd59e150a12))
 
 </details>
