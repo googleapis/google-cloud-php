@@ -264,7 +264,7 @@ class StorageClient
      *           how objects in the bucket are stored and determines the SLA and
      *           the cost of storage. Acceptable values include
      *           `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`, `"COLDLINE"`,
-     *           `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
+     *           `"ARCHIVE"`, `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
      *           **Defaults to** `STANDARD`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
