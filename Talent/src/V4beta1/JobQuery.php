@@ -24,6 +24,18 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
+     * The language code of [query][google.cloud.talent.v4beta1.JobQuery.query].
+     * For example, "en-US". This field helps to better interpret the query.
+     * If a value isn't specified, the query language code is automatically
+     * detected, which may not be accurate.
+     * Language code should be in BCP-47 format, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     *
+     * Generated from protobuf field <code>string query_language_code = 14;</code>
+     */
+    private $query_language_code = '';
+    /**
      * This filter specifies the company entities to search against.
      * If a value isn't specified, jobs are searched for against all
      * companies.
@@ -183,6 +195,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           The query string that matches against the job title, description, and
      *           location fields.
      *           The maximum number of allowed characters is 255.
+     *     @type string $query_language_code
+     *           The language code of [query][google.cloud.talent.v4beta1.JobQuery.query].
+     *           For example, "en-US". This field helps to better interpret the query.
+     *           If a value isn't specified, the query language code is automatically
+     *           detected, which may not be accurate.
+     *           Language code should be in BCP-47 format, such as "en-US" or "sr-Latn".
+     *           For more information, see
+     *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $companies
      *           This filter specifies the company entities to search against.
      *           If a value isn't specified, jobs are searched for against all
@@ -317,6 +337,44 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->query = $var;
+
+        return $this;
+    }
+
+    /**
+     * The language code of [query][google.cloud.talent.v4beta1.JobQuery.query].
+     * For example, "en-US". This field helps to better interpret the query.
+     * If a value isn't specified, the query language code is automatically
+     * detected, which may not be accurate.
+     * Language code should be in BCP-47 format, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     *
+     * Generated from protobuf field <code>string query_language_code = 14;</code>
+     * @return string
+     */
+    public function getQueryLanguageCode()
+    {
+        return $this->query_language_code;
+    }
+
+    /**
+     * The language code of [query][google.cloud.talent.v4beta1.JobQuery.query].
+     * For example, "en-US". This field helps to better interpret the query.
+     * If a value isn't specified, the query language code is automatically
+     * detected, which may not be accurate.
+     * Language code should be in BCP-47 format, such as "en-US" or "sr-Latn".
+     * For more information, see
+     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
+     *
+     * Generated from protobuf field <code>string query_language_code = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQueryLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->query_language_code = $var;
 
         return $this;
     }
