@@ -34,10 +34,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * [here][google.spanner.v1.TypeCode].
      * It is possible that the last value in values is "chunked",
      * meaning that the rest of the value is sent in subsequent
-     * `PartialResultSet`(s). This is denoted by the
-     * [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
-     * Two or more chunked values can be merged to form a complete value as
-     * follows:
+     * `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
+     * field. Two or more chunked values can be merged to form a
+     * complete value as follows:
      *   * `bool/number/null`: cannot be chunked
      *   * `string`: concatenate the strings
      *   * `list`: concatenate the lists. If the last element in a list is a
@@ -90,10 +89,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      */
     private $values;
     /**
-     * If true, then the final value in
-     * [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
-     * combined with more values from subsequent `PartialResultSet`s to obtain a
-     * complete field value.
+     * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
+     * be combined with more values from subsequent `PartialResultSet`s
+     * to obtain a complete field value.
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      */
@@ -111,9 +109,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
-     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
-     * and are sent only once with the last response in the stream. This field
-     * will also be present in the last response for DML statements.
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
+     * only once with the last response in the stream.
+     * This field will also be present in the last response for DML
+     * statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      */
@@ -138,10 +137,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *           [here][google.spanner.v1.TypeCode].
      *           It is possible that the last value in values is "chunked",
      *           meaning that the rest of the value is sent in subsequent
-     *           `PartialResultSet`(s). This is denoted by the
-     *           [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
-     *           Two or more chunked values can be merged to form a complete value as
-     *           follows:
+     *           `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
+     *           field. Two or more chunked values can be merged to form a
+     *           complete value as follows:
      *             * `bool/number/null`: cannot be chunked
      *             * `string`: concatenate the strings
      *             * `list`: concatenate the lists. If the last element in a list is a
@@ -190,10 +188,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *           containing the field value `"Hello"`, and a second containing the
      *           field value `"World" = "W" + "orl" + "d"`.
      *     @type bool $chunked_value
-     *           If true, then the final value in
-     *           [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
-     *           combined with more values from subsequent `PartialResultSet`s to obtain a
-     *           complete field value.
+     *           If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
+     *           be combined with more values from subsequent `PartialResultSet`s
+     *           to obtain a complete field value.
      *     @type string $resume_token
      *           Streaming calls might be interrupted for a variety of reasons, such
      *           as TCP connection loss. If this occurs, the stream of results can
@@ -203,9 +200,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\ResultSetStats $stats
      *           Query plan and execution statistics for the statement that produced this
      *           streaming result set. These can be requested by setting
-     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
-     *           and are sent only once with the last response in the stream. This field
-     *           will also be present in the last response for DML statements.
+     *           [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
+     *           only once with the last response in the stream.
+     *           This field will also be present in the last response for DML
+     *           statements.
      * }
      */
     public function __construct($data = NULL) {
@@ -251,10 +249,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * [here][google.spanner.v1.TypeCode].
      * It is possible that the last value in values is "chunked",
      * meaning that the rest of the value is sent in subsequent
-     * `PartialResultSet`(s). This is denoted by the
-     * [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
-     * Two or more chunked values can be merged to form a complete value as
-     * follows:
+     * `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
+     * field. Two or more chunked values can be merged to form a
+     * complete value as follows:
      *   * `bool/number/null`: cannot be chunked
      *   * `string`: concatenate the strings
      *   * `list`: concatenate the lists. If the last element in a list is a
@@ -321,10 +318,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * [here][google.spanner.v1.TypeCode].
      * It is possible that the last value in values is "chunked",
      * meaning that the rest of the value is sent in subsequent
-     * `PartialResultSet`(s). This is denoted by the
-     * [chunked_value][google.spanner.v1.PartialResultSet.chunked_value] field.
-     * Two or more chunked values can be merged to form a complete value as
-     * follows:
+     * `PartialResultSet`(s). This is denoted by the [chunked_value][google.spanner.v1.PartialResultSet.chunked_value]
+     * field. Two or more chunked values can be merged to form a
+     * complete value as follows:
      *   * `bool/number/null`: cannot be chunked
      *   * `string`: concatenate the strings
      *   * `list`: concatenate the lists. If the last element in a list is a
@@ -386,10 +382,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, then the final value in
-     * [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
-     * combined with more values from subsequent `PartialResultSet`s to obtain a
-     * complete field value.
+     * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
+     * be combined with more values from subsequent `PartialResultSet`s
+     * to obtain a complete field value.
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      * @return bool
@@ -400,10 +395,9 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, then the final value in
-     * [values][google.spanner.v1.PartialResultSet.values] is chunked, and must be
-     * combined with more values from subsequent `PartialResultSet`s to obtain a
-     * complete field value.
+     * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
+     * be combined with more values from subsequent `PartialResultSet`s
+     * to obtain a complete field value.
      *
      * Generated from protobuf field <code>bool chunked_value = 3;</code>
      * @param bool $var
@@ -454,9 +448,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
-     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
-     * and are sent only once with the last response in the stream. This field
-     * will also be present in the last response for DML statements.
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
+     * only once with the last response in the stream.
+     * This field will also be present in the last response for DML
+     * statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      * @return \Google\Cloud\Spanner\V1\ResultSetStats
@@ -469,9 +464,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
-     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode]
-     * and are sent only once with the last response in the stream. This field
-     * will also be present in the last response for DML statements.
+     * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
+     * only once with the last response in the stream.
+     * This field will also be present in the last response for DML
+     * statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSetStats $var

@@ -22,17 +22,14 @@ class Statement extends \Google\Protobuf\Internal\Message
      */
     private $sql = '';
     /**
-     * The DML string can contain parameter placeholders. A parameter
-     * placeholder consists of `'&#64;'` followed by the parameter
-     * name. Parameter names consist of any combination of letters,
-     * numbers, and underscores.
+     * Parameter names and values that bind to placeholders in the DML string.
+     * A parameter placeholder consists of the `&#64;` character followed by the
+     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected.  The
      * same parameter name can be used more than once, for example:
-     *   `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute an SQL statement with unbound parameters.
-     * Parameter values are specified using `params`, which is a JSON
-     * object whose keys are parameter names, and whose values are the
-     * corresponding parameter values.
+     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * It is an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      */
@@ -40,9 +37,7 @@ class Statement extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in
-     * [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
-     * JSON strings.
+     * of type `STRING` both appear in [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -61,23 +56,18 @@ class Statement extends \Google\Protobuf\Internal\Message
      *     @type string $sql
      *           Required. The DML string.
      *     @type \Google\Protobuf\Struct $params
-     *           The DML string can contain parameter placeholders. A parameter
-     *           placeholder consists of `'&#64;'` followed by the parameter
-     *           name. Parameter names consist of any combination of letters,
-     *           numbers, and underscores.
+     *           Parameter names and values that bind to placeholders in the DML string.
+     *           A parameter placeholder consists of the `&#64;` character followed by the
+     *           parameter name (for example, `&#64;firstName`). Parameter names can contain
+     *           letters, numbers, and underscores.
      *           Parameters can appear anywhere that a literal value is expected.  The
      *           same parameter name can be used more than once, for example:
-     *             `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     *           It is an error to execute an SQL statement with unbound parameters.
-     *           Parameter values are specified using `params`, which is a JSON
-     *           object whose keys are parameter names, and whose values are the
-     *           corresponding parameter values.
+     *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *           It is an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
      *           It is not always possible for Cloud Spanner to infer the right SQL type
      *           from a JSON value.  For example, values of type `BYTES` and values
-     *           of type `STRING` both appear in
-     *           [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
-     *           JSON strings.
+     *           of type `STRING` both appear in [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as JSON strings.
      *           In these cases, `param_types` can be used to specify the exact
      *           SQL type for some or all of the SQL statement parameters. See the
      *           definition of [Type][google.spanner.v1.Type] for more information
@@ -116,17 +106,14 @@ class Statement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DML string can contain parameter placeholders. A parameter
-     * placeholder consists of `'&#64;'` followed by the parameter
-     * name. Parameter names consist of any combination of letters,
-     * numbers, and underscores.
+     * Parameter names and values that bind to placeholders in the DML string.
+     * A parameter placeholder consists of the `&#64;` character followed by the
+     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected.  The
      * same parameter name can be used more than once, for example:
-     *   `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute an SQL statement with unbound parameters.
-     * Parameter values are specified using `params`, which is a JSON
-     * object whose keys are parameter names, and whose values are the
-     * corresponding parameter values.
+     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * It is an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      * @return \Google\Protobuf\Struct
@@ -137,17 +124,14 @@ class Statement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DML string can contain parameter placeholders. A parameter
-     * placeholder consists of `'&#64;'` followed by the parameter
-     * name. Parameter names consist of any combination of letters,
-     * numbers, and underscores.
+     * Parameter names and values that bind to placeholders in the DML string.
+     * A parameter placeholder consists of the `&#64;` character followed by the
+     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected.  The
      * same parameter name can be used more than once, for example:
-     *   `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
-     * It is an error to execute an SQL statement with unbound parameters.
-     * Parameter values are specified using `params`, which is a JSON
-     * object whose keys are parameter names, and whose values are the
-     * corresponding parameter values.
+     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * It is an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
      * @param \Google\Protobuf\Struct $var
@@ -164,9 +148,7 @@ class Statement extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in
-     * [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
-     * JSON strings.
+     * of type `STRING` both appear in [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -183,9 +165,7 @@ class Statement extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in
-     * [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as
-     * JSON strings.
+     * of type `STRING` both appear in [params][google.spanner.v1.ExecuteBatchDmlRequest.Statement.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information

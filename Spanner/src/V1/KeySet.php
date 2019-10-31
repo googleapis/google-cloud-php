@@ -30,8 +30,8 @@ class KeySet extends \Google\Protobuf\Internal\Message
      */
     private $keys;
     /**
-     * A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more
-     * information about key range specifications.
+     * A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more information about
+     * key range specifications.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
      */
@@ -57,8 +57,8 @@ class KeySet extends \Google\Protobuf\Internal\Message
      *           with which this `KeySet` is used.  Individual key values are
      *           encoded as described [here][google.spanner.v1.TypeCode].
      *     @type \Google\Cloud\Spanner\V1\KeyRange[]|\Google\Protobuf\Internal\RepeatedField $ranges
-     *           A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more
-     *           information about key range specifications.
+     *           A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more information about
+     *           key range specifications.
      *     @type bool $all
      *           For convenience `all` can be set to `true` to indicate that this
      *           `KeySet` matches all keys in the table or index. Note that any keys
@@ -103,8 +103,8 @@ class KeySet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more
-     * information about key range specifications.
+     * A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more information about
+     * key range specifications.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -115,8 +115,8 @@ class KeySet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more
-     * information about key range specifications.
+     * A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more information about
+     * key range specifications.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
      * @param \Google\Cloud\Spanner\V1\KeyRange[]|\Google\Protobuf\Internal\RepeatedField $var

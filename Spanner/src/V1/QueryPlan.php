@@ -17,8 +17,8 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
 {
     /**
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
-     * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id`
-     * corresponds to its index in `plan_nodes`.
+     * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
+     * `plan_nodes`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      */
@@ -32,8 +32,8 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\V1\PlanNode[]|\Google\Protobuf\Internal\RepeatedField $plan_nodes
      *           The nodes in the query plan. Plan nodes are returned in pre-order starting
-     *           with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id`
-     *           corresponds to its index in `plan_nodes`.
+     *           with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
+     *           `plan_nodes`.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +43,8 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
-     * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id`
-     * corresponds to its index in `plan_nodes`.
+     * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
+     * `plan_nodes`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,8 +56,8 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
-     * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id`
-     * corresponds to its index in `plan_nodes`.
+     * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
+     * `plan_nodes`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      * @param \Google\Cloud\Spanner\V1\PlanNode[]|\Google\Protobuf\Internal\RepeatedField $var

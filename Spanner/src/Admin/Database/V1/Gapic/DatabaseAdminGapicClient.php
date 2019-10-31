@@ -449,8 +449,8 @@ class DatabaseAdminGapicClient
      * have a name of the format `<database_name>/operations/<operation_id>` and
      * can be used to track preparation of the database. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
+     * [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      *
      * Sample code:
@@ -602,8 +602,7 @@ class DatabaseAdminGapicClient
      * the format `<database_name>/operations/<operation_id>` and can be used to
      * track execution of the schema change(s). The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
-     * The operation has no response.
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
      *
      * Sample code:
      * ```
@@ -644,7 +643,7 @@ class DatabaseAdminGapicClient
      * ```
      *
      * @param string   $database     Required. The database to update.
-     * @param string[] $statements   DDL statements to be applied to the database.
+     * @param string[] $statements   Required. DDL statements to be applied to the database.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -656,20 +655,18 @@ class DatabaseAdminGapicClient
      *
      *          Specifying an explicit operation ID simplifies determining
      *          whether the statements were executed in the event that the
-     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
-     *          call is replayed, or the return value is otherwise lost: the
-     *          [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database]
-     *          and `operation_id` fields can be combined to form the
+     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] call is replayed,
+     *          or the return value is otherwise lost: the [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database] and
+     *          `operation_id` fields can be combined to form the
      *          [name][google.longrunning.Operation.name] of the resulting
-     *          [longrunning.Operation][google.longrunning.Operation]:
-     *          `<database>/operations/<operation_id>`.
+     *          [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
      *
      *          `operation_id` should be unique within the database, and must be
      *          a valid identifier: `[a-z][a-z0-9_]*`. Note that
      *          automatically-generated operation IDs always begin with an
      *          underscore. If the named operation already exists,
-     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
-     *          returns `ALREADY_EXISTS`.
+     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
+     *          `ALREADY_EXISTS`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -807,11 +804,11 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Sets the access control policy on a database resource. Replaces any
-     * existing policy.
+     * Sets the access control policy on a database resource.
+     * Replaces any existing policy.
      *
-     * Authorization requires `spanner.databases.setIamPolicy` permission on
-     * [resource][google.iam.v1.SetIamPolicyRequest.resource].
+     * Authorization requires `spanner.databases.setIamPolicy`
+     * permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
      *
      * Sample code:
      * ```
@@ -868,8 +865,9 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Gets the access control policy for a database resource. Returns an empty
-     * policy if a database exists but does not have a policy set.
+     * Gets the access control policy for a database resource.
+     * Returns an empty policy if a database exists but does
+     * not have a policy set.
      *
      * Authorization requires `spanner.databases.getIamPolicy` permission on
      * [resource][google.iam.v1.GetIamPolicyRequest.resource].
@@ -931,10 +929,10 @@ class DatabaseAdminGapicClient
     /**
      * Returns permissions that the caller has on the specified database resource.
      *
-     * Attempting this RPC on a non-existent Cloud Spanner database will result in
-     * a NOT_FOUND error if the user has `spanner.databases.list` permission on
-     * the containing Cloud Spanner instance. Otherwise returns an empty set of
-     * permissions.
+     * Attempting this RPC on a non-existent Cloud Spanner database will
+     * result in a NOT_FOUND error if the user has
+     * `spanner.databases.list` permission on the containing Cloud
+     * Spanner instance. Otherwise returns an empty set of permissions.
      *
      * Sample code:
      * ```

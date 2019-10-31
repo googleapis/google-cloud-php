@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
+ * The request for [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.ListInstancesRequest</code>
  */
@@ -20,7 +19,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project for which a list of instances is
      * requested. Values are of the form `projects/<project>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -32,9 +31,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
-     * from a previous
-     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
+     * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -75,9 +73,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *           to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
-     *           from a previous
-     *           [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     *           [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
+     *           previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *     @type string $filter
      *           An expression for filtering the results of the request. Filter rules are
      *           case insensitive. The fields eligible for filtering are:
@@ -106,7 +103,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project for which a list of instances is
      * requested. Values are of the form `projects/<project>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -118,7 +115,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the project for which a list of instances is
      * requested. Values are of the form `projects/<project>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -160,9 +157,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
-     * from a previous
-     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
+     * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -174,9 +170,8 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
-     * from a previous
-     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
+     * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
