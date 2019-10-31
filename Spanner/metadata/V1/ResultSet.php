@@ -14,19 +14,19 @@ class ResultSet
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Spanner\V1\QueryPlan::initOnce();
         \GPBMetadata\Google\Spanner\V1\Transaction::initOnce();
         \GPBMetadata\Google\Spanner\V1\Type::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0a8e080a22676f6f676c652f7370616e6e65722f76312f726573756c745f" .
-            "7365742e70726f746f1211676f6f676c652e7370616e6e65722e76311a1c" .
-            "676f6f676c652f70726f746f6275662f7374727563742e70726f746f1a22" .
+            "7365742e70726f746f1211676f6f676c652e7370616e6e65722e76311a22" .
             "676f6f676c652f7370616e6e65722f76312f71756572795f706c616e2e70" .
             "726f746f1a23676f6f676c652f7370616e6e65722f76312f7472616e7361" .
             "6374696f6e2e70726f746f1a1c676f6f676c652f7370616e6e65722f7631" .
-            "2f747970652e70726f746f229f010a09526573756c7453657412360a086d" .
+            "2f747970652e70726f746f1a1c676f6f676c652f6170692f616e6e6f7461" .
+            "74696f6e732e70726f746f229f010a09526573756c7453657412360a086d" .
             "6574616461746118012001280b32242e676f6f676c652e7370616e6e6572" .
             "2e76312e526573756c745365744d6574616461746112280a04726f777318" .
             "022003280b321a2e676f6f676c652e70726f746f6275662e4c6973745661" .

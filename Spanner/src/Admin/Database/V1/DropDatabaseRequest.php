@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [DropDatabase][google.spanner.admin.database.v1.DatabaseAdmin.DropDatabase].
+ * The request for [DropDatabase][google.spanner.admin.database.v1.DatabaseAdmin.DropDatabase].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.DropDatabaseRequest</code>
  */
@@ -19,7 +18,7 @@ class DropDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database to be dropped.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $database = '';
 
@@ -41,7 +40,7 @@ class DropDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database to be dropped.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -52,7 +51,7 @@ class DropDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database to be dropped.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

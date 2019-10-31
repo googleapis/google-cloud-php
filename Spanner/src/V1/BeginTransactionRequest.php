@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
+ * The request for [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
  *
  * Generated from protobuf message <code>google.spanner.v1.BeginTransactionRequest</code>
  */
@@ -19,13 +18,13 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction runs.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
      * Required. Options for the new transaction.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $options = null;
 
@@ -49,7 +48,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction runs.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -60,7 +59,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction runs.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -75,7 +74,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Options for the new transaction.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getOptions()
@@ -86,7 +85,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Options for the new transaction.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      * @return $this
      */

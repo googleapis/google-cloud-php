@@ -14,12 +14,12 @@ class Keys
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(hex2bin(
             "0ad1040a1c676f6f676c652f7370616e6e65722f76312f6b6579732e7072" .
             "6f746f1211676f6f676c652e7370616e6e65722e76311a1c676f6f676c65" .
-            "2f70726f746f6275662f7374727563742e70726f746f22f4010a084b6579" .
+            "2f6170692f616e6e6f746174696f6e732e70726f746f22f4010a084b6579" .
             "52616e676512320a0c73746172745f636c6f73656418012001280b321a2e" .
             "676f6f676c652e70726f746f6275662e4c69737456616c7565480012300a" .
             "0a73746172745f6f70656e18022001280b321a2e676f6f676c652e70726f" .

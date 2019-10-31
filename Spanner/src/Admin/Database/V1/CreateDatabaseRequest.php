@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
+ * The request for [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateDatabaseRequest</code>
  */
@@ -20,7 +19,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -30,7 +29,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * If the database ID is a reserved word or if it contains a hyphen, the
      * database ID must be enclosed in backticks (`` ` ``).
      *
-     * Generated from protobuf field <code>string create_statement = 2;</code>
+     * Generated from protobuf field <code>string create_statement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $create_statement = '';
     /**
@@ -74,7 +73,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -86,7 +85,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -105,7 +104,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * If the database ID is a reserved word or if it contains a hyphen, the
      * database ID must be enclosed in backticks (`` ` ``).
      *
-     * Generated from protobuf field <code>string create_statement = 2;</code>
+     * Generated from protobuf field <code>string create_statement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCreateStatement()
@@ -120,7 +119,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * If the database ID is a reserved word or if it contains a hyphen, the
      * database ID must be enclosed in backticks (`` ` ``).
      *
-     * Generated from protobuf field <code>string create_statement = 2;</code>
+     * Generated from protobuf field <code>string create_statement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

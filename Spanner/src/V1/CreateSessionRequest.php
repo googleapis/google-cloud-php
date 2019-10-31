@@ -18,7 +18,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which the new session is created.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
@@ -48,7 +48,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which the new session is created.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -59,7 +59,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database in which the new session is created.
      *
-     * Generated from protobuf field <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

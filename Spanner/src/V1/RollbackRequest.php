@@ -18,13 +18,13 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction to roll back is running.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $session = '';
     /**
      * Required. The transaction to roll back.
      *
-     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $transaction_id = '';
 
@@ -48,7 +48,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction to roll back is running.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSession()
@@ -59,7 +59,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session in which the transaction to roll back is running.
      *
-     * Generated from protobuf field <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The transaction to roll back.
      *
-     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTransactionId()
@@ -85,7 +85,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The transaction to roll back.
      *
-     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

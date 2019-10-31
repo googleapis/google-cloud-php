@@ -30,6 +30,13 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
+    /**
+     * The geographic placement of nodes in this instance configuration and their
+     * replication properties.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
+     */
+    private $replicas;
 
     /**
      * Constructor.
@@ -43,6 +50,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
      *     @type string $display_name
      *           The name of this instance configuration as it appears in UIs.
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[]|\Google\Protobuf\Internal\RepeatedField $replicas
+     *           The geographic placement of nodes in this instance configuration and their
+     *           replication properties.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +112,34 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic placement of nodes in this instance configuration and their
+     * replication properties.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReplicas()
+    {
+        return $this->replicas;
+    }
+
+    /**
+     * The geographic placement of nodes in this instance configuration and their
+     * replication properties.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReplicas($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo::class);
+        $this->replicas = $arr;
 
         return $this;
     }
