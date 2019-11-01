@@ -32,9 +32,15 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The SHA-256 fingerprint of the SSH public key.
      *
-     * Generated from protobuf field <code>string fingerprint = 3;</code>
+     * Generated from protobuf field <code>string fingerprint = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $fingerprint = '';
+    /**
+     * Output only. The canonical resource name.
+     *
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $name = '';
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
      *           An expiration time in microseconds since epoch.
      *     @type string $fingerprint
      *           Output only. The SHA-256 fingerprint of the SSH public key.
+     *     @type string $name
+     *           Output only. The canonical resource name.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +124,7 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The SHA-256 fingerprint of the SSH public key.
      *
-     * Generated from protobuf field <code>string fingerprint = 3;</code>
+     * Generated from protobuf field <code>string fingerprint = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getFingerprint()
@@ -127,7 +135,7 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The SHA-256 fingerprint of the SSH public key.
      *
-     * Generated from protobuf field <code>string fingerprint = 3;</code>
+     * Generated from protobuf field <code>string fingerprint = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -135,6 +143,32 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->fingerprint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The canonical resource name.
+     *
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Output only. The canonical resource name.
+     *
+     * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

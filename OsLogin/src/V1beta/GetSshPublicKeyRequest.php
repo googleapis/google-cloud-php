@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The fingerprint of the public key to retrieve. Public keys are identified
+     * Required. The fingerprint of the public key to retrieve. Public keys are identified
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -31,7 +31,7 @@ class GetSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The fingerprint of the public key to retrieve. Public keys are identified
+     *           Required. The fingerprint of the public key to retrieve. Public keys are identified
      *           by their SHA-256 fingerprint. The fingerprint of the public key is in
      *           format `users/{user}/sshPublicKeys/{fingerprint}`.
      * }
@@ -42,11 +42,11 @@ class GetSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fingerprint of the public key to retrieve. Public keys are identified
+     * Required. The fingerprint of the public key to retrieve. Public keys are identified
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -55,11 +55,11 @@ class GetSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fingerprint of the public key to retrieve. Public keys are identified
+     * Required. The fingerprint of the public key to retrieve. Public keys are identified
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
