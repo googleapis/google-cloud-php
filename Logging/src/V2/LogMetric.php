@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a logs-based metric.  The value of the metric is the
- * number of log entries that match a logs filter in a given time interval.
+ * Describes a logs-based metric. The value of the metric is the number of log
+ * entries that match a logs filter in a given time interval.
  * Logs-based metric can also be used to extract values from logs and create a
  * a distribution of the values. The distribution records the statistics of the
  * extracted values along with an optional histogram of the values as specified
@@ -23,23 +23,22 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-assigned metric identifier.
      * Examples: `"error_count"`, `"nginx/requests"`.
-     * Metric identifiers are limited to 100 characters and can include
-     * only the following characters: `A-Z`, `a-z`, `0-9`, and the
-     * special characters `_-.,+!*',()%/`.  The forward-slash character
-     * (`/`) denotes a hierarchy of name pieces, and it cannot be the
-     * first character of the name.
+     * Metric identifiers are limited to 100 characters and can include only the
+     * following characters: `A-Z`, `a-z`, `0-9`, and the special characters
+     * `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
+     * name pieces, and it cannot be the first character of the name.
      * The metric identifier in this field must not be
      * [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     * However, when the metric identifier appears as the `[METRIC_ID]`
-     * part of a `metric_name` API parameter, then the metric identifier
-     * must be URL-encoded. Example:
-     * `"projects/my-project/metrics/nginx%2Frequests"`.
+     * However, when the metric identifier appears as the `[METRIC_ID]` part of a
+     * `metric_name` API parameter, then the metric identifier must be
+     * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
@@ -124,6 +123,20 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      */
     private $bucket_options = null;
     /**
+     * Output only. The creation timestamp of the metric.
+     * This field may not be present for older metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. The last update timestamp of the metric.
+     * This field may not be present for older metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
+     */
+    private $update_time = null;
+    /**
      * Deprecated. The API version that created or updated this metric.
      * The v2 format is used by default and cannot be changed.
      *
@@ -140,19 +153,18 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The client-assigned metric identifier.
      *           Examples: `"error_count"`, `"nginx/requests"`.
-     *           Metric identifiers are limited to 100 characters and can include
-     *           only the following characters: `A-Z`, `a-z`, `0-9`, and the
-     *           special characters `_-.,+!*',()%/`.  The forward-slash character
-     *           (`/`) denotes a hierarchy of name pieces, and it cannot be the
-     *           first character of the name.
+     *           Metric identifiers are limited to 100 characters and can include only the
+     *           following characters: `A-Z`, `a-z`, `0-9`, and the special characters
+     *           `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
+     *           name pieces, and it cannot be the first character of the name.
      *           The metric identifier in this field must not be
      *           [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     *           However, when the metric identifier appears as the `[METRIC_ID]`
-     *           part of a `metric_name` API parameter, then the metric identifier
-     *           must be URL-encoded. Example:
-     *           `"projects/my-project/metrics/nginx%2Frequests"`.
+     *           However, when the metric identifier appears as the `[METRIC_ID]` part of a
+     *           `metric_name` API parameter, then the metric identifier must be
+     *           URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *     @type string $description
      *           Optional. A description of this metric, which is used in documentation.
+     *           The maximum length of the description is 8000 characters.
      *     @type string $filter
      *           Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      *           which is used to match log entries.
@@ -212,6 +224,12 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           Optional. The `bucket_options` are required when the logs-based metric is
      *           using a DISTRIBUTION value type and it describes the bucket boundaries
      *           used to create a histogram of the extracted values.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The creation timestamp of the metric.
+     *           This field may not be present for older metrics.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The last update timestamp of the metric.
+     *           This field may not be present for older metrics.
      *     @type int $version
      *           Deprecated. The API version that created or updated this metric.
      *           The v2 format is used by default and cannot be changed.
@@ -225,17 +243,15 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-assigned metric identifier.
      * Examples: `"error_count"`, `"nginx/requests"`.
-     * Metric identifiers are limited to 100 characters and can include
-     * only the following characters: `A-Z`, `a-z`, `0-9`, and the
-     * special characters `_-.,+!*',()%/`.  The forward-slash character
-     * (`/`) denotes a hierarchy of name pieces, and it cannot be the
-     * first character of the name.
+     * Metric identifiers are limited to 100 characters and can include only the
+     * following characters: `A-Z`, `a-z`, `0-9`, and the special characters
+     * `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
+     * name pieces, and it cannot be the first character of the name.
      * The metric identifier in this field must not be
      * [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     * However, when the metric identifier appears as the `[METRIC_ID]`
-     * part of a `metric_name` API parameter, then the metric identifier
-     * must be URL-encoded. Example:
-     * `"projects/my-project/metrics/nginx%2Frequests"`.
+     * However, when the metric identifier appears as the `[METRIC_ID]` part of a
+     * `metric_name` API parameter, then the metric identifier must be
+     * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -248,17 +264,15 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     /**
      * Required. The client-assigned metric identifier.
      * Examples: `"error_count"`, `"nginx/requests"`.
-     * Metric identifiers are limited to 100 characters and can include
-     * only the following characters: `A-Z`, `a-z`, `0-9`, and the
-     * special characters `_-.,+!*',()%/`.  The forward-slash character
-     * (`/`) denotes a hierarchy of name pieces, and it cannot be the
-     * first character of the name.
+     * Metric identifiers are limited to 100 characters and can include only the
+     * following characters: `A-Z`, `a-z`, `0-9`, and the special characters
+     * `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
+     * name pieces, and it cannot be the first character of the name.
      * The metric identifier in this field must not be
      * [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     * However, when the metric identifier appears as the `[METRIC_ID]`
-     * part of a `metric_name` API parameter, then the metric identifier
-     * must be URL-encoded. Example:
-     * `"projects/my-project/metrics/nginx%2Frequests"`.
+     * However, when the metric identifier appears as the `[METRIC_ID]` part of a
+     * `metric_name` API parameter, then the metric identifier must be
+     * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -274,6 +288,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @return string
@@ -285,6 +300,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A description of this metric, which is used in documentation.
+     * The maximum length of the description is 8000 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
@@ -522,6 +538,62 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Api\Distribution_BucketOptions::class);
         $this->bucket_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The creation timestamp of the metric.
+     * This field may not be present for older metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    /**
+     * Output only. The creation timestamp of the metric.
+     * This field may not be present for older metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The last update timestamp of the metric.
+     * This field may not be present for older metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    /**
+     * Output only. The last update timestamp of the metric.
+     * This field may not be present for older metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }
