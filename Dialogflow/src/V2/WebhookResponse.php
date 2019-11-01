@@ -78,6 +78,16 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EventInput followup_event_input = 6;</code>
      */
     private $followup_event_input = null;
+    /**
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query. Setting the session entity types inside
+     * webhook overwrites the session entity types that have been set through
+     * `DetectIntentRequest.query_params.session_entity_types`.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
+     */
+    private $session_entity_types;
 
     /**
      * Constructor.
@@ -124,6 +134,12 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
      *           internally with the specified event as input.
      *           When this field is set, Dialogflow ignores the `fulfillment_text`,
      *           `fulfillment_messages`, and `payload` fields.
+     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $session_entity_types
+     *           Optional. Additional session entity types to replace or extend developer
+     *           entity types with. The entity synonyms apply to all languages and persist
+     *           for the session of this query. Setting the session entity types inside
+     *           webhook overwrites the session entity types that have been set through
+     *           `DetectIntentRequest.query_params.session_entity_types`.
      * }
      */
     public function __construct($data = NULL) {
@@ -337,6 +353,40 @@ class WebhookResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\EventInput::class);
         $this->followup_event_input = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query. Setting the session entity types inside
+     * webhook overwrites the session entity types that have been set through
+     * `DetectIntentRequest.query_params.session_entity_types`.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSessionEntityTypes()
+    {
+        return $this->session_entity_types;
+    }
+
+    /**
+     * Optional. Additional session entity types to replace or extend developer
+     * entity types with. The entity synonyms apply to all languages and persist
+     * for the session of this query. Setting the session entity types inside
+     * webhook overwrites the session entity types that have been set through
+     * `DetectIntentRequest.query_params.session_entity_types`.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 10;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSessionEntityTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\SessionEntityType::class);
+        $this->session_entity_types = $arr;
 
         return $this;
     }

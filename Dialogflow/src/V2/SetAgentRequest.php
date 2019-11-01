@@ -18,13 +18,13 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The agent to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent agent = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent agent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $agent = null;
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
 
@@ -48,7 +48,7 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The agent to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent agent = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent agent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\Agent
      */
     public function getAgent()
@@ -59,7 +59,7 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The agent to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent agent = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent agent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Agent $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -85,7 +85,7 @@ class SetAgentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

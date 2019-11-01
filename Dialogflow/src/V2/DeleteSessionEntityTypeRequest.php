@@ -20,7 +20,7 @@ class DeleteSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -46,7 +46,7 @@ class DeleteSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -59,7 +59,7 @@ class DeleteSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -18,7 +18,7 @@ class Suggestions extends \Google\Protobuf\Internal\Message
     /**
      * Required. The list of suggested replies.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $suggestions;
 
@@ -40,7 +40,7 @@ class Suggestions extends \Google\Protobuf\Internal\Message
     /**
      * Required. The list of suggested replies.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSuggestions()
@@ -51,7 +51,7 @@ class Suggestions extends \Google\Protobuf\Internal\Message
     /**
      * Required. The list of suggested replies.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -22,13 +22,13 @@ class EventInput extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of the event.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Optional. The collection of parameters associated with the event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters = null;
     /**
@@ -37,7 +37,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
 
@@ -66,7 +66,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of the event.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -77,7 +77,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique identifier of the event.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with the event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct
      */
     public function getParameters()
@@ -103,7 +103,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of parameters associated with the event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -121,7 +121,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -135,7 +135,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

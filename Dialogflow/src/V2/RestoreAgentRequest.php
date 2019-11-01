@@ -19,7 +19,7 @@ class RestoreAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to restore is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     protected $agent;
@@ -37,19 +37,7 @@ class RestoreAgentRequest extends \Google\Protobuf\Internal\Message
      *           The URI to a Google Cloud Storage file containing the agent to restore.
      *           Note: The URI must start with "gs://".
      *     @type string $agent_content
-     *           The agent to restore.
-     *           Example for how to restore an agent via the command line:
-     *           <pre>curl \
-     *             'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
-     *              -X POST \
-     *              -H 'Authorization: Bearer '$(gcloud auth application-default
-     *              print-access-token) \
-     *              -H 'Accept: application/json' \
-     *              -H 'Content-Type: application/json' \
-     *              --compressed \
-     *              --data-binary "{
-     *                  'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-     *              }"</pre>
+     *           Zip compressed raw byte content for agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +49,7 @@ class RestoreAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to restore is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -73,7 +61,7 @@ class RestoreAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to restore is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -114,19 +102,7 @@ class RestoreAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The agent to restore.
-     * Example for how to restore an agent via the command line:
-     * <pre>curl \
-     *   'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
-     *    -X POST \
-     *    -H 'Authorization: Bearer '$(gcloud auth application-default
-     *    print-access-token) \
-     *    -H 'Accept: application/json' \
-     *    -H 'Content-Type: application/json' \
-     *    --compressed \
-     *    --data-binary "{
-     *        'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-     *    }"</pre>
+     * Zip compressed raw byte content for agent.
      *
      * Generated from protobuf field <code>bytes agent_content = 3;</code>
      * @return string
@@ -137,19 +113,7 @@ class RestoreAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The agent to restore.
-     * Example for how to restore an agent via the command line:
-     * <pre>curl \
-     *   'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
-     *    -X POST \
-     *    -H 'Authorization: Bearer '$(gcloud auth application-default
-     *    print-access-token) \
-     *    -H 'Accept: application/json' \
-     *    -H 'Content-Type: application/json' \
-     *    --compressed \
-     *    --data-binary "{
-     *        'agentContent': '$(cat &lt;agent zip file&gt; | base64 -w 0)'
-     *    }"</pre>
+     * Zip compressed raw byte content for agent.
      *
      * Generated from protobuf field <code>bytes agent_content = 3;</code>
      * @param string $var

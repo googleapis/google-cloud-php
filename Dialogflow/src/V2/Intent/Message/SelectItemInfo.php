@@ -20,14 +20,14 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * Required. A unique key that will be sent back to the agent if this
      * response is given.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key = '';
     /**
      * Optional. A list of synonyms that can also be used to trigger this
      * item in dialog.
      *
-     * Generated from protobuf field <code>repeated string synonyms = 2;</code>
+     * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $synonyms;
 
@@ -54,7 +54,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * Required. A unique key that will be sent back to the agent if this
      * response is given.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getKey()
@@ -66,7 +66,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * Required. A unique key that will be sent back to the agent if this
      * response is given.
      *
-     * Generated from protobuf field <code>string key = 1;</code>
+     * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -82,7 +82,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * Optional. A list of synonyms that can also be used to trigger this
      * item in dialog.
      *
-     * Generated from protobuf field <code>repeated string synonyms = 2;</code>
+     * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSynonyms()
@@ -94,7 +94,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * Optional. A list of synonyms that can also be used to trigger this
      * item in dialog.
      *
-     * Generated from protobuf field <code>repeated string synonyms = 2;</code>
+     * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

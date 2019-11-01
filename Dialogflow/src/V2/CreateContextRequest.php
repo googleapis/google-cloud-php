@@ -19,13 +19,13 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to create a context for.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
      * Required. The context to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $context = null;
 
@@ -51,7 +51,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to create a context for.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -63,7 +63,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to create a context for.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The context to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\Context
      */
     public function getContext()
@@ -89,7 +89,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The context to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Context $var
      * @return $this
      */

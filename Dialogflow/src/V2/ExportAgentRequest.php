@@ -19,17 +19,16 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to export is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The
-     * [Google Cloud Storage](https://cloud.google.com/storage/docs/)
+     * Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
      * URI to export the agent to.
      * The format of this URI must be `gs://<bucket-name>/<object-name>`.
      * If left unspecified, the serialized agent is returned inline.
      *
-     * Generated from protobuf field <code>string agent_uri = 2;</code>
+     * Generated from protobuf field <code>string agent_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $agent_uri = '';
 
@@ -43,8 +42,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project that the agent to export is associated with.
      *           Format: `projects/<Project ID>`.
      *     @type string $agent_uri
-     *           Optional. The
-     *           [Google Cloud Storage](https://cloud.google.com/storage/docs/)
+     *           Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
      *           URI to export the agent to.
      *           The format of this URI must be `gs://<bucket-name>/<object-name>`.
      *           If left unspecified, the serialized agent is returned inline.
@@ -59,7 +57,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to export is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -71,7 +69,7 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to export is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -84,13 +82,12 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The
-     * [Google Cloud Storage](https://cloud.google.com/storage/docs/)
+     * Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
      * URI to export the agent to.
      * The format of this URI must be `gs://<bucket-name>/<object-name>`.
      * If left unspecified, the serialized agent is returned inline.
      *
-     * Generated from protobuf field <code>string agent_uri = 2;</code>
+     * Generated from protobuf field <code>string agent_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getAgentUri()
@@ -99,13 +96,12 @@ class ExportAgentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The
-     * [Google Cloud Storage](https://cloud.google.com/storage/docs/)
+     * Required. The [Google Cloud Storage](https://cloud.google.com/storage/docs/)
      * URI to export the agent to.
      * The format of this URI must be `gs://<bucket-name>/<object-name>`.
      * If left unspecified, the serialized agent is returned inline.
      *
-     * Generated from protobuf field <code>string agent_uri = 2;</code>
+     * Generated from protobuf field <code>string agent_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -19,13 +19,13 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type to create entities in. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The entities to create.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entities;
     /**
@@ -36,7 +36,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
 
@@ -69,7 +69,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type to create entities in. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -81,7 +81,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type to create entities in. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,7 +96,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The entities to create.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntities()
@@ -107,7 +107,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The entities to create.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -127,7 +127,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -143,7 +143,7 @@ class BatchCreateEntitiesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

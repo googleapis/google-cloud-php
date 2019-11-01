@@ -19,14 +19,14 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the app or site this chip is linking to.
      *
-     * Generated from protobuf field <code>string destination_name = 1;</code>
+     * Generated from protobuf field <code>string destination_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $destination_name = '';
     /**
      * Required. The URI of the app or site to open when the user taps the
      * suggestion chip.
      *
-     * Generated from protobuf field <code>string uri = 2;</code>
+     * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $uri = '';
 
@@ -51,7 +51,7 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the app or site this chip is linking to.
      *
-     * Generated from protobuf field <code>string destination_name = 1;</code>
+     * Generated from protobuf field <code>string destination_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDestinationName()
@@ -62,7 +62,7 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the app or site this chip is linking to.
      *
-     * Generated from protobuf field <code>string destination_name = 1;</code>
+     * Generated from protobuf field <code>string destination_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
      * Required. The URI of the app or site to open when the user taps the
      * suggestion chip.
      *
-     * Generated from protobuf field <code>string uri = 2;</code>
+     * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUri()
@@ -90,7 +90,7 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
      * Required. The URI of the app or site to open when the user taps the
      * suggestion chip.
      *
-     * Generated from protobuf field <code>string uri = 2;</code>
+     * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

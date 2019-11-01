@@ -19,13 +19,13 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to create a session entity type for.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
      * Required. The session entity type to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session_entity_type = null;
 
@@ -51,7 +51,7 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to create a session entity type for.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getParent()
@@ -63,7 +63,7 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The session to create a session entity type for.
      * Format: `projects/<Project ID>/agent/sessions/<Session ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session entity type to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\SessionEntityType
      */
     public function getSessionEntityType()
@@ -89,7 +89,7 @@ class CreateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The session entity type to create.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $var
      * @return $this
      */

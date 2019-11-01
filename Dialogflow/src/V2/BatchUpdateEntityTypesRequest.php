@@ -19,7 +19,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to update or create entity types in.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -30,13 +30,13 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 4;</code>
+     * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
     protected $entity_type_batch;
@@ -77,7 +77,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to update or create entity types in.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,7 +89,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to update or create entity types in.
      * Format: `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -167,7 +167,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 4;</code>
+     * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -183,7 +183,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 4;</code>
+     * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -198,7 +198,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -209,7 +209,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

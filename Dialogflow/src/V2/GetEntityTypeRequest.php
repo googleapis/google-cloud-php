@@ -19,7 +19,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type.
      * Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -30,7 +30,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
 
@@ -61,7 +61,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type.
      * Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -73,7 +73,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the entity type.
      * Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -93,7 +93,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -109,7 +109,7 @@ class GetEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * are supported. Note: languages must be enabled in the agent before they can
      * be used.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

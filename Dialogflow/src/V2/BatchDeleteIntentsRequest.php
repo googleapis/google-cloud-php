@@ -19,14 +19,14 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The collection of intents to delete. Only intent `name` must be
      * filled in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $intents;
 
@@ -53,7 +53,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -65,7 +65,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -81,7 +81,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The collection of intents to delete. Only intent `name` must be
      * filled in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getIntents()
@@ -93,7 +93,7 @@ class BatchDeleteIntentsRequest extends \Google\Protobuf\Internal\Message
      * Required. The collection of intents to delete. Only intent `name` must be
      * filled in.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

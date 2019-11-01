@@ -20,13 +20,13 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session_entity_type = null;
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
 
@@ -54,7 +54,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\SessionEntityType
      */
     public function getSessionEntityType()
@@ -67,7 +67,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type
      * Display Name>`.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType session_entity_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\SessionEntityType $var
      * @return $this
      */
@@ -82,7 +82,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -93,7 +93,7 @@ class UpdateSessionEntityTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The mask to control which fields get updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

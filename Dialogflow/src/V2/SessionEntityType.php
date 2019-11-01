@@ -26,21 +26,21 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * `<Entity Type Display Name>` must be the display name of an existing entity
      * type in the same agent that will be overridden or supplemented.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Required. Indicates whether the additional data should override or
      * supplement the developer entity type definition.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entity_override_mode = 0;
     /**
      * Required. The collection of entities associated with this session entity
      * type.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entities;
 
@@ -76,7 +76,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * `<Entity Type Display Name>` must be the display name of an existing entity
      * type in the same agent that will be overridden or supplemented.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -91,7 +91,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * `<Entity Type Display Name>` must be the display name of an existing entity
      * type in the same agent that will be overridden or supplemented.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -107,7 +107,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. Indicates whether the additional data should override or
      * supplement the developer entity type definition.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getEntityOverrideMode()
@@ -119,7 +119,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. Indicates whether the additional data should override or
      * supplement the developer entity type definition.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SessionEntityType.EntityOverrideMode entity_override_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -135,7 +135,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. The collection of entities associated with this session entity
      * type.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntities()
@@ -147,7 +147,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * Required. The collection of entities associated with this session entity
      * type.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

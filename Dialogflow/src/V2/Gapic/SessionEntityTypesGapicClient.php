@@ -56,6 +56,10 @@ use Google\Protobuf\GPBEmpty;
  * favorites, preferences, playlists, and so on. You can redefine a session
  * entity type at the session level.
  *
+ * Session entity methods do not work with Google Assistant integration.
+ * Contact Dialogflow support if you need to use session entities
+ * with Google Assistant integration.
+ *
  * For more information about entity types, see the
  * [Dialogflow
  * documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -323,6 +327,10 @@ class SessionEntityTypesGapicClient
     /**
      * Returns the list of all session entity types in the specified session.
      *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
+     *
      * Sample code:
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
@@ -404,6 +412,10 @@ class SessionEntityTypesGapicClient
     /**
      * Retrieves the specified session entity type.
      *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
+     *
      * Sample code:
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
@@ -459,6 +471,10 @@ class SessionEntityTypesGapicClient
      * If the specified session entity type already exists, overrides the session
      * entity type.
      *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
+     *
      * Sample code:
      * ```
      * $sessionEntityTypesClient = new SessionEntityTypesClient();
@@ -512,6 +528,10 @@ class SessionEntityTypesGapicClient
 
     /**
      * Updates the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      *
      * Sample code:
      * ```
@@ -569,6 +589,10 @@ class SessionEntityTypesGapicClient
 
     /**
      * Deletes the specified session entity type.
+     *
+     * This method doesn't work with Google Assistant integration.
+     * Contact Dialogflow support if you need to use session entities
+     * with Google Assistant integration.
      *
      * Sample code:
      * ```
