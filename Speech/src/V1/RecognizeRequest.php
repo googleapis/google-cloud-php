@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecognizeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Required* Provides information to the recognizer that specifies how to
+     * Required. Provides information to the recognizer that specifies how to
      * process the request.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $config = null;
     /**
-     * *Required* The audio data to be recognized.
+     * Required. The audio data to be recognized.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $audio = null;
 
@@ -36,10 +36,10 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Speech\V1\RecognitionConfig $config
-     *           *Required* Provides information to the recognizer that specifies how to
+     *           Required. Provides information to the recognizer that specifies how to
      *           process the request.
      *     @type \Google\Cloud\Speech\V1\RecognitionAudio $audio
-     *           *Required* The audio data to be recognized.
+     *           Required. The audio data to be recognized.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,10 +48,10 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Provides information to the recognizer that specifies how to
+     * Required. Provides information to the recognizer that specifies how to
      * process the request.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Speech\V1\RecognitionConfig
      */
     public function getConfig()
@@ -60,10 +60,10 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* Provides information to the recognizer that specifies how to
+     * Required. Provides information to the recognizer that specifies how to
      * process the request.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Speech\V1\RecognitionConfig $var
      * @return $this
      */
@@ -76,9 +76,9 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* The audio data to be recognized.
+     * Required. The audio data to be recognized.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Speech\V1\RecognitionAudio
      */
     public function getAudio()
@@ -87,9 +87,9 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* The audio data to be recognized.
+     * Required. The audio data to be recognized.
      *
-     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Speech\V1\RecognitionAudio $var
      * @return $this
      */

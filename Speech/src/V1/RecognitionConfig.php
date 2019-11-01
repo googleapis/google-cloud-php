@@ -19,8 +19,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
@@ -31,15 +30,14 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
-     * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     * This field is optional for FLAC and WAV audio files, but is
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
     private $sample_rate_hertz = 0;
     /**
-     * *Optional* The number of channels in the input audio data.
+     * The number of channels in the input audio data.
      * ONLY set this for MULTI-CHANNEL recognition.
      * Valid values for LINEAR16 and FLAC are `1`-`8`.
      * Valid values for OGG_OPUS are '1'-'254'.
@@ -64,17 +62,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_separate_recognition_per_channel = false;
     /**
-     * *Required* The language of the supplied audio as a
+     * Required. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
-     * See [Language Support](/speech-to-text/docs/languages)
-     * for a list of the currently supported language codes.
+     * See [Language
+     * Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     * of the currently supported language codes.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
      * The server may return fewer than `max_alternatives`.
@@ -85,7 +84,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $max_alternatives = 0;
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out
+     * If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
@@ -94,15 +93,17 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $profanity_filter = false;
     /**
-     * *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     * Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
-     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * information, see
+     * [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      */
     private $speech_contexts;
     /**
-     * *Optional* If `true`, the top result includes a list of words and
+     * If `true`, the top result includes a list of words and
      * the start and end time offsets (timestamps) for those words. If
      * `false`, no word-level time offset information is returned. The default is
      * `false`.
@@ -111,7 +112,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_word_time_offsets = false;
     /**
-     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
@@ -123,7 +124,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_automatic_punctuation = false;
     /**
-     * *Optional* Config to enable speaker diarization and set additional
+     * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
      * Note: When this is enabled, we send all the words from the beginning of the
      * audio for the top alternative in every consecutive STREAMING responses.
@@ -136,13 +137,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $diarization_config = null;
     /**
-     * *Optional* Metadata regarding this request.
+     * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
      */
     private $metadata = null;
     /**
-     * *Optional* Which model to select for the given request. Select the model
+     * Which model to select for the given request. Select the model
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
@@ -179,7 +180,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
-     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * Set to true to use an enhanced model for speech recognition.
      * If `use_enhanced` is set to true and the `model` field is not set, then
      * an appropriate enhanced model is chosen if an enhanced model exists for
      * the audio.
@@ -200,19 +201,17 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encoding
      *           Encoding of audio data sent in all `RecognitionAudio` messages.
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see
-     *           [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
      *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
      *           16000 is optimal. For best results, set the sampling rate of the audio
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
-     *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see
-     *           [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     *           This field is optional for FLAC and WAV audio files, but is
+     *           required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *     @type int $audio_channel_count
-     *           *Optional* The number of channels in the input audio data.
+     *           The number of channels in the input audio data.
      *           ONLY set this for MULTI-CHANNEL recognition.
      *           Valid values for LINEAR16 and FLAC are `1`-`8`.
      *           Valid values for OGG_OPUS are '1'-'254'.
@@ -229,34 +228,37 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           request is billed cumulatively for all channels recognized:
      *           `audio_channel_count` multiplied by the length of the audio.
      *     @type string $language_code
-     *           *Required* The language of the supplied audio as a
+     *           Required. The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      *           Example: "en-US".
-     *           See [Language Support](/speech-to-text/docs/languages)
-     *           for a list of the currently supported language codes.
+     *           See [Language
+     *           Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     *           of the currently supported language codes.
      *     @type int $max_alternatives
-     *           *Optional* Maximum number of recognition hypotheses to be returned.
+     *           Maximum number of recognition hypotheses to be returned.
      *           Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      *           within each `SpeechRecognitionResult`.
      *           The server may return fewer than `max_alternatives`.
      *           Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
      *           one. If omitted, will return a maximum of one.
      *     @type bool $profanity_filter
-     *           *Optional* If set to `true`, the server will attempt to filter out
+     *           If set to `true`, the server will attempt to filter out
      *           profanities, replacing all but the initial character in each filtered word
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
      *     @type \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
-     *           *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     *           Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      *           A means to provide context to assist the speech recognition. For more
-     *           information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     *           information, see
+     *           [speech
+     *           adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      *     @type bool $enable_word_time_offsets
-     *           *Optional* If `true`, the top result includes a list of words and
+     *           If `true`, the top result includes a list of words and
      *           the start and end time offsets (timestamps) for those words. If
      *           `false`, no word-level time offset information is returned. The default is
      *           `false`.
      *     @type bool $enable_automatic_punctuation
-     *           *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     *           If 'true', adds punctuation to recognition result hypotheses.
      *           This feature is only available in select languages. Setting this for
      *           requests in other languages has no effect at all.
      *           The default 'false' value does not add punctuation to result hypotheses.
@@ -264,7 +266,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           to all users. In the future this may be exclusively available as a
      *           premium feature.
      *     @type \Google\Cloud\Speech\V1\SpeakerDiarizationConfig $diarization_config
-     *           *Optional* Config to enable speaker diarization and set additional
+     *           Config to enable speaker diarization and set additional
      *           parameters to make diarization better suited for your application.
      *           Note: When this is enabled, we send all the words from the beginning of the
      *           audio for the top alternative in every consecutive STREAMING responses.
@@ -273,9 +275,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           For non-streaming requests, the diarization results will be provided only
      *           in the top alternative of the FINAL SpeechRecognitionResult.
      *     @type \Google\Cloud\Speech\V1\RecognitionMetadata $metadata
-     *           *Optional* Metadata regarding this request.
+     *           Metadata regarding this request.
      *     @type string $model
-     *           *Optional* Which model to select for the given request. Select the model
+     *           Which model to select for the given request. Select the model
      *           best suited to your domain to get best results. If a model is not
      *           explicitly specified, then we auto-select a model based on the parameters
      *           in the RecognitionConfig.
@@ -308,7 +310,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *             </tr>
      *           </table>
      *     @type bool $use_enhanced
-     *           *Optional* Set to true to use an enhanced model for speech recognition.
+     *           Set to true to use an enhanced model for speech recognition.
      *           If `use_enhanced` is set to true and the `model` field is not set, then
      *           an appropriate enhanced model is chosen if an enhanced model exists for
      *           the audio.
@@ -325,8 +327,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -339,8 +340,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -360,9 +360,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
-     * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     * This field is optional for FLAC and WAV audio files, but is
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -378,9 +377,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
-     * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
+     * This field is optional for FLAC and WAV audio files, but is
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -395,7 +393,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* The number of channels in the input audio data.
+     * The number of channels in the input audio data.
      * ONLY set this for MULTI-CHANNEL recognition.
      * Valid values for LINEAR16 and FLAC are `1`-`8`.
      * Valid values for OGG_OPUS are '1'-'254'.
@@ -414,7 +412,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* The number of channels in the input audio data.
+     * The number of channels in the input audio data.
      * ONLY set this for MULTI-CHANNEL recognition.
      * Valid values for LINEAR16 and FLAC are `1`-`8`.
      * Valid values for OGG_OPUS are '1'-'254'.
@@ -473,13 +471,14 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* The language of the supplied audio as a
+     * Required. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
-     * See [Language Support](/speech-to-text/docs/languages)
-     * for a list of the currently supported language codes.
+     * See [Language
+     * Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     * of the currently supported language codes.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -488,13 +487,14 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Required* The language of the supplied audio as a
+     * Required. The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      * Example: "en-US".
-     * See [Language Support](/speech-to-text/docs/languages)
-     * for a list of the currently supported language codes.
+     * See [Language
+     * Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     * of the currently supported language codes.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -507,7 +507,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
      * The server may return fewer than `max_alternatives`.
@@ -523,7 +523,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Maximum number of recognition hypotheses to be returned.
+     * Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
      * The server may return fewer than `max_alternatives`.
@@ -543,7 +543,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out
+     * If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
@@ -557,7 +557,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If set to `true`, the server will attempt to filter out
+     * If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
@@ -575,9 +575,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     * Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
-     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * information, see
+     * [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -588,9 +590,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
+     * Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
-     * information, see [Phrase Hints](/speech-to-text/docs/basics#phrase-hints).
+     * information, see
+     * [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      * @param \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -605,7 +609,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `true`, the top result includes a list of words and
+     * If `true`, the top result includes a list of words and
      * the start and end time offsets (timestamps) for those words. If
      * `false`, no word-level time offset information is returned. The default is
      * `false`.
@@ -619,7 +623,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If `true`, the top result includes a list of words and
+     * If `true`, the top result includes a list of words and
      * the start and end time offsets (timestamps) for those words. If
      * `false`, no word-level time offset information is returned. The default is
      * `false`.
@@ -637,7 +641,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
@@ -654,7 +658,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', adds punctuation to recognition result hypotheses.
+     * If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
@@ -675,7 +679,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Config to enable speaker diarization and set additional
+     * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
      * Note: When this is enabled, we send all the words from the beginning of the
      * audio for the top alternative in every consecutive STREAMING responses.
@@ -693,7 +697,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Config to enable speaker diarization and set additional
+     * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
      * Note: When this is enabled, we send all the words from the beginning of the
      * audio for the top alternative in every consecutive STREAMING responses.
@@ -715,7 +719,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Metadata regarding this request.
+     * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
      * @return \Google\Cloud\Speech\V1\RecognitionMetadata
@@ -726,7 +730,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Metadata regarding this request.
+     * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
      * @param \Google\Cloud\Speech\V1\RecognitionMetadata $var
@@ -741,7 +745,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Which model to select for the given request. Select the model
+     * Which model to select for the given request. Select the model
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
@@ -783,7 +787,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Which model to select for the given request. Select the model
+     * Which model to select for the given request. Select the model
      * best suited to your domain to get best results. If a model is not
      * explicitly specified, then we auto-select a model based on the parameters
      * in the RecognitionConfig.
@@ -829,7 +833,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * Set to true to use an enhanced model for speech recognition.
      * If `use_enhanced` is set to true and the `model` field is not set, then
      * an appropriate enhanced model is chosen if an enhanced model exists for
      * the audio.
@@ -846,7 +850,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* Set to true to use an enhanced model for speech recognition.
+     * Set to true to use an enhanced model for speech recognition.
      * If `use_enhanced` is set to true and the `model` field is not set, then
      * an appropriate enhanced model is chosen if an enhanced model exists for
      * the audio.

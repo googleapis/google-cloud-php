@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * *Optional* Config to enable speaker diarization.
+ * Config to enable speaker diarization.
  *
  * Generated from protobuf message <code>google.cloud.speech.v1.SpeakerDiarizationConfig</code>
  */
 class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      *
@@ -24,7 +24,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_speaker_diarization = false;
     /**
-     * *Optional*
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 2.
@@ -33,7 +32,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      */
     private $min_speaker_count = 0;
     /**
-     * *Optional*
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 6.
@@ -41,16 +39,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_speaker_count = 3;</code>
      */
     private $max_speaker_count = 0;
-    /**
-     * Output only. A distinct integer value is assigned for every speaker within
-     * the audio. This field specifies which one of those speakers was detected to
-     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
-     * top alternative.
-     *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
-     */
-    private $speaker_tag = 0;
 
     /**
      * Constructor.
@@ -59,25 +47,17 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_speaker_diarization
-     *           *Optional* If 'true', enables speaker detection for each recognized word in
+     *           If 'true', enables speaker detection for each recognized word in
      *           the top alternative of the recognition result using a speaker_tag provided
      *           in the WordInfo.
      *     @type int $min_speaker_count
-     *           *Optional*
      *           Minimum number of speakers in the conversation. This range gives you more
      *           flexibility by allowing the system to automatically determine the correct
      *           number of speakers. If not set, the default value is 2.
      *     @type int $max_speaker_count
-     *           *Optional*
      *           Maximum number of speakers in the conversation. This range gives you more
      *           flexibility by allowing the system to automatically determine the correct
      *           number of speakers. If not set, the default value is 6.
-     *     @type int $speaker_tag
-     *           Output only. A distinct integer value is assigned for every speaker within
-     *           the audio. This field specifies which one of those speakers was detected to
-     *           have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     *           speaker_tag is set if enable_speaker_diarization = 'true' and only in the
-     *           top alternative.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +66,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      *
@@ -99,7 +79,7 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional* If 'true', enables speaker detection for each recognized word in
+     * If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      *
@@ -116,7 +96,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional*
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 2.
@@ -130,7 +109,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional*
      * Minimum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 2.
@@ -148,7 +126,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional*
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 6.
@@ -162,7 +139,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * *Optional*
      * Maximum number of speakers in the conversation. This range gives you more
      * flexibility by allowing the system to automatically determine the correct
      * number of speakers. If not set, the default value is 6.
@@ -175,40 +151,6 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_speaker_count = $var;
-
-        return $this;
-    }
-
-    /**
-     * Output only. A distinct integer value is assigned for every speaker within
-     * the audio. This field specifies which one of those speakers was detected to
-     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
-     * top alternative.
-     *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
-     * @return int
-     */
-    public function getSpeakerTag()
-    {
-        return $this->speaker_tag;
-    }
-
-    /**
-     * Output only. A distinct integer value is assigned for every speaker within
-     * the audio. This field specifies which one of those speakers was detected to
-     * have spoken this word. Value ranges from '1' to diarization_speaker_count.
-     * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
-     * top alternative.
-     *
-     * Generated from protobuf field <code>int32 speaker_tag = 5;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setSpeakerTag($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->speaker_tag = $var;
 
         return $this;
     }

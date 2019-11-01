@@ -69,7 +69,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      * Obfuscated (privacy-protected) ID of the user, to identify number of
      * unique users using the service.
      *
-     * Generated from protobuf field <code>int64 obfuscated_id = 9;</code>
+     * Generated from protobuf field <code>int64 obfuscated_id = 9 [deprecated = true];</code>
      */
     private $obfuscated_id = 0;
     /**
@@ -323,7 +323,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      * Obfuscated (privacy-protected) ID of the user, to identify number of
      * unique users using the service.
      *
-     * Generated from protobuf field <code>int64 obfuscated_id = 9;</code>
+     * Generated from protobuf field <code>int64 obfuscated_id = 9 [deprecated = true];</code>
      * @return int|string
      */
     public function getObfuscatedId()
@@ -335,7 +335,7 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      * Obfuscated (privacy-protected) ID of the user, to identify number of
      * unique users using the service.
      *
-     * Generated from protobuf field <code>int64 obfuscated_id = 9;</code>
+     * Generated from protobuf field <code>int64 obfuscated_id = 9 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
      */
