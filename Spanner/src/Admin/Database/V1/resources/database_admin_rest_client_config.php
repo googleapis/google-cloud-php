@@ -73,17 +73,6 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
-            'ListDatabases' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
@@ -92,17 +81,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetDatabase' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -126,6 +104,28 @@ return [
                     'database' => [
                         'getters' => [
                             'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDatabase' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

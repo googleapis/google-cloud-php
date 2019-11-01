@@ -1335,19 +1335,15 @@ class SpannerGapicClient
      * $spannerClient = new SpannerClient();
      * try {
      *     $formattedSession = $spannerClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
-     *     $mutations = [];
-     *     $response = $spannerClient->commit($formattedSession, $mutations);
+     *     $response = $spannerClient->commit($formattedSession);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param string     $session      Required. The session in which the transaction to be committed is running.
-     * @param Mutation[] $mutations    The mutations to be executed when this transaction commits. All
-     *                                 mutations are applied atomically, in the order they appear in
-     *                                 this list.
-     * @param array      $optionalArgs {
-     *                                 Optional.
+     * @param string $session      Required. The session in which the transaction to be committed is running.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string $transactionId
      *          Commit a previously-started transaction.
@@ -1361,6 +1357,10 @@ class SpannerGapicClient
      *          executed more than once. If this is undesirable, use
      *          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *          [Commit][google.spanner.v1.Spanner.Commit] instead.
+     *     @type Mutation[] $mutations
+     *          The mutations to be executed when this transaction commits. All
+     *          mutations are applied atomically, in the order they appear in
+     *          this list.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1373,16 +1373,18 @@ class SpannerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function commit($session, $mutations, array $optionalArgs = [])
+    public function commit($session, array $optionalArgs = [])
     {
         $request = new CommitRequest();
         $request->setSession($session);
-        $request->setMutations($mutations);
         if (isset($optionalArgs['transactionId'])) {
             $request->setTransactionId($optionalArgs['transactionId']);
         }
         if (isset($optionalArgs['singleUseTransaction'])) {
             $request->setSingleUseTransaction($optionalArgs['singleUseTransaction']);
+        }
+        if (isset($optionalArgs['mutations'])) {
+            $request->setMutations($optionalArgs['mutations']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
