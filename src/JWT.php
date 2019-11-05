@@ -38,9 +38,10 @@ class JWT
     public static $timestamp = null;
 
     public static $supported_algs = array(
+        'ES256' => array('openssl', 'SHA256'),
         'HS256' => array('hash_hmac', 'SHA256'),
-        'HS512' => array('hash_hmac', 'SHA512'),
         'HS384' => array('hash_hmac', 'SHA384'),
+        'HS512' => array('hash_hmac', 'SHA512'),
         'RS256' => array('openssl', 'SHA256'),
         'RS384' => array('openssl', 'SHA384'),
         'RS512' => array('openssl', 'SHA512'),
@@ -53,7 +54,7 @@ class JWT
      * @param string|array  $key            The key, or map of keys.
      *                                      If the algorithm used is asymmetric, this is the public key
      * @param array         $allowed_algs   List of supported verification algorithms
-     *                                      Supported algorithms are 'HS256', 'HS384', 'HS512' and 'RS256'
+     *                                      Supported algorithms are 'ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
      *
      * @return object The JWT's payload as a PHP object
      *
@@ -144,7 +145,7 @@ class JWT
      * @param string        $key        The secret key.
      *                                  If the algorithm used is asymmetric, this is the private key
      * @param string        $alg        The signing algorithm.
-     *                                  Supported algorithms are 'HS256', 'HS384', 'HS512' and 'RS256'
+     *                                  Supported algorithms are 'ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
      * @param mixed         $keyId
      * @param array         $head       An array with header elements to attach
      *
@@ -179,7 +180,7 @@ class JWT
      * @param string            $msg    The message to sign
      * @param string|resource   $key    The secret key
      * @param string            $alg    The signing algorithm.
-     *                                  Supported algorithms are 'HS256', 'HS384', 'HS512' and 'RS256'
+     *                                  Supported algorithms are 'ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
      *
      * @return string An encrypted message
      *
