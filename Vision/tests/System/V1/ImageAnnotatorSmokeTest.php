@@ -42,7 +42,7 @@ class ImageAnnotatorSmokeTest extends GeneratedTest
     public function batchAnnotateImagesTest()
     {
         $imageAnnotatorClient = new ImageAnnotatorClient();
-        $gcsImageUri = 'gs://gapic-toolkit/President_Barack_Obama.jpg';
+        $gcsImageUri = 'gs://cloud-samples-data/vision/face_detection/celebrity_recognition/sergey.jpg';
         $source = new ImageSource();
         $source->setGcsImageUri($gcsImageUri);
         $image = new Image();
