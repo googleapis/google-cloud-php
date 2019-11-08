@@ -24,8 +24,8 @@ class AvailabilitySignalType
      * In the context of
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals],
      * this signal is related to the candidate's most recent application.
-     * [last_update_time][Profile.availability_signals.last_update_time] is
-     * calculated from
+     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
+     * is calculated from
      * max([Application.create_time][google.cloud.talent.v4beta1.Application.create_time])
      * from all [Application][google.cloud.talent.v4beta1.Application] records
      * where [Application.source][google.cloud.talent.v4beta1.Application.source]
@@ -39,7 +39,8 @@ class AvailabilitySignalType
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter], the
      * filter is applied on
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals]
-     * where [type][Profile.availability_signals.type] is JOB_APPLICATION.
+     * where [type][google.cloud.talent.v4beta1.AvailabilitySignal.type] is
+     * JOB_APPLICATION.
      *
      * Generated from protobuf enum <code>JOB_APPLICATION = 1;</code>
      */
@@ -48,11 +49,11 @@ class AvailabilitySignalType
      * Resume update signal.
      * In the context of
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals],
-     * this signal is related to the candidate’s most recent update to their
+     * this signal is related to the candidate's most recent update to their
      * resume. For a
      * [SummarizedProfile.summary][google.cloud.talent.v4beta1.SummarizedProfile.summary],
-     * [last_update_time][Profile.availability_signals.last_update_time] is
-     * calculated from
+     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
+     * is calculated from
      * max([Profile.resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time])
      * from all
      * [SummarizedProfile.profiles][google.cloud.talent.v4beta1.SummarizedProfile.profiles].
@@ -60,7 +61,8 @@ class AvailabilitySignalType
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter], the
      * filter is applied on
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals]
-     * where [type][Profile.availability_signals.type] is RESUME_UPDATE.
+     * where [type][google.cloud.talent.v4beta1.AvailabilitySignal.type] is
+     * RESUME_UPDATE.
      *
      * Generated from protobuf enum <code>RESUME_UPDATE = 2;</code>
      */
@@ -69,11 +71,11 @@ class AvailabilitySignalType
      * Candidate update signal.
      * In the context of
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals],
-     * this signal is related to the candidate’s most recent update to their
+     * this signal is related to the candidate's most recent update to their
      * profile. For a
      * [SummarizedProfile.summary][google.cloud.talent.v4beta1.SummarizedProfile.summary],
-     * [last_update_time][Profile.availability_signals.last_update_time] is
-     * calculated from
+     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
+     * is calculated from
      * max([Profile.candidate_update_time][google.cloud.talent.v4beta1.Profile.candidate_update_time])
      * from all
      * [SummarizedProfile.profiles][google.cloud.talent.v4beta1.SummarizedProfile.profiles].
@@ -81,7 +83,8 @@ class AvailabilitySignalType
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter], the
      * filter is applied on
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals]
-     * where [type][Profile.availability_signals.type] is CANDIDATE_UPDATE.
+     * where [type][google.cloud.talent.v4beta1.AvailabilitySignal.type] is
+     * CANDIDATE_UPDATE.
      *
      * Generated from protobuf enum <code>CANDIDATE_UPDATE = 3;</code>
      */
@@ -90,9 +93,9 @@ class AvailabilitySignalType
      * Client submission signal.
      * In the context of
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals],
-     * this signal is related to the candidate’s most recent submission.
-     * [last_update_time][Profile.availability_signals.last_update_time] is
-     * calculated from
+     * this signal is related to the candidate's most recent submission.
+     * [last_update_time][google.cloud.talent.v4beta1.AvailabilitySignal.last_update_time]
+     * is calculated from
      * max([Application.create_time][google.cloud.talent.v4beta1.Application.create_time])
      * from all [Application][google.cloud.talent.v4beta1.Application] records
      * where [Application.stage][google.cloud.talent.v4beta1.Application.stage] is
@@ -106,7 +109,8 @@ class AvailabilitySignalType
      * [AvailabilityFilter][google.cloud.talent.v4beta1.AvailabilityFilter], the
      * filter is applied on
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals]
-     * where [type][Profile.availability_signals.type] is CLIENT_SUBMISSION.
+     * where [type][google.cloud.talent.v4beta1.AvailabilitySignal.type] is
+     * CLIENT_SUBMISSION.
      *
      * Generated from protobuf enum <code>CLIENT_SUBMISSION = 4;</code>
      */

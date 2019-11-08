@@ -25,9 +25,9 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The jobs to be updated.
+     * Required. The jobs to be updated.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $jobs;
     /**
@@ -64,7 +64,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
      *           is created. For example, "projects/foo".
      *     @type \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
-     *           The jobs to be updated.
+     *           Required. The jobs to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Strongly recommended for the best service experience. Be aware that it will
      *           also increase latency when checking the status of a batch operation.
@@ -122,9 +122,9 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The jobs to be updated.
+     * Required. The jobs to be updated.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getJobs()
@@ -133,9 +133,9 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The jobs to be updated.
+     * Required. The jobs to be updated.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
