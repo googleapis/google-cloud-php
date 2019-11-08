@@ -85,6 +85,17 @@ return [
                     ],
                 ],
             ],
+            'GetAnnotationSpec' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/datasets/*/annotationSpecs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateModel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/models',
@@ -135,6 +146,42 @@ return [
             'DeleteModel' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeployModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:deploy',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UndeployModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:undeploy',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:export',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

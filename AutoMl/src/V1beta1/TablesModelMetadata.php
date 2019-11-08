@@ -113,6 +113,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_early_stopping = 12;</code>
      */
     private $disable_early_stopping = false;
+    protected $additional_optimization_objective_config;
 
     /**
      * Constructor.
@@ -120,6 +121,12 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type float $optimization_objective_recall_value
+     *           Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
+     *           Must be between 0 and 1, inclusive.
+     *     @type float $optimization_objective_precision_value
+     *           Required when optimization_objective is "MAXIMIZE_RECALL_AT_PRECISION".
+     *           Must be between 0 and 1, inclusive.
      *     @type \Google\Cloud\AutoMl\V1beta1\ColumnSpec $target_column_spec
      *           Column spec of the dataset's primary table's column the model is
      *           predicting. Snapshotted when model creation started.
@@ -195,6 +202,62 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Tables::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
+     * Must be between 0 and 1, inclusive.
+     *
+     * Generated from protobuf field <code>float optimization_objective_recall_value = 17;</code>
+     * @return float
+     */
+    public function getOptimizationObjectiveRecallValue()
+    {
+        return $this->readOneof(17);
+    }
+
+    /**
+     * Required when optimization_objective is "MAXIMIZE_PRECISION_AT_RECALL".
+     * Must be between 0 and 1, inclusive.
+     *
+     * Generated from protobuf field <code>float optimization_objective_recall_value = 17;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setOptimizationObjectiveRecallValue($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Required when optimization_objective is "MAXIMIZE_RECALL_AT_PRECISION".
+     * Must be between 0 and 1, inclusive.
+     *
+     * Generated from protobuf field <code>float optimization_objective_precision_value = 18;</code>
+     * @return float
+     */
+    public function getOptimizationObjectivePrecisionValue()
+    {
+        return $this->readOneof(18);
+    }
+
+    /**
+     * Required when optimization_objective is "MAXIMIZE_RECALL_AT_PRECISION".
+     * Must be between 0 and 1, inclusive.
+     *
+     * Generated from protobuf field <code>float optimization_objective_precision_value = 18;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setOptimizationObjectivePrecisionValue($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->writeOneof(18, $var);
+
+        return $this;
     }
 
     /**
@@ -489,6 +552,14 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
         $this->disable_early_stopping = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdditionalOptimizationObjectiveConfig()
+    {
+        return $this->whichOneof("additional_optimization_objective_config");
     }
 
 }

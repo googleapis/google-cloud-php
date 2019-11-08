@@ -29,15 +29,22 @@ namespace Google\Cloud\AutoMl\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
+use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
+use Google\Cloud\AutoMl\V1\BatchPredictRequest;
+use Google\Cloud\AutoMl\V1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1\ExamplePayload;
 use Google\Cloud\AutoMl\V1\PredictRequest;
 use Google\Cloud\AutoMl\V1\PredictResponse;
+use Google\LongRunning\Operation;
 
 /**
  * Service Description: AutoML Prediction API.
@@ -98,6 +105,8 @@ class PredictionServiceGapicClient
     ];
     private static $modelNameTemplate;
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -200,6 +209,41 @@ class PredictionServiceGapicClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
+    }
+
+    /**
      * Constructor.
      *
      * @param array $options {
@@ -258,14 +302,25 @@ class PredictionServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
      * Perform an online prediction. The prediction result will be directly
      * returned in the response.
      * Available for following ML problems, and their expected request payloads:
+     * * Image Classification - Image in .JPEG, .GIF or .PNG format, image_bytes
+     *                          up to 30MB.
+     * * Image Object Detection - Image in .JPEG, .GIF or .PNG format, image_bytes
+     *                            up to 30MB.
+     * * Text Classification - TextSnippet, content up to 60,000 characters,
+     *                         UTF-8 encoded.
+     * * Text Extraction - TextSnippet, content up to 30,000 characters,
+     *                     UTF-8 NFC encoded.
      * * Translation - TextSnippet, content up to 25,000 characters, UTF-8
      *                 encoded.
+     * * Text Sentiment - TextSnippet, content up 500 characters, UTF-8
+     *                     encoded.
      *
      * Sample code:
      * ```
@@ -288,6 +343,20 @@ class PredictionServiceGapicClient
      *     @type array $params
      *          Additional domain-specific parameters, any string must be up to 25000
      *          characters long.
+     *
+     *          *  For Image Classification:
+     *
+     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *              makes predictions for an image, it will only produce results that have
+     *              at least this confidence score. The default is 0.5.
+     *
+     *           *  For Image Object Detection:
+     *             `score_threshold` - (float) When Model detects objects on the image,
+     *                 it will only produce bounding boxes which have at least this
+     *                 confidence score. Value in 0 to 1 range, default is 0.5.
+     *             `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                 boxes will be returned in the response. Default is 100, the
+     *                 requested value may be limited by server.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -321,6 +390,129 @@ class PredictionServiceGapicClient
             PredictResponse::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Perform a batch prediction. Unlike the online
+     * [Predict][google.cloud.automl.v1.PredictionService.Predict], batch
+     * prediction result won't be immediately available in the response. Instead,
+     * a long running operation object is returned. User can poll the operation
+     * result via [GetOperation][google.longrunning.Operations.GetOperation]
+     * method. Once the operation is done,
+     * [BatchPredictResult][google.cloud.automl.v1.BatchPredictResult] is returned
+     * in the [response][google.longrunning.Operation.response] field. Available
+     * for following ML problems:
+     * * Image Classification
+     * * Image Object Detection
+     * * Text Extraction.
+     *
+     * Sample code:
+     * ```
+     * $predictionServiceClient = new Google\Cloud\AutoMl\V1\PredictionServiceClient();
+     * try {
+     *     $formattedName = $predictionServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $inputConfig = new Google\Cloud\AutoMl\V1\BatchPredictInputConfig();
+     *     $outputConfig = new Google\Cloud\AutoMl\V1\BatchPredictOutputConfig();
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $predictionServiceClient->resumeOperation($operationName, 'batchPredict');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $predictionServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                   $name         Name of the model requested to serve the batch prediction.
+     * @param BatchPredictInputConfig  $inputConfig  Required. The input configuration for batch prediction.
+     * @param BatchPredictOutputConfig $outputConfig Required. The Configuration specifying where output predictions should
+     *                                               be written.
+     * @param array                    $optionalArgs {
+     *                                               Optional.
+     *
+     *     @type array $params
+     *          Additional domain-specific parameters for the predictions, any string must
+     *          be up to 25000 characters long.
+     *
+     *          *  For Text Classification:
+     *
+     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *                  makes predictions for a text snippet, it will only produce results
+     *                  that have at least this confidence score. The default is 0.5.
+     *
+     *          *  For Image Classification:
+     *
+     *             `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *                  makes predictions for an image, it will only produce results that
+     *                  have at least this confidence score. The default is 0.5.
+     *
+     *          *  For Image Object Detection:
+     *
+     *             `score_threshold` - (float) When Model detects objects on the image,
+     *                 it will only produce bounding boxes which have at least this
+     *                 confidence score. Value in 0 to 1 range, default is 0.5.
+     *             `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                 boxes will be produced per image. Default is 100, the
+     *                 requested value may be limited by server.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function batchPredict($name, $inputConfig, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new BatchPredictRequest();
+        $request->setName($name);
+        $request->setInputConfig($inputConfig);
+        $request->setOutputConfig($outputConfig);
+        if (isset($optionalArgs['params'])) {
+            $request->setParams($optionalArgs['params']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'BatchPredict',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 }

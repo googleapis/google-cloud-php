@@ -37,15 +37,21 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AutoMl\V1\AnnotationSpec;
 use Google\Cloud\AutoMl\V1\CreateDatasetRequest;
 use Google\Cloud\AutoMl\V1\CreateModelRequest;
 use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Cloud\AutoMl\V1\DeleteDatasetRequest;
 use Google\Cloud\AutoMl\V1\DeleteModelRequest;
+use Google\Cloud\AutoMl\V1\DeployModelRequest;
 use Google\Cloud\AutoMl\V1\ExportDataRequest;
+use Google\Cloud\AutoMl\V1\ExportModelRequest;
+use Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest;
 use Google\Cloud\AutoMl\V1\GetDatasetRequest;
 use Google\Cloud\AutoMl\V1\GetModelEvaluationRequest;
 use Google\Cloud\AutoMl\V1\GetModelRequest;
+use Google\Cloud\AutoMl\V1\ImageClassificationModelDeploymentMetadata;
+use Google\Cloud\AutoMl\V1\ImageObjectDetectionModelDeploymentMetadata;
 use Google\Cloud\AutoMl\V1\ImportDataRequest;
 use Google\Cloud\AutoMl\V1\InputConfig;
 use Google\Cloud\AutoMl\V1\ListDatasetsRequest;
@@ -56,7 +62,9 @@ use Google\Cloud\AutoMl\V1\ListModelsRequest;
 use Google\Cloud\AutoMl\V1\ListModelsResponse;
 use Google\Cloud\AutoMl\V1\Model;
 use Google\Cloud\AutoMl\V1\ModelEvaluation;
+use Google\Cloud\AutoMl\V1\ModelExportOutputConfig;
 use Google\Cloud\AutoMl\V1\OutputConfig;
+use Google\Cloud\AutoMl\V1\UndeployModelRequest;
 use Google\Cloud\AutoMl\V1\UpdateDatasetRequest;
 use Google\Cloud\AutoMl\V1\UpdateModelRequest;
 use Google\LongRunning\Operation;
@@ -157,6 +165,7 @@ class AutoMlGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $annotationSpecNameTemplate;
     private static $datasetNameTemplate;
     private static $locationNameTemplate;
     private static $modelNameTemplate;
@@ -182,6 +191,15 @@ class AutoMlGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getAnnotationSpecNameTemplate()
+    {
+        if (null == self::$annotationSpecNameTemplate) {
+            self::$annotationSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}');
+        }
+
+        return self::$annotationSpecNameTemplate;
     }
 
     private static function getDatasetNameTemplate()
@@ -224,6 +242,7 @@ class AutoMlGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'annotationSpec' => self::getAnnotationSpecNameTemplate(),
                 'dataset' => self::getDatasetNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'model' => self::getModelNameTemplate(),
@@ -232,6 +251,28 @@ class AutoMlGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a annotation_spec resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $annotationSpec
+     *
+     * @return string The formatted annotation_spec resource.
+     * @experimental
+     */
+    public static function annotationSpecName($project, $location, $dataset, $annotationSpec)
+    {
+        return self::getAnnotationSpecNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'annotation_spec' => $annotationSpec,
+        ]);
     }
 
     /**
@@ -318,6 +359,7 @@ class AutoMlGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - annotationSpec: projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}
      * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
      * - location: projects/{project}/locations/{location}
      * - model: projects/{project}/locations/{location}/models/{model}
@@ -676,8 +718,8 @@ class AutoMlGapicClient
      *          An expression for filtering the results of the request.
      *
      *            * `dataset_metadata` - for existence of the case (e.g.
-     *                      image_classification_dataset_metadata:*).
-     *          Some examples of using the filter are:
+     *                      image_classification_dataset_metadata:*). Some examples of
+     *                      using the filter are:
      *
      *            * `translation_dataset_metadata:*` --> The dataset has
      *                                                   translation_dataset_metadata.
@@ -974,6 +1016,56 @@ class AutoMlGapicClient
     }
 
     /**
+     * Gets an annotation spec.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+     *     $response = $autoMlClient->getAnnotationSpec($formattedName);
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         The resource name of the annotation spec to retrieve.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AutoMl\V1\AnnotationSpec
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getAnnotationSpec($name, array $optionalArgs = [])
+    {
+        $request = new GetAnnotationSpecRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetAnnotationSpec',
+            AnnotationSpec::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a model.
      * Returns a Model in the [response][google.longrunning.Operation.response]
      * field when it completes.
@@ -1198,7 +1290,7 @@ class AutoMlGapicClient
      *          An expression for filtering the results of the request.
      *
      *            * `model_metadata` - for existence of the case (e.g.
-     *                      video_classification_model_metadata:*).
+     *                      image_classification_model_metadata:*).
      *            * `dataset_id` - for = or !=. Some examples of using the filter are:
      *
      *            * `image_classification_model_metadata:*` --> The model has
@@ -1328,6 +1420,270 @@ class AutoMlGapicClient
 
         return $this->startOperationsCall(
             'DeleteModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deploys a model. If a model is already deployed, deploying it with the
+     * same parameters has no effect. Deploying with different parametrs
+     * (as e.g. changing.
+     *
+     * [node_number][google.cloud.automl.v1.ImageObjectDetectionModelDeploymentMetadata.node_number])
+     *  will reset the deployment state without pausing the model's availability.
+     *
+     * Only applicable for Text Classification, Image Object Detection; all other
+     * domains manage deployment automatically.
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->deployModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->deployModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'deployModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the model to deploy.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type ImageObjectDetectionModelDeploymentMetadata $imageObjectDetectionModelDeploymentMetadata
+     *          Model deployment metadata specific to Image Object Detection.
+     *     @type ImageClassificationModelDeploymentMetadata $imageClassificationModelDeploymentMetadata
+     *          Model deployment metadata specific to Image Classification.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deployModel($name, array $optionalArgs = [])
+    {
+        $request = new DeployModelRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['imageObjectDetectionModelDeploymentMetadata'])) {
+            $request->setImageObjectDetectionModelDeploymentMetadata($optionalArgs['imageObjectDetectionModelDeploymentMetadata']);
+        }
+        if (isset($optionalArgs['imageClassificationModelDeploymentMetadata'])) {
+            $request->setImageClassificationModelDeploymentMetadata($optionalArgs['imageClassificationModelDeploymentMetadata']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'DeployModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Undeploys a model. If the model is not deployed this method has no effect.
+     *
+     * Only applicable for Text Classification, Image Object Detection;
+     * all other domains manage deployment automatically.
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $operationResponse = $autoMlClient->undeployModel($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->undeployModel($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'undeployModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the model to undeploy.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function undeployModel($name, array $optionalArgs = [])
+    {
+        $request = new UndeployModelRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'UndeployModel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Exports a trained, "export-able", model to a user specified Google Cloud
+     * Storage location. A model is considered export-able if and only if it has
+     * an export format defined for it in
+     * [ModelExportOutputConfig][google.cloud.automl.v1.ModelExportOutputConfig].
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     *
+     * Sample code:
+     * ```
+     * $autoMlClient = new Google\Cloud\AutoMl\V1\AutoMlClient();
+     * try {
+     *     $formattedName = $autoMlClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $outputConfig = new Google\Cloud\AutoMl\V1\ModelExportOutputConfig();
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $autoMlClient->exportModel($formattedName, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $autoMlClient->resumeOperation($operationName, 'exportModel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $autoMlClient->close();
+     * }
+     * ```
+     *
+     * @param string                  $name         Required. The resource name of the model to export.
+     * @param ModelExportOutputConfig $outputConfig Required. The desired output location and configuration.
+     * @param array                   $optionalArgs {
+     *                                              Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function exportModel($name, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new ExportModelRequest();
+        $request->setName($name);
+        $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'ExportModel',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

@@ -16,12 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class TextSentimentDatasetMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A sentiment is expressed as an integer ordinal, where higher value
-     * means a more positive sentiment. The range of sentiments that will be used
-     * is between 0 and sentiment_max (inclusive on both ends), and all the values
-     * in the range must be represented in the dataset before a model can be
-     * created.
-     * sentiment_max value must be between 1 and 10 (inclusive).
+     * Required. A sentiment is expressed as an integer ordinal, where higher
+     * value means a more positive sentiment. The range of sentiments that will be
+     * used is between 0 and sentiment_max (inclusive on both ends), and all the
+     * values in the range must be represented in the dataset before a model can
+     * be created. sentiment_max value must be between 1 and 10 (inclusive).
      *
      * Generated from protobuf field <code>int32 sentiment_max = 1;</code>
      */
@@ -34,12 +33,11 @@ class TextSentimentDatasetMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $sentiment_max
-     *           Required. A sentiment is expressed as an integer ordinal, where higher value
-     *           means a more positive sentiment. The range of sentiments that will be used
-     *           is between 0 and sentiment_max (inclusive on both ends), and all the values
-     *           in the range must be represented in the dataset before a model can be
-     *           created.
-     *           sentiment_max value must be between 1 and 10 (inclusive).
+     *           Required. A sentiment is expressed as an integer ordinal, where higher
+     *           value means a more positive sentiment. The range of sentiments that will be
+     *           used is between 0 and sentiment_max (inclusive on both ends), and all the
+     *           values in the range must be represented in the dataset before a model can
+     *           be created. sentiment_max value must be between 1 and 10 (inclusive).
      * }
      */
     public function __construct($data = NULL) {
@@ -48,12 +46,11 @@ class TextSentimentDatasetMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A sentiment is expressed as an integer ordinal, where higher value
-     * means a more positive sentiment. The range of sentiments that will be used
-     * is between 0 and sentiment_max (inclusive on both ends), and all the values
-     * in the range must be represented in the dataset before a model can be
-     * created.
-     * sentiment_max value must be between 1 and 10 (inclusive).
+     * Required. A sentiment is expressed as an integer ordinal, where higher
+     * value means a more positive sentiment. The range of sentiments that will be
+     * used is between 0 and sentiment_max (inclusive on both ends), and all the
+     * values in the range must be represented in the dataset before a model can
+     * be created. sentiment_max value must be between 1 and 10 (inclusive).
      *
      * Generated from protobuf field <code>int32 sentiment_max = 1;</code>
      * @return int
@@ -64,12 +61,11 @@ class TextSentimentDatasetMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A sentiment is expressed as an integer ordinal, where higher value
-     * means a more positive sentiment. The range of sentiments that will be used
-     * is between 0 and sentiment_max (inclusive on both ends), and all the values
-     * in the range must be represented in the dataset before a model can be
-     * created.
-     * sentiment_max value must be between 1 and 10 (inclusive).
+     * Required. A sentiment is expressed as an integer ordinal, where higher
+     * value means a more positive sentiment. The range of sentiments that will be
+     * used is between 0 and sentiment_max (inclusive on both ends), and all the
+     * values in the range must be represented in the dataset before a model can
+     * be created. sentiment_max value must be between 1 and 10 (inclusive).
      *
      * Generated from protobuf field <code>int32 sentiment_max = 1;</code>
      * @param int $var

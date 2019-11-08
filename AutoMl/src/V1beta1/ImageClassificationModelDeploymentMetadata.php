@@ -19,7 +19,7 @@ class ImageClassificationModelDeploymentMetadata extends \Google\Protobuf\Intern
      * Input only. The number of nodes to deploy the model on. A node is an
      * abstraction of a machine resource, which can handle online prediction QPS
      * as given in the model's
-     * [node_qps][google.cloud.automl.v1p1beta.ImageClassificationModelMetadata.node_qps].
+     * [node_qps][google.cloud.automl.v1beta1.ImageClassificationModelMetadata.node_qps].
      * Must be between 1 and 100, inclusive on both ends.
      *
      * Generated from protobuf field <code>int64 node_count = 1;</code>
@@ -36,7 +36,7 @@ class ImageClassificationModelDeploymentMetadata extends \Google\Protobuf\Intern
      *           Input only. The number of nodes to deploy the model on. A node is an
      *           abstraction of a machine resource, which can handle online prediction QPS
      *           as given in the model's
-     *           [node_qps][google.cloud.automl.v1p1beta.ImageClassificationModelMetadata.node_qps].
+     *           [node_qps][google.cloud.automl.v1beta1.ImageClassificationModelMetadata.node_qps].
      *           Must be between 1 and 100, inclusive on both ends.
      * }
      */
@@ -49,7 +49,7 @@ class ImageClassificationModelDeploymentMetadata extends \Google\Protobuf\Intern
      * Input only. The number of nodes to deploy the model on. A node is an
      * abstraction of a machine resource, which can handle online prediction QPS
      * as given in the model's
-     * [node_qps][google.cloud.automl.v1p1beta.ImageClassificationModelMetadata.node_qps].
+     * [node_qps][google.cloud.automl.v1beta1.ImageClassificationModelMetadata.node_qps].
      * Must be between 1 and 100, inclusive on both ends.
      *
      * Generated from protobuf field <code>int64 node_count = 1;</code>
@@ -64,7 +64,7 @@ class ImageClassificationModelDeploymentMetadata extends \Google\Protobuf\Intern
      * Input only. The number of nodes to deploy the model on. A node is an
      * abstraction of a machine resource, which can handle online prediction QPS
      * as given in the model's
-     * [node_qps][google.cloud.automl.v1p1beta.ImageClassificationModelMetadata.node_qps].
+     * [node_qps][google.cloud.automl.v1beta1.ImageClassificationModelMetadata.node_qps].
      * Must be between 1 and 100, inclusive on both ends.
      *
      * Generated from protobuf field <code>int64 node_count = 1;</code>
