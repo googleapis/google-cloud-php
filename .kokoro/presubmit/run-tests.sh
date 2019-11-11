@@ -8,7 +8,7 @@ composer --no-interaction --no-ansi --no-progress update
 
 SHORT_JOB_NAME=${KOKORO_JOB_NAME##*/}
 
-if [ "${SHORT_JOB_NAME}" == "php72" ]; then
+if [ "${SHORT_JOB_NAME}" == "php73" ]; then
     pecl install xdebug
     echo "zend_extension=xdebug.so" > ${PHP_DIR}/lib/conf.d/xdebug.ini
     RUN_CODECOV="true"
