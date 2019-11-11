@@ -61,6 +61,8 @@ class Task extends \Google\Protobuf\Internal\Message
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
+     * * For [HTTP tasks][google.cloud.tasks.v2.HttpRequest], the default is 10 minutes. The deadline
+     *   must be in the interval [15 seconds, 30 minutes].
      * * For [App Engine tasks][google.cloud.tasks.v2.AppEngineHttpRequest], 0 indicates that the
      *   request has the default deadline. The default deadline depends on the
      *   [scaling
@@ -144,6 +146,9 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Tasks\V2\AppEngineHttpRequest $app_engine_http_request
      *           HTTP request that is sent to the App Engine app handler.
      *           An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2.AppEngineHttpRequest] set.
+     *     @type \Google\Cloud\Tasks\V2\HttpRequest $http_request
+     *           HTTP request that is sent to the worker.
+     *           An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2.HttpRequest] set.
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           The time when the task is scheduled to be attempted or retried.
      *           `schedule_time` will be truncated to the nearest microsecond.
@@ -160,6 +165,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *           worker. For example, if the worker is stuck, it may not react to cancelled
      *           requests.
      *           The default and maximum values depend on the type of request:
+     *           * For [HTTP tasks][google.cloud.tasks.v2.HttpRequest], the default is 10 minutes. The deadline
+     *             must be in the interval [15 seconds, 30 minutes].
      *           * For [App Engine tasks][google.cloud.tasks.v2.AppEngineHttpRequest], 0 indicates that the
      *             request has the default deadline. The default deadline depends on the
      *             [scaling
@@ -284,6 +291,34 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * HTTP request that is sent to the worker.
+     * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2.HttpRequest] set.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpRequest http_request = 3;</code>
+     * @return \Google\Cloud\Tasks\V2\HttpRequest
+     */
+    public function getHttpRequest()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * HTTP request that is sent to the worker.
+     * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2.HttpRequest] set.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpRequest http_request = 3;</code>
+     * @param \Google\Cloud\Tasks\V2\HttpRequest $var
+     * @return $this
+     */
+    public function setHttpRequest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2\HttpRequest::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
      * The time when the task is scheduled to be attempted or retried.
      * `schedule_time` will be truncated to the nearest microsecond.
      *
@@ -349,6 +384,8 @@ class Task extends \Google\Protobuf\Internal\Message
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
+     * * For [HTTP tasks][google.cloud.tasks.v2.HttpRequest], the default is 10 minutes. The deadline
+     *   must be in the interval [15 seconds, 30 minutes].
      * * For [App Engine tasks][google.cloud.tasks.v2.AppEngineHttpRequest], 0 indicates that the
      *   request has the default deadline. The default deadline depends on the
      *   [scaling
@@ -383,6 +420,8 @@ class Task extends \Google\Protobuf\Internal\Message
      * worker. For example, if the worker is stuck, it may not react to cancelled
      * requests.
      * The default and maximum values depend on the type of request:
+     * * For [HTTP tasks][google.cloud.tasks.v2.HttpRequest], the default is 10 minutes. The deadline
+     *   must be in the interval [15 seconds, 30 minutes].
      * * For [App Engine tasks][google.cloud.tasks.v2.AppEngineHttpRequest], 0 indicates that the
      *   request has the default deadline. The default deadline depends on the
      *   [scaling
