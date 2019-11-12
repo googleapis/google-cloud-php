@@ -40,7 +40,7 @@ class TimePart
      */
     const DAY_OF_WEEK = 4;
     /**
-     * [1-52]
+     * [1-53]
      *
      * Generated from protobuf enum <code>WEEK_OF_YEAR = 5;</code>
      */

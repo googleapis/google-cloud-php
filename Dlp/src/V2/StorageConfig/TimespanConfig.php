@@ -31,14 +31,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     private $end_time = null;
     /**
      * Specification of the field containing the timestamp of scanned items.
-     * Used for data sources like Datastore or BigQuery.
-     * If not specified for BigQuery, table last modification timestamp
-     * is checked against given time span.
-     * The valid data types of the timestamp field are:
-     * for BigQuery - timestamp, date, datetime;
-     * for Datastore - timestamp.
-     * Datastore entity will be scanned if the timestamp property does not exist
-     * or its value is empty or invalid.
+     * Used for data sources like Datastore and BigQuery.
+     * For BigQuery:
+     * Required to filter out rows based on the given start and
+     * end times. If not specified and the table was modified between the given
+     * start and end times, the entire table will be scanned.
+     * The valid data types of the timestamp field are: `INTEGER`, `DATE`,
+     * `TIMESTAMP`, or `DATETIME` BigQuery column.
+     * For Datastore.
+     * Valid data types of the timestamp field are: `TIMESTAMP`.
+     * Datastore entity will be scanned if the timestamp property does not
+     * exist or its value is empty or invalid.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      */
@@ -66,14 +69,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *           If set to zero, no upper time limit is applied.
      *     @type \Google\Cloud\Dlp\V2\FieldId $timestamp_field
      *           Specification of the field containing the timestamp of scanned items.
-     *           Used for data sources like Datastore or BigQuery.
-     *           If not specified for BigQuery, table last modification timestamp
-     *           is checked against given time span.
-     *           The valid data types of the timestamp field are:
-     *           for BigQuery - timestamp, date, datetime;
-     *           for Datastore - timestamp.
-     *           Datastore entity will be scanned if the timestamp property does not exist
-     *           or its value is empty or invalid.
+     *           Used for data sources like Datastore and BigQuery.
+     *           For BigQuery:
+     *           Required to filter out rows based on the given start and
+     *           end times. If not specified and the table was modified between the given
+     *           start and end times, the entire table will be scanned.
+     *           The valid data types of the timestamp field are: `INTEGER`, `DATE`,
+     *           `TIMESTAMP`, or `DATETIME` BigQuery column.
+     *           For Datastore.
+     *           Valid data types of the timestamp field are: `TIMESTAMP`.
+     *           Datastore entity will be scanned if the timestamp property does not
+     *           exist or its value is empty or invalid.
      *     @type bool $enable_auto_population_of_timespan_config
      *           When the job is started by a JobTrigger we will automatically figure out
      *           a valid start_time to avoid scanning files that have not been modified
@@ -142,14 +148,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specification of the field containing the timestamp of scanned items.
-     * Used for data sources like Datastore or BigQuery.
-     * If not specified for BigQuery, table last modification timestamp
-     * is checked against given time span.
-     * The valid data types of the timestamp field are:
-     * for BigQuery - timestamp, date, datetime;
-     * for Datastore - timestamp.
-     * Datastore entity will be scanned if the timestamp property does not exist
-     * or its value is empty or invalid.
+     * Used for data sources like Datastore and BigQuery.
+     * For BigQuery:
+     * Required to filter out rows based on the given start and
+     * end times. If not specified and the table was modified between the given
+     * start and end times, the entire table will be scanned.
+     * The valid data types of the timestamp field are: `INTEGER`, `DATE`,
+     * `TIMESTAMP`, or `DATETIME` BigQuery column.
+     * For Datastore.
+     * Valid data types of the timestamp field are: `TIMESTAMP`.
+     * Datastore entity will be scanned if the timestamp property does not
+     * exist or its value is empty or invalid.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      * @return \Google\Cloud\Dlp\V2\FieldId
@@ -161,14 +170,17 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specification of the field containing the timestamp of scanned items.
-     * Used for data sources like Datastore or BigQuery.
-     * If not specified for BigQuery, table last modification timestamp
-     * is checked against given time span.
-     * The valid data types of the timestamp field are:
-     * for BigQuery - timestamp, date, datetime;
-     * for Datastore - timestamp.
-     * Datastore entity will be scanned if the timestamp property does not exist
-     * or its value is empty or invalid.
+     * Used for data sources like Datastore and BigQuery.
+     * For BigQuery:
+     * Required to filter out rows based on the given start and
+     * end times. If not specified and the table was modified between the given
+     * start and end times, the entire table will be scanned.
+     * The valid data types of the timestamp field are: `INTEGER`, `DATE`,
+     * `TIMESTAMP`, or `DATETIME` BigQuery column.
+     * For Datastore.
+     * Valid data types of the timestamp field are: `TIMESTAMP`.
+     * Datastore entity will be scanned if the timestamp property does not
+     * exist or its value is empty or invalid.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
