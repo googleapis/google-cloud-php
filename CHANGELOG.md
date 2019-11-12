@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.117.0
+
+<details><summary>google/cloud-spanner 1.21.0</summary>
+
+
+
+### Features
+
+* add instance replica configuration. ([#2433](https://www.github.com/googleapis/google-cloud-php/issues/2433)) ([0c03490](https://www.github.com/googleapis/google-cloud-php/commit/0c03490e5be6aec4fa6e0508cc8cf9b3a462c301))
+
+</details>
+
+<details><summary>google/cloud-storage 1.16.0</summary>
+
+
+
+### Features
+
+* support for uniform bucket-level access ([#2146](https://www.github.com/googleapis/google-cloud-php/issues/2146)) ([b48d791](https://www.github.com/googleapis/google-cloud-php/commit/b48d791ba0e06f84d70069933b074aaf78142a32)), closes [#2140](https://www.github.com/googleapis/google-cloud-php/issues/2140) [#2142](https://www.github.com/googleapis/google-cloud-php/issues/2142) [#2144](https://www.github.com/googleapis/google-cloud-php/issues/2144)
+
+</details>
+
+<details><summary>google/cloud-talent 0.8.0</summary>
+
+
+
+### Features
+
+* add QueryLanguageCode to JobQuery ([#2431](https://www.github.com/googleapis/google-cloud-php/issues/2431)) ([c980499](https://www.github.com/googleapis/google-cloud-php/commit/c980499ca5d044389932d9a5bdecfcb09a299b65))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.4.0</summary>
+
+
+
+### Features
+
+* add HttpRequest/OAuthToken/OidcToken support ([#2445](https://www.github.com/googleapis/google-cloud-php/issues/2445)) ([5aba667](https://www.github.com/googleapis/google-cloud-php/commit/5aba667da41f781680a430a34c9ca10bfc713dd4))
+
+</details>
+
 ## 0.116.0
 
 <details><summary>google/cloud-core 1.34.0</summary>
