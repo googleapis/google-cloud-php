@@ -8,12 +8,12 @@ composer --no-interaction --no-ansi --no-progress update
 
 SHORT_JOB_NAME=${KOKORO_JOB_NAME##*/}
 
-if [ "${SHORT_JOB_NAME}" == "php73" ]; then
-    pecl install xdebug
-    echo "zend_extension=xdebug.so" > ${PHP_DIR}/lib/conf.d/xdebug.ini
-    RUN_CODECOV="true"
-    OPT_CLOVER="--coverage-clover=clover.xml"
-fi
+# if [ "${SHORT_JOB_NAME}" == "php73" ]; then
+#     pecl install xdebug
+#     echo "zend_extension=xdebug.so" > ${PHP_DIR}/lib/conf.d/xdebug.ini
+#     RUN_CODECOV="true"
+#     OPT_CLOVER="--coverage-clover=clover.xml"
+# fi
 
 mkdir -p ${SHORT_JOB_NAME}/unit
 mkdir -p ${SHORT_JOB_NAME}/snippets
