@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2018 Google LLC.
+// Copyright 2019 Google LLC.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -70,12 +70,12 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * [default network](/compute/docs/networks-and-firewalls#networks).
      *
      * One firewall is added for the cluster. After cluster creation,
-     * the cluster creates routes for each node to allow the containers
+     * the Kubelet creates routes for each node to allow the containers
      * on that node to communicate with all other instances in the
      * cluster.
      *
      * Finally, an entry is added to the project's global metadata indicating
-     * which CIDR range is being used by the cluster.
+     * which CIDR range the cluster is using.
      * @param \Google\Cloud\Container\V1\CreateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -103,7 +103,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the version and/or image type for a specific node pool.
+     * Updates the version and/or image type for the specified node pool.
      * @param \Google\Cloud\Container\V1\UpdateNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -117,7 +117,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the autoscaling settings for a specific node pool.
+     * Sets the autoscaling settings for the specified node pool.
      * @param \Google\Cloud\Container\V1\SetNodePoolAutoscalingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -201,9 +201,9 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Used to set master auth materials. Currently supports :-
-     * Changing the admin password for a specific cluster.
-     * This can be either via password generation or explicitly set the password.
+     * Sets master auth materials. Currently supports changing the admin password
+     * or a specific cluster, either via password generation or explicitly setting
+     * the password.
      * @param \Google\Cloud\Container\V1\SetMasterAuthRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -223,9 +223,9 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * Firewalls and routes that were configured during cluster creation
      * are also deleted.
      *
-     * Other Google Compute Engine resources that might be in use by the cluster
-     * (e.g. load balancer resources) will not be deleted if they weren't present
-     * at the initial create time.
+     * Other Google Compute Engine resources that might be in use by the cluster,
+     * such as load balancer resources, are not deleted if they weren't present
+     * when the cluster was initially created.
      * @param \Google\Cloud\Container\V1\DeleteClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -281,7 +281,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns configuration info about the Kubernetes Engine service.
+     * Returns configuration info about the Google Kubernetes Engine service.
      * @param \Google\Cloud\Container\V1\GetServerConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -309,7 +309,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Retrieves the node pool requested.
+     * Retrieves the requested node pool.
      * @param \Google\Cloud\Container\V1\GetNodePoolRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -351,8 +351,8 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Roll back the previously Aborted or Failed NodePool upgrade.
-     * This will be an no-op if the last upgrade successfully completed.
+     * Rolls back a previously Aborted or Failed NodePool upgrade.
+     * This makes no changes if the last upgrade successfully completed.
      * @param \Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -408,7 +408,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Start master IP rotation.
+     * Starts master IP rotation.
      * @param \Google\Cloud\Container\V1\StartIPRotationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -450,7 +450,7 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Enables/Disables Network Policy for a cluster.
+     * Enables or disables Network Policy for a cluster.
      * @param \Google\Cloud\Container\V1\SetNetworkPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -474,6 +474,20 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.container.v1.ClusterManager/SetMaintenancePolicy',
         $argument,
         ['\Google\Cloud\Container\V1\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists subnetworks that are usable for creating clusters in a project.
+     * @param \Google\Cloud\Container\V1\ListUsableSubnetworksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ListUsableSubnetworks(\Google\Cloud\Container\V1\ListUsableSubnetworksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.container.v1.ClusterManager/ListUsableSubnetworks',
+        $argument,
+        ['\Google\Cloud\Container\V1\ListUsableSubnetworksResponse', 'decode'],
         $metadata, $options);
     }
 

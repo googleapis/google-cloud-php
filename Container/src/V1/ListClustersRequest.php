@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListClustersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides, or "-" for all zones.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
@@ -48,11 +48,11 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           Required. Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides, or "-" for all zones.
      *           This field has been deprecated and replaced by the parent field.
@@ -68,11 +68,11 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -81,11 +81,11 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -98,12 +98,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides, or "-" for all zones.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -112,12 +112,12 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides, or "-" for all zones.
      * This field has been deprecated and replaced by the parent field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

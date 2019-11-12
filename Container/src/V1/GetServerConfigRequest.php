@@ -16,24 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) to return operations for.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * The name (project and location) of the server config to get
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * The name (project and location) of the server config to get,
+     * specified in the format 'projects/&#42;&#47;locations/&#42;'.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
@@ -46,16 +46,16 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           Required. Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) to return operations for.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
-     *           The name (project and location) of the server config to get
-     *           Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     *           The name (project and location) of the server config to get,
+     *           specified in the format 'projects/&#42;&#47;locations/&#42;'.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,11 +64,11 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -77,11 +77,11 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -94,11 +94,11 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) to return operations for.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -107,11 +107,11 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) to return operations for.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -124,8 +124,8 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name (project and location) of the server config to get
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * The name (project and location) of the server config to get,
+     * specified in the format 'projects/&#42;&#47;locations/&#42;'.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -136,8 +136,8 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name (project and location) of the server config to get
-     * Specified in the format 'projects/&#42;&#47;locations/&#42;'.
+     * The name (project and location) of the server config to get,
+     * specified in the format 'projects/&#42;&#47;locations/&#42;'.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var

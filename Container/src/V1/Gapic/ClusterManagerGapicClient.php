@@ -53,6 +53,8 @@ use Google\Cloud\Container\V1\ListNodePoolsRequest;
 use Google\Cloud\Container\V1\ListNodePoolsResponse;
 use Google\Cloud\Container\V1\ListOperationsRequest;
 use Google\Cloud\Container\V1\ListOperationsResponse;
+use Google\Cloud\Container\V1\ListUsableSubnetworksRequest;
+use Google\Cloud\Container\V1\ListUsableSubnetworksResponse;
 use Google\Cloud\Container\V1\MaintenancePolicy;
 use Google\Cloud\Container\V1\MasterAuth;
 use Google\Cloud\Container\V1\NetworkPolicy;
@@ -227,10 +229,10 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the parent field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides, or "-" for all zones.
      *                             This field has been deprecated and replaced by the parent field.
@@ -293,14 +295,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster to retrieve.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster to retrieve.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -353,12 +355,12 @@ class ClusterManagerGapicClient
      * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
      *
      * One firewall is added for the cluster. After cluster creation,
-     * the cluster creates routes for each node to allow the containers
+     * the Kubelet creates routes for each node to allow the containers
      * on that node to communicate with all other instances in the
      * cluster.
      *
      * Finally, an entry is added to the project's global metadata indicating
-     * which CIDR range is being used by the cluster.
+     * which CIDR range the cluster is using.
      *
      * Sample code:
      * ```
@@ -373,14 +375,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string  $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string  $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                              number](https://support.google.com/cloud/answer/6158840).
      *                              This field has been deprecated and replaced by the parent field.
-     * @param string  $zone         Deprecated. The name of the Google Compute Engine
+     * @param string  $zone         Required. Deprecated. The name of the Google Compute Engine
      *                              [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                              resides.
      *                              This field has been deprecated and replaced by the parent field.
-     * @param Cluster $cluster      A [cluster
+     * @param Cluster $cluster      Required. A [cluster
      *                              resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
      * @param array   $optionalArgs {
      *                              Optional.
@@ -442,16 +444,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string        $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string        $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                                    number](https://support.google.com/cloud/answer/6158840).
      *                                    This field has been deprecated and replaced by the name field.
-     * @param string        $zone         Deprecated. The name of the Google Compute Engine
+     * @param string        $zone         Required. Deprecated. The name of the Google Compute Engine
      *                                    [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                    resides.
      *                                    This field has been deprecated and replaced by the name field.
-     * @param string        $clusterId    Deprecated. The name of the cluster to upgrade.
+     * @param string        $clusterId    Required. Deprecated. The name of the cluster to upgrade.
      *                                    This field has been deprecated and replaced by the name field.
-     * @param ClusterUpdate $update       A description of the update.
+     * @param ClusterUpdate $update       Required. A description of the update.
      * @param array         $optionalArgs {
      *                                    Optional.
      *
@@ -497,7 +499,7 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Updates the version and/or image type for a specific node pool.
+     * Updates the version and/or image type for the specified node pool.
      *
      * Sample code:
      * ```
@@ -515,18 +517,18 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId   Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId   Required. Deprecated. The Google Developers Console [project ID or project
      *                            number](https://support.google.com/cloud/answer/6158840).
      *                            This field has been deprecated and replaced by the name field.
-     * @param string $zone        Deprecated. The name of the Google Compute Engine
+     * @param string $zone        Required. Deprecated. The name of the Google Compute Engine
      *                            [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                            resides.
      *                            This field has been deprecated and replaced by the name field.
-     * @param string $clusterId   Deprecated. The name of the cluster to upgrade.
+     * @param string $clusterId   Required. Deprecated. The name of the cluster to upgrade.
      *                            This field has been deprecated and replaced by the name field.
-     * @param string $nodePoolId  Deprecated. The name of the node pool to upgrade.
+     * @param string $nodePoolId  Required. Deprecated. The name of the node pool to upgrade.
      *                            This field has been deprecated and replaced by the name field.
-     * @param string $nodeVersion The Kubernetes version to change the nodes to (typically an
+     * @param string $nodeVersion Required. The Kubernetes version to change the nodes to (typically an
      *                            upgrade).
      *
      * Users may specify either explicit versions offered by Kubernetes Engine or
@@ -537,7 +539,7 @@ class ClusterManagerGapicClient
      * - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
      * - "1.X.Y-gke.N": picks an explicit Kubernetes version
      * - "-": picks the Kubernetes master version
-     * @param string $imageType    The desired image type for the node pool.
+     * @param string $imageType    Required. The desired image type for the node pool.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -586,7 +588,7 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Sets the autoscaling settings for a specific node pool.
+     * Sets the autoscaling settings for the specified node pool.
      *
      * Sample code:
      * ```
@@ -603,18 +605,18 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string              $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string              $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                                          number](https://support.google.com/cloud/answer/6158840).
      *                                          This field has been deprecated and replaced by the name field.
-     * @param string              $zone         Deprecated. The name of the Google Compute Engine
+     * @param string              $zone         Required. Deprecated. The name of the Google Compute Engine
      *                                          [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                          resides.
      *                                          This field has been deprecated and replaced by the name field.
-     * @param string              $clusterId    Deprecated. The name of the cluster to upgrade.
+     * @param string              $clusterId    Required. Deprecated. The name of the cluster to upgrade.
      *                                          This field has been deprecated and replaced by the name field.
-     * @param string              $nodePoolId   Deprecated. The name of the node pool to upgrade.
+     * @param string              $nodePoolId   Required. Deprecated. The name of the node pool to upgrade.
      *                                          This field has been deprecated and replaced by the name field.
-     * @param NodePoolAutoscaling $autoscaling  Autoscaling configuration for the node pool.
+     * @param NodePoolAutoscaling $autoscaling  Required. Autoscaling configuration for the node pool.
      * @param array               $optionalArgs {
      *                                          Optional.
      *
@@ -678,16 +680,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId      Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId      Required. Deprecated. The Google Developers Console [project ID or project
      *                               number](https://support.google.com/cloud/answer/6158840).
      *                               This field has been deprecated and replaced by the name field.
-     * @param string $zone           Deprecated. The name of the Google Compute Engine
+     * @param string $zone           Required. Deprecated. The name of the Google Compute Engine
      *                               [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                               resides.
      *                               This field has been deprecated and replaced by the name field.
-     * @param string $clusterId      Deprecated. The name of the cluster to upgrade.
+     * @param string $clusterId      Required. Deprecated. The name of the cluster to upgrade.
      *                               This field has been deprecated and replaced by the name field.
-     * @param string $loggingService The logging service the cluster should use to write metrics.
+     * @param string $loggingService Required. The logging service the cluster should use to write metrics.
      *                               Currently available options:
      *
      * * "logging.googleapis.com" - the Google Cloud Logging service
@@ -753,18 +755,20 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId         Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId         Required. Deprecated. The Google Developers Console [project ID or project
      *                                  number](https://support.google.com/cloud/answer/6158840).
      *                                  This field has been deprecated and replaced by the name field.
-     * @param string $zone              Deprecated. The name of the Google Compute Engine
+     * @param string $zone              Required. Deprecated. The name of the Google Compute Engine
      *                                  [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                  resides.
      *                                  This field has been deprecated and replaced by the name field.
-     * @param string $clusterId         Deprecated. The name of the cluster to upgrade.
+     * @param string $clusterId         Required. Deprecated. The name of the cluster to upgrade.
      *                                  This field has been deprecated and replaced by the name field.
-     * @param string $monitoringService The monitoring service the cluster should use to write metrics.
+     * @param string $monitoringService Required. The monitoring service the cluster should use to write metrics.
      *                                  Currently available options:
      *
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      * @param array $optionalArgs {
@@ -828,16 +832,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string       $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string       $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                                   number](https://support.google.com/cloud/answer/6158840).
      *                                   This field has been deprecated and replaced by the name field.
-     * @param string       $zone         Deprecated. The name of the Google Compute Engine
+     * @param string       $zone         Required. Deprecated. The name of the Google Compute Engine
      *                                   [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                   resides.
      *                                   This field has been deprecated and replaced by the name field.
-     * @param string       $clusterId    Deprecated. The name of the cluster to upgrade.
+     * @param string       $clusterId    Required. Deprecated. The name of the cluster to upgrade.
      *                                   This field has been deprecated and replaced by the name field.
-     * @param AddonsConfig $addonsConfig The desired configurations for the various addons available to run in the
+     * @param AddonsConfig $addonsConfig Required. The desired configurations for the various addons available to run in the
      *                                   cluster.
      * @param array        $optionalArgs {
      *                                   Optional.
@@ -900,17 +904,17 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string   $projectId Deprecated. The Google Developers Console [project ID or project
+     * @param string   $projectId Required. Deprecated. The Google Developers Console [project ID or project
      *                            number](https://support.google.com/cloud/answer/6158840).
      *                            This field has been deprecated and replaced by the name field.
-     * @param string   $zone      Deprecated. The name of the Google Compute Engine
+     * @param string   $zone      Required. Deprecated. The name of the Google Compute Engine
      *                            [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                            resides.
      *                            This field has been deprecated and replaced by the name field.
-     * @param string   $clusterId Deprecated. The name of the cluster to upgrade.
+     * @param string   $clusterId Required. Deprecated. The name of the cluster to upgrade.
      *                            This field has been deprecated and replaced by the name field.
-     * @param string[] $locations The desired list of Google Compute Engine
-     *                            [locations](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
+     * @param string[] $locations Required. The desired list of Google Compute Engine
+     *                            [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      *                            should be located. Changing the locations a cluster is in will result
      *                            in nodes being either created or removed from the cluster, depending on
      *                            whether locations are being added or removed.
@@ -977,16 +981,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId     Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId     Required. Deprecated. The Google Developers Console [project ID or project
      *                              number](https://support.google.com/cloud/answer/6158840).
      *                              This field has been deprecated and replaced by the name field.
-     * @param string $zone          Deprecated. The name of the Google Compute Engine
+     * @param string $zone          Required. Deprecated. The name of the Google Compute Engine
      *                              [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                              resides.
      *                              This field has been deprecated and replaced by the name field.
-     * @param string $clusterId     Deprecated. The name of the cluster to upgrade.
+     * @param string $clusterId     Required. Deprecated. The name of the cluster to upgrade.
      *                              This field has been deprecated and replaced by the name field.
-     * @param string $masterVersion The Kubernetes version to change the master to.
+     * @param string $masterVersion Required. The Kubernetes version to change the master to.
      *
      * Users may specify either explicit versions offered by Kubernetes Engine or
      * version aliases, which have the following behavior:
@@ -1041,9 +1045,9 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Used to set master auth materials. Currently supports :-
-     * Changing the admin password for a specific cluster.
-     * This can be either via password generation or explicitly set the password.
+     * Sets master auth materials. Currently supports changing the admin password
+     * or a specific cluster, either via password generation or explicitly setting
+     * the password.
      *
      * Sample code:
      * ```
@@ -1060,18 +1064,18 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string     $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string     $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                                 number](https://support.google.com/cloud/answer/6158840).
      *                                 This field has been deprecated and replaced by the name field.
-     * @param string     $zone         Deprecated. The name of the Google Compute Engine
+     * @param string     $zone         Required. Deprecated. The name of the Google Compute Engine
      *                                 [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                 resides.
      *                                 This field has been deprecated and replaced by the name field.
-     * @param string     $clusterId    Deprecated. The name of the cluster to upgrade.
+     * @param string     $clusterId    Required. Deprecated. The name of the cluster to upgrade.
      *                                 This field has been deprecated and replaced by the name field.
-     * @param int        $action       The exact form of action to be taken on the master auth.
+     * @param int        $action       Required. The exact form of action to be taken on the master auth.
      *                                 For allowed values, use constants defined on {@see \Google\Cloud\Container\V1\SetMasterAuthRequest\Action}
-     * @param MasterAuth $update       A description of the update.
+     * @param MasterAuth $update       Required. A description of the update.
      * @param array      $optionalArgs {
      *                                 Optional.
      *
@@ -1124,9 +1128,9 @@ class ClusterManagerGapicClient
      * Firewalls and routes that were configured during cluster creation
      * are also deleted.
      *
-     * Other Google Compute Engine resources that might be in use by the cluster
-     * (e.g. load balancer resources) will not be deleted if they weren't present
-     * at the initial create time.
+     * Other Google Compute Engine resources that might be in use by the cluster,
+     * such as load balancer resources, are not deleted if they weren't present
+     * when the cluster was initially created.
      *
      * Sample code:
      * ```
@@ -1141,14 +1145,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster to delete.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster to delete.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1208,10 +1212,10 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the parent field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for
      *                             all zones. This field has been deprecated and replaced by the parent field.
      * @param array  $optionalArgs {
@@ -1273,14 +1277,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $operationId  Deprecated. The server-assigned `name` of the operation.
+     * @param string $operationId  Required. Deprecated. The server-assigned `name` of the operation.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1341,13 +1345,13 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $operationId  Deprecated. The server-assigned `name` of the operation.
+     * @param string $operationId  Required. Deprecated. The server-assigned `name` of the operation.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1391,7 +1395,7 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Returns configuration info about the Kubernetes Engine service.
+     * Returns configuration info about the Google Kubernetes Engine service.
      *
      * Sample code:
      * ```
@@ -1405,18 +1409,18 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type string $name
-     *          The name (project and location) of the server config to get
-     *          Specified in the format 'projects/&#42;/locations/*'.
+     *          The name (project and location) of the server config to get,
+     *          specified in the format 'projects/&#42;/locations/*'.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1469,14 +1473,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://developers.google.com/console/help/new/#projectnumber).
      *                             This field has been deprecated and replaced by the parent field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the parent field.
-     * @param string $clusterId    Deprecated. The name of the cluster.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster.
      *                             This field has been deprecated and replaced by the parent field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1522,7 +1526,7 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Retrieves the node pool requested.
+     * Retrieves the requested node pool.
      *
      * Sample code:
      * ```
@@ -1538,16 +1542,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://developers.google.com/console/help/new/#projectnumber).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $nodePoolId   Deprecated. The name of the node pool.
+     * @param string $nodePoolId   Required. Deprecated. The name of the node pool.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1611,16 +1615,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string   $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string   $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                               number](https://developers.google.com/console/help/new/#projectnumber).
      *                               This field has been deprecated and replaced by the parent field.
-     * @param string   $zone         Deprecated. The name of the Google Compute Engine
+     * @param string   $zone         Required. Deprecated. The name of the Google Compute Engine
      *                               [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                               resides.
      *                               This field has been deprecated and replaced by the parent field.
-     * @param string   $clusterId    Deprecated. The name of the cluster.
+     * @param string   $clusterId    Required. Deprecated. The name of the cluster.
      *                               This field has been deprecated and replaced by the parent field.
-     * @param NodePool $nodePool     The node pool to create.
+     * @param NodePool $nodePool     Required. The node pool to create.
      * @param array    $optionalArgs {
      *                               Optional.
      *
@@ -1683,16 +1687,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://developers.google.com/console/help/new/#projectnumber).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $nodePoolId   Deprecated. The name of the node pool to delete.
+     * @param string $nodePoolId   Required. Deprecated. The name of the node pool to delete.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1740,8 +1744,8 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Roll back the previously Aborted or Failed NodePool upgrade.
-     * This will be an no-op if the last upgrade successfully completed.
+     * Rolls back a previously Aborted or Failed NodePool upgrade.
+     * This makes no changes if the last upgrade successfully completed.
      *
      * Sample code:
      * ```
@@ -1757,16 +1761,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster to rollback.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster to rollback.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $nodePoolId   Deprecated. The name of the node pool to rollback.
+     * @param string $nodePoolId   Required. Deprecated. The name of the node pool to rollback.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1831,18 +1835,18 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string         $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string         $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                                     number](https://support.google.com/cloud/answer/6158840).
      *                                     This field has been deprecated and replaced by the name field.
-     * @param string         $zone         Deprecated. The name of the Google Compute Engine
+     * @param string         $zone         Required. Deprecated. The name of the Google Compute Engine
      *                                     [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                     resides.
      *                                     This field has been deprecated and replaced by the name field.
-     * @param string         $clusterId    Deprecated. The name of the cluster to update.
+     * @param string         $clusterId    Required. Deprecated. The name of the cluster to update.
      *                                     This field has been deprecated and replaced by the name field.
-     * @param string         $nodePoolId   Deprecated. The name of the node pool to update.
+     * @param string         $nodePoolId   Required. Deprecated. The name of the node pool to update.
      *                                     This field has been deprecated and replaced by the name field.
-     * @param NodeManagement $management   NodeManagement configuration for the node pool.
+     * @param NodeManagement $management   Required. NodeManagement configuration for the node pool.
      * @param array          $optionalArgs {
      *                                     Optional.
      *
@@ -1907,17 +1911,17 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId        Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId        Required. Deprecated. The Google Developers Console [project ID or project
      *                                 number](https://developers.google.com/console/help/new/#projectnumber).
      *                                 This field has been deprecated and replaced by the name field.
-     * @param string $zone             Deprecated. The name of the Google Compute Engine
+     * @param string $zone             Required. Deprecated. The name of the Google Compute Engine
      *                                 [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                 resides.
      *                                 This field has been deprecated and replaced by the name field.
-     * @param string $clusterId        Deprecated. The name of the cluster.
+     * @param string $clusterId        Required. Deprecated. The name of the cluster.
      *                                 This field has been deprecated and replaced by the name field.
-     * @param array  $resourceLabels   The labels to set for that cluster.
-     * @param string $labelFingerprint The fingerprint of the previous set of labels for this resource,
+     * @param array  $resourceLabels   Required. The labels to set for that cluster.
+     * @param string $labelFingerprint Required. The fingerprint of the previous set of labels for this resource,
      *                                 used to detect conflicts. The fingerprint is initially generated by
      *                                 Kubernetes Engine and changes after every request to modify or update
      *                                 labels. You must always provide an up-to-date fingerprint hash when
@@ -1985,16 +1989,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster to update.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster to update.
      *                             This field has been deprecated and replaced by the name field.
-     * @param bool   $enabled      Whether ABAC authorization will be enabled in the cluster.
+     * @param bool   $enabled      Required. Whether ABAC authorization will be enabled in the cluster.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2040,7 +2044,7 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Start master IP rotation.
+     * Starts master IP rotation.
      *
      * Sample code:
      * ```
@@ -2055,14 +2059,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://developers.google.com/console/help/new/#projectnumber).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2128,14 +2132,14 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://developers.google.com/console/help/new/#projectnumber).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster.
      *                             This field has been deprecated and replaced by the name field.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2198,18 +2202,18 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Deprecated. The Google Developers Console [project ID or project
+     * @param string $projectId    Required. Deprecated. The Google Developers Console [project ID or project
      *                             number](https://support.google.com/cloud/answer/6158840).
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $zone         Deprecated. The name of the Google Compute Engine
+     * @param string $zone         Required. Deprecated. The name of the Google Compute Engine
      *                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                             resides.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $clusterId    Deprecated. The name of the cluster to update.
+     * @param string $clusterId    Required. Deprecated. The name of the cluster to update.
      *                             This field has been deprecated and replaced by the name field.
-     * @param string $nodePoolId   Deprecated. The name of the node pool to update.
+     * @param string $nodePoolId   Required. Deprecated. The name of the node pool to update.
      *                             This field has been deprecated and replaced by the name field.
-     * @param int    $nodeCount    The desired node count for the pool.
+     * @param int    $nodeCount    Required. The desired node count for the pool.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2257,7 +2261,7 @@ class ClusterManagerGapicClient
     }
 
     /**
-     * Enables/Disables Network Policy for a cluster.
+     * Enables or disables Network Policy for a cluster.
      *
      * Sample code:
      * ```
@@ -2273,16 +2277,16 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string        $projectId     Deprecated. The Google Developers Console [project ID or project
+     * @param string        $projectId     Required. Deprecated. The Google Developers Console [project ID or project
      *                                     number](https://developers.google.com/console/help/new/#projectnumber).
      *                                     This field has been deprecated and replaced by the name field.
-     * @param string        $zone          Deprecated. The name of the Google Compute Engine
+     * @param string        $zone          Required. Deprecated. The name of the Google Compute Engine
      *                                     [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                     resides.
      *                                     This field has been deprecated and replaced by the name field.
-     * @param string        $clusterId     Deprecated. The name of the cluster.
+     * @param string        $clusterId     Required. Deprecated. The name of the cluster.
      *                                     This field has been deprecated and replaced by the name field.
-     * @param NetworkPolicy $networkPolicy Configuration options for the NetworkPolicy feature.
+     * @param NetworkPolicy $networkPolicy Required. Configuration options for the NetworkPolicy feature.
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
@@ -2344,13 +2348,13 @@ class ClusterManagerGapicClient
      * }
      * ```
      *
-     * @param string            $projectId         The Google Developers Console [project ID or project
+     * @param string            $projectId         Required. The Google Developers Console [project ID or project
      *                                             number](https://support.google.com/cloud/answer/6158840).
-     * @param string            $zone              The name of the Google Compute Engine
+     * @param string            $zone              Required. The name of the Google Compute Engine
      *                                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *                                             resides.
-     * @param string            $clusterId         The name of the cluster to update.
-     * @param MaintenancePolicy $maintenancePolicy The maintenance policy to be set for the cluster. An empty field
+     * @param string            $clusterId         Required. The name of the cluster to update.
+     * @param MaintenancePolicy $maintenancePolicy Required. The maintenance policy to be set for the cluster. An empty field
      *                                             clears the existing maintenance policy.
      * @param array             $optionalArgs      {
      *                                             Optional.
@@ -2395,5 +2399,96 @@ class ClusterManagerGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Lists subnetworks that are usable for creating clusters in a project.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $clusterManagerClient->listUsableSubnetworks();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $clusterManagerClient->listUsableSubnetworks();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $parent
+     *          The parent project where subnetworks are usable.
+     *          Specified in the format 'projects/*'.
+     *     @type string $filter
+     *          Filtering currently only supports equality on the networkProjectId and must
+     *          be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId`
+     *          is the project which owns the listed subnetworks. This defaults to the
+     *          parent project ID.
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listUsableSubnetworks(array $optionalArgs = [])
+    {
+        $request = new ListUsableSubnetworksRequest();
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListUsableSubnetworks',
+            $optionalArgs,
+            ListUsableSubnetworksResponse::class,
+            $request
+        );
     }
 }

@@ -32,6 +32,13 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string subnetwork = 2;</code>
      */
     private $subnetwork = '';
+    /**
+     * Whether Intra-node visibility is enabled for this cluster.
+     * This makes same node pod to pod traffic visible for VPC network.
+     *
+     * Generated from protobuf field <code>bool enable_intra_node_visibility = 5;</code>
+     */
+    private $enable_intra_node_visibility = false;
 
     /**
      * Constructor.
@@ -48,6 +55,9 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The relative name of the Google Compute Engine
      *           [subnetwork](/compute/docs/vpc) to which the cluster is connected.
      *           Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
+     *     @type bool $enable_intra_node_visibility
+     *           Whether Intra-node visibility is enabled for this cluster.
+     *           This makes same node pod to pod traffic visible for VPC network.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +123,34 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->subnetwork = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether Intra-node visibility is enabled for this cluster.
+     * This makes same node pod to pod traffic visible for VPC network.
+     *
+     * Generated from protobuf field <code>bool enable_intra_node_visibility = 5;</code>
+     * @return bool
+     */
+    public function getEnableIntraNodeVisibility()
+    {
+        return $this->enable_intra_node_visibility;
+    }
+
+    /**
+     * Whether Intra-node visibility is enabled for this cluster.
+     * This makes same node pod to pod traffic visible for VPC network.
+     *
+     * Generated from protobuf field <code>bool enable_intra_node_visibility = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIntraNodeVisibility($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_intra_node_visibility = $var;
 
         return $this;
     }

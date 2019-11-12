@@ -16,36 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * The monitoring service the cluster should use to write metrics.
+     * Required. The monitoring service the cluster should use to write metrics.
      * Currently available options:
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      *
-     * Generated from protobuf field <code>string monitoring_service = 4;</code>
+     * Generated from protobuf field <code>string monitoring_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $monitoring_service = '';
     /**
@@ -63,20 +65,22 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
+     *           Required. Deprecated. The name of the Google Compute Engine
      *           [zone](/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to upgrade.
+     *           Required. Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $monitoring_service
-     *           The monitoring service the cluster should use to write metrics.
+     *           Required. The monitoring service the cluster should use to write metrics.
      *           Currently available options:
+     *           * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     *           service with Kubernetes-native resource model
      *           * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      *           * "none" - no metrics will be exported from the cluster
      *     @type string $name
@@ -90,11 +94,11 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -103,11 +107,11 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -120,12 +124,12 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -134,12 +138,12 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
+     * Required. Deprecated. The name of the Google Compute Engine
      * [zone](/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -152,10 +156,10 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -164,10 +168,10 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -180,12 +184,14 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The monitoring service the cluster should use to write metrics.
+     * Required. The monitoring service the cluster should use to write metrics.
      * Currently available options:
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      *
-     * Generated from protobuf field <code>string monitoring_service = 4;</code>
+     * Generated from protobuf field <code>string monitoring_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getMonitoringService()
@@ -194,12 +200,14 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The monitoring service the cluster should use to write metrics.
+     * Required. The monitoring service the cluster should use to write metrics.
      * Currently available options:
+     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
+     * service with Kubernetes-native resource model
      * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
      * * "none" - no metrics will be exported from the cluster
      *
-     * Generated from protobuf field <code>string monitoring_service = 4;</code>
+     * Generated from protobuf field <code>string monitoring_service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

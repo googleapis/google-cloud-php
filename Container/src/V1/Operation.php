@@ -90,6 +90,18 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string end_time = 11;</code>
      */
     private $end_time = '';
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13;</code>
+     */
+    private $cluster_conditions;
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14;</code>
+     */
+    private $nodepool_conditions;
 
     /**
      * Constructor.
@@ -127,6 +139,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type string $end_time
      *           [Output only] The time the operation completed, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $cluster_conditions
+     *           Which conditions caused the current cluster state.
+     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $nodepool_conditions
+     *           Which conditions caused the current node pool state.
      * }
      */
     public function __construct($data = NULL) {
@@ -432,6 +448,58 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getClusterConditions()
+    {
+        return $this->cluster_conditions;
+    }
+
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13;</code>
+     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setClusterConditions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        $this->cluster_conditions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNodepoolConditions()
+    {
+        return $this->nodepool_conditions;
+    }
+
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14;</code>
+     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNodepoolConditions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        $this->nodepool_conditions = $arr;
 
         return $this;
     }

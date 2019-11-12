@@ -87,6 +87,25 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodeManagement management = 5;</code>
      */
     private $management = null;
+    /**
+     * The constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint max_pods_constraint = 6;</code>
+     */
+    private $max_pods_constraint = null;
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
+     */
+    private $conditions;
+    /**
+     * [Output only] The pod CIDR block size per node in this node pool.
+     *
+     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
+     */
+    private $pod_ipv4_cidr_size = 0;
 
     /**
      * Constructor.
@@ -121,6 +140,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           only if a valid configuration is present.
      *     @type \Google\Cloud\Container\V1\NodeManagement $management
      *           NodeManagement configuration for this NodePool.
+     *     @type \Google\Cloud\Container\V1\MaxPodsConstraint $max_pods_constraint
+     *           The constraint on the maximum number of pods that can be run
+     *           simultaneously on a node in the node pool.
+     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *           Which conditions caused the current node pool state.
+     *     @type int $pod_ipv4_cidr_size
+     *           [Output only] The pod CIDR block size per node in this node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -398,6 +424,86 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeManagement::class);
         $this->management = $var;
+
+        return $this;
+    }
+
+    /**
+     * The constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint max_pods_constraint = 6;</code>
+     * @return \Google\Cloud\Container\V1\MaxPodsConstraint
+     */
+    public function getMaxPodsConstraint()
+    {
+        return $this->max_pods_constraint;
+    }
+
+    /**
+     * The constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint max_pods_constraint = 6;</code>
+     * @param \Google\Cloud\Container\V1\MaxPodsConstraint $var
+     * @return $this
+     */
+    public function setMaxPodsConstraint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MaxPodsConstraint::class);
+        $this->max_pods_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getConditions()
+    {
+        return $this->conditions;
+    }
+
+    /**
+     * Which conditions caused the current node pool state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
+     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setConditions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        $this->conditions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] The pod CIDR block size per node in this node pool.
+     *
+     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
+     * @return int
+     */
+    public function getPodIpv4CidrSize()
+    {
+        return $this->pod_ipv4_cidr_size;
+    }
+
+    /**
+     * [Output only] The pod CIDR block size per node in this node pool.
+     *
+     * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPodIpv4CidrSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->pod_ipv4_cidr_size = $var;
 
         return $this;
     }
