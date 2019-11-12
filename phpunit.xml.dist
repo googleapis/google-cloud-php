@@ -4,20 +4,20 @@
   colors="true">
   <testsuites>
     <testsuite>
-      <directory>*/tests/Unit</directory>
+      <directory>./*/tests/Unit</directory>
       <directory>./tests/Unit</directory>
     </testsuite>
   </testsuites>
   <filter>
     <whitelist>
-      <directory suffix=".php">*/src</directory>
-      <directory suffix=".php">src</directory>
+      <directory suffix=".php">./*/src</directory>
+      <directory suffix=".php">./src</directory>
       <exclude>
-        <directory suffix=".php">*/src/V[!a-zA-Z]*</directory>
-        <directory suffix=".php">*/src/*/V[!a-zA-Z]*</directory>
-        <directory suffix=".php">*/src/*/*/V[!a-zA-Z]*</directory>
-        <directory suffix=".php">Core/src/Testing</directory>
-        <directory suffix=".php">dev</directory>
+        <directory suffix=".php">./*/src/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">./*/src/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">./*/src/*/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">./Core/src/Testing</directory>
+        <directory suffix=".php">./dev</directory>
       </exclude>
     </whitelist>
   </filter>
@@ -25,6 +25,6 @@
     <ini name="memory_limit" value="2048M"/>
   </php>
   <listeners>
-    <listener class="GcTestListener" file="Core/src/Testing/GcTestListener.php" />
+    <listener class="GcTestListener" file="./Core/src/Testing/GcTestListener.php" />
   </listeners>
 </phpunit>
