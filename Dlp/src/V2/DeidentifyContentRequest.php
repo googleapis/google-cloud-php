@@ -18,7 +18,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -104,7 +104,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -115,7 +115,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

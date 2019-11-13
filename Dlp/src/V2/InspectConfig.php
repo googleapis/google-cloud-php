@@ -24,10 +24,9 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
-     * The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
-     * but may change over time as new InfoTypes are added. If you need precise
-     * control and predictability as to what detectors are run you should specify
-     * specific InfoTypes listed in the reference.
+     * If you need precise control and predictability as to what detectors are
+     * run you should specify specific InfoTypes listed in the reference,
+     * otherwise a default list will be used, which may change over time.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      */
@@ -93,10 +92,9 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           When no InfoTypes or CustomInfoTypes are specified in a request, the
      *           system may automatically choose what detectors to run. By default this may
      *           be all types, but may change over time as detectors are updated.
-     *           The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
-     *           but may change over time as new InfoTypes are added. If you need precise
-     *           control and predictability as to what detectors are run you should specify
-     *           specific InfoTypes listed in the reference.
+     *           If you need precise control and predictability as to what detectors are
+     *           run you should specify specific InfoTypes listed in the reference,
+     *           otherwise a default list will be used, which may change over time.
      *     @type int $min_likelihood
      *           Only returns findings equal or above this threshold. The default is
      *           POSSIBLE.
@@ -131,10 +129,9 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
-     * The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
-     * but may change over time as new InfoTypes are added. If you need precise
-     * control and predictability as to what detectors are run you should specify
-     * specific InfoTypes listed in the reference.
+     * If you need precise control and predictability as to what detectors are
+     * run you should specify specific InfoTypes listed in the reference,
+     * otherwise a default list will be used, which may change over time.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -151,10 +148,9 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
-     * The special InfoType name "ALL_BASIC" can be used to trigger all detectors,
-     * but may change over time as new InfoTypes are added. If you need precise
-     * control and predictability as to what detectors are run you should specify
-     * specific InfoTypes listed in the reference.
+     * If you need precise control and predictability as to what detectors are
+     * run you should specify specific InfoTypes listed in the reference,
+     * otherwise a default list will be used, which may change over time.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
      * @param \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $var

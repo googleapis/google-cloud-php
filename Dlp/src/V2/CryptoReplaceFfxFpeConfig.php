@@ -109,11 +109,11 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *           that the FFX mode natively supports. This happens before/after
      *           encryption/decryption.
      *           Each character listed must appear only once.
-     *           Number of characters must be in the range [2, 62].
+     *           Number of characters must be in the range [2, 95].
      *           This must be encoded as ASCII.
      *           The order of characters does not matter.
      *     @type int $radix
-     *           The native way to select the alphabet. Must be in the range [2, 62].
+     *           The native way to select the alphabet. Must be in the range [2, 95].
      *     @type \Google\Cloud\Dlp\V2\InfoType $surrogate_info_type
      *           The custom infoType to annotate the surrogate with.
      *           This annotation will be applied to the surrogate by prefixing it with
@@ -249,7 +249,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * that the FFX mode natively supports. This happens before/after
      * encryption/decryption.
      * Each character listed must appear only once.
-     * Number of characters must be in the range [2, 62].
+     * Number of characters must be in the range [2, 95].
      * This must be encoded as ASCII.
      * The order of characters does not matter.
      *
@@ -266,7 +266,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * that the FFX mode natively supports. This happens before/after
      * encryption/decryption.
      * Each character listed must appear only once.
-     * Number of characters must be in the range [2, 62].
+     * Number of characters must be in the range [2, 95].
      * This must be encoded as ASCII.
      * The order of characters does not matter.
      *
@@ -283,7 +283,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The native way to select the alphabet. Must be in the range [2, 62].
+     * The native way to select the alphabet. Must be in the range [2, 95].
      *
      * Generated from protobuf field <code>int32 radix = 6;</code>
      * @return int
@@ -294,7 +294,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The native way to select the alphabet. Must be in the range [2, 62].
+     * The native way to select the alphabet. Must be in the range [2, 95].
      *
      * Generated from protobuf field <code>int32 radix = 6;</code>
      * @param int $var

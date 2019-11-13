@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example `projects/my-project-id`.
+     * Required. The parent resource name, for example `projects/my-project-id`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -84,7 +84,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example `projects/my-project-id`.
+     *           Required. The parent resource name, for example `projects/my-project-id`.
      *     @type string $page_token
      *           Optional page token to continue retrieval. Comes from previous call
      *           to ListJobTriggers. `order_by` field must not
@@ -132,9 +132,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example `projects/my-project-id`.
+     * Required. The parent resource name, for example `projects/my-project-id`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -143,9 +143,9 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example `projects/my-project-id`.
+     * Required. The parent resource name, for example `projects/my-project-id`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

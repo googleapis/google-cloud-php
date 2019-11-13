@@ -18,9 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -41,7 +41,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id.
+     *           Required. The parent resource name, for example projects/my-project-id.
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
      *     @type \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig $risk_job
      *     @type string $job_id
@@ -57,9 +57,9 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -68,9 +68,9 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

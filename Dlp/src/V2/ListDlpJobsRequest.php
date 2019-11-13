@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 4;</code>
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -90,7 +90,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource name, for example projects/my-project-id.
+     *           Required. The parent resource name, for example projects/my-project-id.
      *     @type string $filter
      *           Optional. Allows filtering.
      *           Supported syntax:
@@ -140,9 +140,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 4;</code>
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -151,9 +151,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource name, for example projects/my-project-id.
+     * Required. The parent resource name, for example projects/my-project-id.
      *
-     * Generated from protobuf field <code>string parent = 4;</code>
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

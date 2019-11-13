@@ -848,7 +848,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name.
+     * @param string $parent       Required. The parent resource name.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -861,6 +861,7 @@ class DlpServiceGapicClient
      *          reverse. This requires that only reversible transformations
      *          be provided here. The reversible transformations are:
      *
+     *           - `CryptoDeterministicConfig`
      *           - `CryptoReplaceFfxFpeConfig`
      *     @type InspectConfig $inspectConfig
      *          Configuration for the inspector.
@@ -997,7 +998,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
      *                             organizations/my-org-id.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1062,7 +1063,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of organization and inspectTemplate to be updated, for
+     * @param string $name         Required. Resource name of organization and inspectTemplate to be updated, for
      *                             example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
@@ -1128,7 +1129,7 @@ class DlpServiceGapicClient
      *                            Optional.
      *
      *     @type string $name
-     *          Resource name of the organization and inspectTemplate to be read, for
+     *          Required. Resource name of the organization and inspectTemplate to be read, for
      *          example `organizations/433245324/inspectTemplates/432452342` or
      *          projects/project-id/inspectTemplates/432452342.
      *     @type RetrySettings|array $retrySettings
@@ -1195,7 +1196,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
      *                             organizations/my-org-id.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1279,7 +1280,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the organization and inspectTemplate to be deleted, for
+     * @param string $name         Required. Resource name of the organization and inspectTemplate to be deleted, for
      *                             example `organizations/433245324/inspectTemplates/432452342` or
      *                             projects/project-id/inspectTemplates/432452342.
      * @param array  $optionalArgs {
@@ -1332,7 +1333,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
      *                             organizations/my-org-id.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1398,7 +1399,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of organization and deidentify template to be updated, for
+     * @param string $name         Required. Resource name of organization and deidentify template to be updated, for
      *                             example `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
@@ -1462,7 +1463,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the organization and deidentify template to be read, for
+     * @param string $name         Required. Resource name of the organization and deidentify template to be read, for
      *                             example `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
@@ -1531,7 +1532,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
      *                             organizations/my-org-id.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1616,7 +1617,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the organization and deidentify template to be deleted,
+     * @param string $name         Required. Resource name of the organization and deidentify template to be deleted,
      *                             for example `organizations/433245324/deidentifyTemplates/432452342` or
      *                             projects/project-id/deidentifyTemplates/432452342.
      * @param array  $optionalArgs {
@@ -1672,7 +1673,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id.
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1757,7 +1758,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id.
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1879,7 +1880,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the DlpJob resource.
+     * @param string $name         Required. The name of the DlpJob resource.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1933,7 +1934,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the DlpJob resource to be deleted.
+     * @param string $name         Required. The name of the DlpJob resource to be deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -1985,7 +1986,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         The name of the DlpJob resource to be cancelled.
+     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2049,7 +2050,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example `projects/my-project-id`.
+     * @param string $parent       Required. The parent resource name, for example `projects/my-project-id`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2162,7 +2163,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the project and the triggeredJob, for example
+     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
      *                             `projects/dlp-test-project/jobTriggers/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2214,7 +2215,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the project and the triggeredJob, for example
+     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
      *                             `projects/dlp-test-project/jobTriggers/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2264,7 +2265,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the project and the triggeredJob, for example
+     * @param string $name         Required. Resource name of the project and the triggeredJob, for example
      *                             `projects/dlp-test-project/jobTriggers/53234423`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2327,7 +2328,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id.
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -2392,7 +2393,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
      *                             organizations/my-org-id.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2459,7 +2460,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of organization and storedInfoType to be updated, for
+     * @param string $name         Required. Resource name of organization and storedInfoType to be updated, for
      *                             example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
@@ -2525,7 +2526,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the organization and storedInfoType to be read, for
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be read, for
      *                             example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {
@@ -2594,7 +2595,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       The parent resource name, for example projects/my-project-id or
+     * @param string $parent       Required. The parent resource name, for example projects/my-project-id or
      *                             organizations/my-org-id.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -2680,7 +2681,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Resource name of the organization and storedInfoType to be deleted, for
+     * @param string $name         Required. Resource name of the organization and storedInfoType to be deleted, for
      *                             example `organizations/433245324/storedInfoTypes/432452342` or
      *                             projects/project-id/storedInfoTypes/432452342.
      * @param array  $optionalArgs {

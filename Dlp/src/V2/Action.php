@@ -35,6 +35,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
      *           Enable email notification to project owners and editors on job's
      *           completion/failure.
+     *     @type \Google\Cloud\Dlp\V2\Action\PublishToStackdriver $publish_to_stackdriver
+     *           Enable Stackdriver metric dlp.googleapis.com/finding_count.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,6 +172,32 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_JobNotificationEmails::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Enable Stackdriver metric dlp.googleapis.com/finding_count.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToStackdriver publish_to_stackdriver = 9;</code>
+     * @return \Google\Cloud\Dlp\V2\Action\PublishToStackdriver
+     */
+    public function getPublishToStackdriver()
+    {
+        return $this->readOneof(9);
+    }
+
+    /**
+     * Enable Stackdriver metric dlp.googleapis.com/finding_count.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToStackdriver publish_to_stackdriver = 9;</code>
+     * @param \Google\Cloud\Dlp\V2\Action\PublishToStackdriver $var
+     * @return $this
+     */
+    public function setPublishToStackdriver($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action_PublishToStackdriver::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }
