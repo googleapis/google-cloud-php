@@ -663,6 +663,10 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type FieldMask $fieldMask
+     *          If field_mask is present, specifies the subset of [][google.spanner.admin.instance.v1.Instance] fields that
+     *          should be returned.
+     *          If absent, all [][google.spanner.admin.instance.v1.Instance] fields are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -679,6 +683,9 @@ class InstanceAdminGapicClient
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -1010,9 +1017,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $resource = '';
      *     $policy = new Policy();
-     *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
+     *     $response = $instanceAdminClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -1071,8 +1078,8 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
+     *     $resource = '';
+     *     $response = $instanceAdminClient->getIamPolicy($resource);
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -1133,23 +1140,23 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
-     *     $permissions = [];
-     *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
+     *     $resource = '';
+     *     $response = $instanceAdminClient->testIamPermissions($resource);
      * } finally {
      *     $instanceAdminClient->close();
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                               See the operation documentation for the appropriate value for this field.
-     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *                               information see
-     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param string $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type string[] $permissions
+     *          The set of permissions to check for the `resource`. Permissions with
+     *          wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *          information see
+     *          [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1162,11 +1169,13 @@ class InstanceAdminGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    public function testIamPermissions($resource, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        $request->setPermissions($permissions);
+        if (isset($optionalArgs['permissions'])) {
+            $request->setPermissions($optionalArgs['permissions']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
