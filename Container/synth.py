@@ -85,6 +85,13 @@ s.replace(
     r'Copyright \d{4}',
     'Copyright 2018')
 
+# fix documentation links
+s.replace(
+    '**/*.php',
+    r"\(\/compute\/docs",
+    '(https://cloud.google.com/compute/docs'
+)
+
 # Fix class references in gapic samples
 for version in ['V1']:
     pathExpr = 'src/' + version + '/Gapic/ClusterManagerGapicClient.php'
