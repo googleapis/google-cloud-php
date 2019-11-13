@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.118.0
+
+<details><summary>google/cloud-automl 0.8.0</summary>
+
+
+
+### Features
+
+* update clients ([#2443](https://www.github.com/googleapis/google-cloud-php/issues/2443)) ([1d0ae53](https://www.github.com/googleapis/google-cloud-php/commit/1d0ae536dfed84c8bf37cc488c729f104bf7ed0f))
+
+</details>
+
 ## 0.117.0
 
 <details><summary>google/cloud-spanner 1.21.0</summary>
