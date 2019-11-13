@@ -32,6 +32,17 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
+     * *  For Image Classification:
+     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *     makes predictions for an image, it will only produce results that have
+     *     at least this confidence score. The default is 0.5.
+     *  *  For Image Object Detection:
+     *    `score_threshold` - (float) When Model detects objects on the image,
+     *        it will only produce bounding boxes which have at least this
+     *        confidence score. Value in 0 to 1 range, default is 0.5.
+     *    `max_bounding_box_count` - (int64) No more than this number of bounding
+     *        boxes will be returned in the response. Default is 100, the
+     *        requested value may be limited by server.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      */
@@ -51,6 +62,17 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional domain-specific parameters, any string must be up to 25000
      *           characters long.
+     *           *  For Image Classification:
+     *              `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *               makes predictions for an image, it will only produce results that have
+     *               at least this confidence score. The default is 0.5.
+     *            *  For Image Object Detection:
+     *              `score_threshold` - (float) When Model detects objects on the image,
+     *                  it will only produce bounding boxes which have at least this
+     *                  confidence score. Value in 0 to 1 range, default is 0.5.
+     *              `max_bounding_box_count` - (int64) No more than this number of bounding
+     *                  boxes will be returned in the response. Default is 100, the
+     *                  requested value may be limited by server.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,6 +137,17 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
+     * *  For Image Classification:
+     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *     makes predictions for an image, it will only produce results that have
+     *     at least this confidence score. The default is 0.5.
+     *  *  For Image Object Detection:
+     *    `score_threshold` - (float) When Model detects objects on the image,
+     *        it will only produce bounding boxes which have at least this
+     *        confidence score. Value in 0 to 1 range, default is 0.5.
+     *    `max_bounding_box_count` - (int64) No more than this number of bounding
+     *        boxes will be returned in the response. Default is 100, the
+     *        requested value may be limited by server.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -127,6 +160,17 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
     /**
      * Additional domain-specific parameters, any string must be up to 25000
      * characters long.
+     * *  For Image Classification:
+     *    `score_threshold` - (float) A value from 0.0 to 1.0. When the model
+     *     makes predictions for an image, it will only produce results that have
+     *     at least this confidence score. The default is 0.5.
+     *  *  For Image Object Detection:
+     *    `score_threshold` - (float) When Model detects objects on the image,
+     *        it will only produce bounding boxes which have at least this
+     *        confidence score. Value in 0 to 1 range, default is 0.5.
+     *    `max_bounding_box_count` - (int64) No more than this number of bounding
+     *        boxes will be returned in the response. Default is 100, the
+     *        requested value may be limited by server.
      *
      * Generated from protobuf field <code>map<string, string> params = 3;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

@@ -9,20 +9,68 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * *  For Translation:
+ * Output configuration for ExportData.
+ * As destination the
+ * [gcs_destination][google.cloud.automl.v1.OutputConfig.gcs_destination]
+ * must be set unless specified otherwise for a domain. If gcs_destination is
+ * set then in the given directory a new directory is created. Its name
+ * will be "export_data-<dataset-display-name>-<timestamp-of-export-call>",
+ * where timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format.
+ * Only ground truth annotations are exported (not approved annotations are
+ * not exported).
+ * The outputs correspond to how the data was imported, and may be used as
+ * input to import data. The output formats are represented as EBNF with literal
+ * commas and same non-terminal symbols definitions are these in import data's
+ * [InputConfig][google.cloud.automl.v1.InputConfig]:
+ *  *  For Image Classification:
+ *         CSV file(s) `image_classification_1.csv`,
+ *         `image_classification_2.csv`,...,`image_classification_N.csv`with
+ *         each line in format:
+ *         ML_USE,GCS_FILE_PATH,LABEL,LABEL,...
+ *         where GCS_FILE_PATHs point at the original, source locations of the
+ *         imported images.
+ *         For MULTICLASS classification type, there can be at most one LABEL
+ *         per example.
+ *  *  For Image Object Detection:
+ *         CSV file(s) `image_object_detection_1.csv`,
+ *         `image_object_detection_2.csv`,...,`image_object_detection_N.csv`
+ *         with each line in format:
+ *         ML_USE,GCS_FILE_PATH,[LABEL],(BOUNDING_BOX | ,,,,,,,)
+ *         where GCS_FILE_PATHs point at the original, source locations of the
+ *         imported images.
+ *  *  For Text Classification:
+ *         In the created directory CSV file(s) `text_classification_1.csv`,
+ *         `text_classification_2.csv`, ...,`text_classification_N.csv` will be
+ *         created where N depends on the total number of examples exported.
+ *         Each line in the CSV is of the format:
+ *         ML_USE,GCS_FILE_PATH,LABEL,LABEL,...
+ *         where GCS_FILE_PATHs point at the exported .txt files containing
+ *         the text content of the imported example. For MULTICLASS
+ *         classification type, there will be at most one LABEL per example.
+ *  *  For Text Sentiment:
+ *         In the created directory CSV file(s) `text_sentiment_1.csv`,
+ *         `text_sentiment_2.csv`, ...,`text_sentiment_N.csv` will be
+ *         created where N depends on the total number of examples exported.
+ *         Each line in the CSV is of the format:
+ *         ML_USE,GCS_FILE_PATH,SENTIMENT
+ *         where GCS_FILE_PATHs point at the exported .txt files containing
+ *         the text content of the imported example.
+ *  *  For Text Extraction:
+ *         CSV file `text_extraction.csv`, with each line in format:
+ *         ML_USE,GCS_FILE_PATH
+ *         GCS_FILE_PATH leads to a .JSONL (i.e. JSON Lines) file which
+ *         contains, per line, a proto that wraps a TextSnippet proto (in json
+ *         representation) followed by AnnotationPayload protos (called
+ *         annotations). If initially documents had been imported, the JSONL
+ *         will point at the original, source locations of the imported
+ *         documents.
+ *  *  For Translation:
  *         CSV file `translation.csv`, with each line in format:
  *         ML_USE,GCS_FILE_PATH
  *         GCS_FILE_PATH leads to a .TSV file which describes examples that have
  *         given ML_USE, using the following row format per line:
  *         TEXT_SNIPPET (in source language) \t TEXT_SNIPPET (in target
  *         language)
- * `export_data_<automl-dataset-display-name>_<timestamp-of-export-call>`
- *           where <automl-dataset-display-name> will be made
- *           BigQuery-dataset-name compatible (e.g. most special characters will
- *           become underscores), and timestamp will be in
- *           YYYY_MM_DDThh_mm_ss_sssZ "based on ISO-8601" format. In that
- *           dataset a new table called `primary_table` will be created, and
- *           filled with precisely the same data as this obtained on import.
  *
  * Generated from protobuf message <code>google.cloud.automl.v1.OutputConfig</code>
  */
@@ -37,9 +85,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AutoMl\V1\GcsDestination $gcs_destination
-     *           The Google Cloud Storage location where the output is to be written to.
-     *           For Image Object Detection, Text Extraction, Video Classification and
-     *           Tables, in the given directory a new directory will be created with name:
+     *           Required. The Google Cloud Storage location where the output is to be
+     *           written to. For Image Object Detection, Text Extraction in the given
+     *           directory a new directory will be created with name:
      *           export_data-<dataset-display-name>-<timestamp-of-export-call> where
      *           timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format. All export
      *           output will be written into that directory.
@@ -51,14 +99,14 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Storage location where the output is to be written to.
-     * For Image Object Detection, Text Extraction, Video Classification and
-     * Tables, in the given directory a new directory will be created with name:
+     * Required. The Google Cloud Storage location where the output is to be
+     * written to. For Image Object Detection, Text Extraction in the given
+     * directory a new directory will be created with name:
      * export_data-<dataset-display-name>-<timestamp-of-export-call> where
      * timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format. All export
      * output will be written into that directory.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\AutoMl\V1\GcsDestination
      */
     public function getGcsDestination()
@@ -67,14 +115,14 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Storage location where the output is to be written to.
-     * For Image Object Detection, Text Extraction, Video Classification and
-     * Tables, in the given directory a new directory will be created with name:
+     * Required. The Google Cloud Storage location where the output is to be
+     * written to. For Image Object Detection, Text Extraction in the given
+     * directory a new directory will be created with name:
      * export_data-<dataset-display-name>-<timestamp-of-export-call> where
      * timestamp is in YYYY-MM-DDThh:mm:ss.sssZ ISO-8601 format. All export
      * output will be written into that directory.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AutoMl\V1\GcsDestination $var
      * @return $this
      */

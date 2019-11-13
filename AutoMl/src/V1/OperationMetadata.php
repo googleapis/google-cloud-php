@@ -53,8 +53,22 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AutoMl\V1\DeleteOperationMetadata $delete_details
      *           Details of a Delete operation.
+     *     @type \Google\Cloud\AutoMl\V1\DeployModelOperationMetadata $deploy_model_details
+     *           Details of a DeployModel operation.
+     *     @type \Google\Cloud\AutoMl\V1\UndeployModelOperationMetadata $undeploy_model_details
+     *           Details of an UndeployModel operation.
      *     @type \Google\Cloud\AutoMl\V1\CreateModelOperationMetadata $create_model_details
      *           Details of CreateModel operation.
+     *     @type \Google\Cloud\AutoMl\V1\CreateDatasetOperationMetadata $create_dataset_details
+     *           Details of CreateDataset operation.
+     *     @type \Google\Cloud\AutoMl\V1\ImportDataOperationMetadata $import_data_details
+     *           Details of ImportData operation.
+     *     @type \Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata $batch_predict_details
+     *           Details of BatchPredict operation.
+     *     @type \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata $export_data_details
+     *           Details of ExportData operation.
+     *     @type \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata $export_model_details
+     *           Details of ExportModel operation.
      *     @type int $progress_percent
      *           Output only. Progress of operation. Range: [0, 100].
      *           Not used currently.
@@ -101,6 +115,58 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Details of a DeployModel operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.DeployModelOperationMetadata deploy_model_details = 24;</code>
+     * @return \Google\Cloud\AutoMl\V1\DeployModelOperationMetadata
+     */
+    public function getDeployModelDetails()
+    {
+        return $this->readOneof(24);
+    }
+
+    /**
+     * Details of a DeployModel operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.DeployModelOperationMetadata deploy_model_details = 24;</code>
+     * @param \Google\Cloud\AutoMl\V1\DeployModelOperationMetadata $var
+     * @return $this
+     */
+    public function setDeployModelDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\DeployModelOperationMetadata::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details of an UndeployModel operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.UndeployModelOperationMetadata undeploy_model_details = 25;</code>
+     * @return \Google\Cloud\AutoMl\V1\UndeployModelOperationMetadata
+     */
+    public function getUndeployModelDetails()
+    {
+        return $this->readOneof(25);
+    }
+
+    /**
+     * Details of an UndeployModel operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.UndeployModelOperationMetadata undeploy_model_details = 25;</code>
+     * @param \Google\Cloud\AutoMl\V1\UndeployModelOperationMetadata $var
+     * @return $this
+     */
+    public function setUndeployModelDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\UndeployModelOperationMetadata::class);
+        $this->writeOneof(25, $var);
+
+        return $this;
+    }
+
+    /**
      * Details of CreateModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.CreateModelOperationMetadata create_model_details = 10;</code>
@@ -122,6 +188,136 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\CreateModelOperationMetadata::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details of CreateDataset operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.CreateDatasetOperationMetadata create_dataset_details = 30;</code>
+     * @return \Google\Cloud\AutoMl\V1\CreateDatasetOperationMetadata
+     */
+    public function getCreateDatasetDetails()
+    {
+        return $this->readOneof(30);
+    }
+
+    /**
+     * Details of CreateDataset operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.CreateDatasetOperationMetadata create_dataset_details = 30;</code>
+     * @param \Google\Cloud\AutoMl\V1\CreateDatasetOperationMetadata $var
+     * @return $this
+     */
+    public function setCreateDatasetDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\CreateDatasetOperationMetadata::class);
+        $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details of ImportData operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImportDataOperationMetadata import_data_details = 15;</code>
+     * @return \Google\Cloud\AutoMl\V1\ImportDataOperationMetadata
+     */
+    public function getImportDataDetails()
+    {
+        return $this->readOneof(15);
+    }
+
+    /**
+     * Details of ImportData operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImportDataOperationMetadata import_data_details = 15;</code>
+     * @param \Google\Cloud\AutoMl\V1\ImportDataOperationMetadata $var
+     * @return $this
+     */
+    public function setImportDataDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ImportDataOperationMetadata::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details of BatchPredict operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOperationMetadata batch_predict_details = 16;</code>
+     * @return \Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata
+     */
+    public function getBatchPredictDetails()
+    {
+        return $this->readOneof(16);
+    }
+
+    /**
+     * Details of BatchPredict operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.BatchPredictOperationMetadata batch_predict_details = 16;</code>
+     * @param \Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata $var
+     * @return $this
+     */
+    public function setBatchPredictDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\BatchPredictOperationMetadata::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details of ExportData operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExportDataOperationMetadata export_data_details = 21;</code>
+     * @return \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata
+     */
+    public function getExportDataDetails()
+    {
+        return $this->readOneof(21);
+    }
+
+    /**
+     * Details of ExportData operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExportDataOperationMetadata export_data_details = 21;</code>
+     * @param \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata $var
+     * @return $this
+     */
+    public function setExportDataDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ExportDataOperationMetadata::class);
+        $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Details of ExportModel operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExportModelOperationMetadata export_model_details = 22;</code>
+     * @return \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata
+     */
+    public function getExportModelDetails()
+    {
+        return $this->readOneof(22);
+    }
+
+    /**
+     * Details of ExportModel operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ExportModelOperationMetadata export_model_details = 22;</code>
+     * @param \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata $var
+     * @return $this
+     */
+    public function setExportModelDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata::class);
+        $this->writeOneof(22, $var);
 
         return $this;
     }
