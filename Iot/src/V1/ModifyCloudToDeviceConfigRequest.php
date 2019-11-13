@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -34,9 +34,9 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $version_to_update = 0;
     /**
-     * The configuration data for the device.
+     * Required. The configuration data for the device.
      *
-     * Generated from protobuf field <code>bytes binary_data = 3;</code>
+     * Generated from protobuf field <code>bytes binary_data = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $binary_data = '';
 
@@ -47,7 +47,7 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the device. For example,
+     *           Required. The name of the device. For example,
      *           `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type int|string $version_to_update
@@ -57,7 +57,7 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
      *           does not match this version number. This is used to support multiple
      *           simultaneous updates without losing data.
      *     @type string $binary_data
-     *           The configuration data for the device.
+     *           Required. The configuration data for the device.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,11 +66,11 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -79,11 +79,11 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device. For example,
+     * Required. The name of the device. For example,
      * `projects/p0/locations/us-central1/registries/registry0/devices/device0` or
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -130,9 +130,9 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration data for the device.
+     * Required. The configuration data for the device.
      *
-     * Generated from protobuf field <code>bytes binary_data = 3;</code>
+     * Generated from protobuf field <code>bytes binary_data = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getBinaryData()
@@ -141,9 +141,9 @@ class ModifyCloudToDeviceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration data for the device.
+     * Required. The configuration data for the device.
      *
-     * Generated from protobuf field <code>bytes binary_data = 3;</code>
+     * Generated from protobuf field <code>bytes binary_data = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

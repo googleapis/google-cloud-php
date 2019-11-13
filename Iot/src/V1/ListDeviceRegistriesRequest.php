@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project and cloud region path. For example,
+     * Required. The project and cloud region path. For example,
      * `projects/example-project/locations/us-central1`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -47,7 +47,7 @@ class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project and cloud region path. For example,
+     *           Required. The project and cloud region path. For example,
      *           `projects/example-project/locations/us-central1`.
      *     @type int $page_size
      *           The maximum number of registries to return in the response. If this value
@@ -66,10 +66,10 @@ class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and cloud region path. For example,
+     * Required. The project and cloud region path. For example,
      * `projects/example-project/locations/us-central1`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -78,10 +78,10 @@ class ListDeviceRegistriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and cloud region path. For example,
+     * Required. The project and cloud region path. For example,
      * `projects/example-project/locations/us-central1`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

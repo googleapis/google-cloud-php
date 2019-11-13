@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the device registry. For example,
+     * Required. The name of the device registry. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +30,7 @@ class DeleteDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the device registry. For example,
+     *           Required. The name of the device registry. For example,
      *           `projects/example-project/locations/us-central1/registries/my-registry`.
      * }
      */
@@ -40,10 +40,10 @@ class DeleteDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device registry. For example,
+     * Required. The name of the device registry. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class DeleteDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the device registry. For example,
+     * Required. The name of the device registry. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
