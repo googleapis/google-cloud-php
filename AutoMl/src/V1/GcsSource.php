@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Google Cloud Storage URIs to input files, up to 2000 characters
-     * long. Accepted forms:
+     * Required. Google Cloud Storage URIs to input files, up to 2000
+     * characters long. Accepted forms:
      * * Full object path, e.g. gs://bucket/directory/object.csv
      *
-     * Generated from protobuf field <code>repeated string input_uris = 1;</code>
+     * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_uris;
 
@@ -31,8 +31,8 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_uris
-     *           Required. Google Cloud Storage URIs to input files, up to 2000 characters
-     *           long. Accepted forms:
+     *           Required. Google Cloud Storage URIs to input files, up to 2000
+     *           characters long. Accepted forms:
      *           * Full object path, e.g. gs://bucket/directory/object.csv
      * }
      */
@@ -42,11 +42,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Google Cloud Storage URIs to input files, up to 2000 characters
-     * long. Accepted forms:
+     * Required. Google Cloud Storage URIs to input files, up to 2000
+     * characters long. Accepted forms:
      * * Full object path, e.g. gs://bucket/directory/object.csv
      *
-     * Generated from protobuf field <code>repeated string input_uris = 1;</code>
+     * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInputUris()
@@ -55,11 +55,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Google Cloud Storage URIs to input files, up to 2000 characters
-     * long. Accepted forms:
+     * Required. Google Cloud Storage URIs to input files, up to 2000
+     * characters long. Accepted forms:
      * * Full object path, e.g. gs://bucket/directory/object.csv
      *
-     * Generated from protobuf field <code>repeated string input_uris = 1;</code>
+     * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

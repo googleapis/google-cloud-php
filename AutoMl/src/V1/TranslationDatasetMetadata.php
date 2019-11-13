@@ -18,13 +18,13 @@ class TranslationDatasetMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Required. The BCP-47 language code of the source language.
      *
-     * Generated from protobuf field <code>string source_language_code = 1;</code>
+     * Generated from protobuf field <code>string source_language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $source_language_code = '';
     /**
      * Required. The BCP-47 language code of the target language.
      *
-     * Generated from protobuf field <code>string target_language_code = 2;</code>
+     * Generated from protobuf field <code>string target_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_language_code = '';
 
@@ -48,7 +48,7 @@ class TranslationDatasetMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Required. The BCP-47 language code of the source language.
      *
-     * Generated from protobuf field <code>string source_language_code = 1;</code>
+     * Generated from protobuf field <code>string source_language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSourceLanguageCode()
@@ -59,7 +59,7 @@ class TranslationDatasetMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Required. The BCP-47 language code of the source language.
      *
-     * Generated from protobuf field <code>string source_language_code = 1;</code>
+     * Generated from protobuf field <code>string source_language_code = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class TranslationDatasetMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Required. The BCP-47 language code of the target language.
      *
-     * Generated from protobuf field <code>string target_language_code = 2;</code>
+     * Generated from protobuf field <code>string target_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTargetLanguageCode()
@@ -85,7 +85,7 @@ class TranslationDatasetMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Required. The BCP-47 language code of the target language.
      *
-     * Generated from protobuf field <code>string target_language_code = 2;</code>
+     * Generated from protobuf field <code>string target_language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

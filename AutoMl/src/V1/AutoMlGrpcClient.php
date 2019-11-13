@@ -151,6 +151,20 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets an annotation spec.
+     * @param \Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function GetAnnotationSpec(\Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/GetAnnotationSpec',
+        $argument,
+        ['\Google\Cloud\AutoMl\V1\AnnotationSpec', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a model.
      * Returns a Model in the [response][google.longrunning.Operation.response]
      * field when it completes.
@@ -225,6 +239,71 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/UpdateModel',
         $argument,
         ['\Google\Cloud\AutoMl\V1\Model', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deploys a model. If a model is already deployed, deploying it with the
+     * same parameters has no effect. Deploying with different parametrs
+     * (as e.g. changing
+     *
+     * [node_number][google.cloud.automl.v1.ImageObjectDetectionModelDeploymentMetadata.node_number])
+     *  will reset the deployment state without pausing the model's availability.
+     *
+     * Only applicable for Text Classification, Image Object Detection; all other
+     * domains manage deployment automatically.
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     * @param \Google\Cloud\AutoMl\V1\DeployModelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function DeployModel(\Google\Cloud\AutoMl\V1\DeployModelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/DeployModel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Undeploys a model. If the model is not deployed this method has no effect.
+     *
+     * Only applicable for Text Classification, Image Object Detection;
+     * all other domains manage deployment automatically.
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     * @param \Google\Cloud\AutoMl\V1\UndeployModelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function UndeployModel(\Google\Cloud\AutoMl\V1\UndeployModelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/UndeployModel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Exports a trained, "export-able", model to a user specified Google Cloud
+     * Storage location. A model is considered export-able if and only if it has
+     * an export format defined for it in
+     * [ModelExportOutputConfig][google.cloud.automl.v1.ModelExportOutputConfig].
+     *
+     * Returns an empty response in the
+     * [response][google.longrunning.Operation.response] field when it completes.
+     * @param \Google\Cloud\AutoMl\V1\ExportModelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     */
+    public function ExportModel(\Google\Cloud\AutoMl\V1\ExportModelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.automl.v1.AutoMl/ExportModel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

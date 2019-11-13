@@ -58,6 +58,13 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     private $deployment_state = 0;
     /**
+     * Used to perform a consistent read-modify-write updates. If not set, a blind
+     * "overwrite" update happens.
+     *
+     * Generated from protobuf field <code>string etag = 10;</code>
+     */
+    private $etag = '';
+    /**
      * Optional. The labels with user-defined metadata to organize your model.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
@@ -78,6 +85,16 @@ class Model extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AutoMl\V1\TranslationModelMetadata $translation_model_metadata
      *           Metadata for translation models.
+     *     @type \Google\Cloud\AutoMl\V1\ImageClassificationModelMetadata $image_classification_model_metadata
+     *           Metadata for image classification models.
+     *     @type \Google\Cloud\AutoMl\V1\TextClassificationModelMetadata $text_classification_model_metadata
+     *           Metadata for text classification models.
+     *     @type \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelMetadata $image_object_detection_model_metadata
+     *           Metadata for image object detection models.
+     *     @type \Google\Cloud\AutoMl\V1\TextExtractionModelMetadata $text_extraction_model_metadata
+     *           Metadata for text extraction models.
+     *     @type \Google\Cloud\AutoMl\V1\TextSentimentModelMetadata $text_sentiment_model_metadata
+     *           Metadata for text sentiment models.
      *     @type string $name
      *           Output only. Resource name of the model.
      *           Format: `projects/{project_id}/locations/{location_id}/models/{model_id}`
@@ -96,6 +113,9 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type int $deployment_state
      *           Output only. Deployment state of the model. A model can only serve
      *           prediction requests after it gets deployed.
+     *     @type string $etag
+     *           Used to perform a consistent read-modify-write updates. If not set, a blind
+     *           "overwrite" update happens.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels with user-defined metadata to organize your model.
      *           Label keys and values can be no longer than 64 characters
@@ -132,6 +152,136 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TranslationModelMetadata::class);
         $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for image classification models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageClassificationModelMetadata image_classification_model_metadata = 13;</code>
+     * @return \Google\Cloud\AutoMl\V1\ImageClassificationModelMetadata
+     */
+    public function getImageClassificationModelMetadata()
+    {
+        return $this->readOneof(13);
+    }
+
+    /**
+     * Metadata for image classification models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageClassificationModelMetadata image_classification_model_metadata = 13;</code>
+     * @param \Google\Cloud\AutoMl\V1\ImageClassificationModelMetadata $var
+     * @return $this
+     */
+    public function setImageClassificationModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ImageClassificationModelMetadata::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for text classification models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextClassificationModelMetadata text_classification_model_metadata = 14;</code>
+     * @return \Google\Cloud\AutoMl\V1\TextClassificationModelMetadata
+     */
+    public function getTextClassificationModelMetadata()
+    {
+        return $this->readOneof(14);
+    }
+
+    /**
+     * Metadata for text classification models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextClassificationModelMetadata text_classification_model_metadata = 14;</code>
+     * @param \Google\Cloud\AutoMl\V1\TextClassificationModelMetadata $var
+     * @return $this
+     */
+    public function setTextClassificationModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextClassificationModelMetadata::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for image object detection models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageObjectDetectionModelMetadata image_object_detection_model_metadata = 20;</code>
+     * @return \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelMetadata
+     */
+    public function getImageObjectDetectionModelMetadata()
+    {
+        return $this->readOneof(20);
+    }
+
+    /**
+     * Metadata for image object detection models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ImageObjectDetectionModelMetadata image_object_detection_model_metadata = 20;</code>
+     * @param \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelMetadata $var
+     * @return $this
+     */
+    public function setImageObjectDetectionModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelMetadata::class);
+        $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for text extraction models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextExtractionModelMetadata text_extraction_model_metadata = 19;</code>
+     * @return \Google\Cloud\AutoMl\V1\TextExtractionModelMetadata
+     */
+    public function getTextExtractionModelMetadata()
+    {
+        return $this->readOneof(19);
+    }
+
+    /**
+     * Metadata for text extraction models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextExtractionModelMetadata text_extraction_model_metadata = 19;</code>
+     * @param \Google\Cloud\AutoMl\V1\TextExtractionModelMetadata $var
+     * @return $this
+     */
+    public function setTextExtractionModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextExtractionModelMetadata::class);
+        $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata for text sentiment models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextSentimentModelMetadata text_sentiment_model_metadata = 22;</code>
+     * @return \Google\Cloud\AutoMl\V1\TextSentimentModelMetadata
+     */
+    public function getTextSentimentModelMetadata()
+    {
+        return $this->readOneof(22);
+    }
+
+    /**
+     * Metadata for text sentiment models.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.TextSentimentModelMetadata text_sentiment_model_metadata = 22;</code>
+     * @param \Google\Cloud\AutoMl\V1\TextSentimentModelMetadata $var
+     * @return $this
+     */
+    public function setTextSentimentModelMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextSentimentModelMetadata::class);
+        $this->writeOneof(22, $var);
 
         return $this;
     }
@@ -300,6 +450,34 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1\Model_DeploymentState::class);
         $this->deployment_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Used to perform a consistent read-modify-write updates. If not set, a blind
+     * "overwrite" update happens.
+     *
+     * Generated from protobuf field <code>string etag = 10;</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Used to perform a consistent read-modify-write updates. If not set, a blind
+     * "overwrite" update happens.
+     *
+     * Generated from protobuf field <code>string etag = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

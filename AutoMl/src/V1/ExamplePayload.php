@@ -23,13 +23,43 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AutoMl\V1\Image $image
+     *           Example image.
      *     @type \Google\Cloud\AutoMl\V1\TextSnippet $text_snippet
      *           Example text.
+     *     @type \Google\Cloud\AutoMl\V1\Document $document
+     *           Example document.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Automl\V1\DataItems::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Example image.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Image image = 1;</code>
+     * @return \Google\Cloud\AutoMl\V1\Image
+     */
+    public function getImage()
+    {
+        return $this->readOneof(1);
+    }
+
+    /**
+     * Example image.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Image image = 1;</code>
+     * @param \Google\Cloud\AutoMl\V1\Image $var
+     * @return $this
+     */
+    public function setImage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\Image::class);
+        $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**
@@ -54,6 +84,32 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\TextSnippet::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Example document.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Document document = 4;</code>
+     * @return \Google\Cloud\AutoMl\V1\Document
+     */
+    public function getDocument()
+    {
+        return $this->readOneof(4);
+    }
+
+    /**
+     * Example document.
+     *
+     * Generated from protobuf field <code>.google.cloud.automl.v1.Document document = 4;</code>
+     * @param \Google\Cloud\AutoMl\V1\Document $var
+     * @return $this
+     */
+    public function setDocument($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1\Document::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }
