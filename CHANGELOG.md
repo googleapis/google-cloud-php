@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.117.1
+
 ## 0.117.0
 
 <details><summary>google/cloud-spanner 1.21.0</summary>
