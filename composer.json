@@ -70,7 +70,7 @@
     },
     "replace": {
         "google/cloud-asset": "0.4.0",
-        "google/cloud-automl": "0.7.1",
+        "google/cloud-automl": "0.8.0",
         "google/cloud-bigquery": "1.12.1",
         "google/cloud-bigquerydatatransfer": "0.14.0",
         "google/cloud-bigtable": "1.1.0",
