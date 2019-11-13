@@ -62,7 +62,7 @@ class PhoneType
      * or LANDLINE number. The [phone
      * usage][google.cloud.talent.v4beta1.ContactInfoUsage] should be set to
      * PERSONAL for these phone types. Some more information can be found here:
-     * http://en.wikipedia.org/wiki/Personal_Numbers
+     * https://en.wikipedia.org/wiki/Personal_Numbers
      *
      * Generated from protobuf enum <code>VIRTUAL = 7;</code>
      */
