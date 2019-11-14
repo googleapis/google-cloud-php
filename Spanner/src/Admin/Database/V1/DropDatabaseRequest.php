@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [DropDatabase][google.spanner.admin.database.v1.DatabaseAdmin.DropDatabase].
+ * The request for [DropDatabase][google.spanner.admin.database.v1.DatabaseAdmin.DropDatabase].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.DropDatabaseRequest</code>
  */

@@ -790,10 +790,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -803,7 +803,7 @@ class InstanceAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -834,11 +834,11 @@ class InstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($resource, $policy);
+            $client->setIamPolicy($formattedResource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -870,9 +870,9 @@ class InstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
-        $response = $client->getIamPolicy($resource);
+        $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -882,7 +882,7 @@ class InstanceAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -910,10 +910,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
 
         try {
-            $client->getIamPolicy($resource);
+            $client->getIamPolicy($formattedResource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -941,10 +941,10 @@ class InstanceAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $permissions = [];
 
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -954,7 +954,7 @@ class InstanceAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -985,11 +985,11 @@ class InstanceAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->instanceName('[PROJECT]', '[INSTANCE]');
         $permissions = [];
 
         try {
-            $client->testIamPermissions($resource, $permissions);
+            $client->testIamPermissions($formattedResource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
