@@ -23,7 +23,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The new [custom metric](/monitoring/custom-metrics)
+     * The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      * descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
@@ -40,7 +40,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *           The project on which to execute the request. The format is
      *           `"projects/{project_id_or_number}"`.
      *     @type \Google\Api\MetricDescriptor $metric_descriptor
-     *           The new [custom metric](/monitoring/custom-metrics)
+     *           The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      *           descriptor.
      * }
      */
@@ -78,7 +78,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new [custom metric](/monitoring/custom-metrics)
+     * The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      * descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
@@ -90,7 +90,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The new [custom metric](/monitoring/custom-metrics)
+     * The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      * descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>

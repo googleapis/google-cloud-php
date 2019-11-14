@@ -31,7 +31,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * If provided, this field specifies the criteria that must be met by
      * notification channels to be included in the response.
      * For more details, see [sorting and
-     * filtering](/monitoring/api/v3/sorting-and-filtering).
+     * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
      * Generated from protobuf field <code>string filter = 6;</code>
      */
@@ -41,7 +41,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * the same set of fields as in `filter`. Entries can be prefixed with
      * a minus sign to sort in descending rather than ascending order.
      * For more details, see [sorting and
-     * filtering](/monitoring/api/v3/sorting-and-filtering).
+     * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
      * Generated from protobuf field <code>string order_by = 7;</code>
      */
@@ -81,13 +81,13 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      *           If provided, this field specifies the criteria that must be met by
      *           notification channels to be included in the response.
      *           For more details, see [sorting and
-     *           filtering](/monitoring/api/v3/sorting-and-filtering).
+     *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     @type string $order_by
      *           A comma-separated list of fields by which to sort the result. Supports
      *           the same set of fields as in `filter`. Entries can be prefixed with
      *           a minus sign to sort in descending rather than ascending order.
      *           For more details, see [sorting and
-     *           filtering](/monitoring/api/v3/sorting-and-filtering).
+     *           filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     @type int $page_size
      *           The maximum number of results to return in a single response. If
      *           not set to a positive number, a reasonable value will be chosen by the
@@ -145,7 +145,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * If provided, this field specifies the criteria that must be met by
      * notification channels to be included in the response.
      * For more details, see [sorting and
-     * filtering](/monitoring/api/v3/sorting-and-filtering).
+     * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
      * Generated from protobuf field <code>string filter = 6;</code>
      * @return string
@@ -159,7 +159,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * If provided, this field specifies the criteria that must be met by
      * notification channels to be included in the response.
      * For more details, see [sorting and
-     * filtering](/monitoring/api/v3/sorting-and-filtering).
+     * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
      * Generated from protobuf field <code>string filter = 6;</code>
      * @param string $var
@@ -178,7 +178,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * the same set of fields as in `filter`. Entries can be prefixed with
      * a minus sign to sort in descending rather than ascending order.
      * For more details, see [sorting and
-     * filtering](/monitoring/api/v3/sorting-and-filtering).
+     * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
      * Generated from protobuf field <code>string order_by = 7;</code>
      * @return string
@@ -193,7 +193,7 @@ class ListNotificationChannelsRequest extends \Google\Protobuf\Internal\Message
      * the same set of fields as in `filter`. Entries can be prefixed with
      * a minus sign to sort in descending rather than ascending order.
      * For more details, see [sorting and
-     * filtering](/monitoring/api/v3/sorting-and-filtering).
+     * filtering](https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *
      * Generated from protobuf field <code>string order_by = 7;</code>
      * @param string $var

@@ -23,7 +23,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      */
     private $name = '';
     /**
-     * An optional [filter](/monitoring/api/v3/filters) describing
+     * An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      * the descriptors to be returned.  The filter can reference
      * the descriptor's type and labels. For example, the
      * following filter returns only Google Compute Engine descriptors
@@ -58,7 +58,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      *           The project on which to execute the request. The format is
      *           `"projects/{project_id_or_number}"`.
      *     @type string $filter
-     *           An optional [filter](/monitoring/api/v3/filters) describing
+     *           An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      *           the descriptors to be returned.  The filter can reference
      *           the descriptor's type and labels. For example, the
      *           following filter returns only Google Compute Engine descriptors
@@ -106,7 +106,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * An optional [filter](/monitoring/api/v3/filters) describing
+     * An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      * the descriptors to be returned.  The filter can reference
      * the descriptor's type and labels. For example, the
      * following filter returns only Google Compute Engine descriptors
@@ -122,7 +122,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * An optional [filter](/monitoring/api/v3/filters) describing
+     * An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      * the descriptors to be returned.  The filter can reference
      * the descriptor's type and labels. For example, the
      * following filter returns only Google Compute Engine descriptors

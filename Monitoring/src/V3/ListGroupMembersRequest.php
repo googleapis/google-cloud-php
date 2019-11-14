@@ -37,7 +37,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * An optional [list filter](/monitoring/api/learn_more#filtering) describing
+     * An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
      * the members to be returned.  The filter may reference the type, labels, and
      * metadata of monitored resources that comprise the group.
      * For example, to return only resources representing Compute Engine VM
@@ -73,7 +73,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      *           returned by a previous call to this method.  Using this field causes the
      *           method to return additional results from the previous method call.
      *     @type string $filter
-     *           An optional [list filter](/monitoring/api/learn_more#filtering) describing
+     *           An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
      *           the members to be returned.  The filter may reference the type, labels, and
      *           metadata of monitored resources that comprise the group.
      *           For example, to return only resources representing Compute Engine VM
@@ -176,7 +176,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional [list filter](/monitoring/api/learn_more#filtering) describing
+     * An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
      * the members to be returned.  The filter may reference the type, labels, and
      * metadata of monitored resources that comprise the group.
      * For example, to return only resources representing Compute Engine VM
@@ -192,7 +192,7 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional [list filter](/monitoring/api/learn_more#filtering) describing
+     * An optional [list filter](https://cloud.google.com/monitoring/api/learn_more#filtering) describing
      * the members to be returned.  The filter may reference the type, labels, and
      * metadata of monitored resources that comprise the group.
      * For example, to return only resources representing Compute Engine VM

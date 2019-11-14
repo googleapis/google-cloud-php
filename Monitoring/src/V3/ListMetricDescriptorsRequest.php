@@ -25,10 +25,10 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
-     * Otherwise, the [filter](/monitoring/api/v3/filters)
+     * Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifies which metric descriptors are to be
      * returned. For example, the following filter matches all
-     * [custom metrics](/monitoring/custom-metrics):
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
      *     metric.type = starts_with("custom.googleapis.com/")
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -61,10 +61,10 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           If this field is empty, all custom and
      *           system-defined metric descriptors are returned.
-     *           Otherwise, the [filter](/monitoring/api/v3/filters)
+     *           Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
      *           specifies which metric descriptors are to be
      *           returned. For example, the following filter matches all
-     *           [custom metrics](/monitoring/custom-metrics):
+     *           [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
      *               metric.type = starts_with("custom.googleapis.com/")
      *     @type int $page_size
      *           A positive number that is the maximum number of results to return.
@@ -110,10 +110,10 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
-     * Otherwise, the [filter](/monitoring/api/v3/filters)
+     * Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifies which metric descriptors are to be
      * returned. For example, the following filter matches all
-     * [custom metrics](/monitoring/custom-metrics):
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
      *     metric.type = starts_with("custom.googleapis.com/")
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -127,10 +127,10 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
-     * Otherwise, the [filter](/monitoring/api/v3/filters)
+     * Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
      * specifies which metric descriptors are to be
      * returned. For example, the following filter matches all
-     * [custom metrics](/monitoring/custom-metrics):
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
      *     metric.type = starts_with("custom.googleapis.com/")
      *
      * Generated from protobuf field <code>string filter = 2;</code>
