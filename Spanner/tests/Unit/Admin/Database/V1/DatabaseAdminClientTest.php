@@ -79,6 +79,85 @@ class DatabaseAdminClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function listDatabasesTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $nextPageToken = '';
+        $databasesElement = new Database();
+        $databases = [$databasesElement];
+        $expectedResponse = new ListDatabasesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDatabases($databases);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+
+        $response = $client->listDatabases($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getParent();
+
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listDatabasesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
+
+        try {
+            $client->listDatabases($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -601,10 +680,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $policy = new Policy();
 
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $client->setIamPolicy($formattedResource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -614,7 +693,7 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getPolicy();
 
         $this->assertProtobufEquals($policy, $actualValue);
@@ -645,11 +724,11 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $policy = new Policy();
 
         try {
-            $client->setIamPolicy($resource, $policy);
+            $client->setIamPolicy($formattedResource, $policy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -681,9 +760,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
-        $response = $client->getIamPolicy($resource);
+        $response = $client->getIamPolicy($formattedResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -693,7 +772,7 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -721,10 +800,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
 
         try {
-            $client->getIamPolicy($resource);
+            $client->getIamPolicy($formattedResource);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -752,10 +831,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $permissions = [];
 
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $client->testIamPermissions($formattedResource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -765,7 +844,7 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getResource();
 
-        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertProtobufEquals($formattedResource, $actualValue);
         $actualValue = $actualRequestObject->getPermissions();
 
         $this->assertProtobufEquals($permissions, $actualValue);
@@ -796,90 +875,11 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $resource = 'resource-341064690';
+        $formattedResource = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $permissions = [];
 
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listDatabasesTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $databasesElement = new Database();
-        $databases = [$databasesElement];
-        $expectedResponse = new ListDatabasesResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setDatabases($databases);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-
-        $response = $client->listDatabases($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listDatabasesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[INSTANCE]');
-
-        try {
-            $client->listDatabases($formattedParent);
+            $client->testIamPermissions($formattedResource, $permissions);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

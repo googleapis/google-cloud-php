@@ -57,8 +57,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * have a name of the format `<database_name>/operations/<operation_id>` and
      * can be used to track preparation of the database. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
-     * The [response][google.longrunning.Operation.response] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
+     * [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest $argument input argument
      * @param array $metadata metadata
@@ -93,8 +93,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * the format `<database_name>/operations/<operation_id>` and can be used to
      * track execution of the schema change(s). The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
-     * The operation has no response.
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

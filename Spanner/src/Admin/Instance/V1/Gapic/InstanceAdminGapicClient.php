@@ -663,10 +663,6 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type FieldMask $fieldMask
-     *          If field_mask is present, specifies the subset of [][google.spanner.admin.instance.v1.Instance] fields that
-     *          should be returned.
-     *          If absent, all [][google.spanner.admin.instance.v1.Instance] fields are returned.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -683,9 +679,6 @@ class InstanceAdminGapicClient
     {
         $request = new GetInstanceRequest();
         $request->setName($name);
-        if (isset($optionalArgs['fieldMask'])) {
-            $request->setFieldMask($optionalArgs['fieldMask']);
-        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -1017,9 +1010,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $resource = '';
+     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $policy = new Policy();
-     *     $response = $instanceAdminClient->setIamPolicy($resource, $policy);
+     *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -1078,8 +1071,8 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $resource = '';
-     *     $response = $instanceAdminClient->getIamPolicy($resource);
+     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -1140,9 +1133,9 @@ class InstanceAdminGapicClient
      * ```
      * $instanceAdminClient = new InstanceAdminClient();
      * try {
-     *     $resource = '';
+     *     $formattedResource = $instanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     $permissions = [];
-     *     $response = $instanceAdminClient->testIamPermissions($resource, $permissions);
+     *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
      *     $instanceAdminClient->close();
      * }
