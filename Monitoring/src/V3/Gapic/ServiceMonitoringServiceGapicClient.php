@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2017 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/monitoring/v3/metric_service.proto
+ * https://github.com/google/googleapis/blob/master/google/monitoring/v3/service_service.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * @experimental
@@ -34,55 +34,42 @@ use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-use Google\Api\MetricDescriptor;
-use Google\Api\MonitoredResourceDescriptor;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Monitoring\V3\Aggregation;
-use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
-use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest;
-use Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest;
-use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
-use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
-use Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse;
-use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
-use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
-use Google\Cloud\Monitoring\V3\ListTimeSeriesResponse;
-use Google\Cloud\Monitoring\V3\TimeInterval;
-use Google\Cloud\Monitoring\V3\TimeSeries;
+use Google\Cloud\Monitoring\V3\CreateServiceLevelObjectiveRequest;
+use Google\Cloud\Monitoring\V3\CreateServiceRequest;
+use Google\Cloud\Monitoring\V3\DeleteServiceLevelObjectiveRequest;
+use Google\Cloud\Monitoring\V3\DeleteServiceRequest;
+use Google\Cloud\Monitoring\V3\GetServiceLevelObjectiveRequest;
+use Google\Cloud\Monitoring\V3\GetServiceRequest;
+use Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesRequest;
+use Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesResponse;
+use Google\Cloud\Monitoring\V3\ListServicesRequest;
+use Google\Cloud\Monitoring\V3\ListServicesResponse;
+use Google\Cloud\Monitoring\V3\Service;
+use Google\Cloud\Monitoring\V3\ServiceLevelObjective;
+use Google\Cloud\Monitoring\V3\ServiceLevelObjective\View;
+use Google\Cloud\Monitoring\V3\UpdateServiceLevelObjectiveRequest;
+use Google\Cloud\Monitoring\V3\UpdateServiceRequest;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: Manages metric descriptors, monitored resource descriptors, and
- * time series data.
+ * Service Description: The Stackdriver Monitoring Service-Oriented Monitoring API has endpoints for
+ * managing and querying aspects of a workspace's services. These include the
+ * `Service`'s monitored resources, its Service-Level Objectives, and a taxonomy
+ * of categorized Health Metrics.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
- * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
+ * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
  * try {
- *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedParent = $serviceMonitoringServiceClient->projectName('[PROJECT]');
+ *     $service = new Service();
+ *     $response = $serviceMonitoringServiceClient->createService($formattedParent, $service);
  * } finally {
- *     $metricServiceClient->close();
+ *     $serviceMonitoringServiceClient->close();
  * }
  * ```
  *
@@ -93,14 +80,14 @@ use Google\Protobuf\GPBEmpty;
  *
  * @experimental
  */
-class MetricServiceGapicClient
+class ServiceMonitoringServiceGapicClient
 {
     use GapicClientTrait;
 
     /**
      * The name of the service.
      */
-    const SERVICE_NAME = 'google.monitoring.v3.MetricService';
+    const SERVICE_NAME = 'google.monitoring.v3.ServiceMonitoringService';
 
     /**
      * The default address of the service.
@@ -126,9 +113,9 @@ class MetricServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
-    private static $metricDescriptorNameTemplate;
-    private static $monitoredResourceDescriptorNameTemplate;
     private static $projectNameTemplate;
+    private static $serviceNameTemplate;
+    private static $serviceLevelObjectiveNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -136,36 +123,18 @@ class MetricServiceGapicClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS.':'.self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__.'/../resources/metric_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__.'/../resources/metric_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__.'/../resources/metric_service_grpc_config.json',
+            'clientConfig' => __DIR__.'/../resources/service_monitoring_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__.'/../resources/service_monitoring_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__.'/../resources/service_monitoring_service_grpc_config.json',
             'credentialsConfig' => [
                 'scopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__.'/../resources/metric_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__.'/../resources/service_monitoring_service_rest_client_config.php',
                 ],
             ],
         ];
-    }
-
-    private static function getMetricDescriptorNameTemplate()
-    {
-        if (null == self::$metricDescriptorNameTemplate) {
-            self::$metricDescriptorNameTemplate = new PathTemplate('projects/{project}/metricDescriptors/{metric_descriptor=**}');
-        }
-
-        return self::$metricDescriptorNameTemplate;
-    }
-
-    private static function getMonitoredResourceDescriptorNameTemplate()
-    {
-        if (null == self::$monitoredResourceDescriptorNameTemplate) {
-            self::$monitoredResourceDescriptorNameTemplate = new PathTemplate('projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}');
-        }
-
-        return self::$monitoredResourceDescriptorNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -177,53 +146,35 @@ class MetricServiceGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getServiceNameTemplate()
+    {
+        if (null == self::$serviceNameTemplate) {
+            self::$serviceNameTemplate = new PathTemplate('projects/{project}/services/{service}');
+        }
+
+        return self::$serviceNameTemplate;
+    }
+
+    private static function getServiceLevelObjectiveNameTemplate()
+    {
+        if (null == self::$serviceLevelObjectiveNameTemplate) {
+            self::$serviceLevelObjectiveNameTemplate = new PathTemplate('projects/{project}/services/{service}/serviceLevelObjectives/{service_level_objective}');
+        }
+
+        return self::$serviceLevelObjectiveNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'metricDescriptor' => self::getMetricDescriptorNameTemplate(),
-                'monitoredResourceDescriptor' => self::getMonitoredResourceDescriptorNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'service' => self::getServiceNameTemplate(),
+                'serviceLevelObjective' => self::getServiceLevelObjectiveNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a metric_descriptor resource.
-     *
-     * @param string $project
-     * @param string $metricDescriptor
-     *
-     * @return string The formatted metric_descriptor resource.
-     * @experimental
-     */
-    public static function metricDescriptorName($project, $metricDescriptor)
-    {
-        return self::getMetricDescriptorNameTemplate()->render([
-            'project' => $project,
-            'metric_descriptor' => $metricDescriptor,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a monitored_resource_descriptor resource.
-     *
-     * @param string $project
-     * @param string $monitoredResourceDescriptor
-     *
-     * @return string The formatted monitored_resource_descriptor resource.
-     * @experimental
-     */
-    public static function monitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->render([
-            'project' => $project,
-            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
-        ]);
     }
 
     /**
@@ -243,12 +194,50 @@ class MetricServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a service resource.
+     *
+     * @param string $project
+     * @param string $service
+     *
+     * @return string The formatted service resource.
+     * @experimental
+     */
+    public static function serviceName($project, $service)
+    {
+        return self::getServiceNameTemplate()->render([
+            'project' => $project,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a service_level_objective resource.
+     *
+     * @param string $project
+     * @param string $service
+     * @param string $serviceLevelObjective
+     *
+     * @return string The formatted service_level_objective resource.
+     * @experimental
+     */
+    public static function serviceLevelObjectiveName($project, $service, $serviceLevelObjective)
+    {
+        return self::getServiceLevelObjectiveNameTemplate()->render([
+            'project' => $project,
+            'service' => $service,
+            'service_level_objective' => $serviceLevelObjective,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - metricDescriptor: projects/{project}/metricDescriptors/{metric_descriptor=**}
-     * - monitoredResourceDescriptor: projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}
-     * - project: projects/{project}.
+     * - project: projects/{project}
+     * - service: projects/{project}/services/{service}
+     * - serviceLevelObjective: projects/{project}/services/{service}/serviceLevelObjectives/{service_level_objective}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -347,15 +336,126 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does not require a Stackdriver account.
+     * Create a `Service`.
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
+     *     $formattedParent = $serviceMonitoringServiceClient->projectName('[PROJECT]');
+     *     $service = new Service();
+     *     $response = $serviceMonitoringServiceClient->createService($formattedParent, $service);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string  $parent       Resource name of the parent workspace.
+     *                              Of the form `projects/{project_id}`.
+     * @param Service $service      The `Service` to create.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type string $serviceId
+     *          Optional. The Service id to use for this Service. If omitted, an id will be
+     *          generated instead. Must match the pattern [a-z0-9\-]+
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\Service
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createService($parent, $service, array $optionalArgs = [])
+    {
+        $request = new CreateServiceRequest();
+        $request->setParent($parent);
+        $request->setService($service);
+        if (isset($optionalArgs['serviceId'])) {
+            $request->setServiceId($optionalArgs['serviceId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateService',
+            Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get the named `Service`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $formattedName = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
+     *     $response = $serviceMonitoringServiceClient->getService($formattedName);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the `Service`.
+     *                             Of the form `projects/{project_id}/services/{service_id}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\Service
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getService($name, array $optionalArgs = [])
+    {
+        $request = new GetServiceRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetService',
+            Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * List `Service`s for this workspace.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $formattedParent = $serviceMonitoringServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -366,28 +466,36 @@ class MetricServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServices($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {
-     *     $metricServiceClient->close();
+     *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
+     * @param string $parent       Resource name of the parent `Workspace`.
+     *                             Of the form `projects/{project_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type string $filter
-     *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
-     *          the descriptors to be returned.  The filter can reference
-     *          the descriptor's type and labels. For example, the
-     *          following filter returns only Google Compute Engine descriptors
-     *          that have an `id` label:
+     *          A filter specifying what `Service`s to return. The filter currently
+     *          supports the following fields:
      *
-     *              resource.type = starts_with("gce_") AND resource.label:id
+     *              - `identifier_case`
+     *              - `app_engine.module_id`
+     *              - `cloud_endpoints.service`
+     *              - `cluster_istio.location`
+     *              - `cluster_istio.cluster_name`
+     *              - `cluster_istio.service_namespace`
+     *              - `cluster_istio.service_name`
+     *
+     *          `identifier_case` refers to which option in the identifier oneof is
+     *          populated. For example, the filter `identifier_case = "CUSTOM"` would match
+     *          all services with a value for the `custom` field. Valid options are
+     *          "CUSTOM", "APP_ENGINE", "CLOUD_ENDPOINTS", and "CLUSTER_ISTIO".
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -409,10 +517,10 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listMonitoredResourceDescriptors($name, array $optionalArgs = [])
+    public function listServices($parent, array $optionalArgs = [])
     {
-        $request = new ListMonitoredResourceDescriptorsRequest();
-        $request->setName($name);
+        $request = new ListServicesRequest();
+        $request->setParent($parent);
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -424,41 +532,41 @@ class MetricServiceGapicClient
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
+          'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
-            'ListMonitoredResourceDescriptors',
+            'ListServices',
             $optionalArgs,
-            ListMonitoredResourceDescriptorsResponse::class,
+            ListServicesResponse::class,
             $request
         );
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a Stackdriver account.
+     * Update this `Service`.
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
-     *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
+     *     $service = new Service();
+     *     $response = $serviceMonitoringServiceClient->updateService($service);
      * } finally {
-     *     $metricServiceClient->close();
+     *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The monitored resource descriptor to get.  The format is
-     *                             `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
-     *                             The `{resource_type}` is a predefined type, such as
-     *                             `cloudsql_database`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param Service $service      The `Service` to draw updates from.
+     *                              The given `name` specifies the resource to update.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
+     *     @type FieldMask $updateMask
+     *          A set of field paths defining which fields to use for the update.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -466,253 +574,50 @@ class MetricServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Api\MonitoredResourceDescriptor
+     * @return \Google\Cloud\Monitoring\V3\Service
      *
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function getMonitoredResourceDescriptor($name, array $optionalArgs = [])
+    public function updateService($service, array $optionalArgs = [])
     {
-        $request = new GetMonitoredResourceDescriptorRequest();
-        $request->setName($name);
+        $request = new UpdateServiceRequest();
+        $request->setService($service);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
+          'service.name' => $request->getService()->getName(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->startCall(
-            'GetMonitoredResourceDescriptor',
-            MonitoredResourceDescriptor::class,
+            'UpdateService',
+            Service::class,
             $optionalArgs,
             $request
         )->wait();
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require a Stackdriver account.
+     * Soft delete this `Service`.
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
+     *     $formattedName = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
+     *     $serviceMonitoringServiceClient->deleteService($formattedName);
      * } finally {
-     *     $metricServiceClient->close();
+     *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         The project on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type string $filter
-     *          If this field is empty, all custom and
-     *          system-defined metric descriptors are returned.
-     *          Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
-     *          specifies which metric descriptors are to be
-     *          returned. For example, the following filter matches all
-     *          [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
-     *
-     *              metric.type = starts_with("custom.googleapis.com/")
-     *     @type int $pageSize
-     *          The maximum number of resources contained in the underlying API
-     *          response. The API may return fewer values in a page, even if
-     *          there are additional values to be retrieved.
-     *     @type string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function listMetricDescriptors($name, array $optionalArgs = [])
-    {
-        $request = new ListMetricDescriptorsRequest();
-        $request->setName($name);
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->getPagedListResponse(
-            'ListMetricDescriptors',
-            $optionalArgs,
-            ListMetricDescriptorsResponse::class,
-            $request
-        );
-    }
-
-    /**
-     * Gets a single metric descriptor. This method does not require a Stackdriver account.
-     *
-     * Sample code:
-     * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
-     * try {
-     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-     *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
-     * } finally {
-     *     $metricServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example value of `{metric_id}` is
-     *                             `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Api\MetricDescriptor
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function getMetricDescriptor($name, array $optionalArgs = [])
-    {
-        $request = new GetMetricDescriptorRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'GetMetricDescriptor',
-            MetricDescriptor::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates a new metric descriptor.
-     * User-created metric descriptors define
-     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
-     *
-     * Sample code:
-     * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
-     * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     $metricDescriptor = new Google\Cloud\Monitoring\V3\MetricDescriptor();
-     *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
-     * } finally {
-     *     $metricServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string           $name             The project on which to execute the request. The format is
-     *                                           `"projects/{project_id_or_number}"`.
-     * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     *                                           descriptor.
-     * @param array            $optionalArgs     {
-     *                                           Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Api\MetricDescriptor
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createMetricDescriptor($name, $metricDescriptor, array $optionalArgs = [])
-    {
-        $request = new CreateMetricDescriptorRequest();
-        $request->setName($name);
-        $request->setMetricDescriptor($metricDescriptor);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateMetricDescriptor',
-            MetricDescriptor::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a metric descriptor. Only user-created
-     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be deleted.
-     *
-     * Sample code:
-     * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
-     * try {
-     *     $formattedName = $metricServiceClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-     *     $metricServiceClient->deleteMetricDescriptor($formattedName);
-     * } finally {
-     *     $metricServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         The metric descriptor on which to execute the request. The format is
-     *                             `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
-     *                             An example of `{metric_id}` is:
-     *                             `"custom.googleapis.com/my_test_metric"`.
+     * @param string $name         Resource name of the `Service` to delete.
+     *                             Of the form `projects/{project_id}/service/{service_id}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -726,9 +631,9 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function deleteMetricDescriptor($name, array $optionalArgs = [])
+    public function deleteService($name, array $optionalArgs = [])
     {
-        $request = new DeleteMetricDescriptorRequest();
+        $request = new DeleteServiceRequest();
         $request->setName($name);
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -739,7 +644,7 @@ class MetricServiceGapicClient
             : $requestParams->getHeader();
 
         return $this->startCall(
-            'DeleteMetricDescriptor',
+            'DeleteService',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -747,18 +652,139 @@ class MetricServiceGapicClient
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Stackdriver account.
+     * Create a `ServiceLevelObjective` for the given `Service`.
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     $filter = '';
-     *     $interval = new Google\Cloud\Monitoring\V3\TimeInterval();
-     *     $view = Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView::FULL;
+     *     $formattedParent = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
+     *     $serviceLevelObjective = new ServiceLevelObjective();
+     *     $response = $serviceMonitoringServiceClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                $parent                Resource name of the parent `Service`.
+     *                                                     Of the form `projects/{project_id}/services/{service_id}`.
+     * @param ServiceLevelObjective $serviceLevelObjective The `ServiceLevelObjective` to create.
+     *                                                     The provided `name` will be respected if no `ServiceLevelObjective` exists
+     *                                                     with this name.
+     * @param array                 $optionalArgs          {
+     *                                                     Optional.
+     *
+     *     @type string $serviceLevelObjectiveId
+     *          Optional. The ServiceLevelObjective id to use for this
+     *          ServiceLevelObjective. If omitted, an id will be generated instead. Must
+     *          match the pattern [a-z0-9\-]+
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createServiceLevelObjective($parent, $serviceLevelObjective, array $optionalArgs = [])
+    {
+        $request = new CreateServiceLevelObjectiveRequest();
+        $request->setParent($parent);
+        $request->setServiceLevelObjective($serviceLevelObjective);
+        if (isset($optionalArgs['serviceLevelObjectiveId'])) {
+            $request->setServiceLevelObjectiveId($optionalArgs['serviceLevelObjectiveId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateServiceLevelObjective',
+            ServiceLevelObjective::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get a `ServiceLevelObjective` by name.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $formattedName = $serviceMonitoringServiceClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+     *     $response = $serviceMonitoringServiceClient->getServiceLevelObjective($formattedName);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the `ServiceLevelObjective` to get.
+     *                             Of the form
+     *                             `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $view
+     *          View of the `ServiceLevelObjective` to return. If `DEFAULT`, return the
+     *          `ServiceLevelObjective` as originally defined. If `EXPLICIT` and the
+     *          `ServiceLevelObjective` is defined in terms of a `BasicSli`, replace the
+     *          `BasicSli` with a `RequestBasedSli` spelling out how the SLI is computed.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ServiceLevelObjective\View}
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function getServiceLevelObjective($name, array $optionalArgs = [])
+    {
+        $request = new GetServiceLevelObjectiveRequest();
+        $request->setName($name);
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'GetServiceLevelObjective',
+            ServiceLevelObjective::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * List the `ServiceLevelObjective`s for the given `Service`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $formattedParent = $serviceMonitoringServiceClient->serviceName('[PROJECT]', '[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -769,41 +795,22 @@ class MetricServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+     *     $pagedResponse = $serviceMonitoringServiceClient->listServiceLevelObjectives($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {
-     *     $metricServiceClient->close();
+     *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string $name   The project on which to execute the request. The format is
-     *                       "projects/{project_id_or_number}".
-     * @param string $filter A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
-     *                       series should be returned.  The filter must specify a single metric type,
-     *                       and can additionally specify metric labels and other information. For
-     *                       example:
+     * @param string $parent       Resource name of the parent `Service`.
+     *                             Of the form `projects/{project_id}/services/{service_id}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-     *         metric.labels.instance_name = "my-instance-name"
-     * @param TimeInterval $interval     The time interval for which results should be returned. Only time series
-     *                                   that contain data points in the specified interval are included
-     *                                   in the response.
-     * @param int          $view         Specifies which information is returned about the time series.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView}
-     * @param array        $optionalArgs {
-     *                                   Optional.
-     *
-     *     @type Aggregation $aggregation
-     *          Specifies the alignment of data points in individual time series as
-     *          well as how to combine the retrieved time series across specified labels.
-     *
-     *          By default (if no `aggregation` is explicitly specified), the raw time
-     *          series data is returned.
-     *     @type string $orderBy
-     *          Unsupported: must be left blank. The points in each time series are
-     *          currently returned in reverse time order (most recent to oldest).
+     *     @type string $filter
+     *          A filter specifying what `ServiceLevelObjective`s to return.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -813,6 +820,12 @@ class MetricServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
+     *     @type int $view
+     *          View of the `ServiceLevelObjective`s to return. If `DEFAULT`, return each
+     *          `ServiceLevelObjective` as originally defined. If `EXPLICIT` and the
+     *          `ServiceLevelObjective` is defined in terms of a `BasicSli`, replace the
+     *          `BasicSli` with a `RequestBasedSli` spelling out how the SLI is computed.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Monitoring\V3\ServiceLevelObjective\View}
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -825,18 +838,12 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function listTimeSeries($name, $filter, $interval, $view, array $optionalArgs = [])
+    public function listServiceLevelObjectives($parent, array $optionalArgs = [])
     {
-        $request = new ListTimeSeriesRequest();
-        $request->setName($name);
-        $request->setFilter($filter);
-        $request->setInterval($interval);
-        $request->setView($view);
-        if (isset($optionalArgs['aggregation'])) {
-            $request->setAggregation($optionalArgs['aggregation']);
-        }
-        if (isset($optionalArgs['orderBy'])) {
-            $request->setOrderBy($optionalArgs['orderBy']);
+        $request = new ListServiceLevelObjectivesRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
         }
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
@@ -844,51 +851,100 @@ class MetricServiceGapicClient
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
+          'parent' => $request->getParent(),
         ]);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
         return $this->getPagedListResponse(
-            'ListTimeSeries',
+            'ListServiceLevelObjectives',
             $optionalArgs,
-            ListTimeSeriesResponse::class,
+            ListServiceLevelObjectivesResponse::class,
             $request
         );
     }
 
     /**
-     * Creates or adds data to one or more time series.
-     * The response is empty if all time series in the request were written.
-     * If any time series could not be written, a corresponding failure message is
-     * included in the error response.
+     * Update the given `ServiceLevelObjective`.
      *
      * Sample code:
      * ```
-     * $metricServiceClient = new Google\Cloud\Monitoring\V3\MetricServiceClient();
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
      * try {
-     *     $formattedName = $metricServiceClient->projectName('[PROJECT]');
-     *     $timeSeries = [];
-     *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
+     *     $serviceLevelObjective = new ServiceLevelObjective();
+     *     $response = $serviceMonitoringServiceClient->updateServiceLevelObjective($serviceLevelObjective);
      * } finally {
-     *     $metricServiceClient->close();
+     *     $serviceMonitoringServiceClient->close();
      * }
      * ```
      *
-     * @param string       $name       The project on which to execute the request. The format is
-     *                                 `"projects/{project_id_or_number}"`.
-     * @param TimeSeries[] $timeSeries The new data to be added to a list of time series.
-     *                                 Adds at most one data point to each of several time series.  The new data
-     *                                 point must be more recent than any other point in its time series.  Each
-     *                                 `TimeSeries` value must fully specify a unique time series by supplying
-     *                                 all label values for the metric and the monitored resource.
+     * @param ServiceLevelObjective $serviceLevelObjective The `ServiceLevelObjective` to draw updates from.
+     *                                                     The given `name` specifies the resource to update.
+     * @param array                 $optionalArgs          {
+     *                                                     Optional.
      *
-     * The maximum number of `TimeSeries` objects per `Create` request is 200.
-     * @param array $optionalArgs {
-     *                            Optional.
+     *     @type FieldMask $updateMask
+     *          A set of field paths defining which fields to use for the update.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateServiceLevelObjective($serviceLevelObjective, array $optionalArgs = [])
+    {
+        $request = new UpdateServiceLevelObjectiveRequest();
+        $request->setServiceLevelObjective($serviceLevelObjective);
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'service_level_objective.name' => $request->getServiceLevelObjective()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateServiceLevelObjective',
+            ServiceLevelObjective::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Delete the given `ServiceLevelObjective`.
+     *
+     * Sample code:
+     * ```
+     * $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
+     * try {
+     *     $formattedName = $serviceMonitoringServiceClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+     *     $serviceMonitoringServiceClient->deleteServiceLevelObjective($formattedName);
+     * } finally {
+     *     $serviceMonitoringServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Resource name of the `ServiceLevelObjective` to delete.
+     *                             Of the form
+     *                             `projects/{project_id}/services/{service_id}/serviceLevelObjectives/{slo_name}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -900,11 +956,10 @@ class MetricServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function createTimeSeries($name, $timeSeries, array $optionalArgs = [])
+    public function deleteServiceLevelObjective($name, array $optionalArgs = [])
     {
-        $request = new CreateTimeSeriesRequest();
+        $request = new DeleteServiceLevelObjectiveRequest();
         $request->setName($name);
-        $request->setTimeSeries($timeSeries);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'name' => $request->getName(),
@@ -914,7 +969,7 @@ class MetricServiceGapicClient
             : $requestParams->getHeader();
 
         return $this->startCall(
-            'CreateTimeSeries',
+            'DeleteServiceLevelObjective',
             GPBEmpty::class,
             $optionalArgs,
             $request

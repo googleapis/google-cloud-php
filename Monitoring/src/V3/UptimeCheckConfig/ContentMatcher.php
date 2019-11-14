@@ -9,15 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Used to perform string matching. It allows substring and regular
- * expressions, together with their negations.
+ * Optional. Used to perform content matching. This allows matching based on
+ * substrings and regular expressions, together with their negations. Only the
+ * first 4&nbsp;MB of an HTTP or HTTPS check's response (and the first
+ * 1&nbsp;MB of a TCP check's response) are examined for purposes of content
+ * matching.
  *
  * Generated from protobuf message <code>google.monitoring.v3.UptimeCheckConfig.ContentMatcher</code>
  */
 class ContentMatcher extends \Google\Protobuf\Internal\Message
 {
     /**
-     * String or regex content to match (max 1024 bytes)
+     * String or regex content to match. Maximum 1024 bytes. An empty `content`
+     * string indicates no content matching is to be performed.
      *
      * Generated from protobuf field <code>string content = 1;</code>
      */
@@ -37,7 +41,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $content
-     *           String or regex content to match (max 1024 bytes)
+     *           String or regex content to match. Maximum 1024 bytes. An empty `content`
+     *           string indicates no content matching is to be performed.
      *     @type int $matcher
      *           The type of content matcher that will be applied to the server output,
      *           compared to the `content` string when the check is run.
@@ -49,7 +54,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String or regex content to match (max 1024 bytes)
+     * String or regex content to match. Maximum 1024 bytes. An empty `content`
+     * string indicates no content matching is to be performed.
      *
      * Generated from protobuf field <code>string content = 1;</code>
      * @return string
@@ -60,7 +66,8 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * String or regex content to match (max 1024 bytes)
+     * String or regex content to match. Maximum 1024 bytes. An empty `content`
+     * string indicates no content matching is to be performed.
      *
      * Generated from protobuf field <code>string content = 1;</code>
      * @param string $var
