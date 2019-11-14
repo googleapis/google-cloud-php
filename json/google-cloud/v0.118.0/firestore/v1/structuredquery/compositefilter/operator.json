@@ -1,0 +1,1 @@
+{"id":"firestore\/v1\/structuredquery\/compositefilter\/operator","type":"","title":"Google\\Cloud\\Firestore\\V1\\StructuredQuery\\CompositeFilter\\Operator","name":"Operator","description":"<p>A composite filter operator.<\/p>\n<p>Protobuf type <code>google.firestore.v1.StructuredQuery.CompositeFilter.Operator<\/code><\/p>","examples":[],"resources":[],"methods":[]}

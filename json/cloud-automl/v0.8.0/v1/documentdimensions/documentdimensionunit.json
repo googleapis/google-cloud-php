@@ -1,0 +1,1 @@
+{"id":"automl\/v1\/documentdimensions\/documentdimensionunit","type":"","title":"Google\\Cloud\\AutoMl\\V1\\DocumentDimensions\\DocumentDimensionUnit","name":"DocumentDimensionUnit","description":"<p>Unit of the document dimension.<\/p>\n<p>Protobuf type <code>google.cloud.automl.v1.DocumentDimensions.DocumentDimensionUnit<\/code><\/p>","examples":[],"resources":[],"methods":[]}
