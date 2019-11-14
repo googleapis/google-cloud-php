@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
+ * The response for
+ * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
  *
  * Generated from protobuf message <code>google.spanner.v1.BatchCreateSessionsResponse</code>
  */
