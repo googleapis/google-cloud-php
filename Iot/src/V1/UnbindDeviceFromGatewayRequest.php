@@ -16,25 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the registry. For example,
+     * Required. The name of the registry. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The value of `gateway_id` can be either the device numeric ID or the
+     * Required. The value of `gateway_id` can be either the device numeric ID or the
      * user-defined device identifier.
      *
-     * Generated from protobuf field <code>string gateway_id = 2;</code>
+     * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $gateway_id = '';
     /**
-     * The device to disassociate from the specified gateway. The value of
+     * Required. The device to disassociate from the specified gateway. The value of
      * `device_id` can be either the device numeric ID or the user-defined device
      * identifier.
      *
-     * Generated from protobuf field <code>string device_id = 3;</code>
+     * Generated from protobuf field <code>string device_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $device_id = '';
 
@@ -45,13 +45,13 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The name of the registry. For example,
+     *           Required. The name of the registry. For example,
      *           `projects/example-project/locations/us-central1/registries/my-registry`.
      *     @type string $gateway_id
-     *           The value of `gateway_id` can be either the device numeric ID or the
+     *           Required. The value of `gateway_id` can be either the device numeric ID or the
      *           user-defined device identifier.
      *     @type string $device_id
-     *           The device to disassociate from the specified gateway. The value of
+     *           Required. The device to disassociate from the specified gateway. The value of
      *           `device_id` can be either the device numeric ID or the user-defined device
      *           identifier.
      * }
@@ -62,10 +62,10 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the registry. For example,
+     * Required. The name of the registry. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -74,10 +74,10 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the registry. For example,
+     * Required. The name of the registry. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -90,10 +90,10 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of `gateway_id` can be either the device numeric ID or the
+     * Required. The value of `gateway_id` can be either the device numeric ID or the
      * user-defined device identifier.
      *
-     * Generated from protobuf field <code>string gateway_id = 2;</code>
+     * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getGatewayId()
@@ -102,10 +102,10 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of `gateway_id` can be either the device numeric ID or the
+     * Required. The value of `gateway_id` can be either the device numeric ID or the
      * user-defined device identifier.
      *
-     * Generated from protobuf field <code>string gateway_id = 2;</code>
+     * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -118,11 +118,11 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device to disassociate from the specified gateway. The value of
+     * Required. The device to disassociate from the specified gateway. The value of
      * `device_id` can be either the device numeric ID or the user-defined device
      * identifier.
      *
-     * Generated from protobuf field <code>string device_id = 3;</code>
+     * Generated from protobuf field <code>string device_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDeviceId()
@@ -131,11 +131,11 @@ class UnbindDeviceFromGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device to disassociate from the specified gateway. The value of
+     * Required. The device to disassociate from the specified gateway. The value of
      * `device_id` can be either the device numeric ID or the user-defined device
      * identifier.
      *
-     * Generated from protobuf field <code>string device_id = 3;</code>
+     * Generated from protobuf field <code>string device_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

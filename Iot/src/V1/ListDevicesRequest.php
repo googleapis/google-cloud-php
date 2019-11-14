@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDevicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The device registry path. Required. For example,
+     * Required. The device registry path. Required. For example,
      * `projects/my-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -75,7 +75,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The device registry path. Required. For example,
+     *           Required. The device registry path. Required. For example,
      *           `projects/my-project/locations/us-central1/registries/my-registry`.
      *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $device_num_ids
      *           A list of device numeric IDs. If empty, this field is ignored. Maximum
@@ -106,10 +106,10 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device registry path. Required. For example,
+     * Required. The device registry path. Required. For example,
      * `projects/my-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -118,10 +118,10 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The device registry path. Required. For example,
+     * Required. The device registry path. Required. For example,
      * `projects/my-project/locations/us-central1/registries/my-registry`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
