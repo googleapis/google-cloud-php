@@ -17,40 +17,40 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to update.
+     * Required. Deprecated. The name of the cluster to update.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * Deprecated. The name of the node pool to update.
+     * Required. Deprecated. The name of the node pool to update.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_pool_id = '';
     /**
-     * The desired node count for the pool.
+     * Required. The desired node count for the pool.
      *
-     * Generated from protobuf field <code>int32 node_count = 5;</code>
+     * Generated from protobuf field <code>int32 node_count = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_count = 0;
     /**
@@ -69,22 +69,22 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to update.
+     *           Required. Deprecated. The name of the cluster to update.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $node_pool_id
-     *           Deprecated. The name of the node pool to update.
+     *           Required. Deprecated. The name of the node pool to update.
      *           This field has been deprecated and replaced by the name field.
      *     @type int $node_count
-     *           The desired node count for the pool.
+     *           Required. The desired node count for the pool.
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node pool to set
      *           size.
@@ -97,11 +97,11 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -110,11 +110,11 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -127,12 +127,12 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -141,12 +141,12 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -159,10 +159,10 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to update.
+     * Required. Deprecated. The name of the cluster to update.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -171,10 +171,10 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to update.
+     * Required. Deprecated. The name of the cluster to update.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -187,10 +187,10 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the node pool to update.
+     * Required. Deprecated. The name of the node pool to update.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodePoolId()
@@ -199,10 +199,10 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the node pool to update.
+     * Required. Deprecated. The name of the node pool to update.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -215,9 +215,9 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired node count for the pool.
+     * Required. The desired node count for the pool.
      *
-     * Generated from protobuf field <code>int32 node_count = 5;</code>
+     * Generated from protobuf field <code>int32 node_count = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getNodeCount()
@@ -226,9 +226,9 @@ class SetNodePoolSizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired node count for the pool.
+     * Required. The desired node count for the pool.
      *
-     * Generated from protobuf field <code>int32 node_count = 5;</code>
+     * Generated from protobuf field <code>int32 node_count = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

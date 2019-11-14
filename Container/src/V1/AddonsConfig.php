@@ -33,8 +33,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     private $horizontal_pod_autoscaling = null;
     /**
      * Configuration for the Kubernetes Dashboard.
+     * This addon is deprecated, and will be disabled in 1.15. It is recommended
+     * to use the Cloud Console to manage and monitor your Kubernetes clusters,
+     * workloads and applications. For more information, see:
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      *
-     * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3;</code>
+     * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3 [deprecated = true];</code>
      */
     private $kubernetes_dashboard = null;
     /**
@@ -45,6 +49,13 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicyConfig network_policy_config = 4;</code>
      */
     private $network_policy_config = null;
+    /**
+     * Configuration for the Cloud Run addon, which allows the user to use a
+     * managed Knative service.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
+     */
+    private $cloud_run_config = null;
 
     /**
      * Constructor.
@@ -61,10 +72,17 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           has based on the resource usage of the existing pods.
      *     @type \Google\Cloud\Container\V1\KubernetesDashboard $kubernetes_dashboard
      *           Configuration for the Kubernetes Dashboard.
+     *           This addon is deprecated, and will be disabled in 1.15. It is recommended
+     *           to use the Cloud Console to manage and monitor your Kubernetes clusters,
+     *           workloads and applications. For more information, see:
+     *           https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      *     @type \Google\Cloud\Container\V1\NetworkPolicyConfig $network_policy_config
      *           Configuration for NetworkPolicy. This only tracks whether the addon
      *           is enabled or not on the Master, it does not track whether network policy
      *           is enabled for the nodes.
+     *     @type \Google\Cloud\Container\V1\CloudRunConfig $cloud_run_config
+     *           Configuration for the Cloud Run addon, which allows the user to use a
+     *           managed Knative service.
      * }
      */
     public function __construct($data = NULL) {
@@ -132,8 +150,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for the Kubernetes Dashboard.
+     * This addon is deprecated, and will be disabled in 1.15. It is recommended
+     * to use the Cloud Console to manage and monitor your Kubernetes clusters,
+     * workloads and applications. For more information, see:
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      *
-     * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3;</code>
+     * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\KubernetesDashboard
      */
     public function getKubernetesDashboard()
@@ -143,8 +165,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for the Kubernetes Dashboard.
+     * This addon is deprecated, and will be disabled in 1.15. It is recommended
+     * to use the Cloud Console to manage and monitor your Kubernetes clusters,
+     * workloads and applications. For more information, see:
+     * https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      *
-     * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3;</code>
+     * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\KubernetesDashboard $var
      * @return $this
      */
@@ -182,6 +208,34 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkPolicyConfig::class);
         $this->network_policy_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Cloud Run addon, which allows the user to use a
+     * managed Knative service.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
+     * @return \Google\Cloud\Container\V1\CloudRunConfig
+     */
+    public function getCloudRunConfig()
+    {
+        return $this->cloud_run_config;
+    }
+
+    /**
+     * Configuration for the Cloud Run addon, which allows the user to use a
+     * managed Knative service.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
+     * @param \Google\Cloud\Container\V1\CloudRunConfig $var
+     * @return $this
+     */
+    public function setCloudRunConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CloudRunConfig::class);
+        $this->cloud_run_config = $var;
 
         return $this;
     }

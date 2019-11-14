@@ -16,38 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetLocationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * Required. The desired list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located. Changing the locations a cluster is in will result
      * in nodes being either created or removed from the cluster, depending on
      * whether locations are being added or removed.
      * This list must always include the cluster's primary zone.
      *
-     * Generated from protobuf field <code>repeated string locations = 4;</code>
+     * Generated from protobuf field <code>repeated string locations = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $locations;
     /**
@@ -65,20 +65,20 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to upgrade.
+     *           Required. Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
-     *           The desired list of Google Compute Engine
-     *           [locations](/compute/docs/zones#available) in which the cluster's nodes
+     *           Required. The desired list of Google Compute Engine
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      *           should be located. Changing the locations a cluster is in will result
      *           in nodes being either created or removed from the cluster, depending on
      *           whether locations are being added or removed.
@@ -94,11 +94,11 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -107,11 +107,11 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -124,12 +124,12 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -138,12 +138,12 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -156,10 +156,10 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -168,10 +168,10 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -184,14 +184,14 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * Required. The desired list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located. Changing the locations a cluster is in will result
      * in nodes being either created or removed from the cluster, depending on
      * whether locations are being added or removed.
      * This list must always include the cluster's primary zone.
      *
-     * Generated from protobuf field <code>repeated string locations = 4;</code>
+     * Generated from protobuf field <code>repeated string locations = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
@@ -200,14 +200,14 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * Required. The desired list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located. Changing the locations a cluster is in will result
      * in nodes being either created or removed from the cluster, depending on
      * whether locations are being added or removed.
      * This list must always include the cluster's primary zone.
      *
-     * Generated from protobuf field <code>repeated string locations = 4;</code>
+     * Generated from protobuf field <code>repeated string locations = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

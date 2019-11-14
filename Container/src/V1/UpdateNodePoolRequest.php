@@ -16,38 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone = '';
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_id = '';
     /**
-     * Deprecated. The name of the node pool to upgrade.
+     * Required. Deprecated. The name of the node pool to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_pool_id = '';
     /**
-     * The Kubernetes version to change the nodes to (typically an
+     * Required. The Kubernetes version to change the nodes to (typically an
      * upgrade).
      * Users may specify either explicit versions offered by Kubernetes Engine or
      * version aliases, which have the following behavior:
@@ -57,13 +57,13 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * - "1.X.Y-gke.N": picks an explicit Kubernetes version
      * - "-": picks the Kubernetes master version
      *
-     * Generated from protobuf field <code>string node_version = 5;</code>
+     * Generated from protobuf field <code>string node_version = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_version = '';
     /**
-     * The desired image type for the node pool.
+     * Required. The desired image type for the node pool.
      *
-     * Generated from protobuf field <code>string image_type = 6;</code>
+     * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $image_type = '';
     /**
@@ -82,22 +82,22 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Deprecated. The Google Developers Console [project ID or project
+     *           Required. Deprecated. The Google Developers Console [project ID or project
      *           number](https://support.google.com/cloud/answer/6158840).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
-     *           Deprecated. The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           Required. Deprecated. The name of the Google Compute Engine
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $cluster_id
-     *           Deprecated. The name of the cluster to upgrade.
+     *           Required. Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $node_pool_id
-     *           Deprecated. The name of the node pool to upgrade.
+     *           Required. Deprecated. The name of the node pool to upgrade.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $node_version
-     *           The Kubernetes version to change the nodes to (typically an
+     *           Required. The Kubernetes version to change the nodes to (typically an
      *           upgrade).
      *           Users may specify either explicit versions offered by Kubernetes Engine or
      *           version aliases, which have the following behavior:
@@ -107,7 +107,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
      *           - "-": picks the Kubernetes master version
      *     @type string $image_type
-     *           The desired image type for the node pool.
+     *           Required. The desired image type for the node pool.
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
@@ -120,11 +120,11 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProjectId()
@@ -133,11 +133,11 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The Google Developers Console [project ID or project
+     * Required. Deprecated. The Google Developers Console [project ID or project
      * number](https://support.google.com/cloud/answer/6158840).
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * Generated from protobuf field <code>string project_id = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -150,12 +150,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getZone()
@@ -164,12 +164,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * Required. Deprecated. The name of the Google Compute Engine
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * Generated from protobuf field <code>string zone = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -182,10 +182,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterId()
@@ -194,10 +194,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the cluster to upgrade.
+     * Required. Deprecated. The name of the cluster to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -210,10 +210,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the node pool to upgrade.
+     * Required. Deprecated. The name of the node pool to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodePoolId()
@@ -222,10 +222,10 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated. The name of the node pool to upgrade.
+     * Required. Deprecated. The name of the node pool to upgrade.
      * This field has been deprecated and replaced by the name field.
      *
-     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -238,7 +238,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes version to change the nodes to (typically an
+     * Required. The Kubernetes version to change the nodes to (typically an
      * upgrade).
      * Users may specify either explicit versions offered by Kubernetes Engine or
      * version aliases, which have the following behavior:
@@ -248,7 +248,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * - "1.X.Y-gke.N": picks an explicit Kubernetes version
      * - "-": picks the Kubernetes master version
      *
-     * Generated from protobuf field <code>string node_version = 5;</code>
+     * Generated from protobuf field <code>string node_version = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodeVersion()
@@ -257,7 +257,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes version to change the nodes to (typically an
+     * Required. The Kubernetes version to change the nodes to (typically an
      * upgrade).
      * Users may specify either explicit versions offered by Kubernetes Engine or
      * version aliases, which have the following behavior:
@@ -267,7 +267,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * - "1.X.Y-gke.N": picks an explicit Kubernetes version
      * - "-": picks the Kubernetes master version
      *
-     * Generated from protobuf field <code>string node_version = 5;</code>
+     * Generated from protobuf field <code>string node_version = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -280,9 +280,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired image type for the node pool.
+     * Required. The desired image type for the node pool.
      *
-     * Generated from protobuf field <code>string image_type = 6;</code>
+     * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getImageType()
@@ -291,9 +291,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The desired image type for the node pool.
+     * Required. The desired image type for the node pool.
      *
-     * Generated from protobuf field <code>string image_type = 6;</code>
+     * Generated from protobuf field <code>string image_type = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

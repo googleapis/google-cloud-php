@@ -23,7 +23,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     private $accelerator_count = 0;
     /**
      * The accelerator type resource name. List of supported accelerators
-     * [here](/compute/docs/gpus/#Introduction)
+     * [here](https://cloud.google.com/compute/docs/gpus)
      *
      * Generated from protobuf field <code>string accelerator_type = 2;</code>
      */
@@ -39,7 +39,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
      *           The number of the accelerator cards exposed to an instance.
      *     @type string $accelerator_type
      *           The accelerator type resource name. List of supported accelerators
-     *           [here](/compute/docs/gpus/#Introduction)
+     *           [here](https://cloud.google.com/compute/docs/gpus)
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +75,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The accelerator type resource name. List of supported accelerators
-     * [here](/compute/docs/gpus/#Introduction)
+     * [here](https://cloud.google.com/compute/docs/gpus)
      *
      * Generated from protobuf field <code>string accelerator_type = 2;</code>
      * @return string
@@ -87,7 +87,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The accelerator type resource name. List of supported accelerators
-     * [here](/compute/docs/gpus/#Introduction)
+     * [here](https://cloud.google.com/compute/docs/gpus)
      *
      * Generated from protobuf field <code>string accelerator_type = 2;</code>
      * @param string $var

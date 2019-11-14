@@ -15,6 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class MaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Exceptions to maintenance window. Non-emergency maintenance should not
+     * occur in these windows.
+     *
+     * Generated from protobuf field <code>map<string, .google.container.v1.TimeWindow> maintenance_exclusions = 4;</code>
+     */
+    private $maintenance_exclusions;
     protected $policy;
 
     /**
@@ -25,6 +32,13 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Container\V1\DailyMaintenanceWindow $daily_maintenance_window
      *           DailyMaintenanceWindow specifies a daily maintenance operation window.
+     *     @type \Google\Cloud\Container\V1\RecurringTimeWindow $recurring_window
+     *           RecurringWindow specifies some number of recurring time periods for
+     *           maintenance to occur. The time windows may be overlapping. If no
+     *           maintenance windows are set, maintenance can occur at any time.
+     *     @type array|\Google\Protobuf\Internal\MapField $maintenance_exclusions
+     *           Exceptions to maintenance window. Non-emergency maintenance should not
+     *           occur in these windows.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,6 +68,64 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DailyMaintenanceWindow::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * RecurringWindow specifies some number of recurring time periods for
+     * maintenance to occur. The time windows may be overlapping. If no
+     * maintenance windows are set, maintenance can occur at any time.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RecurringTimeWindow recurring_window = 3;</code>
+     * @return \Google\Cloud\Container\V1\RecurringTimeWindow
+     */
+    public function getRecurringWindow()
+    {
+        return $this->readOneof(3);
+    }
+
+    /**
+     * RecurringWindow specifies some number of recurring time periods for
+     * maintenance to occur. The time windows may be overlapping. If no
+     * maintenance windows are set, maintenance can occur at any time.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RecurringTimeWindow recurring_window = 3;</code>
+     * @param \Google\Cloud\Container\V1\RecurringTimeWindow $var
+     * @return $this
+     */
+    public function setRecurringWindow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RecurringTimeWindow::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Exceptions to maintenance window. Non-emergency maintenance should not
+     * occur in these windows.
+     *
+     * Generated from protobuf field <code>map<string, .google.container.v1.TimeWindow> maintenance_exclusions = 4;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getMaintenanceExclusions()
+    {
+        return $this->maintenance_exclusions;
+    }
+
+    /**
+     * Exceptions to maintenance window. Non-emergency maintenance should not
+     * occur in these windows.
+     *
+     * Generated from protobuf field <code>map<string, .google.container.v1.TimeWindow> maintenance_exclusions = 4;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setMaintenanceExclusions($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\TimeWindow::class);
+        $this->maintenance_exclusions = $arr;
 
         return $this;
     }

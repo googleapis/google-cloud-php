@@ -17,7 +17,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of this cluster. The name must be unique within this project
-     * and zone, and can be up to 40 characters with the following restrictions:
+     * and location (e.g. zone or region), and can be up to 40 characters with
+     * the following restrictions:
      * * Lowercase letters, numbers, and hyphens only.
      * * Must start with a letter.
      * * Must end with a number or a letter.
@@ -40,26 +41,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * "node_pool" object, since this configuration (along with the
      * "node_config") will be used to create a "NodePool" object with an
      * auto-generated name. Do not use this and a node_pool at the same time.
+     * This field is deprecated, use node_pool.initial_node_count instead.
      *
-     * Generated from protobuf field <code>int32 initial_node_count = 3;</code>
+     * Generated from protobuf field <code>int32 initial_node_count = 3 [deprecated = true];</code>
      */
     private $initial_node_count = 0;
     /**
      * Parameters used in creating the cluster's nodes.
-     * See `nodeConfig` for the description of its properties.
      * For requests, this field should only be used in lieu of a
      * "node_pool" object, since this configuration (along with the
      * "initial_node_count") will be used to create a "NodePool" object with an
      * auto-generated name. Do not use this and a node_pool at the same time.
      * For responses, this field will be populated with the node configuration of
-     * the first node pool.
+     * the first node pool. (For configuration of each node pool, see
+     * `node_pool.config`)
      * If unspecified, the defaults are used.
+     * This field is deprecated, use node_pool.config instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4 [deprecated = true];</code>
      */
     private $node_config = null;
     /**
      * The authentication information for accessing the master endpoint.
+     * If unspecified, the defaults are used:
+     * For clusters before v1.12, if master_auth is unspecified, `username` will
+     * be set to "admin", a random password will be generated, and a client
+     * certificate will be issued.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuth master_auth = 5;</code>
      */
@@ -67,6 +74,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
+     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     * service with Kubernetes-native resource model
      * * `logging.googleapis.com` - the Google Cloud Logging service.
      * * `none` - no logs will be exported from the cluster.
      * * if left as an empty string,`logging.googleapis.com` will be used.
@@ -86,7 +95,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $monitoring_service = '';
     /**
      * The name of the Google Compute Engine
-     * [network](/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
      * cluster is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -110,7 +119,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $addons_config = null;
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](/compute/docs/subnetworks) to which the
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
      * cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
@@ -126,7 +135,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $node_pools;
     /**
      * The list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
@@ -187,17 +196,62 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_policy = null;
     /**
+     * Configuration for Binary Authorization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization binary_authorization = 24;</code>
+     */
+    private $binary_authorization = null;
+    /**
+     * Cluster-level autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling autoscaling = 26;</code>
+     */
+    private $autoscaling = null;
+    /**
      * Configuration for cluster networking.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
      */
     private $network_config = null;
     /**
+     * The default constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool of this cluster. Only honored
+     * if cluster created with IP Alias support.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint default_max_pods_constraint = 30;</code>
+     */
+    private $default_max_pods_constraint = null;
+    /**
+     * Configuration for exporting resource usages. Resource usage export is
+     * disabled when this config is unspecified.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig resource_usage_export_config = 33;</code>
+     */
+    private $resource_usage_export_config = null;
+    /**
+     * Configuration controlling RBAC group membership information.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig authenticator_groups_config = 34;</code>
+     */
+    private $authenticator_groups_config = null;
+    /**
      * Configuration for private cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
      */
     private $private_cluster_config = null;
+    /**
+     * Configuration of etcd encryption.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption database_encryption = 38;</code>
+     */
+    private $database_encryption = null;
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling vertical_pod_autoscaling = 39;</code>
+     */
+    private $vertical_pod_autoscaling = null;
     /**
      * [Output only] Server-defined URL for the resource.
      *
@@ -206,7 +260,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $self_link = '';
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field is deprecated, use location instead.
      *
@@ -247,7 +301,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $current_master_version = '';
     /**
      * [Output only] Deprecated, use
-     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -278,7 +332,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
-     * range.
+     * range. This field will only be set when cluster is in route-based network
+     * mode.
      *
      * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109;</code>
      */
@@ -300,9 +355,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $instance_group_urls;
     /**
-     * [Output only] The number of nodes currently in the cluster.
+     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Call Kubernetes API directly to retrieve node information.
      *
-     * Generated from protobuf field <code>int32 current_node_count = 112;</code>
+     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
      */
     private $current_node_count = 0;
     /**
@@ -314,13 +370,33 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $expire_time = '';
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      * the cluster resides.
      *
      * Generated from protobuf field <code>string location = 114;</code>
      */
     private $location = '';
+    /**
+     * Enable the ability to use Cloud TPUs in this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_tpu = 115;</code>
+     */
+    private $enable_tpu = false;
+    /**
+     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `1.2.3.4/29`).
+     *
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116;</code>
+     */
+    private $tpu_ipv4_cidr_block = '';
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 118;</code>
+     */
+    private $conditions;
 
     /**
      * Constructor.
@@ -330,7 +406,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of this cluster. The name must be unique within this project
-     *           and zone, and can be up to 40 characters with the following restrictions:
+     *           and location (e.g. zone or region), and can be up to 40 characters with
+     *           the following restrictions:
      *           * Lowercase letters, numbers, and hyphens only.
      *           * Must start with a letter.
      *           * Must end with a number or a letter.
@@ -345,21 +422,29 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           "node_pool" object, since this configuration (along with the
      *           "node_config") will be used to create a "NodePool" object with an
      *           auto-generated name. Do not use this and a node_pool at the same time.
+     *           This field is deprecated, use node_pool.initial_node_count instead.
      *     @type \Google\Cloud\Container\V1\NodeConfig $node_config
      *           Parameters used in creating the cluster's nodes.
-     *           See `nodeConfig` for the description of its properties.
      *           For requests, this field should only be used in lieu of a
      *           "node_pool" object, since this configuration (along with the
      *           "initial_node_count") will be used to create a "NodePool" object with an
      *           auto-generated name. Do not use this and a node_pool at the same time.
      *           For responses, this field will be populated with the node configuration of
-     *           the first node pool.
+     *           the first node pool. (For configuration of each node pool, see
+     *           `node_pool.config`)
      *           If unspecified, the defaults are used.
+     *           This field is deprecated, use node_pool.config instead.
      *     @type \Google\Cloud\Container\V1\MasterAuth $master_auth
      *           The authentication information for accessing the master endpoint.
+     *           If unspecified, the defaults are used:
+     *           For clusters before v1.12, if master_auth is unspecified, `username` will
+     *           be set to "admin", a random password will be generated, and a client
+     *           certificate will be issued.
      *     @type string $logging_service
      *           The logging service the cluster should use to write logs.
      *           Currently available options:
+     *           * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     *           service with Kubernetes-native resource model
      *           * `logging.googleapis.com` - the Google Cloud Logging service.
      *           * `none` - no logs will be exported from the cluster.
      *           * if left as an empty string,`logging.googleapis.com` will be used.
@@ -371,7 +456,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           * if left as an empty string, `monitoring.googleapis.com` will be used.
      *     @type string $network
      *           The name of the Google Compute Engine
-     *           [network](/compute/docs/networks-and-firewalls#networks) to which the
+     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
      *           cluster is connected. If left unspecified, the `default` network
      *           will be used.
      *     @type string $cluster_ipv4_cidr
@@ -383,7 +468,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Configurations for the various addons available to run in the cluster.
      *     @type string $subnetwork
      *           The name of the Google Compute Engine
-     *           [subnetwork](/compute/docs/subnetworks) to which the
+     *           [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
      *           cluster is connected.
      *     @type \Google\Cloud\Container\V1\NodePool[]|\Google\Protobuf\Internal\RepeatedField $node_pools
      *           The node pools associated with this cluster.
@@ -391,7 +476,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           specified.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
      *           The list of Google Compute Engine
-     *           [locations](/compute/docs/zones#available) in which the cluster's nodes
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      *           should be located.
      *     @type bool $enable_kubernetes_alpha
      *           Kubernetes alpha features are enabled on this cluster. This includes alpha
@@ -415,15 +500,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           The configuration options for master authorized networks feature.
      *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
      *           Configure the maintenance policy for this cluster.
+     *     @type \Google\Cloud\Container\V1\BinaryAuthorization $binary_authorization
+     *           Configuration for Binary Authorization.
+     *     @type \Google\Cloud\Container\V1\ClusterAutoscaling $autoscaling
+     *           Cluster-level autoscaling configuration.
      *     @type \Google\Cloud\Container\V1\NetworkConfig $network_config
      *           Configuration for cluster networking.
+     *     @type \Google\Cloud\Container\V1\MaxPodsConstraint $default_max_pods_constraint
+     *           The default constraint on the maximum number of pods that can be run
+     *           simultaneously on a node in the node pool of this cluster. Only honored
+     *           if cluster created with IP Alias support.
+     *     @type \Google\Cloud\Container\V1\ResourceUsageExportConfig $resource_usage_export_config
+     *           Configuration for exporting resource usages. Resource usage export is
+     *           disabled when this config is unspecified.
+     *     @type \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $authenticator_groups_config
+     *           Configuration controlling RBAC group membership information.
      *     @type \Google\Cloud\Container\V1\PrivateClusterConfig $private_cluster_config
      *           Configuration for private cluster.
+     *     @type \Google\Cloud\Container\V1\DatabaseEncryption $database_encryption
+     *           Configuration of etcd encryption.
+     *     @type \Google\Cloud\Container\V1\VerticalPodAutoscaling $vertical_pod_autoscaling
+     *           Cluster-level Vertical Pod Autoscaling configuration.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $zone
      *           [Output only] The name of the Google Compute Engine
-     *           [zone](/compute/docs/zones#available) in which the cluster
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      *           resides.
      *           This field is deprecated, use location instead.
      *     @type string $endpoint
@@ -448,7 +550,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           [Output only] The current software version of the master endpoint.
      *     @type string $current_node_version
      *           [Output only] Deprecated, use
-     *           [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     *           [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      *           instead. The current version of the node software components. If they are
      *           currently at multiple versions because they're in the process of being
      *           upgraded, this reflects the minimum version of all nodes.
@@ -463,7 +565,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type int $node_ipv4_cidr_size
      *           [Output only] The size of the address space on each node for hosting
      *           containers. This is provisioned from within the `container_ipv4_cidr`
-     *           range.
+     *           range. This field will only be set when cluster is in route-based network
+     *           mode.
      *     @type string $services_ipv4_cidr
      *           [Output only] The IP address range of the Kubernetes services in
      *           this cluster, in
@@ -473,15 +576,24 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
      *           Deprecated. Use node_pools.instance_group_urls.
      *     @type int $current_node_count
-     *           [Output only] The number of nodes currently in the cluster.
+     *           [Output only]  The number of nodes currently in the cluster. Deprecated.
+     *           Call Kubernetes API directly to retrieve node information.
      *     @type string $expire_time
      *           [Output only] The time the cluster will be automatically
      *           deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type string $location
      *           [Output only] The name of the Google Compute Engine
-     *           [zone](/compute/docs/regions-zones/regions-zones#available) or
-     *           [region](/compute/docs/regions-zones/regions-zones#available) in which
+     *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      *           the cluster resides.
+     *     @type bool $enable_tpu
+     *           Enable the ability to use Cloud TPUs in this cluster.
+     *     @type string $tpu_ipv4_cidr_block
+     *           [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           notation (e.g. `1.2.3.4/29`).
+     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *           Which conditions caused the current cluster state.
      * }
      */
     public function __construct($data = NULL) {
@@ -491,7 +603,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of this cluster. The name must be unique within this project
-     * and zone, and can be up to 40 characters with the following restrictions:
+     * and location (e.g. zone or region), and can be up to 40 characters with
+     * the following restrictions:
      * * Lowercase letters, numbers, and hyphens only.
      * * Must start with a letter.
      * * Must end with a number or a letter.
@@ -506,7 +619,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of this cluster. The name must be unique within this project
-     * and zone, and can be up to 40 characters with the following restrictions:
+     * and location (e.g. zone or region), and can be up to 40 characters with
+     * the following restrictions:
      * * Lowercase letters, numbers, and hyphens only.
      * * Must start with a letter.
      * * Must end with a number or a letter.
@@ -558,8 +672,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * "node_pool" object, since this configuration (along with the
      * "node_config") will be used to create a "NodePool" object with an
      * auto-generated name. Do not use this and a node_pool at the same time.
+     * This field is deprecated, use node_pool.initial_node_count instead.
      *
-     * Generated from protobuf field <code>int32 initial_node_count = 3;</code>
+     * Generated from protobuf field <code>int32 initial_node_count = 3 [deprecated = true];</code>
      * @return int
      */
     public function getInitialNodeCount()
@@ -576,8 +691,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * "node_pool" object, since this configuration (along with the
      * "node_config") will be used to create a "NodePool" object with an
      * auto-generated name. Do not use this and a node_pool at the same time.
+     * This field is deprecated, use node_pool.initial_node_count instead.
      *
-     * Generated from protobuf field <code>int32 initial_node_count = 3;</code>
+     * Generated from protobuf field <code>int32 initial_node_count = 3 [deprecated = true];</code>
      * @param int $var
      * @return $this
      */
@@ -591,16 +707,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Parameters used in creating the cluster's nodes.
-     * See `nodeConfig` for the description of its properties.
      * For requests, this field should only be used in lieu of a
      * "node_pool" object, since this configuration (along with the
      * "initial_node_count") will be used to create a "NodePool" object with an
      * auto-generated name. Do not use this and a node_pool at the same time.
      * For responses, this field will be populated with the node configuration of
-     * the first node pool.
+     * the first node pool. (For configuration of each node pool, see
+     * `node_pool.config`)
      * If unspecified, the defaults are used.
+     * This field is deprecated, use node_pool.config instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\NodeConfig
      */
     public function getNodeConfig()
@@ -610,16 +727,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Parameters used in creating the cluster's nodes.
-     * See `nodeConfig` for the description of its properties.
      * For requests, this field should only be used in lieu of a
      * "node_pool" object, since this configuration (along with the
      * "initial_node_count") will be used to create a "NodePool" object with an
      * auto-generated name. Do not use this and a node_pool at the same time.
      * For responses, this field will be populated with the node configuration of
-     * the first node pool.
+     * the first node pool. (For configuration of each node pool, see
+     * `node_pool.config`)
      * If unspecified, the defaults are used.
+     * This field is deprecated, use node_pool.config instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4;</code>
+     * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\NodeConfig $var
      * @return $this
      */
@@ -633,6 +751,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The authentication information for accessing the master endpoint.
+     * If unspecified, the defaults are used:
+     * For clusters before v1.12, if master_auth is unspecified, `username` will
+     * be set to "admin", a random password will be generated, and a client
+     * certificate will be issued.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuth master_auth = 5;</code>
      * @return \Google\Cloud\Container\V1\MasterAuth
@@ -644,6 +766,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The authentication information for accessing the master endpoint.
+     * If unspecified, the defaults are used:
+     * For clusters before v1.12, if master_auth is unspecified, `username` will
+     * be set to "admin", a random password will be generated, and a client
+     * certificate will be issued.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuth master_auth = 5;</code>
      * @param \Google\Cloud\Container\V1\MasterAuth $var
@@ -660,6 +786,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
+     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     * service with Kubernetes-native resource model
      * * `logging.googleapis.com` - the Google Cloud Logging service.
      * * `none` - no logs will be exported from the cluster.
      * * if left as an empty string,`logging.googleapis.com` will be used.
@@ -675,6 +803,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
+     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
+     * service with Kubernetes-native resource model
      * * `logging.googleapis.com` - the Google Cloud Logging service.
      * * `none` - no logs will be exported from the cluster.
      * * if left as an empty string,`logging.googleapis.com` will be used.
@@ -727,7 +857,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [network](/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
      * cluster is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -741,7 +871,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [network](/compute/docs/networks-and-firewalls#networks) to which the
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
      * cluster is connected. If left unspecified, the `default` network
      * will be used.
      *
@@ -817,7 +947,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](/compute/docs/subnetworks) to which the
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
      * cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
@@ -830,7 +960,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](/compute/docs/subnetworks) to which the
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
      * cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
@@ -877,7 +1007,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
@@ -890,7 +1020,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [locations](/compute/docs/zones#available) in which the cluster's nodes
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
      * should be located.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
@@ -1126,6 +1256,58 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for Binary Authorization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization binary_authorization = 24;</code>
+     * @return \Google\Cloud\Container\V1\BinaryAuthorization
+     */
+    public function getBinaryAuthorization()
+    {
+        return $this->binary_authorization;
+    }
+
+    /**
+     * Configuration for Binary Authorization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization binary_authorization = 24;</code>
+     * @param \Google\Cloud\Container\V1\BinaryAuthorization $var
+     * @return $this
+     */
+    public function setBinaryAuthorization($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BinaryAuthorization::class);
+        $this->binary_authorization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cluster-level autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling autoscaling = 26;</code>
+     * @return \Google\Cloud\Container\V1\ClusterAutoscaling
+     */
+    public function getAutoscaling()
+    {
+        return $this->autoscaling;
+    }
+
+    /**
+     * Cluster-level autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling autoscaling = 26;</code>
+     * @param \Google\Cloud\Container\V1\ClusterAutoscaling $var
+     * @return $this
+     */
+    public function setAutoscaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ClusterAutoscaling::class);
+        $this->autoscaling = $var;
+
+        return $this;
+    }
+
+    /**
      * Configuration for cluster networking.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
@@ -1152,6 +1334,90 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The default constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool of this cluster. Only honored
+     * if cluster created with IP Alias support.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint default_max_pods_constraint = 30;</code>
+     * @return \Google\Cloud\Container\V1\MaxPodsConstraint
+     */
+    public function getDefaultMaxPodsConstraint()
+    {
+        return $this->default_max_pods_constraint;
+    }
+
+    /**
+     * The default constraint on the maximum number of pods that can be run
+     * simultaneously on a node in the node pool of this cluster. Only honored
+     * if cluster created with IP Alias support.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint default_max_pods_constraint = 30;</code>
+     * @param \Google\Cloud\Container\V1\MaxPodsConstraint $var
+     * @return $this
+     */
+    public function setDefaultMaxPodsConstraint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MaxPodsConstraint::class);
+        $this->default_max_pods_constraint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for exporting resource usages. Resource usage export is
+     * disabled when this config is unspecified.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig resource_usage_export_config = 33;</code>
+     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig
+     */
+    public function getResourceUsageExportConfig()
+    {
+        return $this->resource_usage_export_config;
+    }
+
+    /**
+     * Configuration for exporting resource usages. Resource usage export is
+     * disabled when this config is unspecified.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig resource_usage_export_config = 33;</code>
+     * @param \Google\Cloud\Container\V1\ResourceUsageExportConfig $var
+     * @return $this
+     */
+    public function setResourceUsageExportConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceUsageExportConfig::class);
+        $this->resource_usage_export_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration controlling RBAC group membership information.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig authenticator_groups_config = 34;</code>
+     * @return \Google\Cloud\Container\V1\AuthenticatorGroupsConfig
+     */
+    public function getAuthenticatorGroupsConfig()
+    {
+        return $this->authenticator_groups_config;
+    }
+
+    /**
+     * Configuration controlling RBAC group membership information.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig authenticator_groups_config = 34;</code>
+     * @param \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $var
+     * @return $this
+     */
+    public function setAuthenticatorGroupsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AuthenticatorGroupsConfig::class);
+        $this->authenticator_groups_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Configuration for private cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
@@ -1173,6 +1439,58 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivateClusterConfig::class);
         $this->private_cluster_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration of etcd encryption.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption database_encryption = 38;</code>
+     * @return \Google\Cloud\Container\V1\DatabaseEncryption
+     */
+    public function getDatabaseEncryption()
+    {
+        return $this->database_encryption;
+    }
+
+    /**
+     * Configuration of etcd encryption.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption database_encryption = 38;</code>
+     * @param \Google\Cloud\Container\V1\DatabaseEncryption $var
+     * @return $this
+     */
+    public function setDatabaseEncryption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DatabaseEncryption::class);
+        $this->database_encryption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling vertical_pod_autoscaling = 39;</code>
+     * @return \Google\Cloud\Container\V1\VerticalPodAutoscaling
+     */
+    public function getVerticalPodAutoscaling()
+    {
+        return $this->vertical_pod_autoscaling;
+    }
+
+    /**
+     * Cluster-level Vertical Pod Autoscaling configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling vertical_pod_autoscaling = 39;</code>
+     * @param \Google\Cloud\Container\V1\VerticalPodAutoscaling $var
+     * @return $this
+     */
+    public function setVerticalPodAutoscaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VerticalPodAutoscaling::class);
+        $this->vertical_pod_autoscaling = $var;
 
         return $this;
     }
@@ -1205,7 +1523,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field is deprecated, use location instead.
      *
@@ -1219,7 +1537,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/zones#available) in which the cluster
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
      * resides.
      * This field is deprecated, use location instead.
      *
@@ -1343,7 +1661,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] Deprecated, use
-     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -1358,7 +1676,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] Deprecated, use
-     * [NodePool.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePool)
+     * [NodePools.version](/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -1460,7 +1778,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
-     * range.
+     * range. This field will only be set when cluster is in route-based network
+     * mode.
      *
      * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109;</code>
      * @return int
@@ -1473,7 +1792,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
-     * range.
+     * range. This field will only be set when cluster is in route-based network
+     * mode.
      *
      * Generated from protobuf field <code>int32 node_ipv4_cidr_size = 109;</code>
      * @param int $var
@@ -1548,9 +1868,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The number of nodes currently in the cluster.
+     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Call Kubernetes API directly to retrieve node information.
      *
-     * Generated from protobuf field <code>int32 current_node_count = 112;</code>
+     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
      * @return int
      */
     public function getCurrentNodeCount()
@@ -1559,9 +1880,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The number of nodes currently in the cluster.
+     * [Output only]  The number of nodes currently in the cluster. Deprecated.
+     * Call Kubernetes API directly to retrieve node information.
      *
-     * Generated from protobuf field <code>int32 current_node_count = 112;</code>
+     * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
      * @param int $var
      * @return $this
      */
@@ -1603,8 +1925,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      * the cluster resides.
      *
      * Generated from protobuf field <code>string location = 114;</code>
@@ -1617,8 +1939,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](/compute/docs/regions-zones/regions-zones#available) or
-     * [region](/compute/docs/regions-zones/regions-zones#available) in which
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
      * the cluster resides.
      *
      * Generated from protobuf field <code>string location = 114;</code>
@@ -1629,6 +1951,88 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable the ability to use Cloud TPUs in this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_tpu = 115;</code>
+     * @return bool
+     */
+    public function getEnableTpu()
+    {
+        return $this->enable_tpu;
+    }
+
+    /**
+     * Enable the ability to use Cloud TPUs in this cluster.
+     *
+     * Generated from protobuf field <code>bool enable_tpu = 115;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableTpu($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_tpu = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `1.2.3.4/29`).
+     *
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116;</code>
+     * @return string
+     */
+    public function getTpuIpv4CidrBlock()
+    {
+        return $this->tpu_ipv4_cidr_block;
+    }
+
+    /**
+     * [Output only] The IP address range of the Cloud TPUs in this cluster, in
+     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * notation (e.g. `1.2.3.4/29`).
+     *
+     * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 116;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTpuIpv4CidrBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tpu_ipv4_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 118;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getConditions()
+    {
+        return $this->conditions;
+    }
+
+    /**
+     * Which conditions caused the current cluster state.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 118;</code>
+     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setConditions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
+        $this->conditions = $arr;
 
         return $this;
     }
