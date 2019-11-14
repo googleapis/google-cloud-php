@@ -27,36 +27,5 @@ return [
                 ],
             ],
         ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/operations/*/**}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=folders/*/operations/*/**}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=organizations/*/operations/*/**}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1alpha1/{name=*/*/operations/*/**}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=*/*/operations/*/**}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-        ],
     ],
 ];
