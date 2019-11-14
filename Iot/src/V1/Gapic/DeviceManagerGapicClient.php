@@ -1292,22 +1292,22 @@ class DeviceManagerGapicClient
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
      *     $resource = '';
-     *     $response = $deviceManagerClient->testIamPermissions($resource);
+     *     $permissions = [];
+     *     $response = $deviceManagerClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $deviceManagerClient->close();
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which the policy detail is being requested.
-     *                             See the operation documentation for the appropriate value for this field.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
-     *     @type string[] $permissions
-     *          The set of permissions to check for the `resource`. Permissions with
-     *          wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *          information see
-     *          [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1320,13 +1320,11 @@ class DeviceManagerGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function testIamPermissions($resource, array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
+        $request->setPermissions($permissions);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'resource' => $request->getResource(),
