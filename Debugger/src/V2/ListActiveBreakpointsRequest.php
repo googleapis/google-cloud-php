@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifies the debuggee.
+     * Required. Identifies the debuggee.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $debuggee_id = '';
     /**
@@ -48,7 +48,7 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $debuggee_id
-     *           Identifies the debuggee.
+     *           Required. Identifies the debuggee.
      *     @type string $wait_token
      *           A token that, if specified, blocks the method call until the list
      *           of active breakpoints has changed, or a server-selected timeout has
@@ -68,9 +68,9 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the debuggee.
+     * Required. Identifies the debuggee.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDebuggeeId()
@@ -79,9 +79,9 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the debuggee.
+     * Required. Identifies the debuggee.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -76,6 +76,86 @@ class Debugger2ClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteBreakpointTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $debuggeeId = 'debuggeeId-997255898';
+        $breakpointId = 'breakpointId498424873';
+        $clientVersion = 'clientVersion-1506231196';
+
+        $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getDebuggeeId();
+
+        $this->assertProtobufEquals($debuggeeId, $actualValue);
+        $actualValue = $actualRequestObject->getBreakpointId();
+
+        $this->assertProtobufEquals($breakpointId, $actualValue);
+        $actualValue = $actualRequestObject->getClientVersion();
+
+        $this->assertProtobufEquals($clientVersion, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteBreakpointExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $debuggeeId = 'debuggeeId-997255898';
+        $breakpointId = 'breakpointId498424873';
+        $clientVersion = 'clientVersion-1506231196';
+
+        try {
+            $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function setBreakpointTest()
     {
         $transport = $this->createTransport();
@@ -223,86 +303,6 @@ class Debugger2ClientTest extends GeneratedTest
 
         try {
             $client->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteBreakpointTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-
-        $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouddebugger.v2.Debugger2/DeleteBreakpoint', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getDebuggeeId();
-
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpointId();
-
-        $this->assertProtobufEquals($breakpointId, $actualValue);
-        $actualValue = $actualRequestObject->getClientVersion();
-
-        $this->assertProtobufEquals($clientVersion, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteBreakpointExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpointId = 'breakpointId498424873';
-        $clientVersion = 'clientVersion-1506231196';
-
-        try {
-            $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
