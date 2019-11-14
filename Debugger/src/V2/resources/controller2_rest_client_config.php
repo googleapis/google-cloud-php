@@ -3,22 +3,6 @@
 return [
     'interfaces' => [
         'google.devtools.clouddebugger.v2.Controller2' => [
-            'RegisterDebuggee' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/controller/debuggees/register',
-                'body' => '*',
-            ],
-            'ListActiveBreakpoints' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints',
-                'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateActiveBreakpoint' => [
                 'method' => 'put',
                 'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}',
@@ -33,6 +17,22 @@ return [
                         'getters' => [
                             'getBreakpoint',
                             'getId',
+                        ],
+                    ],
+                ],
+            ],
+            'RegisterDebuggee' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/controller/debuggees/register',
+                'body' => '*',
+            ],
+            'ListActiveBreakpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints',
+                'placeholders' => [
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
                         ],
                     ],
                 ],

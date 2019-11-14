@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Project number of a Google Cloud project whose debuggees to list.
+     * Required. Project number of a Google Cloud project whose debuggees to list.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project = '';
     /**
@@ -29,10 +29,10 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
      */
     private $include_inactive = false;
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $client_version = '';
 
@@ -43,12 +43,12 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project
-     *           Project number of a Google Cloud project whose debuggees to list.
+     *           Required. Project number of a Google Cloud project whose debuggees to list.
      *     @type bool $include_inactive
      *           When set to `true`, the result includes all debuggees. Otherwise, the
      *           result includes only debuggees that are active.
      *     @type string $client_version
-     *           The client version making the call.
+     *           Required. The client version making the call.
      *           Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      * }
      */
@@ -58,9 +58,9 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project number of a Google Cloud project whose debuggees to list.
+     * Required. Project number of a Google Cloud project whose debuggees to list.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProject()
@@ -69,9 +69,9 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project number of a Google Cloud project whose debuggees to list.
+     * Required. Project number of a Google Cloud project whose debuggees to list.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -112,10 +112,10 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClientVersion()
@@ -124,10 +124,10 @@ class ListDebuggeesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The client version making the call.
+     * Required. The client version making the call.
      * Schema: `domain/type/version` (e.g., `google.com/intellij/v1`).
      *
-     * Generated from protobuf field <code>string client_version = 4;</code>
+     * Generated from protobuf field <code>string client_version = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

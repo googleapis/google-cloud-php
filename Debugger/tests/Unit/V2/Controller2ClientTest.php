@@ -75,6 +75,82 @@ class Controller2ClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function updateActiveBreakpointTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $expectedResponse = new UpdateActiveBreakpointResponse();
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $debuggeeId = 'debuggeeId-997255898';
+        $breakpoint = new Breakpoint();
+
+        $response = $client->updateActiveBreakpoint($debuggeeId, $breakpoint);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouddebugger.v2.Controller2/UpdateActiveBreakpoint', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getDebuggeeId();
+
+        $this->assertProtobufEquals($debuggeeId, $actualValue);
+        $actualValue = $actualRequestObject->getBreakpoint();
+
+        $this->assertProtobufEquals($breakpoint, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateActiveBreakpointExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $debuggeeId = 'debuggeeId-997255898';
+        $breakpoint = new Breakpoint();
+
+        try {
+            $client->updateActiveBreakpoint($debuggeeId, $breakpoint);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function registerDebuggeeTest()
     {
         $transport = $this->createTransport();
@@ -206,82 +282,6 @@ class Controller2ClientTest extends GeneratedTest
 
         try {
             $client->listActiveBreakpoints($debuggeeId);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateActiveBreakpointTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new UpdateActiveBreakpointResponse();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpoint = new Breakpoint();
-
-        $response = $client->updateActiveBreakpoint($debuggeeId, $breakpoint);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouddebugger.v2.Controller2/UpdateActiveBreakpoint', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getDebuggeeId();
-
-        $this->assertProtobufEquals($debuggeeId, $actualValue);
-        $actualValue = $actualRequestObject->getBreakpoint();
-
-        $this->assertProtobufEquals($breakpoint, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateActiveBreakpointExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $debuggeeId = 'debuggeeId-997255898';
-        $breakpoint = new Breakpoint();
-
-        try {
-            $client->updateActiveBreakpoint($debuggeeId, $breakpoint);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

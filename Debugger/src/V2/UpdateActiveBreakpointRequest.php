@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifies the debuggee being debugged.
+     * Required. Identifies the debuggee being debugged.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $debuggee_id = '';
     /**
-     * Updated breakpoint information.
+     * Required. Updated breakpoint information.
      * The field `id` must be set.
      * The agent must echo all Breakpoint specification fields in the update.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $breakpoint = null;
 
@@ -37,9 +37,9 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $debuggee_id
-     *           Identifies the debuggee being debugged.
+     *           Required. Identifies the debuggee being debugged.
      *     @type \Google\Cloud\Debugger\V2\Breakpoint $breakpoint
-     *           Updated breakpoint information.
+     *           Required. Updated breakpoint information.
      *           The field `id` must be set.
      *           The agent must echo all Breakpoint specification fields in the update.
      * }
@@ -50,9 +50,9 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the debuggee being debugged.
+     * Required. Identifies the debuggee being debugged.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDebuggeeId()
@@ -61,9 +61,9 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the debuggee being debugged.
+     * Required. Identifies the debuggee being debugged.
      *
-     * Generated from protobuf field <code>string debuggee_id = 1;</code>
+     * Generated from protobuf field <code>string debuggee_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -76,11 +76,11 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Updated breakpoint information.
+     * Required. Updated breakpoint information.
      * The field `id` must be set.
      * The agent must echo all Breakpoint specification fields in the update.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Debugger\V2\Breakpoint
      */
     public function getBreakpoint()
@@ -89,11 +89,11 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Updated breakpoint information.
+     * Required. Updated breakpoint information.
      * The field `id` must be set.
      * The agent must echo all Breakpoint specification fields in the update.
      *
-     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Debugger\V2\Breakpoint $var
      * @return $this
      */
