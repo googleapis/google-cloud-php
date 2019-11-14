@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Optional. Contains information about a button.
+ * Contains information about a button.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.Intent.Message.Card.Button</code>
  */
@@ -18,14 +18,14 @@ class Button extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The text to show on the button.
      *
-     * Generated from protobuf field <code>string text = 1;</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $text = '';
     /**
      * Optional. The text to send back to the Dialogflow API or a URI to
      * open.
      *
-     * Generated from protobuf field <code>string postback = 2;</code>
+     * Generated from protobuf field <code>string postback = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $postback = '';
 
@@ -50,7 +50,7 @@ class Button extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The text to show on the button.
      *
-     * Generated from protobuf field <code>string text = 1;</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getText()
@@ -61,7 +61,7 @@ class Button extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The text to show on the button.
      *
-     * Generated from protobuf field <code>string text = 1;</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -77,7 +77,7 @@ class Button extends \Google\Protobuf\Internal\Message
      * Optional. The text to send back to the Dialogflow API or a URI to
      * open.
      *
-     * Generated from protobuf field <code>string postback = 2;</code>
+     * Generated from protobuf field <code>string postback = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPostback()
@@ -89,7 +89,7 @@ class Button extends \Google\Protobuf\Internal\Message
      * Optional. The text to send back to the Dialogflow API or a URI to
      * open.
      *
-     * Generated from protobuf field <code>string postback = 2;</code>
+     * Generated from protobuf field <code>string postback = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -19,7 +19,7 @@ class Suggestion extends \Google\Protobuf\Internal\Message
     /**
      * Required. The text shown the in the suggestion chip.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $title = '';
 
@@ -41,7 +41,7 @@ class Suggestion extends \Google\Protobuf\Internal\Message
     /**
      * Required. The text shown the in the suggestion chip.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTitle()
@@ -52,7 +52,7 @@ class Suggestion extends \Google\Protobuf\Internal\Message
     /**
      * Required. The text shown the in the suggestion chip.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

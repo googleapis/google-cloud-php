@@ -18,13 +18,13 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the collection of quick replies.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $title = '';
     /**
      * Optional. The collection of quick replies.
      *
-     * Generated from protobuf field <code>repeated string quick_replies = 2;</code>
+     * Generated from protobuf field <code>repeated string quick_replies = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $quick_replies;
 
@@ -48,7 +48,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the collection of quick replies.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTitle()
@@ -59,7 +59,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The title of the collection of quick replies.
      *
-     * Generated from protobuf field <code>string title = 1;</code>
+     * Generated from protobuf field <code>string title = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of quick replies.
      *
-     * Generated from protobuf field <code>repeated string quick_replies = 2;</code>
+     * Generated from protobuf field <code>repeated string quick_replies = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getQuickReplies()
@@ -85,7 +85,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The collection of quick replies.
      *
-     * Generated from protobuf field <code>repeated string quick_replies = 2;</code>
+     * Generated from protobuf field <code>repeated string quick_replies = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

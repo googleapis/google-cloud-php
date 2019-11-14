@@ -19,7 +19,7 @@ class TrainAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to train is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
 
@@ -43,7 +43,7 @@ class TrainAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to train is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -55,7 +55,7 @@ class TrainAgentRequest extends \Google\Protobuf\Internal\Message
      * Required. The project that the agent to train is associated with.
      * Format: `projects/<Project ID>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

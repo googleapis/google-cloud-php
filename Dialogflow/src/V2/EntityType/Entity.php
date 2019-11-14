@@ -25,7 +25,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * *   A string that can contain references to other entity types (with or
      *     without aliases).
      *
-     * Generated from protobuf field <code>string value = 1;</code>
+     * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $value = '';
     /**
@@ -35,7 +35,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * For `KIND_LIST` entity types:
      * *   This collection must contain exactly one synonym equal to `value`.
      *
-     * Generated from protobuf field <code>repeated string synonyms = 2;</code>
+     * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $synonyms;
 
@@ -77,7 +77,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * *   A string that can contain references to other entity types (with or
      *     without aliases).
      *
-     * Generated from protobuf field <code>string value = 1;</code>
+     * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getValue()
@@ -95,7 +95,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * *   A string that can contain references to other entity types (with or
      *     without aliases).
      *
-     * Generated from protobuf field <code>string value = 1;</code>
+     * Generated from protobuf field <code>string value = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -114,7 +114,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * For `KIND_LIST` entity types:
      * *   This collection must contain exactly one synonym equal to `value`.
      *
-     * Generated from protobuf field <code>repeated string synonyms = 2;</code>
+     * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSynonyms()
@@ -129,7 +129,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * For `KIND_LIST` entity types:
      * *   This collection must contain exactly one synonym equal to `value`.
      *
-     * Generated from protobuf field <code>repeated string synonyms = 2;</code>
+     * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

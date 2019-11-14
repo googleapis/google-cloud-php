@@ -20,7 +20,7 @@ class SentimentAnalysisRequestConfig extends \Google\Protobuf\Internal\Message
      * `query_text`. If not provided, sentiment analysis is not performed on
      * `query_text`.
      *
-     * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1;</code>
+     * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $analyze_query_text_sentiment = false;
 
@@ -46,7 +46,7 @@ class SentimentAnalysisRequestConfig extends \Google\Protobuf\Internal\Message
      * `query_text`. If not provided, sentiment analysis is not performed on
      * `query_text`.
      *
-     * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1;</code>
+     * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAnalyzeQueryTextSentiment()
@@ -59,7 +59,7 @@ class SentimentAnalysisRequestConfig extends \Google\Protobuf\Internal\Message
      * `query_text`. If not provided, sentiment analysis is not performed on
      * `query_text`.
      *
-     * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1;</code>
+     * Generated from protobuf field <code>bool analyze_query_text_sentiment = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

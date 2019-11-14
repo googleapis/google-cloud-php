@@ -19,14 +19,14 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The names entity types to delete. All names must point to the
      * same agent as `parent`.
      *
-     * Generated from protobuf field <code>repeated string entity_type_names = 2;</code>
+     * Generated from protobuf field <code>repeated string entity_type_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entity_type_names;
 
@@ -53,7 +53,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -65,7 +65,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -81,7 +81,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The names entity types to delete. All names must point to the
      * same agent as `parent`.
      *
-     * Generated from protobuf field <code>repeated string entity_type_names = 2;</code>
+     * Generated from protobuf field <code>repeated string entity_type_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntityTypeNames()
@@ -93,7 +93,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Required. The names entity types to delete. All names must point to the
      * same agent as `parent`.
      *
-     * Generated from protobuf field <code>repeated string entity_type_names = 2;</code>
+     * Generated from protobuf field <code>repeated string entity_type_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

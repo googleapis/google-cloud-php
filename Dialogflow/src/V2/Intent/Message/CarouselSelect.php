@@ -18,7 +18,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
     /**
      * Required. Carousel items.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $items;
 
@@ -40,7 +40,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
     /**
      * Required. Carousel items.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getItems()
@@ -51,7 +51,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
     /**
      * Required. Carousel items.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

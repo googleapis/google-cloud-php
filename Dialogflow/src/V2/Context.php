@@ -21,7 +21,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * The `Context ID` is always converted to lowercase, may only contain
      * characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -30,7 +30,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
-     * Generated from protobuf field <code>int32 lifespan_count = 2;</code>
+     * Generated from protobuf field <code>int32 lifespan_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $lifespan_count = 0;
     /**
@@ -39,7 +39,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      * for syntax.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters = null;
 
@@ -77,7 +77,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * The `Context ID` is always converted to lowercase, may only contain
      * characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -91,7 +91,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * The `Context ID` is always converted to lowercase, may only contain
      * characters in [a-zA-Z0-9_-%] and may be at most 250 bytes long.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -109,7 +109,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
-     * Generated from protobuf field <code>int32 lifespan_count = 2;</code>
+     * Generated from protobuf field <code>int32 lifespan_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getLifespanCount()
@@ -123,7 +123,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * immediately. Contexts expire automatically after 20 minutes if there
      * are no matching queries.
      *
-     * Generated from protobuf field <code>int32 lifespan_count = 2;</code>
+     * Generated from protobuf field <code>int32 lifespan_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -141,7 +141,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      * for syntax.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct
      */
     public function getParameters()
@@ -155,7 +155,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * doc](https://cloud.google.com/dialogflow/docs/intents-actions-parameters)
      * for syntax.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */

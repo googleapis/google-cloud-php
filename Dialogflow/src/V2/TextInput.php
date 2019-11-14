@@ -19,7 +19,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * Required. The UTF-8 encoded natural language text to be processed.
      * Text length must not exceed 256 characters.
      *
-     * Generated from protobuf field <code>string text = 1;</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $text = '';
     /**
@@ -28,7 +28,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $language_code = '';
 
@@ -57,7 +57,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * Required. The UTF-8 encoded natural language text to be processed.
      * Text length must not exceed 256 characters.
      *
-     * Generated from protobuf field <code>string text = 1;</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getText()
@@ -69,7 +69,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * Required. The UTF-8 encoded natural language text to be processed.
      * Text length must not exceed 256 characters.
      *
-     * Generated from protobuf field <code>string text = 1;</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -87,7 +87,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -101,7 +101,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
      *
-     * Generated from protobuf field <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

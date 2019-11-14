@@ -34,11 +34,19 @@ class Kind
      * Generated from protobuf enum <code>KIND_LIST = 2;</code>
      */
     const KIND_LIST = 2;
+    /**
+     * Regexp entity types allow to specify regular expressions in entries
+     * values.
+     *
+     * Generated from protobuf enum <code>KIND_REGEXP = 3;</code>
+     */
+    const KIND_REGEXP = 3;
 
     private static $valueToName = [
         self::KIND_UNSPECIFIED => 'KIND_UNSPECIFIED',
         self::KIND_MAP => 'KIND_MAP',
         self::KIND_LIST => 'KIND_LIST',
+        self::KIND_REGEXP => 'KIND_REGEXP',
     ];
 
     public static function name($value)

@@ -27,19 +27,7 @@ class ExportAgentResponse extends \Google\Protobuf\Internal\Message
      *           The URI to a file containing the exported agent. This field is populated
      *           only if `agent_uri` is specified in `ExportAgentRequest`.
      *     @type string $agent_content
-     *           The exported agent.
-     *           Example for how to export an agent to a zip file via a command line:
-     *           <pre>curl \
-     *             'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:export'\
-     *             -X POST \
-     *             -H 'Authorization: Bearer '$(gcloud auth application-default
-     *             print-access-token) \
-     *             -H 'Accept: application/json' \
-     *             -H 'Content-Type: application/json' \
-     *             --compressed \
-     *             --data-binary '{}' \
-     *           | grep agentContent | sed -e 's/.*"agentContent": "\([^"]*\)".*&#47;\1/' \
-     *           | base64 --decode > &lt;agent zip file&gt;</pre>
+     *           Zip compressed raw byte content for agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,19 +64,7 @@ class ExportAgentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The exported agent.
-     * Example for how to export an agent to a zip file via a command line:
-     * <pre>curl \
-     *   'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:export'\
-     *   -X POST \
-     *   -H 'Authorization: Bearer '$(gcloud auth application-default
-     *   print-access-token) \
-     *   -H 'Accept: application/json' \
-     *   -H 'Content-Type: application/json' \
-     *   --compressed \
-     *   --data-binary '{}' \
-     * | grep agentContent | sed -e 's/.*"agentContent": "\([^"]*\)".*&#47;\1/' \
-     * | base64 --decode > &lt;agent zip file&gt;</pre>
+     * Zip compressed raw byte content for agent.
      *
      * Generated from protobuf field <code>bytes agent_content = 2;</code>
      * @return string
@@ -99,19 +75,7 @@ class ExportAgentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The exported agent.
-     * Example for how to export an agent to a zip file via a command line:
-     * <pre>curl \
-     *   'https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:export'\
-     *   -X POST \
-     *   -H 'Authorization: Bearer '$(gcloud auth application-default
-     *   print-access-token) \
-     *   -H 'Accept: application/json' \
-     *   -H 'Content-Type: application/json' \
-     *   --compressed \
-     *   --data-binary '{}' \
-     * | grep agentContent | sed -e 's/.*"agentContent": "\([^"]*\)".*&#47;\1/' \
-     * | base64 --decode > &lt;agent zip file&gt;</pre>
+     * Zip compressed raw byte content for agent.
      *
      * Generated from protobuf field <code>bytes agent_content = 2;</code>
      * @param string $var
